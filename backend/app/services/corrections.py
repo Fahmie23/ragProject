@@ -10,8 +10,10 @@ from app.schemas import (
     CorrectionArtifact,
     CorrectionElementSpec,
     CorrectionOperation,
+    CorrectionRelationshipSpec,
     DocumentExtraction,
     ResolvedStructureArtifact,
+    StructuralRelation,
     StructuredDocument,
 )
 
@@ -31,6 +33,8 @@ CONTENT_TYPES = {
     "footnote",
     "formula",
 }
+
+RELATIONSHIP_OPERATIONS = {"add_relationship", "remove_relationship"}
 
 
 class StaleCorrectionError(ValueError):
@@ -231,6 +235,12 @@ def _apply_operation(
     if operation.page_number != page_number:
         return
 
+    # Relationship operations are document-level graph edits. They are applied
+    # only after every page-local element operation has finished so links can
+    # safely target elements created by split/draw corrections.
+    if operation.operation in RELATIONSHIP_OPERATIONS:
+        return
+
     if operation.operation == "relabel":
         if len(operation.source_element_ids) != 1 or operation.new_type is None:
             raise InvalidCorrectionError("Relabel requires one source element and a new_type.")
@@ -364,6 +374,125 @@ def _apply_operation(
     raise InvalidCorrectionError(f"Unsupported correction operation: {operation.operation}")
 
 
+def _relationship_from_spec(spec: CorrectionRelationshipSpec) -> StructuralRelation:
+    return StructuralRelation(
+        relation_id=spec.relation_id,
+        type=spec.type,
+        source_element_id=spec.source_element_id,
+        target_element_id=spec.target_element_id,
+        evidence=spec.evidence.strip() or "manual relationship correction",
+    )
+
+
+def _apply_relationship_operations(
+    structure: StructuredDocument,
+    operations: list[CorrectionOperation],
+) -> None:
+    """Apply auditable manual graph edits after page-local corrections.
+
+    The operation payload carries source/target page numbers for auditability,
+    but the backend always verifies them against the final corrected elements.
+    This prevents a pasted or stale correction JSON from linking the wrong
+    element just because an ID happens to exist.
+    """
+
+    element_page = {
+        element.element_id: page.page_number
+        for page in structure.pages
+        for element in page.elements
+    }
+
+    for operation in operations:
+        if operation.operation not in RELATIONSHIP_OPERATIONS:
+            continue
+
+        if operation.source_element_ids or operation.result_elements or operation.new_type is not None:
+            raise InvalidCorrectionError(
+                f"{operation.operation} must use the relationships field only."
+            )
+        if not operation.relationships:
+            raise InvalidCorrectionError(
+                f"{operation.operation} requires at least one relationship snapshot."
+            )
+
+        if operation.operation == "add_relationship":
+            existing_ids = {relation.relation_id for relation in structure.relationships}
+            existing_edges = {
+                (relation.type, relation.source_element_id, relation.target_element_id)
+                for relation in structure.relationships
+            }
+            for spec in operation.relationships:
+                if spec.relation_id in existing_ids:
+                    raise InvalidCorrectionError(
+                        f"Relationship ID already exists: {spec.relation_id}"
+                    )
+                if spec.source_element_id == spec.target_element_id:
+                    raise InvalidCorrectionError("A relationship cannot link an element to itself.")
+                if spec.source_element_id not in element_page:
+                    raise InvalidCorrectionError(
+                        f"Relationship source element not found: {spec.source_element_id}"
+                    )
+                if spec.target_element_id not in element_page:
+                    raise InvalidCorrectionError(
+                        f"Relationship target element not found: {spec.target_element_id}"
+                    )
+
+                actual_source_page = element_page[spec.source_element_id]
+                actual_target_page = element_page[spec.target_element_id]
+                if actual_source_page != spec.source_page_number or actual_target_page != spec.target_page_number:
+                    raise InvalidCorrectionError(
+                        "Relationship page metadata does not match the corrected element locations."
+                    )
+                if operation.page_number != actual_source_page:
+                    raise InvalidCorrectionError(
+                        "Relationship correction page_number must match the source element page."
+                    )
+
+                edge = (spec.type, spec.source_element_id, spec.target_element_id)
+                if edge in existing_edges:
+                    raise InvalidCorrectionError(
+                        "An equivalent relationship already exists between these elements."
+                    )
+
+                if spec.type == "continues":
+                    if actual_source_page >= actual_target_page:
+                        raise InvalidCorrectionError(
+                            "A manual continues relationship must point forward to a later page."
+                        )
+
+                relation = _relationship_from_spec(spec)
+                structure.relationships.append(relation)
+                existing_ids.add(spec.relation_id)
+                existing_edges.add(edge)
+            continue
+
+        # remove_relationship snapshots keep the correction log self-contained.
+        # Only the relation_id is used to identify the automatic/manual edge;
+        # endpoints are checked as a guard against deleting the wrong relation.
+        for spec in operation.relationships:
+            index = next(
+                (
+                    idx for idx, relation in enumerate(structure.relationships)
+                    if relation.relation_id == spec.relation_id
+                ),
+                -1,
+            )
+            if index < 0:
+                raise InvalidCorrectionError(
+                    f"Relationship to remove was not found: {spec.relation_id}"
+                )
+            relation = structure.relationships[index]
+            if (
+                relation.type != spec.type
+                or relation.source_element_id != spec.source_element_id
+                or relation.target_element_id != spec.target_element_id
+            ):
+                raise InvalidCorrectionError(
+                    f"Relationship snapshot does not match {spec.relation_id}."
+                )
+            structure.relationships.pop(index)
+
+
 def _existing_element_ids(structure: StructuredDocument) -> set[str]:
     return {element.element_id for page in structure.pages for element in page.elements}
 
@@ -425,7 +554,8 @@ def resolve_structure(
 
     operations_by_page: dict[int, list[CorrectionOperation]] = {}
     for operation in corrections.operations:
-        operations_by_page.setdefault(operation.page_number, []).append(operation)
+        if operation.operation not in RELATIONSHIP_OPERATIONS:
+            operations_by_page.setdefault(operation.page_number, []).append(operation)
 
     for page in resolved.pages:
         for operation in operations_by_page.get(page.page_number, []):
@@ -440,7 +570,8 @@ def resolve_structure(
 
     # Operations that point to non-existent pages should fail instead of being silently ignored.
     valid_pages = {page.page_number for page in resolved.pages}
-    invalid_pages = sorted(set(operations_by_page) - valid_pages)
+    referenced_operation_pages = {operation.page_number for operation in corrections.operations}
+    invalid_pages = sorted(referenced_operation_pages - valid_pages)
     if invalid_pages:
         raise InvalidCorrectionError(f"Correction operations reference missing pages: {invalid_pages}")
 
@@ -458,6 +589,7 @@ def resolve_structure(
         )
 
     resolved.body_text = "\n\n".join(page.body_text for page in resolved.pages if page.body_text)
+    _apply_relationship_operations(resolved, corrections.operations)
     _reconcile_records(resolved, warnings)
 
     counts = Counter(element.type for element in all_elements)

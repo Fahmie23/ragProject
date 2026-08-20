@@ -403,7 +403,7 @@ def test_definition_list_reconstruction_repairs_terms_clause_and_false_footer():
     result = build_canonical_document(record=record, extraction=extraction, layout_artifact=layout)
     page = result.pages[0]
 
-    assert result.schema_version == "1.3"
+    assert result.schema_version == "1.4"
     assert len(result.sections) == 1
     assert result.sections[0].title == "3. DEFINITIONS"
     assert result.sections[0].level == 2
@@ -589,7 +589,7 @@ def test_cross_page_tables_are_one_logical_table_with_fragments():
     ]
 
     result = build_canonical_document(record=record, extraction=extraction, layout_artifact=layout)
-    assert result.schema_version == "1.3"
+    assert result.schema_version == "1.4"
     assert len(result.tables) == 1
     table = result.tables[0]
     assert table.spans_multiple_pages is True
@@ -1194,3 +1194,613 @@ def test_definition_row_recovery_is_vocabulary_agnostic_with_shall_mean_pattern(
     result = build_canonical_document(record=record, extraction=extraction, layout_artifact=layout)
     assert [entry.term for entry in result.definitions] == ["gamma mechanism"]
     assert result.definitions[0].definition_text.startswith("shall mean")
+
+
+def test_parallel_tall_columns_are_reconstructed_into_definition_rows():
+    record, extraction, layout = _fixture()
+    raw = extraction.pages[0]
+    raw.blocks = [
+        _text_block("p1-b0", 0, [50, 40, 300, 70], "Sample Report", 22),
+        _text_block("p1-b1", 1, [72, 90, 194, 104], "3. DEFINITIONS", 12),
+        _text_block("p1-b2", 2, [112, 135, 190, 150], "anchor term", 11),
+        _text_block("p1-b3", 3, [310, 135, 550, 170], "means an anchor definition used to learn the columns.", 11),
+        _multi_span_text_block(
+            "p1-b4",
+            4,
+            [112, 220, 210, 430],
+            [
+                [("alpha service", [112, 220, 190, 235])],
+                [("beta control", [112, 290, 190, 305])],
+                [("gamma mechanism", [112, 365, 205, 380])],
+            ],
+        ),
+        _multi_span_text_block(
+            "p1-b5",
+            5,
+            [310, 220, 550, 450],
+            [
+                [("means the first synthetic definition.", [310, 220, 550, 235])],
+                [("refers to the second synthetic definition.", [310, 290, 550, 305])],
+                [("includes the third synthetic definition", [310, 365, 550, 380])],
+                [("with an additional continuation line.", [310, 383, 550, 398])],
+            ],
+        ),
+    ]
+    raw.tables = []
+    extraction.summary.text_block_count = len(raw.blocks)
+    extraction.summary.table_count = 0
+    layout["result"]["toc"] = []
+    layout["result"]["pages"][0]["boxes"] = [
+        {"x0":50,"y0":40,"x1":300,"y1":70,"boxclass":"title","textlines":[{"spans":[{"text":"Sample Report"}]}]},
+        {"x0":72,"y0":90,"x1":194,"y1":104,"boxclass":"section-header","textlines":[{"spans":[{"text":"3. DEFINITIONS"}]}]},
+        {"x0":112,"y0":135,"x1":190,"y1":150,"boxclass":"text","textlines":[{"spans":[{"text":"anchor term"}]}]},
+        {"x0":310,"y0":135,"x1":550,"y1":170,"boxclass":"text","textlines":[{"spans":[{"text":"means an anchor definition used to learn the columns."}]}]},
+        {"x0":112,"y0":220,"x1":210,"y1":430,"boxclass":"text","textlines":[
+            {"spans":[{"text":"alpha service"}]},
+            {"spans":[{"text":"beta control"}]},
+            {"spans":[{"text":"gamma mechanism"}]},
+        ]},
+        {"x0":310,"y0":220,"x1":550,"y1":450,"boxclass":"text","textlines":[
+            {"spans":[{"text":"means the first synthetic definition."}]},
+            {"spans":[{"text":"refers to the second synthetic definition."}]},
+            {"spans":[{"text":"includes the third synthetic definition with an additional continuation line."}]},
+        ]},
+    ]
+
+    result = build_canonical_document(record=record, extraction=extraction, layout_artifact=layout)
+    by_term = {entry.term: entry for entry in result.definitions}
+    assert {"anchor term", "alpha service", "beta control", "gamma mechanism"}.issubset(by_term)
+    gamma = by_term["gamma mechanism"]
+    assert "additional continuation line" in gamma.definition_text
+    term_element = next(e for e in result.pages[0].elements if e.element_id == gamma.term_element_id)
+    assert term_element.role_source == "definition_parallel_stream_recovery"
+    assert not any(
+        e.text.startswith("alpha service beta control")
+        for e in result.pages[0].elements
+    )
+
+
+def test_glossary_like_vendor_table_is_semantically_promoted_to_definition_entries():
+    record, extraction, layout = _fixture()
+    raw = extraction.pages[0]
+    cells = [
+        ["alpha asset", "means a synthetic asset used in regression testing."],
+        ["beta token", "refers to a second synthetic concept used for validation."],
+        ["gamma person", "means a person designated for a hypothetical control."],
+        ["delta group", "includes a group of related synthetic entities."],
+    ]
+    table = TableExtraction(table_id="p1-t1", bbox=[110, 170, 555, 600], row_count=4, col_count=2, cells=cells)
+    raw.blocks = [
+        _text_block("p1-b0", 0, [50, 40, 300, 70], "Sample Report", 22),
+        _text_block("p1-b1", 1, [72, 90, 194, 104], "3. DEFINITIONS", 12),
+    ]
+    raw.tables = [table]
+    extraction.summary.text_block_count = len(raw.blocks)
+    extraction.summary.table_count = 1
+    layout["result"]["toc"] = []
+    layout["result"]["pages"][0]["boxes"] = [
+        {"x0":50,"y0":40,"x1":300,"y1":70,"boxclass":"title","textlines":[{"spans":[{"text":"Sample Report"}]}]},
+        {"x0":72,"y0":90,"x1":194,"y1":104,"boxclass":"section-header","textlines":[{"spans":[{"text":"3. DEFINITIONS"}]}]},
+        _layout_table(110, 170, 555, 600, cells),
+    ]
+
+    result = build_canonical_document(record=record, extraction=extraction, layout_artifact=layout)
+    assert [entry.term for entry in result.definitions] == ["alpha asset", "beta token", "gamma person", "delta group"]
+    assert all(entry.source_kind == "table_rows" for entry in result.definitions)
+    assert all(entry.source_table_element_id == "p1-e3" for entry in result.definitions)
+    assert not any(element.type == "table" for element in result.pages[0].elements)
+    assert result.tables == []
+    assert all(
+        element.source.layout_box_class == "table"
+        for element in result.pages[0].elements
+        if element.type in {"definition_term", "definition_text"}
+    )
+
+
+def test_two_column_table_inside_definitions_is_not_promoted_without_glossary_signature():
+    record, extraction, layout = _fixture()
+    raw = extraction.pages[0]
+    cells = [
+        ["Category", "Amount"],
+        ["A", "100"],
+        ["B", "200"],
+        ["C", "300"],
+    ]
+    table = TableExtraction(table_id="p1-t1", bbox=[110, 170, 555, 420], row_count=4, col_count=2, cells=cells)
+    raw.blocks = [
+        _text_block("p1-b0", 0, [50, 40, 300, 70], "Sample Report", 22),
+        _text_block("p1-b1", 1, [72, 90, 194, 104], "3. DEFINITIONS", 12),
+    ]
+    raw.tables = [table]
+    extraction.summary.text_block_count = len(raw.blocks)
+    extraction.summary.table_count = 1
+    layout["result"]["toc"] = []
+    layout["result"]["pages"][0]["boxes"] = [
+        {"x0":50,"y0":40,"x1":300,"y1":70,"boxclass":"title","textlines":[{"spans":[{"text":"Sample Report"}]}]},
+        {"x0":72,"y0":90,"x1":194,"y1":104,"boxclass":"section-header","textlines":[{"spans":[{"text":"3. DEFINITIONS"}]}]},
+        _layout_table(110, 170, 555, 420, cells),
+    ]
+
+    result = build_canonical_document(record=record, extraction=extraction, layout_artifact=layout)
+    assert result.definitions == []
+    assert any(element.type == "table" for element in result.pages[0].elements)
+    assert len(result.tables) == 1
+
+
+def test_definition_with_nested_items_can_continue_across_page_boundary():
+    record, extraction, layout = _two_page_base()
+    p1_blocks = [
+        _text_block("p1-b0", 0, [50, 40, 300, 70], "Sample Report", 22),
+        _text_block("p1-b1", 1, [72, 90, 194, 104], "3. DEFINITIONS", 12),
+        _text_block("p1-b2", 2, [112, 700, 205, 720], "related concept", 11),
+        _text_block("p1-b3", 3, [310, 700, 370, 720], "means—", 11),
+    ]
+    p2_blocks = [
+        _text_block("p2-b0", 0, [310, 35, 550, 80], "(a) first enumerated continuation item;", 11),
+        _text_block("p2-b1", 1, [310, 95, 550, 140], "(b) second enumerated continuation item;", 11),
+        _text_block("p2-b2", 2, [310, 155, 550, 200], "(c) third enumerated continuation item;", 11),
+        _text_block("p2-b3", 3, [310, 215, 550, 260], "(d) fourth enumerated continuation item.", 11),
+        _text_block("p2-b4", 4, [112, 340, 190, 355], "next term", 11),
+        _text_block("p2-b5", 5, [310, 340, 550, 380], "means the next independent definition.", 11),
+    ]
+    extraction.pages = [_make_page(1, p1_blocks), _make_page(2, p2_blocks)]
+    extraction.summary.text_block_count = len(p1_blocks) + len(p2_blocks)
+    extraction.summary.table_count = 0
+    layout["result"]["toc"] = []
+    layout["result"]["pages"] = [
+        {"page_number":1,"width":600,"height":800,"boxes":[
+            {"x0":50,"y0":40,"x1":300,"y1":70,"boxclass":"title","textlines":[{"spans":[{"text":"Sample Report"}]}]},
+            {"x0":72,"y0":90,"x1":194,"y1":104,"boxclass":"section-header","textlines":[{"spans":[{"text":"3. DEFINITIONS"}]}]},
+            {"x0":112,"y0":700,"x1":205,"y1":720,"boxclass":"text","textlines":[{"spans":[{"text":"related concept"}]}]},
+            {"x0":310,"y0":700,"x1":370,"y1":720,"boxclass":"text","textlines":[{"spans":[{"text":"means—"}]}]},
+        ]},
+        {"page_number":2,"width":600,"height":800,"boxes":[
+            {"x0":310,"y0":35,"x1":550,"y1":80,"boxclass":"list-item","textlines":[{"spans":[{"text":"(a) first enumerated continuation item;"}]}]},
+            {"x0":310,"y0":95,"x1":550,"y1":140,"boxclass":"list-item","textlines":[{"spans":[{"text":"(b) second enumerated continuation item;"}]}]},
+            {"x0":310,"y0":155,"x1":550,"y1":200,"boxclass":"list-item","textlines":[{"spans":[{"text":"(c) third enumerated continuation item;"}]}]},
+            {"x0":310,"y0":215,"x1":550,"y1":260,"boxclass":"list-item","textlines":[{"spans":[{"text":"(d) fourth enumerated continuation item."}]}]},
+            {"x0":112,"y0":340,"x1":190,"y1":355,"boxclass":"text","textlines":[{"spans":[{"text":"next term"}]}]},
+            {"x0":310,"y0":340,"x1":550,"y1":380,"boxclass":"text","textlines":[{"spans":[{"text":"means the next independent definition."}]}]},
+        ]},
+    ]
+
+    result = build_canonical_document(record=record, extraction=extraction, layout_artifact=layout)
+    related = next(entry for entry in result.definitions if entry.term == "related concept")
+    nxt = next(entry for entry in result.definitions if entry.term == "next term")
+    assert related.spans_multiple_pages is True
+    assert related.start_page == 1 and related.end_page == 2
+    assert [item.marker for item in related.items] == ["(a)", "(b)", "(c)", "(d)"]
+    assert nxt.start_page == 2 and nxt.end_page == 2
+    assert any(
+        relation.type == "continues"
+        and relation.source_element_id in related.definition_element_ids
+        and relation.target_element_id in related.definition_element_ids
+        for relation in result.relationships
+    )
+
+
+def test_nested_definition_items_do_not_absorb_trailing_explanation_into_last_item():
+    record, extraction, layout = _fixture()
+    raw = extraction.pages[0]
+    raw.blocks = [
+        _text_block("p1-b0", 0, [50, 40, 300, 70], "Sample Report", 22),
+        _text_block("p1-b1", 1, [72, 90, 194, 104], "3. DEFINITIONS", 12),
+        _text_block("p1-b2", 2, [112, 160, 260, 190], "synthetic exposed person", 11),
+        _text_block("p1-b3", 3, [310, 160, 370, 180], "means—", 11),
+        _text_block("p1-b4", 4, [310, 205, 550, 250], "(a) first category;", 11),
+        _text_block("p1-b5", 5, [310, 265, 550, 310], "(b) second category;", 11),
+        _text_block("p1-b6", 6, [310, 325, 550, 370], "(c) third category.", 11),
+        _text_block("p1-b7", 7, [310, 390, 550, 430], "This trailing explanation applies to the definition as a whole.", 11),
+        _text_block("p1-b8", 8, [112, 480, 190, 495], "next term", 11),
+        _text_block("p1-b9", 9, [310, 480, 550, 520], "means another definition.", 11),
+    ]
+    raw.tables = []
+    extraction.summary.text_block_count = len(raw.blocks)
+    extraction.summary.table_count = 0
+    layout["result"]["toc"] = []
+    layout["result"]["pages"][0]["boxes"] = [
+        {"x0":50,"y0":40,"x1":300,"y1":70,"boxclass":"title","textlines":[{"spans":[{"text":"Sample Report"}]}]},
+        {"x0":72,"y0":90,"x1":194,"y1":104,"boxclass":"section-header","textlines":[{"spans":[{"text":"3. DEFINITIONS"}]}]},
+        {"x0":112,"y0":160,"x1":260,"y1":190,"boxclass":"text","textlines":[{"spans":[{"text":"synthetic exposed person"}]}]},
+        {"x0":310,"y0":160,"x1":370,"y1":180,"boxclass":"text","textlines":[{"spans":[{"text":"means—"}]}]},
+        {"x0":310,"y0":205,"x1":550,"y1":250,"boxclass":"list-item","textlines":[{"spans":[{"text":"(a) first category;"}]}]},
+        {"x0":310,"y0":265,"x1":550,"y1":310,"boxclass":"list-item","textlines":[{"spans":[{"text":"(b) second category;"}]}]},
+        {"x0":310,"y0":325,"x1":550,"y1":370,"boxclass":"list-item","textlines":[{"spans":[{"text":"(c) third category."}]}]},
+        {"x0":310,"y0":390,"x1":550,"y1":430,"boxclass":"text","textlines":[{"spans":[{"text":"This trailing explanation applies to the definition as a whole."}]}]},
+        {"x0":112,"y0":480,"x1":190,"y1":495,"boxclass":"text","textlines":[{"spans":[{"text":"next term"}]}]},
+        {"x0":310,"y0":480,"x1":550,"y1":520,"boxclass":"text","textlines":[{"spans":[{"text":"means another definition."}]}]},
+    ]
+
+    result = build_canonical_document(record=record, extraction=extraction, layout_artifact=layout)
+    entry = next(item for item in result.definitions if item.term == "synthetic exposed person")
+    assert [item.marker for item in entry.items] == ["(a)", "(b)", "(c)"]
+    assert entry.items[-1].text == "third category."
+    assert "trailing explanation" in entry.definition_text
+
+
+def test_general_open_block_engine_records_cross_page_clause_continuation():
+    record, extraction, layout = _two_page_base()
+    p1_blocks = [
+        _text_block("p1-b0", 0, [50, 40, 300, 70], "Sample Report", 22),
+        _text_block("p1-b1", 1, [70, 730, 540, 780], "2.5 A reporting institution must document the process and", 11),
+    ]
+    p2_blocks = [
+        _text_block("p2-b0", 0, [105, 35, 540, 75], "retain sufficient evidence for supervisory review.", 11),
+    ]
+    extraction.pages = [_make_page(1, p1_blocks), _make_page(2, p2_blocks)]
+    extraction.summary.text_block_count = 3
+    extraction.summary.table_count = 0
+    layout["result"]["toc"] = []
+    layout["result"]["pages"] = [
+        {"page_number":1,"width":600,"height":800,"boxes":[
+            {"x0":50,"y0":40,"x1":300,"y1":70,"boxclass":"title","textlines":[{"spans":[{"text":"Sample Report"}]}]},
+            {"x0":70,"y0":730,"x1":540,"y1":780,"boxclass":"list-item","textlines":[{"spans":[{"text":"2.5 A reporting institution must document the process and"}]}]},
+        ]},
+        {"page_number":2,"width":600,"height":800,"boxes":[
+            {"x0":105,"y0":35,"x1":540,"y1":75,"boxclass":"text","textlines":[{"spans":[{"text":"retain sufficient evidence for supervisory review."}]}]},
+        ]},
+    ]
+
+    result = build_canonical_document(record=record, extraction=extraction, layout_artifact=layout)
+    clause = next(e for e in result.pages[0].elements if e.type == "clause")
+    continuation = result.pages[1].elements[0]
+    relation = next(
+        r for r in result.relationships
+        if r.type == "continues" and r.source_element_id == clause.element_id and r.target_element_id == continuation.element_id
+    )
+    assert "open clause continuation" in relation.evidence
+
+
+def test_multiline_definition_term_is_consolidated_before_pairing():
+    record, extraction, layout = _fixture()
+    raw = extraction.pages[0]
+    raw.blocks = [
+        _text_block("p1-b0", 0, [50, 40, 300, 70], "Sample Report", 22),
+        _text_block("p1-b1", 1, [72, 90, 194, 104], "3. DEFINITIONS", 12),
+        _text_block("p1-b2", 2, [112, 160, 255, 175], "Synthetic Network Provider", 11),
+        _text_block("p1-b3", 3, [112, 177, 155, 192], "(SNP)", 11),
+        _text_block("p1-b4", 4, [310, 160, 550, 220], "means a synthetic provider used only for regression testing.", 11),
+    ]
+    raw.tables = []
+    extraction.summary.text_block_count = len(raw.blocks)
+    extraction.summary.table_count = 0
+    layout["result"]["toc"] = []
+    layout["result"]["pages"][0]["boxes"] = [
+        {"x0":50,"y0":40,"x1":300,"y1":70,"boxclass":"title","textlines":[{"spans":[{"text":"Sample Report"}]}]},
+        {"x0":72,"y0":90,"x1":194,"y1":104,"boxclass":"section-header","textlines":[{"spans":[{"text":"3. DEFINITIONS"}]}]},
+        {"x0":112,"y0":160,"x1":255,"y1":175,"boxclass":"text","textlines":[{"spans":[{"text":"Synthetic Network Provider"}]}]},
+        {"x0":112,"y0":177,"x1":155,"y1":192,"boxclass":"text","textlines":[{"spans":[{"text":"(SNP)"}]}]},
+        {"x0":310,"y0":160,"x1":550,"y1":220,"boxclass":"text","textlines":[{"spans":[{"text":"means a synthetic provider used only for regression testing."}]}]},
+    ]
+
+    result = build_canonical_document(record=record, extraction=extraction, layout_artifact=layout)
+    assert [entry.term for entry in result.definitions] == ["Synthetic Network Provider (SNP)"]
+    entry = result.definitions[0]
+    term = next(element for element in result.pages[0].elements if element.element_id == entry.term_element_id)
+    assert term.role_source == "definition_multiline_term_consolidation"
+    assert term.bbox[1] == 160 and term.bbox[3] == 192
+    assert set(term.source.stage3_block_ids) == {"p1-b2", "p1-b3"}
+    assert not any(element.text.strip() == "(SNP)" for element in result.pages[0].elements)
+
+
+def test_dense_adjacent_definition_rows_are_not_merged_as_multiline_term():
+    record, extraction, layout = _fixture()
+    raw = extraction.pages[0]
+    raw.blocks = [
+        _text_block("p1-b0", 0, [50, 40, 300, 70], "Sample Report", 22),
+        _text_block("p1-b1", 1, [72, 90, 194, 104], "3. DEFINITIONS", 12),
+        _text_block("p1-b2", 2, [112, 160, 190, 175], "alpha service", 11),
+        _text_block("p1-b3", 3, [310, 160, 550, 178], "means the first independent concept.", 11),
+        _text_block("p1-b4", 4, [112, 184, 190, 199], "beta control", 11),
+        _text_block("p1-b5", 5, [310, 184, 550, 202], "means the second independent concept.", 11),
+    ]
+    raw.tables = []
+    extraction.summary.text_block_count = len(raw.blocks)
+    extraction.summary.table_count = 0
+    layout["result"]["toc"] = []
+    layout["result"]["pages"][0]["boxes"] = [
+        {"x0":50,"y0":40,"x1":300,"y1":70,"boxclass":"title","textlines":[{"spans":[{"text":"Sample Report"}]}]},
+        {"x0":72,"y0":90,"x1":194,"y1":104,"boxclass":"section-header","textlines":[{"spans":[{"text":"3. DEFINITIONS"}]}]},
+        {"x0":112,"y0":160,"x1":190,"y1":175,"boxclass":"text","textlines":[{"spans":[{"text":"alpha service"}]}]},
+        {"x0":310,"y0":160,"x1":550,"y1":178,"boxclass":"text","textlines":[{"spans":[{"text":"means the first independent concept."}]}]},
+        {"x0":112,"y0":184,"x1":190,"y1":199,"boxclass":"text","textlines":[{"spans":[{"text":"beta control"}]}]},
+        {"x0":310,"y0":184,"x1":550,"y1":202,"boxclass":"text","textlines":[{"spans":[{"text":"means the second independent concept."}]}]},
+    ]
+
+    result = build_canonical_document(record=record, extraction=extraction, layout_artifact=layout)
+    assert [entry.term for entry in result.definitions] == ["alpha service", "beta control"]
+
+
+def test_empty_textual_layout_artifact_is_removed_after_reconstruction():
+    record, extraction, layout = _fixture()
+    raw = extraction.pages[0]
+    raw.blocks = [
+        _text_block("p1-b0", 0, [50, 40, 300, 70], "Sample Report", 22),
+        _text_block("p1-b1", 1, [72, 90, 194, 104], "3. DEFINITIONS", 12),
+        _text_block("p1-b2", 2, [112, 160, 190, 175], "alpha service", 11),
+        _text_block("p1-b3", 3, [310, 160, 550, 195], "means a valid synthetic definition.", 11),
+    ]
+    raw.tables = []
+    extraction.summary.text_block_count = len(raw.blocks)
+    extraction.summary.table_count = 0
+    layout["result"]["toc"] = []
+    layout["result"]["pages"][0]["boxes"] = [
+        {"x0":50,"y0":40,"x1":300,"y1":70,"boxclass":"title","textlines":[{"spans":[{"text":"Sample Report"}]}]},
+        {"x0":72,"y0":90,"x1":194,"y1":104,"boxclass":"section-header","textlines":[{"spans":[{"text":"3. DEFINITIONS"}]}]},
+        {"x0":112,"y0":160,"x1":190,"y1":175,"boxclass":"text","textlines":[{"spans":[{"text":"alpha service"}]}]},
+        {"x0":310,"y0":160,"x1":550,"y1":195,"boxclass":"text","textlines":[{"spans":[{"text":"means a valid synthetic definition."}]}]},
+        {"x0":260,"y0":210,"x1":330,"y1":270,"boxclass":"text","textlines":[]},
+    ]
+
+    result = build_canonical_document(record=record, extraction=extraction, layout_artifact=layout)
+    assert [entry.term for entry in result.definitions] == ["alpha service"]
+    assert all(element.text.strip() for element in result.pages[0].elements if element.type not in {"figure", "table", "formula"})
+    assert not any(element.bbox == [260.0, 210.0, 330.0, 270.0] for element in result.pages[0].elements)
+
+
+def test_multiline_definition_term_can_be_completed_from_stage3_when_vendor_omits_first_line():
+    """A missing canonical line must not prevent a wrapped term from being recovered."""
+    record, extraction, layout = _fixture()
+    raw = extraction.pages[0]
+    raw.blocks = [
+        _text_block("p1-b0", 0, [50, 40, 300, 70], "Sample Report", 22),
+        _text_block("p1-b1", 1, [72, 90, 194, 104], "3. DEFINITIONS", 12),
+        _text_block("p1-b2", 2, [112, 160, 270, 175], "Synthetic Network Provider", 11),
+        _text_block("p1-b3", 3, [112, 177, 155, 192], "(SNP)", 11),
+        _text_block("p1-b4", 4, [310, 160, 550, 220], "means a synthetic provider used only for regression testing.", 11),
+    ]
+    raw.tables = []
+    extraction.summary.text_block_count = len(raw.blocks)
+    extraction.summary.table_count = 0
+    layout["result"]["toc"] = []
+    # Simulate a vendor failure: the first term line is absent from layout
+    # output even though immutable Stage 3 still contains it.
+    layout["result"]["pages"][0]["boxes"] = [
+        {"x0":50,"y0":40,"x1":300,"y1":70,"boxclass":"title","textlines":[{"spans":[{"text":"Sample Report"}]}]},
+        {"x0":72,"y0":90,"x1":194,"y1":104,"boxclass":"section-header","textlines":[{"spans":[{"text":"3. DEFINITIONS"}]}]},
+        {"x0":112,"y0":177,"x1":155,"y1":192,"boxclass":"text","textlines":[{"spans":[{"text":"(SNP)"}]}]},
+        {"x0":310,"y0":160,"x1":550,"y1":220,"boxclass":"text","textlines":[{"spans":[{"text":"means a synthetic provider used only for regression testing."}]}]},
+    ]
+
+    result = build_canonical_document(record=record, extraction=extraction, layout_artifact=layout)
+    assert [entry.term for entry in result.definitions] == ["Synthetic Network Provider (SNP)"]
+    entry = result.definitions[0]
+    term = next(element for element in result.pages[0].elements if element.element_id == entry.term_element_id)
+    assert term.role_source == "definition_multiline_term_stage3_completion"
+    assert term.bbox == [112.0, 160.0, 270.0, 192.0]
+    assert {"p1-b2", "p1-b3"}.issubset(set(term.source.stage3_block_ids))
+    assert not any(element.text.strip() == "(SNP)" for element in result.pages[0].elements)
+
+
+def test_table_derived_definition_geometry_snaps_to_stage3_text_and_removes_blank_extension():
+    """Synthetic table-row boxes should use real text geometry when available."""
+    record, extraction, layout = _fixture()
+    raw = extraction.pages[0]
+    cells = [
+        ["alpha term", "means the first synthetic definition."],
+        ["beta term", "means the second synthetic definition:"],
+        ["", "additional continuation detail for the second definition."],
+    ]
+    table = TableExtraction(table_id="p1-t1", bbox=[110, 150, 560, 390], row_count=3, col_count=2, cells=cells)
+    raw.blocks = [
+        _text_block("p1-b0", 0, [50, 40, 300, 70], "Sample Report", 22),
+        _text_block("p1-b1", 1, [72, 90, 194, 104], "3. DEFINITIONS", 12),
+        _text_block("p1-b2", 2, [112, 165, 180, 180], "alpha term", 11),
+        _text_block("p1-b3", 3, [360, 165, 550, 195], "means the first synthetic definition.", 11),
+        _text_block("p1-b4", 4, [112, 235, 180, 250], "beta term", 11),
+        _text_block("p1-b5", 5, [360, 235, 550, 270], "means the second synthetic definition:", 11),
+        _text_block("p1-b6", 6, [360, 300, 550, 335], "additional continuation detail for the second definition.", 11),
+    ]
+    raw.tables = [table]
+    extraction.summary.text_block_count = len(raw.blocks)
+    extraction.summary.table_count = 1
+    layout["result"]["toc"] = []
+    layout["result"]["pages"][0]["boxes"] = [
+        {"x0":50,"y0":40,"x1":300,"y1":70,"boxclass":"title","textlines":[{"spans":[{"text":"Sample Report"}]}]},
+        {"x0":72,"y0":90,"x1":194,"y1":104,"boxclass":"section-header","textlines":[{"spans":[{"text":"3. DEFINITIONS"}]}]},
+        _layout_table(110, 150, 560, 390, cells),
+    ]
+
+    result = build_canonical_document(record=record, extraction=extraction, layout_artifact=layout)
+    beta = next(entry for entry in result.definitions if entry.term == "beta term")
+    continuation = next(
+        element for element in result.pages[0].elements
+        if element.element_id in beta.definition_element_ids
+        and "additional continuation detail" in element.text
+    )
+    # The semantic table fallback used to create a synthetic box that could
+    # extend into the empty inter-column gap.  Stage-3 text geometry is the
+    # source of truth for the rendered canonical bbox when it exists.
+    assert continuation.bbox == [360.0, 300.0, 550.0, 335.0]
+    assert continuation.role_source == "definition_table_semantic_normalization"
+
+
+def test_cross_page_definition_nested_sequence_skips_running_header():
+    record, extraction, layout = _two_page_base()
+    p1_blocks = [
+        _text_block("p1-b0", 0, [50, 40, 300, 70], "Sample Report", 22),
+        _text_block("p1-b1", 1, [72, 90, 194, 104], "3. DEFINITIONS", 12),
+        _text_block("p1-b2", 2, [112, 630, 205, 650], "controller", 11),
+        _text_block("p1-b3", 3, [310, 630, 550, 675], "means a person who—", 11),
+        _text_block("p1-b4", 4, [310, 690, 550, 755], "(a) first condition in the definition;", 11),
+    ]
+    p2_blocks = [
+        _text_block("p2-b0", 0, [360, 35, 545, 50], "Chapter 1: Introduction", 8),
+        _text_block("p2-b1", 1, [310, 90, 550, 145], "(b) second condition in the definition;", 11),
+        _text_block("p2-b2", 2, [310, 165, 550, 220], "(c) third condition in the definition.", 11),
+        _text_block("p2-b3", 3, [112, 330, 170, 350], "CPE", 11),
+        _text_block("p2-b4", 4, [310, 330, 550, 370], "means continuing professional education.", 11),
+    ]
+    extraction.pages = [_make_page(1, p1_blocks), _make_page(2, p2_blocks)]
+    extraction.summary.text_block_count = len(p1_blocks) + len(p2_blocks)
+    extraction.summary.table_count = 0
+    layout["result"]["toc"] = []
+    layout["result"]["pages"] = [
+        {"page_number": 1, "width": 600, "height": 800, "boxes": [
+            {"x0": 50, "y0": 40, "x1": 300, "y1": 70, "boxclass": "title", "textlines": [{"spans": [{"text": "Sample Report"}]}]},
+            {"x0": 72, "y0": 90, "x1": 194, "y1": 104, "boxclass": "section-header", "textlines": [{"spans": [{"text": "3. DEFINITIONS"}]}]},
+            {"x0": 112, "y0": 630, "x1": 205, "y1": 650, "boxclass": "text", "textlines": [{"spans": [{"text": "controller"}]}]},
+            {"x0": 310, "y0": 630, "x1": 550, "y1": 675, "boxclass": "text", "textlines": [{"spans": [{"text": "means a person who—"}]}]},
+            {"x0": 310, "y0": 690, "x1": 550, "y1": 755, "boxclass": "list-item", "textlines": [{"spans": [{"text": "(a) first condition in the definition;"}]}]},
+        ]},
+        {"page_number": 2, "width": 600, "height": 800, "boxes": [
+            {"x0": 360, "y0": 35, "x1": 545, "y1": 50, "boxclass": "page-header", "textlines": [{"spans": [{"text": "Chapter 1: Introduction"}]}]},
+            {"x0": 310, "y0": 90, "x1": 550, "y1": 145, "boxclass": "list-item", "textlines": [{"spans": [{"text": "(b) second condition in the definition;"}]}]},
+            {"x0": 310, "y0": 165, "x1": 550, "y1": 220, "boxclass": "list-item", "textlines": [{"spans": [{"text": "(c) third condition in the definition."}]}]},
+            {"x0": 112, "y0": 330, "x1": 170, "y1": 350, "boxclass": "text", "textlines": [{"spans": [{"text": "CPE"}]}]},
+            {"x0": 310, "y0": 330, "x1": 550, "y1": 370, "boxclass": "text", "textlines": [{"spans": [{"text": "means continuing professional education."}]}]},
+        ]},
+    ]
+
+    result = build_canonical_document(record=record, extraction=extraction, layout_artifact=layout)
+    controller = next(entry for entry in result.definitions if entry.term == "controller")
+    assert controller.spans_multiple_pages is True
+    assert controller.start_page == 1 and controller.end_page == 2
+    assert [item.marker for item in controller.items] == ["(a)", "(b)", "(c)"]
+    assert any(
+        relation.type == "continues"
+        and relation.source_element_id in controller.definition_element_ids
+        and relation.target_element_id in controller.definition_element_ids
+        for relation in result.relationships
+    )
+
+
+def test_generic_cross_page_hierarchy_links_bullet_siblings_in_same_section():
+    record, extraction, layout = _two_page_base()
+    p1_blocks = [
+        _text_block("p1-b0", 0, [50, 40, 300, 70], "Sample Report", 22),
+        _text_block("p1-b1", 1, [70, 110, 330, 130], "Operational requirements", 14),
+        _text_block("p1-b2", 2, [110, 710, 520, 750], "• Dealing in derivatives; and", 11),
+    ]
+    p2_blocks = [
+        _text_block("p2-b0", 0, [360, 35, 545, 50], "Chapter 4: Licensing Criteria", 8),
+        _text_block("p2-b1", 1, [110, 80, 350, 105], "• Fund management.", 11),
+    ]
+    extraction.pages = [_make_page(1, p1_blocks), _make_page(2, p2_blocks)]
+    extraction.summary.text_block_count = len(p1_blocks) + len(p2_blocks)
+    extraction.summary.table_count = 0
+    layout["result"]["toc"] = []
+    layout["result"]["pages"] = [
+        {"page_number": 1, "width": 600, "height": 800, "boxes": [
+            {"x0": 50, "y0": 40, "x1": 300, "y1": 70, "boxclass": "title", "textlines": [{"spans": [{"text": "Sample Report"}]}]},
+            {"x0": 70, "y0": 110, "x1": 330, "y1": 130, "boxclass": "section-header", "textlines": [{"spans": [{"text": "Operational requirements"}]}]},
+            {"x0": 110, "y0": 710, "x1": 520, "y1": 750, "boxclass": "list-item", "textlines": [{"spans": [{"text": "• Dealing in derivatives; and"}]}]},
+        ]},
+        {"page_number": 2, "width": 600, "height": 800, "boxes": [
+            {"x0": 360, "y0": 35, "x1": 545, "y1": 50, "boxclass": "page-header", "textlines": [{"spans": [{"text": "Chapter 4: Licensing Criteria"}]}]},
+            {"x0": 110, "y0": 80, "x1": 350, "y1": 105, "boxclass": "list-item", "textlines": [{"spans": [{"text": "• Fund management."}]}]},
+        ]},
+    ]
+
+    result = build_canonical_document(record=record, extraction=extraction, layout_artifact=layout)
+    source = next(e for e in result.pages[0].elements if "Dealing in derivatives" in e.text)
+    target = next(e for e in result.pages[1].elements if "Fund management" in e.text)
+    assert source.section_id == target.section_id
+    relation = next(r for r in result.relationships if r.type == "continues" and r.source_element_id == source.element_id and r.target_element_id == target.element_id)
+    assert "bullet marker continues" in relation.evidence
+
+
+def test_generic_cross_page_hierarchy_detects_nested_marker_child():
+    record, extraction, layout = _two_page_base()
+    p1_blocks = [
+        _text_block("p1-b0", 0, [50, 40, 300, 70], "Sample Report", 22),
+        _text_block("p1-b1", 1, [70, 110, 330, 130], "Technology requirements", 14),
+        _text_block("p1-b2", 2, [100, 700, 540, 760], "(b) ensure that the outcomes produced by the algorithm are—", 11),
+    ]
+    p2_blocks = [
+        _text_block("p2-b0", 0, [360, 35, 545, 50], "Chapter 4: Licensing Criteria", 8),
+        _text_block("p2-b1", 1, [130, 85, 540, 125], "(i) consistent with the investment strategies;", 11),
+    ]
+    extraction.pages = [_make_page(1, p1_blocks), _make_page(2, p2_blocks)]
+    extraction.summary.text_block_count = len(p1_blocks) + len(p2_blocks)
+    extraction.summary.table_count = 0
+    layout["result"]["toc"] = []
+    layout["result"]["pages"] = [
+        {"page_number": 1, "width": 600, "height": 800, "boxes": [
+            {"x0": 50, "y0": 40, "x1": 300, "y1": 70, "boxclass": "title", "textlines": [{"spans": [{"text": "Sample Report"}]}]},
+            {"x0": 70, "y0": 110, "x1": 330, "y1": 130, "boxclass": "section-header", "textlines": [{"spans": [{"text": "Technology requirements"}]}]},
+            {"x0": 100, "y0": 700, "x1": 540, "y1": 760, "boxclass": "list-item", "textlines": [{"spans": [{"text": "(b) ensure that the outcomes produced by the algorithm are—"}]}]},
+        ]},
+        {"page_number": 2, "width": 600, "height": 800, "boxes": [
+            {"x0": 360, "y0": 35, "x1": 545, "y1": 50, "boxclass": "page-header", "textlines": [{"spans": [{"text": "Chapter 4: Licensing Criteria"}]}]},
+            {"x0": 130, "y0": 85, "x1": 540, "y1": 125, "boxclass": "list-item", "textlines": [{"spans": [{"text": "(i) consistent with the investment strategies;"}]}]},
+        ]},
+    ]
+
+    result = build_canonical_document(record=record, extraction=extraction, layout_artifact=layout)
+    source = next(e for e in result.pages[0].elements if e.text.startswith("(b)"))
+    target = next(e for e in result.pages[1].elements if e.text.startswith("(i)"))
+    relation = next(r for r in result.relationships if r.type == "continues" and r.source_element_id == source.element_id and r.target_element_id == target.element_id)
+    assert "child hierarchy continuation" in relation.evidence
+
+
+def test_generic_cross_page_hierarchy_links_numbered_siblings_under_same_section():
+    record, extraction, layout = _two_page_base()
+    p1_blocks = [
+        _text_block("p1-b0", 0, [50, 40, 300, 70], "Sample Report", 22),
+        _text_block("p1-b1", 1, [70, 110, 330, 130], "Requirement for licensed director", 14),
+        _text_block("p1-b2", 2, [85, 700, 540, 760], "(20) final requirement on this page.", 11),
+    ]
+    p2_blocks = [
+        _text_block("p2-b0", 0, [360, 35, 545, 50], "Chapter 4: Licensing Criteria", 8),
+        _text_block("p2-b1", 1, [85, 85, 540, 135], "(21) first requirement on the next page.", 11),
+        _text_block("p2-b2", 2, [70, 300, 360, 325], "Requirement for head of regulated activity", 14),
+    ]
+    extraction.pages = [_make_page(1, p1_blocks), _make_page(2, p2_blocks)]
+    extraction.summary.text_block_count = len(p1_blocks) + len(p2_blocks)
+    extraction.summary.table_count = 0
+    layout["result"]["toc"] = []
+    layout["result"]["pages"] = [
+        {"page_number": 1, "width": 600, "height": 800, "boxes": [
+            {"x0": 50, "y0": 40, "x1": 300, "y1": 70, "boxclass": "title", "textlines": [{"spans": [{"text": "Sample Report"}]}]},
+            {"x0": 70, "y0": 110, "x1": 330, "y1": 130, "boxclass": "section-header", "textlines": [{"spans": [{"text": "Requirement for licensed director"}]}]},
+            {"x0": 85, "y0": 700, "x1": 540, "y1": 760, "boxclass": "list-item", "textlines": [{"spans": [{"text": "(20) final requirement on this page."}]}]},
+        ]},
+        {"page_number": 2, "width": 600, "height": 800, "boxes": [
+            {"x0": 360, "y0": 35, "x1": 545, "y1": 50, "boxclass": "page-header", "textlines": [{"spans": [{"text": "Chapter 4: Licensing Criteria"}]}]},
+            {"x0": 85, "y0": 85, "x1": 540, "y1": 135, "boxclass": "list-item", "textlines": [{"spans": [{"text": "(21) first requirement on the next page."}]}]},
+            {"x0": 70, "y0": 300, "x1": 360, "y1": 325, "boxclass": "section-header", "textlines": [{"spans": [{"text": "Requirement for head of regulated activity"}]}]},
+        ]},
+    ]
+
+    result = build_canonical_document(record=record, extraction=extraction, layout_artifact=layout)
+    source = next(e for e in result.pages[0].elements if e.text.startswith("(20)"))
+    target = next(e for e in result.pages[1].elements if e.text.startswith("(21)"))
+    assert source.section_id == target.section_id
+    relation = next(r for r in result.relationships if r.type == "continues" and r.source_element_id == source.element_id and r.target_element_id == target.element_id)
+    assert "marker sequence advances" in relation.evidence
+
+
+def test_generic_cross_page_hierarchy_stops_at_new_section_before_candidate():
+    record, extraction, layout = _two_page_base()
+    p1_blocks = [
+        _text_block("p1-b0", 0, [50, 40, 300, 70], "Sample Report", 22),
+        _text_block("p1-b1", 1, [70, 110, 330, 130], "First requirements", 14),
+        _text_block("p1-b2", 2, [85, 700, 540, 760], "(20) final item in the first section.", 11),
+    ]
+    p2_blocks = [
+        _text_block("p2-b0", 0, [360, 35, 545, 50], "Chapter 4: Licensing Criteria", 8),
+        _text_block("p2-b1", 1, [70, 75, 360, 100], "Different requirements", 14),
+        _text_block("p2-b2", 2, [85, 125, 540, 170], "(21) item under the new section.", 11),
+    ]
+    extraction.pages = [_make_page(1, p1_blocks), _make_page(2, p2_blocks)]
+    extraction.summary.text_block_count = len(p1_blocks) + len(p2_blocks)
+    extraction.summary.table_count = 0
+    layout["result"]["toc"] = []
+    layout["result"]["pages"] = [
+        {"page_number": 1, "width": 600, "height": 800, "boxes": [
+            {"x0": 50, "y0": 40, "x1": 300, "y1": 70, "boxclass": "title", "textlines": [{"spans": [{"text": "Sample Report"}]}]},
+            {"x0": 70, "y0": 110, "x1": 330, "y1": 130, "boxclass": "section-header", "textlines": [{"spans": [{"text": "First requirements"}]}]},
+            {"x0": 85, "y0": 700, "x1": 540, "y1": 760, "boxclass": "list-item", "textlines": [{"spans": [{"text": "(20) final item in the first section."}]}]},
+        ]},
+        {"page_number": 2, "width": 600, "height": 800, "boxes": [
+            {"x0": 360, "y0": 35, "x1": 545, "y1": 50, "boxclass": "page-header", "textlines": [{"spans": [{"text": "Chapter 4: Licensing Criteria"}]}]},
+            {"x0": 70, "y0": 75, "x1": 360, "y1": 100, "boxclass": "section-header", "textlines": [{"spans": [{"text": "Different requirements"}]}]},
+            {"x0": 85, "y0": 125, "x1": 540, "y1": 170, "boxclass": "list-item", "textlines": [{"spans": [{"text": "(21) item under the new section."}]}]},
+        ]},
+    ]
+
+    result = build_canonical_document(record=record, extraction=extraction, layout_artifact=layout)
+    source = next(e for e in result.pages[0].elements if e.text.startswith("(20)"))
+    target = next(e for e in result.pages[1].elements if e.text.startswith("(21)"))
+    assert not any(r.type == "continues" and r.source_element_id == source.element_id and r.target_element_id == target.element_id for r in result.relationships)

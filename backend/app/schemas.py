@@ -320,7 +320,7 @@ class StructureSummary(BaseModel):
 
 
 class StructuredDocument(BaseModel):
-    schema_version: str = "1.3"
+    schema_version: str = "1.4"
     document_id: str
     source_filename: str
     source_sha256: str
@@ -354,6 +354,8 @@ CorrectionOperationType = Literal[
     "merge",
     "draw",
     "delete",
+    "add_relationship",
+    "remove_relationship",
 ]
 
 
@@ -363,12 +365,30 @@ class CorrectionElementSpec(BaseModel):
     bbox: list[float] = Field(min_length=4, max_length=4)
 
 
+class CorrectionRelationshipSpec(BaseModel):
+    """Auditable relationship snapshot used by Stage 4.5 corrections.
+
+    Page numbers are stored alongside element IDs so the correction JSON remains
+    self-describing in the frontend even before the backend resolves the final
+    canonical graph.
+    """
+
+    relation_id: str
+    type: RelationType
+    source_element_id: str
+    target_element_id: str
+    source_page_number: int = Field(ge=1)
+    target_page_number: int = Field(ge=1)
+    evidence: str = "manual relationship correction"
+
+
 class CorrectionOperation(BaseModel):
     operation_id: str
     operation: CorrectionOperationType
     page_number: int = Field(ge=1)
     source_element_ids: list[str] = Field(default_factory=list)
     result_elements: list[CorrectionElementSpec] = Field(default_factory=list)
+    relationships: list[CorrectionRelationshipSpec] = Field(default_factory=list)
     new_type: CanonicalElementType | None = None
     created_at: datetime
 
@@ -379,7 +399,7 @@ class SaveCorrectionsRequest(BaseModel):
 
 
 class CorrectionArtifact(BaseModel):
-    schema_version: str = "1.0"
+    schema_version: str = "1.1"
     document_id: str
     source_sha256: str
     base_structure_schema_version: str

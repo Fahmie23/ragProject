@@ -326,12 +326,24 @@ export type CorrectionOperationType =
   | "split"
   | "merge"
   | "draw"
-  | "delete";
+  | "delete"
+  | "add_relationship"
+  | "remove_relationship";
 
 export interface CorrectionElementSpec {
   element_id: string;
   type: CanonicalElementType;
   bbox: number[];
+}
+
+export interface CorrectionRelationshipSpec {
+  relation_id: string;
+  type: StructuralRelation["type"];
+  source_element_id: string;
+  target_element_id: string;
+  source_page_number: number;
+  target_page_number: number;
+  evidence: string;
 }
 
 export interface CorrectionOperation {
@@ -340,6 +352,7 @@ export interface CorrectionOperation {
   page_number: number;
   source_element_ids: string[];
   result_elements: CorrectionElementSpec[];
+  relationships: CorrectionRelationshipSpec[];
   new_type?: CanonicalElementType | null;
   created_at: string;
 }

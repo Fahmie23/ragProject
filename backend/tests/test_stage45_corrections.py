@@ -7,15 +7,20 @@ from fastapi.testclient import TestClient
 from app.config import settings
 from app.main import app
 from app.schemas import (
+    CanonicalElement,
+    CanonicalSourceTrace,
     CorrectionArtifact,
     CorrectionElementSpec,
     CorrectionOperation,
+    CorrectionRelationshipSpec,
     DocumentClassification,
     DocumentExtraction,
     DocumentRecord,
     ExtractionSummary,
     ExtractorInfo,
     PageExtraction,
+    StructuralRelation,
+    StructuredPage,
     TextBlock,
     TextLine,
     TextSpan,
@@ -153,6 +158,159 @@ def test_move_resize_and_relabel_apply_sequentially():
     assert item.type == "caption"
     assert item.bbox == [55.0, 135.0, 545.0, 185.0]
     assert item.text == "Body paragraph"
+
+
+def _cross_page_fixture():
+    _, extraction, structure = _fixture()
+    extraction = extraction.model_copy(deep=True)
+    structure = structure.model_copy(deep=True)
+
+    extraction.pages.append(PageExtraction(
+        page_number=2,
+        width=600,
+        height=800,
+        rotation=0,
+        text="Continuation item",
+        text_char_count=len("Continuation item"),
+        blocks=[_text_block("p2-b1", 1, [80, 80, 520, 120], "Continuation item")],
+        tables=[],
+        warnings=[],
+    ))
+    extraction.summary.page_count = 2
+
+    target = CanonicalElement(
+        element_id="p2-e1",
+        type="list_item",
+        page_number=2,
+        reading_order=0,
+        document_order=2,
+        bbox=[80, 80, 520, 120],
+        text="Continuation item",
+        role_source="test fixture",
+        source=CanonicalSourceTrace(
+            layout_box_index=-1,
+            layout_box_class="text",
+            stage3_block_ids=["p2-b1"],
+            stage3_table_ids=[],
+        ),
+    )
+    structure.pages.append(StructuredPage(
+        page_number=2,
+        width=600,
+        height=800,
+        elements=[target],
+        body_text="Continuation item",
+    ))
+    structure.summary.page_count = 2
+    structure.summary.element_count += 1
+    structure.body_text = f"{structure.body_text}\n\nContinuation item"
+    return extraction, structure
+
+
+def test_manual_cross_page_relationship_can_be_added():
+    extraction, structure = _cross_page_fixture()
+    operation = CorrectionOperation(
+        operation_id="op-link",
+        operation="add_relationship",
+        page_number=1,
+        relationships=[CorrectionRelationshipSpec(
+            relation_id="manual-rel-1",
+            type="continues",
+            source_element_id="p1-e2",
+            target_element_id="p2-e1",
+            source_page_number=1,
+            target_page_number=2,
+            evidence="manual cross-page continuation",
+        )],
+        created_at=datetime.now(timezone.utc),
+    )
+    artifact = CorrectionArtifact(
+        document_id=structure.document_id,
+        source_sha256=structure.source_sha256,
+        base_structure_schema_version=structure.schema_version,
+        base_structured_at=structure.structured_at,
+        operations=[operation],
+        updated_at=datetime.now(timezone.utc),
+    )
+
+    resolved = resolve_structure(automatic=structure, extraction=extraction, corrections=artifact)
+    relation = next(item for item in resolved.structure.relationships if item.relation_id == "manual-rel-1")
+    assert relation.type == "continues"
+    assert relation.source_element_id == "p1-e2"
+    assert relation.target_element_id == "p2-e1"
+    assert "manual" in relation.evidence
+    assert resolved.structure.summary.relation_count == len(resolved.structure.relationships)
+
+
+def test_manual_cross_page_relationship_can_remove_automatic_link():
+    extraction, structure = _cross_page_fixture()
+    structure.relationships.append(StructuralRelation(
+        relation_id="auto-rel-1",
+        type="continues",
+        source_element_id="p1-e2",
+        target_element_id="p2-e1",
+        evidence="automatic cross-page hierarchy",
+    ))
+    structure.summary.relation_count = len(structure.relationships)
+
+    operation = CorrectionOperation(
+        operation_id="op-unlink",
+        operation="remove_relationship",
+        page_number=1,
+        relationships=[CorrectionRelationshipSpec(
+            relation_id="auto-rel-1",
+            type="continues",
+            source_element_id="p1-e2",
+            target_element_id="p2-e1",
+            source_page_number=1,
+            target_page_number=2,
+            evidence="automatic cross-page hierarchy",
+        )],
+        created_at=datetime.now(timezone.utc),
+    )
+    artifact = CorrectionArtifact(
+        document_id=structure.document_id,
+        source_sha256=structure.source_sha256,
+        base_structure_schema_version=structure.schema_version,
+        base_structured_at=structure.structured_at,
+        operations=[operation],
+        updated_at=datetime.now(timezone.utc),
+    )
+
+    resolved = resolve_structure(automatic=structure, extraction=extraction, corrections=artifact)
+    assert all(item.relation_id != "auto-rel-1" for item in resolved.structure.relationships)
+
+
+def test_manual_continues_relationship_must_point_forward():
+    extraction, structure = _cross_page_fixture()
+    operation = CorrectionOperation(
+        operation_id="op-backward",
+        operation="add_relationship",
+        page_number=2,
+        relationships=[CorrectionRelationshipSpec(
+            relation_id="manual-rel-backward",
+            type="continues",
+            source_element_id="p2-e1",
+            target_element_id="p1-e2",
+            source_page_number=2,
+            target_page_number=1,
+        )],
+        created_at=datetime.now(timezone.utc),
+    )
+    artifact = CorrectionArtifact(
+        document_id=structure.document_id,
+        source_sha256=structure.source_sha256,
+        base_structure_schema_version=structure.schema_version,
+        base_structured_at=structure.structured_at,
+        operations=[operation],
+        updated_at=datetime.now(timezone.utc),
+    )
+
+    import pytest
+    from app.services.corrections import InvalidCorrectionError
+
+    with pytest.raises(InvalidCorrectionError, match="point forward"):
+        resolve_structure(automatic=structure, extraction=extraction, corrections=artifact)
 
 
 def _pdf_bytes() -> bytes:

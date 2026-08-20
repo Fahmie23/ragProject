@@ -21,6 +21,7 @@ import type {
   CanonicalElementType,
   CorrectionArtifact,
   CorrectionOperation,
+  CorrectionRelationshipSpec,
   DocumentExtraction,
   DocumentRecord,
   ImageBlock,
@@ -28,6 +29,7 @@ import type {
   PageExtraction,
   ResolvedStructureArtifact,
   SectionRecord,
+  StructuralRelation,
   StructuredDocument,
   TableExtraction,
   TextBlock,
@@ -718,6 +720,43 @@ function makeOperationId() {
   return `op-${random}`;
 }
 
+function makeManualRelationId() {
+  const random = typeof crypto !== "undefined" && "randomUUID" in crypto
+    ? crypto.randomUUID()
+    : `${Date.now()}-${Math.random().toString(36).slice(2)}`;
+  return `manual-rel-${random}`;
+}
+
+function correctionOperationTouchesPage(operation: CorrectionOperation, pageNumber: number) {
+  if (operation.relationships?.some((relation) => relation.source_page_number === pageNumber || relation.target_page_number === pageNumber)) return true;
+  return operation.page_number === pageNumber;
+}
+
+function localApplyRelationshipCorrections(
+  source: StructuralRelation[],
+  operations: CorrectionOperation[],
+): StructuralRelation[] {
+  let relationships = source.map((relation) => ({ ...relation }));
+  for (const operation of operations) {
+    if (operation.operation === "add_relationship") {
+      for (const spec of operation.relationships ?? []) {
+        if (relationships.some((relation) => relation.relation_id === spec.relation_id)) continue;
+        relationships.push({
+          relation_id: spec.relation_id,
+          type: spec.type,
+          source_element_id: spec.source_element_id,
+          target_element_id: spec.target_element_id,
+          evidence: spec.evidence || "manual relationship correction",
+        });
+      }
+    } else if (operation.operation === "remove_relationship") {
+      const ids = new Set((operation.relationships ?? []).map((relation) => relation.relation_id));
+      relationships = relationships.filter((relation) => !ids.has(relation.relation_id));
+    }
+  }
+  return relationships;
+}
+
 function cloneCanonicalElement(element: CanonicalElement): CanonicalElement {
   return JSON.parse(JSON.stringify(element)) as CanonicalElement;
 }
@@ -830,6 +869,7 @@ function EditableStructureOverlay({
   selected,
   onSelect,
   onCommitBbox,
+  editable = true,
 }: {
   element: CanonicalElement;
   width: number;
@@ -837,6 +877,7 @@ function EditableStructureOverlay({
   selected: boolean;
   onSelect: (multi: boolean) => void;
   onCommitBbox: (bbox: number[]) => void;
+  editable?: boolean;
 }) {
   const [preview, setPreview] = useState(element.bbox);
   const [drag, setDrag] = useState<null | {
@@ -854,6 +895,7 @@ function EditableStructureOverlay({
     event.preventDefault();
     event.stopPropagation();
     onSelect(event.shiftKey);
+    if (!editable) return;
     const canvas = event.currentTarget.closest(".page-canvas") as HTMLElement | null;
     if (!canvas) return;
     const rect = canvas.getBoundingClientRect();
@@ -900,7 +942,7 @@ function EditableStructureOverlay({
 
   return (
     <div
-      className={`structure-overlay editable semantic-${element.type} ${selected ? "selected" : ""}`}
+      className={`structure-overlay editable semantic-${element.type} ${editable ? "" : "relationship-select"} ${selected ? "selected" : ""}`}
       style={style}
       onPointerDown={(event: ReactPointerEvent<HTMLDivElement>) => startDrag(event, "move")}
       onPointerMove={moveDrag}
@@ -908,7 +950,7 @@ function EditableStructureOverlay({
       onClick={(event: ReactMouseEvent<HTMLDivElement>) => { event.stopPropagation(); onSelect(event.shiftKey); }}
       title={`${labelType(element.type)} · ${element.element_id}`}
     >
-      {selected && (["nw", "ne", "sw", "se"] as const).map((handle) => (
+      {editable && selected && (["nw", "ne", "sw", "se"] as const).map((handle) => (
         <span
           key={handle}
           className={`resize-handle ${handle}`}
@@ -959,8 +1001,8 @@ function CorrectionsPanel({
   documentId: string;
 }) {
   const [mode, setMode] = useState<"operations" | "json">("operations");
-  const savedOnPage = saved.filter((operation) => operation.page_number === pageNumber);
-  const sessionOnPage = session.filter((operation) => operation.page_number === pageNumber);
+  const savedOnPage = saved.filter((operation) => correctionOperationTouchesPage(operation, pageNumber));
+  const sessionOnPage = session.filter((operation) => correctionOperationTouchesPage(operation, pageNumber));
   const rows = [...savedOnPage, ...sessionOnPage];
   const payload = {
     stage: "stage_4_5_page_corrections",
@@ -983,7 +1025,11 @@ function CorrectionsPanel({
           {rows.map((operation, index) => (
             <div className={`correction-row ${index >= savedOnPage.length ? "unsaved" : ""}`} key={operation.operation_id}>
               <div><strong>{labelType(operation.operation)}</strong><code>{operation.operation_id}</code></div>
-              <small>{operation.source_element_ids.length ? `source: ${operation.source_element_ids.join(", ")}` : "new region"}</small>
+              {operation.relationships?.length ? operation.relationships.map((relation) => (
+                <small key={`${operation.operation_id}-${relation.relation_id}`}>
+                  {relation.type}: page {relation.source_page_number} · {relation.source_element_id} → page {relation.target_page_number} · {relation.target_element_id}
+                </small>
+              )) : <small>{operation.source_element_ids.length ? `source: ${operation.source_element_ids.join(", ")}` : "new region"}</small>}
               {operation.new_type && <small>new type: {labelType(operation.new_type)}</small>}
             </div>
           ))}
@@ -1034,14 +1080,38 @@ function StructureWorkspace({
   if (!page) return <div className="empty-state">No structured pages found.</div>;
 
   const filtered = filter === "all" ? page.elements : page.elements.filter((element) => element.type === filter);
-  const crossPageDefinitions = displayStructure.definitions.filter((entry) =>
-    entry.spans_multiple_pages && entry.start_page <= pageNumber && entry.end_page >= pageNumber
-  );
-  const outgoingDefinitions = displayStructure.definitions.filter((entry) =>
-    (entry.start_page <= pageNumber && entry.end_page > pageNumber)
-    || (entry.end_page === pageNumber && entry.continues_to_next_page)
-  );
-  const incomingDefinitions = crossPageDefinitions.filter((entry) => entry.start_page < pageNumber);
+  const elementById = new Map(displayStructure.pages.flatMap((item) => item.elements).map((element) => [element.element_id, element] as const));
+  const sectionById = new Map(displayStructure.sections.map((section) => [section.section_id, section] as const));
+  const definitionById = new Map(displayStructure.definitions.map((entry) => [entry.definition_id, entry] as const));
+  const crossPageRelations = displayStructure.relationships
+    .filter((relation) => relation.type === "continues")
+    .map((relation) => ({
+      relation,
+      source: elementById.get(relation.source_element_id),
+      target: elementById.get(relation.target_element_id),
+    }))
+    .filter((item) => item.source && item.target && item.source.page_number !== item.target.page_number)
+    .filter((item) => item.source!.page_number === pageNumber || item.target!.page_number === pageNumber);
+
+  function crossPageRelationLabel(source: CanonicalElement, target: CanonicalElement) {
+    const definitionId = source.definition_entry_id || target.definition_entry_id;
+    if (definitionId) {
+      const definition = definitionById.get(definitionId);
+      if (definition) return { kind: "Definition", label: definition.term };
+    }
+    if (source.logical_table_id && source.logical_table_id === target.logical_table_id) {
+      return { kind: "Table", label: source.logical_table_id };
+    }
+    if (source.section_id && source.section_id === target.section_id) {
+      const section = sectionById.get(source.section_id);
+      if (section) return { kind: "Hierarchy", label: section.title };
+    }
+    const hierarchyTypes = new Set<CanonicalElementType>(["clause", "subclause", "list_item"]);
+    const kind = hierarchyTypes.has(source.type) || hierarchyTypes.has(target.type) ? "Hierarchy" : "Text";
+    const compact = source.text.replace(/\s+/g, " ").trim();
+    return { kind, label: compact.length > 72 ? `${compact.slice(0, 69)}…` : compact || "Cross-page content" };
+  }
+
   const pageJson = buildStructuredSandboxPayload(
     displayStructure,
     pageNumber,
@@ -1096,19 +1166,23 @@ function StructureWorkspace({
         </div>
       </div>
 
-      {(incomingDefinitions.length > 0 || outgoingDefinitions.length > 0) && <div className="cross-page-context-strip">
+      {crossPageRelations.length > 0 && <div className="cross-page-context-strip">
         <div className="cross-page-context-title">
           <span className="eyebrow">Cross-page structure</span>
-          <strong>Definition continuation detected</strong>
+          <strong>Continuation detected</strong>
         </div>
         <div className="cross-page-context-items">
-          {incomingDefinitions.map((entry) => <button key={`in-${entry.definition_id}`} onClick={() => setPageNumber(entry.start_page)}>
-            <span aria-hidden="true">←</span> <strong>{entry.term}</strong> continued from page {entry.start_page}
-          </button>)}
-          {outgoingDefinitions.map((entry) => {
-            const target = entry.end_page > pageNumber ? Math.min(pageNumber + 1, entry.end_page) : pageNumber + 1;
-            return <button key={`out-${entry.definition_id}`} onClick={() => setPageNumber(Math.min(target, displayStructure.pages.length))}>
-              <strong>{entry.term}</strong> continues to page {target} <span aria-hidden="true">→</span>
+          {crossPageRelations.map(({ relation, source, target }) => {
+            if (!source || !target) return null;
+            const meta = crossPageRelationLabel(source, target);
+            const incoming = target.page_number === pageNumber;
+            const destination = incoming ? source.page_number : target.page_number;
+            return <button key={relation.relation_id} onClick={() => setPageNumber(destination)} title={relation.evidence}>
+              {incoming && <span aria-hidden="true">←</span>}
+              <span className="cross-page-kind">{meta.kind}</span>
+              <strong>{meta.label}</strong>
+              {incoming ? ` continued from page ${source.page_number}` : ` continues to page ${target.page_number}`}
+              {!incoming && <span aria-hidden="true">→</span>}
             </button>;
           })}
         </div>
@@ -1212,7 +1286,7 @@ function buildStructuredSandboxPayload(
     source_sha256: structure.source_sha256,
     document_title: structure.title,
     document_subtitle: structure.subtitle ?? null,
-    corrections_saved_on_page: corrections?.operations.filter((operation) => operation.page_number === pageNumber) ?? [],
+    corrections_saved_on_page: corrections?.operations.filter((operation) => correctionOperationTouchesPage(operation, pageNumber)) ?? [],
     sections_referenced_on_page: structure.sections.filter((entry) => entry.page_number === pageNumber || relatedSectionIds.has(entry.section_id)),
     definitions_referenced_on_page: structure.definitions.filter((entry) =>
       (entry.term_element_id ? pageElementIds.has(entry.term_element_id) : false)
@@ -1343,6 +1417,13 @@ function SandboxOverlayBox({
   return <div className={`sandbox-overlay ${variant} semantic-${item.type}`} style={style} title={`${item.type} · ${item.id}${item.text ? `\n${item.text}` : ""}`} />;
 }
 
+type CrossPageEndpoint = {
+  page_number: number;
+  element_id: string;
+  type: CanonicalElementType;
+  text: string;
+};
+
 function CorrectionSandbox({
   document,
   extraction,
@@ -1367,6 +1448,7 @@ function CorrectionSandbox({
   savingCorrections: boolean;
 }) {
   const [mode, setMode] = useState<"preview" | "before" | "after" | "log">("preview");
+  const [editScope, setEditScope] = useState<"layout" | "cross_page">("layout");
   const [selectedIds, setSelectedIds] = useState<string[]>([]);
   const [workingElements, setWorkingElements] = useState<CanonicalElement[]>([]);
   const [sessionOps, setSessionOps] = useState<CorrectionOperation[]>([]);
@@ -1380,6 +1462,7 @@ function CorrectionSandbox({
   const [filter, setFilter] = useState<"all" | CanonicalElementType>("all");
   const [elementsPanelCollapsed, setElementsPanelCollapsed] = useStoredBoolean("rag-correction-elements-collapsed", false);
   const [selectedEditorCollapsed, setSelectedEditorCollapsed] = useState(false);
+  const [crossPageSource, setCrossPageSource] = useState<CrossPageEndpoint | null>(null);
 
   useEffect(() => {
     setSelectedIds([]);
@@ -1393,21 +1476,52 @@ function CorrectionSandbox({
     else setWorkingElements([]);
   }, [document.document_id, pageNumber, structure?.structured_at, resolved?.resolved_at]);
 
+  useEffect(() => {
+    setCrossPageSource(null);
+    setEditScope("layout");
+  }, [document.document_id, structure?.structured_at]);
+
   if (!structure) return <div className="empty-state">Run Stage 4 before using Correction Sandbox.</div>;
 
   const automaticPage = structure.pages[pageNumber - 1];
   const resolvedStructure = resolved?.structure ?? structure;
   const basePage = resolvedStructure.pages[pageNumber - 1];
   const savedOperations = corrections?.operations ?? [];
-  const savedPageOperations = savedOperations.filter((operation) => operation.page_number === pageNumber);
+  const savedPageOperations = savedOperations.filter((operation) => correctionOperationTouchesPage(operation, pageNumber));
 
   if (!automaticPage || !basePage) return <div className="empty-state">No structured page found.</div>;
 
   const selectedElement = selectedIds.length === 1 ? workingElements.find((element) => element.element_id === selectedIds[0]) ?? null : null;
   const filteredWorking = filter === "all" ? workingElements : workingElements.filter((element) => element.type === filter);
+  const elementPageById = new Map<string, number>();
+  const elementById = new Map<string, CanonicalElement>();
+  for (const page of resolvedStructure.pages) {
+    for (const element of page.elements) {
+      elementPageById.set(element.element_id, page.page_number);
+      elementById.set(element.element_id, element);
+    }
+  }
+  for (const element of workingElements) {
+    elementPageById.set(element.element_id, pageNumber);
+    elementById.set(element.element_id, element);
+  }
+  const previewRelationships = localApplyRelationshipCorrections(resolvedStructure.relationships, sessionOps);
+  const crossPageRelationsOnPage = previewRelationships.filter((relation) => {
+    if (relation.type !== "continues") return false;
+    const sourcePage = elementPageById.get(relation.source_element_id);
+    const targetPage = elementPageById.get(relation.target_element_id);
+    return Boolean(sourcePage && targetPage && sourcePage !== targetPage && (sourcePage === pageNumber || targetPage === pageNumber));
+  });
 
-  function makeOperation(partial: Omit<CorrectionOperation, "operation_id" | "created_at">): CorrectionOperation {
-    return { ...partial, operation_id: makeOperationId(), created_at: new Date().toISOString() };
+  function makeOperation(
+    partial: Omit<CorrectionOperation, "operation_id" | "created_at" | "relationships"> & { relationships?: CorrectionRelationshipSpec[] },
+  ): CorrectionOperation {
+    return {
+      ...partial,
+      relationships: partial.relationships ?? [],
+      operation_id: makeOperationId(),
+      created_at: new Date().toISOString(),
+    };
   }
 
   function rebuildWorking(nextOps: CorrectionOperation[]) {
@@ -1496,6 +1610,76 @@ function CorrectionSandbox({
     setSelectedIds([]);
   }
 
+  function setSelectedAsCrossPageSource() {
+    if (!selectedElement) return;
+    if (sessionOps.length) {
+      window.alert("Save, undo, or discard the current unsaved corrections before starting a cross-page link.");
+      return;
+    }
+    setCrossPageSource({
+      page_number: pageNumber,
+      element_id: selectedElement.element_id,
+      type: selectedElement.type,
+      text: selectedElement.text,
+    });
+    setSelectedIds([]);
+  }
+
+  function linkSelectedAsContinuation() {
+    if (!crossPageSource || !selectedElement) return;
+    if (selectedElement.element_id === crossPageSource.element_id) return;
+    if (pageNumber <= crossPageSource.page_number) {
+      window.alert(`Choose a target on a later page than page ${crossPageSource.page_number}. A continues relationship always points forward.`);
+      return;
+    }
+    if (previewRelationships.some((relation) => (
+      relation.type === "continues"
+      && relation.source_element_id === crossPageSource.element_id
+      && relation.target_element_id === selectedElement.element_id
+    ))) {
+      window.alert("This continuation link already exists.");
+      return;
+    }
+
+    addSessionOperation(makeOperation({
+      operation: "add_relationship",
+      page_number: crossPageSource.page_number,
+      source_element_ids: [],
+      result_elements: [],
+      relationships: [{
+        relation_id: makeManualRelationId(),
+        type: "continues",
+        source_element_id: crossPageSource.element_id,
+        target_element_id: selectedElement.element_id,
+        source_page_number: crossPageSource.page_number,
+        target_page_number: pageNumber,
+        evidence: "manual cross-page hierarchy continuation",
+      }],
+    }));
+    setCrossPageSource(null);
+  }
+
+  function removeCrossPageRelation(relation: StructuralRelation) {
+    const sourcePage = elementPageById.get(relation.source_element_id);
+    const targetPage = elementPageById.get(relation.target_element_id);
+    if (!sourcePage || !targetPage) return;
+    addSessionOperation(makeOperation({
+      operation: "remove_relationship",
+      page_number: sourcePage,
+      source_element_ids: [],
+      result_elements: [],
+      relationships: [{
+        relation_id: relation.relation_id,
+        type: relation.type,
+        source_element_id: relation.source_element_id,
+        target_element_id: relation.target_element_id,
+        source_page_number: sourcePage,
+        target_page_number: targetPage,
+        evidence: relation.evidence,
+      }],
+    }));
+  }
+
   function undo() {
     if (!sessionOps.length) return;
     const removed = sessionOps[sessionOps.length - 1];
@@ -1522,17 +1706,19 @@ function CorrectionSandbox({
     setSessionOps([]);
     setRedoOps([]);
     setSelectedIds([]);
+    setCrossPageSource(null);
   }
 
   async function resetPage() {
     if (!savedPageOperations.length && !sessionOps.length) return;
     if (!window.confirm(`Reset all manual corrections on page ${pageNumber}?`)) return;
-    const remaining = savedOperations.filter((operation) => operation.page_number !== pageNumber);
+    const remaining = savedOperations.filter((operation) => !correctionOperationTouchesPage(operation, pageNumber));
     if (remaining.length === 0) await onResetAllCorrections();
     else await onSaveCorrections(remaining);
     setSessionOps([]);
     setRedoOps([]);
     setSelectedIds([]);
+    setCrossPageSource(null);
   }
 
   async function resetAll() {
@@ -1542,6 +1728,7 @@ function CorrectionSandbox({
     setSessionOps([]);
     setRedoOps([]);
     setSelectedIds([]);
+    setCrossPageSource(null);
   }
 
   function safeSetPage(next: number) {
@@ -1600,7 +1787,8 @@ function CorrectionSandbox({
   ], basePage.width, basePage.height) : null;
 
   const beforePayload = buildStructuredSandboxPayload(structure, pageNumber, "stage_4_canonical_structure", null) as Record<string, unknown> | null;
-  const afterBase = buildStructuredSandboxPayload(resolvedStructure, pageNumber, "stage_4_5_resolved_structure", corrections) as Record<string, unknown> | null;
+  const previewStructure: StructuredDocument = { ...resolvedStructure, relationships: previewRelationships };
+  const afterBase = buildStructuredSandboxPayload(previewStructure, pageNumber, "stage_4_5_resolved_structure", corrections) as Record<string, unknown> | null;
   const afterPayload = afterBase ? {
     ...afterBase,
     stage: "stage_4_5_correction_preview",
@@ -1626,7 +1814,7 @@ function CorrectionSandbox({
         <div>
           <span className="eyebrow">Stage 4.5 · Human review</span>
           <h3>Correction Sandbox</h3>
-          <p>All manual layout correction happens here. Automatic Stage 4 stays immutable; saved operations produce the resolved Stage 4.5 structure.</p>
+          <p>Manual layout and cross-page hierarchy correction happen here. Automatic Stage 4 stays immutable; saved operations produce the resolved Stage 4.5 structure.</p>
         </div>
         <PageNav pageNumber={pageNumber} total={structure.pages.length} setPageNumber={safeSetPage} />
       </div>
@@ -1634,7 +1822,8 @@ function CorrectionSandbox({
       <div className="sandbox-status-row">
         <div><strong>{savedPageOperations.length}</strong><span>saved on page</span></div>
         <div><strong>{sessionOps.length}</strong><span>unsaved</span></div>
-        {comparison && <div className={comparison.matches ? "match" : "changed"}><strong>{comparison.changed + comparison.added + comparison.removed}</strong><span>before/after changes</span></div>}
+        {editScope === "layout" && comparison && <div className={comparison.matches ? "match" : "changed"}><strong>{comparison.changed + comparison.added + comparison.removed}</strong><span>before/after changes</span></div>}
+        {editScope === "cross_page" && <div className={sessionOps.some((operation) => operation.operation === "add_relationship" || operation.operation === "remove_relationship") ? "changed" : "match"}><strong>{sessionOps.filter((operation) => operation.operation === "add_relationship" || operation.operation === "remove_relationship").length}</strong><span>relationship changes</span></div>}
         <div className="sandbox-status-actions">
           <button disabled={!savedOperations.length || savingCorrections} onClick={resetAll}>Reset all corrections</button>
           <button disabled={!savedPageOperations.length && !sessionOps.length || savingCorrections} onClick={resetPage}>Reset page</button>
@@ -1650,7 +1839,12 @@ function CorrectionSandbox({
       </div>
 
       {mode === "preview" && <>
-        <div className="correction-toolbar sandbox-correction-toolbar">
+        <div className="correction-scope-tabs" role="tablist" aria-label="Correction type">
+          <button className={editScope === "layout" ? "active" : ""} onClick={() => { setEditScope("layout"); setCrossPageSource(null); setSelectedIds([]); }}>Layout correction</button>
+          <button className={editScope === "cross_page" ? "active" : ""} onClick={() => { setEditScope("cross_page"); setDrawMode(false); setSelectedIds([]); }}>Cross-page relationships</button>
+        </div>
+
+        {editScope === "layout" ? <div className="correction-toolbar sandbox-correction-toolbar">
           <div className="correction-tools">
             <button className={drawMode ? "active" : ""} onClick={() => setDrawMode((value) => !value)}>＋ Draw</button>
             <select value={drawType} onChange={(event: ChangeEvent<HTMLSelectElement>) => setDrawType(event.target.value as CanonicalElementType)} title="Type for newly drawn regions">
@@ -1667,9 +1861,62 @@ function CorrectionSandbox({
             <label><input type="checkbox" checked={showAfterOverlay} onChange={(event: ChangeEvent<HTMLInputElement>) => setShowAfterOverlay(event.target.checked)} /> After</label>
             <button className="panel-collapse-button" onClick={() => setElementsPanelCollapsed((value) => !value)}>{elementsPanelCollapsed ? "Show elements" : "Hide elements"}</button>
           </div>
-        </div>
+        </div> : <div className="cross-page-correction-card">
+          <div className="cross-page-correction-head">
+            <div>
+              <span className="eyebrow">Manual hierarchy correction</span>
+              <strong>Link or remove cross-page continuations</strong>
+              <small>Select the source element first, move to a later page, select the target, then create a <code>continues</code> relationship.</small>
+            </div>
+            <div className="correction-tools">
+              <button disabled={selectedIds.length !== 1 || Boolean(crossPageSource)} onClick={setSelectedAsCrossPageSource}>Use selected as source</button>
+              <button className="primary-button compact" disabled={!crossPageSource || !selectedElement || pageNumber <= (crossPageSource?.page_number ?? pageNumber)} onClick={linkSelectedAsContinuation}>Link continuation</button>
+              <button disabled={!crossPageSource} onClick={() => { setCrossPageSource(null); setSelectedIds([]); }}>Cancel source</button>
+              <button disabled={!sessionOps.length} onClick={undo}>Undo</button>
+              <button disabled={!redoOps.length} onClick={redo}>Redo</button>
+            </div>
+          </div>
 
-        {selectedElement && <div className={`selected-element-editor sandbox-selected-editor ${selectedEditorCollapsed ? "is-collapsed" : ""}`}>
+          <div className="cross-page-endpoint-grid">
+            <div className={crossPageSource ? "endpoint-card ready" : "endpoint-card"}>
+              <span>Source</span>
+              {crossPageSource ? <>
+                <strong>Page {crossPageSource.page_number} · {labelType(crossPageSource.type)}</strong>
+                <code>{crossPageSource.element_id}</code>
+                <small>{crossPageSource.text.replace(/\s+/g, " ").slice(0, 180) || "No text"}</small>
+              </> : <small>Select an element on the page and click “Use selected as source”.</small>}
+            </div>
+            <div className={crossPageSource && selectedElement && pageNumber > crossPageSource.page_number ? "endpoint-card ready" : "endpoint-card"}>
+              <span>Target</span>
+              {selectedElement ? <>
+                <strong>Page {pageNumber} · {labelType(selectedElement.type)}</strong>
+                <code>{selectedElement.element_id}</code>
+                <small>{selectedElement.text.replace(/\s+/g, " ").slice(0, 180) || "No text"}</small>
+              </> : <small>{crossPageSource ? `Move to a page after ${crossPageSource.page_number}, then select the continuation element.` : "Choose the source first."}</small>}
+            </div>
+          </div>
+
+          <div className="cross-page-existing-links">
+            <div className="cross-page-existing-head"><strong>Cross-page links touching page {pageNumber}</strong><span className="count-badge">{crossPageRelationsOnPage.length}</span></div>
+            {crossPageRelationsOnPage.map((relation) => {
+              const sourcePage = elementPageById.get(relation.source_element_id);
+              const targetPage = elementPageById.get(relation.target_element_id);
+              const sourceElement = elementById.get(relation.source_element_id);
+              const targetElement = elementById.get(relation.target_element_id);
+              return <div className="cross-page-link-row" key={relation.relation_id}>
+                <div>
+                  <strong>Page {sourcePage} → Page {targetPage}</strong>
+                  <code>{relation.source_element_id} → {relation.target_element_id}</code>
+                  <small>{sourceElement?.text.replace(/\s+/g, " ").slice(0, 90) || "Source"} → {targetElement?.text.replace(/\s+/g, " ").slice(0, 90) || "Target"}</small>
+                </div>
+                <button onClick={() => removeCrossPageRelation(relation)}>Remove link</button>
+              </div>;
+            })}
+            {crossPageRelationsOnPage.length === 0 && <p className="empty-copy">No saved or preview cross-page continuation links touch this page.</p>}
+          </div>
+        </div>}
+
+        {editScope === "layout" && selectedElement && <div className={`selected-element-editor sandbox-selected-editor ${selectedEditorCollapsed ? "is-collapsed" : ""}`}>
           <div className="selected-editor-head">
             <div><span className="eyebrow">Selected corrected region</span><strong>{selectedElement.element_id}</strong></div>
             <CollapseToggle collapsed={selectedEditorCollapsed} onToggle={() => setSelectedEditorCollapsed((value) => !value)} label="selected region editor" />
@@ -1683,7 +1930,7 @@ function CorrectionSandbox({
           </>}
         </div>}
 
-        {comparison && <div className={`sandbox-diff ${comparison.matches ? "match" : "changed"}`}>
+        {editScope === "layout" && comparison && <div className={`sandbox-diff ${comparison.matches ? "match" : "changed"}`}>
           <strong>{comparison.matches ? "After currently matches automatic Stage 4" : "Before and after differ"}</strong>
           <span>{comparison.unchanged} unchanged · {comparison.changed} changed · {comparison.added} added · {comparison.removed} removed</span>
         </div>}
@@ -1696,7 +1943,7 @@ function CorrectionSandbox({
               <img src={pagePreviewUrl(document.document_id, pageNumber)} alt={`Correction sandbox page ${pageNumber}`} />
               <div className={`overlay-layer correction-layer ${drawMode ? "draw-mode" : ""}`} onPointerDown={startDraw} onPointerMove={moveDraw} onPointerUp={endDraw}>
                 {showBeforeOverlay && automaticPage.elements.map((element) => <SandboxOverlayBox key={`before-${element.element_id}`} item={{ id: element.element_id, type: element.type, bbox: element.bbox, text: element.text }} width={automaticPage.width} height={automaticPage.height} variant="baseline" />)}
-                {showAfterOverlay && workingElements.map((element) => <EditableStructureOverlay key={`after-${element.element_id}`} element={element} width={basePage.width} height={basePage.height} selected={selectedIds.includes(element.element_id)} onSelect={(multi) => selectElement(element.element_id, multi)} onCommitBbox={(bbox) => commitBbox(element, bbox)} />)}
+                {showAfterOverlay && workingElements.map((element) => <EditableStructureOverlay key={`after-${element.element_id}`} element={element} width={basePage.width} height={basePage.height} selected={selectedIds.includes(element.element_id)} onSelect={(multi) => selectElement(element.element_id, multi)} onCommitBbox={(bbox) => commitBbox(element, bbox)} editable={editScope === "layout"} />)}
                 {drawPreview && <div className="draw-preview" style={{ left: `${(drawPreview[0] / basePage.width) * 100}%`, top: `${(drawPreview[1] / basePage.height) * 100}%`, width: `${((drawPreview[2] - drawPreview[0]) / basePage.width) * 100}%`, height: `${((drawPreview[3] - drawPreview[1]) / basePage.height) * 100}%` }} />}
               </div>
             </div></div>

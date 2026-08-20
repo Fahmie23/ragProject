@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 from collections import Counter
+from dataclasses import dataclass
 from datetime import datetime, timezone
 from pathlib import Path
 import re
@@ -99,6 +100,166 @@ FIGURE_LABEL = re.compile(r"\b(?:illustration|figure|diagram|chart)\s*\d*\b", re
 FIGURE_INTRO = re.compile(r"\b(?:illustrat(?:ed|ion)|figure|diagram|shown\s+below|set\s+out\s+in|below)\b", re.IGNORECASE)
 SOURCE_HINT = re.compile(r"\b(?:source|guidance|reference|for\s+full|https?://|www\.)\b", re.IGNORECASE)
 FOOTNOTE_MARKER = re.compile(r"^\s*(?:[¹²³⁴⁵⁶⁷⁸⁹⁰]+|\d+[.)]?|[*†‡])\s*")
+DEFINITION_ITEM_PREFIX = re.compile(
+    r"^\s*(\((?:[A-Za-z]|\d{1,2}|[ivxlcdmIVXLCDM]{1,6})\)|(?:\d{1,2}|[A-Za-z])[.)])\s+"
+)
+DEFINITION_ITEM_ANYWHERE = re.compile(
+    r"(?:^|\s)(\((?:[A-Za-z]|\d{1,2}|[ivxlcdmIVXLCDM]{1,6})\)|(?:\d{1,2}|[A-Za-z])[.)])\s+"
+)
+
+
+@dataclass(frozen=True)
+class OpenBlockState:
+    """Reusable state for conservative cross-page reconciliation.
+
+    ``kind`` is semantic (definition, clause, list, paragraph, table), while
+    ``expected_column`` is the horizontal region that a continuation is
+    expected to occupy on the following page.  The state intentionally carries
+    no document-specific vocabulary.
+    """
+
+    kind: str
+    source_element_id: str
+    page_number: int
+    expected_column: list[float]
+    context_id: str | None = None
+    allow_enumerated_items: bool = False
+
+
+@dataclass(frozen=True)
+class HierarchyMarker:
+    """Normalized marker metadata used by the cross-page hierarchy engine.
+
+    A marker may have two plausible ordinals (for example ``(i)`` can be the
+    ninth alphabetic item or the first roman numeral).  Keeping both candidates
+    lets geometry and the neighbouring marker decide the relationship instead
+    of hard-coding one legal-document numbering convention.
+    """
+
+    raw: str
+    style: str
+    ordinals: tuple[int, ...]
+
+
+BULLET_PREFIX = re.compile(r"^\s*([•▪◦●○■□‣⁃])\s+")
+PAREN_MARKER_PREFIX = re.compile(r"^\s*\((\d{1,3}[A-Za-z]?|[A-Za-z]|[ivxlcdmIVXLCDM]{1,8})\)\s*")
+PLAIN_MARKER_PREFIX = re.compile(r"^\s*(\d{1,3}[A-Za-z]?|[A-Za-z]|[ivxlcdmIVXLCDM]{1,8})[.)]\s+")
+
+
+def _roman_value(token: str) -> int | None:
+    token = token.upper()
+    if not token or any(char not in "IVXLCDM" for char in token):
+        return None
+    values = {"I": 1, "V": 5, "X": 10, "L": 50, "C": 100, "D": 500, "M": 1000}
+    total = 0
+    previous = 0
+    for char in reversed(token):
+        value = values[char]
+        if value < previous:
+            total -= value
+        else:
+            total += value
+            previous = value
+    # Reject malformed roman strings by round-tripping a bounded canonical form.
+    if total <= 0 or total > 3999:
+        return None
+    return total
+
+
+def _marker_ordinals(token: str) -> tuple[int, ...]:
+    if token.isdigit():
+        return (int(token),)
+    match = re.fullmatch(r"(\d{1,3})([A-Za-z])", token)
+    if match:
+        return (int(match.group(1)) * 100 + (ord(match.group(2).lower()) - 96),)
+    values: list[int] = []
+    if len(token) == 1 and token.isalpha():
+        values.append(ord(token.lower()) - 96)
+    roman = _roman_value(token)
+    if roman is not None and roman not in values:
+        values.append(roman)
+    return tuple(value for value in values if value > 0)
+
+
+def _hierarchy_marker(text: str) -> HierarchyMarker | None:
+    normalized = " ".join(text.split()).strip()
+    bullet = BULLET_PREFIX.match(normalized)
+    if bullet:
+        return HierarchyMarker(raw=bullet.group(1), style="bullet", ordinals=())
+
+    parenthesized = PAREN_MARKER_PREFIX.match(normalized)
+    if parenthesized:
+        token = parenthesized.group(1)
+        if token.isdigit():
+            style = "paren_numeric"
+        elif re.fullmatch(r"\d+[A-Za-z]", token):
+            style = "paren_numeric_alpha"
+        elif len(token) == 1 and token.isalpha():
+            style = "paren_alpha_or_roman"
+        else:
+            style = "paren_roman"
+        return HierarchyMarker(raw=f"({token})", style=style, ordinals=_marker_ordinals(token))
+
+    plain = PLAIN_MARKER_PREFIX.match(normalized)
+    if plain:
+        token = plain.group(1)
+        if token.isdigit():
+            style = "plain_numeric"
+        elif re.fullmatch(r"\d+[A-Za-z]", token):
+            style = "plain_numeric_alpha"
+        elif len(token) == 1 and token.isalpha():
+            style = "plain_alpha_or_roman"
+        else:
+            style = "plain_roman"
+        return HierarchyMarker(raw=plain.group(0).strip(), style=style, ordinals=_marker_ordinals(token))
+    return None
+
+
+def _marker_sequence_relation(
+    source: CanonicalElement,
+    candidate: CanonicalElement,
+    page_width: float,
+) -> tuple[str | None, int, list[str]]:
+    """Return a generic sibling/child relationship score for list markers."""
+    left = _hierarchy_marker(source.text)
+    right = _hierarchy_marker(candidate.text)
+    if left is None or right is None:
+        return None, 0, []
+
+    evidence: list[str] = []
+    indent_delta = candidate.bbox[0] - source.bbox[0]
+    indent_threshold = max(12.0, page_width * 0.018)
+
+    if left.style == "bullet" and right.style == "bullet":
+        if abs(indent_delta) <= indent_threshold * 1.5:
+            return "sibling", 4, ["bullet marker continues at the same indentation"]
+        if indent_delta > indent_threshold:
+            return "child", 3, ["bullet marker begins at a deeper indentation"]
+
+    same_style = left.style == right.style
+    sequential = any(r == l + 1 for l in left.ordinals for r in right.ordinals)
+    if same_style and sequential:
+        evidence.append(f"marker sequence advances from {left.raw} to {right.raw}")
+        if abs(indent_delta) <= indent_threshold * 1.7:
+            return "sibling", 5, evidence
+        if indent_delta > indent_threshold:
+            evidence.append("next marker is also more deeply indented")
+            return "child", 5, evidence
+
+    # A new marker family starting at ordinal 1 at a deeper indentation is a
+    # strong generic signal for a nested child list, e.g. (b) -> (i).
+    if indent_delta > indent_threshold and 1 in right.ordinals:
+        evidence.append(f"{right.raw} starts a new marker family at a deeper indentation")
+        return "child", 4, evidence
+
+    # When both markers are ordered and the next ordinal increases, preserve a
+    # weaker sibling signal. This handles document conventions such as (20) ->
+    # (21) even when the exact vendor type changes between pages.
+    if same_style and left.ordinals and right.ordinals and min(right.ordinals) > min(left.ordinals):
+        evidence.append(f"marker order increases from {left.raw} to {right.raw}")
+        return "sibling", 2, evidence
+
+    return None, 0, []
 
 
 def _bbox_from_box(box: dict) -> list[float]:
@@ -272,6 +433,453 @@ def _looks_short_definition_term(element: CanonicalElement, page_width: float) -
     if page_width <= 0:
         return False
     return x0 <= page_width * 0.46 and width <= page_width * 0.42
+
+
+TERM_CONTINUATION_PAREN = re.compile(r"^\s*\([^()]{1,48}\)\s*$")
+
+
+def _looks_multiline_term_continuation(
+    previous: CanonicalElement,
+    current: CanonicalElement,
+    page_width: float,
+) -> bool:
+    """Return True when two left-column fragments are likely one wrapped term.
+
+    The rule is deliberately vocabulary-free.  It relies on a tight vertical
+    gap, matching left-column alignment and a continuation-like second line
+    (for example a parenthesized acronym or lower-case wrapped text).  A very
+    tight gap is also accepted when the combined label still looks like a
+    definition term.  This covers terms split by layout segmentation while
+    avoiding normal glossary rows that are merely adjacent vertically.
+    """
+    if not previous.text.strip() or not current.text.strip() or page_width <= 0:
+        return False
+    if not _looks_definition_term_text(previous.text) or not _looks_definition_term_text(current.text):
+        return False
+
+    prev_h = max(1.0, previous.bbox[3] - previous.bbox[1])
+    curr_h = max(1.0, current.bbox[3] - current.bbox[1])
+    gap = current.bbox[1] - previous.bbox[3]
+    max_gap = max(4.0, min(14.0, min(prev_h, curr_h) * 0.85))
+    if gap < -3.0 or gap > max_gap:
+        return False
+
+    left_tolerance = max(8.0, page_width * 0.018)
+    aligned_left = abs(previous.bbox[0] - current.bbox[0]) <= left_tolerance
+    overlap = _horizontal_overlap_ratio(previous.bbox, current.bbox)
+    if not aligned_left and overlap < 0.65:
+        return False
+
+    current_text = " ".join(current.text.split()).strip()
+    previous_text = " ".join(previous.text.split()).strip()
+    combined = f"{previous_text} {current_text}".strip()
+    if not _looks_definition_term_text(combined):
+        return False
+
+    strong_continuation_signal = bool(
+        TERM_CONTINUATION_PAREN.match(current_text)
+        or previous_text.endswith(("-", "/", "&"))
+    )
+    # A near-zero inter-line gap is strong geometric evidence even when the
+    # wrapped second line begins with a capital or lower-case word.  Lower-case
+    # text by itself is intentionally *not* enough: glossary terms are often
+    # lower-case and may be closely spaced on dense pages.
+    very_tight = gap <= max(2.5, min(prev_h, curr_h) * 0.25)
+    return strong_continuation_signal or very_tight
+
+
+def _merge_source_trace(primary: CanonicalElement, secondary: CanonicalElement) -> None:
+    """Preserve Stage-3 provenance when two canonical fragments are merged."""
+    primary.source.stage3_block_ids = list(dict.fromkeys(
+        primary.source.stage3_block_ids + secondary.source.stage3_block_ids
+    ))
+    primary.source.stage3_table_ids = list(dict.fromkeys(
+        primary.source.stage3_table_ids + secondary.source.stage3_table_ids
+    ))
+
+
+def _consolidate_multiline_definition_terms(
+    *,
+    elements: list[CanonicalElement],
+    pages: list[StructuredPage],
+    definition_pages: set[int],
+) -> int:
+    """Merge wrapped left-column term fragments before definition pairing.
+
+    This is a canonical repair, not a parser-specific rule.  It works whether
+    the layout engine emitted the term as two text boxes, two list-item boxes,
+    or a mixture of recovered and vendor elements.  Only tightly stacked,
+    aligned, term-like fragments are merged.
+    """
+    merged_count = 0
+    allowed = {"paragraph", "list_item", "section_header", "page_footer", "definition_term"}
+
+    for page in pages:
+        if page.page_number not in definition_pages:
+            continue
+        width = max(page.width, 1.0)
+        left = [
+            item for item in page.elements
+            if item.definition_entry_id is None
+            and item.type in allowed
+            and not item.role_source.startswith("definition_")
+            and _looks_short_definition_term(item, width)
+            and not _looks_definition_context(item.text)
+        ]
+        if len(left) < 2:
+            continue
+
+        ordered = sorted(left, key=lambda item: (item.bbox[1], item.bbox[0], item.reading_order))
+        remove_ids: set[str] = set()
+        index = 0
+        while index < len(ordered) - 1:
+            primary = ordered[index]
+            if primary.element_id in remove_ids:
+                index += 1
+                continue
+            secondary = ordered[index + 1]
+            if secondary.element_id in remove_ids:
+                index += 1
+                continue
+
+            if not _looks_multiline_term_continuation(primary, secondary, width):
+                index += 1
+                continue
+
+            primary.text = " ".join(f"{primary.text} {secondary.text}".split()).strip()
+            combined_bbox = _union_bbox([primary.bbox, secondary.bbox])
+            if combined_bbox is not None:
+                primary.bbox = combined_bbox
+            primary.type = "definition_term"
+            primary.heading_level = None
+            primary.heading_level_source = None
+            primary.role_source = "definition_multiline_term_consolidation"
+            _merge_source_trace(primary, secondary)
+            remove_ids.add(secondary.element_id)
+            merged_count += 1
+
+            # Keep the merged primary in place so three-line terms can be
+            # consolidated iteratively with the next fragment.
+            ordered[index] = primary
+            ordered.pop(index + 1)
+
+        if remove_ids:
+            page.elements = [item for item in page.elements if item.element_id not in remove_ids]
+
+    if merged_count:
+        _reindex_canonical_elements(elements, pages)
+    return merged_count
+
+
+def _normalized_match_text(text: str) -> str:
+    """Normalize text only for provenance / geometry matching."""
+    return " ".join(re.sub(r"[^0-9a-z]+", " ", text.casefold()).split())
+
+
+def _stage3_block_ids_for_bbox(raw_page, bbox: list[float]) -> list[str]:
+    ids: list[str] = []
+    for block in raw_page.blocks:
+        if getattr(block, "type", None) != "text":
+            continue
+        if _intersection(block.bbox, bbox) > 0:
+            ids.append(block.block_id)
+    return ids
+
+
+def _stage3_left_line_fragments(raw_page, split_x: float) -> list[dict]:
+    """Return left-column Stage-3 line fragments with block provenance.
+
+    This intentionally works below the vendor layout layer.  It lets Stage 4
+    recover a wrapped term line that the layout engine omitted or absorbed into
+    a neighbouring region.
+    """
+    fragments: list[dict] = []
+    for block in raw_page.blocks:
+        if getattr(block, "type", None) != "text":
+            continue
+        for line in block.lines:
+            spans = [
+                span for span in line.spans
+                if span.text.strip() and ((span.bbox[0] + span.bbox[2]) / 2.0) < split_x
+            ]
+            if not spans:
+                continue
+            text = " ".join(span.text.strip() for span in spans if span.text.strip()).strip()
+            bbox = _union_bbox([list(span.bbox) for span in spans])
+            if not text or bbox is None:
+                continue
+            fragments.append({
+                "text": text,
+                "bbox": bbox,
+                "block_id": block.block_id,
+            })
+    return sorted(fragments, key=lambda item: (item["bbox"][1], item["bbox"][0]))
+
+
+def _raw_fragment_matches_element(fragment: dict, element: CanonicalElement) -> bool:
+    left = _normalized_match_text(fragment["text"])
+    right = _normalized_match_text(element.text)
+    if not left or not right:
+        return False
+    if left == right:
+        return True
+    # A layout engine may preserve / drop punctuation around an acronym.
+    if left in right or right in left:
+        return _vertical_overlap_ratio(fragment["bbox"], element.bbox) >= 0.45
+    return False
+
+
+def _raw_term_fragment_continuation(
+    first: dict,
+    second: dict,
+    *,
+    page_width: float,
+) -> bool:
+    """Return True for a high-confidence wrapped definition-term line pair.
+
+    We deliberately require stronger evidence than simple vertical proximity.
+    The most common safe signal is a parenthesized continuation such as an
+    acronym, but connector endings and same-block, near-zero-gap wraps are also
+    supported.  No vocabulary or document-specific term names are used.
+    """
+    first_text = " ".join(first["text"].split()).strip()
+    second_text = " ".join(second["text"].split()).strip()
+    combined = f"{first_text} {second_text}".strip()
+    if not _looks_definition_term_text(first_text) or not _looks_definition_term_text(second_text):
+        return False
+    if not _looks_definition_term_text(combined):
+        return False
+
+    first_h = max(1.0, first["bbox"][3] - first["bbox"][1])
+    second_h = max(1.0, second["bbox"][3] - second["bbox"][1])
+    gap = second["bbox"][1] - first["bbox"][3]
+    max_gap = max(4.0, min(14.0, min(first_h, second_h) * 0.9))
+    if gap < -3.0 or gap > max_gap:
+        return False
+
+    left_tolerance = max(8.0, page_width * 0.018)
+    aligned = abs(first["bbox"][0] - second["bbox"][0]) <= left_tolerance
+    overlap = _horizontal_overlap_ratio(first["bbox"], second["bbox"])
+    if not aligned and overlap < 0.6:
+        return False
+
+    parenthetical = bool(TERM_CONTINUATION_PAREN.match(second_text))
+    connector = first_text.endswith(("-", "/", "&"))
+    same_block = first.get("block_id") == second.get("block_id")
+    very_tight = gap <= max(2.5, min(first_h, second_h) * 0.25)
+    return parenthetical or connector or (same_block and very_tight)
+
+
+def _complete_definition_terms_from_stage3(
+    *,
+    elements: list[CanonicalElement],
+    pages: list[StructuredPage],
+    extraction_by_page: dict[int, object],
+    definition_pages: set[int],
+) -> int:
+    """Complete wrapped terms from immutable Stage-3 geometry.
+
+    Earlier consolidation only worked when *both* wrapped lines survived as
+    canonical elements.  Real parsers can omit one line while still keeping it
+    in Stage 3.  This pass starts from a surviving term candidate, finds its
+    matching Stage-3 line, and safely joins an adjacent wrapped line when the
+    geometry and continuation cues are strong.
+    """
+    model = _definition_column_model(pages, definition_pages)
+    completed = 0
+
+    for page in pages:
+        if page.page_number not in definition_pages:
+            continue
+        raw_page = extraction_by_page.get(page.page_number)
+        if raw_page is None:
+            continue
+        width = max(page.width, 1.0)
+        split_x = (model["split_ratio"] * width) if model is not None else width * 0.5
+        raw_fragments = _stage3_left_line_fragments(raw_page, split_x)
+        if len(raw_fragments) < 2:
+            continue
+
+        # Include already recovered terms as well as ordinary left-column term
+        # candidates.  This is essential when only the acronym survived vendor
+        # segmentation and was already promoted to ``definition_term``.
+        candidates = [
+            item for item in page.elements
+            if item.type in {"definition_term", "paragraph", "list_item", "section_header", "page_footer"}
+            and _looks_short_definition_term(item, width)
+            and not _looks_definition_context(item.text)
+        ]
+        remove_ids: set[str] = set()
+
+        for term in candidates:
+            match_indexes = [
+                idx for idx, fragment in enumerate(raw_fragments)
+                if _raw_fragment_matches_element(fragment, term)
+            ]
+            if not match_indexes:
+                continue
+            match_index = min(
+                match_indexes,
+                key=lambda idx: abs(raw_fragments[idx]["bbox"][1] - term.bbox[1]),
+            )
+
+            pair: tuple[dict, dict] | None = None
+            if match_index > 0:
+                previous = raw_fragments[match_index - 1]
+                current = raw_fragments[match_index]
+                if _raw_term_fragment_continuation(previous, current, page_width=width):
+                    pair = (previous, current)
+            if pair is None and match_index + 1 < len(raw_fragments):
+                current = raw_fragments[match_index]
+                following = raw_fragments[match_index + 1]
+                if _raw_term_fragment_continuation(current, following, page_width=width):
+                    pair = (current, following)
+            if pair is None:
+                continue
+
+            first, second = pair
+            merged_text = " ".join(f"{first['text']} {second['text']}".split()).strip()
+            if _normalized_match_text(merged_text) == _normalized_match_text(term.text):
+                continue
+
+            # Do not absorb a fragment already represented as another semantic
+            # term.  This protects dense independent glossary rows.
+            fragment_boxes = [first["bbox"], second["bbox"]]
+            conflicting = [
+                other for other in page.elements
+                if other.element_id != term.element_id
+                and other.type == "definition_term"
+                and any(_overlap_ratio(other.bbox, box) >= 0.75 for box in fragment_boxes)
+                and _normalized_match_text(other.text) not in {
+                    _normalized_match_text(term.text),
+                    _normalized_match_text(first["text"]),
+                    _normalized_match_text(second["text"]),
+                }
+            ]
+            if conflicting:
+                continue
+
+            term.text = merged_text
+            merged_bbox = _union_bbox(fragment_boxes)
+            if merged_bbox is not None:
+                term.bbox = merged_bbox
+            term.type = "definition_term"
+            term.heading_level = None
+            term.heading_level_source = None
+            term.role_source = "definition_multiline_term_stage3_completion"
+            term.source.stage3_block_ids = list(dict.fromkeys(
+                term.source.stage3_block_ids + [first["block_id"], second["block_id"]]
+            ))
+
+            # If a vendor canonical fragment exactly represents either raw line,
+            # remove it so the completed term is the only semantic region.
+            for other in page.elements:
+                if other.element_id == term.element_id:
+                    continue
+                if other.definition_entry_id is not None:
+                    continue
+                other_norm = _normalized_match_text(other.text)
+                if other_norm in {_normalized_match_text(first["text"]), _normalized_match_text(second["text"])}:
+                    if any(_overlap_ratio(other.bbox, box) >= 0.7 for box in fragment_boxes):
+                        remove_ids.add(other.element_id)
+            completed += 1
+
+        if remove_ids:
+            page.elements = [item for item in page.elements if item.element_id not in remove_ids]
+
+    if completed:
+        _reindex_canonical_elements(elements, pages)
+    return completed
+
+
+def _matching_stage3_span_bbox(raw_page, element: CanonicalElement) -> list[float] | None:
+    """Find the actual Stage-3 span geometry supporting a recovered element."""
+    target = _normalized_match_text(element.text)
+    if not target:
+        return None
+    source_ids = set(element.source.stage3_block_ids)
+    matched: list[list[float]] = []
+
+    for block in raw_page.blocks:
+        if getattr(block, "type", None) != "text":
+            continue
+        if source_ids and block.block_id not in source_ids:
+            continue
+        for line in block.lines:
+            for span in line.spans:
+                value = _normalized_match_text(span.text)
+                if not value:
+                    continue
+                # Prefer exact fragment containment.  A token-overlap fallback
+                # handles minor punctuation / ligature differences.
+                contained = value in target or target in value
+                if not contained:
+                    stopwords = {
+                        "a", "an", "the", "of", "to", "and", "or", "in", "for", "on",
+                        "with", "is", "are", "be", "this", "that", "as", "by", "from",
+                    }
+                    span_tokens = {token for token in value.split() if token not in stopwords}
+                    target_tokens = {token for token in target.split() if token not in stopwords}
+                    if not span_tokens:
+                        continue
+                    overlap = len(span_tokens & target_tokens) / len(span_tokens)
+                    if overlap < 0.75:
+                        continue
+                # Source provenance already narrows the search strongly; when
+                # unavailable, require geometric proximity to avoid matching a
+                # repeated word elsewhere on the page.
+                if not source_ids:
+                    expanded = [
+                        element.bbox[0] - 6.0,
+                        element.bbox[1] - 6.0,
+                        element.bbox[2] + 6.0,
+                        element.bbox[3] + 6.0,
+                    ]
+                    if _intersection(span.bbox, expanded) <= 0:
+                        continue
+                matched.append(list(span.bbox))
+
+    return _union_bbox(matched)
+
+
+def _snap_recovered_text_geometry_to_stage3(
+    *,
+    pages: list[StructuredPage],
+    extraction_by_page: dict[int, object],
+) -> int:
+    """Remove synthetic blank extensions by snapping to real Stage-3 spans.
+
+    Only recovered definition text/term elements are adjusted.  Immutable
+    layout elements and table-backed semantic rows are left untouched.
+    """
+    adjusted = 0
+    for page in pages:
+        raw_page = extraction_by_page.get(page.page_number)
+        if raw_page is None:
+            continue
+        for item in page.elements:
+            if item.type not in {"definition_term", "definition_text"}:
+                continue
+            if not item.role_source.startswith("definition_"):
+                continue
+            # Table-derived glossary rows are also eligible when Stage 3 has
+            # supporting text spans.  If a table has no text-layer evidence,
+            # ``_matching_stage3_span_bbox`` simply returns None and the
+            # semantic table geometry is preserved unchanged.
+            supported = _matching_stage3_span_bbox(raw_page, item)
+            if supported is None or _area(supported) <= 1.0:
+                continue
+            # Never enlarge a synthetic box dramatically.  The purpose of this
+            # pass is to remove unsupported blank geometry or make a small
+            # provenance-backed correction.
+            current_area = max(_area(item.bbox), 1.0)
+            supported_area = _area(supported)
+            if supported_area > current_area * 1.6:
+                continue
+            if any(abs(a - b) > 0.75 for a, b in zip(item.bbox, supported)):
+                item.bbox = [round(float(value), 3) for value in supported]
+                adjusted += 1
+    return adjusted
 
 def _same_row(term: CanonicalElement, candidate: CanonicalElement) -> bool:
     term_y0, term_y1 = term.bbox[1], term.bbox[3]
@@ -557,7 +1165,7 @@ def _definition_context_pages(
 
 def _definition_text_candidate(element: CanonicalElement, page_width: float) -> bool:
     text = " ".join(element.text.split()).strip()
-    if len(text) < 12 or text.isdigit():
+    if not text or text.isdigit():
         return False
     if element.type in {
         "title",
@@ -569,6 +1177,15 @@ def _definition_text_candidate(element: CanonicalElement, page_width: float) -> 
         "figure",
         "table",
     }:
+        return False
+
+    # Very short introducers such as ``means—`` or ``includes:`` are valid
+    # definition content even though they are shorter than an ordinary prose
+    # block.  This matters when the actual list starts on the next page.
+    short_intro = bool(DEFINITION_INTRO.match(text)) or (
+        len(text) >= 4 and text.rstrip().endswith(("—", "–", "-", ":"))
+    )
+    if len(text) < 12 and not short_intro:
         return False
     return element.bbox[0] >= page_width * 0.38
 
@@ -585,19 +1202,25 @@ def _looks_definition_table_header(term: str, definition: str) -> bool:
     return left in left_headers and right in right_headers
 
 
-def _definition_table_rows(element: CanonicalElement) -> list[tuple[str, str]]:
-    """Return glossary-like term/definition rows from a table element.
+def _definition_table_profile(element: CanonicalElement) -> dict | None:
+    """Classify a vendor table as glossary-like using repeated row semantics.
 
-    The canonical layer deliberately ignores the vendor's choice between text
-    columns and a detected table. A table qualifies only when most non-empty
-    rows have a short first column and substantive text to the right.
+    The decision is deliberately conservative: a two-column table alone is not
+    enough.  We require repeated short term-like left cells, substantive right
+    cells, and a strong majority of rows that follow that pattern.  Blank-left
+    continuation rows are retained only after the table itself qualifies.
     """
     if element.type != "table" or element.table is None or element.table.col_count < 2:
-        return []
+        return None
 
-    rows: list[tuple[str, str]] = []
+    row_infos: list[dict] = []
     considered = 0
-    for row in element.table.cells:
+    valid_pairs = 0
+    continuation_rows = 0
+    left_lengths: list[int] = []
+    right_lengths: list[int] = []
+
+    for row_index, row in enumerate(element.table.cells):
         if not row:
             continue
         term = " ".join(str(row[0] or "").split()).strip()
@@ -609,14 +1232,53 @@ def _definition_table_rows(element: CanonicalElement) -> list[tuple[str, str]]:
         if not term and not definition:
             continue
         if _looks_definition_table_header(term, definition):
+            row_infos.append({"row_index": row_index, "kind": "header", "term": term, "definition": definition})
             continue
-        considered += 1
-        if term and len(term) <= 100 and len(term.split()) <= 12 and len(definition) >= 8:
-            rows.append((term, definition))
 
-    if considered == 0 or len(rows) / considered < 0.6:
+        considered += 1
+        if term and definition and _looks_definition_term_text(term) and len(definition) >= 8:
+            valid_pairs += 1
+            left_lengths.append(len(term))
+            right_lengths.append(len(definition))
+            row_infos.append({"row_index": row_index, "kind": "pair", "term": term, "definition": definition})
+        elif not term and len(definition) >= 8:
+            continuation_rows += 1
+            row_infos.append({"row_index": row_index, "kind": "continuation", "term": "", "definition": definition})
+        else:
+            row_infos.append({"row_index": row_index, "kind": "other", "term": term, "definition": definition})
+
+    if considered == 0 or valid_pairs < 2:
+        return None
+    pair_ratio = valid_pairs / considered
+    if pair_ratio < 0.55:
+        return None
+
+    # The explanatory side should generally be substantially richer than the
+    # label side.  This filters ordinary key/value or numeric tables that happen
+    # to have two columns.
+    avg_left = sum(left_lengths) / max(len(left_lengths), 1)
+    avg_right = sum(right_lengths) / max(len(right_lengths), 1)
+    if avg_right < max(12.0, avg_left * 1.35):
+        return None
+
+    return {
+        "rows": row_infos,
+        "valid_pair_count": valid_pairs,
+        "continuation_row_count": continuation_rows,
+        "pair_ratio": pair_ratio,
+    }
+
+
+def _definition_table_rows(element: CanonicalElement) -> list[tuple[str, str]]:
+    """Compatibility wrapper returning only complete glossary rows."""
+    profile = _definition_table_profile(element)
+    if profile is None:
         return []
-    return rows
+    return [
+        (row["term"], row["definition"])
+        for row in profile["rows"]
+        if row["kind"] == "pair"
+    ]
 
 
 def _existing_definition_pairs_on_page(page: StructuredPage) -> list[tuple[CanonicalElement, CanonicalElement]]:
@@ -680,6 +1342,38 @@ def _definition_column_model(
     }
 
 
+def _infer_definition_model_from_stage3_page(raw_page, page_width: float, page_height: float) -> dict[str, float] | None:
+    """Infer a two-column glossary split when no reliable canonical row exists yet."""
+    raw_lines = _stage3_lines_in_region(raw_page, [0.0, 0.0, page_width, page_height])
+    spans = [span for line in raw_lines for span in line["spans"] if span.text.strip()]
+    if len(spans) < 4:
+        return None
+    ordered = sorted(spans, key=lambda span: (span.bbox[0], span.bbox[2]))
+    candidates: list[tuple[float, float]] = []
+    for left, right in zip(ordered, ordered[1:]):
+        gap = right.bbox[0] - left.bbox[2]
+        split = (left.bbox[2] + right.bbox[0]) / 2.0
+        if gap >= page_width * 0.06 and page_width * 0.24 <= split <= page_width * 0.76:
+            candidates.append((gap, split))
+    if not candidates:
+        return None
+    _, split = max(candidates, key=lambda item: item[0])
+    left_spans = [span for span in spans if (span.bbox[0] + span.bbox[2]) / 2.0 < split]
+    right_spans = [span for span in spans if (span.bbox[0] + span.bbox[2]) / 2.0 >= split]
+    if len(left_spans) < 2 or len(right_spans) < 2:
+        return None
+    term_left = _median([span.bbox[0] / page_width for span in left_spans]) or 0.0
+    term_right = _median([span.bbox[2] / page_width for span in left_spans]) or (split / page_width)
+    definition_left = _median([span.bbox[0] / page_width for span in right_spans]) or (split / page_width)
+    return {
+        "split_ratio": split / page_width,
+        "definition_left_ratio": definition_left,
+        "term_left_ratio": term_left,
+        "term_right_ratio": term_right,
+        "sample_count": 0.0,
+    }
+
+
 def _union_bbox(boxes: list[list[float]]) -> list[float] | None:
     if not boxes:
         return None
@@ -740,7 +1434,12 @@ def _valid_recovered_definition_row(term: str, definition: str) -> bool:
 def _recover_rows_from_stage3_columns(
     *, raw_page, element: CanonicalElement, page_width: float, model: dict[str, float] | None
 ) -> list[dict]:
-    """Recover one or more logical glossary rows from Stage-3 span geometry."""
+    """Recover logical glossary rows from Stage-3 span geometry.
+
+    This implementation works whether the left/right content appears in the same
+    Stage-3 line, in separate parallel text blocks, or in a mixture of both.
+    Vendor layout grouping is therefore not part of the row identity.
+    """
     raw_lines = _stage3_lines_in_region(raw_page, element.bbox)
     split_x = _infer_definition_split_x(
         raw_lines=raw_lines, element=element, page_width=page_width, model=model
@@ -748,80 +1447,99 @@ def _recover_rows_from_stage3_columns(
     if split_x is None:
         return []
 
-    rows: list[dict] = []
-    current: dict | None = None
-    pending_left_text: list[str] = []
-    pending_left_boxes: list[list[float]] = []
-
+    fragments: list[dict] = []
+    line_heights: list[float] = []
     for line in raw_lines:
         left_spans = []
         right_spans = []
-        crossing = False
+        crossing_single = False
         for span in line["spans"]:
             center = (span.bbox[0] + span.bbox[2]) / 2.0
-            if span.bbox[0] < split_x < span.bbox[2] and (span.bbox[2] - span.bbox[0]) > page_width * 0.25:
-                crossing = True
+            if (
+                len(line["spans"]) == 1
+                and span.bbox[0] < split_x < span.bbox[2]
+                and (span.bbox[2] - span.bbox[0]) > page_width * 0.25
+            ):
+                crossing_single = True
             if center < split_x:
                 left_spans.append(span)
             else:
                 right_spans.append(span)
-
-        if crossing and len(line["spans"]) == 1:
+        if crossing_single:
+            # A single spanning run has no trustworthy coordinate split.  The
+            # conservative lexical fallback handles this representation later.
             continue
 
         left_text = " ".join(span.text.strip() for span in left_spans if span.text.strip()).strip()
         right_text = " ".join(span.text.strip() for span in right_spans if span.text.strip()).strip()
-        left_boxes = [list(span.bbox) for span in left_spans]
-        right_boxes = [list(span.bbox) for span in right_spans]
-        line_y0 = float(line["bbox"][1])
-        line_y1 = float(line["bbox"][3])
-        line_height = max(1.0, line_y1 - line_y0)
+        if not left_text and not right_text:
+            continue
+        y0 = float(line["bbox"][1])
+        y1 = float(line["bbox"][3])
+        line_heights.append(max(1.0, y1 - y0))
+        fragments.append({
+            "left_text": left_text,
+            "right_text": right_text,
+            "left_boxes": [list(span.bbox) for span in left_spans],
+            "right_boxes": [list(span.bbox) for span in right_spans],
+            "y0": y0,
+            "y1": y1,
+        })
 
-        if left_text and right_text:
-            close_to_current = bool(
-                current and line_y0 - current["last_y1"] <= max(8.0, line_height * 1.25)
-            )
-            if close_to_current:
-                current["term_parts"].append(left_text)
-                current["definition_parts"].append(right_text)
-                current["term_boxes"].extend(left_boxes)
-                current["definition_boxes"].extend(right_boxes)
-                current["last_y1"] = line_y1
-            else:
-                if current:
-                    rows.append(current)
-                current = {
-                    "term_parts": pending_left_text + [left_text],
-                    "definition_parts": [right_text],
-                    "term_boxes": pending_left_boxes + left_boxes,
-                    "definition_boxes": right_boxes,
-                    "last_y1": line_y1,
-                }
-                pending_left_text = []
-                pending_left_boxes = []
-        elif right_text:
-            if current:
-                current["definition_parts"].append(right_text)
-                current["definition_boxes"].extend(right_boxes)
-                current["last_y1"] = line_y1
-        elif left_text:
-            if current and line_y0 - current["last_y1"] <= max(8.0, line_height * 1.25):
-                current["term_parts"].append(left_text)
-                current["term_boxes"].extend(left_boxes)
-                current["last_y1"] = line_y1
-            else:
-                pending_left_text.append(left_text)
-                pending_left_boxes.extend(left_boxes)
+    if not fragments:
+        return []
+    median_height = _median(line_heights) or 10.0
+    join_gap = max(4.0, median_height * 0.75)
 
-    if current:
-        rows.append(current)
+    # Build term anchors from the left stream.  Close left-only lines are joined
+    # into a multi-line term (for example ``beneficial`` + ``owner``), whereas a
+    # line that already carries right-column text is always treated as a new row.
+    term_clusters: list[dict] = []
+    for fragment in [item for item in fragments if item["left_text"]]:
+        if term_clusters:
+            previous = term_clusters[-1]
+            gap = fragment["y0"] - previous["last_y1"]
+            if (
+                gap <= join_gap
+                and not previous["had_right_text"]
+                and not fragment["right_text"]
+            ):
+                previous["parts"].append(fragment["left_text"])
+                previous["boxes"].extend(fragment["left_boxes"])
+                previous["last_y1"] = fragment["y1"]
+                continue
+        term_clusters.append({
+            "parts": [fragment["left_text"]],
+            "boxes": list(fragment["left_boxes"]),
+            "y0": fragment["y0"],
+            "last_y1": fragment["y1"],
+            "had_right_text": bool(fragment["right_text"]),
+        })
 
+    term_clusters = [
+        cluster for cluster in term_clusters
+        if _looks_definition_term_text(" ".join(cluster["parts"]))
+    ]
+    if not term_clusters:
+        return []
+
+    right_fragments = [item for item in fragments if item["right_text"]]
     recovered: list[dict] = []
-    for row in rows:
-        term = " ".join(row["term_parts"]).strip()
-        definition = " ".join(row["definition_parts"]).strip()
-        term_bbox = _union_bbox(row["term_boxes"])
-        definition_bbox = _union_bbox(row["definition_boxes"])
+    for index, cluster in enumerate(term_clusters):
+        next_y = term_clusters[index + 1]["y0"] if index + 1 < len(term_clusters) else element.bbox[3] + 1.0
+        start_y = cluster["y0"] - max(4.0, median_height * 0.5)
+        definition_parts: list[str] = []
+        definition_boxes: list[list[float]] = []
+        for fragment in right_fragments:
+            if fragment["y0"] < start_y or fragment["y0"] >= next_y - max(2.0, median_height * 0.25):
+                continue
+            definition_parts.append(fragment["right_text"])
+            definition_boxes.extend(fragment["right_boxes"])
+
+        term = " ".join(cluster["parts"]).strip()
+        definition = " ".join(definition_parts).strip()
+        term_bbox = _union_bbox(cluster["boxes"])
+        definition_bbox = _union_bbox(definition_boxes)
         if term_bbox and definition_bbox and _valid_recovered_definition_row(term, definition):
             recovered.append({
                 "term": term,
@@ -889,6 +1607,94 @@ def _reindex_canonical_elements(elements: list[CanonicalElement], pages: list[St
             document_order += 1
             rebuilt.append(element)
     elements[:] = rebuilt
+
+
+
+_TEXTUAL_CANONICAL_TYPES = {
+    "title", "subtitle", "document_metadata", "section_header", "clause", "subclause",
+    "definition_term", "definition_text", "paragraph", "list_item", "caption",
+    "page_header", "page_footer", "footnote", "unknown",
+}
+
+
+def _cleanup_reconstructed_elements(
+    elements: list[CanonicalElement],
+    pages: list[StructuredPage],
+    extraction_by_page: dict[int, object] | None = None,
+) -> int:
+    """Remove reconstruction artifacts without discarding meaningful visuals.
+
+    Synthetic recovery can occasionally leave an empty text region or an exact
+    duplicate after a vendor box has been split.  Empty textual boxes, degenerate
+    geometry and near-identical overlapping duplicates are removed here.  Tables,
+    figures and formulas are kept even when their text field is empty because
+    their semantic content may be non-textual.
+    """
+    removed = 0
+    if extraction_by_page:
+        _snap_recovered_text_geometry_to_stage3(
+            pages=pages,
+            extraction_by_page=extraction_by_page,
+        )
+    for page in pages:
+        cleaned: list[CanonicalElement] = []
+        for item in page.elements:
+            text = " ".join(item.text.split()).strip()
+            if item.type in _TEXTUAL_CANONICAL_TYPES and not text:
+                removed += 1
+                continue
+            if item.type in _TEXTUAL_CANONICAL_TYPES and _area(item.bbox) <= 1.0:
+                removed += 1
+                continue
+
+            duplicate_index = None
+            if text:
+                for idx, existing in enumerate(cleaned):
+                    existing_text = " ".join(existing.text.split()).strip()
+                    same_source = (
+                        existing.source.layout_box_index == item.source.layout_box_index
+                        or bool(set(existing.source.stage3_block_ids) & set(item.source.stage3_block_ids))
+                    )
+                    text_related = (
+                        existing_text == text
+                        or (existing_text and text and (existing_text in text or text in existing_text))
+                    )
+                    if (
+                        existing.type == item.type
+                        and text_related
+                        and _overlap_ratio(existing.bbox, item.bbox) >= (0.78 if same_source else 0.92)
+                    ):
+                        duplicate_index = idx
+                        break
+            if duplicate_index is None:
+                cleaned.append(item)
+                continue
+
+            existing = cleaned[duplicate_index]
+            # Prefer the element already participating in semantic structure;
+            # otherwise prefer a recovered semantic role over raw layout.
+            existing_strength = (
+                int(existing.definition_entry_id is not None)
+                + int(existing.role_source != "layout")
+                + int(len(existing_text) >= len(text))
+            )
+            item_strength = (
+                int(item.definition_entry_id is not None)
+                + int(item.role_source != "layout")
+                + int(len(text) > len(existing_text))
+            )
+            if item_strength > existing_strength:
+                _merge_source_trace(item, existing)
+                cleaned[duplicate_index] = item
+            else:
+                _merge_source_trace(existing, item)
+            removed += 1
+
+        page.elements = cleaned
+
+    if removed:
+        _reindex_canonical_elements(elements, pages)
+    return removed
 
 
 def _recover_merged_definition_rows(
@@ -967,9 +1773,318 @@ def _recover_merged_definition_rows(
     return recovered_count
 
 
+
+def _vertical_overlap_ratio(a: list[float], b: list[float]) -> float:
+    overlap = max(0.0, min(a[3], b[3]) - max(a[1], b[1]))
+    denom = max(1.0, min(a[3] - a[1], b[3] - b[1]))
+    return overlap / denom
+
+
+def _definition_split_x(page_width: float, model: dict[str, float] | None, bbox: list[float]) -> float:
+    if model is not None:
+        split = model["split_ratio"] * page_width
+        if bbox[0] + page_width * 0.06 < split < bbox[2] - page_width * 0.06:
+            return split
+    return bbox[0] + (bbox[2] - bbox[0]) * 0.43
+
+
+def _make_definition_pair_elements(
+    *,
+    term_source: CanonicalElement,
+    definition_source: CanonicalElement,
+    base_id: str,
+    row_index: int,
+    row: dict,
+    role_source: str,
+) -> tuple[CanonicalElement, CanonicalElement]:
+    term = term_source.model_copy(deep=True)
+    definition = definition_source.model_copy(deep=True)
+    term.element_id = f"{base_id}-r{row_index}-term"
+    definition.element_id = f"{base_id}-r{row_index}-definition"
+
+    term.type = "definition_term"
+    term.text = row["term"]
+    term.bbox = row["term_bbox"]
+    term.definition_entry_id = None
+    term.heading_level = None
+    term.heading_level_source = None
+    term.table = None
+    term.role_source = role_source
+
+    definition.type = "definition_text"
+    definition.text = row["definition"]
+    definition.bbox = row["definition_bbox"]
+    definition.definition_entry_id = None
+    definition.heading_level = None
+    definition.heading_level_source = None
+    definition.table = None
+    definition.role_source = role_source
+    return term, definition
+
+
+def _recover_parallel_definition_columns(
+    *,
+    elements: list[CanonicalElement],
+    pages: list[StructuredPage],
+    extraction_by_page: dict[int, object],
+    definition_pages: set[int],
+) -> int:
+    """Recover many logical rows hidden inside coarse parallel column boxes.
+
+    Some layout engines emit one tall box for a sequence of glossary terms and
+    one tall box for all corresponding definitions.  We use Stage-3 line/span
+    geometry to recover the logical rows, rather than relying on the vendor box
+    segmentation.  At least two valid rows are required before a coarse region
+    is rewritten, which keeps the pass conservative.
+    """
+    global_model = _definition_column_model(pages, definition_pages)
+
+    recovered_count = 0
+    for page in pages:
+        if page.page_number not in definition_pages:
+            continue
+        raw_page = extraction_by_page.get(page.page_number)
+        if raw_page is None:
+            continue
+        width = max(page.width, 1.0)
+        model = global_model or _infer_definition_model_from_stage3_page(raw_page, width, max(page.height, 1.0))
+        if model is None:
+            continue
+        split_x = model["split_ratio"] * width
+        min_height = max(42.0, page.height * 0.055)
+
+        allowed_left = {"paragraph", "list_item", "section_header", "page_footer"}
+        allowed_right = {"paragraph", "list_item", "section_header", "subclause", "clause"}
+        left_candidates = [
+            item for item in page.elements
+            if item.definition_entry_id is None
+            and item.type in allowed_left
+            and item.bbox[2] <= split_x + width * 0.06
+            and item.bbox[0] < split_x - width * 0.08
+            and item.bbox[3] - item.bbox[1] >= min_height
+            and not _looks_definition_context(item.text)
+        ]
+        right_candidates = [
+            item for item in page.elements
+            if item.definition_entry_id is None
+            and item.type in allowed_right
+            and item.bbox[0] >= split_x - width * 0.06
+            and item.bbox[2] > split_x + width * 0.08
+            and item.bbox[3] - item.bbox[1] >= min_height
+        ]
+        if not left_candidates or not right_candidates:
+            continue
+
+        used: set[str] = set()
+        replacements: dict[str, list[CanonicalElement]] = {}
+        remove_ids: set[str] = set()
+
+        for left in sorted(left_candidates, key=lambda item: item.bbox[1]):
+            if left.element_id in used:
+                continue
+            overlapping = [
+                right for right in right_candidates
+                if right.element_id not in used
+                and _vertical_overlap_ratio(left.bbox, right.bbox) >= 0.35
+            ]
+            if not overlapping:
+                continue
+            right = max(overlapping, key=lambda item: _vertical_overlap_ratio(left.bbox, item.bbox))
+            union = _union_bbox([left.bbox, right.bbox])
+            if union is None:
+                continue
+            probe = left.model_copy(deep=True)
+            probe.bbox = union
+            rows = _recover_rows_from_stage3_columns(
+                raw_page=raw_page,
+                element=probe,
+                page_width=width,
+                model=model,
+            )
+            # Rewriting a coarse parallel region is deliberately stricter than
+            # ordinary one-row recovery: repeated structure is required.
+            if len(rows) < 2:
+                continue
+
+            created: list[CanonicalElement] = []
+            base_id = f"{left.element_id}-{right.element_id}-parallel"
+            for row_index, row in enumerate(rows, start=1):
+                term, definition = _make_definition_pair_elements(
+                    term_source=left,
+                    definition_source=right,
+                    base_id=base_id,
+                    row_index=row_index,
+                    row=row,
+                    role_source="definition_parallel_stream_recovery",
+                )
+                created.extend([term, definition])
+                recovered_count += 1
+
+            replacements[left.element_id] = created
+            remove_ids.update({left.element_id, right.element_id})
+            used.update({left.element_id, right.element_id})
+
+        if not replacements:
+            continue
+
+        new_elements: list[CanonicalElement] = []
+        for item in page.elements:
+            if item.element_id in replacements:
+                new_elements.extend(replacements[item.element_id])
+            elif item.element_id in remove_ids:
+                continue
+            else:
+                new_elements.append(item)
+        page.elements = new_elements
+
+    if recovered_count:
+        _reindex_canonical_elements(elements, pages)
+    return recovered_count
+
+
+def _table_row_geometry(
+    *,
+    table_element: CanonicalElement,
+    raw_page,
+    page_width: float,
+    model: dict[str, float] | None,
+    semantic_rows: list[dict],
+) -> dict[int, tuple[list[float] | None, list[float]]]:
+    """Return best-effort term/definition bboxes for semantic table rows."""
+    geometry: dict[int, tuple[list[float] | None, list[float]]] = {}
+    recovered = _recover_rows_from_stage3_columns(
+        raw_page=raw_page,
+        element=table_element,
+        page_width=page_width,
+        model=model,
+    ) if raw_page is not None else []
+
+    unused = list(recovered)
+    for row in semantic_rows:
+        if row["kind"] != "pair":
+            continue
+        normalized_term = _normalize_heading_text(row["term"])
+        match_index = next(
+            (
+                idx for idx, candidate in enumerate(unused)
+                if _normalize_heading_text(candidate["term"]) == normalized_term
+                or (
+                    normalized_term
+                    and _normalize_heading_text(candidate["term"]).startswith(normalized_term)
+                )
+            ),
+            None,
+        )
+        if match_index is not None:
+            candidate = unused.pop(match_index)
+            geometry[row["row_index"]] = (candidate["term_bbox"], candidate["definition_bbox"])
+
+    total_rows = max(table_element.table.row_count if table_element.table else len(semantic_rows), 1)
+    row_height = max(1.0, (table_element.bbox[3] - table_element.bbox[1]) / total_rows)
+    split_x = _definition_split_x(page_width, model, table_element.bbox)
+    gap = max(10.0, page_width * 0.025)
+    for row in semantic_rows:
+        if row["kind"] == "header" or row["row_index"] in geometry:
+            continue
+        y0 = table_element.bbox[1] + row_height * row["row_index"]
+        y1 = min(table_element.bbox[3], y0 + row_height)
+        term_bbox = None
+        if row["kind"] == "pair":
+            term_bbox = [table_element.bbox[0], y0, max(table_element.bbox[0], split_x - gap), y1]
+        definition_bbox = [min(table_element.bbox[2], split_x + gap), y0, table_element.bbox[2], y1]
+        geometry[row["row_index"]] = (
+            [round(v, 3) for v in term_bbox] if term_bbox else None,
+            [round(v, 3) for v in definition_bbox],
+        )
+    return geometry
+
+
+def _normalize_definition_tables(
+    *,
+    elements: list[CanonicalElement],
+    pages: list[StructuredPage],
+    extraction_by_page: dict[int, object],
+    definition_pages: set[int],
+) -> int:
+    """Promote glossary-like vendor tables into canonical definition rows.
+
+    The original vendor table remains available in the immutable Layout JSON and
+    in each synthetic element's source trace.  It is intentionally removed from
+    canonical page blocks so Stage 5 sees definitions instead of a table merely
+    because the layout engine chose a table representation.
+    """
+    model = _definition_column_model(pages, definition_pages)
+    converted = 0
+    for page in pages:
+        if page.page_number not in definition_pages:
+            continue
+        raw_page = extraction_by_page.get(page.page_number)
+        width = max(page.width, 1.0)
+        new_elements: list[CanonicalElement] = []
+
+        for element in page.elements:
+            profile = _definition_table_profile(element)
+            if profile is None:
+                new_elements.append(element)
+                continue
+
+            semantic_rows = [row for row in profile["rows"] if row["kind"] in {"pair", "continuation"}]
+            geometry = _table_row_geometry(
+                table_element=element,
+                raw_page=raw_page,
+                page_width=width,
+                model=model,
+                semantic_rows=semantic_rows,
+            )
+            row_serial = 0
+            for row in semantic_rows:
+                row_serial += 1
+                term_bbox, definition_bbox = geometry[row["row_index"]]
+                if row["kind"] == "pair" and term_bbox is not None:
+                    row_data = {
+                        "term": row["term"],
+                        "definition": row["definition"],
+                        "term_bbox": term_bbox,
+                        "definition_bbox": definition_bbox,
+                    }
+                    term, definition = _make_definition_pair_elements(
+                        term_source=element,
+                        definition_source=element,
+                        base_id=f"{element.element_id}-table",
+                        row_index=row_serial,
+                        row=row_data,
+                        role_source="definition_table_semantic_normalization",
+                    )
+                    new_elements.extend([term, definition])
+                    converted += 1
+                elif row["kind"] == "continuation":
+                    continuation = element.model_copy(deep=True)
+                    continuation.element_id = f"{element.element_id}-table-r{row_serial}-continuation"
+                    continuation.type = "definition_text"
+                    continuation.text = row["definition"]
+                    continuation.bbox = definition_bbox
+                    continuation.table = None
+                    continuation.definition_entry_id = None
+                    continuation.heading_level = None
+                    continuation.heading_level_source = None
+                    continuation.role_source = "definition_table_semantic_normalization"
+                    new_elements.append(continuation)
+
+        page.elements = new_elements
+
+    if converted:
+        _reindex_canonical_elements(elements, pages)
+    return converted
+
+
+def _looks_definition_item_text(text: str) -> bool:
+    return DEFINITION_ITEM_PREFIX.match(" ".join(text.split()).strip()) is not None
+
+
 def _parse_definition_items(text: str) -> list[DefinitionSubItem]:
+    """Parse repeated enumerated items without depending on one marker style."""
     normalized = " ".join(text.split()).strip()
-    matches = list(re.finditer(r"(?:^|\s)(\([a-z]\))\s+", normalized, re.IGNORECASE))
+    matches = list(DEFINITION_ITEM_ANYWHERE.finditer(normalized))
     if len(matches) < 2:
         return []
     items: list[DefinitionSubItem] = []
@@ -980,6 +2095,22 @@ def _parse_definition_items(text: str) -> list[DefinitionSubItem]:
         if value:
             items.append(DefinitionSubItem(marker=match.group(1), text=value))
     return items
+
+
+def _parse_definition_items_from_elements(parts: list[CanonicalElement]) -> list[DefinitionSubItem]:
+    """Prefer element boundaries so trailing explanation is not swallowed by the last item."""
+    items: list[DefinitionSubItem] = []
+    for part in parts:
+        normalized = " ".join(part.text.split()).strip()
+        match = DEFINITION_ITEM_PREFIX.match(normalized)
+        if match:
+            value = normalized[match.end():].strip(" ;")
+            if value:
+                items.append(DefinitionSubItem(marker=match.group(1), text=value))
+    if len(items) >= 2:
+        return items
+    joined = " ".join(part.text.strip() for part in parts if part.text.strip())
+    return _parse_definition_items(joined)
 
 
 def _median(values: list[float]) -> float | None:
@@ -1036,6 +2167,49 @@ def _is_strong_cross_page_boundary(element: CanonicalElement, page_width: float)
     return False
 
 
+
+def _is_open_block_boundary(
+    element: CanonicalElement,
+    page_width: float,
+    state: OpenBlockState,
+) -> bool:
+    """Context-aware boundary test shared by cross-page reconciliation passes."""
+    if state.kind == "definition" and state.allow_enumerated_items and _looks_definition_item_text(element.text):
+        return False
+    return _is_strong_cross_page_boundary(element, page_width)
+
+
+def _open_block_geometry_score(
+    *,
+    state: OpenBlockState,
+    candidate: CanonicalElement,
+    next_page: StructuredPage,
+    first_candidate: bool,
+) -> tuple[int, list[str]]:
+    score = 0
+    evidence: list[str] = []
+    width = max(next_page.width, 1.0)
+    x0_delta = abs(candidate.bbox[0] - state.expected_column[0])
+    if x0_delta <= width * 0.045:
+        score += 3
+        evidence.append(f"left edge aligns with the {state.kind} column")
+    elif x0_delta <= width * 0.09:
+        score += 1
+        evidence.append(f"left edge approximately aligns with the {state.kind} column")
+
+    overlap = _horizontal_overlap_ratio(candidate.bbox, state.expected_column)
+    if overlap >= 0.65:
+        score += 2
+        evidence.append(f"horizontal range overlaps the {state.kind} column")
+    elif overlap >= 0.4:
+        score += 1
+        evidence.append(f"horizontal range partially overlaps the {state.kind} column")
+
+    if first_candidate and candidate.bbox[1] <= next_page.height * 0.28:
+        score += 2
+        evidence.append("candidate begins near the top of the next page")
+    return score, evidence
+
 def _definition_open_score(
     *,
     page: StructuredPage,
@@ -1066,6 +2240,10 @@ def _definition_open_score(
         score += 2
         evidence.append("last fragment appears textually incomplete")
 
+    if _hierarchy_marker(last_part.text) is not None:
+        score += 2
+        evidence.append("definition ends with an enumerated item that may continue on the next page")
+
     if len(parts) >= 1:
         score += 1
         evidence.append("definition entry has an established right-column content region")
@@ -1080,29 +2258,20 @@ def _definition_continuation_score(
     next_page: StructuredPage,
     first_candidate: bool,
 ) -> tuple[int, list[str]]:
-    score = 0
-    evidence: list[str] = []
-    width = max(next_page.width, 1.0)
-
-    x0_delta = abs(candidate.bbox[0] - expected_column[0])
-    if x0_delta <= width * 0.045:
-        score += 3
-        evidence.append("left edge aligns with the previous definition column")
-    elif x0_delta <= width * 0.09:
-        score += 1
-        evidence.append("left edge is approximately aligned with the previous definition column")
-
-    overlap = _horizontal_overlap_ratio(candidate.bbox, expected_column)
-    if overlap >= 0.65:
-        score += 2
-        evidence.append("horizontal range overlaps the previous definition column")
-    elif overlap >= 0.4:
-        score += 1
-        evidence.append("horizontal range partially overlaps the previous definition column")
-
-    if first_candidate and candidate.bbox[1] <= next_page.height * 0.28:
-        score += 2
-        evidence.append("candidate begins near the top of the next page")
+    state = OpenBlockState(
+        kind="definition",
+        source_element_id=previous_part.element_id,
+        page_number=previous_part.page_number,
+        expected_column=expected_column,
+        context_id=previous_part.definition_entry_id,
+        allow_enumerated_items=True,
+    )
+    score, evidence = _open_block_geometry_score(
+        state=state,
+        candidate=candidate,
+        next_page=next_page,
+        first_candidate=first_candidate,
+    )
 
     if previous_part.dominant_font_size and candidate.dominant_font_size:
         if abs(previous_part.dominant_font_size - candidate.dominant_font_size) <= 1.5:
@@ -1110,15 +2279,23 @@ def _definition_continuation_score(
             evidence.append("font size is compatible across the page break")
 
     text = " ".join(candidate.text.split()).strip()
-    if text and not _is_strong_cross_page_boundary(candidate, width):
+    if text and not _is_open_block_boundary(candidate, max(next_page.width, 1.0), state):
         score += 1
         evidence.append("candidate is not a strong structural boundary")
-    if text and (text[:1].islower() or DEFINITION_INTRO.match(text)):
+    if text and (text[:1].islower() or DEFINITION_INTRO.match(text) or _looks_definition_item_text(text)):
         score += 1
-        evidence.append("text begins like prose/definition continuation")
+        evidence.append("text begins like prose, a definition introducer, or an enumerated continuation")
     if _text_looks_incomplete(previous_part.text):
         score += 1
         evidence.append("previous fragment is incomplete")
+
+    marker_relation, marker_score, marker_evidence = _marker_sequence_relation(
+        previous_part, candidate, max(next_page.width, 1.0)
+    )
+    if marker_relation is not None:
+        score += marker_score
+        evidence.extend(marker_evidence)
+        evidence.append(f"enumerated continuation behaves like a {marker_relation}")
 
     return score, evidence
 
@@ -1169,6 +2346,15 @@ def _reconcile_cross_page_definition_continuations(
         if open_score < 4:
             continue
 
+        state = OpenBlockState(
+            kind="definition",
+            source_element_id=last_part.element_id,
+            page_number=page.page_number,
+            expected_column=expected_column,
+            context_id=last_id,
+            allow_enumerated_items=True,
+        )
+
         next_page = ordered_pages[page_index + 1]
         # The next page may itself have been incorrectly dropped from the
         # definition context because a continuation fragment was labelled as a
@@ -1197,7 +2383,7 @@ def _reconcile_cross_page_definition_continuations(
         for element in sorted(next_page.elements, key=lambda item: item.reading_order):
             if element.type in {"page_header", "page_footer", "footnote"} or not element.text.strip():
                 continue
-            if _is_strong_cross_page_boundary(element, page_width):
+            if _is_open_block_boundary(element, page_width, state):
                 if element.type != "definition_term" and not (element.type == "table" and _definition_table_rows(element)):
                     cutoffs.append(element.bbox[1] - 4.0)
                 break
@@ -1231,7 +2417,7 @@ def _reconcile_cross_page_definition_continuations(
         attached: list[CanonicalElement] = []
         previous = last_part
         for index, element in enumerate(candidates):
-            if index > 0 and _is_strong_cross_page_boundary(element, page_width):
+            if index > 0 and _is_open_block_boundary(element, page_width, state):
                 break
             score, _ = _definition_continuation_score(
                 previous_part=previous,
@@ -1303,6 +2489,29 @@ def _refine_definition_lists(
         extraction_by_page=extraction_by_page,
         definition_pages=definition_pages,
     )
+    _recover_parallel_definition_columns(
+        elements=elements,
+        pages=pages,
+        extraction_by_page=extraction_by_page,
+        definition_pages=definition_pages,
+    )
+    _normalize_definition_tables(
+        elements=elements,
+        pages=pages,
+        extraction_by_page=extraction_by_page,
+        definition_pages=definition_pages,
+    )
+    _consolidate_multiline_definition_terms(
+        elements=elements,
+        pages=pages,
+        definition_pages=definition_pages,
+    )
+    _complete_definition_terms_from_stage3(
+        elements=elements,
+        pages=pages,
+        extraction_by_page=extraction_by_page,
+        definition_pages=definition_pages,
+    )
 
     next_definition_id = 1
     page_entry_ids: dict[int, list[str]] = {}
@@ -1359,7 +2568,7 @@ def _refine_definition_lists(
             term.definition_entry_id = definition_id
             term.heading_level = None
             term.heading_level_source = None
-            if not term.role_source.startswith("definition_row_recovery"):
+            if not term.role_source.startswith("definition_"):
                 term.role_source = "definition_list_geometry"
 
             definition_blocks = [
@@ -1378,7 +2587,7 @@ def _refine_definition_lists(
                 candidate.definition_entry_id = definition_id
                 candidate.heading_level = None
                 candidate.heading_level_source = None
-                if not candidate.role_source.startswith("definition_row_recovery"):
+                if not candidate.role_source.startswith("definition_"):
                     candidate.role_source = "definition_list_geometry"
 
     return _reconcile_cross_page_definition_continuations(
@@ -1421,15 +2630,23 @@ def _build_definition_entries(
             and _text_looks_incomplete(last_part.text)
         )
         definition_text = "\n\n".join(item.text.strip() for item in definition_parts if item.text.strip())
+        from_table = any(
+            item.role_source == "definition_table_semantic_normalization"
+            for item in ordered
+        )
+        source_table_element_id = None
+        if from_table:
+            source_table_element_id = f"p{term.page_number}-e{term.source.layout_box_index + 1}"
         entries.append(
             DefinitionEntry(
                 definition_id=definition_id,
                 term=term.text,
                 section_id=term.section_id,
                 term_element_id=term.element_id,
-                source_kind="layout_columns",
+                source_table_element_id=source_table_element_id,
+                source_kind="table_rows" if from_table else "layout_columns",
                 definition_text=definition_text,
-                items=_parse_definition_items(definition_text),
+                items=_parse_definition_items_from_elements(definition_parts),
                 definition_element_ids=[item.element_id for item in definition_parts],
                 start_page=start_page,
                 end_page=end_page,
@@ -1678,6 +2895,144 @@ def _build_clause_records(
                     evidence="alphabetic subclause follows active numbered clause",
                 ))
     return records, relations
+
+
+
+def _reconcile_cross_page_open_text_blocks(pages: list[StructuredPage]) -> list[StructuralRelation]:
+    """Reconcile generic text/list hierarchy across adjacent pages.
+
+    The engine is deliberately document-agnostic. It combines page-edge
+    geometry, section continuity, marker sequencing and textual completeness.
+    Repeated page headers/footers are ignored, while a genuine new section
+    header before the first candidate is a hard boundary.
+
+    This pass records relations rather than concatenating content. Definitions
+    and tables still use their richer specialized reconciliation, but share the
+    same ``continues`` relationship vocabulary.
+    """
+    relations: list[StructuralRelation] = []
+    ordered_pages = sorted(pages, key=lambda item: item.page_number)
+    eligible = {"paragraph", "clause", "subclause", "list_item"}
+    decorations = {"page_header", "page_footer", "footnote", "caption", "document_metadata"}
+
+    for current, nxt in zip(ordered_pages, ordered_pages[1:]):
+        current_body = [
+            item for item in current.elements
+            if item.type in eligible and item.text.strip()
+        ]
+        if not current_body:
+            continue
+
+        source = max(current_body, key=lambda item: item.document_order)
+        source_marker = _hierarchy_marker(source.text)
+        lower_enough = source.bbox[3] >= current.height * 0.76
+        marker_lower_enough = source_marker is not None and source.bbox[3] >= current.height * 0.62
+        if not (lower_enough or marker_lower_enough):
+            continue
+
+        later_meaningful = [
+            item for item in current.elements
+            if item.document_order > source.document_order
+            and item.type not in decorations
+            and item.text.strip()
+        ]
+        if later_meaningful:
+            continue
+
+        expected = [source.bbox[0], 0.0, source.bbox[2], 1.0]
+        state = OpenBlockState(
+            kind=source.type,
+            source_element_id=source.element_id,
+            page_number=current.page_number,
+            expected_column=expected,
+            context_id=source.section_id,
+            allow_enumerated_items=source.type in {"list_item", "clause", "subclause"},
+        )
+
+        # Find the first meaningful next-page element. Running headers/footers
+        # are ignored. A genuine new section before any body candidate closes
+        # the previous hierarchy and prevents a false continuation.
+        candidate: CanonicalElement | None = None
+        for item in sorted(nxt.elements, key=lambda value: value.reading_order):
+            if not item.text.strip() or item.type in decorations:
+                continue
+            if item.type in {"title", "subtitle", "figure", "table"}:
+                break
+            if item.type == "section_header":
+                break
+            if item.type in eligible:
+                if item.bbox[1] <= nxt.height * 0.34:
+                    candidate = item
+                break
+            # Unknown semantic content before the candidate makes the relation
+            # ambiguous; leave it for human review instead of forcing a merge.
+            break
+
+        if candidate is None:
+            continue
+
+        if source.section_id and candidate.section_id and source.section_id != candidate.section_id:
+            continue
+
+        score, evidence = _open_block_geometry_score(
+            state=state,
+            candidate=candidate,
+            next_page=nxt,
+            first_candidate=True,
+        )
+
+        if source.bbox[3] >= current.height * 0.78:
+            score += 2
+            evidence.append("source element ends near the bottom of the previous page")
+        elif source.bbox[3] >= current.height * 0.65:
+            score += 1
+            evidence.append("source element is in the lower region of the previous page")
+
+        if source.section_id and candidate.section_id and source.section_id == candidate.section_id:
+            score += 2
+            evidence.append("both elements remain in the same active section")
+
+        marker_relation, marker_score, marker_evidence = _marker_sequence_relation(
+            source, candidate, max(nxt.width, 1.0)
+        )
+        if marker_relation is not None:
+            score += marker_score
+            evidence.extend(marker_evidence)
+            evidence.append(f"marker geometry indicates a {marker_relation} hierarchy continuation")
+
+        if _text_looks_incomplete(source.text):
+            score += 2
+            evidence.append("source text appears incomplete at the page break")
+
+        candidate_text = " ".join(candidate.text.split()).strip()
+        if candidate_text[:1].islower():
+            score += 1
+            evidence.append("next-page text begins like prose continuation")
+
+        if source.dominant_font_size and candidate.dominant_font_size:
+            if abs(source.dominant_font_size - candidate.dominant_font_size) <= 1.5:
+                score += 1
+                evidence.append("font size is compatible across pages")
+
+        # Marker continuity is allowed to carry a complete sibling item across
+        # the boundary; prose-only relations remain deliberately stricter.
+        threshold = 7 if marker_relation is not None else 8
+        if score < threshold:
+            continue
+
+        relations.append(
+            StructuralRelation(
+                relation_id=f"rel-open-{len(relations) + 1}",
+                type="continues",
+                source_element_id=source.element_id,
+                target_element_id=candidate.element_id,
+                evidence=(
+                    f"open {source.type} continuation score={score}: "
+                    + "; ".join(evidence)
+                ),
+            )
+        )
+    return relations
 
 
 def _build_appendices(
@@ -2041,15 +3396,24 @@ def build_canonical_document(
     _refine_numbered_clauses(elements)
     definition_relations = _refine_definition_lists(elements, pages, extraction_by_page)
     _refine_footnotes(pages)
+    _cleanup_reconstructed_elements(elements, pages, extraction_by_page)
 
     sections = _build_sections(elements)
     definitions = _build_definition_entries(elements, pages)
     definitions.extend(_build_table_definition_entries(elements, definitions, pages))
     clauses, clause_relations = _build_clause_records(elements, sections)
+    open_block_relations = _reconcile_cross_page_open_text_blocks(pages)
     appendices, appendix_relations = _build_appendices(elements, sections, pages)
     logical_tables, table_relations = _build_logical_tables(pages)
     figures, figure_relations = _build_figures_and_relations(pages)
-    relationships = definition_relations + clause_relations + appendix_relations + table_relations + figure_relations
+    relationships = (
+        definition_relations
+        + clause_relations
+        + open_block_relations
+        + appendix_relations
+        + table_relations
+        + figure_relations
+    )
 
     for page in pages:
         page.body_text = "\n\n".join(
