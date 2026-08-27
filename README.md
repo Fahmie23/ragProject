@@ -57,6 +57,9 @@ PDF
            Sequence/context resolver
                       │
                       ▼
+             Heading scope resolver
+                      │
+                      ▼
           Specialized reconstruction
                       │
                       ▼
@@ -95,12 +98,14 @@ PyMuPDF4LLM Layout currently exposes corresponding page box classes such as `tex
 
 ## Hierarchy evidence
 
-For `section_header` elements, heading level is determined conservatively in this order:
+For initial `section_header` candidates, heading level evidence is determined in this order:
 
 1. PDF bookmark / TOC match
 2. Explicit heading numbering such as `2.3.1`
 3. Dominant font-size rank from Stage 3 spans
 4. Unknown when no evidence exists
+
+Semantic v2.1 then resolves local heading scope. TOC/numbering evidence is stronger than typography-only evidence, but no single source is treated as universal semantic truth. A weak heading immediately before a stronger outline heading can become `group_header` rather than an empty sibling section.
 
 The selected source is persisted as:
 
@@ -111,7 +116,7 @@ The selected source is persisted as:
 }
 ```
 
-No artificial confidence score is generated.
+Semantic classification also persists deterministic support metadata. When alternatives exist, their scores are normalized into the remaining confidence mass, and unresolved hierarchy can lower confidence without changing the selected type. These values are review aids, not statistically calibrated probabilities.
 
 ## Canonical body text
 
@@ -429,3 +434,11 @@ Stage 4.5.8.16.5.1 prevents the page-number input blur from re-committing the cu
 ## Stage 4.6 — Semantic reconstruction v2
 
 Stage 4.6 introduces a dedicated deterministic semantic layer under `backend/app/services/semantic/`. PyMuPDF4LLM box classes are retained as `layout_role` evidence, while ambiguous structural roles are resolved from reusable element features plus neighboring sequence context. Canonical schema `1.8` adds `group_header` and per-element classification audit metadata (`selected_type`, confidence, evidence, alternatives). The old isolated `(a) => subclause` promotion path is no longer active. Local list/group dependencies use `introduces` so ClauseRecord-backed `parent_of` integrity remains strict. The Review inspector shows the automatic classification and evidence for the selected region. See `STAGE4_6_SEMANTIC_V2_ARCHITECTURE.md` and `STAGE4_6_1_SEMANTIC_TAXONOMY.md`.
+
+## Stage 4.6.2 — Semantic v2.1 scope and continuation
+
+Semantic v2.1 adds parallel local-group propagation, conservative heading-scope resolution, semantic vetoes for false cross-page continuation into fresh numbered clauses, normalized classification alternatives, hierarchy-aware confidence calibration, and stronger advisory semantic validation. Stage 5 code is unchanged. See `STAGE4_6_2_SEMANTIC_V2_1_SCOPE_AND_CONTINUATION.md`.
+
+## Stage 4.7 — Golden structure benchmark
+
+The primary 109-page portfolio PDF now has a machine-readable Stage 4 golden specification at `backend/evaluation/golden/sc_aml_cft_stage4_v1.json`. The benchmark uses stable page/text anchors rather than canonical element IDs and currently contains 83 checks (77 required, 6 advisory) across element semantics, relationships, definitions, appendices, logical tables and figures. `scripts/validate_stage4_golden_spec.py` validates the benchmark against the exact PDF SHA/page count/text anchors, while `scripts/evaluate_stage4_golden.py` scores a generated `StructuredDocument`. See `STAGE4_7_GOLDEN_STRUCTURE_SPECIFICATION.md`.

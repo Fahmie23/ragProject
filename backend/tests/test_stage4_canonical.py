@@ -2329,3 +2329,224 @@ def test_semantic_v2_validator_surfaces_orphan_group_headers_without_blocking_bu
     # this as a section header rather than inventing a local group relation.
     assert result.pages[0].elements[1].type == "section_header"
     assert not any("local group header" in warning for warning in result.warnings)
+
+
+def test_semantic_v21_propagates_parallel_local_group_with_single_member():
+    record, extraction, layout = _fixture()
+    raw = extraction.pages[0]
+    raw.text = (
+        "Device Guide\n"
+        "4.2 Supported device categories include the following:\n"
+        "Desktop devices\n"
+        "(a) Workstations;\n"
+        "(b) Laptops;\n"
+        "Mobile devices\n"
+        "(a) Tablets"
+    )
+    raw.blocks = [
+        _text_block("p1-b0", 0, [50, 40, 300, 70], "Device Guide", 22),
+        _text_block("p1-b1", 1, [70, 110, 530, 145], "4.2 Supported device categories include the following:", 11),
+        _text_block("p1-b2", 2, [105, 165, 240, 185], "Desktop devices", 12),
+        _text_block("p1-b3", 3, [135, 205, 350, 225], "(a) Workstations;", 11),
+        _text_block("p1-b4", 4, [135, 235, 350, 255], "(b) Laptops;", 11),
+        _text_block("p1-b5", 5, [105, 285, 240, 305], "Mobile devices", 12),
+        _text_block("p1-b6", 6, [135, 325, 350, 345], "(a) Tablets", 11),
+    ]
+    raw.tables = []
+    extraction.summary.text_block_count = len(raw.blocks)
+    extraction.summary.table_count = 0
+    layout["result"]["toc"] = []
+    layout["result"]["pages"][0]["boxes"] = [
+        {"x0":50,"y0":40,"x1":300,"y1":70,"boxclass":"title","textlines":[{"spans":[{"text":"Device Guide"}]}]},
+        {"x0":70,"y0":110,"x1":530,"y1":145,"boxclass":"list-item","textlines":[{"spans":[{"text":"4.2 Supported device categories include the following:"}]}]},
+        {"x0":105,"y0":165,"x1":240,"y1":185,"boxclass":"section-header","textlines":[{"spans":[{"text":"Desktop devices"}]}]},
+        {"x0":135,"y0":205,"x1":350,"y1":225,"boxclass":"list-item","textlines":[{"spans":[{"text":"(a) Workstations;"}]}]},
+        {"x0":135,"y0":235,"x1":350,"y1":255,"boxclass":"list-item","textlines":[{"spans":[{"text":"(b) Laptops;"}]}]},
+        {"x0":105,"y0":285,"x1":240,"y1":305,"boxclass":"section-header","textlines":[{"spans":[{"text":"Mobile devices"}]}]},
+        {"x0":135,"y0":325,"x1":350,"y1":345,"boxclass":"list-item","textlines":[{"spans":[{"text":"(a) Tablets"}]}]},
+    ]
+
+    result = build_canonical_document(record=record, extraction=extraction, layout_artifact=layout)
+    elements = result.pages[0].elements
+    clause = next(item for item in elements if item.text.startswith("4.2"))
+    desktop = next(item for item in elements if item.text == "Desktop devices")
+    mobile = next(item for item in elements if item.text == "Mobile devices")
+    tablet = next(item for item in elements if item.text == "(a) Tablets")
+
+    assert desktop.type == "group_header"
+    assert mobile.type == "group_header"
+    assert tablet.type == "list_item"
+    assert mobile.classification is not None
+    assert any("parallel previously-resolved local group" in item for item in mobile.classification.evidence)
+    assert any(
+        relation.type == "introduces"
+        and relation.source_element_id == clause.element_id
+        and relation.target_element_id == mobile.element_id
+        for relation in result.relationships
+    )
+    assert any(
+        relation.type == "introduces"
+        and relation.source_element_id == mobile.element_id
+        and relation.target_element_id == tablet.element_id
+        for relation in result.relationships
+    )
+    assert not any(section.element_id == mobile.element_id for section in result.sections)
+
+
+def test_semantic_v21_heading_scope_demotes_weak_empty_heading_before_strong_outline_heading():
+    record, extraction, layout = _fixture()
+    raw = extraction.pages[0]
+    raw.text = (
+        "Service Guide\n"
+        "Maintenance procedures\n"
+        "Mechanical systems\n"
+        "3.1 Technicians must isolate power before service."
+    )
+    raw.blocks = [
+        _text_block("p1-b0", 0, [50, 40, 300, 70], "Service Guide", 22),
+        _text_block("p1-b1", 1, [72, 110, 300, 132], "Maintenance procedures", 12),
+        _text_block("p1-b2", 2, [72, 150, 260, 172], "Mechanical systems", 12),
+        _text_block("p1-b3", 3, [72, 195, 530, 230], "3.1 Technicians must isolate power before service.", 11),
+    ]
+    raw.tables = []
+    extraction.summary.text_block_count = len(raw.blocks)
+    extraction.summary.table_count = 0
+    layout["result"]["toc"] = [[2, "Mechanical systems", 1]]
+    layout["result"]["pages"][0]["boxes"] = [
+        {"x0":50,"y0":40,"x1":300,"y1":70,"boxclass":"title","textlines":[{"spans":[{"text":"Service Guide"}]}]},
+        {"x0":72,"y0":110,"x1":300,"y1":132,"boxclass":"section-header","textlines":[{"spans":[{"text":"Maintenance procedures"}]}]},
+        {"x0":72,"y0":150,"x1":260,"y1":172,"boxclass":"section-header","textlines":[{"spans":[{"text":"Mechanical systems"}]}]},
+        {"x0":72,"y0":195,"x1":530,"y1":230,"boxclass":"list-item","textlines":[{"spans":[{"text":"3.1 Technicians must isolate power before service."}]}]},
+    ]
+
+    result = build_canonical_document(record=record, extraction=extraction, layout_artifact=layout)
+    elements = result.pages[0].elements
+    local = next(item for item in elements if item.text == "Maintenance procedures")
+    outline = next(item for item in elements if item.text == "Mechanical systems")
+    clause = next(item for item in elements if item.text.startswith("3.1"))
+
+    assert local.type == "group_header"
+    assert local.heading_level is None
+    assert local.classification is not None
+    assert local.classification.source == "heading_scope_resolver"
+    assert outline.type == "section_header"
+    assert outline.heading_level_source == "pdf_toc"
+    assert not any(section.element_id == local.element_id for section in result.sections)
+    outline_section = next(section for section in result.sections if section.element_id == outline.element_id)
+    assert clause.section_id == outline_section.section_id
+    assert any(
+        relation.type == "introduces"
+        and relation.source_element_id == local.element_id
+        and relation.target_element_id == outline.element_id
+        for relation in result.relationships
+    )
+
+
+def test_semantic_v21_fresh_numbered_clause_blocks_false_cross_page_continuation():
+    record, extraction, layout = _two_page_base()
+    p1_blocks = [
+        _text_block("p1-b0", 0, [50, 40, 300, 70], "Procedure Manual", 22),
+        _text_block("p1-b1", 1, [70, 730, 540, 780], "2.4 Operators must record the completed inspection.", 11),
+    ]
+    p2_blocks = [
+        _text_block("p2-b0", 0, [70, 35, 540, 75], "2.5 Supervisors must review the inspection record.", 11),
+    ]
+    extraction.pages = [_make_page(1, p1_blocks), _make_page(2, p2_blocks)]
+    extraction.summary.text_block_count = 3
+    extraction.summary.table_count = 0
+    layout["result"]["toc"] = []
+    layout["result"]["pages"] = [
+        {"page_number":1,"width":600,"height":800,"boxes":[
+            {"x0":50,"y0":40,"x1":300,"y1":70,"boxclass":"title","textlines":[{"spans":[{"text":"Procedure Manual"}]}]},
+            {"x0":70,"y0":730,"x1":540,"y1":780,"boxclass":"list-item","textlines":[{"spans":[{"text":"2.4 Operators must record the completed inspection."}]}]},
+        ]},
+        {"page_number":2,"width":600,"height":800,"boxes":[
+            {"x0":70,"y0":35,"x1":540,"y1":75,"boxclass":"list-item","textlines":[{"spans":[{"text":"2.5 Supervisors must review the inspection record."}]}]},
+        ]},
+    ]
+
+    result = build_canonical_document(record=record, extraction=extraction, layout_artifact=layout)
+    first = next(item for item in result.pages[0].elements if item.type == "clause")
+    second = next(item for item in result.pages[1].elements if item.type == "clause")
+    assert first.clause_number == "2.4"
+    assert second.clause_number == "2.5"
+    assert not any(
+        relation.type == "continues"
+        and relation.source_element_id == first.element_id
+        and relation.target_element_id == second.element_id
+        for relation in result.relationships
+    )
+
+
+def test_semantic_v21_classification_alternative_scores_fit_remaining_confidence_mass():
+    from app.services.semantic.classifier import apply_classification
+
+    record, extraction, layout = _fixture()
+    result = build_canonical_document(record=record, extraction=extraction, layout_artifact=layout)
+    element = result.pages[0].elements[1]
+    apply_classification(
+        element,
+        element.type,
+        confidence=0.70,
+        source="test_support_normalization",
+        evidence=["synthetic support normalization check"],
+        alternatives=[("group_header", 0.44), ("paragraph", 0.11)],
+        mutate_type=False,
+    )
+    classification = element.classification
+    assert classification is not None
+    total = classification.confidence + sum(item.score for item in classification.alternatives)
+    assert abs(total - 1.0) < 1e-9
+    assert all(item.score <= 1.0 - classification.confidence + 1e-9 for item in classification.alternatives)
+    assert [round(item.score, 2) for item in classification.alternatives] == [0.24, 0.06]
+
+
+def test_semantic_v21_validator_warns_about_empty_same_level_section_scope():
+    record, extraction, layout = _fixture()
+    raw = extraction.pages[0]
+    raw.blocks = [
+        _text_block("p1-b0", 0, [50, 40, 300, 70], "Reference Manual", 22),
+        _text_block("p1-b1", 1, [72, 110, 300, 132], "Installation", 12),
+        _text_block("p1-b2", 2, [72, 150, 300, 172], "Operation", 12),
+        _text_block("p1-b3", 3, [72, 195, 530, 230], "2.1 Operators must verify the status indicator.", 11),
+    ]
+    raw.tables = []
+    extraction.summary.text_block_count = len(raw.blocks)
+    extraction.summary.table_count = 0
+    layout["result"]["toc"] = [[2, "Installation", 1], [2, "Operation", 1]]
+    layout["result"]["pages"][0]["boxes"] = [
+        {"x0":50,"y0":40,"x1":300,"y1":70,"boxclass":"title","textlines":[{"spans":[{"text":"Reference Manual"}]}]},
+        {"x0":72,"y0":110,"x1":300,"y1":132,"boxclass":"section-header","textlines":[{"spans":[{"text":"Installation"}]}]},
+        {"x0":72,"y0":150,"x1":300,"y1":172,"boxclass":"section-header","textlines":[{"spans":[{"text":"Operation"}]}]},
+        {"x0":72,"y0":195,"x1":530,"y1":230,"boxclass":"list-item","textlines":[{"spans":[{"text":"2.1 Operators must verify the status indicator."}]}]},
+    ]
+
+    result = build_canonical_document(record=record, extraction=extraction, layout_artifact=layout)
+    installation = next(item for item in result.pages[0].elements if item.text == "Installation")
+    assert installation.type == "section_header"
+    assert any("heading-scope review recommended" in warning for warning in result.warnings)
+
+
+def test_semantic_v21_validator_warns_for_unowned_sequence_list_item():
+    record, extraction, layout = _fixture()
+    raw = extraction.pages[0]
+    raw.blocks = [
+        _text_block("p1-b0", 0, [50, 40, 300, 70], "Quick Guide", 22),
+        _text_block("p1-b1", 1, [110, 140, 350, 165], "(a) Spare module", 11),
+    ]
+    raw.tables = []
+    extraction.summary.text_block_count = len(raw.blocks)
+    extraction.summary.table_count = 0
+    layout["result"]["toc"] = []
+    layout["result"]["pages"][0]["boxes"] = [
+        {"x0":50,"y0":40,"x1":300,"y1":70,"boxclass":"title","textlines":[{"spans":[{"text":"Quick Guide"}]}]},
+        {"x0":110,"y0":140,"x1":350,"y1":165,"boxclass":"list-item","textlines":[{"spans":[{"text":"(a) Spare module"}]}]},
+    ]
+
+    result = build_canonical_document(record=record, extraction=extraction, layout_artifact=layout)
+    item = next(element for element in result.pages[0].elements if element.text.startswith("(a)"))
+    assert item.type == "list_item"
+    assert item.classification is not None
+    assert item.classification.confidence == 0.62
+    assert any("hierarchy calibration" in evidence for evidence in item.classification.evidence)
+    assert any("enumerated list item" in warning for warning in result.warnings)

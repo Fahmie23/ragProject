@@ -7,7 +7,7 @@ from pathlib import Path
 import re
 
 from app.services.spans import iter_page_spans
-from app.services.semantic import resolve_structural_semantics, validate_semantic_structure
+from app.services.semantic import calibrate_hierarchy_confidence, continuation_boundary_reason, resolve_heading_scopes, resolve_structural_semantics, validate_semantic_structure
 from app.services.semantic.classifier import backfill_classification
 
 from app.schemas import (
@@ -3299,19 +3299,40 @@ def _build_group_and_list_relations(
             evidence=evidence,
         ))
 
+    meaningful_types_to_skip = {"page_header", "page_footer", "footnote", "caption", "document_metadata", "title", "subtitle"}
+    previous_meaningful: dict[str, CanonicalElement | None] = {}
+    previous: CanonicalElement | None = None
+    for item in ordered:
+        if item.type in meaningful_types_to_skip or not item.text.strip():
+            continue
+        previous_meaningful[item.element_id] = previous
+        previous = item
+
     for element in ordered:
-        if element.type in {"page_header", "page_footer", "footnote", "caption", "document_metadata", "title", "subtitle"}:
+        if element.type in meaningful_types_to_skip:
+            continue
+
+        # A local label can intentionally sit immediately before a real outline
+        # heading. Preserve that dependency before resetting state for the new
+        # section; otherwise the section-id transition would erase the group.
+        if element.type == "section_header":
+            prior = previous_meaningful.get(element.element_id)
+            if active_group is not None and prior is not None and prior.element_id == active_group.element_id:
+                add_relation(
+                    "introduces",
+                    active_group,
+                    element,
+                    "local group label immediately scopes the following outline heading",
+                )
+            active_section = element.section_id
+            active_clause = None
+            active_group = None
             continue
 
         if element.section_id != active_section:
             active_section = element.section_id
             active_clause = None
             active_group = None
-
-        if element.type == "section_header":
-            active_clause = None
-            active_group = None
-            continue
 
         if element.type == "group_header":
             # A group after a clause belongs to that clause. Otherwise it is a
@@ -3451,6 +3472,13 @@ def _reconcile_cross_page_open_text_blocks(pages: list[StructuredPage]) -> list[
             continue
 
         if source.section_id and candidate.section_id and source.section_id != candidate.section_id:
+            continue
+
+        semantic_boundary = continuation_boundary_reason(source, candidate)
+        if semantic_boundary is not None:
+            # Semantic structure outranks geometric alignment for fresh starts.
+            # In particular, a new numbered clause at the top of the next page
+            # must not be linked as continuation of the previous page's clause.
             continue
 
         score, evidence = _open_block_geometry_score(
@@ -3959,6 +3987,7 @@ def build_canonical_document(
         title_root_present=title_element is not None,
     )
     resolve_structural_semantics(elements, pages)
+    resolve_heading_scopes(elements, pages)
     definition_relations = _refine_definition_lists(elements, pages, extraction_by_page)
     _refine_footnotes(pages)
     _cleanup_reconstructed_elements(elements, pages, extraction_by_page)
@@ -3989,6 +4018,12 @@ def build_canonical_document(
         + appendix_relations
         + table_relations
         + figure_relations
+    )
+
+    calibrate_hierarchy_confidence(
+        elements=elements,
+        sections=sections,
+        relationships=relationships,
     )
 
     semantic_validation = validate_semantic_structure(

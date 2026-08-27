@@ -1,0 +1,595 @@
+{
+  "spec_version": "1.0",
+  "benchmark_id": "sc-aml-cft-stage4-primary-v1",
+  "description": "Primary Stage 4 golden structure benchmark for the 109-page Securities Commission Malaysia AML/CFT/CPF guideline used by the portfolio project.",
+  "source": {
+    "filename": "sc_aml_cft.pdf",
+    "sha256": "e1d138edd3c55b3fa3dd36b3236876a1a8dd634c4d972cec74157e6bf816bc15",
+    "page_count": 109
+  },
+  "policy": {
+    "target_stage": "automatic_stage_4_before_human_corrections",
+    "matching": "page + normalized semantic text anchor",
+    "required_checks": "High-confidence structural invariants. These define regression pass/fail.",
+    "advisory_checks": "Desired behavior where taxonomy is useful but still under validation. Reported separately.",
+    "element_ids_are_not_golden": true,
+    "layout_engine_labels_are_evidence_not_truth": true
+  },
+  "coverage_matrix": [
+    {"pages": [1], "archetypes": ["cover", "title", "document_metadata"]},
+    {"pages": [2], "archetypes": ["revision_history", "table"]},
+    {"pages": [3, 4, 5], "archetypes": ["contents", "navigation", "outline"]},
+    {"pages": [6], "archetypes": ["part_heading", "numbered_clause", "nested_enumeration", "footnote"]},
+    {"pages": [9, 10, 13, 14, 15], "archetypes": ["definitions", "definition_list", "cross_page_definition", "footnote"]},
+    {"pages": [17], "archetypes": ["numbered_clause", "descriptive_list"]},
+    {"pages": [22, 27, 49, 51], "archetypes": ["guidance_block", "local_advisory_scope"]},
+    {"pages": [31, 32, 33], "archetypes": ["part_section_subsection", "local_group_heading", "list", "nested_list"]},
+    {"pages": [36, 37], "archetypes": ["cross_page_sibling_structure", "local_group_heading"]},
+    {"pages": [68, 69, 70], "archetypes": ["appendix_numbering_reset", "local_group_heading", "figure"]},
+    {"pages": [92, 93, 94, 95], "archetypes": ["appendix_scope", "group_header", "fresh_clause_boundary", "nested_subclause"]},
+    {"pages": [96, 97, 98], "archetypes": ["cross_page_logical_table"]},
+    {"pages": [99, 100, 101, 102], "archetypes": ["illustration", "figure_explanation", "figure_source"]}
+  ],
+  "element_assertions": [
+    {
+      "id": "cover-title",
+      "page": 1,
+      "match": {"starts_with": "GUIDELINES ON PREVENTION OF MONEY LAUNDERING"},
+      "expect": {"type": "title"}
+    },
+    {
+      "id": "part-i-heading",
+      "page": 6,
+      "match": {"exact": "PART I: INTRODUCTION AND APPLICABILITY"},
+      "expect": {"type": "section_header", "section_record": true}
+    },
+    {
+      "id": "intro-heading",
+      "page": 6,
+      "match": {"starts_with": "1.0 INTRODUCTION"},
+      "expect": {"type": "section_header", "section_record": true}
+    },
+    {
+      "id": "clause-1-1-main",
+      "page": 6,
+      "match": {"starts_with": "1.1 The Guidelines on Prevention of Money Laundering"},
+      "expect": {"type": "clause", "clause_number": "1.1"}
+    },
+    {
+      "id": "page6-legislation-item-i",
+      "page": 6,
+      "match": {"starts_with": "(i) Strategic Trade Act 2010"},
+      "expect": {"type": "list_item"},
+      "strength": "advisory"
+    },
+    {
+      "id": "page6-footnote-1",
+      "page": 6,
+      "match": {"starts_with": "1 Regulation 3 of Strategic Trade"},
+      "expect": {"type": "footnote"}
+    },
+    {
+      "id": "definitions-heading",
+      "page": 9,
+      "match": {"starts_with": "3. DEFINITIONS"},
+      "expect": {"type": "section_header", "section_record": true}
+    },
+    {
+      "id": "money-laundering-clause-4-2",
+      "page": 17,
+      "match": {"starts_with": "4.2 The process of money laundering comprises three stages"},
+      "expect": {"type": "clause", "clause_number": "4.2"}
+    },
+    {
+      "id": "money-laundering-placement",
+      "page": 17,
+      "match": {"starts_with": "(a) Placement:"},
+      "expect": {"type": "list_item"}
+    },
+    {
+      "id": "money-laundering-layering",
+      "page": 17,
+      "match": {"starts_with": "(b) Layering:"},
+      "expect": {"type": "list_item"}
+    },
+    {
+      "id": "money-laundering-integration",
+      "page": 17,
+      "match": {"starts_with": "(c) Integration:"},
+      "expect": {"type": "list_item"}
+    },
+    {
+      "id": "guidance-6b2c",
+      "page": 22,
+      "match": {"starts_with": "Guidance for paragraph 6B.2(c)"},
+      "expect": {"type": "group_header", "section_record": false},
+      "strength": "advisory"
+    },
+    {
+      "id": "part-iii-heading",
+      "page": 31,
+      "match": {"exact": "PART III: CUSTOMER DUE DILIGENCE"},
+      "expect": {"type": "section_header", "section_record": true}
+    },
+    {
+      "id": "cdd-heading-8",
+      "page": 31,
+      "match": {"starts_with": "8. CUSTOMER DUE DILIGENCE"},
+      "expect": {"type": "section_header", "section_record": true}
+    },
+    {
+      "id": "cdd-heading-8-1",
+      "page": 31,
+      "match": {"starts_with": "8.1 CDD at the point of establishing business relationship"},
+      "expect": {"type": "section_header", "section_record": true}
+    },
+    {
+      "id": "clause-8-1-3",
+      "page": 31,
+      "match": {"starts_with": "8.1.3 For the purpose of conducting CDD"},
+      "expect": {"type": "clause", "clause_number": "8.1.3"}
+    },
+    {
+      "id": "cdd-individual-group",
+      "page": 32,
+      "match": {"exact": "CDD requirements for individual customer and beneficial owner"},
+      "expect": {"type": "group_header", "section_record": false}
+    },
+    {
+      "id": "identification-verification-group",
+      "page": 32,
+      "match": {"exact": "Identification and Verification"},
+      "expect": {"type": "group_header", "section_record": false}
+    },
+    {
+      "id": "clause-8-1-6",
+      "page": 32,
+      "match": {"starts_with": "8.1.6 In conducting CDD"},
+      "expect": {"type": "clause", "clause_number": "8.1.6"}
+    },
+    {
+      "id": "full-name-list-item",
+      "page": 32,
+      "match": {"exact": "(a) Full name;"},
+      "expect": {"type": "list_item"}
+    },
+    {
+      "id": "purpose-transaction-list-item",
+      "page": 32,
+      "match": {"starts_with": "(k) Purpose of transaction"},
+      "expect": {"type": "list_item"}
+    },
+    {
+      "id": "clause-8-1-7",
+      "page": 32,
+      "match": {"starts_with": "8.1.7 Where the above information is not sufficient"},
+      "expect": {"type": "clause", "clause_number": "8.1.7"}
+    },
+    {
+      "id": "cdd-legal-persons-group",
+      "page": 32,
+      "match": {"exact": "CDD requirements for legal persons"},
+      "expect": {"type": "group_header", "section_record": false}
+    },
+    {
+      "id": "clause-8-1-8",
+      "page": 32,
+      "match": {"starts_with": "8.1.8 For customers that are legal persons"},
+      "expect": {"type": "clause", "clause_number": "8.1.8"}
+    },
+    {
+      "id": "clause-8-1-11",
+      "page": 33,
+      "match": {"starts_with": "8.1.11 A reporting institution is required to identify"},
+      "expect": {"type": "clause", "clause_number": "8.1.11"}
+    },
+    {
+      "id": "cascading-subclause-a",
+      "page": 33,
+      "match": {"starts_with": "(a) the identity of the natural person(s)"},
+      "expect": {"type": "subclause"}
+    },
+    {
+      "id": "cascading-nested-item-i",
+      "page": 33,
+      "match": {"starts_with": "(i) shareholders with equity interest"},
+      "expect": {"type": "list_item"}
+    },
+    {
+      "id": "non-face-to-face-group",
+      "page": 36,
+      "match": {"exact": "CDD requirements for establishing non face-to-face business relationship"},
+      "expect": {"type": "group_header", "section_record": false}
+    },
+    {
+      "id": "clause-8-1-23",
+      "page": 36,
+      "match": {"starts_with": "8.1.23 This section applies"},
+      "expect": {"type": "clause", "clause_number": "8.1.23"}
+    },
+    {
+      "id": "non-face-subclause-a",
+      "page": 36,
+      "match": {"starts_with": "(a) A reporting institution must develop and implement"},
+      "expect": {"type": "subclause"}
+    },
+    {
+      "id": "non-face-subclause-b",
+      "page": 36,
+      "match": {"starts_with": "(b) A reporting institution must establish appropriate measures"},
+      "expect": {"type": "subclause"}
+    },
+    {
+      "id": "non-face-subclause-c",
+      "page": 37,
+      "match": {"starts_with": "(c) For the purpose of identification and verification"},
+      "expect": {"type": "subclause"}
+    },
+    {
+      "id": "appendix-a-heading-1-0",
+      "page": 68,
+      "match": {"starts_with": "1.0 Introduction"},
+      "expect": {"type": "section_header", "section_record": true}
+    },
+    {
+      "id": "appendix-a-clause-1-1",
+      "page": 68,
+      "match": {"starts_with": "1.1 The RBA is central"},
+      "expect": {"type": "clause", "clause_number": "1.1"}
+    },
+    {
+      "id": "appendix-a-heading-2-0",
+      "page": 69,
+      "match": {"starts_with": "2.0 RBA Steps"},
+      "expect": {"type": "section_header", "section_record": true}
+    },
+    {
+      "id": "appendix-a-bbra-group",
+      "page": 69,
+      "match": {"exact": "Business-based Risk Assessment (BbRA)"},
+      "expect": {"type": "group_header", "section_record": false}
+    },
+    {
+      "id": "appendix-a-rbra-group",
+      "page": 69,
+      "match": {"exact": "Relationship-based Risk Assessment (RbRA)"},
+      "expect": {"type": "group_header", "section_record": false}
+    },
+    {
+      "id": "appendix-e-introduction",
+      "page": 92,
+      "match": {"exact": "Introduction"},
+      "expect": {"type": "section_header", "section_record": true}
+    },
+    {
+      "id": "appendix-e-clause-1-1",
+      "page": 92,
+      "match": {"starts_with": "1.1 The obligations of a reporting institution"},
+      "expect": {"type": "clause", "clause_number": "1.1"}
+    },
+    {
+      "id": "appendix-e-identification",
+      "page": 92,
+      "match": {"exact": "Identification"},
+      "expect": {"type": "section_header", "section_record": true}
+    },
+    {
+      "id": "appendix-e-clause-1-4",
+      "page": 92,
+      "match": {"starts_with": "1.4 To determine the identity of beneficial owners"},
+      "expect": {"type": "clause", "clause_number": "1.4"}
+    },
+    {
+      "id": "appendix-e-clause-1-5",
+      "page": 93,
+      "match": {"starts_with": "1.5 There may be more than one beneficial owner"},
+      "expect": {"type": "clause", "clause_number": "1.5"}
+    },
+    {
+      "id": "appendix-e-clause-1-6",
+      "page": 93,
+      "match": {"starts_with": "1.6 Issues concerning beneficial owners"},
+      "expect": {"type": "clause", "clause_number": "1.6"}
+    },
+    {
+      "id": "appendix-e-legal-persons-group",
+      "page": 93,
+      "match": {"exact": "Legal persons"},
+      "expect": {"type": "group_header", "section_record": false}
+    },
+    {
+      "id": "appendix-e-legal-person-item-a",
+      "page": 93,
+      "match": {"starts_with": "(a) Private and public companies"},
+      "expect": {"type": "list_item"}
+    },
+    {
+      "id": "appendix-e-legal-person-item-h",
+      "page": 93,
+      "match": {"starts_with": "(h) Non-governmental organisations"},
+      "expect": {"type": "list_item"}
+    },
+    {
+      "id": "appendix-e-legal-arrangements-group",
+      "page": 93,
+      "match": {"exact": "Legal arrangements"},
+      "expect": {"type": "group_header", "section_record": false}
+    },
+    {
+      "id": "appendix-e-trust-item",
+      "page": 93,
+      "match": {"starts_with": "(a) Trust bodies/arrangement"},
+      "expect": {"type": "list_item"}
+    },
+    {
+      "id": "appendix-e-steps-group",
+      "page": 93,
+      "match": {"exact": "Steps to identify beneficial owner"},
+      "expect": {"type": "group_header", "section_record": false}
+    },
+    {
+      "id": "appendix-e-legal-person-group",
+      "page": 93,
+      "match": {"exact": "Legal person"},
+      "expect": {"type": "group_header", "section_record": false}
+    },
+    {
+      "id": "appendix-e-clause-1-7",
+      "page": 93,
+      "match": {"starts_with": "1.7 A reporting institution should identify"},
+      "expect": {"type": "clause", "clause_number": "1.7"}
+    },
+    {
+      "id": "appendix-e-clause-1-8",
+      "page": 94,
+      "match": {"starts_with": "1.8 Step 1: Identify the natural person(s)"},
+      "expect": {"type": "clause", "clause_number": "1.8"}
+    },
+    {
+      "id": "appendix-e-step1-subclause-d",
+      "page": 94,
+      "match": {"starts_with": "(d) In implementing Step 1"},
+      "expect": {"type": "subclause"}
+    },
+    {
+      "id": "appendix-e-step1-nested-item-i",
+      "page": 94,
+      "match": {"starts_with": "(i) The natural person has majority voting power"},
+      "expect": {"type": "list_item"}
+    },
+    {
+      "id": "appendix-e-clause-1-9",
+      "page": 94,
+      "match": {"starts_with": "1.9 Step 2: Identify the natural person"},
+      "expect": {"type": "clause", "clause_number": "1.9"}
+    },
+    {
+      "id": "appendix-e-methods-group",
+      "page": 95,
+      "match": {"exact": "Methods to identify beneficial owners"},
+      "expect": {"type": "group_header", "section_record": false}
+    },
+    {
+      "id": "appendix-e-record-keeping-group",
+      "page": 98,
+      "match": {"exact": "Record-keeping of beneficial ownership"},
+      "expect": {"type": "group_header", "section_record": false}
+    }
+  ],
+  "relation_assertions": [
+    {
+      "id": "rel-4-2-introduces-placement",
+      "source": "money-laundering-clause-4-2",
+      "type": "introduces",
+      "target": "money-laundering-placement"
+    },
+    {
+      "id": "rel-8-1-6-introduces-full-name",
+      "source": "clause-8-1-6",
+      "type": "introduces",
+      "target": "full-name-list-item"
+    },
+    {
+      "id": "rel-8-1-11-parent-a",
+      "source": "clause-8-1-11",
+      "type": "parent_of",
+      "target": "cascading-subclause-a"
+    },
+    {
+      "id": "rel-8-1-23-parent-c",
+      "source": "clause-8-1-23",
+      "type": "parent_of",
+      "target": "non-face-subclause-c"
+    },
+    {
+      "id": "rel-no-b-to-c-continuation",
+      "source": "non-face-subclause-b",
+      "type": "continues",
+      "target": "non-face-subclause-c",
+      "present": false
+    },
+    {
+      "id": "rel-no-1-4-to-1-5-continuation",
+      "source": "appendix-e-clause-1-4",
+      "type": "continues",
+      "target": "appendix-e-clause-1-5",
+      "present": false
+    },
+    {
+      "id": "rel-1-6-introduces-legal-persons",
+      "source": "appendix-e-clause-1-6",
+      "type": "introduces",
+      "target": "appendix-e-legal-persons-group"
+    },
+    {
+      "id": "rel-legal-persons-introduces-a",
+      "source": "appendix-e-legal-persons-group",
+      "type": "introduces",
+      "target": "appendix-e-legal-person-item-a"
+    },
+    {
+      "id": "rel-1-6-introduces-legal-arrangements",
+      "source": "appendix-e-clause-1-6",
+      "type": "introduces",
+      "target": "appendix-e-legal-arrangements-group"
+    },
+    {
+      "id": "rel-legal-arrangements-introduces-trust",
+      "source": "appendix-e-legal-arrangements-group",
+      "type": "introduces",
+      "target": "appendix-e-trust-item"
+    },
+    {
+      "id": "rel-steps-introduces-legal-person",
+      "source": "appendix-e-steps-group",
+      "type": "introduces",
+      "target": "appendix-e-legal-person-group",
+      "strength": "advisory"
+    },
+    {
+      "id": "rel-legal-person-introduces-1-7",
+      "source": "appendix-e-legal-person-group",
+      "type": "introduces",
+      "target": "appendix-e-clause-1-7"
+    }
+  ],
+  "definition_assertions": [
+    {
+      "id": "definition-beneficial-owner",
+      "term": "beneficial owner",
+      "expect": {
+        "start_page": 9,
+        "end_page": 9,
+        "spans_multiple_pages": false,
+        "definition_contains": "in the context of legal person"
+      }
+    },
+    {
+      "id": "definition-beneficiary-cross-page",
+      "term": "beneficiary",
+      "expect": {
+        "start_page": 9,
+        "end_page": 10,
+        "spans_multiple_pages": true,
+        "definition_contains": "in trust law"
+      }
+    },
+    {
+      "id": "definition-constituent-document-list",
+      "term": "constituent document",
+      "expect": {
+        "start_page": 10,
+        "end_page": 10,
+        "spans_multiple_pages": false,
+        "min_item_count": 3,
+        "definition_contains": "instrument that"
+      }
+    },
+    {
+      "id": "definition-pep-list",
+      "term": "politically exposed person (PEP)",
+      "expect": {
+        "start_page": 13,
+        "end_page": 13,
+        "spans_multiple_pages": false,
+        "min_item_count": 3
+      }
+    },
+    {
+      "id": "definition-third-party-institution-cross-page",
+      "term": "third-party institution",
+      "expect": {
+        "start_page": 14,
+        "end_page": 15,
+        "spans_multiple_pages": true,
+        "definition_contains": "financial institution"
+      }
+    }
+  ],
+  "appendix_assertions": [
+    {
+      "id": "appendix-a-record",
+      "label": "APPENDIX A",
+      "expect": {
+        "start_page": 68,
+        "end_page": 77,
+        "title_contains": "Risk-Based Approach"
+      }
+    },
+    {
+      "id": "appendix-e-record",
+      "label": "APPENDIX E",
+      "expect": {
+        "start_page": 92,
+        "end_page": 102,
+        "title_contains": "Beneficial Ownership"
+      }
+    }
+  ],
+  "logical_table_assertions": [
+    {
+      "id": "appendix-e-table-1-11-cross-page",
+      "start_page": 96,
+      "end_page": 97,
+      "min_col_count": 3,
+      "min_row_count": 3
+    },
+    {
+      "id": "appendix-e-table-1-12-cross-page",
+      "start_page": 97,
+      "end_page": 98,
+      "min_col_count": 2,
+      "min_row_count": 3,
+      "strength": "advisory"
+    }
+  ],
+  "page_assertions": [
+    {
+      "id": "page2-revision-table",
+      "page": 2,
+      "min_type_counts": {"table": 1}
+    },
+    {
+      "id": "page70-rba-figure-element",
+      "page": 70,
+      "min_type_counts": {"figure": 1}
+    },
+    {
+      "id": "page99-illustration-figure",
+      "page": 99,
+      "min_type_counts": {"figure": 1},
+      "strength": "advisory"
+    }
+  ],
+  "figure_assertions": [
+    {
+      "id": "figure-rba-process",
+      "page": 70,
+      "min_count": 1
+    },
+    {
+      "id": "figure-illustration-1",
+      "page": 99,
+      "min_count": 1,
+      "strength": "advisory"
+    }
+  ],
+  "open_questions": [
+    {
+      "id": "guidance-block-taxonomy",
+      "pages": [22, 27, 30, 36, 39, 45, 49, 51, 63, 65, 66],
+      "question": "Should recurring 'Guidance for paragraph ...' labels remain group_header or become a dedicated guidance_header/advisory_block type?",
+      "decision_rule": "Do not add a new taxonomy type until the recurring blocks have been reviewed as a family."
+    },
+    {
+      "id": "toc-navigation-semantics",
+      "pages": [3, 4, 5],
+      "question": "Stage 4 should preserve TOC structure, but navigation-only semantics belong to Stage 5 cleaning. Golden Stage 4 currently does not require a navigation_only type."
+    },
+    {
+      "id": "illustration-taxonomy",
+      "pages": [99, 100, 101, 102],
+      "question": "Determine whether illustration labels should remain group_header/caption or gain an illustration subtype only if it improves provenance/retrieval."
+    }
+  ]
+}

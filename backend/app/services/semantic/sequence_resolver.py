@@ -65,6 +65,63 @@ def _find_list_introducer(
     return None
 
 
+def _find_parallel_group_context(
+    ordered: list[CanonicalElement],
+    features: dict[str, ElementFeatures],
+    heading_index: int,
+) -> tuple[CanonicalElement | None, CanonicalElement | None]:
+    """Find a preceding local group and its shared list introducer.
+
+    A later group may contain only one enumerated member, so the normal
+    ``_find_list_introducer`` look-back can stop on the preceding list items
+    before it reaches the original introductory clause.  When a structurally
+    parallel ``group_header`` is immediately upstream, reuse its introducer
+    only if geometry/typography remain compatible and no stronger boundary is
+    crossed.  This keeps the rule document-agnostic.
+    """
+    candidate = ordered[heading_index]
+    candidate_feature = features[candidate.element_id]
+
+    previous_group: CanonicalElement | None = None
+    group_index: int | None = None
+    for index in range(heading_index - 1, -1, -1):
+        item = ordered[index]
+        if not item.text.strip() or item.type in {"page_header", "page_footer", "footnote", "caption"}:
+            continue
+        if item.type in {"list_item", "subclause"}:
+            continue
+        if item.type == "group_header":
+            previous_group = item
+            group_index = index
+        break
+
+    if previous_group is None or group_index is None:
+        return None, None
+
+    previous_feature = features[previous_group.element_id]
+    x_tolerance = max(24.0, candidate_feature.page_width * 0.05)
+    if abs(candidate_feature.x0 - previous_feature.x0) > x_tolerance:
+        return None, None
+    if candidate_feature.dominant_font_size and previous_feature.dominant_font_size:
+        if abs(candidate_feature.dominant_font_size - previous_feature.dominant_font_size) > 2.0:
+            return None, None
+
+    introducer: CanonicalElement | None = None
+    for index in range(group_index - 1, -1, -1):
+        item = ordered[index]
+        if not item.text.strip() or item.type in {"page_header", "page_footer", "footnote", "caption"}:
+            continue
+        item_feature = features[item.element_id]
+        if item_feature.looks_list_intro:
+            introducer = item
+            break
+        # Do not carry local scope across a real outline/content boundary.
+        if item.type in {"section_header", "clause", "table", "figure", "definition_term"}:
+            break
+
+    return previous_group, introducer
+
+
 def _candidate_group_header(
     element: CanonicalElement,
     feature: ElementFeatures,
@@ -154,6 +211,21 @@ def _resolve_enumerated_run(
     family = _marker_family(tokens)
     introducer = _find_list_introducer(ordered, features, run[0])
 
+    # A later parallel group can have only one member.  In that case the
+    # immediate look-back is blocked by the preceding group's list members, so
+    # recover the shared introducer through the already-resolved group header.
+    parallel_group: CanonicalElement | None = None
+    immediate_prev_probe = _find_previous_meaningful(ordered, run[0], max_back=1)
+    if introducer is None and immediate_prev_probe is not None:
+        try:
+            heading_index = ordered.index(immediate_prev_probe)
+        except ValueError:
+            heading_index = -1
+        if heading_index >= 0:
+            parallel_group, parallel_introducer = _find_parallel_group_context(ordered, features, heading_index)
+            if parallel_introducer is not None:
+                introducer = parallel_introducer
+
     # An immediate short heading between the introducer and the run is a local
     # grouping label. This is the key distinction that the previous Stage 4
     # could not represent and therefore over-promoted to section_header.
@@ -177,6 +249,11 @@ def _resolve_enumerated_run(
                 evidence=[
                     "short unnumbered label immediately precedes an enumerated sequence",
                     "nearby parent text explicitly introduces a list",
+                    *(
+                        ["parallel previously-resolved local group shares the same introductory scope"]
+                        if parallel_group is not None
+                        else []
+                    ),
                     "local label is scoped to the following items rather than the document outline",
                 ],
                 alternatives=[("section_header", 0.36), ("paragraph", 0.18)],
@@ -305,64 +382,6 @@ def _resolve_standalone_markers(
             )
 
 
-def _resolve_secondary_group_headers(
-    ordered: list[CanonicalElement],
-    features: dict[str, ElementFeatures],
-) -> None:
-    """Demote local vendor headings before numbered clauses when evidence is strong.
-
-    This catches structures such as ``Steps ...`` -> ``Legal person`` -> ``1.7``
-    without using document-specific vocabulary. We require an earlier real
-    section header, a short unnumbered heading, and a following numbered clause.
-    Relative typography/indentation provides an additional guard when present.
-    """
-    for index, element in enumerate(ordered[:-1]):
-        if element.type != "section_header":
-            continue
-        feature = features[element.element_id]
-        if not feature.looks_short_label or feature.clause_number is not None:
-            continue
-        nxt = ordered[index + 1]
-        nxt_feature = features[nxt.element_id]
-        if nxt.type != "clause" and not nxt_feature.clause_number:
-            continue
-        previous_header = None
-        for prior in reversed(ordered[:index]):
-            if prior.type == "section_header":
-                previous_header = prior
-                break
-            if prior.type in {"clause", "table", "figure"}:
-                break
-        if previous_header is None:
-            continue
-        if previous_header.text.strip().casefold().startswith("appendix"):
-            continue
-        prev_feature = features[previous_header.element_id]
-        smaller_font = bool(
-            feature.dominant_font_size
-            and prev_feature.dominant_font_size
-            and feature.dominant_font_size <= prev_feature.dominant_font_size
-        )
-        more_indented = feature.x0 >= prev_feature.x0 + 6.0
-        if not (smaller_font or more_indented):
-            continue
-        element.heading_level = None
-        element.heading_level_source = None
-        element.role_source = "semantic_local_group_header"
-        apply_classification(
-            element,
-            "group_header",
-            confidence=0.84,
-            source="sequence_resolver",
-            evidence=[
-                "short unnumbered vendor heading immediately precedes a numbered clause",
-                "a broader section header is already active",
-                "typography or indentation indicates narrower local scope",
-            ],
-            alternatives=[("section_header", 0.55)],
-        )
-
-
 def resolve_structural_semantics(
     elements: list[CanonicalElement],
     pages: list[StructuredPage],
@@ -389,7 +408,6 @@ def resolve_structural_semantics(
         covered.update(run)
 
     _resolve_standalone_markers(ordered, features, covered)
-    _resolve_secondary_group_headers(ordered, features)
 
     for element in ordered:
         backfill_classification(element)
