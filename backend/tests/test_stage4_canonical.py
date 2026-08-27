@@ -403,7 +403,7 @@ def test_definition_list_reconstruction_repairs_terms_clause_and_false_footer():
     result = build_canonical_document(record=record, extraction=extraction, layout_artifact=layout)
     page = result.pages[0]
 
-    assert result.schema_version == "1.4"
+    assert result.schema_version == "1.8"
     assert len(result.sections) == 1
     assert result.sections[0].title == "3. DEFINITIONS"
     assert result.sections[0].level == 2
@@ -589,7 +589,7 @@ def test_cross_page_tables_are_one_logical_table_with_fragments():
     ]
 
     result = build_canonical_document(record=record, extraction=extraction, layout_artifact=layout)
-    assert result.schema_version == "1.4"
+    assert result.schema_version == "1.8"
     assert len(result.tables) == 1
     table = result.tables[0]
     assert table.spans_multiple_pages is True
@@ -1101,6 +1101,9 @@ def test_definition_row_recovery_splits_wide_body_regions_from_stage3_columns():
     assert nom_term.role_source == "definition_row_recovery_span_columns"
     assert nom_text.role_source == "definition_row_recovery_span_columns"
     assert nom_term.bbox[2] < nom_text.bbox[0]
+    assert nom_term.source.stage3_span_ids
+    assert nom_text.source.stage3_span_ids
+    assert set(nom_term.source.stage3_span_ids).isdisjoint(nom_text.source.stage3_span_ids)
     assert "issues instructions" in nominator.definition_text
     assert "act on its behalf" in nominator.definition_text
 
@@ -1144,6 +1147,15 @@ def test_definition_row_recovery_can_split_multiple_rows_from_one_vendor_box():
     assert all(entry.source_kind == "layout_columns" for entry in result.definitions)
     assert all(entry.definition_text for entry in result.definitions)
     assert result.summary.definition_count == 2
+    recovered = [
+        element for element in result.pages[0].elements
+        if element.role_source == "definition_row_recovery_span_columns"
+    ]
+    span_owners: dict[str, list[str]] = {}
+    for element in recovered:
+        for span_id in element.source.stage3_span_ids:
+            span_owners.setdefault(span_id, []).append(element.element_id)
+    assert not {span_id: owners for span_id, owners in span_owners.items() if len(owners) > 1}
 
 
 def test_definition_row_recovery_does_not_split_unrelated_wide_prose():
@@ -1804,3 +1816,516 @@ def test_generic_cross_page_hierarchy_stops_at_new_section_before_candidate():
     source = next(e for e in result.pages[0].elements if e.text.startswith("(20)"))
     target = next(e for e in result.pages[1].elements if e.text.startswith("(21)"))
     assert not any(r.type == "continues" and r.source_element_id == source.element_id and r.target_element_id == target.element_id for r in result.relationships)
+
+
+def test_toc_table_repair_splits_embedded_heading_from_following_entry_without_splitting_wrapped_titles():
+    record, extraction, layout = _fixture()
+    cells = [
+        ["6A.", "Internal Programmes, Policies, Procedures and Controls", "20"],
+        ["6E.", "Group-wide AML/CFT/CPF Programmes", "24"],
+        ["PART     \n7", "II: RISK-BASED APPROACH APPLICATION \n         Risk-Based Approach Application", "25"],
+        ["7.1", "ML/TF Risk Assessment", "25"],
+        ["7.2", "ML/TF Risk Management and Mitigation", "26"],
+        ["7.6", "Risk Management and Mitigation in Third-Party Deposits and \nPayments", "29"],
+        ["PART", "III: CUSTOMER DUE DILIGENCE", ""],
+        ["8", "Customer Due Diligence", "30"],
+    ]
+    extraction.pages[0].blocks = [
+        _text_block("p1-b0", 0, [50, 40, 300, 70], "CONTENTS", 22),
+    ]
+    extraction.pages[0].tables = [
+        TableExtraction(
+            table_id="p1-t1",
+            bbox=[70, 120, 530, 700],
+            row_count=len(cells),
+            col_count=3,
+            cells=cells,
+        )
+    ]
+    extraction.summary.text_block_count = 1
+    extraction.summary.table_count = 1
+    layout["result"]["toc"] = []
+    layout["result"]["pages"][0]["boxes"] = [
+        {
+            "x0": 50, "y0": 40, "x1": 300, "y1": 70,
+            "boxclass": "section-header",
+            "textlines": [{"spans": [{"text": "CONTENTS"}]}],
+        },
+        _layout_table(70, 120, 530, 700, cells),
+    ]
+
+    result = build_canonical_document(record=record, extraction=extraction, layout_artifact=layout)
+    table_element = result.pages[0].elements[1]
+    assert table_element.type == "table"
+    assert table_element.table is not None
+    repaired = table_element.table.cells
+
+    assert ["PART", "II: RISK-BASED APPROACH APPLICATION", ""] in repaired
+    assert ["7", "Risk-Based Approach Application", "25"] in repaired
+    assert ["PART     \n7", "II: RISK-BASED APPROACH APPLICATION \n         Risk-Based Approach Application", "25"] not in repaired
+    assert ["7.6", "Risk Management and Mitigation in Third-Party Deposits and \nPayments", "29"] in repaired
+    assert table_element.table.row_count == len(cells) + 1
+    assert result.tables[0].row_count == len(cells) + 1
+    assert "PART\tII: RISK-BASED APPROACH APPLICATION" in table_element.text
+    assert "7\tRisk-Based Approach Application\t25" in table_element.text
+    assert "|PART|II: RISK-BASED APPROACH APPLICATION||" in (table_element.table.markdown or "")
+
+
+def test_toc_table_repair_does_not_run_without_explicit_contents_context():
+    record, extraction, layout = _fixture()
+    cells = [
+        ["6A.", "Internal Programmes, Policies, Procedures and Controls", "20"],
+        ["6E.", "Group-wide AML/CFT/CPF Programmes", "24"],
+        ["PART     \n7", "II: RISK-BASED APPROACH APPLICATION \n         Risk-Based Approach Application", "25"],
+        ["7.1", "ML/TF Risk Assessment", "25"],
+        ["7.2", "ML/TF Risk Management and Mitigation", "26"],
+        ["7.6", "Risk Management and Mitigation in Third-Party Deposits and \nPayments", "29"],
+        ["PART", "III: CUSTOMER DUE DILIGENCE", ""],
+        ["8", "Customer Due Diligence", "30"],
+    ]
+    extraction.pages[0].blocks = [
+        _text_block("p1-b0", 0, [50, 40, 300, 70], "Quarterly Risk Register", 22),
+    ]
+    extraction.pages[0].tables = [
+        TableExtraction(
+            table_id="p1-t1",
+            bbox=[70, 120, 530, 700],
+            row_count=len(cells),
+            col_count=3,
+            cells=cells,
+        )
+    ]
+    extraction.summary.text_block_count = 1
+    extraction.summary.table_count = 1
+    layout["result"]["toc"] = []
+    layout["result"]["pages"][0]["boxes"] = [
+        {
+            "x0": 50, "y0": 40, "x1": 300, "y1": 70,
+            "boxclass": "title",
+            "textlines": [{"spans": [{"text": "Quarterly Risk Register"}]}],
+        },
+        _layout_table(70, 120, 530, 700, cells),
+    ]
+
+    result = build_canonical_document(record=record, extraction=extraction, layout_artifact=layout)
+    table_element = result.pages[0].elements[1]
+    assert table_element.type == "table"
+    assert table_element.table is not None
+
+    canonical_cells = table_element.table.cells
+    merged = ["PART     \n7", "II: RISK-BASED APPROACH APPLICATION \n         Risk-Based Approach Application", "25"]
+    assert merged in canonical_cells
+    assert ["PART", "II: RISK-BASED APPROACH APPLICATION", ""] not in canonical_cells
+    assert ["7", "Risk-Based Approach Application", "25"] not in canonical_cells
+    assert table_element.table.row_count == len(cells)
+    assert result.tables[0].row_count == len(cells)
+
+
+def test_toc_context_inherits_to_adjacent_table_continuation_without_repeated_contents_heading():
+    record, extraction, layout = _two_page_base()
+    p1_cells = [
+        ["1.", "Introduction", "5"],
+        ["2.", "Applicability", "6"],
+        ["3.", "Definitions", "8"],
+        ["4.", "General Description", "16"],
+    ]
+    p2_cells = [
+        ["PART\n5", "II: RISK-BASED APPROACH\nRisk-Based Approach", "25"],
+        ["5.1", "Risk Assessment", "25"],
+        ["5.2", "Risk Management and Mitigation", "26"],
+        ["5.3", "Risk Profiling", "28"],
+    ]
+    p1_blocks = [_text_block("p1-b0", 0, [50, 40, 300, 70], "CONTENTS", 16)]
+    p2_blocks = [_text_block("p2-b0", 0, [360, 20, 545, 35], "Guidelines", 8)]
+    extraction.pages = [
+        _make_page(1, p1_blocks, [TableExtraction(table_id="p1-t1", bbox=[70, 430, 530, 790], row_count=4, col_count=3, cells=p1_cells)]),
+        _make_page(2, p2_blocks, [TableExtraction(table_id="p2-t1", bbox=[72, 45, 532, 720], row_count=4, col_count=3, cells=p2_cells)]),
+    ]
+    extraction.summary.text_block_count = 2
+    extraction.summary.table_count = 2
+    layout["result"]["toc"] = []
+    layout["result"]["pages"] = [
+        {
+            "page_number": 1, "width": 600, "height": 800,
+            "boxes": [
+                {"x0": 50, "y0": 40, "x1": 300, "y1": 70, "boxclass": "section-header", "textlines": [{"spans": [{"text": "CONTENTS"}]}]},
+                _layout_table(70, 430, 530, 790, p1_cells),
+            ],
+        },
+        {
+            "page_number": 2, "width": 600, "height": 800,
+            "boxes": [
+                {"x0": 360, "y0": 20, "x1": 545, "y1": 35, "boxclass": "page-header", "textlines": [{"spans": [{"text": "Guidelines"}]}]},
+                _layout_table(72, 45, 532, 720, p2_cells),
+            ],
+        },
+    ]
+
+    result = build_canonical_document(record=record, extraction=extraction, layout_artifact=layout)
+    p2_table = next(e for e in result.pages[1].elements if e.type == "table")
+    assert p2_table.table is not None
+    assert ["PART", "II: RISK-BASED APPROACH", ""] in p2_table.table.cells
+    assert ["5", "Risk-Based Approach", "25"] in p2_table.table.cells
+    assert p2_cells[0] not in p2_table.table.cells
+    assert p2_table.table.row_count == len(p2_cells) + 1
+
+    assert len(result.tables) == 1
+    logical = result.tables[0]
+    assert logical.spans_multiple_pages is True
+    assert logical.start_page == 1 and logical.end_page == 2
+    assert ["PART", "II: RISK-BASED APPROACH", ""] in logical.cells
+    assert ["5", "Risk-Based Approach", "25"] in logical.cells
+
+
+def test_toc_context_inheritance_propagates_across_multiple_continuation_pages():
+    record, extraction, layout = _fixture()
+    record.classification.page_count = 3
+    extraction.summary.page_count = 3
+    layout["result"]["page_count"] = 3
+
+    p1_cells = [
+        ["1.", "Introduction", "5"],
+        ["2.", "Applicability", "6"],
+        ["3.", "Definitions", "8"],
+        ["4.", "General Description", "16"],
+    ]
+    p2_cells = [
+        ["5.", "Programme Requirements", "20"],
+        ["5.1", "Board of Directors", "20"],
+        ["5.2", "Senior Management", "22"],
+        ["5.3", "Compliance Officer", "23"],
+    ]
+    p3_cells = [
+        ["PART\n6", "III: CUSTOMER DUE DILIGENCE\nCustomer Due Diligence", "30"],
+        ["6.1", "Conducting CDD", "38"],
+        ["6.2", "Enhanced CDD Measures", "40"],
+        ["6.3", "Higher-Risk Countries", "42"],
+    ]
+
+    extraction.pages = [
+        _make_page(1, [_text_block("p1-b0", 0, [50, 40, 300, 70], "CONTENTS", 16)], [TableExtraction(table_id="p1-t1", bbox=[70, 430, 530, 790], row_count=4, col_count=3, cells=p1_cells)]),
+        _make_page(2, [], [TableExtraction(table_id="p2-t1", bbox=[72, 45, 532, 790], row_count=4, col_count=3, cells=p2_cells)]),
+        _make_page(3, [], [TableExtraction(table_id="p3-t1", bbox=[71, 40, 531, 700], row_count=4, col_count=3, cells=p3_cells)]),
+    ]
+    extraction.summary.text_block_count = 1
+    extraction.summary.table_count = 3
+    layout["result"]["toc"] = []
+    layout["result"]["pages"] = [
+        {"page_number": 1, "width": 600, "height": 800, "boxes": [
+            {"x0": 50, "y0": 40, "x1": 300, "y1": 70, "boxclass": "section-header", "textlines": [{"spans": [{"text": "CONTENTS"}]}]},
+            _layout_table(70, 430, 530, 790, p1_cells),
+        ]},
+        {"page_number": 2, "width": 600, "height": 800, "boxes": [_layout_table(72, 45, 532, 790, p2_cells)]},
+        {"page_number": 3, "width": 600, "height": 800, "boxes": [_layout_table(71, 40, 531, 700, p3_cells)]},
+    ]
+
+    result = build_canonical_document(record=record, extraction=extraction, layout_artifact=layout)
+    p3_table = next(e for e in result.pages[2].elements if e.type == "table")
+    assert p3_table.table is not None
+    assert ["PART", "III: CUSTOMER DUE DILIGENCE", ""] in p3_table.table.cells
+    assert ["6", "Customer Due Diligence", "30"] in p3_table.table.cells
+    assert p3_cells[0] not in p3_table.table.cells
+
+    assert len(result.tables) == 1
+    assert result.tables[0].spans_multiple_pages is True
+    assert result.tables[0].start_page == 1
+    assert result.tables[0].end_page == 3
+
+
+def test_toc_context_inheritance_stops_when_substantive_content_precedes_candidate_table():
+    record, extraction, layout = _two_page_base()
+    p1_cells = [
+        ["1.", "Introduction", "5"],
+        ["2.", "Applicability", "6"],
+        ["3.", "Definitions", "8"],
+        ["4.", "General Description", "16"],
+    ]
+    merged = ["PART\n5", "II: RISK-BASED APPROACH\nRisk-Based Approach", "25"]
+    p2_cells = [
+        merged,
+        ["5.1", "Risk Assessment", "25"],
+        ["5.2", "Risk Management", "26"],
+        ["5.3", "Risk Profiling", "28"],
+    ]
+    extraction.pages = [
+        _make_page(1, [_text_block("p1-b0", 0, [50, 40, 300, 70], "CONTENTS", 16)], [TableExtraction(table_id="p1-t1", bbox=[70, 430, 530, 790], row_count=4, col_count=3, cells=p1_cells)]),
+        _make_page(2, [_text_block("p2-b0", 0, [70, 35, 350, 60], "APPENDIX A", 14)], [TableExtraction(table_id="p2-t1", bbox=[72, 80, 532, 720], row_count=4, col_count=3, cells=p2_cells)]),
+    ]
+    extraction.summary.text_block_count = 2
+    extraction.summary.table_count = 2
+    layout["result"]["toc"] = []
+    layout["result"]["pages"] = [
+        {"page_number": 1, "width": 600, "height": 800, "boxes": [
+            {"x0": 50, "y0": 40, "x1": 300, "y1": 70, "boxclass": "section-header", "textlines": [{"spans": [{"text": "CONTENTS"}]}]},
+            _layout_table(70, 430, 530, 790, p1_cells),
+        ]},
+        {"page_number": 2, "width": 600, "height": 800, "boxes": [
+            {"x0": 70, "y0": 35, "x1": 350, "y1": 60, "boxclass": "section-header", "textlines": [{"spans": [{"text": "APPENDIX A"}]}]},
+            _layout_table(72, 80, 532, 720, p2_cells),
+        ]},
+    ]
+
+    result = build_canonical_document(record=record, extraction=extraction, layout_artifact=layout)
+    p2_table = next(e for e in result.pages[1].elements if e.type == "table")
+    assert p2_table.table is not None
+    assert merged in p2_table.table.cells
+    assert ["PART", "II: RISK-BASED APPROACH", ""] not in p2_table.table.cells
+    assert len(result.tables) == 2
+
+
+def test_inherited_toc_context_repairs_only_the_continuing_top_table_on_the_page():
+    record, extraction, layout = _two_page_base()
+    p1_cells = [
+        ["1.", "Introduction", "5"],
+        ["2.", "Applicability", "6"],
+        ["3.", "Definitions", "8"],
+        ["4.", "General Description", "16"],
+    ]
+    top_merged = ["PART\n5", "II: RISK-BASED APPROACH\nRisk-Based Approach", "25"]
+    top_cells = [
+        top_merged,
+        ["5.1", "Risk Assessment", "25"],
+        ["5.2", "Risk Management", "26"],
+        ["5.3", "Risk Profiling", "28"],
+    ]
+    lower_merged = ["GROUP\n9", "INTERNAL TEST SECTION\nUnrelated Entry", "70"]
+    lower_cells = [
+        lower_merged,
+        ["9.1", "Unrelated A", "71"],
+        ["9.2", "Unrelated B", "72"],
+        ["9.3", "Unrelated C", "73"],
+    ]
+    extraction.pages = [
+        _make_page(1, [_text_block("p1-b0", 0, [50, 40, 300, 70], "CONTENTS", 16)], [TableExtraction(table_id="p1-t1", bbox=[70, 430, 530, 790], row_count=4, col_count=3, cells=p1_cells)]),
+        _make_page(2, [], [
+            TableExtraction(table_id="p2-t1", bbox=[72, 45, 532, 360], row_count=4, col_count=3, cells=top_cells),
+            TableExtraction(table_id="p2-t2", bbox=[72, 430, 532, 740], row_count=4, col_count=3, cells=lower_cells),
+        ]),
+    ]
+    extraction.summary.text_block_count = 1
+    extraction.summary.table_count = 3
+    layout["result"]["toc"] = []
+    layout["result"]["pages"] = [
+        {"page_number": 1, "width": 600, "height": 800, "boxes": [
+            {"x0": 50, "y0": 40, "x1": 300, "y1": 70, "boxclass": "section-header", "textlines": [{"spans": [{"text": "CONTENTS"}]}]},
+            _layout_table(70, 430, 530, 790, p1_cells),
+        ]},
+        {"page_number": 2, "width": 600, "height": 800, "boxes": [
+            _layout_table(72, 45, 532, 360, top_cells),
+            _layout_table(72, 430, 532, 740, lower_cells),
+        ]},
+    ]
+
+    result = build_canonical_document(record=record, extraction=extraction, layout_artifact=layout)
+    p2_tables = [e for e in result.pages[1].elements if e.type == "table"]
+    assert len(p2_tables) == 2
+    assert p2_tables[0].table is not None and p2_tables[1].table is not None
+    assert top_merged not in p2_tables[0].table.cells
+    assert ["PART", "II: RISK-BASED APPROACH", ""] in p2_tables[0].table.cells
+    assert lower_merged in p2_tables[1].table.cells
+    assert ["GROUP", "INTERNAL TEST SECTION", ""] not in p2_tables[1].table.cells
+
+
+def test_toc_context_inheritance_stops_when_next_table_starts_too_low_on_page():
+    record, extraction, layout = _two_page_base()
+    p1_cells = [
+        ["1.", "Introduction", "5"],
+        ["2.", "Applicability", "6"],
+        ["3.", "Definitions", "8"],
+        ["4.", "General Description", "16"],
+    ]
+    merged = ["PART\n5", "II: RISK-BASED APPROACH\nRisk-Based Approach", "25"]
+    p2_cells = [
+        merged,
+        ["5.1", "Risk Assessment", "25"],
+        ["5.2", "Risk Management", "26"],
+        ["5.3", "Risk Profiling", "28"],
+    ]
+    extraction.pages = [
+        _make_page(1, [_text_block("p1-b0", 0, [50, 40, 300, 70], "CONTENTS", 16)], [TableExtraction(table_id="p1-t1", bbox=[70, 430, 530, 790], row_count=4, col_count=3, cells=p1_cells)]),
+        _make_page(2, [], [TableExtraction(table_id="p2-t1", bbox=[72, 300, 532, 720], row_count=4, col_count=3, cells=p2_cells)]),
+    ]
+    extraction.summary.text_block_count = 1
+    extraction.summary.table_count = 2
+    layout["result"]["toc"] = []
+    layout["result"]["pages"] = [
+        {"page_number": 1, "width": 600, "height": 800, "boxes": [
+            {"x0": 50, "y0": 40, "x1": 300, "y1": 70, "boxclass": "section-header", "textlines": [{"spans": [{"text": "CONTENTS"}]}]},
+            _layout_table(70, 430, 530, 790, p1_cells),
+        ]},
+        {"page_number": 2, "width": 600, "height": 800, "boxes": [_layout_table(72, 300, 532, 720, p2_cells)]},
+    ]
+
+    result = build_canonical_document(record=record, extraction=extraction, layout_artifact=layout)
+    p2_table = next(e for e in result.pages[1].elements if e.type == "table")
+    assert p2_table.table is not None
+    assert merged in p2_table.table.cells
+    assert len(result.tables) == 2
+
+
+def test_toc_context_inheritance_stops_when_table_geometry_is_incompatible():
+    record, extraction, layout = _two_page_base()
+    p1_cells = [
+        ["1.", "Introduction", "5"],
+        ["2.", "Applicability", "6"],
+        ["3.", "Definitions", "8"],
+        ["4.", "General Description", "16"],
+    ]
+    merged = ["PART\n5", "II: RISK-BASED APPROACH\nRisk-Based Approach", "25"]
+    p2_cells = [
+        merged,
+        ["5.1", "Risk Assessment", "25"],
+        ["5.2", "Risk Management", "26"],
+        ["5.3", "Risk Profiling", "28"],
+    ]
+    extraction.pages = [
+        _make_page(1, [_text_block("p1-b0", 0, [50, 40, 300, 70], "CONTENTS", 16)], [TableExtraction(table_id="p1-t1", bbox=[70, 430, 530, 790], row_count=4, col_count=3, cells=p1_cells)]),
+        _make_page(2, [], [TableExtraction(table_id="p2-t1", bbox=[180, 45, 590, 720], row_count=4, col_count=3, cells=p2_cells)]),
+    ]
+    extraction.summary.text_block_count = 1
+    extraction.summary.table_count = 2
+    layout["result"]["toc"] = []
+    layout["result"]["pages"] = [
+        {"page_number": 1, "width": 600, "height": 800, "boxes": [
+            {"x0": 50, "y0": 40, "x1": 300, "y1": 70, "boxclass": "section-header", "textlines": [{"spans": [{"text": "CONTENTS"}]}]},
+            _layout_table(70, 430, 530, 790, p1_cells),
+        ]},
+        {"page_number": 2, "width": 600, "height": 800, "boxes": [_layout_table(180, 45, 590, 720, p2_cells)]},
+    ]
+
+    result = build_canonical_document(record=record, extraction=extraction, layout_artifact=layout)
+    p2_table = next(e for e in result.pages[1].elements if e.type == "table")
+    assert p2_table.table is not None
+    assert merged in p2_table.table.cells
+    assert len(result.tables) == 2
+
+
+def test_semantic_v2_resolves_local_group_and_phrase_items_without_domain_rules():
+    record, extraction, layout = _fixture()
+    raw = extraction.pages[0]
+    raw.text = (
+        "Operations Manual\n"
+        "4.2 The inspection applies to the following equipment types:\n"
+        "Equipment\n"
+        "(a) Pumps;\n"
+        "(b) Valves;\n"
+        "(c) Sensors;"
+    )
+    raw.blocks = [
+        _text_block("p1-b0", 0, [50, 40, 300, 70], "Operations Manual", 22),
+        _text_block("p1-b1", 1, [70, 110, 530, 145], "4.2 The inspection applies to the following equipment types:", 11),
+        _text_block("p1-b2", 2, [105, 165, 240, 185], "Equipment", 12),
+        _text_block("p1-b3", 3, [135, 205, 350, 225], "(a) Pumps;", 11),
+        _text_block("p1-b4", 4, [135, 235, 350, 255], "(b) Valves;", 11),
+        _text_block("p1-b5", 5, [135, 265, 350, 285], "(c) Sensors;", 11),
+    ]
+    raw.tables = []
+    extraction.summary.text_block_count = len(raw.blocks)
+    extraction.summary.table_count = 0
+    layout["result"]["toc"] = []
+    layout["result"]["pages"][0]["boxes"] = [
+        {"x0":50,"y0":40,"x1":300,"y1":70,"boxclass":"title","textlines":[{"spans":[{"text":"Operations Manual"}]}]},
+        {"x0":70,"y0":110,"x1":530,"y1":145,"boxclass":"list-item","textlines":[{"spans":[{"text":"4.2 The inspection applies to the following equipment types:"}]}]},
+        {"x0":105,"y0":165,"x1":240,"y1":185,"boxclass":"section-header","textlines":[{"spans":[{"text":"Equipment"}]}]},
+        {"x0":135,"y0":205,"x1":350,"y1":225,"boxclass":"list-item","textlines":[{"spans":[{"text":"(a) Pumps;"}]}]},
+        {"x0":135,"y0":235,"x1":350,"y1":255,"boxclass":"list-item","textlines":[{"spans":[{"text":"(b) Valves;"}]}]},
+        {"x0":135,"y0":265,"x1":350,"y1":285,"boxclass":"list-item","textlines":[{"spans":[{"text":"(c) Sensors;"}]}]},
+    ]
+
+    result = build_canonical_document(record=record, extraction=extraction, layout_artifact=layout)
+    elements = result.pages[0].elements
+    clause = next(item for item in elements if item.text.startswith("4.2"))
+    group = next(item for item in elements if item.text == "Equipment")
+    items = [item for item in elements if item.text.startswith("(")]
+
+    assert clause.type == "clause"
+    assert group.type == "group_header"
+    assert group.layout_role == "section-header"
+    assert group.heading_level is None
+    assert [item.type for item in items] == ["list_item", "list_item", "list_item"]
+    assert all(item.layout_role == "list-item" for item in items)
+    assert all(item.classification is not None for item in [clause, group, *items])
+    assert all(item.classification.selected_type == item.type for item in [clause, group, *items])
+    assert any(
+        relation.type == "introduces"
+        and relation.source_element_id == clause.element_id
+        and relation.target_element_id == group.element_id
+        for relation in result.relationships
+    )
+    assert all(
+        any(
+            relation.type == "introduces"
+            and relation.source_element_id == group.element_id
+            and relation.target_element_id == item.element_id
+            for relation in result.relationships
+        )
+        for item in items
+    )
+    assert not any(section.element_id == group.element_id for section in result.sections)
+
+
+def test_semantic_v2_keeps_independent_enumerated_propositions_as_subclauses():
+    record, extraction, layout = _fixture()
+    raw = extraction.pages[0]
+    raw.text = (
+        "Safety Standard\n"
+        "5.2 The organization shall ensure:\n"
+        "(a) the supervisor must approve the shutdown;\n"
+        "(b) the technician shall record the result."
+    )
+    raw.blocks = [
+        _text_block("p1-b0", 0, [50, 40, 300, 70], "Safety Standard", 22),
+        _text_block("p1-b1", 1, [70, 110, 530, 145], "5.2 The organization shall ensure:", 11),
+        _text_block("p1-b2", 2, [105, 165, 530, 195], "(a) the supervisor must approve the shutdown;", 11),
+        _text_block("p1-b3", 3, [105, 205, 530, 235], "(b) the technician shall record the result.", 11),
+    ]
+    raw.tables = []
+    extraction.summary.text_block_count = len(raw.blocks)
+    extraction.summary.table_count = 0
+    layout["result"]["toc"] = []
+    layout["result"]["pages"][0]["boxes"] = [
+        {"x0":50,"y0":40,"x1":300,"y1":70,"boxclass":"title","textlines":[{"spans":[{"text":"Safety Standard"}]}]},
+        {"x0":70,"y0":110,"x1":530,"y1":145,"boxclass":"list-item","textlines":[{"spans":[{"text":"5.2 The organization shall ensure:"}]}]},
+        {"x0":105,"y0":165,"x1":530,"y1":195,"boxclass":"list-item","textlines":[{"spans":[{"text":"(a) the supervisor must approve the shutdown;"}]}]},
+        {"x0":105,"y0":205,"x1":530,"y1":235,"boxclass":"list-item","textlines":[{"spans":[{"text":"(b) the technician shall record the result."}]}]},
+    ]
+
+    result = build_canonical_document(record=record, extraction=extraction, layout_artifact=layout)
+    assert [record.kind for record in result.clauses] == ["clause", "subclause", "subclause"]
+    subclauses = [item for item in result.pages[0].elements if item.type == "subclause"]
+    assert [item.subclause_marker for item in subclauses] == ["(a)", "(b)"]
+    assert all(item.classification and item.classification.source == "sequence_resolver" for item in subclauses)
+    assert all(any(alt.type == "list_item" for alt in item.classification.alternatives) for item in subclauses)
+
+
+def test_semantic_v2_classification_metadata_is_backfilled_after_specialized_repairs():
+    record, extraction, layout = _fixture()
+    result = build_canonical_document(record=record, extraction=extraction, layout_artifact=layout)
+    for element in result.pages[0].elements:
+        assert element.layout_role is not None
+        assert element.classification is not None
+        assert element.classification.selected_type == element.type
+        assert 0.0 <= element.classification.confidence <= 1.0
+        assert element.classification.source
+
+
+def test_semantic_v2_validator_surfaces_orphan_group_headers_without_blocking_build():
+    record, extraction, layout = _fixture()
+    raw = extraction.pages[0]
+    raw.blocks = [
+        _text_block("p1-b0", 0, [50, 40, 300, 70], "Manual", 22),
+        _text_block("p1-b1", 1, [90, 120, 260, 140], "Local label", 11),
+    ]
+    raw.tables = []
+    extraction.summary.text_block_count = 2
+    extraction.summary.table_count = 0
+    layout["result"]["toc"] = []
+    layout["result"]["pages"][0]["boxes"] = [
+        {"x0":50,"y0":40,"x1":300,"y1":70,"boxclass":"title","textlines":[{"spans":[{"text":"Manual"}]}]},
+        {"x0":90,"y0":120,"x1":260,"y1":140,"boxclass":"section-header","textlines":[{"spans":[{"text":"Local label"}]}]},
+    ]
+    result = build_canonical_document(record=record, extraction=extraction, layout_artifact=layout)
+    # With no contextual sequence, the resolver remains conservative and keeps
+    # this as a section header rather than inventing a local group relation.
+    assert result.pages[0].elements[1].type == "section_header"
+    assert not any("local group header" in warning for warning in result.warnings)

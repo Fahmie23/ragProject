@@ -65,6 +65,8 @@ def _prepare_dirs(tmp_path: Path, monkeypatch):
         settings.extracted_dir,
         settings.layout_dir,
         settings.structured_dir,
+        settings.corrections_dir,
+        settings.resolved_dir,
     ):
         directory.mkdir(parents=True, exist_ok=True)
 
@@ -119,3 +121,75 @@ def test_upload_extract_structure_fetch_and_invalidate(tmp_path: Path, monkeypat
     assert refreshed.json()["structure_status"] == "not_started"
     assert client.get(f"/api/documents/{document_id}/structure").status_code == 404
     assert client.get(f"/api/documents/{document_id}/layout").status_code == 404
+
+
+def test_correction_validation_is_non_persistent_and_save_requires_integrity_pass(tmp_path: Path, monkeypatch):
+    _prepare_dirs(tmp_path, monkeypatch)
+    monkeypatch.setattr("app.services.structure.analyze_pdf_layout", lambda path: _layout_artifact())
+    client = TestClient(app)
+    upload = client.post(
+        "/api/documents/upload",
+        files={"file": ("sample.pdf", _pdf_bytes(), "application/pdf")},
+    )
+    document_id = upload.json()["document"]["document_id"]
+    assert client.post(f"/api/documents/{document_id}/extract").status_code == 200
+    structure_response = client.post(f"/api/documents/{document_id}/structure")
+    assert structure_response.status_code == 200
+    structure = structure_response.json()
+    section_id = structure["sections"][0]["section_id"]
+    body = next(element for element in structure["pages"][0]["elements"] if element["type"] == "paragraph")
+    payload = {
+        "base_structured_at": structure["structured_at"],
+        "operations": [{
+            "operation_id": "op-api-structure",
+            "operation": "set_structure",
+            "page_number": 1,
+            "source_element_ids": [body["element_id"]],
+            "result_elements": [],
+            "relationships": [],
+            "structure": {
+                "element_id": body["element_id"],
+                "type": "clause",
+                "section_id": section_id,
+                "clause_id": "manual-clause-api",
+                "clause_number": "1.1",
+            },
+            "created_at": structure["structured_at"],
+        }],
+    }
+
+    validate = client.post(f"/api/documents/{document_id}/corrections/validate", json=payload)
+    assert validate.status_code == 200
+    assert validate.json()["valid"] is True
+    assert validate.json()["resolved"]["integrity"]["status"] == "pass"
+    assert client.get(f"/api/documents/{document_id}/corrections").status_code == 404
+
+    save = client.put(f"/api/documents/{document_id}/corrections", json=payload)
+    assert save.status_code == 200
+    assert save.json()["resolved"]["integrity"]["status"] == "pass"
+    assert any(clause["clause_id"] == "manual-clause-api" for clause in save.json()["resolved"]["structure"]["clauses"])
+    assert client.get(f"/api/documents/{document_id}/corrections").status_code == 200
+
+
+def test_zero_correction_review_can_be_finalized_for_stage5(tmp_path: Path, monkeypatch):
+    _prepare_dirs(tmp_path, monkeypatch)
+    monkeypatch.setattr("app.services.structure.analyze_pdf_layout", lambda path: _layout_artifact())
+    client = TestClient(app)
+    upload = client.post(
+        "/api/documents/upload",
+        files={"file": ("sample.pdf", _pdf_bytes(), "application/pdf")},
+    )
+    document_id = upload.json()["document"]["document_id"]
+    assert client.post(f"/api/documents/{document_id}/extract").status_code == 200
+    structure_response = client.post(f"/api/documents/{document_id}/structure")
+    assert structure_response.status_code == 200
+    structure = structure_response.json()
+
+    save = client.put(
+        f"/api/documents/{document_id}/corrections",
+        json={"base_structured_at": structure["structured_at"], "operations": []},
+    )
+    assert save.status_code == 200
+    assert save.json()["resolved"]["correction_count"] == 0
+    assert save.json()["resolved"]["integrity"]["status"] == "pass"
+    assert save.json()["resolved"]["review"]["stage5_eligible"] is True

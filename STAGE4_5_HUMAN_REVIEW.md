@@ -2,6 +2,8 @@
 
 Stage 4.5 is a review layer between automatic structure reconstruction (Stage 4) and future chunking (Stage 5).
 
+> **Current workflow (4.5.8.16):** the active UI is intentionally simplified to **Element correction** and **Exact text spans**. Required semantic relations appear contextually; for `definition_text`, the reviewer selects an existing DefinitionEntry from **Belongs to definition**. Older structural/cross-page correction operations remain backend-compatible but are no longer primary UI tools.
+
 It is intentionally **non-destructive**:
 
 ```text
@@ -50,6 +52,8 @@ The first version supports six operations:
 6. **Delete** — remove a false-positive canonical element from the resolved structure.
 
 The frontend also provides **Undo**, **Redo**, **Reset page**, and **Reset all** controls.
+
+The simplified current workflow also supports **Assign definition** / **Clear definition relation** for selected `definition_text` elements. This is stored as one bulk intent-level operation and does not require the reviewer to edit section IDs or membership arrays manually.
 
 ## Text is reconstructed from Stage 3
 
@@ -215,7 +219,7 @@ Edit layout
       ↓
 select / draw region
       ↓
-move · resize · relabel · split · merge · delete
+move · resize · relabel · split · merge · suppress
       ↓
 review unsaved operations
       ↓
@@ -241,7 +245,8 @@ Stage 4.5 is deliberately a **page-region correction layer**, not a second docum
 - It can correct bounding boxes and semantic element types.
 - It can recover corrected text from Stage 3 spans.
 - It reconciles/prunes automatic higher-order records when their source elements no longer exist or no longer have compatible roles.
-- It does **not** automatically rebuild a brand-new section hierarchy, definition list, logical table grid, or figure relationship graph from arbitrary manual edits.
+- It can manually link/unlink same-page `definition_term` and `definition_text` elements and rebuild layout-column `DefinitionEntry` records from that corrected membership.
+- It does **not** automatically rebuild a brand-new section hierarchy, logical table grid, or figure relationship graph from arbitrary manual edits.
 - A newly drawn `table` region does not parse a new table cell grid; table parsing remains an automatic structure task.
 - The first split tool is horizontal; a future version can add arbitrary split lines if real documents require it.
 
@@ -257,7 +262,7 @@ Stage 4.5 adds tests for:
 - API persistence of correction and resolved artifacts;
 - invalidating Stage 4.5 when Stage 4 is rerun.
 
-The complete backend suite currently contains **21 passing tests**.
+The current package backend suite contains **58 passing tests**.
 
 ## Apply to an existing Stage 4.4 project
 
@@ -279,10 +284,10 @@ PYTHONPATH=. pytest -q
 uvicorn app.main:app --reload
 ```
 
-Expected test result:
+Expected test result for this package:
 
 ```text
-21 passed
+58 passed
 ```
 
 For the frontend:
@@ -294,3 +299,16 @@ npm run dev
 ```
 
 No Stage 3 re-extraction is required merely to install Stage 4.5. Existing Stage 3 and automatic Stage 4 artifacts can be reviewed directly.
+
+## Exact text-span correction (Stage 4.5.8.10)
+
+The correction layer can now rebuild safe leaf/content elements from exact immutable Stage 3 span IDs. Use **Review → Text spans** when the automatic canonical element boundary is too coarse. A `span_rebuild` operation derives its text and bbox from `source_span_ids`; any unselected spans from a replaced source element are preserved as residual result elements, and the backend rejects silent span loss or duplicate span assignment. Record-bearing structural types still require dedicated editors. See `STAGE4_5_8_10_TEXT_SPAN_CORRECTION.md`.
+
+
+## Stage 4.5.8.12 relation review gate
+
+Stage 4.5 uses automatic structural-integrity gating. A resolved structure must have zero blocking integrity errors before it can be saved or consumed by Stage 5. Semantic warnings are diagnostics only and do not require explicit acknowledgement. `review.stage5_eligible` is derived automatically from structural integrity; the legacy relationship-review fields remain only for backward compatibility. Relationship provenance is preserved as `automatic`, `manual`, or `derived`.
+
+## Stage 4.5.8.16 definition membership rule
+
+A correction is not complete merely because an element is relabelled to `definition_text`. The reviewer explicitly selects the owning DefinitionEntry through the contextual **Belongs to definition** selector. One `assign_definition` operation can cover multiple selected definition-text elements. The backend then derives `definition_entry_id`, section membership, DefinitionEntry membership arrays, page ranges, and section back-references. Stage 4.5 does not guess the owning definition from marker sequence or page geometry. An unlinked final `definition_text` remains a blocking integrity error.

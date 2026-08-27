@@ -33,24 +33,30 @@ def _text_from_line(line: dict) -> str:
 
 def _parse_text_block(page_number: int, block: dict) -> TextBlock:
     lines: list[TextLine] = []
+    block_number = int(block.get("number", 0))
+    block_id = f"p{page_number}-b{block_number}"
 
-    for line in block.get("lines", []):
-        spans = [
-            TextSpan(
-                text=span.get("text", ""),
-                bbox=_bbox(span.get("bbox", (0, 0, 0, 0))),
-                origin=_point(span.get("origin")),
-                font=span.get("font"),
-                size=round(float(span["size"]), 3) if span.get("size") is not None else None,
-                flags=span.get("flags"),
-                color=span.get("color"),
-                ascender=round(float(span["ascender"]), 3) if span.get("ascender") is not None else None,
-                descender=round(float(span["descender"]), 3) if span.get("descender") is not None else None,
+    for line_index, line in enumerate(block.get("lines", [])):
+        line_id = f"{block_id}-l{line_index + 1}"
+        spans: list[TextSpan] = []
+        for span_index, span in enumerate(line.get("spans", [])):
+            spans.append(
+                TextSpan(
+                    span_id=f"{line_id}-s{span_index + 1}",
+                    text=span.get("text", ""),
+                    bbox=_bbox(span.get("bbox", (0, 0, 0, 0))),
+                    origin=_point(span.get("origin")),
+                    font=span.get("font"),
+                    size=round(float(span["size"]), 3) if span.get("size") is not None else None,
+                    flags=span.get("flags"),
+                    color=span.get("color"),
+                    ascender=round(float(span["ascender"]), 3) if span.get("ascender") is not None else None,
+                    descender=round(float(span["descender"]), 3) if span.get("descender") is not None else None,
+                )
             )
-            for span in line.get("spans", [])
-        ]
         lines.append(
             TextLine(
+                line_id=line_id,
                 bbox=_bbox(line.get("bbox", (0, 0, 0, 0))),
                 text=_text_from_line(line),
                 writing_mode=line.get("wmode"),
@@ -59,9 +65,8 @@ def _parse_text_block(page_number: int, block: dict) -> TextBlock:
             )
         )
 
-    block_number = int(block.get("number", 0))
     return TextBlock(
-        block_id=f"p{page_number}-b{block_number}",
+        block_id=block_id,
         number=block_number,
         bbox=_bbox(block.get("bbox", (0, 0, 0, 0))),
         text="\n".join(line.text for line in lines).strip(),

@@ -1,6 +1,6 @@
 from datetime import datetime
 from typing import Literal
-from pydantic import BaseModel, Field
+from pydantic import BaseModel, Field, model_validator
 
 
 PdfType = Literal["digital", "scanned", "mixed", "unknown"]
@@ -12,6 +12,7 @@ CanonicalElementType = Literal[
     "subtitle",
     "document_metadata",
     "section_header",
+    "group_header",
     "clause",
     "subclause",
     "definition_term",
@@ -81,6 +82,7 @@ class ExtractorInfo(BaseModel):
 
 
 class TextSpan(BaseModel):
+    span_id: str | None = None
     text: str
     bbox: list[float]
     origin: list[float] | None = None
@@ -93,6 +95,7 @@ class TextSpan(BaseModel):
 
 
 class TextLine(BaseModel):
+    line_id: str | None = None
     bbox: list[float]
     text: str
     writing_mode: int | None = None
@@ -153,7 +156,7 @@ class ExtractionSummary(BaseModel):
 
 
 class DocumentExtraction(BaseModel):
-    schema_version: str = "1.0"
+    schema_version: str = "1.1"
     document_id: str
     source_filename: str
     source_sha256: str
@@ -183,7 +186,12 @@ class CanonicalSourceTrace(BaseModel):
     layout_box_index: int
     layout_box_class: str
     stage3_block_ids: list[str] = Field(default_factory=list)
+    stage3_line_ids: list[str] = Field(default_factory=list)
+    stage3_span_ids: list[str] = Field(default_factory=list)
     stage3_table_ids: list[str] = Field(default_factory=list)
+
+
+RelationProvenance = Literal["automatic", "manual", "derived"]
 
 
 class StructuralRelation(BaseModel):
@@ -192,6 +200,20 @@ class StructuralRelation(BaseModel):
     source_element_id: str
     target_element_id: str
     evidence: str
+    provenance: RelationProvenance = "automatic"
+
+
+class SemanticTypeAlternative(BaseModel):
+    type: CanonicalElementType
+    score: float = Field(ge=0.0, le=1.0)
+
+
+class SemanticClassification(BaseModel):
+    selected_type: CanonicalElementType
+    confidence: float = Field(ge=0.0, le=1.0)
+    source: str
+    evidence: list[str] = Field(default_factory=list)
+    alternatives: list[SemanticTypeAlternative] = Field(default_factory=list)
 
 
 class CanonicalElement(BaseModel):
@@ -214,6 +236,8 @@ class CanonicalElement(BaseModel):
     heading_level: int | None = Field(default=None, ge=1, le=6)
     heading_level_source: HeadingLevelSource | None = None
     dominant_font_size: float | None = None
+    layout_role: str | None = None
+    classification: SemanticClassification | None = None
     role_source: str = "layout"
     table: CanonicalTable | None = None
     source: CanonicalSourceTrace
@@ -320,7 +344,7 @@ class StructureSummary(BaseModel):
 
 
 class StructuredDocument(BaseModel):
-    schema_version: str = "1.4"
+    schema_version: str = "1.8"
     document_id: str
     source_filename: str
     source_sha256: str
@@ -354,15 +378,71 @@ CorrectionOperationType = Literal[
     "merge",
     "draw",
     "delete",
+    "link_definition",
+    "unlink_definition",
+    "assign_definition",
+    "unassign_definition",
     "add_relationship",
     "remove_relationship",
+    "span_rebuild",
+    "set_structure",
 ]
+
+CorrectionStructuralType = Literal["section_header", "clause", "subclause"]
+
+
+class CorrectionStructureSpec(BaseModel):
+    """Intent-level structural correction.
+
+    Structural semantics are not ordinary labels: they carry canonical records
+    and graph relationships.  The frontend submits the complete intended
+    structure and the backend owns all derived record/relationship updates.
+    """
+
+    element_id: str
+    type: CorrectionStructuralType
+    section_id: str | None = None
+    parent_section_id: str | None = None
+    section_kind: Literal["section", "question"] = "section"
+    heading_level: int | None = Field(default=None, ge=1, le=6)
+    clause_id: str | None = None
+    clause_number: str | None = None
+    parent_clause_id: str | None = None
+    subclause_marker: str | None = None
+
+
+class IntegrityIssue(BaseModel):
+    issue_id: str = ""
+    code: str
+    severity: Literal["error", "warning"]
+    message: str
+    element_ids: list[str] = Field(default_factory=list)
+    record_ids: list[str] = Field(default_factory=list)
+    requires_review: bool = False
+
+
+class RelationshipIntegrityReport(BaseModel):
+    status: Literal["pass", "fail", "unknown"]
+    semantic_status: Literal["clear", "review_required", "blocked", "unknown"] = "unknown"
+    errors: list[IntegrityIssue] = Field(default_factory=list)
+    warnings: list[IntegrityIssue] = Field(default_factory=list)
+    counts: dict[str, int] = Field(default_factory=dict)
+
+
+class RelationshipReviewState(BaseModel):
+    status: Literal["not_reviewed", "needs_review", "approved", "blocked"] = "not_reviewed"
+    approved_issue_ids: list[str] = Field(default_factory=list)
+    pending_issue_ids: list[str] = Field(default_factory=list)
+    approved_at: datetime | None = None
+    note: str | None = None
+    stage5_eligible: bool = False
 
 
 class CorrectionElementSpec(BaseModel):
     element_id: str
     type: CanonicalElementType
     bbox: list[float] = Field(min_length=4, max_length=4)
+    source_span_ids: list[str] = Field(default_factory=list)
 
 
 class CorrectionRelationshipSpec(BaseModel):
@@ -389,7 +469,11 @@ class CorrectionOperation(BaseModel):
     source_element_ids: list[str] = Field(default_factory=list)
     result_elements: list[CorrectionElementSpec] = Field(default_factory=list)
     relationships: list[CorrectionRelationshipSpec] = Field(default_factory=list)
+    structure: CorrectionStructureSpec | None = None
     new_type: CanonicalElementType | None = None
+    definition_id: str | None = None
+    target_page_number: int | None = Field(default=None, ge=1)
+    note: str | None = None
     created_at: datetime
 
 
@@ -399,26 +483,206 @@ class SaveCorrectionsRequest(BaseModel):
 
 
 class CorrectionArtifact(BaseModel):
-    schema_version: str = "1.1"
+    schema_version: str = "1.9"
     document_id: str
     source_sha256: str
     base_structure_schema_version: str
     base_structured_at: datetime
     operations: list[CorrectionOperation] = Field(default_factory=list)
+    relationship_review: RelationshipReviewState = Field(default_factory=RelationshipReviewState)
     updated_at: datetime
 
 
 class ResolvedStructureArtifact(BaseModel):
-    schema_version: str = "1.0"
+    schema_version: str = "1.5"
     document_id: str
     source_sha256: str
     base_structured_at: datetime
     correction_count: int
     resolved_at: datetime
     structure: StructuredDocument
+    baseline_integrity: RelationshipIntegrityReport | None = None
+    integrity: RelationshipIntegrityReport = Field(default_factory=lambda: RelationshipIntegrityReport(
+        status="unknown",
+        semantic_status="unknown",
+        warnings=[IntegrityIssue(
+            code="legacy_integrity_unchecked",
+            severity="warning",
+            message="This resolved artifact predates relationship-integrity validation. Re-validate corrections before relying on its graph status.",
+            requires_review=True,
+        )],
+    ))
+    review: RelationshipReviewState = Field(default_factory=RelationshipReviewState)
     warnings: list[str] = Field(default_factory=list)
+
+
+class ValidateCorrectionsResponse(BaseModel):
+    valid: bool
+    resolved: ResolvedStructureArtifact | None = None
+    errors: list[str] = Field(default_factory=list)
 
 
 class SaveCorrectionsResponse(BaseModel):
     corrections: CorrectionArtifact
     resolved: ResolvedStructureArtifact
+
+
+class ApproveRelationshipsRequest(BaseModel):
+    base_structured_at: datetime
+    correction_updated_at: datetime
+    approved_issue_ids: list[str] = Field(default_factory=list)
+    note: str | None = None
+
+
+class ApproveRelationshipsResponse(BaseModel):
+    corrections: CorrectionArtifact
+    resolved: ResolvedStructureArtifact
+
+
+# Stage 5 — Retrieval preparation and semantic chunking
+ChunkingStrategy = Literal["semantic_v1", "semantic_v2"]
+CleaningAction = Literal["include", "context", "exclude"]
+
+
+class RetrievalCleaningPolicy(BaseModel):
+    exclude_page_headers: bool = True
+    exclude_page_footers: bool = True
+    exclude_margin_page_numbers: bool = True
+    exclude_repeated_margin_text: bool = True
+    deduplicate_overlapping_text: bool = True
+    repeated_margin_min_pages: int = Field(default=3, ge=2, le=50)
+    include_footnotes: bool = True
+    include_document_metadata: bool = True
+    include_figures_without_text: bool = False
+    normalize_whitespace: bool = True
+    # Conservative by default. Automatic dehyphenation can corrupt genuine
+    # compounds such as ``anti-money`` when the source wraps at a line break.
+    dehyphenate_line_breaks: bool = False
+
+
+class ChunkingConfig(BaseModel):
+    strategy: ChunkingStrategy = "semantic_v2"
+    soft_min_tokens: int = Field(default=100, ge=20, le=2000)
+    target_tokens: int = Field(default=450, ge=100, le=4000)
+    max_tokens: int = Field(default=700, ge=150, le=8000)
+    overlap_tokens: int = Field(default=60, ge=0, le=1000)
+    keep_definitions_together: bool = True
+    preserve_section_context: bool = True
+    preserve_cross_page_continuations: bool = True
+    group_dependent_children: bool = True
+    attach_parent_context_on_split: bool = True
+    pack_short_sibling_clauses: bool = True
+    attach_contextual_notes: bool = True
+    exclude_navigation_sections: bool = True
+    row_aware_table_splitting: bool = True
+    cleaning: RetrievalCleaningPolicy = Field(default_factory=RetrievalCleaningPolicy)
+
+    @model_validator(mode="after")
+    def validate_token_limits(self):
+        if self.soft_min_tokens > self.target_tokens:
+            raise ValueError("soft_min_tokens must be less than or equal to target_tokens")
+        if self.target_tokens > self.max_tokens:
+            raise ValueError("target_tokens must be less than or equal to max_tokens")
+        if self.overlap_tokens >= self.max_tokens:
+            raise ValueError("overlap_tokens must be smaller than max_tokens")
+        if not self.keep_definitions_together:
+            raise ValueError("semantic chunking requires keep_definitions_together=true")
+        if not self.preserve_cross_page_continuations:
+            raise ValueError("semantic chunking requires preserve_cross_page_continuations=true")
+        if self.cleaning.include_figures_without_text:
+            raise ValueError("Textless figures cannot be retrieval chunks until image semantic extraction is implemented")
+        return self
+
+
+class GenerateChunksRequest(BaseModel):
+    config: ChunkingConfig = Field(default_factory=ChunkingConfig)
+
+
+class CleaningDecision(BaseModel):
+    element_id: str
+    page_number: int
+    type: CanonicalElementType
+    action: CleaningAction
+    reason: str
+    text_preview: str = ""
+
+
+class RetrievalCleaningSummary(BaseModel):
+    input_element_count: int
+    included_element_count: int
+    context_element_count: int
+    excluded_element_count: int
+    normalized_element_count: int = 0
+    reason_counts: dict[str, int] = Field(default_factory=dict)
+    decisions: list[CleaningDecision] = Field(default_factory=list)
+
+
+class RetrievalChunk(BaseModel):
+    chunk_id: str
+    chunk_index: int = Field(ge=0)
+    semantic_type: str
+    text: str
+    content_text: str
+    context_text: str = ""
+    token_count: int = Field(ge=1)
+    pages: list[int] = Field(default_factory=list)
+    section_path: list[str] = Field(default_factory=list)
+    source_element_ids: list[str] = Field(default_factory=list)
+    context_element_ids: list[str] = Field(default_factory=list)
+    refinement_tags: list[str] = Field(default_factory=list)
+    source_span_ids: list[str] = Field(default_factory=list)
+    source_block_ids: list[str] = Field(default_factory=list)
+    source_table_ids: list[str] = Field(default_factory=list)
+    relationship_ids: list[str] = Field(default_factory=list)
+    split_part: int | None = Field(default=None, ge=1)
+    split_total: int | None = Field(default=None, ge=1)
+
+
+class ChunkingSummary(BaseModel):
+    chunk_count: int
+    estimated_token_count: int
+    min_chunk_tokens: int
+    max_chunk_tokens: int
+    average_chunk_tokens: float
+    semantic_type_counts: dict[str, int] = Field(default_factory=dict)
+    pages_covered: list[int] = Field(default_factory=list)
+
+
+class DeterministicChunkQualitySignal(BaseModel):
+    code: str
+    chunk_id: str
+    message: str
+
+
+class DeterministicChunkQualityReport(BaseModel):
+    status: Literal["pass", "review"] = "pass"
+    soft_min_tokens: int = 100
+    tiny_chunk_count: int = 0
+    orphan_child_count: int = 0
+    dangling_intro_count: int = 0
+    navigation_chunk_count: int = 0
+    context_attached_chunk_count: int = 0
+    dependency_group_chunk_count: int = 0
+    continuation_merge_chunk_count: int = 0
+    sibling_pack_chunk_count: int = 0
+    table_split_chunk_count: int = 0
+    note_attachment_chunk_count: int = 0
+    signals: list[DeterministicChunkQualitySignal] = Field(default_factory=list)
+
+
+class ChunkingArtifact(BaseModel):
+    schema_version: str = "1.0"
+    document_id: str
+    source_sha256: str
+    source_resolved_schema_version: str
+    source_resolved_at: datetime
+    base_structured_at: datetime
+    strategy_version: str = "semantic-v2"
+    token_count_method: str = "regex_estimate_v1"
+    config: ChunkingConfig
+    cleaning: RetrievalCleaningSummary
+    summary: ChunkingSummary
+    quality: DeterministicChunkQualityReport = Field(default_factory=DeterministicChunkQualityReport)
+    chunks: list[RetrievalChunk] = Field(default_factory=list)
+    warnings: list[str] = Field(default_factory=list)
+    generated_at: datetime

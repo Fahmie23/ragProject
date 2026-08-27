@@ -8,6 +8,10 @@ from fastapi.responses import FileResponse, Response
 
 from app.config import settings
 from app.schemas import (
+    ApproveRelationshipsRequest,
+    ApproveRelationshipsResponse,
+    ChunkingArtifact,
+    GenerateChunksRequest,
     CorrectionArtifact,
     DocumentExtraction,
     DocumentRecord,
@@ -16,16 +20,20 @@ from app.schemas import (
     SaveCorrectionsResponse,
     StructuredDocument,
     UploadResponse,
+    ValidateCorrectionsResponse,
 )
 from app.services.classification import classify_document
+from app.services.chunking import ChunkingNotEligibleError, build_chunking_artifact
 from app.services.corrections import InvalidCorrectionError, StaleCorrectionError, resolve_structure
 from app.services.extraction import UnsupportedExtractionError, extract_document
 from app.services.layout import LayoutDependencyError
 from app.services.storage import (
+    delete_chunking_artifact,
     delete_correction_artifacts,
     delete_structure_artifacts,
     get_raw_path,
     list_metadata,
+    read_chunking_artifact,
     read_corrections,
     read_extraction,
     read_layout_artifact,
@@ -33,6 +41,7 @@ from app.services.storage import (
     read_resolved_structure,
     read_structure,
     save_upload_and_hash,
+    write_chunking_artifact,
     write_corrections,
     write_extraction,
     write_layout_artifact,
@@ -285,9 +294,184 @@ def save_corrections(document_id: str, request: SaveCorrectionsRequest) -> SaveC
     except InvalidCorrectionError as exc:
         raise HTTPException(status_code=400, detail=str(exc)) from exc
 
+    if resolved.integrity.status != "pass":
+        raise HTTPException(
+            status_code=422,
+            detail={
+                "message": "Correction relations failed integrity validation. Nothing was saved.",
+                "integrity": resolved.integrity.model_dump(mode="json"),
+            },
+        )
+
+    delete_chunking_artifact(document_id)
     write_corrections(artifact)
     write_resolved_structure(resolved)
     return SaveCorrectionsResponse(corrections=artifact, resolved=resolved)
+
+
+@router.post("/{document_id}/corrections/validate", response_model=ValidateCorrectionsResponse)
+def validate_corrections(document_id: str, request: SaveCorrectionsRequest) -> ValidateCorrectionsResponse:
+    """Resolve a correction session without persisting it.
+
+    The frontend uses this as a pre-save relationship/integrity gate so users
+    can inspect graph problems before committing Stage 4.5 artifacts.
+    """
+    record = read_metadata(document_id)
+    if not record:
+        raise HTTPException(status_code=404, detail="Document not found.")
+
+    automatic = read_structure(document_id)
+    extraction = read_extraction(document_id)
+    if not automatic or record.structure_status != "completed":
+        raise HTTPException(status_code=400, detail="Run Stage 4 successfully before validating Stage 4.5 corrections.")
+    if not extraction or record.extraction_status != "completed":
+        raise HTTPException(status_code=400, detail="Stage 3 extraction is required to validate Stage 4.5 corrections.")
+    if automatic.structured_at != request.base_structured_at:
+        raise HTTPException(
+            status_code=409,
+            detail="Stage 4 changed after this correction session started. Reload the document before validating corrections.",
+        )
+
+    artifact = CorrectionArtifact(
+        document_id=document_id,
+        source_sha256=automatic.source_sha256,
+        base_structure_schema_version=automatic.schema_version,
+        base_structured_at=automatic.structured_at,
+        operations=request.operations,
+        updated_at=datetime.now(timezone.utc),
+    )
+    try:
+        resolved = resolve_structure(automatic=automatic, extraction=extraction, corrections=artifact)
+    except (StaleCorrectionError, InvalidCorrectionError) as exc:
+        return ValidateCorrectionsResponse(valid=False, resolved=None, errors=[str(exc)])
+    return ValidateCorrectionsResponse(
+        valid=resolved.integrity.status == "pass",
+        resolved=resolved,
+        errors=[issue.message for issue in resolved.integrity.errors],
+    )
+
+
+
+
+@router.post("/{document_id}/corrections/approve-relationships", response_model=ApproveRelationshipsResponse)
+def approve_correction_relationships(document_id: str, request: ApproveRelationshipsRequest) -> ApproveRelationshipsResponse:
+    """Legacy optional relationship acknowledgement.
+
+    Stage 5 readiness no longer depends on this endpoint. It is retained only
+    for backward compatibility with older clients and saved review workflows;
+    blocking structural-integrity errors are the only Stage 5 gate.
+    """
+    record = read_metadata(document_id)
+    if not record:
+        raise HTTPException(status_code=404, detail="Document not found.")
+    automatic = read_structure(document_id)
+    extraction = read_extraction(document_id)
+    artifact = read_corrections(document_id)
+    if not automatic or record.structure_status != "completed":
+        raise HTTPException(status_code=400, detail="Run Stage 4 successfully before approving Stage 4.5 relationships.")
+    if not extraction or record.extraction_status != "completed":
+        raise HTTPException(status_code=400, detail="Stage 3 extraction is required before relationship approval.")
+    if not artifact:
+        raise HTTPException(status_code=404, detail="Save Stage 4.5 corrections before approving relationships.")
+    if automatic.structured_at != request.base_structured_at:
+        raise HTTPException(status_code=409, detail="Stage 4 changed after review started. Reload before approval.")
+    if artifact.updated_at != request.correction_updated_at:
+        raise HTTPException(status_code=409, detail="Corrections changed after review started. Reload before approval.")
+
+    try:
+        preview = resolve_structure(automatic=automatic, extraction=extraction, corrections=artifact)
+    except (StaleCorrectionError, InvalidCorrectionError) as exc:
+        raise HTTPException(status_code=400, detail=str(exc)) from exc
+    if preview.integrity.status != "pass":
+        raise HTTPException(
+            status_code=422,
+            detail={
+                "message": "Relationship graph has integrity errors and cannot be approved.",
+                "integrity": preview.integrity.model_dump(mode="json"),
+            },
+        )
+
+    required_issue_ids = {issue.issue_id for issue in preview.integrity.warnings if issue.requires_review}
+    approved_issue_ids = set(request.approved_issue_ids)
+    missing = sorted(required_issue_ids - approved_issue_ids)
+    unknown = sorted(approved_issue_ids - {issue.issue_id for issue in preview.integrity.warnings})
+    if missing:
+        raise HTTPException(
+            status_code=422,
+            detail={
+                "message": "Review-required semantic warnings must be explicitly acknowledged before recording legacy relationship approval.",
+                "missing_issue_ids": missing,
+            },
+        )
+    if unknown:
+        raise HTTPException(
+            status_code=409,
+            detail={
+                "message": "One or more approved warning IDs are stale. Re-validate before approval.",
+                "unknown_issue_ids": unknown,
+            },
+        )
+
+    now = datetime.now(timezone.utc)
+    artifact.relationship_review.status = "approved"
+    artifact.relationship_review.approved_issue_ids = sorted(required_issue_ids)
+    artifact.relationship_review.pending_issue_ids = []
+    artifact.relationship_review.approved_at = now
+    artifact.relationship_review.note = request.note
+    artifact.relationship_review.stage5_eligible = True
+    artifact.updated_at = now
+    resolved = resolve_structure(automatic=automatic, extraction=extraction, corrections=artifact)
+    if not resolved.review.stage5_eligible:
+        raise HTTPException(status_code=422, detail="Relationship approval did not produce a Stage-5-eligible resolved structure.")
+    delete_chunking_artifact(document_id)
+    write_corrections(artifact)
+    write_resolved_structure(resolved)
+    return ApproveRelationshipsResponse(corrections=artifact, resolved=resolved)
+
+
+@router.post("/{document_id}/chunks", response_model=ChunkingArtifact)
+def generate_chunks(document_id: str, request: GenerateChunksRequest) -> ChunkingArtifact:
+    if not read_metadata(document_id):
+        raise HTTPException(status_code=404, detail="Document not found.")
+    resolved = read_resolved_structure(document_id)
+    if not resolved:
+        raise HTTPException(
+            status_code=400,
+            detail="Stage 5 requires a saved resolved Stage 4.5 structure. Save/validate the Review stage first.",
+        )
+    try:
+        artifact = build_chunking_artifact(resolved=resolved, config=request.config)
+    except ChunkingNotEligibleError as exc:
+        raise HTTPException(status_code=422, detail=str(exc)) from exc
+    except ValueError as exc:
+        raise HTTPException(status_code=400, detail=str(exc)) from exc
+    write_chunking_artifact(artifact)
+    return artifact
+
+
+@router.get("/{document_id}/chunks", response_model=ChunkingArtifact)
+def get_chunks(document_id: str) -> ChunkingArtifact:
+    if not read_metadata(document_id):
+        raise HTTPException(status_code=404, detail="Document not found.")
+    artifact = read_chunking_artifact(document_id)
+    if not artifact:
+        raise HTTPException(status_code=404, detail="Stage 5 chunking has not been generated yet.")
+    resolved = read_resolved_structure(document_id)
+    if not resolved:
+        delete_chunking_artifact(document_id)
+        raise HTTPException(status_code=409, detail="Stage 5 artifact is stale because the resolved structure no longer exists.")
+    if artifact.source_resolved_at != resolved.resolved_at or artifact.source_sha256 != resolved.source_sha256:
+        delete_chunking_artifact(document_id)
+        raise HTTPException(status_code=409, detail="Stage 5 artifact is stale because the resolved structure changed. Regenerate chunks.")
+    return artifact
+
+
+@router.delete("/{document_id}/chunks", status_code=204)
+def reset_chunks(document_id: str):
+    if not read_metadata(document_id):
+        raise HTTPException(status_code=404, detail="Document not found.")
+    delete_chunking_artifact(document_id)
+    return Response(status_code=204)
 
 
 @router.delete("/{document_id}/corrections", status_code=204)

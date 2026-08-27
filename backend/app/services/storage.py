@@ -4,7 +4,7 @@ from pathlib import Path
 from fastapi import UploadFile
 
 from app.config import settings
-from app.schemas import CorrectionArtifact, DocumentExtraction, DocumentRecord, ResolvedStructureArtifact, StructuredDocument
+from app.schemas import ChunkingArtifact, CorrectionArtifact, DocumentExtraction, DocumentRecord, ResolvedStructureArtifact, StructuredDocument
 
 
 CHUNK_SIZE = 1024 * 1024
@@ -122,9 +122,27 @@ def read_resolved_structure(document_id: str) -> ResolvedStructureArtifact | Non
     return ResolvedStructureArtifact.model_validate_json(path.read_text(encoding="utf-8"))
 
 
+
+def write_chunking_artifact(artifact: ChunkingArtifact) -> None:
+    path = settings.chunks_dir / f"{artifact.document_id}.json"
+    _atomic_write_json(path, artifact.model_dump(mode="json"))
+
+
+def read_chunking_artifact(document_id: str) -> ChunkingArtifact | None:
+    path = settings.chunks_dir / f"{document_id}.json"
+    if not path.exists():
+        return None
+    return ChunkingArtifact.model_validate_json(path.read_text(encoding="utf-8"))
+
+
+def delete_chunking_artifact(document_id: str) -> None:
+    (settings.chunks_dir / f"{document_id}.json").unlink(missing_ok=True)
+
+
 def delete_correction_artifacts(document_id: str) -> None:
     (settings.corrections_dir / f"{document_id}.json").unlink(missing_ok=True)
     (settings.resolved_dir / f"{document_id}.json").unlink(missing_ok=True)
+    delete_chunking_artifact(document_id)
 
 
 def delete_structure_artifacts(document_id: str) -> None:

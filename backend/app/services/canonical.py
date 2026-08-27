@@ -6,6 +6,10 @@ from datetime import datetime, timezone
 from pathlib import Path
 import re
 
+from app.services.spans import iter_page_spans
+from app.services.semantic import resolve_structural_semantics, validate_semantic_structure
+from app.services.semantic.classifier import backfill_classification
+
 from app.schemas import (
     CanonicalElement,
     CanonicalSourceTrace,
@@ -48,6 +52,7 @@ CONTENT_TYPES = {
     "title",
     "subtitle",
     "section_header",
+    "group_header",
     "clause",
     "subclause",
     "definition_term",
@@ -310,18 +315,183 @@ def _box_text(box: dict) -> str:
     return "\n".join(lines).strip()
 
 
-def _canonical_table(box: dict) -> CanonicalTable | None:
+TOC_ENTRY_MARKER = re.compile(r"^\s*\d+[A-Za-z]?(?:\.\d+)*\.?\s*$")
+TOC_PAGE_REFERENCE = re.compile(r"^\s*\d{1,4}\s*$")
+TOC_CONTEXT_HEADING = re.compile(
+    r"^(?:table\s+of\s+)?contents(?:\s+\(?continued\)?)?$",
+    re.IGNORECASE,
+)
+
+
+def _cell_lines(value: str | None) -> list[str]:
+    if value is None:
+        return []
+    return [line.strip() for line in str(value).splitlines() if line.strip()]
+
+
+def _uppercase_heading_like(value: str) -> bool:
+    letters = [char for char in value if char.isalpha()]
+    if len(letters) < 4:
+        return False
+    uppercase = sum(char.isupper() for char in letters)
+    return uppercase / len(letters) >= 0.8
+
+
+def _page_has_explicit_toc_context(layout_page: dict) -> bool:
+    """Return True only when the page explicitly declares TOC context.
+
+    The canonical TOC row repair is intentionally gated by a visible page-level
+    heading such as ``CONTENTS`` or ``TABLE OF CONTENTS`` (optionally marked as
+    continued). This prevents a merely TOC-shaped 3-column table elsewhere in a
+    document from being rewritten.
+    """
+    heading_boxclasses = {"title", "section-header", "page-header"}
+    for box in layout_page.get("boxes") or []:
+        boxclass = str(box.get("boxclass") or "").casefold()
+        if boxclass not in heading_boxclasses:
+            continue
+        text = " ".join(_box_text(box).split()).strip()
+        if text and TOC_CONTEXT_HEADING.fullmatch(text):
+            return True
+    return False
+
+
+def _looks_like_toc_table(cells: list[list[str | None]]) -> bool:
+    """Return True for a stable number/title/page table-of-contents pattern.
+
+    This is deliberately conservative.  It does not depend on document-specific
+    words such as ``PART``; instead it looks for repeated numbered entries whose
+    final column is a page reference.
+    """
+    if len(cells) < 4 or max((len(row) for row in cells), default=0) != 3:
+        return False
+
+    toc_entry_rows = 0
+    for row in cells:
+        if len(row) != 3:
+            continue
+        left_lines = _cell_lines(row[0])
+        right_lines = _cell_lines(row[2])
+        if not left_lines or len(right_lines) != 1:
+            continue
+        if TOC_ENTRY_MARKER.fullmatch(left_lines[-1]) and TOC_PAGE_REFERENCE.fullmatch(right_lines[0]):
+            toc_entry_rows += 1
+    return toc_entry_rows >= 3
+
+
+def _repair_merged_toc_rows(cells: list[list[str | None]]) -> tuple[list[list[str | None]], bool]:
+    """Split a TOC heading accidentally merged with the following entry.
+
+    PyMuPDF4LLM can occasionally emit a row such as::
+
+        ["PART\n7", "II: ...\nRisk-Based Approach Application", "25"]
+
+    even though the heading and numbered entry occupy separate visual y-bands.
+    A repair is only applied when the surrounding table already behaves like a
+    3-column number/title/page TOC and the embedded first line looks like an
+    uppercase heading while the second left-column line is a numbered entry.
+    Multi-line titles such as a wrapped ``7.6`` entry are intentionally left
+    untouched because their first column contains only one marker.
+    """
+    if not _looks_like_toc_table(cells):
+        return cells, False
+
+    repaired: list[list[str | None]] = []
+    changed = False
+    for row in cells:
+        if len(row) != 3:
+            repaired.append(row)
+            continue
+
+        left_lines = _cell_lines(row[0])
+        middle_lines = _cell_lines(row[1])
+        right_lines = _cell_lines(row[2])
+        should_split = (
+            len(left_lines) >= 2
+            and len(middle_lines) >= 2
+            and len(right_lines) == 1
+            and TOC_PAGE_REFERENCE.fullmatch(right_lines[0]) is not None
+            and TOC_ENTRY_MARKER.fullmatch(left_lines[-1]) is not None
+            and TOC_ENTRY_MARKER.fullmatch(left_lines[0]) is None
+            and _uppercase_heading_like(middle_lines[0])
+        )
+        if not should_split:
+            repaired.append(row)
+            continue
+
+        header_row: list[str | None] = [left_lines[0], middle_lines[0], ""]
+        entry_row: list[str | None] = [
+            "\n".join(left_lines[1:]),
+            "\n".join(middle_lines[1:]),
+            right_lines[0],
+        ]
+        repaired.extend([header_row, entry_row])
+        changed = True
+
+    return repaired, changed
+
+
+def _table_cells_markdown(cells: list[list[str | None]]) -> str | None:
+    if not cells:
+        return None
+
+    def render(cell: str | None) -> str:
+        value = str(cell or "").replace("|", "\\|")
+        return "<br>".join(line.strip() for line in value.splitlines())
+
+    width = max((len(row) for row in cells), default=0)
+    padded = [list(row) + [None] * (width - len(row)) for row in cells]
+    lines = ["|" + "|".join(render(cell) for cell in row) + "|" for row in padded]
+    if width:
+        lines.insert(1, "|" + "|".join("---" for _ in range(width)) + "|")
+    return "\n".join(lines) + "\n"
+
+
+def _table_cells_text(cells: list[list[str | None]]) -> str:
+    rows = []
+    for row in cells:
+        rows.append("\t".join("" if cell is None else str(cell).strip() for cell in row).rstrip())
+    return "\n".join(row for row in rows if row).strip()
+
+
+def _canonical_table(box: dict, *, allow_toc_row_repair: bool = False) -> CanonicalTable | None:
     table = box.get("table")
     if not isinstance(table, dict):
         return None
     cells = table.get("extract") or []
     normalized_cells = [[None if cell is None else str(cell) for cell in row] for row in cells]
+    if allow_toc_row_repair:
+        repaired_cells, repaired = _repair_merged_toc_rows(normalized_cells)
+    else:
+        repaired_cells, repaired = normalized_cells, False
     return CanonicalTable(
-        row_count=int(table.get("row_count") or len(normalized_cells)),
-        col_count=int(table.get("col_count") or max((len(row) for row in normalized_cells), default=0)),
-        cells=normalized_cells,
-        markdown=table.get("markdown"),
+        row_count=len(repaired_cells) if repaired else int(table.get("row_count") or len(repaired_cells)),
+        col_count=max((len(row) for row in repaired_cells), default=int(table.get("col_count") or 0)),
+        cells=repaired_cells,
+        markdown=_table_cells_markdown(repaired_cells) if repaired else table.get("markdown"),
     )
+
+
+def _repair_canonical_toc_table(element: CanonicalElement) -> bool:
+    """Apply the conservative TOC row repair to one canonical table fragment.
+
+    The helper updates every derived representation together so downstream
+    logical-table merging, page body text, and the inspector all observe the
+    same repaired rows.
+    """
+    if element.type != "table" or element.table is None:
+        return False
+
+    repaired_cells, repaired = _repair_merged_toc_rows(element.table.cells)
+    if not repaired:
+        return False
+
+    element.table.cells = repaired_cells
+    element.table.row_count = len(repaired_cells)
+    element.table.col_count = max((len(row) for row in repaired_cells), default=element.table.col_count)
+    element.table.markdown = _table_cells_markdown(repaired_cells)
+    element.text = _table_cells_text(repaired_cells)
+    return True
 
 
 def _normalize_heading_text(value: str) -> str:
@@ -492,6 +662,12 @@ def _merge_source_trace(primary: CanonicalElement, secondary: CanonicalElement) 
     """Preserve Stage-3 provenance when two canonical fragments are merged."""
     primary.source.stage3_block_ids = list(dict.fromkeys(
         primary.source.stage3_block_ids + secondary.source.stage3_block_ids
+    ))
+    primary.source.stage3_line_ids = list(dict.fromkeys(
+        primary.source.stage3_line_ids + secondary.source.stage3_line_ids
+    ))
+    primary.source.stage3_span_ids = list(dict.fromkeys(
+        primary.source.stage3_span_ids + secondary.source.stage3_span_ids
     ))
     primary.source.stage3_table_ids = list(dict.fromkeys(
         primary.source.stage3_table_ids + secondary.source.stage3_table_ids
@@ -958,6 +1134,12 @@ def _source_trace(page_extraction, bbox: list[float], box_index: int, boxclass: 
         for block in page_extraction.blocks
         if _overlap_ratio(block.bbox, bbox) >= 0.35
     ]
+    span_items = [
+        item for item in iter_page_spans(page_extraction)
+        if _overlap_ratio(item.bbox, bbox) >= 0.35
+    ]
+    line_ids = list(dict.fromkeys(item.line_id for item in span_items))
+    span_ids = [item.span_id for item in span_items]
     table_ids = [
         table.table_id
         for table in page_extraction.tables
@@ -967,8 +1149,51 @@ def _source_trace(page_extraction, bbox: list[float], box_index: int, boxclass: 
         layout_box_index=box_index,
         layout_box_class=boxclass,
         stage3_block_ids=block_ids,
+        stage3_line_ids=line_ids,
+        stage3_span_ids=span_ids,
         stage3_table_ids=table_ids,
     )
+
+
+def _bind_recovered_definition_sources(
+    *,
+    raw_page,
+    term: CanonicalElement,
+    definition: CanonicalElement,
+    role_source: str,
+) -> None:
+    """Attach precise Stage-3 provenance to a recovered definition pair.
+
+    Recovered glossary rows are often split out of one coarse Stage-4 region.
+    Copying the parent element's source trace makes every synthetic term/text
+    child claim the same large set of Stage-3 spans.  That is useful as broad
+    provenance, but it is *not* exact span provenance and breaks span-level
+    correction later.
+
+    Recompute the trace from each child bbox and then remove any span that is
+    claimed by both sides.  A shared Stage-3 span means the extractor itself did
+    not preserve a trustworthy geometric split; in that case we keep block/table
+    provenance but deliberately avoid pretending that the span belongs exactly
+    to either child.
+    """
+    term_box_index = term.source.layout_box_index
+    term_box_class = term.source.layout_box_class
+    definition_box_index = definition.source.layout_box_index
+    definition_box_class = definition.source.layout_box_class
+    term.source = _source_trace(raw_page, term.bbox, term_box_index, term_box_class)
+    definition.source = _source_trace(raw_page, definition.bbox, definition_box_index, definition_box_class)
+
+    shared = set(term.source.stage3_span_ids) & set(definition.source.stage3_span_ids)
+    if not shared:
+        return
+
+    span_to_line = {item.span_id: item.line_id for item in iter_page_spans(raw_page)}
+    term.source.stage3_span_ids = [span_id for span_id in term.source.stage3_span_ids if span_id not in shared]
+    definition.source.stage3_span_ids = [span_id for span_id in definition.source.stage3_span_ids if span_id not in shared]
+    term_lines = {span_to_line[span_id] for span_id in term.source.stage3_span_ids if span_id in span_to_line}
+    definition_lines = {span_to_line[span_id] for span_id in definition.source.stage3_span_ids if span_id in span_to_line}
+    term.source.stage3_line_ids = [line_id for line_id in term.source.stage3_line_ids if line_id in term_lines]
+    definition.source.stage3_line_ids = [line_id for line_id in definition.source.stage3_line_ids if line_id in definition_lines]
 
 
 def _refine_document_roles(
@@ -1085,36 +1310,6 @@ def _normalize_structural_elements(elements: list[CanonicalElement]) -> None:
             element.text = _normalize_structural_text(element.text)
 
 
-def _refine_numbered_clauses(elements: list[CanonicalElement]) -> None:
-    """Promote numbered prose clauses and nested alphabetic subclauses.
-
-    This pass keeps outline sections separate from legal/procedural clauses.
-    It accepts both decimal clauses (``2.5`` / ``3.1``) and top-level numbered
-    clauses (``1.`` / ``2.``), while question headings remain section headers.
-    """
-    for element in elements:
-        if element.type not in {"paragraph", "list_item"}:
-            continue
-
-        number = _extract_clause_number(element.text)
-        if number is not None:
-            remainder = CLAUSE_PREFIX.sub("", element.text, count=1).strip()
-            if len(remainder) >= 12 and not _looks_question(element.text):
-                element.type = "clause"
-                element.clause_number = number
-                element.text = _normalize_structural_text(element.text)
-                element.role_source = "numbered_clause"
-                continue
-
-        marker = SUBCLAUSE_PREFIX.match(element.text)
-        if marker:
-            remainder = SUBCLAUSE_PREFIX.sub("", element.text, count=1).strip()
-            if len(remainder) >= 8:
-                element.type = "subclause"
-                element.subclause_marker = f"({marker.group(1)})"
-                element.role_source = "subclause_marker"
-
-
 def _definition_context_pages(
     elements: list[CanonicalElement],
     pages: list[StructuredPage],
@@ -1172,6 +1367,7 @@ def _definition_text_candidate(element: CanonicalElement, page_width: float) -> 
         "subtitle",
         "document_metadata",
         "section_header",
+        "group_header",
         "definition_term",
         "page_header",
         "figure",
@@ -1611,7 +1807,7 @@ def _reindex_canonical_elements(elements: list[CanonicalElement], pages: list[St
 
 
 _TEXTUAL_CANONICAL_TYPES = {
-    "title", "subtitle", "document_metadata", "section_header", "clause", "subclause",
+    "title", "subtitle", "document_metadata", "section_header", "group_header", "clause", "subclause",
     "definition_term", "definition_text", "paragraph", "list_item", "caption",
     "page_header", "page_footer", "footnote", "unknown",
 }
@@ -1763,6 +1959,13 @@ def _recover_merged_definition_rows(
                 definition.table = None
                 definition.role_source = row["source"]
 
+                _bind_recovered_definition_sources(
+                    raw_page=raw_page,
+                    term=term,
+                    definition=definition,
+                    role_source=row["source"],
+                )
+
                 new_elements.extend([term, definition])
                 recovered_count += 1
 
@@ -1796,6 +1999,7 @@ def _make_definition_pair_elements(
     row_index: int,
     row: dict,
     role_source: str,
+    raw_page=None,
 ) -> tuple[CanonicalElement, CanonicalElement]:
     term = term_source.model_copy(deep=True)
     definition = definition_source.model_copy(deep=True)
@@ -1819,6 +2023,13 @@ def _make_definition_pair_elements(
     definition.heading_level_source = None
     definition.table = None
     definition.role_source = role_source
+    if raw_page is not None:
+        _bind_recovered_definition_sources(
+            raw_page=raw_page,
+            term=term,
+            definition=definition,
+            role_source=role_source,
+        )
     return term, definition
 
 
@@ -1916,6 +2127,7 @@ def _recover_parallel_definition_columns(
                     row_index=row_index,
                     row=row,
                     role_source="definition_parallel_stream_recovery",
+                    raw_page=raw_page,
                 )
                 created.extend([term, definition])
                 recovered_count += 1
@@ -2054,6 +2266,7 @@ def _normalize_definition_tables(
                         row_index=row_serial,
                         row=row_data,
                         role_source="definition_table_semantic_normalization",
+                        raw_page=raw_page,
                     )
                     new_elements.extend([term, definition])
                     converted += 1
@@ -2068,6 +2281,13 @@ def _normalize_definition_tables(
                     continuation.heading_level = None
                     continuation.heading_level_source = None
                     continuation.role_source = "definition_table_semantic_normalization"
+                    if raw_page is not None:
+                        continuation.source = _source_trace(
+                            raw_page,
+                            continuation.bbox,
+                            element.source.layout_box_index,
+                            element.source.layout_box_class,
+                        )
                     new_elements.append(continuation)
 
         page.elements = new_elements
@@ -2160,8 +2380,8 @@ def _is_strong_cross_page_boundary(element: CanonicalElement, page_width: float)
         return True
     if APPENDIX_LABEL.match(text) or _numbering_depth(text) is not None:
         return True
-    if element.type == "section_header":
-        # A genuine unnumbered section heading is generally left/central rather
+    if element.type in {"section_header", "group_header"}:
+        # A genuine unnumbered section/group heading is generally left/central rather
         # than deep in the right-hand continuation column.
         return element.bbox[0] <= page_width * 0.42 and len(text) <= 180
     return False
@@ -2842,13 +3062,152 @@ def _build_table_definition_entries(
     return output
 
 
+def _subclause_marker_token(value: str) -> str:
+    return value.strip().strip("()[]{} ").rstrip(".)").lower()
+
+
+def _subclause_marker_family(
+    ordered: list[tuple[ClauseRecord, CanonicalElement]],
+    index: int,
+    *,
+    indent_threshold: float = 10.0,
+) -> str:
+    """Resolve ambiguous legal markers such as ``(i)`` conservatively.
+
+    Single-letter roman numerals are also valid alphabetic markers. We use
+    neighbouring marker sequences first, then indentation, so ``(h) (i) (j)``
+    stays alphabetic while ``(a) (i) (ii)`` is interpreted as a nested roman
+    sequence. The result is intentionally limited to the two marker families
+    Stage 4 currently promotes to ``subclause``.
+    """
+    record, element = ordered[index]
+    token = _subclause_marker_token(record.number)
+    if not token:
+        return "unknown"
+    if len(token) > 1 and _roman_value(token) is not None:
+        return "roman"
+    if len(token) != 1 or not token.isalpha():
+        return "unknown"
+    if token not in "ivxlcdm":
+        return "alpha"
+
+    def neighbour(offset: int):
+        j = index + offset
+        if 0 <= j < len(ordered):
+            rec, el = ordered[j]
+            return _subclause_marker_token(rec.number), el
+        return "", None
+
+    prev_token, prev_element = neighbour(-1)
+    next_token, next_element = neighbour(1)
+
+    if (len(prev_token) > 1 and _roman_value(prev_token) is not None) or (
+        len(next_token) > 1 and _roman_value(next_token) is not None
+    ):
+        return "roman"
+
+    # An ordinary alphabetic run disambiguates single-letter roman symbols.
+    if len(prev_token) == 1 and prev_token.isalpha() and ord(token) == ord(prev_token) + 1:
+        return "alpha"
+    if len(next_token) == 1 and next_token.isalpha() and ord(next_token) == ord(token) + 1:
+        return "alpha"
+
+    # A visibly deeper ``(i)`` after an alphabetic item is a strong nested-list
+    # signal even when there is no ``(ii)`` to disambiguate it.
+    if prev_element is not None:
+        prev_family = "alpha" if len(prev_token) == 1 and prev_token.isalpha() and prev_token not in "ivxlcdm" else None
+        if prev_family == "alpha" and element.bbox[0] - prev_element.bbox[0] >= indent_threshold:
+            return "roman"
+
+    return "alpha"
+
+
+def _infer_nested_subclause_parents(
+    records: list[ClauseRecord],
+    elements: list[CanonicalElement],
+    *,
+    protected_element_ids: set[str] | None = None,
+) -> None:
+    """Repair the flat Stage-4 clause hierarchy for nested legal enumerations.
+
+    Earlier versions attached every ``subclause`` in a section to the latest
+    numbered clause. That makes valid structures such as ``(a) -> (i),(ii)``
+    and ``(b) -> (i),(ii)`` look like duplicate sibling markers. This pass
+    keeps alphabetic items under the numbered clause and nests roman items under
+    the nearest preceding alphabetic item when sequence/geometry supports it.
+
+    Explicit Stage-4.5 structural edits can protect selected elements from
+    automatic reassignment.
+    """
+    protected = protected_element_ids or set()
+    element_by_id = {element.element_id: element for element in elements}
+    ordered_records = sorted(
+        [record for record in records if record.element_id in element_by_id],
+        key=lambda record: element_by_id[record.element_id].document_order,
+    )
+
+    current_clause_by_section: dict[str | None, ClauseRecord] = {}
+    group_by_parent: dict[str, list[tuple[ClauseRecord, CanonicalElement]]] = {}
+
+    # First establish which top-level numbered clause each automatic subclause
+    # belongs to. Existing explicit nested parents are preserved for protected
+    # elements; all other legacy flat parents are eligible for refinement.
+    for record in ordered_records:
+        element = element_by_id[record.element_id]
+        if record.kind == "clause":
+            current_clause_by_section[record.section_id] = record
+            continue
+        if record.kind != "subclause":
+            continue
+        top = current_clause_by_section.get(record.section_id)
+        if element.element_id in protected:
+            continue
+        # A genuinely parent-less subclause remains an orphan. The repair is
+        # only allowed to refine the legacy *flat* parent assignment; it must
+        # not invent a parent where Stage 4 had none.
+        if record.parent_clause_id is None:
+            element.parent_clause_id = None
+            continue
+        if top is None:
+            record.parent_clause_id = None
+            element.parent_clause_id = None
+            continue
+        record.parent_clause_id = top.clause_id
+        element.parent_clause_id = top.clause_id
+        group_by_parent.setdefault(top.clause_id, []).append((record, element))
+
+    # Then refine each top-level group. Roman enumerations are commonly nested
+    # under the latest alphabetic item; sequence-aware disambiguation prevents
+    # alphabetic ``(h),(i),(j)`` from being mistaken for roman numbering.
+    for top_clause_id, group in group_by_parent.items():
+        group.sort(key=lambda pair: pair[1].document_order)
+        latest_alpha: ClauseRecord | None = None
+        latest_alpha_element: CanonicalElement | None = None
+        for index, (record, element) in enumerate(group):
+            if element.element_id in protected:
+                continue
+            family = _subclause_marker_family(group, index)
+            if family == "alpha":
+                record.parent_clause_id = top_clause_id
+                element.parent_clause_id = top_clause_id
+                latest_alpha = record
+                latest_alpha_element = element
+                continue
+            if family == "roman" and latest_alpha is not None:
+                token = _subclause_marker_token(record.number)
+                deeper_indent = latest_alpha_element is not None and element.bbox[0] - latest_alpha_element.bbox[0] >= 6.0
+                unmistakable_roman = len(token) > 1 or token == "i"
+                if deeper_indent or unmistakable_roman:
+                    record.parent_clause_id = latest_alpha.clause_id
+                    element.parent_clause_id = latest_alpha.clause_id
+
+
 def _build_clause_records(
     elements: list[CanonicalElement],
     sections: list[SectionRecord],
 ) -> tuple[list[ClauseRecord], list[StructuralRelation]]:
     section_element_by_id = {section.section_id: section.element_id for section in sections}
     records: list[ClauseRecord] = []
-    relations: list[StructuralRelation] = []
     current_clause_by_section: dict[str | None, ClauseRecord] = {}
 
     for element in sorted(elements, key=lambda item: item.document_order):
@@ -2864,14 +3223,6 @@ def _build_clause_records(
             element.clause_id = clause.clause_id
             records.append(clause)
             current_clause_by_section[element.section_id] = clause
-            if element.section_id and element.section_id in section_element_by_id:
-                relations.append(StructuralRelation(
-                    relation_id=f"rel-{len(relations) + 1}",
-                    type="belongs_to",
-                    source_element_id=element.element_id,
-                    target_element_id=section_element_by_id[element.section_id],
-                    evidence="clause inherits active section",
-                ))
         elif element.type == "subclause":
             parent = current_clause_by_section.get(element.section_id)
             clause = ClauseRecord(
@@ -2886,16 +3237,144 @@ def _build_clause_records(
             element.clause_id = clause.clause_id
             element.parent_clause_id = clause.parent_clause_id
             records.append(clause)
-            if parent:
-                relations.append(StructuralRelation(
-                    relation_id=f"rel-{len(relations) + 1}",
-                    type="parent_of",
-                    source_element_id=parent.element_id,
-                    target_element_id=element.element_id,
-                    evidence="alphabetic subclause follows active numbered clause",
-                ))
+
+    _infer_nested_subclause_parents(records, elements)
+
+    relations: list[StructuralRelation] = []
+    record_by_id = {record.clause_id: record for record in records}
+    element_by_id = {element.element_id: element for element in elements}
+    for clause in records:
+        element = element_by_id.get(clause.element_id)
+        if element is None:
+            continue
+        if clause.kind == "clause" and clause.section_id and clause.section_id in section_element_by_id:
+            relations.append(StructuralRelation(
+                relation_id=f"rel-{len(relations) + 1}",
+                type="belongs_to",
+                source_element_id=element.element_id,
+                target_element_id=section_element_by_id[clause.section_id],
+                evidence="clause inherits active section",
+            ))
+        if clause.parent_clause_id and clause.parent_clause_id in record_by_id:
+            parent = record_by_id[clause.parent_clause_id]
+            relations.append(StructuralRelation(
+                relation_id=f"rel-{len(relations) + 1}",
+                type="parent_of",
+                source_element_id=parent.element_id,
+                target_element_id=element.element_id,
+                evidence="subclause hierarchy inferred from marker sequence and indentation",
+            ))
     return records, relations
 
+
+
+def _build_group_and_list_relations(
+    elements: list[CanonicalElement],
+    sections: list[SectionRecord],
+) -> list[StructuralRelation]:
+    """Build explicit local-group/list dependencies after semantic resolution.
+
+    ``group_header`` is intentionally not a SectionRecord. It has local scope:
+    it can be introduced by a clause, contain list items, or provide context to
+    the immediately following clause. This keeps the document outline stable
+    while exposing the hierarchy Stage 5 needs for retrieval packaging.
+    """
+    ordered = sorted(elements, key=lambda item: item.document_order)
+    relations: list[StructuralRelation] = []
+    relation_pairs: set[tuple[str, str, str]] = set()
+    active_clause: CanonicalElement | None = None
+    active_group: CanonicalElement | None = None
+    active_section: str | None = None
+
+    def add_relation(kind: str, source: CanonicalElement, target: CanonicalElement, evidence: str) -> None:
+        key = (kind, source.element_id, target.element_id)
+        if key in relation_pairs:
+            return
+        relation_pairs.add(key)
+        relations.append(StructuralRelation(
+            relation_id=f"rel-group-{len(relations) + 1}",
+            type=kind,
+            source_element_id=source.element_id,
+            target_element_id=target.element_id,
+            evidence=evidence,
+        ))
+
+    for element in ordered:
+        if element.type in {"page_header", "page_footer", "footnote", "caption", "document_metadata", "title", "subtitle"}:
+            continue
+
+        if element.section_id != active_section:
+            active_section = element.section_id
+            active_clause = None
+            active_group = None
+
+        if element.type == "section_header":
+            active_clause = None
+            active_group = None
+            continue
+
+        if element.type == "group_header":
+            # A group after a clause belongs to that clause. Otherwise it is a
+            # local child of the active document section and may introduce the
+            # next clause.
+            if active_clause is not None and active_clause.section_id == element.section_id:
+                add_relation(
+                    "introduces",
+                    active_clause,
+                    element,
+                    "local group header follows the active clause and scopes its following members",
+                )
+            active_group = element
+            continue
+
+        if element.type == "clause":
+            # A section-local group label immediately before a numbered clause
+            # provides context to that clause without becoming an outline node.
+            if active_group is not None and active_group.section_id == element.section_id and active_clause is None:
+                add_relation(
+                    "introduces",
+                    active_group,
+                    element,
+                    "numbered clause is scoped by the immediately preceding local group header",
+                )
+            active_clause = element
+            active_group = None
+            continue
+
+        if element.type == "subclause":
+            # ClauseRecord hierarchy owns subclause relations. A local group is
+            # not allowed to override that canonical clause parent.
+            continue
+
+        if element.type == "list_item":
+            if active_group is not None and active_group.section_id == element.section_id:
+                add_relation(
+                    "introduces",
+                    active_group,
+                    element,
+                    "enumerated/list item is a member of the active local group",
+                )
+            elif active_clause is not None and active_clause.section_id == element.section_id:
+                text = " ".join(active_clause.text.split()).strip()
+                if text.endswith(":") or re.search(
+                    r"\b(?:the\s+following|as\s+follows|include(?:s|d)?|including|types?\s+of|categories?\s+of)\b",
+                    text,
+                    re.IGNORECASE,
+                ):
+                    add_relation(
+                        "introduces",
+                        active_clause,
+                        element,
+                        "list item follows a clause that explicitly introduces an enumeration",
+                    )
+            continue
+
+        # Ordinary body prose ends a local list-group scope. The active clause
+        # remains available for later substructure in the same section.
+        if element.type in {"paragraph", "table", "figure", "definition_term", "definition_text"}:
+            active_group = None
+
+    return relations
 
 
 def _reconcile_cross_page_open_text_blocks(pages: list[StructuredPage]) -> list[StructuralRelation]:
@@ -3164,6 +3643,88 @@ def _has_substantive_content_before_table(page: StructuredPage, candidate: Canon
     return False
 
 
+def _tables_form_cross_page_continuation(
+    current_page: StructuredPage,
+    next_page: StructuredPage,
+    current: CanonicalElement,
+    candidate: CanonicalElement,
+) -> bool:
+    """Return True only when two table fragments have strong continuation evidence.
+
+    This shared predicate is used by both logical-table reconciliation and TOC
+    context inheritance so the two passes cannot silently drift apart.
+    """
+    if current.table is None or candidate.table is None:
+        return False
+    if current.bbox[3] < current_page.height * 0.72:
+        return False
+    if candidate.bbox[1] > next_page.height * 0.30:
+        return False
+    if _has_substantive_content_before_table(next_page, candidate):
+        return False
+    if not _table_columns_compatible(current, candidate, max(current_page.width, next_page.width, 1.0)):
+        return False
+    if not _table_context_compatible(current, candidate):
+        return False
+    return True
+
+
+def _inherit_toc_context_and_repair(
+    pages: list[StructuredPage],
+    explicit_toc_pages: set[int],
+) -> set[int]:
+    """Safely inherit TOC context across adjacent continuation pages.
+
+    Explicit TOC pages are trusted anchors. A following page inherits that
+    context only when its first table is a strong geometric continuation of the
+    previous page's last table *and* both fragments independently look like a
+    3-column number/title/page TOC. The inherited context can then propagate
+    across additional adjacent continuation pages.
+
+    Only the continuing table fragment is eligible for repair. Other tables on
+    the same inherited page remain untouched.
+    """
+    page_by_number = {page.page_number: page for page in pages}
+    active_toc_pages = set(explicit_toc_pages)
+
+    for page_number in sorted(page_by_number):
+        if page_number in explicit_toc_pages:
+            continue
+
+        previous_page = page_by_number.get(page_number - 1)
+        current_page = page_by_number.get(page_number)
+        if previous_page is None or current_page is None:
+            continue
+        if previous_page.page_number not in active_toc_pages:
+            continue
+
+        previous_tables = [
+            item for item in previous_page.elements
+            if item.type == "table" and item.table is not None
+        ]
+        current_tables = [
+            item for item in current_page.elements
+            if item.type == "table" and item.table is not None
+        ]
+        if not previous_tables or not current_tables:
+            continue
+
+        source = max(previous_tables, key=lambda item: (item.bbox[3], item.document_order))
+        candidate = min(current_tables, key=lambda item: (item.bbox[1], item.document_order))
+
+        if not _tables_form_cross_page_continuation(previous_page, current_page, source, candidate):
+            continue
+        if not _looks_like_toc_table(source.table.cells):
+            continue
+        if not _looks_like_toc_table(candidate.table.cells):
+            continue
+
+        active_toc_pages.add(page_number)
+        _repair_canonical_toc_table(candidate)
+
+    return active_toc_pages
+
+
 def _build_logical_tables(
     pages: list[StructuredPage],
 ) -> tuple[list[LogicalTable], list[StructuralRelation]]:
@@ -3195,16 +3756,10 @@ def _build_logical_tables(
                 break
             candidate = min(next_tables, key=lambda item: item.bbox[1])
 
-            # Strong continuation evidence: current fragment approaches the
-            # bottom edge, next fragment begins near the top, same column
-            # geometry, and no intervening semantic content / context change.
-            if current.bbox[3] < current_page.height * 0.72 or candidate.bbox[1] > next_page.height * 0.30:
-                break
-            if _has_substantive_content_before_table(next_page, candidate):
-                break
-            if not _table_columns_compatible(current, candidate, max(current_page.width, next_page.width, 1.0)):
-                break
-            if not _table_context_compatible(current, candidate):
+            # Strong continuation evidence is shared with TOC-context
+            # inheritance so both passes use exactly the same geometry and
+            # semantic-boundary rules.
+            if not _tables_form_cross_page_continuation(current_page, next_page, current, candidate):
                 break
 
             chain.append(candidate)
@@ -3289,7 +3844,7 @@ def _build_figures_and_relations(
                         source_element_id=item.element_id, target_element_id=figure.element_id,
                         evidence="source/reference language follows figure",
                     ))
-                elif item.type in {"section_header", "clause", "subclause"}:
+                elif item.type in {"section_header", "group_header", "clause", "subclause"}:
                     # A new numbered structural unit starts normal document
                     # content; it should not be swallowed as figure explanation.
                     break
@@ -3334,6 +3889,7 @@ def build_canonical_document(
 
     elements: list[CanonicalElement] = []
     pages: list[StructuredPage] = []
+    explicit_toc_pages: set[int] = set()
     document_order = 0
     warnings: list[str] = []
 
@@ -3354,10 +3910,18 @@ def build_canonical_document(
             continue
 
         page_elements: list[CanonicalElement] = []
+        page_has_toc_context = _page_has_explicit_toc_context(layout_page)
+        if page_has_toc_context:
+            explicit_toc_pages.add(page_number)
         for reading_order, box in enumerate(layout_page.get("boxes") or []):
             boxclass = str(box.get("boxclass") or "unknown")
             canonical_type = BOX_TYPE_MAP.get(boxclass, "unknown")
             bbox = _bbox_from_box(box)
+            canonical_table = (
+                _canonical_table(box, allow_toc_row_repair=page_has_toc_context)
+                if canonical_type == "table"
+                else None
+            )
             element = CanonicalElement(
                 element_id=f"p{page_number}-e{reading_order + 1}",
                 type=canonical_type,
@@ -3365,10 +3929,11 @@ def build_canonical_document(
                 reading_order=reading_order,
                 document_order=document_order,
                 bbox=bbox,
-                text=_box_text(box),
+                text=_table_cells_text(canonical_table.cells) if canonical_table is not None else _box_text(box),
                 dominant_font_size=_dominant_font_size(raw_page, bbox),
+                layout_role=boxclass,
                 role_source="layout",
-                table=_canonical_table(box) if canonical_type == "table" else None,
+                table=canonical_table,
                 source=_source_trace(raw_page, bbox, reading_order, boxclass),
             )
             page_elements.append(element)
@@ -3393,15 +3958,25 @@ def build_canonical_document(
         layout_result,
         title_root_present=title_element is not None,
     )
-    _refine_numbered_clauses(elements)
+    resolve_structural_semantics(elements, pages)
     definition_relations = _refine_definition_lists(elements, pages, extraction_by_page)
     _refine_footnotes(pages)
     _cleanup_reconstructed_elements(elements, pages, extraction_by_page)
+    for element in elements:
+        backfill_classification(element)
 
     sections = _build_sections(elements)
+
+    # Stage 4.5.8.5: carry explicit TOC context only across table fragments
+    # that satisfy the same continuation evidence used by logical-table
+    # reconciliation. This runs after section assignment so a conflicting
+    # section boundary can also block inheritance.
+    _inherit_toc_context_and_repair(pages, explicit_toc_pages)
+
     definitions = _build_definition_entries(elements, pages)
     definitions.extend(_build_table_definition_entries(elements, definitions, pages))
     clauses, clause_relations = _build_clause_records(elements, sections)
+    group_list_relations = _build_group_and_list_relations(elements, sections)
     open_block_relations = _reconcile_cross_page_open_text_blocks(pages)
     appendices, appendix_relations = _build_appendices(elements, sections, pages)
     logical_tables, table_relations = _build_logical_tables(pages)
@@ -3409,11 +3984,19 @@ def build_canonical_document(
     relationships = (
         definition_relations
         + clause_relations
+        + group_list_relations
         + open_block_relations
         + appendix_relations
         + table_relations
         + figure_relations
     )
+
+    semantic_validation = validate_semantic_structure(
+        elements=elements,
+        sections=sections,
+        relationships=relationships,
+    )
+    warnings.extend(semantic_validation.warnings)
 
     for page in pages:
         page.body_text = "\n\n".join(

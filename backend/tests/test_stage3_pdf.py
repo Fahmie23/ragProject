@@ -85,3 +85,23 @@ def test_scanned_pdf_stays_unocred_and_warns(tmp_path: Path):
     assert result.summary.image_block_count >= 1
     assert result.warnings
     assert any("No extractable text layer" in warning for warning in result.pages[0].warnings)
+
+
+def test_stage3_assigns_stable_line_and_span_ids(tmp_path: Path):
+    path = tmp_path / "span-ids.pdf"
+    doc = pymupdf.open()
+    page = doc.new_page(width=595, height=842)
+    page.insert_text((72, 72), "financial group", fontsize=11)
+    page.insert_text((72, 95), "means a group that consists of a parent company", fontsize=11)
+    doc.save(path)
+    doc.close()
+
+    result = extract_document(path, _record(path, "span-ids"))
+    assert result.schema_version == "1.1"
+    text_blocks = [block for block in result.pages[0].blocks if block.type == "text"]
+    assert text_blocks
+    line_ids = [line.line_id for block in text_blocks for line in block.lines]
+    span_ids = [span.span_id for block in text_blocks for line in block.lines for span in line.spans]
+    assert all(line_id and line_id.startswith("p1-b") and "-l" in line_id for line_id in line_ids)
+    assert all(span_id and span_id.startswith("p1-b") and "-s" in span_id for span_id in span_ids)
+    assert len(span_ids) == len(set(span_ids))

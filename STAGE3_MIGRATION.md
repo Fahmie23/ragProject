@@ -80,3 +80,9 @@ Then test a scanned PDF. It should explicitly warn that OCR is disabled and shou
 ## Stage boundary
 
 Do not add heading/paragraph/caption classification to Stage 3. Stage 4 will consume this extraction JSON and reconstruct document structure separately.
+
+## Stage 3 schema 1.1 — stable line/span provenance
+
+Stage 4.5.8.10 extends Stage 3 text evidence with optional stable `line_id` and `span_id` fields. Fresh extractions persist these IDs. Existing schema 1.0 extraction JSON remains compatible: the review/correction layer deterministically synthesizes the same IDs from the immutable block/line/span nesting, so you do not have to discard existing extraction results merely to open them in Text Span correction mode.
+
+Re-run Stage 3 when you want the new IDs persisted directly in the extraction JSON. Stage 3 remains extraction-only; semantic labels still belong to Stage 4/4.5.

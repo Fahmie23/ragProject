@@ -37,6 +37,10 @@ class Settings(BaseSettings):
     def resolved_dir(self) -> Path:
         return self.data_dir / "resolved"
 
+    @property
+    def chunks_dir(self) -> Path:
+        return self.data_dir / "chunks"
+
 
 settings = Settings()
 for directory in (
@@ -47,5 +51,6 @@ for directory in (
     settings.structured_dir,
     settings.corrections_dir,
     settings.resolved_dir,
+    settings.chunks_dir,
 ):
     directory.mkdir(parents=True, exist_ok=True)
