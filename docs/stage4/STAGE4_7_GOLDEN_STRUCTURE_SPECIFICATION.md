@@ -140,7 +140,7 @@ The main body, Appendix A and Appendix E all reuse low clause numbers. Appendix 
 
 Golden records assert:
 
-- Appendix A: pages 68–77;
+- Appendix A: pages 68–78;
 - Appendix E: pages 92–102.
 
 ### Tables and figures
@@ -154,19 +154,19 @@ The benchmark includes:
 
 ## Coverage
 
-The first golden specification contains **83 checks**:
+The current golden specification (v1.3) contains **118 checks**:
 
-- 57 element assertions;
-- 12 relationship assertions;
+- 79 element assertions;
+- 25 relationship assertions;
 - 5 definition assertions;
 - 2 appendix assertions;
 - 2 logical-table assertions;
 - 3 page-level assertions;
 - 2 figure assertions.
 
-Of these, **77 are required** and **6 are advisory**.
+Of these, **105 are required** and **6 are advisory**.
 
-Representative structural coverage includes front matter, revision tables, TOC, normal clauses, nested enumeration, definitions, cross-page definitions, guidance blocks, local headings, cross-page sibling structures, appendix numbering resets, figures and cross-page tables.
+Representative structural coverage includes front matter, revision tables, TOC, normal clauses, nested enumeration, definitions, cross-page definitions, guidance blocks, local headings, cross-page sibling structures, appendix numbering resets, figures, cross-page tables, same-unit semantic continuity, parent-clause tails, cross-page nested-list ownership, and appendix descriptive-title scope.
 
 ## Why the whole document is not manually labelled
 
