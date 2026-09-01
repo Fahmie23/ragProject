@@ -1677,7 +1677,7 @@ def test_cross_page_definition_nested_sequence_skips_running_header():
     )
 
 
-def test_generic_cross_page_hierarchy_links_bullet_siblings_in_same_section():
+def test_generic_cross_page_hierarchy_does_not_mark_bullet_siblings_as_text_continuation():
     record, extraction, layout = _two_page_base()
     p1_blocks = [
         _text_block("p1-b0", 0, [50, 40, 300, 70], "Sample Report", 22),
@@ -1708,11 +1708,15 @@ def test_generic_cross_page_hierarchy_links_bullet_siblings_in_same_section():
     source = next(e for e in result.pages[0].elements if "Dealing in derivatives" in e.text)
     target = next(e for e in result.pages[1].elements if "Fund management" in e.text)
     assert source.section_id == target.section_id
-    relation = next(r for r in result.relationships if r.type == "continues" and r.source_element_id == source.element_id and r.target_element_id == target.element_id)
-    assert "bullet marker continues" in relation.evidence
+    assert not any(
+        r.type == "continues"
+        and r.source_element_id == source.element_id
+        and r.target_element_id == target.element_id
+        for r in result.relationships
+    )
 
 
-def test_generic_cross_page_hierarchy_detects_nested_marker_child():
+def test_generic_cross_page_hierarchy_treats_nested_marker_as_fresh_child_not_text_continuation():
     record, extraction, layout = _two_page_base()
     p1_blocks = [
         _text_block("p1-b0", 0, [50, 40, 300, 70], "Sample Report", 22),
@@ -1742,11 +1746,16 @@ def test_generic_cross_page_hierarchy_detects_nested_marker_child():
     result = build_canonical_document(record=record, extraction=extraction, layout_artifact=layout)
     source = next(e for e in result.pages[0].elements if e.text.startswith("(b)"))
     target = next(e for e in result.pages[1].elements if e.text.startswith("(i)"))
-    relation = next(r for r in result.relationships if r.type == "continues" and r.source_element_id == source.element_id and r.target_element_id == target.element_id)
-    assert "child hierarchy continuation" in relation.evidence
+    assert target.type == "list_item"
+    assert not any(
+        r.type == "continues"
+        and r.source_element_id == source.element_id
+        and r.target_element_id == target.element_id
+        for r in result.relationships
+    )
 
 
-def test_generic_cross_page_hierarchy_links_numbered_siblings_under_same_section():
+def test_generic_cross_page_hierarchy_does_not_mark_numbered_siblings_as_text_continuation():
     record, extraction, layout = _two_page_base()
     p1_blocks = [
         _text_block("p1-b0", 0, [50, 40, 300, 70], "Sample Report", 22),
@@ -1779,8 +1788,12 @@ def test_generic_cross_page_hierarchy_links_numbered_siblings_under_same_section
     source = next(e for e in result.pages[0].elements if e.text.startswith("(20)"))
     target = next(e for e in result.pages[1].elements if e.text.startswith("(21)"))
     assert source.section_id == target.section_id
-    relation = next(r for r in result.relationships if r.type == "continues" and r.source_element_id == source.element_id and r.target_element_id == target.element_id)
-    assert "marker sequence advances" in relation.evidence
+    assert not any(
+        r.type == "continues"
+        and r.source_element_id == source.element_id
+        and r.target_element_id == target.element_id
+        for r in result.relationships
+    )
 
 
 def test_generic_cross_page_hierarchy_stops_at_new_section_before_candidate():
@@ -2550,3 +2563,706 @@ def test_semantic_v21_validator_warns_for_unowned_sequence_list_item():
     assert item.classification.confidence == 0.62
     assert any("hierarchy calibration" in evidence for evidence in item.classification.evidence)
     assert any("enumerated list item" in warning for warning in result.warnings)
+
+
+def test_semantic_v22_promotes_large_centered_cover_text_to_title():
+    record, extraction, layout = _fixture()
+    raw = extraction.pages[0]
+    raw.blocks[0] = _text_block(
+        "p1-b0", 0, [140, 250, 500, 520],
+        "COMPLEX DOCUMENT PROCESSING GUIDELINES", 24,
+    )
+    raw.text = raw.text.replace("Sample Report", "COMPLEX DOCUMENT PROCESSING GUIDELINES")
+    layout["result"]["pages"][0]["boxes"][0] = {
+        "x0": 140, "y0": 250, "x1": 500, "y1": 520,
+        "boxclass": "text",
+        "textlines": [{"spans": [{"text": "COMPLEX DOCUMENT PROCESSING GUIDELINES"}]}],
+    }
+    result = build_canonical_document(record=record, extraction=extraction, layout_artifact=layout)
+    cover = next(item for item in result.pages[0].elements if item.text == "COMPLEX DOCUMENT PROCESSING GUIDELINES")
+    assert cover.type == "title"
+    assert cover.role_source == "promoted_top_heading"
+
+
+def test_semantic_v22_promotes_page_header_appendix_labels_and_builds_boundaries():
+    record, extraction, layout = _two_page_base()
+    p1_blocks = [
+        _text_block("p1-b0", 0, [450, 40, 550, 60], "APPENDIX A", 11),
+        _text_block("p1-b1", 1, [70, 100, 500, 130], "Risk Assessment Guide", 14),
+        _text_block("p1-b2", 2, [70, 160, 520, 200], "1.1 The guide applies to all systems.", 11),
+    ]
+    p2_blocks = [
+        _text_block("p2-b0", 0, [450, 40, 550, 60], "APPENDIX B", 11),
+        _text_block("p2-b1", 1, [70, 100, 500, 130], "Control Measures", 14),
+        _text_block("p2-b2", 2, [70, 160, 520, 200], "1.1 Controls must be documented.", 11),
+    ]
+    extraction.pages = [_make_page(1, p1_blocks), _make_page(2, p2_blocks)]
+    extraction.summary.text_block_count = 6
+    extraction.summary.table_count = 0
+    layout["result"]["toc"] = []
+    layout["result"]["pages"] = [
+        {"page_number": 1, "width": 600, "height": 800, "boxes": [
+            {"x0":450,"y0":40,"x1":550,"y1":60,"boxclass":"page-header","textlines":[{"spans":[{"text":"APPENDIX A"}]}]},
+            {"x0":70,"y0":100,"x1":500,"y1":130,"boxclass":"section-header","textlines":[{"spans":[{"text":"Risk Assessment Guide"}]}]},
+            {"x0":70,"y0":160,"x1":520,"y1":200,"boxclass":"list-item","textlines":[{"spans":[{"text":"1.1 The guide applies to all systems."}]}]},
+        ]},
+        {"page_number": 2, "width": 600, "height": 800, "boxes": [
+            {"x0":450,"y0":40,"x1":550,"y1":60,"boxclass":"page-header","textlines":[{"spans":[{"text":"APPENDIX B"}]}]},
+            {"x0":70,"y0":100,"x1":500,"y1":130,"boxclass":"section-header","textlines":[{"spans":[{"text":"Control Measures"}]}]},
+            {"x0":70,"y0":160,"x1":520,"y1":200,"boxclass":"list-item","textlines":[{"spans":[{"text":"1.1 Controls must be documented."}]}]},
+        ]},
+    ]
+    result = build_canonical_document(record=record, extraction=extraction, layout_artifact=layout)
+    assert [(item.label, item.start_page, item.end_page) for item in result.appendices] == [
+        ("APPENDIX A", 1, 1), ("APPENDIX B", 2, 2)
+    ]
+    labels = [item for page in result.pages for item in page.elements if item.text in {"APPENDIX A", "APPENDIX B"}]
+    assert all(item.type == "section_header" for item in labels)
+    assert all(item.layout_role == "page-header" for item in labels)
+
+
+def test_semantic_v22_numbered_step_heading_becomes_clause_when_it_has_no_deeper_numbered_family():
+    record, extraction, layout = _fixture()
+    raw = extraction.pages[0]
+    raw.blocks = [
+        _text_block("p1-b0", 0, [50, 40, 300, 70], "Procedure Guide", 22),
+        _text_block("p1-b1", 1, [70, 110, 530, 145], "1.7 The process begins with preparation.", 11),
+        _text_block("p1-b2", 2, [70, 170, 530, 205], "1.8 Step 1: Identify the responsible person", 11),
+        _text_block("p1-b3", 3, [110, 230, 530, 270], "(a) The supervisor must verify the record.", 11),
+        _text_block("p1-b4", 4, [70, 300, 530, 335], "1.9 Step 2: Confirm the result", 11),
+    ]
+    raw.tables = []
+    extraction.summary.text_block_count = 5
+    extraction.summary.table_count = 0
+    layout["result"]["toc"] = [[4, "1.8 Step 1: Identify the responsible person", 1], [4, "1.9 Step 2: Confirm the result", 1]]
+    layout["result"]["pages"][0]["boxes"] = [
+        {"x0":50,"y0":40,"x1":300,"y1":70,"boxclass":"title","textlines":[{"spans":[{"text":"Procedure Guide"}]}]},
+        {"x0":70,"y0":110,"x1":530,"y1":145,"boxclass":"list-item","textlines":[{"spans":[{"text":"1.7 The process begins with preparation."}]}]},
+        {"x0":70,"y0":170,"x1":530,"y1":205,"boxclass":"section-header","textlines":[{"spans":[{"text":"1.8 Step 1: Identify the responsible person"}]}]},
+        {"x0":110,"y0":230,"x1":530,"y1":270,"boxclass":"list-item","textlines":[{"spans":[{"text":"(a) The supervisor must verify the record."}]}]},
+        {"x0":70,"y0":300,"x1":530,"y1":335,"boxclass":"section-header","textlines":[{"spans":[{"text":"1.9 Step 2: Confirm the result"}]}]},
+    ]
+    result = build_canonical_document(record=record, extraction=extraction, layout_artifact=layout)
+    step1 = next(item for item in result.pages[0].elements if item.text.startswith("1.8"))
+    step2 = next(item for item in result.pages[0].elements if item.text.startswith("1.9"))
+    assert step1.type == "clause" and step1.clause_number == "1.8"
+    assert step2.type == "clause" and step2.clause_number == "1.9"
+
+
+def test_semantic_v22_nested_roman_run_splits_from_outer_alpha_marker_by_indentation():
+    record, extraction, layout = _fixture()
+    raw = extraction.pages[0]
+    raw.blocks = [
+        _text_block("p1-b0", 0, [50, 40, 300, 70], "Procedure Guide", 22),
+        _text_block("p1-b1", 1, [70, 110, 530, 145], "1.1 The assessment includes the following:", 11),
+        _text_block("p1-b2", 2, [140, 155, 530, 185], "Such a situation can be observed, among others, where:", 11),
+        _text_block("p1-b3", 3, [140, 195, 530, 230], "(i) The person has majority voting power; or", 11),
+        _text_block("p1-b4", 4, [140, 240, 530, 275], "(ii) The person exercises appointment rights.", 11),
+        _text_block("p1-b5", 5, [110, 300, 530, 350], "(d) The institution shall then carry out Step 2.", 11),
+    ]
+    raw.tables = []
+    extraction.summary.text_block_count = 6
+    extraction.summary.table_count = 0
+    layout["result"]["toc"] = []
+    layout["result"]["pages"][0]["boxes"] = [
+        {"x0":50,"y0":40,"x1":300,"y1":70,"boxclass":"title","textlines":[{"spans":[{"text":"Procedure Guide"}]}]},
+        {"x0":70,"y0":110,"x1":530,"y1":145,"boxclass":"list-item","textlines":[{"spans":[{"text":"1.1 The assessment includes the following:"}]}]},
+        {"x0":140,"y0":155,"x1":530,"y1":185,"boxclass":"text","textlines":[{"spans":[{"text":"Such a situation can be observed, among others, where:"}]}]},
+        {"x0":140,"y0":195,"x1":530,"y1":230,"boxclass":"list-item","textlines":[{"spans":[{"text":"(i) The person has majority voting power; or"}]}]},
+        {"x0":140,"y0":240,"x1":530,"y1":275,"boxclass":"list-item","textlines":[{"spans":[{"text":"(ii) The person exercises appointment rights."}]}]},
+        {"x0":110,"y0":300,"x1":530,"y1":350,"boxclass":"list-item","textlines":[{"spans":[{"text":"(d) The institution shall then carry out Step 2."}]}]},
+    ]
+    result = build_canonical_document(record=record, extraction=extraction, layout_artifact=layout)
+    i = next(item for item in result.pages[0].elements if item.text.startswith("(i)"))
+    ii = next(item for item in result.pages[0].elements if item.text.startswith("(ii)"))
+    d = next(item for item in result.pages[0].elements if item.text.startswith("(d)"))
+    assert i.type == "list_item"
+    assert ii.type == "list_item"
+    assert d.type == "subclause"
+
+
+def test_definition_items_accept_missing_space_after_markers():
+    record, extraction, layout = _fixture()
+    raw = extraction.pages[0]
+    raw.text = "Sample Report\n3. DEFINITIONS\nterm\nmeans items that:\n(a)first item;\n(b)second item;\n(c)third item."
+    raw.blocks = [
+        _text_block("p1-b0", 0, [50, 40, 300, 70], "Sample Report", 22),
+        _text_block("p1-b1", 1, [72, 90, 250, 110], "3. DEFINITIONS", 14),
+        _text_block("p1-b2", 2, [112, 150, 180, 170], "term", 11),
+        _text_block("p1-b3", 3, [310, 150, 550, 190], "means items that:", 11),
+        _text_block("p1-b4", 4, [310, 205, 550, 230], "(a)first item;", 11),
+        _text_block("p1-b5", 5, [310, 240, 550, 265], "(b)second item;", 11),
+        _text_block("p1-b6", 6, [310, 275, 550, 300], "(c)third item.", 11),
+    ]
+    raw.tables = []
+    extraction.summary.text_block_count = 7
+    extraction.summary.table_count = 0
+    layout["result"]["toc"] = []
+    layout["result"]["pages"][0]["boxes"] = [
+        {"x0":50,"y0":40,"x1":300,"y1":70,"boxclass":"title","textlines":[{"spans":[{"text":"Sample Report"}]}]},
+        {"x0":72,"y0":90,"x1":250,"y1":110,"boxclass":"section-header","textlines":[{"spans":[{"text":"3. DEFINITIONS"}]}]},
+        {"x0":112,"y0":150,"x1":180,"y1":170,"boxclass":"text","textlines":[{"spans":[{"text":"term"}]}]},
+        {"x0":310,"y0":150,"x1":550,"y1":190,"boxclass":"text","textlines":[{"spans":[{"text":"means items that:"}]}]},
+        {"x0":310,"y0":205,"x1":550,"y1":230,"boxclass":"list-item","textlines":[{"spans":[{"text":"(a)first item;"}]}]},
+        {"x0":310,"y0":240,"x1":550,"y1":265,"boxclass":"list-item","textlines":[{"spans":[{"text":"(b)second item;"}]}]},
+        {"x0":310,"y0":275,"x1":550,"y1":300,"boxclass":"list-item","textlines":[{"spans":[{"text":"(c)third item."}]}]},
+    ]
+    result = build_canonical_document(record=record, extraction=extraction, layout_artifact=layout)
+    entry = next(item for item in result.definitions if item.term == "term")
+    assert [item.marker for item in entry.items] == ["(a)", "(b)", "(c)"]
+
+
+def _shared_text_block(block_id: str, number: int, pieces: list[tuple[str, list[float]]], size: float = 11.04) -> TextBlock:
+    lines = []
+    for text, bbox in pieces:
+        span = TextSpan(text=text, bbox=bbox, font="TestFont", size=size)
+        lines.append(TextLine(bbox=bbox, text=text, spans=[span]))
+    bbox = [
+        min(piece[1][0] for piece in pieces),
+        min(piece[1][1] for piece in pieces),
+        max(piece[1][2] for piece in pieces),
+        max(piece[1][3] for piece in pieces),
+    ]
+    return TextBlock(
+        block_id=block_id,
+        number=number,
+        bbox=bbox,
+        text="\n".join(piece[0] for piece in pieces),
+        lines=lines,
+    )
+
+
+def test_semantic_v23_merges_markerless_same_block_subclause_continuation_and_owns_nested_list():
+    record, extraction, layout = _fixture()
+    pieces = [
+        ("(c) Shareholders may exercise control and have the power to take actions", [115, 250, 535, 300]),
+        ("and make decisions for the entity. Such a situation can be observed, where:", [143, 305, 535, 330]),
+    ]
+    blocks = [
+        _text_block("p1-b0", 0, [50, 40, 300, 70], "Sample Report", 22),
+        _text_block("p1-b1", 1, [70, 90, 300, 115], "1. TEST SECTION", 14),
+        _text_block("p1-b2", 2, [70, 135, 530, 175], "1.8 Step 1: Identify the controlling person", 11.04),
+        _shared_text_block("p1-b3", 3, pieces),
+        _text_block("p1-b4", 4, [143, 350, 520, 375], "(i)The natural person has majority voting power; or", 11.04),
+        _text_block("p1-b5", 5, [143, 385, 520, 410], "(ii)The natural person may appoint directors.", 11.04),
+    ]
+    extraction.pages = [_make_page(1, blocks)]
+    extraction.summary.text_block_count = len(blocks)
+    extraction.summary.table_count = 0
+    layout["result"]["toc"] = []
+    layout["result"]["pages"][0]["boxes"] = [
+        {"x0":50,"y0":40,"x1":300,"y1":70,"boxclass":"title","textlines":[{"spans":[{"text":"Sample Report"}]}]},
+        {"x0":70,"y0":90,"x1":300,"y1":115,"boxclass":"section-header","textlines":[{"spans":[{"text":"1. TEST SECTION"}]}]},
+        {"x0":70,"y0":135,"x1":530,"y1":175,"boxclass":"list-item","textlines":[{"spans":[{"text":"1.8 Step 1: Identify the controlling person"}]}]},
+        {"x0":115,"y0":250,"x1":535,"y1":300,"boxclass":"list-item","textlines":[{"spans":[{"text":pieces[0][0]}]}]},
+        {"x0":143,"y0":305,"x1":535,"y1":330,"boxclass":"list-item","textlines":[{"spans":[{"text":pieces[1][0]}]}]},
+        {"x0":143,"y0":350,"x1":520,"y1":375,"boxclass":"list-item","textlines":[{"spans":[{"text":"(i)The natural person has majority voting power; or"}]}]},
+        {"x0":143,"y0":385,"x1":520,"y1":410,"boxclass":"list-item","textlines":[{"spans":[{"text":"(ii)The natural person may appoint directors."}]}]},
+    ]
+
+    result = build_canonical_document(record=record, extraction=extraction, layout_artifact=layout)
+    page = result.pages[0]
+    subclause = next(item for item in page.elements if item.text.startswith("(c) Shareholders"))
+    assert subclause.type == "subclause"
+    assert "and make decisions for the entity" in subclause.text
+    assert not any(item.text.startswith("and make decisions for the entity") for item in page.elements)
+    assert subclause.source.stage3_block_ids == ["p1-b3"]
+    assert len(subclause.source.stage3_line_ids) == 2
+
+    roman = [item for item in page.elements if item.text.startswith(("(i)", "(ii)"))]
+    assert all(item.type == "list_item" for item in roman)
+    for item in roman:
+        assert any(
+            relation.type == "introduces"
+            and relation.source_element_id == subclause.element_id
+            and relation.target_element_id == item.element_id
+            for relation in result.relationships
+        )
+
+
+def test_semantic_v23_merges_style_split_sentence_but_not_appendix_title():
+    record, extraction, layout = _two_page_base()
+    intro_a = "Regulation 3 of the Strategic Trade (United Nations Security Council Resolutions)"
+    intro_b = "Regulations 2010 requires the following counter-proliferation financing measures:"
+    p1_blocks = [
+        _text_block("p1-b0", 0, [50, 40, 300, 70], "Sample Report", 22),
+    ]
+    p2_blocks = [
+        _text_block("p2-b0", 0, [450, 40, 550, 60], "APPENDIX G", 11.04),
+        _text_block("p2-b1", 1, [70, 80, 540, 125], "REGULATION 3 OF STRATEGIC TRADE REGULATIONS 2010", 11.04),
+        _shared_text_block("p2-b2", 2, [(intro_a, [70, 150, 540, 165]), (intro_b, [70, 170, 540, 215])]),
+        _text_block("p2-b3", 3, [70, 235, 530, 260], "(a)Freezing of relevant assets;", 11.04),
+        _text_block("p2-b4", 4, [70, 270, 530, 295], "(b)Prohibition of restricted investment.", 11.04),
+    ]
+    extraction.pages = [_make_page(1, p1_blocks), _make_page(2, p2_blocks)]
+    extraction.summary.text_block_count = len(p1_blocks) + len(p2_blocks)
+    extraction.summary.table_count = 0
+    layout["result"]["toc"] = []
+    layout["result"]["pages"] = [
+        {"page_number":1,"width":600,"height":800,"boxes":[
+            {"x0":50,"y0":40,"x1":300,"y1":70,"boxclass":"title","textlines":[{"spans":[{"text":"Sample Report"}]}]},
+        ]},
+        {"page_number":2,"width":600,"height":800,"boxes":[
+            {"x0":450,"y0":40,"x1":550,"y1":60,"boxclass":"page-header","textlines":[{"spans":[{"text":"APPENDIX G"}]}]},
+            {"x0":70,"y0":80,"x1":540,"y1":125,"boxclass":"section-header","textlines":[{"spans":[{"text":"REGULATION 3 OF STRATEGIC TRADE REGULATIONS 2010"}]}]},
+            {"x0":70,"y0":150,"x1":540,"y1":165,"boxclass":"section-header","textlines":[{"spans":[{"text":intro_a}]}]},
+            {"x0":70,"y0":170,"x1":540,"y1":215,"boxclass":"text","textlines":[{"spans":[{"text":intro_b}]}]},
+            {"x0":70,"y0":235,"x1":530,"y1":260,"boxclass":"list-item","textlines":[{"spans":[{"text":"(a)Freezing of relevant assets;"}]}]},
+            {"x0":70,"y0":270,"x1":530,"y1":295,"boxclass":"list-item","textlines":[{"spans":[{"text":"(b)Prohibition of restricted investment."}]}]},
+        ]},
+    ]
+
+    result = build_canonical_document(record=record, extraction=extraction, layout_artifact=layout)
+    page = result.pages[1]
+    merged = next(item for item in page.elements if item.text.startswith(intro_a))
+    assert merged.type == "paragraph"
+    assert intro_b in merged.text
+    assert merged.element_id not in {section.element_id for section in result.sections}
+    assert next(item for item in page.elements if item.text == "APPENDIX G").type == "section_header"
+    members = [item for item in page.elements if item.text.startswith(("(a)", "(b)"))]
+    for item in members:
+        assert any(
+            relation.type == "introduces"
+            and relation.source_element_id == merged.element_id
+            and relation.target_element_id == item.element_id
+            for relation in result.relationships
+        )
+
+
+def test_semantic_v23_parent_clause_tail_belongs_to_parent_after_embedded_list():
+    record, extraction, layout = _fixture()
+    blocks = [
+        _text_block("p1-b0", 0, [50, 40, 300, 70], "Sample Report", 22),
+        _text_block("p1-b1", 1, [70, 90, 300, 115], "8.5 Higher-Risk Countries", 14),
+        _text_block("p1-b2", 2, [70, 135, 530, 170], "8.5.3 For transactions with persons from countries identified by–", 11.04),
+        _text_block("p1-b3", 3, [115, 190, 530, 220], "(a)the FATF as having strategic deficiencies; or", 11.04),
+        _text_block("p1-b4", 4, [115, 230, 530, 260], "(b)the Government as having strategic deficiencies;", 11.04),
+        _text_block("p1-b5", 5, [115, 275, 530, 315], "a reporting institution is required to assess the risk and conduct enhanced CDD.", 11.04),
+    ]
+    extraction.pages = [_make_page(1, blocks)]
+    extraction.summary.text_block_count = len(blocks)
+    extraction.summary.table_count = 0
+    layout["result"]["toc"] = []
+    layout["result"]["pages"][0]["boxes"] = [
+        {"x0":50,"y0":40,"x1":300,"y1":70,"boxclass":"title","textlines":[{"spans":[{"text":"Sample Report"}]}]},
+        {"x0":70,"y0":90,"x1":300,"y1":115,"boxclass":"section-header","textlines":[{"spans":[{"text":"8.5 Higher-Risk Countries"}]}]},
+        {"x0":70,"y0":135,"x1":530,"y1":170,"boxclass":"list-item","textlines":[{"spans":[{"text":"8.5.3 For transactions with persons from countries identified by–"}]}]},
+        {"x0":115,"y0":190,"x1":530,"y1":220,"boxclass":"list-item","textlines":[{"spans":[{"text":"(a)the FATF as having strategic deficiencies; or"}]}]},
+        {"x0":115,"y0":230,"x1":530,"y1":260,"boxclass":"list-item","textlines":[{"spans":[{"text":"(b)the Government as having strategic deficiencies;"}]}]},
+        {"x0":115,"y0":275,"x1":530,"y1":315,"boxclass":"text","textlines":[{"spans":[{"text":"a reporting institution is required to assess the risk and conduct enhanced CDD."}]}]},
+    ]
+
+    result = build_canonical_document(record=record, extraction=extraction, layout_artifact=layout)
+    clause = next(item for item in result.pages[0].elements if item.text.startswith("8.5.3"))
+    tail = next(item for item in result.pages[0].elements if item.text.startswith("a reporting institution"))
+    members = [item for item in result.pages[0].elements if item.text.startswith(("(a)", "(b)"))]
+    assert clause.type == "clause"
+    assert all(item.type == "list_item" for item in members)
+    assert any(
+        relation.type == "belongs_to"
+        and relation.source_element_id == tail.element_id
+        and relation.target_element_id == clause.element_id
+        for relation in result.relationships
+    )
+
+
+def test_semantic_v23_cross_page_nested_list_keeps_subclause_owner():
+    record, extraction, layout = _two_page_base()
+    p1 = [
+        _text_block("p1-b0", 0, [50, 40, 300, 70], "Sample Report", 22),
+        _text_block("p1-b1", 1, [70, 90, 300, 115], "1. TEST SECTION", 14),
+        _text_block("p1-b2", 2, [70, 600, 530, 635], "1.9 Step 2: Identify the controlling person", 11.04),
+        _text_block("p1-b3", 3, [115, 670, 530, 730], "(b) Such powers may be attained through other means, such as:", 11.04),
+    ]
+    p2 = [
+        _text_block("p2-b0", 0, [143, 55, 530, 85], "(i) Reflecting dominant influence to appoint directors;", 11.04),
+        _text_block("p2-b1", 1, [143, 95, 530, 125], "(ii) Having power of attorney over the entity.", 11.04),
+    ]
+    extraction.pages = [_make_page(1, p1), _make_page(2, p2)]
+    extraction.summary.text_block_count = len(p1) + len(p2)
+    extraction.summary.table_count = 0
+    layout["result"]["toc"] = []
+    layout["result"]["pages"] = [
+        {"page_number":1,"width":600,"height":800,"boxes":[
+            {"x0":50,"y0":40,"x1":300,"y1":70,"boxclass":"title","textlines":[{"spans":[{"text":"Sample Report"}]}]},
+            {"x0":70,"y0":90,"x1":300,"y1":115,"boxclass":"section-header","textlines":[{"spans":[{"text":"1. TEST SECTION"}]}]},
+            {"x0":70,"y0":600,"x1":530,"y1":635,"boxclass":"list-item","textlines":[{"spans":[{"text":"1.9 Step 2: Identify the controlling person"}]}]},
+            {"x0":115,"y0":670,"x1":530,"y1":730,"boxclass":"list-item","textlines":[{"spans":[{"text":"(b) Such powers may be attained through other means, such as:"}]}]},
+        ]},
+        {"page_number":2,"width":600,"height":800,"boxes":[
+            {"x0":143,"y0":55,"x1":530,"y1":85,"boxclass":"list-item","textlines":[{"spans":[{"text":"(i) Reflecting dominant influence to appoint directors;"}]}]},
+            {"x0":143,"y0":95,"x1":530,"y1":125,"boxclass":"list-item","textlines":[{"spans":[{"text":"(ii) Having power of attorney over the entity."}]}]},
+        ]},
+    ]
+    result = build_canonical_document(record=record, extraction=extraction, layout_artifact=layout)
+    sub = next(item for item in result.pages[0].elements if item.text.startswith("(b) Such powers"))
+    nested = [item for item in result.pages[1].elements if item.text.startswith(("(i)", "(ii)"))]
+    assert sub.type == "subclause"
+    assert all(item.type == "list_item" for item in nested)
+    for item in nested:
+        assert any(
+            relation.type == "introduces"
+            and relation.source_element_id == sub.element_id
+            and relation.target_element_id == item.element_id
+            for relation in result.relationships
+        )
+
+
+def test_semantic_v23_inherited_obligation_keeps_parallel_actions_as_subclauses():
+    record, extraction, layout = _fixture()
+    blocks = [
+        _text_block("p1-b0", 0, [50, 40, 300, 70], "Sample Report", 22),
+        _text_block("p1-b1", 1, [70, 90, 300, 115], "7.2 Risk management", 14),
+        _text_block("p1-b2", 2, [70, 135, 530, 165], "7.2.1 A reporting institution is required to–", 11.04),
+        _text_block("p1-b3", 3, [115, 185, 530, 225], "(a)have policies and controls to manage the risk;", 11.04),
+        _text_block("p1-b4", 4, [115, 235, 530, 275], "(b)monitor implementation of those controls; and", 11.04),
+        _text_block("p1-b5", 5, [115, 285, 530, 325], "(c)take enhanced measures where higher risks are identified.", 11.04),
+    ]
+    extraction.pages = [_make_page(1, blocks)]
+    extraction.summary.text_block_count = len(blocks)
+    extraction.summary.table_count = 0
+    layout["result"]["toc"] = []
+    layout["result"]["pages"][0]["boxes"] = [
+        {"x0":50,"y0":40,"x1":300,"y1":70,"boxclass":"title","textlines":[{"spans":[{"text":"Sample Report"}]}]},
+        {"x0":70,"y0":90,"x1":300,"y1":115,"boxclass":"section-header","textlines":[{"spans":[{"text":"7.2 Risk management"}]}]},
+        {"x0":70,"y0":135,"x1":530,"y1":165,"boxclass":"list-item","textlines":[{"spans":[{"text":"7.2.1 A reporting institution is required to–"}]}]},
+        {"x0":115,"y0":185,"x1":530,"y1":225,"boxclass":"list-item","textlines":[{"spans":[{"text":"(a)have policies and controls to manage the risk;"}]}]},
+        {"x0":115,"y0":235,"x1":530,"y1":275,"boxclass":"list-item","textlines":[{"spans":[{"text":"(b)monitor implementation of those controls; and"}]}]},
+        {"x0":115,"y0":285,"x1":530,"y1":325,"boxclass":"list-item","textlines":[{"spans":[{"text":"(c)take enhanced measures where higher risks are identified."}]}]},
+    ]
+    result = build_canonical_document(record=record, extraction=extraction, layout_artifact=layout)
+    actions = [item for item in result.pages[0].elements if item.text.startswith(("(a)", "(b)", "(c)"))]
+    assert len(actions) == 3
+    assert all(item.type == "subclause" for item in actions)
+    assert len({item.parent_clause_id for item in actions}) == 1
+
+
+def test_semantic_v23_recognizes_spaced_alphanumeric_clause_number():
+    record, extraction, layout = _fixture()
+    raw = extraction.pages[0]
+    raw.blocks = [
+        _text_block("p1-b0", 0, [50, 40, 300, 70], "Sample Report", 22),
+        _text_block("p1-b1", 1, [70, 100, 500, 130], "6 A. INTERNAL PROGRAMMES", 14),
+        _text_block("p1-b2", 2, [70, 150, 530, 205], "6 A.1 A reporting institution shall adopt internal programmes and controls.", 11.04),
+    ]
+    raw.tables = []
+    extraction.summary.text_block_count = 3
+    extraction.summary.table_count = 0
+    layout["result"]["toc"] = []
+    layout["result"]["pages"][0]["boxes"] = [
+        {"x0":50,"y0":40,"x1":300,"y1":70,"boxclass":"title","textlines":[{"spans":[{"text":"Sample Report"}]}]},
+        {"x0":70,"y0":100,"x1":500,"y1":130,"boxclass":"section-header","textlines":[{"spans":[{"text":"6 A. INTERNAL PROGRAMMES"}]}]},
+        {"x0":70,"y0":150,"x1":530,"y1":205,"boxclass":"list-item","textlines":[{"spans":[{"text":"6 A.1 A reporting institution shall adopt internal programmes and controls."}]}]},
+    ]
+    result = build_canonical_document(record=record, extraction=extraction, layout_artifact=layout)
+    clause = next(item for item in result.pages[0].elements if item.text.startswith("6 A.1"))
+    assert clause.type == "clause"
+    assert clause.clause_number == "6A.1"
+
+
+def test_semantic_v23_appendix_descriptive_title_is_group_header_not_duplicate_section():
+    record, extraction, layout = _two_page_base()
+    p1_blocks = [
+        _text_block("p1-b0", 0, [50, 40, 300, 70], "Sample Report", 22),
+    ]
+    p2_blocks = [
+        _text_block("p2-b0", 0, [450, 80, 550, 100], "APPENDIX F", 11.04),
+        _text_block("p2-b1", 1, [70, 120, 540, 155], "Guidance on Counterparty Due Diligence", 13.0),
+        _text_block("p2-b2", 2, [70, 185, 530, 210], "1.0 Introduction", 12.0),
+        _text_block("p2-b3", 3, [70, 225, 530, 270], "1.1 This Guidance describes the recommended process.", 11.04),
+    ]
+    extraction.pages = [_make_page(1, p1_blocks), _make_page(2, p2_blocks)]
+    extraction.summary.text_block_count = len(p1_blocks) + len(p2_blocks)
+    extraction.summary.table_count = 0
+    layout["result"]["toc"] = []
+    layout["result"]["pages"] = [
+        {"page_number":1,"width":600,"height":800,"boxes":[
+            {"x0":50,"y0":40,"x1":300,"y1":70,"boxclass":"title","textlines":[{"spans":[{"text":"Sample Report"}]}]},
+        ]},
+        {"page_number":2,"width":600,"height":800,"boxes":[
+            {"x0":450,"y0":80,"x1":550,"y1":100,"boxclass":"page-header","textlines":[{"spans":[{"text":"APPENDIX F"}]}]},
+            {"x0":70,"y0":120,"x1":540,"y1":155,"boxclass":"section-header","textlines":[{"spans":[{"text":"Guidance on Counterparty Due Diligence"}]}]},
+            {"x0":70,"y0":185,"x1":530,"y1":210,"boxclass":"section-header","textlines":[{"spans":[{"text":"1.0 Introduction"}]}]},
+            {"x0":70,"y0":225,"x1":530,"y1":270,"boxclass":"list-item","textlines":[{"spans":[{"text":"1.1 This Guidance describes the recommended process."}]}]},
+        ]},
+    ]
+
+    result = build_canonical_document(record=record, extraction=extraction, layout_artifact=layout)
+    page = result.pages[1]
+    appendix_label = next(item for item in page.elements if item.text == "APPENDIX F")
+    appendix_title = next(item for item in page.elements if item.text == "Guidance on Counterparty Due Diligence")
+    introduction = next(item for item in page.elements if item.text == "1.0 Introduction")
+
+    assert appendix_label.type == "section_header"
+    assert appendix_title.type == "group_header"
+    assert appendix_title.element_id not in {section.element_id for section in result.sections}
+    appendix = next(item for item in result.appendices if item.label == "APPENDIX F")
+    assert appendix.title_element_id == appendix_title.element_id
+    assert appendix.title == appendix_title.text
+    assert introduction.type == "section_header"
+    assert any(
+        relation.type == "introduces"
+        and relation.source_element_id == appendix_title.element_id
+        and relation.target_element_id == introduction.element_id
+        for relation in result.relationships
+    )
+
+
+def test_semantic_v23_same_block_short_local_heading_is_not_merged_into_paragraph():
+    record, extraction, layout = _fixture()
+    pieces = [
+        ("Risk factors", [70, 140, 180, 160]),
+        ("A reporting institution should consider the customer's risk profile.", [70, 165, 530, 195]),
+    ]
+    blocks = [
+        _text_block("p1-b0", 0, [50, 40, 300, 70], "Sample Report", 22),
+        _text_block("p1-b1", 1, [70, 90, 300, 115], "1. TEST SECTION", 14),
+        _shared_text_block("p1-b2", 2, pieces),
+    ]
+    extraction.pages = [_make_page(1, blocks)]
+    extraction.summary.text_block_count = len(blocks)
+    extraction.summary.table_count = 0
+    layout["result"]["toc"] = []
+    layout["result"]["pages"][0]["boxes"] = [
+        {"x0":50,"y0":40,"x1":300,"y1":70,"boxclass":"title","textlines":[{"spans":[{"text":"Sample Report"}]}]},
+        {"x0":70,"y0":90,"x1":300,"y1":115,"boxclass":"section-header","textlines":[{"spans":[{"text":"1. TEST SECTION"}]}]},
+        {"x0":70,"y0":140,"x1":180,"y1":160,"boxclass":"section-header","textlines":[{"spans":[{"text":"Risk factors"}]}]},
+        {"x0":70,"y0":165,"x1":530,"y1":195,"boxclass":"text","textlines":[{"spans":[{"text":pieces[1][0]}]}]},
+    ]
+
+    result = build_canonical_document(record=record, extraction=extraction, layout_artifact=layout)
+    page = result.pages[0]
+    assert any(item.text == "Risk factors" for item in page.elements)
+    assert any(item.text.startswith("A reporting institution should consider") for item in page.elements)
+    assert not any(
+        item.text.startswith("Risk factors") and "A reporting institution should consider" in item.text
+        for item in page.elements
+    )
+
+
+def test_semantic_v23_same_block_definition_term_and_body_are_not_merged_before_definition_recovery():
+    record, extraction, layout = _fixture()
+    pieces = [
+        ("beneficiary", [110, 140, 190, 160]),
+        ("means a natural or legal person entitled to receive a benefit.", [110, 165, 530, 195]),
+    ]
+    blocks = [
+        _text_block("p1-b0", 0, [50, 40, 300, 70], "Sample Report", 22),
+        _text_block("p1-b1", 1, [70, 90, 300, 115], "3. DEFINITIONS", 14),
+        _shared_text_block("p1-b2", 2, pieces),
+    ]
+    extraction.pages = [_make_page(1, blocks)]
+    extraction.summary.text_block_count = len(blocks)
+    extraction.summary.table_count = 0
+    layout["result"]["toc"] = []
+    layout["result"]["pages"][0]["boxes"] = [
+        {"x0":50,"y0":40,"x1":300,"y1":70,"boxclass":"title","textlines":[{"spans":[{"text":"Sample Report"}]}]},
+        {"x0":70,"y0":90,"x1":300,"y1":115,"boxclass":"section-header","textlines":[{"spans":[{"text":"3. DEFINITIONS"}]}]},
+        {"x0":110,"y0":140,"x1":190,"y1":160,"boxclass":"text","textlines":[{"spans":[{"text":"beneficiary"}]}]},
+        {"x0":110,"y0":165,"x1":530,"y1":195,"boxclass":"text","textlines":[{"spans":[{"text":pieces[1][0]}]}]},
+    ]
+
+    result = build_canonical_document(record=record, extraction=extraction, layout_artifact=layout)
+    page = result.pages[0]
+    # The continuity pass must not collapse these two source boxes. Specialized
+    # definition reconstruction may refine their final roles later, but both
+    # source texts must remain independently represented/provenanced.
+    texts = [item.text for item in page.elements]
+    assert any("beneficiary" in text.casefold() for text in texts)
+    assert any("means a natural or legal person" in text.casefold() for text in texts)
+    assert not any(
+        text.casefold().startswith("beneficiary") and "means a natural or legal person" in text.casefold()
+        for text in texts
+    )
+
+
+def test_semantic_v23_cascading_step_remains_subclause_when_it_introduces_nested_items():
+    record, extraction, layout = _fixture()
+    blocks = [
+        _text_block("p1-b0", 0, [50, 40, 300, 70], "Sample Report", 22),
+        _text_block("p1-b1", 1, [70, 90, 300, 115], "8.1 Customer Due Diligence", 14),
+        _text_block("p1-b2", 2, [70, 135, 530, 180], "8.1.11 A reporting institution is required to identify beneficial owners according to the following cascading steps:", 11.04),
+        _text_block("p1-b3", 3, [115, 195, 530, 250], "(a) the identity of the natural person(s) who ultimately has a controlling ownership interest in a legal person. Where applicable, this includes identifying:", 11.04),
+        _text_block("p1-b4", 4, [143, 265, 530, 300], "(i) shareholders with equity interest of more than twenty-five percent in a corporation; and", 11.04),
+        _text_block("p1-b5", 5, [143, 310, 530, 345], "(ii) partners with equivalent controlling interests.", 11.04),
+    ]
+    extraction.pages = [_make_page(1, blocks)]
+    extraction.summary.text_block_count = len(blocks)
+    extraction.summary.table_count = 0
+    layout["result"]["toc"] = []
+    layout["result"]["pages"][0]["boxes"] = [
+        {"x0":50,"y0":40,"x1":300,"y1":70,"boxclass":"title","textlines":[{"spans":[{"text":"Sample Report"}]}]},
+        {"x0":70,"y0":90,"x1":300,"y1":115,"boxclass":"section-header","textlines":[{"spans":[{"text":"8.1 Customer Due Diligence"}]}]},
+        {"x0":70,"y0":135,"x1":530,"y1":180,"boxclass":"list-item","textlines":[{"spans":[{"text":blocks[2].text}]}]},
+        {"x0":115,"y0":195,"x1":530,"y1":250,"boxclass":"list-item","textlines":[{"spans":[{"text":blocks[3].text}]}]},
+        {"x0":143,"y0":265,"x1":530,"y1":300,"boxclass":"list-item","textlines":[{"spans":[{"text":blocks[4].text}]}]},
+        {"x0":143,"y0":310,"x1":530,"y1":345,"boxclass":"list-item","textlines":[{"spans":[{"text":blocks[5].text}]}]},
+    ]
+
+    result = build_canonical_document(record=record, extraction=extraction, layout_artifact=layout)
+    clause = next(item for item in result.pages[0].elements if item.text.startswith("8.1.11"))
+    outer = next(item for item in result.pages[0].elements if item.text.startswith("(a) the identity"))
+    nested = [item for item in result.pages[0].elements if item.text.startswith(("(i)", "(ii)"))]
+    assert clause.type == "clause"
+    assert outer.type == "subclause"
+    assert outer.parent_clause_id == clause.clause_id
+    assert all(item.type == "list_item" for item in nested)
+    for item in nested:
+        assert any(
+            relation.type == "introduces"
+            and relation.source_element_id == outer.element_id
+            and relation.target_element_id == item.element_id
+            for relation in result.relationships
+        )
+
+
+def test_semantic_v231_appendix_title_membership_counts_as_resolved_group_scope():
+    record, extraction, layout = _two_page_base()
+    p1_blocks = [_text_block("p1-b0", 0, [50, 40, 300, 70], "Sample Report", 22)]
+    p2_blocks = [
+        _text_block("p2-b0", 0, [450, 80, 550, 100], "APPENDIX A1", 11.04),
+        _text_block("p2-b1", 1, [70, 120, 540, 150], "Control Measures in Accepting Third-Party Deposits", 13.0),
+        _text_block("p2-b2", 2, [70, 170, 530, 195], "1.0 General", 12.0),
+        _text_block("p2-b3", 3, [70, 215, 530, 260], "1.1 This Appendix sets out requirements on control measures.", 11.04),
+    ]
+    extraction.pages = [_make_page(1, p1_blocks), _make_page(2, p2_blocks)]
+    extraction.summary.text_block_count = len(p1_blocks) + len(p2_blocks)
+    extraction.summary.table_count = 0
+    layout["result"]["toc"] = []
+    layout["result"]["pages"] = [
+        {"page_number":1,"width":600,"height":800,"boxes":[
+            {"x0":50,"y0":40,"x1":300,"y1":70,"boxclass":"title","textlines":[{"spans":[{"text":"Sample Report"}]}]},
+        ]},
+        {"page_number":2,"width":600,"height":800,"boxes":[
+            {"x0":450,"y0":80,"x1":550,"y1":100,"boxclass":"page-header","textlines":[{"spans":[{"text":"APPENDIX A1"}]}]},
+            {"x0":70,"y0":120,"x1":540,"y1":150,"boxclass":"section-header","textlines":[{"spans":[{"text":"Control Measures in Accepting Third-Party Deposits"}]}]},
+            {"x0":70,"y0":170,"x1":530,"y1":195,"boxclass":"section-header","textlines":[{"spans":[{"text":"1.0 General"}]}]},
+            {"x0":70,"y0":215,"x1":530,"y1":260,"boxclass":"list-item","textlines":[{"spans":[{"text":"1.1 This Appendix sets out requirements on control measures."}]}]},
+        ]},
+    ]
+
+    result = build_canonical_document(record=record, extraction=extraction, layout_artifact=layout)
+    title = next(item for item in result.pages[1].elements if item.text == "Control Measures in Accepting Third-Party Deposits")
+    assert title.type == "group_header"
+    assert title.classification is not None
+    assert title.classification.confidence >= 0.85
+    assert any(
+        relation.type == "belongs_to"
+        and relation.source_element_id == title.element_id
+        and relation.target_element_id == next(item for item in result.pages[1].elements if item.text == "APPENDIX A1").element_id
+        for relation in result.relationships
+    )
+    assert not any("local group header(s) without an introduces relationship" in warning for warning in result.warnings)
+    assert not any("low-confidence element(s)" in warning for warning in result.warnings)
+
+
+def test_semantic_v231_continues_relation_prevents_false_detached_tail_warning():
+    record, extraction, layout = _two_page_base()
+    p1_blocks = [
+        _text_block("p1-b0", 0, [50, 40, 300, 70], "Sample Report", 22),
+        _text_block("p1-b1", 1, [70, 90, 300, 115], "1. TEST SECTION", 14),
+        _text_block("p1-b2", 2, [115, 650, 530, 785], "(iii) The due diligence results must be reviewed", 11.04),
+    ]
+    p2_blocks = [
+        _text_block("p2-b0", 0, [115, 40, 220, 60], "periodically.", 11.04),
+        _text_block("p2-b1", 1, [115, 85, 530, 130], "(iv) The institution may require compliance by contract.", 11.04),
+    ]
+    extraction.pages = [_make_page(1, p1_blocks), _make_page(2, p2_blocks)]
+    extraction.summary.text_block_count = len(p1_blocks) + len(p2_blocks)
+    extraction.summary.table_count = 0
+    layout["result"]["toc"] = []
+    layout["result"]["pages"] = [
+        {"page_number":1,"width":600,"height":800,"boxes":[
+            {"x0":50,"y0":40,"x1":300,"y1":70,"boxclass":"title","textlines":[{"spans":[{"text":"Sample Report"}]}]},
+            {"x0":70,"y0":90,"x1":300,"y1":115,"boxclass":"section-header","textlines":[{"spans":[{"text":"1. TEST SECTION"}]}]},
+            {"x0":115,"y0":650,"x1":530,"y1":785,"boxclass":"list-item","textlines":[{"spans":[{"text":"(iii) The due diligence results must be reviewed"}]}]},
+        ]},
+        {"page_number":2,"width":600,"height":800,"boxes":[
+            {"x0":115,"y0":40,"x1":220,"y1":60,"boxclass":"text","textlines":[{"spans":[{"text":"periodically."}]}]},
+            {"x0":115,"y0":85,"x1":530,"y1":130,"boxclass":"list-item","textlines":[{"spans":[{"text":"(iv) The institution may require compliance by contract."}]}]},
+        ]},
+    ]
+
+    result = build_canonical_document(record=record, extraction=extraction, layout_artifact=layout)
+    left = next(item for item in result.pages[0].elements if item.text.startswith("(iii)"))
+    tail = next(item for item in result.pages[1].elements if item.text == "periodically.")
+    assert any(
+        relation.type == "continues"
+        and relation.source_element_id == left.element_id
+        and relation.target_element_id == tail.element_id
+        for relation in result.relationships
+    )
+    assert not any("paragraph tail(s)" in warning for warning in result.warnings)
+
+
+def test_semantic_v231_form_headings_do_not_trigger_style_split_warning():
+    record, extraction, layout = _fixture()
+    pieces_a = [
+        ("Match with Designated Person(s) (YES / NO) :", [70, 140, 360, 160]),
+        ("If YES, please fill-up the details in the form below", [70, 165, 500, 185]),
+    ]
+    pieces_b = [
+        ("Details of Capital Market Intermediary", [70, 220, 330, 240]),
+        ("Name :\nContact Person :\nDesignation :\nReporting Date :", [70, 245, 430, 300]),
+    ]
+    blocks = [
+        _text_block("p1-b0", 0, [50, 40, 300, 70], "Sample Report", 22),
+        _text_block("p1-b1", 1, [70, 90, 300, 115], "REPORTING UPON DETERMINATION", 14),
+        _shared_text_block("p1-b2", 2, pieces_a),
+        _shared_text_block("p1-b3", 3, pieces_b),
+    ]
+    extraction.pages = [_make_page(1, blocks)]
+    extraction.summary.text_block_count = len(blocks)
+    extraction.summary.table_count = 0
+    layout["result"]["toc"] = []
+    layout["result"]["pages"][0]["boxes"] = [
+        {"x0":50,"y0":40,"x1":300,"y1":70,"boxclass":"title","textlines":[{"spans":[{"text":"Sample Report"}]}]},
+        {"x0":70,"y0":90,"x1":300,"y1":115,"boxclass":"section-header","textlines":[{"spans":[{"text":"REPORTING UPON DETERMINATION"}]}]},
+        {"x0":70,"y0":140,"x1":360,"y1":160,"boxclass":"section-header","textlines":[{"spans":[{"text":pieces_a[0][0]}]}]},
+        {"x0":70,"y0":165,"x1":500,"y1":185,"boxclass":"text","textlines":[{"spans":[{"text":pieces_a[1][0]}]}]},
+        {"x0":70,"y0":220,"x1":330,"y1":240,"boxclass":"section-header","textlines":[{"spans":[{"text":pieces_b[0][0]}]}]},
+        {"x0":70,"y0":245,"x1":430,"y1":300,"boxclass":"text","textlines":[{"spans":[{"text":pieces_b[1][0]}]}]},
+    ]
+
+    result = build_canonical_document(record=record, extraction=extraction, layout_artifact=layout)
+    assert not any("heading/paragraph pair(s)" in warning for warning in result.warnings)
+    assert any(item.text.startswith("Match with Designated Person") for item in result.pages[0].elements)
+    assert any(item.text == "Details of Capital Market Intermediary" for item in result.pages[0].elements)
+
+
+def test_semantic_v231_paragraph_list_intro_survives_intervening_figure_fragments():
+    record, extraction, layout = _fixture()
+    blocks = [
+        _text_block("p1-b0", 0, [50, 40, 300, 70], "Sample Report", 22),
+        _text_block("p1-b1", 1, [70, 90, 300, 115], "Examples", 14),
+        _text_block("p1-b2", 2, [70, 140, 530, 165], "The ownership breakdown is as follows:", 11.04),
+        _text_block("p1-b3", 3, [70, 180, 100, 195], "A)", 11.04),
+        _text_block("p1-b4", 4, [100, 180, 500, 210], "Mr. W has a controlling ownership interest", 11.04),
+        _text_block("p1-b5", 5, [70, 180, 500, 210], "A) Mr. W has a controlling ownership interest", 11.04),
+        _text_block("p1-b6", 6, [70, 225, 500, 250], "B) Mr. Z does not have a controlling ownership interest", 11.04),
+    ]
+    extraction.pages = [_make_page(1, blocks)]
+    extraction.summary.text_block_count = len(blocks)
+    extraction.summary.table_count = 0
+    layout["result"]["toc"] = []
+    layout["result"]["pages"][0]["boxes"] = [
+        {"x0":50,"y0":40,"x1":300,"y1":70,"boxclass":"title","textlines":[{"spans":[{"text":"Sample Report"}]}]},
+        {"x0":70,"y0":90,"x1":300,"y1":115,"boxclass":"section-header","textlines":[{"spans":[{"text":"Examples"}]}]},
+        {"x0":70,"y0":140,"x1":530,"y1":165,"boxclass":"text","textlines":[{"spans":[{"text":"The ownership breakdown is as follows:"}]}]},
+        {"x0":70,"y0":180,"x1":100,"y1":195,"boxclass":"picture","textlines":[{"spans":[{"text":"A)"}]}]},
+        {"x0":100,"y0":180,"x1":500,"y1":210,"boxclass":"picture","textlines":[{"spans":[{"text":"Mr. W has a controlling ownership interest"}]}]},
+        {"x0":70,"y0":180,"x1":500,"y1":210,"boxclass":"list-item","textlines":[{"spans":[{"text":"A) Mr. W has a controlling ownership interest"}]}]},
+        {"x0":70,"y0":225,"x1":500,"y1":250,"boxclass":"list-item","textlines":[{"spans":[{"text":"B) Mr. Z does not have a controlling ownership interest"}]}]},
+    ]
+
+    result = build_canonical_document(record=record, extraction=extraction, layout_artifact=layout)
+    intro = next(item for item in result.pages[0].elements if item.text == "The ownership breakdown is as follows:")
+    members = [item for item in result.pages[0].elements if item.type == "list_item" and item.text.startswith(("A)", "B)"))]
+    assert len(members) == 2
+    for member in members:
+        assert any(
+            relation.type == "introduces"
+            and relation.source_element_id == intro.element_id
+            and relation.target_element_id == member.element_id
+            for relation in result.relationships
+        )

@@ -16,7 +16,18 @@ def normalize_text(value: str) -> str:
     exact line wrapping.  This keeps the benchmark stable when reading-order or
     span reconstruction improves without changing the document meaning.
     """
-    return " ".join((value or "").replace("\u00ad", "").split()).strip()
+    normalized = " ".join((value or "").replace("\u00ad", "").split()).strip()
+    # PDF text extraction often drops the visual gap after enumeration or
+    # footnote markers (``(a)Full`` / ``1Regulation``).  Golden anchors care
+    # about semantic text, not that harmless glyph-spacing artifact.
+    normalized = re.sub(
+        r"^(\((?:[A-Za-z]|\d{1,2}|[ivxlcdmIVXLCDM]{1,6})\))\s*",
+        lambda match: f"{match.group(1)} ",
+        normalized,
+        count=1,
+    )
+    normalized = re.sub(r"^(\d{1,2})(?=[A-Za-z])", r"\1 ", normalized, count=1)
+    return normalized.strip()
 
 
 @dataclass
@@ -192,14 +203,36 @@ def evaluate_stage4_golden(
         check_id = assertion["id"]
         strength = assertion.get("strength", "required")
         matches = _matching_elements(elements, assertion)
-        if len(matches) != 1:
+        expected_count = int(assertion.get("expect_count", 1))
+        if len(matches) != expected_count:
             _add_check(
                 checks,
                 check_id=check_id,
                 category="element",
                 strength=strength,
                 passed=False,
-                message=f"expected exactly one element match, found {len(matches)}",
+                message=f"expected {expected_count} element match(es), found {len(matches)}",
+                matched_element_ids=[element.element_id for element in matches],
+            )
+            continue
+        if expected_count == 0:
+            _add_check(
+                checks,
+                check_id=check_id,
+                category="element",
+                strength=strength,
+                passed=True,
+                message="ok",
+            )
+            continue
+        if expected_count != 1:
+            _add_check(
+                checks,
+                check_id=check_id,
+                category="element",
+                strength=strength,
+                passed=False,
+                message="element expectation checks currently require expect_count 0 or 1",
                 matched_element_ids=[element.element_id for element in matches],
             )
             continue

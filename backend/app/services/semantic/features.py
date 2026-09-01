@@ -8,7 +8,7 @@ from app.schemas import CanonicalElement, StructuredPage
 
 
 _WORD_RE = re.compile(r"[A-Za-z0-9][A-Za-z0-9'’/-]*")
-_CLAUSE_PREFIX_RE = re.compile(r"^\s*(?:(\d+(?:\.\d+){1,5})(?=\s|[A-Za-z])|(\d+)[.)](?=\s|[A-Za-z]))\s*", re.IGNORECASE)
+_CLAUSE_PREFIX_RE = re.compile(r"^\s*(?:(\d+(?:\s*[A-Z])?\.\d+(?:\.\d+){0,4})(?=\s|[A-Za-z])|(\d+)[.)](?=\s|[A-Za-z]))\s*", re.IGNORECASE)
 _SUBCLAUSE_PREFIX_RE = re.compile(r"^\s*\(([a-z]|[ivxlcdm]+)\)\s*", re.IGNORECASE)
 _MODAL_OR_FINITE_RE = re.compile(
     r"\b(?:shall|must|may|should|will|would|can|could|is|are|was|were|has|have|had|means?|includes?|"
@@ -73,7 +73,8 @@ def extract_clause_number(text: str) -> str | None:
     match = _CLAUSE_PREFIX_RE.match(text or "")
     if not match:
         return None
-    return match.group(1) or match.group(2)
+    value = match.group(1) or match.group(2)
+    return re.sub(r"\s+", "", value) if value else None
 
 
 def extract_marker(text: str) -> tuple[str | None, str | None]:
@@ -157,6 +158,6 @@ def build_feature_map(
             has_modal_or_finite=has_finite,
             looks_sentence=looks_sentence,
             looks_short_label=looks_short_label,
-            looks_list_intro=bool(text.endswith(":") or _LIST_INTRO_RE.search(text)),
+            looks_list_intro=bool(text.endswith((":", "–", "—", "―")) or _LIST_INTRO_RE.search(text)),
         )
     return result

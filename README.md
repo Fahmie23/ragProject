@@ -107,6 +107,10 @@ For initial `section_header` candidates, heading level evidence is determined in
 
 Semantic v2.1 then resolves local heading scope. TOC/numbering evidence is stronger than typography-only evidence, but no single source is treated as universal semantic truth. A weak heading immediately before a stronger outline heading can become `group_header` rather than an empty sibling section.
 
+Semantic v2.2 is golden-benchmark driven. It adds local-scope repair for TOC-backed labels, appendix-boundary recovery when `APPENDIX X` is misread as a running page header, numbered-step clause recovery, explicit-item continuation guards, stronger list-family consistency, definition-item recovery with missing marker whitespace, and visible cover-title promotion. See `STAGE4_8_SEMANTIC_V2_2_GOLDEN_REPAIR.md`.
+
+Semantic v2.3 completes semantic continuity and local hierarchy. It reconstructs same-unit layout splits, attaches dependent list items to clause/subclause/paragraph owners, represents parent-clause tails with `belongs_to`, preserves inherited-obligation and cascading-step subclause semantics, recognizes spaced alphanumeric clause numbers such as `6 A.1`, and demotes duplicate appendix descriptive-title sections to local `group_header` scope. See `STAGE4_9_SEMANTIC_V2_3_CONTINUITY_AND_HIERARCHY.md`.
+
 The selected source is persisted as:
 
 ```json
@@ -441,4 +445,14 @@ Semantic v2.1 adds parallel local-group propagation, conservative heading-scope 
 
 ## Stage 4.7 — Golden structure benchmark
 
-The primary 109-page portfolio PDF now has a machine-readable Stage 4 golden specification at `backend/evaluation/golden/sc_aml_cft_stage4_v1.json`. The benchmark uses stable page/text anchors rather than canonical element IDs and currently contains 83 checks (77 required, 6 advisory) across element semantics, relationships, definitions, appendices, logical tables and figures. `scripts/validate_stage4_golden_spec.py` validates the benchmark against the exact PDF SHA/page count/text anchors, while `scripts/evaluate_stage4_golden.py` scores a generated `StructuredDocument`. See `STAGE4_7_GOLDEN_STRUCTURE_SPECIFICATION.md`.
+The primary 109-page portfolio PDF now has a machine-readable Stage 4 golden specification at `backend/evaluation/golden/sc_aml_cft_stage4_v1.json`. The benchmark uses stable page/text anchors rather than canonical element IDs and currently contains 118 checks (112 required, 6 advisory) across element semantics, relationships, definitions, appendices, logical tables and figures. `scripts/validate_stage4_golden_spec.py` validates the benchmark against the exact PDF SHA/page count/text anchors, while `scripts/evaluate_stage4_golden.py` scores a generated `StructuredDocument`. See `STAGE4_7_GOLDEN_STRUCTURE_SPECIFICATION.md`.
+
+
+## Stage 4.9 — Semantic v2.3 continuity and hierarchy
+
+Semantic v2.3 introduced same-unit continuation repair, dependent-list ownership, parent-clause tails, appendix descriptive-title cleanup, inherited-obligation enumerations, cascading-step nesting, and spaced alphanumeric clause numbers. Semantic v2.3.1 extends the golden contract to 118 checks (112 required, 6 advisory) and tightens validator precision plus residual figure-interleaved list ownership. Stage 5 code is unchanged. See `STAGE4_9_SEMANTIC_V2_3_CONTINUITY_AND_HIERARCHY.md` and `STAGE4_9_1_SEMANTIC_V2_3_1_VALIDATOR_PRECISION.md`.
+
+
+### Stage 4 Semantic v2.3.1 — validator precision and residual ownership
+
+Semantic v2.3.1 removes false semantic-review warnings for appendix descriptive titles, valid cross-page continuations, and form-style heading/field blocks. It also preserves an explicit list-introducing paragraph across intervening figure-layout fragments so figure-embedded A/B/C text lists retain semantic ownership. The golden contract is version 1.3 with 118 checks (112 required, 6 advisory). Stage 5 remains unchanged. See `STAGE4_9_1_SEMANTIC_V2_3_1_VALIDATOR_PRECISION.md`.

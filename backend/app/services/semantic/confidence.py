@@ -1,7 +1,12 @@
 from __future__ import annotations
 
+import re
+
 from app.schemas import CanonicalElement, SectionRecord, StructuralRelation
 from app.services.semantic.classifier import apply_classification
+
+
+_APPENDIX_LABEL_RE = re.compile(r"^\s*APPENDIX\s+[A-Z0-9IVXLC]+\s*$", re.IGNORECASE)
 
 
 def _lower_confidence(
@@ -53,6 +58,18 @@ def calibrate_hierarchy_confidence(
         for relation in relationships
         if relation.type == "introduces"
     }
+    element_by_id = {element.element_id: element for element in elements}
+    appendix_title_sources: set[str] = set()
+    for relation in relationships:
+        if relation.type != "belongs_to":
+            continue
+        source = element_by_id.get(relation.source_element_id)
+        target = element_by_id.get(relation.target_element_id)
+        if source is None or target is None or source.type != "group_header":
+            continue
+        target_text = " ".join((target.text or "").split()).strip()
+        if _APPENDIX_LABEL_RE.fullmatch(target_text):
+            appendix_title_sources.add(source.element_id)
 
     for element in elements:
         if element.type == "list_item" and element.role_source == "semantic_list_sequence":
@@ -63,7 +80,11 @@ def calibrate_hierarchy_confidence(
                     evidence="hierarchy calibration: no introduces/parent relationship was resolved for this dependent list item",
                 )
         elif element.type == "group_header":
-            if element.element_id not in incoming_introduces and element.element_id not in outgoing_introduces:
+            if (
+                element.element_id not in incoming_introduces
+                and element.element_id not in outgoing_introduces
+                and element.element_id not in appendix_title_sources
+            ):
                 _lower_confidence(
                     element,
                     ceiling=0.60,
@@ -75,7 +96,6 @@ def calibrate_hierarchy_confidence(
         for section in sections
         if section.parent_section_id is not None
     }
-    element_by_id = {element.element_id: element for element in elements}
     for section in sections:
         if section.kind != "section" or section.content_element_ids or section.section_id in child_sections:
             continue

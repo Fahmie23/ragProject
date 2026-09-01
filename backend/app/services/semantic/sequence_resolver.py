@@ -9,6 +9,11 @@ from app.services.semantic.features import ElementFeatures, build_feature_map, s
 
 _ROMAN_RE = re.compile(r"^[ivxlcdm]+$", re.IGNORECASE)
 _QUESTION_RE = re.compile(r"\?\s*$")
+_OBLIGATION_INTRO_RE = re.compile(
+    r"\b(?:shall|must|should|(?:is\s+)?required\s+to)(?:\s+[A-Za-z-]+){0,2}\s*(?:[:–—―]|$)",
+    re.IGNORECASE,
+)
+_STRONG_MODAL_RE = re.compile(r"\b(?:shall|must|should|(?:is\s+)?required\s+to)\b", re.IGNORECASE)
 
 
 def _ordered(elements: list[CanonicalElement]) -> list[CanonicalElement]:
@@ -152,7 +157,7 @@ def _promote_numbered_clauses(
         if not feature.clause_number or _QUESTION_RE.search(feature.normalized_text):
             continue
         remainder = strip_clause_prefix(feature.normalized_text)
-        if len(remainder) < 12:
+        if len(remainder) < 12 and not feature.looks_list_intro:
             continue
         element.clause_number = feature.clause_number
         element.subclause_marker = None
@@ -182,12 +187,17 @@ def _enumerated_runs(
     for index, element in enumerate(ordered):
         feature = features[element.element_id]
         if element.type in eligible and feature.marker:
-            # A small vertical/header decoration does not count as a semantic
-            # run member; runs are deliberately strict so unrelated numbered
-            # items are not merged across prose boundaries.
-            if current and last_order is not None and element.document_order != last_order + 1:
-                runs.append(current)
-                current = []
+            # Runs are strict in both document order and indentation.  A nested
+            # roman list can be immediately followed by a return to an outer
+            # alpha marker (e.g. (i), (ii), then (d)); without the geometry
+            # boundary those levels are incorrectly classified as one run.
+            if current:
+                previous_feature = features[ordered[current[-1]].element_id]
+                order_break = last_order is not None and element.document_order != last_order + 1
+                indent_break = abs(feature.x0 - previous_feature.x0) > 18.0
+                if order_break or indent_break:
+                    runs.append(current)
+                    current = []
             current.append(index)
             last_order = element.document_order
         else:
@@ -225,6 +235,54 @@ def _resolve_enumerated_run(
             parallel_group, parallel_introducer = _find_parallel_group_context(ordered, features, heading_index)
             if parallel_introducer is not None:
                 introducer = parallel_introducer
+
+    run_features = [features[ordered[index].element_id] for index in run]
+    x_positions = [feature.x0 for feature in run_features]
+
+    previous_parallel_type: str | None = None
+    previous_parallel = _find_previous_meaningful(ordered, run[0], max_back=1)
+    if previous_parallel is not None:
+        previous_feature = features[previous_parallel.element_id]
+        previous_token = previous_feature.marker_token or ""
+        current_token = run_features[0].marker_token or ""
+        if (
+            previous_feature.marker
+            and abs(previous_feature.x0 - run_features[0].x0) <= 18.0
+            and _marker_family([previous_token, current_token]) == family
+            and previous_parallel.type in {"list_item", "subclause"}
+        ):
+            previous_parallel_type = previous_parallel.type
+    parallel_geometry = bool(x_positions) and (max(x_positions) - min(x_positions) <= 18.0)
+    nested_list_introducer = introducer is not None and introducer.type != "clause"
+    introducer_text = " ".join(introducer.text.split()).strip() if introducer is not None else ""
+    obligation_introducer = bool(introducer_text and _OBLIGATION_INTRO_RE.search(introducer_text))
+
+    # Sequence semantics outrank one member's isolated sentence shape.  A
+    # descriptive/list introduction keeps the entire parallel run as list
+    # members even when one item contains an incidental finite verb (e.g.
+    # "countries identified by ... have not made progress").  Conversely, a
+    # parent that ends in an inherited deontic construction such as
+    # "is required to–" makes the following verb phrases subclauses even when
+    # they omit their own modal verb.
+    force_subclause_family = bool(
+        (introducer is not None and parallel_geometry and obligation_introducer)
+        or (introducer is None and parallel_geometry and previous_parallel_type == "subclause")
+    )
+    nested_proposition_member = any(
+        (feature.ends_colon or feature.normalized_text.endswith(("–", "—", "―")))
+        and (feature.has_modal_or_finite or feature.looks_sentence)
+        and len(strip_marker(feature.normalized_text).split()) >= 10
+        for feature in run_features
+    )
+    force_list_family = bool(
+        (
+            introducer is not None
+            and parallel_geometry
+            and not obligation_introducer
+            and not nested_proposition_member
+        )
+        or (introducer is None and parallel_geometry and previous_parallel_type == "list_item")
+    )
 
     # An immediate short heading between the introducer and the run is a local
     # grouping label. This is the key distinction that the previous Stage 4
@@ -314,7 +372,14 @@ def _resolve_enumerated_run(
         list_conf = min(0.99, max(0.01, list_score / total))
         sub_conf = min(0.99, max(0.01, subclause_score / total))
 
-        if list_score >= subclause_score + 0.08:
+        if not force_subclause_family and (force_list_family or list_score >= subclause_score + 0.08):
+            if force_list_family:
+                evidence_list.append(
+                    "cross-page/adjacent parallel sibling family remains a list"
+                    if introducer is None and previous_parallel_type == "list_item"
+                    else "descriptive list-introduction context and parallel sibling geometry keep the run in one list family"
+                )
+                list_conf = max(list_conf, 0.86 if nested_list_introducer else 0.82)
             element.subclause_marker = None
             element.clause_id = None
             element.parent_clause_id = None
@@ -328,6 +393,13 @@ def _resolve_enumerated_run(
                 alternatives=[("subclause", sub_conf)],
             )
         else:
+            if force_subclause_family:
+                evidence_sub.append(
+                    "cross-page/adjacent parallel sibling family remains a subclause sequence"
+                    if introducer is None and previous_parallel_type == "subclause"
+                    else "parent clause supplies an inherited obligation/deontic predicate to the parallel enumerated actions"
+                )
+                sub_conf = max(sub_conf, 0.86)
             element.subclause_marker = feature.marker
             element.role_source = "semantic_subclause_sequence"
             apply_classification(

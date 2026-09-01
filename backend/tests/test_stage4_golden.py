@@ -159,3 +159,51 @@ def test_primary_golden_spec_is_internally_consistent():
     assert spec["source"]["page_count"] == 109
     assert len(spec["element_assertions"]) >= 40
     assert len(spec["coverage_matrix"]) >= 10
+
+
+def test_golden_anchor_matching_ignores_missing_space_after_structural_markers():
+    structure = _structure()
+    structure.pages[0].elements[-1].text = "(a)Workstations;"
+    footnote = _element("e-foot", 1, "1Regulation 3 of Strategic Trade", "footnote", document_order=5)
+    structure.pages[0].elements.append(footnote)
+    spec = {
+        "spec_version": "test",
+        "benchmark_id": "marker-spacing",
+        "source": {"sha256": "abc", "page_count": 1},
+        "element_assertions": [
+            {"id": "item", "page": 1, "match": {"exact": "(a) Workstations;"}, "expect": {"type": "list_item"}},
+            {"id": "foot", "page": 1, "match": {"starts_with": "1 Regulation 3"}, "expect": {"type": "footnote"}},
+        ],
+    }
+    report = evaluate_stage4_golden(structure, spec)
+    assert report.required_passed == 2
+    assert report.required_total == 2
+
+
+def test_primary_golden_appendix_a_uses_pdf_page_boundary_not_printed_page_number():
+    path = Path(__file__).resolve().parents[1] / "evaluation" / "golden" / "sc_aml_cft_stage4_v1.json"
+    spec = load_golden_spec(path)
+    appendix_a = next(item for item in spec["appendix_assertions"] if item["label"] == "APPENDIX A")
+    assert appendix_a["expect"]["start_page"] == 68
+    assert appendix_a["expect"]["end_page"] == 78
+
+
+def test_golden_evaluator_supports_zero_match_assertions_for_merged_fragments():
+    structure = _structure()
+    spec = {
+        "spec_version": "test",
+        "benchmark_id": "zero-match",
+        "source": {"sha256": "abc", "page_count": 1},
+        "element_assertions": [
+            {
+                "id": "removed-fragment",
+                "page": 1,
+                "match": {"exact": "standalone continuation that should have been merged"},
+                "expect_count": 0,
+                "expect": {},
+            }
+        ],
+    }
+    report = evaluate_stage4_golden(structure, spec)
+    assert report.required_passed == 1
+    assert report.required_total == 1

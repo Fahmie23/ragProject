@@ -7,7 +7,7 @@ from pathlib import Path
 import re
 
 from app.services.spans import iter_page_spans
-from app.services.semantic import calibrate_hierarchy_confidence, continuation_boundary_reason, resolve_heading_scopes, resolve_structural_semantics, validate_semantic_structure
+from app.services.semantic import calibrate_hierarchy_confidence, continuation_boundary_reason, reconcile_same_page_semantic_continuity, resolve_appendix_labels, resolve_appendix_title_scopes, resolve_heading_scopes, resolve_structural_semantics, validate_semantic_structure
 from app.services.semantic.classifier import backfill_classification
 
 from app.schemas import (
@@ -70,7 +70,7 @@ NUMBERED_HEADING = re.compile(
     re.IGNORECASE,
 )
 CLAUSE_PREFIX = re.compile(
-    r"^\s*(?:(\d+(?:\.\d+){1,5})(?=\s|[A-Za-z])|(\d+)[.)](?=\s|[A-Za-z]))\s*",
+    r"^\s*(?:(\d+(?:\s*[A-Z])?\.\d+(?:\.\d+){0,4})(?=\s|[A-Za-z])|(\d+)[.)](?=\s|[A-Za-z]))\s*",
     re.IGNORECASE,
 )
 QUESTION_PREFIX = re.compile(r"^\s*(?:q(?:uestion)?\s*)?\d+\s*[.)]\s*", re.IGNORECASE)
@@ -93,6 +93,7 @@ DATE_SIGNAL = re.compile(
 )
 
 APPENDIX_LABEL = re.compile(r"^\s*APPENDIX\s+([A-Z0-9IVXLC]+)\s*$", re.IGNORECASE)
+MAJOR_OUTLINE_LABEL = re.compile(r"^\s*(?:PART|CHAPTER|BOOK|DIVISION)\s+[A-Z0-9IVXLC]+(?:\s*[:.-]|\s+)", re.IGNORECASE)
 SUBCLAUSE_PREFIX = re.compile(r"^\s*\(([a-z]|[ivxlcdm]+)\)\s*", re.IGNORECASE)
 DEFINITION_INTRO = re.compile(r"^\s*(?:means|means[—–-]|refers?\s+to|includes?)\b", re.IGNORECASE)
 DEFINITION_ROW_INTRO = re.compile(
@@ -106,10 +107,10 @@ FIGURE_INTRO = re.compile(r"\b(?:illustrat(?:ed|ion)|figure|diagram|shown\s+belo
 SOURCE_HINT = re.compile(r"\b(?:source|guidance|reference|for\s+full|https?://|www\.)\b", re.IGNORECASE)
 FOOTNOTE_MARKER = re.compile(r"^\s*(?:[¹²³⁴⁵⁶⁷⁸⁹⁰]+|\d+[.)]?|[*†‡])\s*")
 DEFINITION_ITEM_PREFIX = re.compile(
-    r"^\s*(\((?:[A-Za-z]|\d{1,2}|[ivxlcdmIVXLCDM]{1,6})\)|(?:\d{1,2}|[A-Za-z])[.)])\s+"
+    r"^\s*(\((?:[A-Za-z]|\d{1,2}|[ivxlcdmIVXLCDM]{1,6})\)|(?:\d{1,2}|[A-Za-z])[.)])\s*"
 )
 DEFINITION_ITEM_ANYWHERE = re.compile(
-    r"(?:^|\s)(\((?:[A-Za-z]|\d{1,2}|[ivxlcdmIVXLCDM]{1,6})\)|(?:\d{1,2}|[A-Za-z])[.)])\s+"
+    r"(?:^|\s)(\((?:[A-Za-z]|\d{1,2}|[ivxlcdmIVXLCDM]{1,6})\)|(?:\d{1,2}|[A-Za-z])[.)])\s*"
 )
 
 
@@ -570,7 +571,8 @@ def _extract_clause_number(text: str) -> str | None:
     match = CLAUSE_PREFIX.match(text)
     if not match:
         return None
-    return match.group(1) or match.group(2)
+    value = match.group(1) or match.group(2)
+    return re.sub(r"\s+", "", value) if value else None
 
 
 def _looks_definition_context(text: str) -> bool:
@@ -1219,10 +1221,29 @@ def _refine_document_roles(
     page_width = max(first_page.width, 1.0)
     top_limit = page_height * 0.32
 
+    # Cover titles are sometimes returned as ordinary text boxes.  Include a
+    # paragraph only when display typography is substantially larger than the
+    # first-page body font; this keeps normal prose out of the document-role
+    # candidate set while allowing a visually dominant cover title to be
+    # recovered deterministically.
+    first_page_fonts = sorted(
+        float(element.dominant_font_size)
+        for element in first_page_elements
+        if element.dominant_font_size and element.dominant_font_size > 0
+    )
+    median_font = first_page_fonts[len(first_page_fonts) // 2] if first_page_fonts else 0.0
+
     header_like = [
         element
         for element in first_page_elements
-        if element.type in {"title", "section_header"}
+        if (
+            element.type in {"title", "section_header"}
+            or (
+                element.type == "paragraph"
+                and element.dominant_font_size is not None
+                and float(element.dominant_font_size) >= max(16.0, median_font * 1.45)
+            )
+        )
         and element.text.strip()
         and element.bbox[1] <= top_limit
     ]
@@ -1251,12 +1272,12 @@ def _refine_document_roles(
             (
                 element
                 for element in usable
-                if element.type == "section_header"
+                if element.type in {"section_header", "paragraph"}
                 and _is_centered(element, page_width)
                 and _numbering_depth(element.text) is None
                 and not _looks_question(element.text)
-                and len(" ".join(element.text.split())) <= 160
-                and element.bbox[1] <= page_height * 0.24
+                and len(" ".join(element.text.split())) <= 240
+                and element.bbox[1] <= page_height * (0.45 if element.type == "paragraph" else 0.24)
             ),
             None,
         )
@@ -2892,6 +2913,11 @@ def _assign_heading_levels(
         if element.type != "section_header":
             continue
 
+        if APPENDIX_LABEL.match(element.text) or MAJOR_OUTLINE_LABEL.match(element.text):
+            element.heading_level = 1
+            element.heading_level_source = "numbering"
+            continue
+
         level = _match_toc_level(element.text, element.page_number, toc)
         if level is not None:
             element.heading_level = min(level + root_offset, 6)
@@ -3268,22 +3294,45 @@ def _build_clause_records(
 
 
 
+def _introduces_enumeration_text(text: str) -> bool:
+    normalized = " ".join((text or "").split()).strip()
+    if not normalized:
+        return False
+    if normalized.endswith((":", "–", "—", "―")):
+        return True
+    return re.search(
+        r"\b(?:the\s+following|as\s+follows|include(?:s|d)?|including|types?\s+of|categories?\s+of|"
+        r"identified\s+by|identified\s+as|set\s+out\s+below|listed\s+below|comprise(?:s|d)?|consist(?:s|ed)?\s+of)\b",
+        normalized,
+        re.IGNORECASE,
+    ) is not None
+
+
 def _build_group_and_list_relations(
     elements: list[CanonicalElement],
     sections: list[SectionRecord],
 ) -> list[StructuralRelation]:
     """Build explicit local-group/list dependencies after semantic resolution.
 
-    ``group_header`` is intentionally not a SectionRecord. It has local scope:
-    it can be introduced by a clause, contain list items, or provide context to
-    the immediately following clause. This keeps the document outline stable
-    while exposing the hierarchy Stage 5 needs for retrieval packaging.
+    In addition to local ``group_header`` scope, this pass keeps the nearest
+    clause/subclause or unnumbered list-introducing paragraph active.  The
+    latter is important for structures such as ``subclause -> explanatory
+    paragraph ending ':' -> nested roman list`` and for lists that continue on
+    the next page.  Classification and ownership are deliberately separate:
+    an item can be correctly labelled ``list_item`` but still be semantically
+    incomplete until an explicit owner is recorded.
     """
     ordered = sorted(elements, key=lambda item: item.document_order)
     relations: list[StructuralRelation] = []
     relation_pairs: set[tuple[str, str, str]] = set()
     active_clause: CanonicalElement | None = None
+    active_subclause: CanonicalElement | None = None
     active_group: CanonicalElement | None = None
+    active_paragraph_intro: CanonicalElement | None = None
+    # Stack of list items that themselves introduce nested enumerations.
+    # It is geometry-driven so nested ownership can survive page breaks while
+    # same-level siblings correctly close the previous local list scope.
+    active_list_parents: list[CanonicalElement] = []
     active_section: str | None = None
 
     def add_relation(kind: str, source: CanonicalElement, target: CanonicalElement, evidence: str) -> None:
@@ -3312,9 +3361,6 @@ def _build_group_and_list_relations(
         if element.type in meaningful_types_to_skip:
             continue
 
-        # A local label can intentionally sit immediately before a real outline
-        # heading. Preserve that dependency before resetting state for the new
-        # section; otherwise the section-id transition would erase the group.
         if element.type == "section_header":
             prior = previous_meaningful.get(element.element_id)
             if active_group is not None and prior is not None and prior.element_id == active_group.element_id:
@@ -3326,19 +3372,39 @@ def _build_group_and_list_relations(
                 )
             active_section = element.section_id
             active_clause = None
+            active_subclause = None
             active_group = None
+            active_paragraph_intro = None
+            active_list_parents.clear()
             continue
 
         if element.section_id != active_section:
             active_section = element.section_id
             active_clause = None
+            active_subclause = None
             active_group = None
+            active_paragraph_intro = None
+            active_list_parents.clear()
 
         if element.type == "group_header":
-            # A group after a clause belongs to that clause. Otherwise it is a
-            # local child of the active document section and may introduce the
-            # next clause.
-            if active_clause is not None and active_clause.section_id == element.section_id:
+            if (
+                active_clause is not None
+                and active_group is not None
+                and element.section_id == active_clause.section_id
+                and element.bbox[0] < active_group.bbox[0] - 18.0
+            ):
+                active_clause = None
+                active_subclause = None
+                active_group = None
+
+            if active_clause is None and active_group is not None and active_group.section_id == element.section_id:
+                add_relation(
+                    "introduces",
+                    active_group,
+                    element,
+                    "local group label immediately refines the active local group scope",
+                )
+            elif active_clause is not None and active_clause.section_id == element.section_id:
                 add_relation(
                     "introduces",
                     active_clause,
@@ -3346,12 +3412,13 @@ def _build_group_and_list_relations(
                     "local group header follows the active clause and scopes its following members",
                 )
             active_group = element
+            active_subclause = None
+            active_paragraph_intro = None
+            active_list_parents.clear()
             continue
 
         if element.type == "clause":
-            # A section-local group label immediately before a numbered clause
-            # provides context to that clause without becoming an outline node.
-            if active_group is not None and active_group.section_id == element.section_id and active_clause is None:
+            if active_group is not None and active_group.section_id == element.section_id:
                 add_relation(
                     "introduces",
                     active_group,
@@ -3359,43 +3426,181 @@ def _build_group_and_list_relations(
                     "numbered clause is scoped by the immediately preceding local group header",
                 )
             active_clause = element
+            active_subclause = None
             active_group = None
+            active_paragraph_intro = None
+            active_list_parents.clear()
             continue
 
         if element.type == "subclause":
-            # ClauseRecord hierarchy owns subclause relations. A local group is
-            # not allowed to override that canonical clause parent.
+            active_subclause = element
+            active_paragraph_intro = None
+            active_list_parents.clear()
+            # ClauseRecord hierarchy already owns the subclause itself.  Keep
+            # the subclause active so a following nested list can be linked.
             continue
 
         if element.type == "list_item":
-            if active_group is not None and active_group.section_id == element.section_id:
-                add_relation(
-                    "introduces",
-                    active_group,
-                    element,
-                    "enumerated/list item is a member of the active local group",
-                )
+            owner: CanonicalElement | None = None
+            evidence = ""
+            current_x = float(element.bbox[0])
+
+            # Close local list-parent scopes when reading order returns to the
+            # same or a shallower indentation. A deeper marker remains a child
+            # of the nearest list item that explicitly introduced a sub-list.
+            while active_list_parents and current_x <= float(active_list_parents[-1].bbox[0]) + 8.0:
+                active_list_parents.pop()
+
+            if (
+                active_list_parents
+                and active_list_parents[-1].section_id == element.section_id
+                and current_x >= float(active_list_parents[-1].bbox[0]) + 14.0
+            ):
+                owner = active_list_parents[-1]
+                evidence = "nested list item is owned by the nearest list item that introduces a deeper enumeration"
+            elif active_group is not None and active_group.section_id == element.section_id:
+                owner = active_group
+                evidence = "enumerated/list item is a member of the active local group"
+            elif (
+                active_paragraph_intro is not None
+                and active_paragraph_intro.section_id == element.section_id
+                and _introduces_enumeration_text(active_paragraph_intro.text)
+            ):
+                owner = active_paragraph_intro
+                evidence = "list item follows an unnumbered paragraph that explicitly introduces an enumeration"
+            elif active_subclause is not None and active_subclause.section_id == element.section_id:
+                deeper_indent = current_x >= float(active_subclause.bbox[0]) + 14.0
+                if _introduces_enumeration_text(active_subclause.text) or deeper_indent:
+                    owner = active_subclause
+                    evidence = "nested list item is scoped by the active subclause using list-introduction/indentation evidence"
             elif active_clause is not None and active_clause.section_id == element.section_id:
-                text = " ".join(active_clause.text.split()).strip()
-                if text.endswith(":") or re.search(
-                    r"\b(?:the\s+following|as\s+follows|include(?:s|d)?|including|types?\s+of|categories?\s+of)\b",
-                    text,
-                    re.IGNORECASE,
-                ):
-                    add_relation(
-                        "introduces",
-                        active_clause,
-                        element,
-                        "list item follows a clause that explicitly introduces an enumeration",
-                    )
+                if _introduces_enumeration_text(active_clause.text):
+                    owner = active_clause
+                    evidence = "list item follows a clause that explicitly introduces an enumeration"
+
+            if owner is not None:
+                add_relation("introduces", owner, element, evidence)
+
+            # A list item such as ``(a) Customer risk factors:`` establishes a
+            # nested local scope for following indented Roman/alphabetic items.
+            # The stack is retained across page decorations so a sub-list can
+            # continue onto the next physical page.
+            if _introduces_enumeration_text(element.text):
+                active_list_parents.append(element)
             continue
 
-        # Ordinary body prose ends a local list-group scope. The active clause
-        # remains available for later substructure in the same section.
-        if element.type in {"paragraph", "table", "figure", "definition_term", "definition_text"}:
+        if element.type == "paragraph":
             active_group = None
+            # A paragraph is a new immediate semantic scope. If it introduces a
+            # list, it becomes that list's owner; otherwise any active nested
+            # list scope has ended.
+            active_list_parents.clear()
+            if _introduces_enumeration_text(element.text):
+                # Keep clause/subclause state while making the paragraph the
+                # immediate owner of the list it introduces.
+                active_paragraph_intro = element
+            else:
+                active_paragraph_intro = None
+            continue
+
+        if element.type == "figure":
+            active_group = None
+            active_list_parents.clear()
+            # A paragraph that explicitly says "the following" / "as follows:"
+            # can semantically introduce a list even when the layout engine
+            # inserts figure-like text regions between the paragraph and the
+            # canonical list members. Preserve that paragraph only on the same
+            # physical page and only while it still clearly introduces an
+            # enumeration. Any later paragraph/section/clause closes the scope.
+            if (
+                active_paragraph_intro is None
+                or active_paragraph_intro.page_number != element.page_number
+                or not _introduces_enumeration_text(active_paragraph_intro.text)
+            ):
+                active_paragraph_intro = None
+            continue
+
+        if element.type in {"table", "definition_term", "definition_text"}:
+            active_group = None
+            active_paragraph_intro = None
+            active_list_parents.clear()
 
     return relations
+
+
+def _build_clause_tail_relations(
+    elements: list[CanonicalElement],
+    relationships: list[StructuralRelation],
+) -> list[StructuralRelation]:
+    """Attach unnumbered prose that resumes a parent clause after an embedded list.
+
+    Legal/policy prose often has ``clause opening -> (a)/(b) list -> clause
+    tail``.  The tail is not a new paragraph semantically and is not part of the
+    final list item.  Rather than destructively merging across intervening list
+    elements, record a child-to-parent ``belongs_to`` relation.
+    """
+    ordered = [
+        item for item in sorted(elements, key=lambda value: value.document_order)
+        if item.type not in {"page_header", "page_footer", "footnote", "caption", "document_metadata", "title", "subtitle"}
+        and item.text.strip()
+    ]
+    by_clause_id = {item.clause_id: item for item in elements if item.clause_id}
+    incoming_intro: dict[str, CanonicalElement] = {}
+    by_id = {item.element_id: item for item in elements}
+    for relation in relationships:
+        if relation.type != "introduces":
+            continue
+        source = by_id.get(relation.source_element_id)
+        if source is not None:
+            incoming_intro[relation.target_element_id] = source
+
+    result: list[StructuralRelation] = []
+    seen: set[tuple[str, str]] = set()
+    for index, element in enumerate(ordered):
+        if element.type != "paragraph" or index == 0:
+            continue
+        previous = ordered[index - 1]
+        if previous.type not in {"subclause", "list_item"}:
+            continue
+
+        parent: CanonicalElement | None = None
+        if previous.type == "subclause" and previous.parent_clause_id:
+            parent = by_clause_id.get(previous.parent_clause_id)
+        elif previous.type == "list_item":
+            owner = incoming_intro.get(previous.element_id)
+            if owner is not None:
+                if owner.type == "clause":
+                    parent = owner
+                elif owner.type == "subclause" and owner.parent_clause_id:
+                    parent = by_clause_id.get(owner.parent_clause_id)
+
+        if parent is None or parent.section_id != element.section_id:
+            continue
+        normalized = " ".join(element.text.split()).strip()
+        if not normalized:
+            continue
+        resumes_parent = bool(normalized[:1].islower())
+        introduces_nested_list = _introduces_enumeration_text(normalized)
+        parent_open = _introduces_enumeration_text(parent.text)
+        if not ((parent_open and resumes_parent) or introduces_nested_list):
+            continue
+
+        key = (element.element_id, parent.element_id)
+        if key in seen:
+            continue
+        seen.add(key)
+        result.append(StructuralRelation(
+            relation_id=f"rel-tail-{len(result) + 1}",
+            type="belongs_to",
+            source_element_id=element.element_id,
+            target_element_id=parent.element_id,
+            evidence=(
+                "unnumbered prose immediately follows an embedded list/subclause run and resumes the active parent clause"
+                if resumes_parent
+                else "unnumbered prose immediately after a subclause remains in the parent clause scope and introduces a nested list"
+            ),
+        ))
+    return result
 
 
 def _reconcile_cross_page_open_text_blocks(pages: list[StructuredPage]) -> list[StructuralRelation]:
@@ -3574,8 +3779,9 @@ def _build_appendices(
             if item.document_order > label.document_order
             and item.document_order < next_label_order
             and item.page_number == label.page_number
-            and item.type in {"section_header", "subtitle", "title"}
+            and item.type in {"section_header", "group_header", "subtitle", "title", "paragraph"}
             and not APPENDIX_LABEL.match(item.text)
+            and _extract_clause_number(item.text) is None
         ), None)
 
         end_page = (next_label_page - 1) if next_label_page is not None else max_page
@@ -3980,6 +4186,7 @@ def build_canonical_document(
 
     title_element, subtitle_element, metadata_elements = _refine_document_roles(elements, pages)
     _normalize_structural_elements(elements)
+    resolve_appendix_labels(elements)
     _refine_figure_roles(elements, pages)
     _assign_heading_levels(
         elements,
@@ -3988,6 +4195,8 @@ def build_canonical_document(
     )
     resolve_structural_semantics(elements, pages)
     resolve_heading_scopes(elements, pages)
+    reconcile_same_page_semantic_continuity(elements, pages)
+    resolve_appendix_title_scopes(elements)
     definition_relations = _refine_definition_lists(elements, pages, extraction_by_page)
     _refine_footnotes(pages)
     _cleanup_reconstructed_elements(elements, pages, extraction_by_page)
@@ -4006,6 +4215,7 @@ def build_canonical_document(
     definitions.extend(_build_table_definition_entries(elements, definitions, pages))
     clauses, clause_relations = _build_clause_records(elements, sections)
     group_list_relations = _build_group_and_list_relations(elements, sections)
+    clause_tail_relations = _build_clause_tail_relations(elements, clause_relations + group_list_relations)
     open_block_relations = _reconcile_cross_page_open_text_blocks(pages)
     appendices, appendix_relations = _build_appendices(elements, sections, pages)
     logical_tables, table_relations = _build_logical_tables(pages)
@@ -4014,6 +4224,7 @@ def build_canonical_document(
         definition_relations
         + clause_relations
         + group_list_relations
+        + clause_tail_relations
         + open_block_relations
         + appendix_relations
         + table_relations
