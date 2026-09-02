@@ -1,0 +1,31 @@
+Stage 11.1 — Answer & Citation Evaluation Contract
+==================================================
+
+Status: PASS
+Scope: methodology + enforceable dataset contract + deterministic-only offline metrics
+Semantic judge: NOT ENABLED
+Answer/citation benchmark: NOT POPULATED
+Held-out benchmark: NOT RUN
+
+Validation:
+- Stage 11 targeted tests: 14 passed
+- Full backend regression: 311 passed
+- Python compileall: PASS
+- Frozen production baseline: PASS (7/7 hashes match)
+
+Frozen production path changed: NO
+
+Implemented deterministic metrics:
+- AnswerStatusAccuracy
+- AbstentionPrecision / Recall / F1
+- ClaimCitationCoverage
+- DeterministicCitationValidity
+- RequiredSourceCoverage
+
+Semantic metrics intentionally not scored yet:
+- ClaimSupportRate
+- CitationEntailmentRate
+- GoldClaimCoverage / AnswerCompleteness
+- AnswerRelevance
+
+Next step: author and validate a NEW Stage 11 DEV benchmark, then manually calibrate the semantic rubric before introducing any automated judge.

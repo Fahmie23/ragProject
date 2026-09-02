@@ -1,0 +1,343 @@
+==============================================================================
+RETRIEVAL BEHAVIOUR: Appendix / form retrieval
+==============================================================================
+Test ID             : 05_positive_designated_person_match
+Query               : What information must be reported when there is a positive match with a designated person?
+Purpose             : Tests whether hybrid retrieval improves the ranking of the Appendix I answer-bearing table.
+Document ID         : 485c4989-c300-45c8-ac06-79a59492bb5c
+Embedding model     : BAAI/bge-m3
+Requested device    : auto
+Resolved device     : cuda
+Top K               : 5
+Candidate K         : 20
+Fusion method       : reciprocal_rank_fusion
+RRF K               : 60
+Dense weight        : 1.0
+Lexical weight      : 1.0
+Lexical ranking     : postgresql_ts_rank_cd
+Embedded chunks     : 284
+Total chunks        : 284
+Retrieved hits      : 5
+
+------------------------------------------------------------
+RANK 1
+------------------------------------------------------------
+Chunk index       : 170
+Chunk ID          : 485c4989-c300-45c8-ac06-79a59492bb5c-c0170-bca06805f2
+Semantic type     : list_item
+Fusion score      : 0.032266
+Dense rank        : 3
+Dense score       : 0.622320
+Dense distance    : 0.377680
+Dense RRF         : 0.015873
+Lexical rank      : 1
+Lexical score     : 0.001538
+Lexical RRF       : 0.016393
+Token count       : 131
+Pages             : [64]
+Section path      : PART VIII: COMBATING PROLIFERATION FINANCING > 18. REQUIREMENT TO FREEZE, BLOCK AND REJECT
+Source element IDs: ['p64-e7', 'p64-e8', 'p64-e9']
+
+TEXT
+------------------------------------------------------------
+Section: PART VIII: COMBATING PROLIFERATION FINANCING > 18. REQUIREMENT TO FREEZE, BLOCK AND REJECT
+Group: Guidance for False Positive under paragraph 18.2(b)
+
+(a)A reporting institution may forward queries to the SC to determine whether
+the customer is a designated person in the case of similar or common names.
+
+(b)Any query submitted to the SC must include any additional information,
+copies of identification documents and relevant analysis conducted by the
+reporting institution.
+
+(c)A reporting institution should advice any customers who complain about
+their accounts being inadvertently frozen or transactions being erroneously
+rejected or blocked to contact the Strategic Trade Controller under the STA
+to verify the false positive match.
+
+------------------------------------------------------------
+RANK 2
+------------------------------------------------------------
+Chunk index       : 278
+Chunk ID          : 485c4989-c300-45c8-ac06-79a59492bb5c-c0278-117291907b
+Semantic type     : paragraph
+Fusion score      : 0.016393
+Dense rank        : 1
+Dense score       : 0.635836
+Dense distance    : 0.364164
+Dense RRF         : 0.016393
+Lexical rank      : —
+Lexical score     : —
+Lexical RRF       : 0.000000
+Token count       : 36
+Pages             : [107]
+Section path      : APPENDIX I > REPORTING UPON DETERMINATION
+Source element IDs: ['p107-e6']
+
+TEXT
+------------------------------------------------------------
+Section: APPENDIX I > REPORTING UPON DETERMINATION
+Group: Match with Designated Person(s) (YES / NO) :
+
+If YES, please fill-up the details in the form below
+
+------------------------------------------------------------
+RANK 3
+------------------------------------------------------------
+Chunk index       : 246
+Chunk ID          : 485c4989-c300-45c8-ac06-79a59492bb5c-c0246-81b5268a66
+Semantic type     : clause
+Fusion score      : 0.016129
+Dense rank        : 2
+Dense score       : 0.622859
+Dense distance    : 0.377141
+Dense RRF         : 0.016129
+Lexical rank      : —
+Lexical score     : —
+Lexical RRF       : 0.000000
+Token count       : 101
+Pages             : [90]
+Section path      : APPENDIX D > False positives
+Source element IDs: ['p90-e8', 'p90-e9']
+
+TEXT
+------------------------------------------------------------
+Section: APPENDIX D > False positives
+Group: Guidance on the Implementation of Targeted Financial Sanction in
+Relation to Terrorism Financing
+
+6.1 A reporting institution may forward queries to the Ministry of Home Affairs to ascertain
+whether or not the customer is a listed individual or entity in cases of similar name
+match with any listed entities.
+
+6.2 A reporting institution should direct its customers to the Ministry of Home Affairs to
+verify the false positive match in the event their accounts have been mistakenly frozen
+or transactions have been mistakenly rejected or blocked.
+
+------------------------------------------------------------
+RANK 4
+------------------------------------------------------------
+Chunk index       : 279
+Chunk ID          : 485c4989-c300-45c8-ac06-79a59492bb5c-c0279-a5f6ecd15c
+Semantic type     : table
+Fusion score      : 0.015625
+Dense rank        : 4
+Dense score       : 0.619744
+Dense distance    : 0.380256
+Dense RRF         : 0.015625
+Lexical rank      : —
+Lexical score     : —
+Lexical RRF       : 0.000000
+Token count       : 180
+Pages             : [107]
+Section path      : APPENDIX I > REPORTING UPON DETERMINATION
+Source element IDs: ['p107-e7']
+
+TEXT
+------------------------------------------------------------
+Section: APPENDIX I > REPORTING UPON DETERMINATION
+Group: Match with Designated Person(s) (YES / NO) :
+
+No | UNSCR Permanent Ref No | Customer Name | Address | NRIC / Passport No. | Intermediary Name - if reporting done on group basis | Branch maintaining the account/ facility Account No. | Account Facility/ Type | Date services given (DD/MM /YYYY) | Account/ Facility Status (on date of freezing) | Date account frozen (DD/MM /YYYY) | Account Balance as at: ________ | Related Parties | Remarks
+1 |  |  |  |  |  |  |  |  |  |  |  |  | 
+2 |  |  |  |  |  |  |  |  |  |  |  |  | 
+3 |  |  |  |  |  |  |  |  |  |  |  |  | 
+4 |  |  |  |  |  |  |  |  |  |  |  |  | 
+5 |  |  |  |  |  |  |  |  |  |  |  |  |
+
+------------------------------------------------------------
+RANK 5
+------------------------------------------------------------
+Chunk index       : 160
+Chunk ID          : 485c4989-c300-45c8-ac06-79a59492bb5c-c0160-41189942a4
+Semantic type     : clause
+Fusion score      : 0.015385
+Dense rank        : 5
+Dense score       : 0.607952
+Dense distance    : 0.392048
+Dense RRF         : 0.015385
+Lexical rank      : —
+Lexical score     : —
+Lexical RRF       : 0.000000
+Token count       : 122
+Pages             : [61]
+Section path      : PART VII: COMBATING TERRORISM FINANCING > 14 IDENTIFICATION AND DESIGNATION
+Source element IDs: ['p61-e4', 'p61-e5', 'p61-e9']
+
+TEXT
+------------------------------------------------------------
+Section: PART VII: COMBATING TERRORISM FINANCING > 14 IDENTIFICATION AND DESIGNATION
+
+14.5 A reporting institution is required to submit a STR when there is an attempted
+transaction by any of the listed persons.
+
+14.6 A reporting institution must ascertain potential matches with the UN Consolidated List
+to confirm whether they are true matches to eliminate any “false positives”. The
+reporting institution must make further enquiries from the customer or counterparty
+(where relevant) to assist in determining whether it is a true match.
+
+14.8 Appendix D provides the detailed obligations of a reporting institution for the
+implementation of the targeted financial sanctions in relation to terrorism financing.
+
+
+==============================================================================
+RAW JSON RESPONSE
+==============================================================================
+{
+  "document_id": "485c4989-c300-45c8-ac06-79a59492bb5c",
+  "query": "What information must be reported when there is a positive match with a designated person?",
+  "embedding_model": "BAAI/bge-m3",
+  "requested_device": "auto",
+  "resolved_device": "cuda",
+  "top_k": 5,
+  "candidate_k": 20,
+  "embedded_chunk_count": 284,
+  "total_chunk_count": 284,
+  "fusion_method": "reciprocal_rank_fusion",
+  "rrf_k": 60,
+  "dense_weight": 1.0,
+  "lexical_weight": 1.0,
+  "lexical_ranking_method": "postgresql_ts_rank_cd",
+  "hits": [
+    {
+      "rank": 1,
+      "chunk_id": "485c4989-c300-45c8-ac06-79a59492bb5c-c0170-bca06805f2",
+      "chunk_index": 170,
+      "semantic_type": "list_item",
+      "fusion_score": 0.032266458495966696,
+      "dense_rank": 3,
+      "dense_score": 0.6223200559616089,
+      "dense_distance": 0.3776799440383911,
+      "dense_rrf_score": 0.015873015873015872,
+      "lexical_rank": 1,
+      "lexical_score": 0.0015384615,
+      "lexical_rrf_score": 0.01639344262295082,
+      "text": "Section: PART VIII: COMBATING PROLIFERATION FINANCING > 18. REQUIREMENT TO FREEZE, BLOCK AND REJECT\nGroup: Guidance for False Positive under paragraph 18.2(b)\n\n(a)A reporting institution may forward queries to the SC to determine whether\nthe customer is a designated person in the case of similar or common names.\n\n(b)Any query submitted to the SC must include any additional information,\ncopies of identification documents and relevant analysis conducted by the\nreporting institution.\n\n(c)A reporting institution should advice any customers who complain about\ntheir accounts being inadvertently frozen or transactions being erroneously\nrejected or blocked to contact the Strategic Trade Controller under the STA\nto verify the false positive match.",
+      "content_text": "(a)A reporting institution may forward queries to the SC to determine whether\nthe customer is a designated person in the case of similar or common names.\n\n(b)Any query submitted to the SC must include any additional information,\ncopies of identification documents and relevant analysis conducted by the\nreporting institution.\n\n(c)A reporting institution should advice any customers who complain about\ntheir accounts being inadvertently frozen or transactions being erroneously\nrejected or blocked to contact the Strategic Trade Controller under the STA\nto verify the false positive match.",
+      "token_count": 131,
+      "pages": [
+        64
+      ],
+      "section_path": [
+        "PART VIII: COMBATING PROLIFERATION FINANCING",
+        "18. REQUIREMENT TO FREEZE, BLOCK AND REJECT"
+      ],
+      "source_element_ids": [
+        "p64-e7",
+        "p64-e8",
+        "p64-e9"
+      ]
+    },
+    {
+      "rank": 2,
+      "chunk_id": "485c4989-c300-45c8-ac06-79a59492bb5c-c0278-117291907b",
+      "chunk_index": 278,
+      "semantic_type": "paragraph",
+      "fusion_score": 0.01639344262295082,
+      "dense_rank": 1,
+      "dense_score": 0.6358364441492305,
+      "dense_distance": 0.36416355585076954,
+      "dense_rrf_score": 0.01639344262295082,
+      "lexical_rank": null,
+      "lexical_score": null,
+      "lexical_rrf_score": 0.0,
+      "text": "Section: APPENDIX I > REPORTING UPON DETERMINATION\nGroup: Match with Designated Person(s) (YES / NO) :\n\nIf YES, please fill-up the details in the form below",
+      "content_text": "If YES, please fill-up the details in the form below",
+      "token_count": 36,
+      "pages": [
+        107
+      ],
+      "section_path": [
+        "APPENDIX I",
+        "REPORTING UPON DETERMINATION"
+      ],
+      "source_element_ids": [
+        "p107-e6"
+      ]
+    },
+    {
+      "rank": 3,
+      "chunk_id": "485c4989-c300-45c8-ac06-79a59492bb5c-c0246-81b5268a66",
+      "chunk_index": 246,
+      "semantic_type": "clause",
+      "fusion_score": 0.016129032258064516,
+      "dense_rank": 2,
+      "dense_score": 0.6228594037462036,
+      "dense_distance": 0.37714059625379637,
+      "dense_rrf_score": 0.016129032258064516,
+      "lexical_rank": null,
+      "lexical_score": null,
+      "lexical_rrf_score": 0.0,
+      "text": "Section: APPENDIX D > False positives\nGroup: Guidance on the Implementation of Targeted Financial Sanction in\nRelation to Terrorism Financing\n\n6.1 A reporting institution may forward queries to the Ministry of Home Affairs to ascertain\nwhether or not the customer is a listed individual or entity in cases of similar name\nmatch with any listed entities.\n\n6.2 A reporting institution should direct its customers to the Ministry of Home Affairs to\nverify the false positive match in the event their accounts have been mistakenly frozen\nor transactions have been mistakenly rejected or blocked.",
+      "content_text": "6.1 A reporting institution may forward queries to the Ministry of Home Affairs to ascertain\nwhether or not the customer is a listed individual or entity in cases of similar name\nmatch with any listed entities.\n\n6.2 A reporting institution should direct its customers to the Ministry of Home Affairs to\nverify the false positive match in the event their accounts have been mistakenly frozen\nor transactions have been mistakenly rejected or blocked.",
+      "token_count": 101,
+      "pages": [
+        90
+      ],
+      "section_path": [
+        "APPENDIX D",
+        "False positives"
+      ],
+      "source_element_ids": [
+        "p90-e8",
+        "p90-e9"
+      ]
+    },
+    {
+      "rank": 4,
+      "chunk_id": "485c4989-c300-45c8-ac06-79a59492bb5c-c0279-a5f6ecd15c",
+      "chunk_index": 279,
+      "semantic_type": "table",
+      "fusion_score": 0.015625,
+      "dense_rank": 4,
+      "dense_score": 0.6197442412376404,
+      "dense_distance": 0.3802557587623596,
+      "dense_rrf_score": 0.015625,
+      "lexical_rank": null,
+      "lexical_score": null,
+      "lexical_rrf_score": 0.0,
+      "text": "Section: APPENDIX I > REPORTING UPON DETERMINATION\nGroup: Match with Designated Person(s) (YES / NO) :\n\nNo | UNSCR Permanent Ref No | Customer Name | Address | NRIC / Passport No. | Intermediary Name - if reporting done on group basis | Branch maintaining the account/ facility Account No. | Account Facility/ Type | Date services given (DD/MM /YYYY) | Account/ Facility Status (on date of freezing) | Date account frozen (DD/MM /YYYY) | Account Balance as at: ________ | Related Parties | Remarks\n1 |  |  |  |  |  |  |  |  |  |  |  |  | \n2 |  |  |  |  |  |  |  |  |  |  |  |  | \n3 |  |  |  |  |  |  |  |  |  |  |  |  | \n4 |  |  |  |  |  |  |  |  |  |  |  |  | \n5 |  |  |  |  |  |  |  |  |  |  |  |  |",
+      "content_text": "No | UNSCR Permanent Ref No | Customer Name | Address | NRIC / Passport No. | Intermediary Name - if reporting done on group basis | Branch maintaining the account/ facility Account No. | Account Facility/ Type | Date services given (DD/MM /YYYY) | Account/ Facility Status (on date of freezing) | Date account frozen (DD/MM /YYYY) | Account Balance as at: ________ | Related Parties | Remarks\n1 |  |  |  |  |  |  |  |  |  |  |  |  | \n2 |  |  |  |  |  |  |  |  |  |  |  |  | \n3 |  |  |  |  |  |  |  |  |  |  |  |  | \n4 |  |  |  |  |  |  |  |  |  |  |  |  | \n5 |  |  |  |  |  |  |  |  |  |  |  |  |",
+      "token_count": 180,
+      "pages": [
+        107
+      ],
+      "section_path": [
+        "APPENDIX I",
+        "REPORTING UPON DETERMINATION"
+      ],
+      "source_element_ids": [
+        "p107-e7"
+      ]
+    },
+    {
+      "rank": 5,
+      "chunk_id": "485c4989-c300-45c8-ac06-79a59492bb5c-c0160-41189942a4",
+      "chunk_index": 160,
+      "semantic_type": "clause",
+      "fusion_score": 0.015384615384615385,
+      "dense_rank": 5,
+      "dense_score": 0.6079518795013428,
+      "dense_distance": 0.3920481204986572,
+      "dense_rrf_score": 0.015384615384615385,
+      "lexical_rank": null,
+      "lexical_score": null,
+      "lexical_rrf_score": 0.0,
+      "text": "Section: PART VII: COMBATING TERRORISM FINANCING > 14 IDENTIFICATION AND DESIGNATION\n\n14.5 A reporting institution is required to submit a STR when there is an attempted\ntransaction by any of the listed persons.\n\n14.6 A reporting institution must ascertain potential matches with the UN Consolidated List\nto confirm whether they are true matches to eliminate any “false positives”. The\nreporting institution must make further enquiries from the customer or counterparty\n(where relevant) to assist in determining whether it is a true match.\n\n14.8 Appendix D provides the detailed obligations of a reporting institution for the\nimplementation of the targeted financial sanctions in relation to terrorism financing.",
+      "content_text": "14.5 A reporting institution is required to submit a STR when there is an attempted\ntransaction by any of the listed persons.\n\n14.6 A reporting institution must ascertain potential matches with the UN Consolidated List\nto confirm whether they are true matches to eliminate any “false positives”. The\nreporting institution must make further enquiries from the customer or counterparty\n(where relevant) to assist in determining whether it is a true match.\n\n14.8 Appendix D provides the detailed obligations of a reporting institution for the\nimplementation of the targeted financial sanctions in relation to terrorism financing.",
+      "token_count": 122,
+      "pages": [
+        61
+      ],
+      "section_path": [
+        "PART VII: COMBATING TERRORISM FINANCING",
+        "14 IDENTIFICATION AND DESIGNATION"
+      ],
+      "source_element_ids": [
+        "p61-e4",
+        "p61-e5",
+        "p61-e9"
+      ]
+    }
+  ]
+}

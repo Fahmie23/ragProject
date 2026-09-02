@@ -1,0 +1,262 @@
+{
+  "document_id": "485c4989-c300-45c8-ac06-79a59492bb5c",
+  "query": "How long must CDD and transaction records be retained, and in what circumstances must records be kept beyond the normal retention period?",
+  "embedding_model": "BAAI/bge-m3",
+  "requested_device": "auto",
+  "resolved_device": "cuda",
+  "top_k": 10,
+  "embedded_chunk_count": 284,
+  "total_chunk_count": 284,
+  "hits": [
+    {
+      "rank": 1,
+      "chunk_id": "485c4989-c300-45c8-ac06-79a59492bb5c-c0145-dfb6598d11",
+      "chunk_index": 145,
+      "semantic_type": "clause",
+      "score": 0.7664424180984497,
+      "distance": 0.2335575819015503,
+      "text": "Section: PART IV: RETENTION OF RECORDS > 10 RECORD KEEPING\n\n10.2 A reporting institution is required to maintain records for a period of at least\nseven years from–\n\n(a)in the case of record obtained through the CDD and enhanced CDD\nprocess ,the date the account is closed; or\n\n(b)in the case of transaction records, the date the transaction is completed\nor terminated.\n\n10.3 A reporting institution must retain a record beyond the retention period provided\nin paragraph 10.2 above, if the record is in relation to–\n\n(a)a STR that has been lodged to FIED;\n\n(b)a transaction that is subject to an ongoing investigation by any law\nenforcement agency; or\n\n(c)a transaction that is subject to prosecution in court,\n\nuntil it is confirmed that the case is closed or records are no longer required.",
+      "content_text": "10.2 A reporting institution is required to maintain records for a period of at least\nseven years from–\n\n(a)in the case of record obtained through the CDD and enhanced CDD\nprocess ,the date the account is closed; or\n\n(b)in the case of transaction records, the date the transaction is completed\nor terminated.\n\n10.3 A reporting institution must retain a record beyond the retention period provided\nin paragraph 10.2 above, if the record is in relation to–\n\n(a)a STR that has been lodged to FIED;\n\n(b)a transaction that is subject to an ongoing investigation by any law\nenforcement agency; or\n\n(c)a transaction that is subject to prosecution in court,\n\nuntil it is confirmed that the case is closed or records are no longer required.",
+      "token_count": 167,
+      "pages": [
+        53
+      ],
+      "section_path": [
+        "PART IV: RETENTION OF RECORDS",
+        "10 RECORD KEEPING"
+      ],
+      "source_element_ids": [
+        "p53-e10",
+        "p53-e11",
+        "p53-e12",
+        "p53-e13",
+        "p53-e14",
+        "p53-e15",
+        "p53-e16",
+        "p53-e17"
+      ]
+    },
+    {
+      "rank": 2,
+      "chunk_id": "485c4989-c300-45c8-ac06-79a59492bb5c-c0146-f1daf1e33c",
+      "chunk_index": 146,
+      "semantic_type": "clause",
+      "score": 0.6760571002960205,
+      "distance": 0.3239428997039795,
+      "text": "Section: PART IV: RETENTION OF RECORDS > 10 RECORD KEEPING\nClause: 10.4\n\n10.4 A reporting institution must retain, maintain and update the relevant records\n(including CDD records and all relevant transaction records) in such a way that–\n\n(a)the relevant law enforcement agencies and internal and external auditors of the\nreporting institution will be able to reliably judge the reporting institution’s\ntransactions and its compliance with the AMLA and TFS-PF legislations;\n\n(b)it is sufficient to permit reconstruction of individual transactions so as to provide,\nif necessary, evidence for prosecution of criminal activity; and\n\n(c)the reporting institution can satisfy within a reasonable time any enquiry or order\nfrom the relevant law enforcement agencies as to the disclosure of such relevant\nrecord.",
+      "content_text": "10.4 A reporting institution must retain, maintain and update the relevant records\n(including CDD records and all relevant transaction records) in such a way that–\n\n(a)the relevant law enforcement agencies and internal and external auditors of the\nreporting institution will be able to reliably judge the reporting institution’s\ntransactions and its compliance with the AMLA and TFS-PF legislations;\n\n(b)it is sufficient to permit reconstruction of individual transactions so as to provide,\nif necessary, evidence for prosecution of criminal activity; and\n\n(c)the reporting institution can satisfy within a reasonable time any enquiry or order\nfrom the relevant law enforcement agencies as to the disclosure of such relevant\nrecord.",
+      "token_count": 148,
+      "pages": [
+        54
+      ],
+      "section_path": [
+        "PART IV: RETENTION OF RECORDS",
+        "10 RECORD KEEPING"
+      ],
+      "source_element_ids": [
+        "p54-e1",
+        "p54-e2",
+        "p54-e3",
+        "p54-e4"
+      ]
+    },
+    {
+      "rank": 3,
+      "chunk_id": "485c4989-c300-45c8-ac06-79a59492bb5c-c0144-0d790b7fda",
+      "chunk_index": 144,
+      "semantic_type": "clause",
+      "score": 0.6220856534191588,
+      "distance": 0.3779143465808412,
+      "text": "Section: PART IV: RETENTION OF RECORDS > 10 RECORD KEEPING\nClause: 10.1\n\n10.1 A reporting institution must keep records of all transactions and ensure they are up to\ndate and relevant. The records must at least include the following information for each\ntransaction:\n\n(a)Documents relating to the identification and verification of the customer\nin whose name the account is opened or transaction is executed;\n\n(b)The identification of the beneficial owner or the person on whose behalf\nthe account is opened or transaction is executed;\n\n(c)Records of the relevant account pertaining to the transaction executed;\n\n(d)The type and details of transaction involved;\n\n(e)The origin and the destination of the funds, where applicable; and\n\n(f)Such other information as the SC and BNM may specify in writing.",
+      "content_text": "10.1 A reporting institution must keep records of all transactions and ensure they are up to\ndate and relevant. The records must at least include the following information for each\ntransaction:\n\n(a)Documents relating to the identification and verification of the customer\nin whose name the account is opened or transaction is executed;\n\n(b)The identification of the beneficial owner or the person on whose behalf\nthe account is opened or transaction is executed;\n\n(c)Records of the relevant account pertaining to the transaction executed;\n\n(d)The type and details of transaction involved;\n\n(e)The origin and the destination of the funds, where applicable; and\n\n(f)Such other information as the SC and BNM may specify in writing.",
+      "token_count": 158,
+      "pages": [
+        53
+      ],
+      "section_path": [
+        "PART IV: RETENTION OF RECORDS",
+        "10 RECORD KEEPING"
+      ],
+      "source_element_ids": [
+        "p53-e3",
+        "p53-e4",
+        "p53-e5",
+        "p53-e6",
+        "p53-e7",
+        "p53-e8",
+        "p53-e9"
+      ]
+    },
+    {
+      "rank": 4,
+      "chunk_id": "485c4989-c300-45c8-ac06-79a59492bb5c-c0124-0f8256155c",
+      "chunk_index": 124,
+      "semantic_type": "clause",
+      "score": 0.595049941834812,
+      "distance": 0.40495005816518803,
+      "text": "Section: PART III: CUSTOMER DUE DILIGENCE > 8. CUSTOMER DUE DILIGENCE (CDD) > 8.8 Ongoing Due Diligence\nClause: 8.8.1\n\n8.8.1 A reporting institution must conduct ongoing due diligence and scrutiny of the business\nrelationship with its customers throughout the course of the business relationship.\nSuch measures shall include–\n\n(a)monitoring, detecting and scrutinizing transactions undertaken throughout the\ncourse of that business relationship to ensure that the transactions being\nconducted are consistent with the reporting institution’s knowledge of the\ncustomer, its business and risk profile, including where necessary, the source\nof funds; and\n\n(b)ensuring that documents, data or information collected under the CDD process\nis kept up-to-date and are relevant, by undertaking periodic reviews of existing\nrecords, particularly for higher-risk categories of customer.",
+      "content_text": "8.8.1 A reporting institution must conduct ongoing due diligence and scrutiny of the business\nrelationship with its customers throughout the course of the business relationship.\nSuch measures shall include–\n\n(a)monitoring, detecting and scrutinizing transactions undertaken throughout the\ncourse of that business relationship to ensure that the transactions being\nconducted are consistent with the reporting institution’s knowledge of the\ncustomer, its business and risk profile, including where necessary, the source\nof funds; and\n\n(b)ensuring that documents, data or information collected under the CDD process\nis kept up-to-date and are relevant, by undertaking periodic reviews of existing\nrecords, particularly for higher-risk categories of customer.",
+      "token_count": 162,
+      "pages": [
+        46
+      ],
+      "section_path": [
+        "PART III: CUSTOMER DUE DILIGENCE",
+        "8. CUSTOMER DUE DILIGENCE (CDD)",
+        "8.8 Ongoing Due Diligence"
+      ],
+      "source_element_ids": [
+        "p46-e2",
+        "p46-e3",
+        "p46-e4"
+      ]
+    },
+    {
+      "rank": 5,
+      "chunk_id": "485c4989-c300-45c8-ac06-79a59492bb5c-c0092-c25594629e",
+      "chunk_index": 92,
+      "semantic_type": "clause",
+      "score": 0.5835846662521362,
+      "distance": 0.41641533374786377,
+      "text": "Section: PART III: CUSTOMER DUE DILIGENCE > 8. CUSTOMER DUE DILIGENCE (CDD) > 8.1 CDD at the point of establishing business relationship\nClause: 8.1.13\nGroup: CDD requirements for legal persons\n\n8.1.13 Notwithstanding the above, reporting institutions are required to identify and maintain\nthe information relating to the identity of the directors and shareholders or partners of\nlegal persons referred to in paragraph 8.1.12 (a) to (g), through a public register, other\nreliable sources or based on information provided by the customer.",
+      "content_text": "8.1.13 Notwithstanding the above, reporting institutions are required to identify and maintain\nthe information relating to the identity of the directors and shareholders or partners of\nlegal persons referred to in paragraph 8.1.12 (a) to (g), through a public register, other\nreliable sources or based on information provided by the customer.",
+      "token_count": 110,
+      "pages": [
+        35
+      ],
+      "section_path": [
+        "PART III: CUSTOMER DUE DILIGENCE",
+        "8. CUSTOMER DUE DILIGENCE (CDD)",
+        "8.1 CDD at the point of establishing business relationship"
+      ],
+      "source_element_ids": [
+        "p35-e2"
+      ]
+    },
+    {
+      "rank": 6,
+      "chunk_id": "485c4989-c300-45c8-ac06-79a59492bb5c-c0103-96fa91f378",
+      "chunk_index": 103,
+      "semantic_type": "clause",
+      "score": 0.5797996175408602,
+      "distance": 0.4202003824591398,
+      "text": "Section: PART III: CUSTOMER DUE DILIGENCE > 8. CUSTOMER DUE DILIGENCE (CDD) > 8.1 CDD at the point of establishing business relationship\nClause: 8.1.26\nGroup: Delayed verification\n\n8.1.26 The policies and procedures must include:\n\n(a) Establishing a reasonable timeframe for the completion of the identity verification\nmeasures to ensure that delayed verification occurs as reasonably practicable.\nThe reasonable timeframe shall not exceed 10 working days or any other period\nas may be specified by the SC;\n\n(b) Measures that a reporting institution may take to manage risks of delayed\nverification including conditions under which the customer may utilize the\nbusiness relationship prior to verification and placing appropriate limits on the\nnumber, types and/or amount of transactions that can be performed;\n\n(c) Monitoring of large and complex transactions being carried out outside the\nexpected norms pending completion of verification; and\n\n(d) Keeping senior management periodically informed of any cases pending identity.",
+      "content_text": "8.1.26 The policies and procedures must include:\n\n(a) Establishing a reasonable timeframe for the completion of the identity verification\nmeasures to ensure that delayed verification occurs as reasonably practicable.\nThe reasonable timeframe shall not exceed 10 working days or any other period\nas may be specified by the SC;\n\n(b) Measures that a reporting institution may take to manage risks of delayed\nverification including conditions under which the customer may utilize the\nbusiness relationship prior to verification and placing appropriate limits on the\nnumber, types and/or amount of transactions that can be performed;\n\n(c) Monitoring of large and complex transactions being carried out outside the\nexpected norms pending completion of verification; and\n\n(d) Keeping senior management periodically informed of any cases pending identity.",
+      "token_count": 184,
+      "pages": [
+        38
+      ],
+      "section_path": [
+        "PART III: CUSTOMER DUE DILIGENCE",
+        "8. CUSTOMER DUE DILIGENCE (CDD)",
+        "8.1 CDD at the point of establishing business relationship"
+      ],
+      "source_element_ids": [
+        "p38-e8",
+        "p38-e9",
+        "p38-e10",
+        "p38-e11",
+        "p38-e12"
+      ]
+    },
+    {
+      "rank": 7,
+      "chunk_id": "485c4989-c300-45c8-ac06-79a59492bb5c-c0129-2767b9c481",
+      "chunk_index": 129,
+      "semantic_type": "clause",
+      "score": 0.5603053569793701,
+      "distance": 0.4396946430206299,
+      "text": "Section: PART III: CUSTOMER DUE DILIGENCE > 8. CUSTOMER DUE DILIGENCE (CDD) > 8.8 Ongoing Due Diligence\nClause: 8.8.7\nGroup: Renewed CDD\n\n8.8.7 A reporting institution is required to undertake a renewed CDD when:\n\n(a)The customer’s account has been dormant or inactive and the customer is\nseeking to reactivate its account or resume its activities;\n\n(b)There is a change in circumstances relating to a customer which give rise\nto a suspicion of ML/TF/PF risks; or\n\n(c)There is a doubt about the veracity or adequacy of previously obtained\nidentification data.",
+      "content_text": "8.8.7 A reporting institution is required to undertake a renewed CDD when:\n\n(a)The customer’s account has been dormant or inactive and the customer is\nseeking to reactivate its account or resume its activities;\n\n(b)There is a change in circumstances relating to a customer which give rise\nto a suspicion of ML/TF/PF risks; or\n\n(c)There is a doubt about the veracity or adequacy of previously obtained\nidentification data.",
+      "token_count": 125,
+      "pages": [
+        47
+      ],
+      "section_path": [
+        "PART III: CUSTOMER DUE DILIGENCE",
+        "8. CUSTOMER DUE DILIGENCE (CDD)",
+        "8.8 Ongoing Due Diligence"
+      ],
+      "source_element_ids": [
+        "p47-e3",
+        "p47-e4",
+        "p47-e5",
+        "p47-e6"
+      ]
+    },
+    {
+      "rank": 8,
+      "chunk_id": "485c4989-c300-45c8-ac06-79a59492bb5c-c0244-51c99b8239",
+      "chunk_index": 244,
+      "semantic_type": "clause",
+      "score": 0.560260534286499,
+      "distance": 0.439739465713501,
+      "text": "Section: APPENDIX D > Reporting requirements\nGroup: Guidance on the Implementation of Targeted Financial Sanction in\nRelation to Terrorism Financing\n\n5.2 For the purpose of submitting suspicious transaction report to the FIED, a reporting\ninstitution–\n\n(a)should include details and analysis of the CDD, ongoing CDD information,\nactivities of transactions of the listed entity or related parties; and\n\n(b)is encouraged to search, examine and analyse past financial activities of\ncustomers and related parties with a name match that have closed their accounts\nwith the reporting institution.\n\n5.3 A reporting institution is also under an obligation to report to the SC periodically every\nsix months for both lists on frozen funds, properties or accounts of customers that\nare listed.",
+      "content_text": "5.2 For the purpose of submitting suspicious transaction report to the FIED, a reporting\ninstitution–\n\n(a)should include details and analysis of the CDD, ongoing CDD information,\nactivities of transactions of the listed entity or related parties; and\n\n(b)is encouraged to search, examine and analyse past financial activities of\ncustomers and related parties with a name match that have closed their accounts\nwith the reporting institution.\n\n5.3 A reporting institution is also under an obligation to report to the SC periodically every\nsix months for both lists on frozen funds, properties or accounts of customers that\nare listed.",
+      "token_count": 138,
+      "pages": [
+        90
+      ],
+      "section_path": [
+        "APPENDIX D",
+        "Reporting requirements"
+      ],
+      "source_element_ids": [
+        "p90-e2",
+        "p90-e3",
+        "p90-e4",
+        "p90-e5"
+      ]
+    },
+    {
+      "rank": 9,
+      "chunk_id": "485c4989-c300-45c8-ac06-79a59492bb5c-c0101-c09791e527",
+      "chunk_index": 101,
+      "semantic_type": "clause",
+      "score": 0.5583202838897705,
+      "distance": 0.4416797161102295,
+      "text": "Section: PART III: CUSTOMER DUE DILIGENCE > 8. CUSTOMER DUE DILIGENCE (CDD) > 8.1 CDD at the point of establishing business relationship\nGroup: Delayed verification\n\n8.1.24 A reporting institution may complete the verification after the establishment of the\nbusiness relationship (“delayed verification”) to allow some flexibility for its customer\nand beneficial owner to furnish the relevant documents in circumstances where\nverification is not possible at the point of establishing business relationship.\n\n8.1.27 If verification cannot be completed within the reasonable timeframe, the reporting\ninstitution should terminate the business relationship as soon as reasonably practicable\nand refrain from carrying out further transactions. However, following the termination\nof business relationship, the reporting institution may return funds or other assets to\nthe customers.\n\n8.1.28 The reporting institution must assess whether the failure to complete verification within\nthe reasonable timeframe provides sufficient grounds for making a STR to the FIED.",
+      "content_text": "8.1.24 A reporting institution may complete the verification after the establishment of the\nbusiness relationship (“delayed verification”) to allow some flexibility for its customer\nand beneficial owner to furnish the relevant documents in circumstances where\nverification is not possible at the point of establishing business relationship.\n\n8.1.27 If verification cannot be completed within the reasonable timeframe, the reporting\ninstitution should terminate the business relationship as soon as reasonably practicable\nand refrain from carrying out further transactions. However, following the termination\nof business relationship, the reporting institution may return funds or other assets to\nthe customers.\n\n8.1.28 The reporting institution must assess whether the failure to complete verification within\nthe reasonable timeframe provides sufficient grounds for making a STR to the FIED.",
+      "token_count": 177,
+      "pages": [
+        38,
+        39
+      ],
+      "section_path": [
+        "PART III: CUSTOMER DUE DILIGENCE",
+        "8. CUSTOMER DUE DILIGENCE (CDD)",
+        "8.1 CDD at the point of establishing business relationship"
+      ],
+      "source_element_ids": [
+        "p38-e2",
+        "p38-e13",
+        "p39-e1"
+      ]
+    },
+    {
+      "rank": 10,
+      "chunk_id": "485c4989-c300-45c8-ac06-79a59492bb5c-c0127-f692bde454",
+      "chunk_index": 127,
+      "semantic_type": "clause",
+      "score": 0.5578659772872925,
+      "distance": 0.4421340227127075,
+      "text": "Section: PART III: CUSTOMER DUE DILIGENCE > 8. CUSTOMER DUE DILIGENCE (CDD) > 8.8 Ongoing Due Diligence\nClause: 8.8.5\nGroup: Monitoring of accounts\n\n8.8.5 A reporting institution should consider reclassifying a customer as higher risk and\nconsider lodging a STR with the FIED under the following circumstances:\n\n(a)Following initial acceptance of the customer, the pattern of account activity\nof the customer is inconsistent and does not fit in with the reporting\ninstitution’s profile knowledge of the customer;\n\n(b)The transaction appears unusual and not in line with the customer’s normal\ntrading pattern; or\n\n(c)There is a material change in the way the account is operated.",
+      "content_text": "8.8.5 A reporting institution should consider reclassifying a customer as higher risk and\nconsider lodging a STR with the FIED under the following circumstances:\n\n(a)Following initial acceptance of the customer, the pattern of account activity\nof the customer is inconsistent and does not fit in with the reporting\ninstitution’s profile knowledge of the customer;\n\n(b)The transaction appears unusual and not in line with the customer’s normal\ntrading pattern; or\n\n(c)There is a material change in the way the account is operated.",
+      "token_count": 139,
+      "pages": [
+        46
+      ],
+      "section_path": [
+        "PART III: CUSTOMER DUE DILIGENCE",
+        "8. CUSTOMER DUE DILIGENCE (CDD)",
+        "8.8 Ongoing Due Diligence"
+      ],
+      "source_element_ids": [
+        "p46-e9",
+        "p46-e10",
+        "p46-e11",
+        "p46-e12"
+      ]
+    }
+  ]
+}

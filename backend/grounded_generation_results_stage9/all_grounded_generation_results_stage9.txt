@@ -1,0 +1,691 @@
+====================================================================================================
+QUESTION: What is a politically exposed person?
+EXPECTATION: answerable
+STATUS: answered
+ELAPSED_SECONDS: 21.76
+RATE_LIMIT_RETRIES: 0
+PROVIDER: groq
+MODEL: openai/gpt-oss-120b
+PROMPT_VERSION: grounded_claims_v1
+RETRIEVAL_PROFILE: retrieval_v1_stage8_2_top5
+CONTEXT_CHUNKS: 5
+EXPANDED_CHUNKS: 0
+USED_EVIDENCE_IDS: ['E1']
+
+ANSWER:
+A politically exposed person (PEP) is an individual who is or has been entrusted with prominent public functions, either as a foreign PEP, a domestic PEP, or a person entrusted with a prominent function by an international organisation Foreign PEPs include heads of state or government, senior politicians, senior government, judicial or military officials, senior executives of state‑owned corporations, and important political party officials Domestic PEPs include heads of state or government, senior politicians, senior government, judicial or military officials, senior executives of state‑owned corporations, and important political party officials Persons entrusted with a prominent function by an international organisation include senior management such as directors, deputy directors and board members or equivalent functions The definition of PEP does not cover middle‑ranking or more junior individuals in the foregoing categories
+
+CLAIMS:
+- C1: A politically exposed person (PEP) is an individual who is or has been entrusted with prominent public functions, either as a foreign PEP, a domestic PEP, or a person entrusted with a prominent function by an international organisation | evidence=['E1']
+- C2: Foreign PEPs include heads of state or government, senior politicians, senior government, judicial or military officials, senior executives of state‑owned corporations, and important political party officials | evidence=['E1']
+- C3: Domestic PEPs include heads of state or government, senior politicians, senior government, judicial or military officials, senior executives of state‑owned corporations, and important political party officials | evidence=['E1']
+- C4: Persons entrusted with a prominent function by an international organisation include senior management such as directors, deputy directors and board members or equivalent functions | evidence=['E1']
+- C5: The definition of PEP does not cover middle‑ranking or more junior individuals in the foregoing categories | evidence=['E1']
+
+EVIDENCE:
+[E1] chunk_index=33 source_rank=1 pages=[13] type=definition reasons=['ranked_seed']
+politically exposed person (PEP)
+
+means―
+(a)foreign PEP i.e. individual who is or who has been entrusted with prominent public functions by a foreign country, for example, Head of State or of government, senior politician, senior government, judicial or military official, senior executive of state-owned corporation, important political party official;
+(b)domestic PEP i.e. individual who is or has been entrusted domestically with prominent public functions, for example Head of State or of government, senior politician, senior government, judicial or military official, senior executive of state- owned corporation, important political party official; or
+(c)person who is or has been entrusted with a prominent function by an international organisation which refers to member of senior management, i.e. director, deputy director and member of the board or equivalent functions.
+The definition of PEP is not intended to cover middle ranking or more junior individual in the foregoing categories.
+[E2] chunk_index=112 source_rank=2 pages=[42] type=clause reasons=['ranked_seed']
+8.4.1 The requirements set out in paragraph 8.4 herein are also applicable to family
+members or close associates of PEPs. Appendix B of these Guidelines provides
+measures to be adopted by a reporting institution in dealing with the family members
+or close associates of PEPs.
+
+8.4.2 A reporting institution is required to have in place a risk management system to
+determine whether a customer or a beneficial owner is a foreign PEP.
+
+8.4.3 Upon determining that a customer or a beneficial owner is a foreign PEP, the
+requirement to conduct enhanced CDD measures under paragraph 8.3 is applicable
+and the reporting institution is also required to conduct enhanced ongoing due
+diligence.
+
+8.4.4 A reporting institution is required to have in place reasonable measures to determine
+whether a customer or the beneficial owner is a domestic PEP or person entrusted
+with a prominent function by an international organisation.
+
+8.4.5 The reporting institution is required to assess the level of ML/TF/PF risks posed by
+the business relationship with the domestic PEP or person entrusted with a prominent
+function by an international organisation based on sufficient and appropriate
+information gathered through publicly available information or other reasonable
+means. The assessment of the ML/TF/PF risks also must take into account the profile
+of the customer under paragraph 7.5.3 of these Guidelines.
+
+8.4.6 For a higher-risk domestic PEP or higher-risk person entrusted with a prominent
+function by an international organisation, the requirements of enhanced CDD
+measures are as set out in paragraph 8.3.
+
+8.4.7 For a domestic PEP or person entrusted with a prominent function by an international
+organisation that is assessed as low risk, the reporting institution may apply the standard
+CDD measures.
+[E3] chunk_index=220 source_rank=3 pages=[83] type=paragraph reasons=['ranked_seed']
+Family Member or Close Associate of a Foreign PEP
+[E4] chunk_index=224 source_rank=4 pages=[83] type=clause reasons=['ranked_seed']
+1.11 For family members or close associates of a domestic PEP or PEPFIO that is assessed
+as low risk pursuant to the rating assigned to the domestic PEP or PEPFIO, the
+reporting institution must apply the standard CDD measures and where he is assessed
+as higher risk, enhanced CDD measures are applicable.
+[E5] chunk_index=219 source_rank=5 pages=[82] type=clause reasons=['ranked_seed']
+1.5 A close associate is an individual reasonably known to the reporting institution to be
+closely connected to a PEP, either socially or professionally.
+
+1.6 An individual who is closely connected to a PEP may include the PEP’s business
+partners or associates, extended family members, close friends and financially
+dependent individuals.
+
+1.7 Reporting institutions must determine the extent to which the close associate is directly
+engaged or involved in the activity of the PEP on best effort basis.
+
+
+====================================================================================================
+QUESTION: What are the requirements for delayed verification?
+EXPECTATION: answerable
+STATUS: answered
+ELAPSED_SECONDS: 4.00
+RATE_LIMIT_RETRIES: 0
+PROVIDER: groq
+MODEL: openai/gpt-oss-120b
+PROMPT_VERSION: grounded_claims_v1
+RETRIEVAL_PROFILE: retrieval_v1_stage8_2_top5
+CONTEXT_CHUNKS: 5
+EXPANDED_CHUNKS: 0
+USED_EVIDENCE_IDS: ['E1', 'E2', 'E3']
+
+ANSWER:
+Before adopting delayed verification, the reporting institution must have appropriate risk management policies and procedures to effectively manage any ML/TF/PF risk arising from delayed verification. The delay must be essential so as not to interrupt the reporting institution’s normal conduct of business. The ML/TF/PF risks must be effectively managed during the period of delayed verification. There must be no suspicion of ML/TF/PF when delayed verification is applied. The institution’s policies and procedures must establish a reasonable timeframe for completing identity verification, which shall not exceed 10 working days or any other period specified by the supervisory authority. The policies must include measures to manage risks of delayed verification, including conditions under which the customer may use the business relationship prior to verification and appropriate limits on the number, types, or amount of transactions. The policies must require monitoring of large and complex transactions that are outside expected norms while verification is pending. Senior management must be periodically informed of any cases pending identity verification. If verification cannot be completed within the reasonable timeframe, the reporting institution should terminate the business relationship as soon as reasonably practicable and refrain from carrying out further transactions. The reporting institution must assess whether failure to complete verification within the reasonable timeframe provides sufficient grounds for filing a suspicious transaction report (STR) to the Financial Intelligence and Enforcement Department (FIED).
+
+CLAIMS:
+- C1: Before adopting delayed verification, the reporting institution must have appropriate risk management policies and procedures to effectively manage any ML/TF/PF risk arising from delayed verification. | evidence=['E1']
+- C2: The delay must be essential so as not to interrupt the reporting institution’s normal conduct of business. | evidence=['E1']
+- C3: The ML/TF/PF risks must be effectively managed during the period of delayed verification. | evidence=['E1']
+- C4: There must be no suspicion of ML/TF/PF when delayed verification is applied. | evidence=['E1']
+- C5: The institution’s policies and procedures must establish a reasonable timeframe for completing identity verification, which shall not exceed 10 working days or any other period specified by the supervisory authority. | evidence=['E2']
+- C6: The policies must include measures to manage risks of delayed verification, including conditions under which the customer may use the business relationship prior to verification and appropriate limits on the number, types, or amount of transactions. | evidence=['E2']
+- C7: The policies must require monitoring of large and complex transactions that are outside expected norms while verification is pending. | evidence=['E2']
+- C8: Senior management must be periodically informed of any cases pending identity verification. | evidence=['E2']
+- C9: If verification cannot be completed within the reasonable timeframe, the reporting institution should terminate the business relationship as soon as reasonably practicable and refrain from carrying out further transactions. | evidence=['E3']
+- C10: The reporting institution must assess whether failure to complete verification within the reasonable timeframe provides sufficient grounds for filing a suspicious transaction report (STR) to the Financial Intelligence and Enforcement Department (FIED). | evidence=['E3']
+
+EVIDENCE:
+[E1] chunk_index=102 source_rank=1 pages=[38] type=clause reasons=['ranked_seed']
+8.1.25 Where delayed verification applies, the following conditions must be satisfied:
+
+(a) Before the reporting institution adopts a delayed verification, the reporting
+institution must have in place appropriate risk management policies and
+procedures which can effectively manage any ML/TF/PF risk arising from delayed
+verification;
+
+(b) The delay is essential so as not to interrupt the reporting institutions’ normal
+conduct of business;
+
+(c) The ML/TF/PF risks are effectively managed; and
+
+(d) There is no suspicion of ML/TF/PF.
+[E2] chunk_index=103 source_rank=2 pages=[38] type=clause reasons=['ranked_seed']
+8.1.26 The policies and procedures must include:
+
+(a) Establishing a reasonable timeframe for the completion of the identity verification
+measures to ensure that delayed verification occurs as reasonably practicable.
+The reasonable timeframe shall not exceed 10 working days or any other period
+as may be specified by the SC;
+
+(b) Measures that a reporting institution may take to manage risks of delayed
+verification including conditions under which the customer may utilize the
+business relationship prior to verification and placing appropriate limits on the
+number, types and/or amount of transactions that can be performed;
+
+(c) Monitoring of large and complex transactions being carried out outside the
+expected norms pending completion of verification; and
+
+(d) Keeping senior management periodically informed of any cases pending identity.
+[E3] chunk_index=101 source_rank=3 pages=[38, 39] type=clause reasons=['ranked_seed']
+8.1.24 A reporting institution may complete the verification after the establishment of the
+business relationship (“delayed verification”) to allow some flexibility for its customer
+and beneficial owner to furnish the relevant documents in circumstances where
+verification is not possible at the point of establishing business relationship.
+
+8.1.27 If verification cannot be completed within the reasonable timeframe, the reporting
+institution should terminate the business relationship as soon as reasonably practicable
+and refrain from carrying out further transactions. However, following the termination
+of business relationship, the reporting institution may return funds or other assets to
+the customers.
+
+8.1.28 The reporting institution must assess whether the failure to complete verification within
+the reasonable timeframe provides sufficient grounds for making a STR to the FIED.
+[E4] chunk_index=84 source_rank=4 pages=[32] type=clause reasons=['ranked_seed']
+8.1.7 Where the above information is not sufficient for the reporting institution to complete its
+identification and verification process, the reporting institution must seek further relevant
+information from the individual customer or beneficial owner.
+[E5] chunk_index=83 source_rank=5 pages=[32] type=clause reasons=['ranked_seed']
+8.1.6 In conducting CDD, a reporting institution is required to identify an individual customer
+or beneficial owner, by obtainingat least the following information:
+
+(a)Full name;
+
+(b)National Registration Identity Card (NRIC) number or passport number or
+reference number of any other official documents of the individual customer or
+beneficial owner;
+
+(c)Residential and mailing address;
+
+(d)Date of birth;
+
+(e)Nationality;
+
+(f)Occupation type;
+
+(g)Name of employer or nature of self-employment or nature of business/sector;
+
+(h)Income or range of income;
+
+(i)Contact number (home, office or mobile);
+
+(j)Email; and
+
+(k)Purpose of transaction.
+
+
+====================================================================================================
+QUESTION: What measures are required when establishing a non-face-to-face business relationship?
+EXPECTATION: answerable
+STATUS: answered
+ELAPSED_SECONDS: 4.45
+RATE_LIMIT_RETRIES: 0
+PROVIDER: groq
+MODEL: openai/gpt-oss-120b
+PROMPT_VERSION: grounded_claims_v1
+RETRIEVAL_PROFILE: retrieval_v1_stage8_2_top5
+CONTEXT_CHUNKS: 5
+EXPANDED_CHUNKS: 0
+USED_EVIDENCE_IDS: ['E1']
+
+ANSWER:
+A reporting institution must develop and implement policies and procedures to address and mitigate specific ML/TF/PF risks and operational and information technology risk when establishing a non‑face‑to‑face business relationship. A reporting institution must establish appropriate measures for identification and verification of a customer’s identity before establishing a non‑face‑to‑face business relationship. For identification and verification in a non‑face‑to‑face business relationship, the institution must undertake one or more of the following: (i) request additional identification documents or information such as bank statements or utility bills; (ii) substantiate the customer’s information with an independent source, e.g., contacting the employer or verifying through a relevant authority database; (iii) contact the customer via a digital communication channel to visually identify and verify the identity; (iv) request the customer to make a nominal payment from his own account with a licensed bank to confirm true identity; (v) use new technology solutions including biometric technologies linked incontrovertibly to the customer. If the reporting institution is unable to identify and verify the customer’s identity using the measures in paragraph (c), it must initiate a face‑to‑face business relationship. The requirements in paragraphs (a) to (d) do not apply to customers identified as foreign PEPs, customers from higher‑risk or non‑co‑operative jurisdictions identified by the FATF, or listed persons or entities subject to targeted financial sanctions for terrorism financing or proliferation of weapons of mass destruction pursuant to the UNSCR. A reporting institution must ensure and be able to demonstrate on a continuing basis that its identification and verification measures for non‑face‑to‑face business relationships are as effective as those for face‑to‑face relationships, and must implement monitoring and reporting mechanisms to identify potential ML/TF/PF activities.
+
+CLAIMS:
+- C1: A reporting institution must develop and implement policies and procedures to address and mitigate specific ML/TF/PF risks and operational and information technology risk when establishing a non‑face‑to‑face business relationship. | evidence=['E1']
+- C2: A reporting institution must establish appropriate measures for identification and verification of a customer’s identity before establishing a non‑face‑to‑face business relationship. | evidence=['E1']
+- C3: For identification and verification in a non‑face‑to‑face business relationship, the institution must undertake one or more of the following: (i) request additional identification documents or information such as bank statements or utility bills; (ii) substantiate the customer’s information with an independent source, e.g., contacting the employer or verifying through a relevant authority database; (iii) contact the customer via a digital communication channel to visually identify and verify the identity; (iv) request the customer to make a nominal payment from his own account with a licensed bank to confirm true identity; (v) use new technology solutions including biometric technologies linked incontrovertibly to the customer. | evidence=['E1']
+- C4: If the reporting institution is unable to identify and verify the customer’s identity using the measures in paragraph (c), it must initiate a face‑to‑face business relationship. | evidence=['E1']
+- C5: The requirements in paragraphs (a) to (d) do not apply to customers identified as foreign PEPs, customers from higher‑risk or non‑co‑operative jurisdictions identified by the FATF, or listed persons or entities subject to targeted financial sanctions for terrorism financing or proliferation of weapons of mass destruction pursuant to the UNSCR. | evidence=['E1']
+- C6: A reporting institution must ensure and be able to demonstrate on a continuing basis that its identification and verification measures for non‑face‑to‑face business relationships are as effective as those for face‑to‑face relationships, and must implement monitoring and reporting mechanisms to identify potential ML/TF/PF activities. | evidence=['E1']
+
+EVIDENCE:
+[E1] chunk_index=100 source_rank=1 pages=[36, 37] type=clause reasons=['ranked_seed']
+8.1.23 This section applies when a reporting institution chooses to establish non-face-to-
+face business relationship.
+
+(a) A reporting institution must develop and implement policies and procedures to
+address and mitigate specific ML/TF/PF risks associated with establishing non
+face-to-face business relationship, as well as operational and information
+technology risk.
+
+(b) A reporting institution must establish appropriate measures for identification
+and verification of a customer’s identity before establishing non face-to-face
+business relationship.
+
+(c) For the purpose of identification and verification of the identity of a customer in
+a non face-to-face business relationship, a reporting institution must undertake
+one or more of the following measures:
+
+(i) Requesting for additional identification documents or information e.g.
+bank statements, utility bills;
+
+(ii) Substantiating the customer’s information with any independent source
+e.g. contacting the customer’s employer and verification through database
+maintained by any relevant authorities;
+
+(iii) Contacting the customer through any digital communication channel to
+visually identify and verify the customer’s identity;
+
+(iv) Requesting the customer to make a nominal payment from his own
+account with a licensed bank under the Financial Services Act 2013 or
+licensed Islamic bank under the Islamic Financial Services Act 2013 to
+enable the reporting institution to satisfy itself of the customer’s true
+identity; or
+
+(v) Using new technology solutions including, but not limited to, biometric
+technologies (e.g. fingerprint or iris scans, facial recognition), which
+should be linked incontrovertibly to the customer.
+
+(d) Where the reporting institution is unable to identify and verify the customer’s
+identity by adopting the measures provided under paragraph (c) above, the
+reporting institution must initiate face-to-face business relationship.
+
+(e) Sub-paragraphs (a) to (d) above are not applicable to:
+
+(i)Customers that are identified as foreign PEP;
+
+(ii)Customers from higher-risk and non co-operative jurisdictions as identified
+by the FATF; or
+
+(iii)Listed persons or entities subjected to targeted financial sanctions for
+terrorism financing and financing of proliferation of weapons of mass
+destruction pursuant to the UNSCR.
+
+(f) A reporting institution must ensure and be able to demonstrate on a continuing
+basis that appropriate measures for identification and verification of a customer’s
+identity when establishing non-face-to-face business relationship are as effective
+as that for face-to-face customer and implement monitoring and reporting
+mechanism to identify potential ML/TF/PF activities.
+[E2] chunk_index=111 source_rank=2 pages=[41] type=clause reasons=['ranked_seed']
+8.3.1 Where the ML/TF/PF risks are assessed as higher risk, a reporting institution must
+undertake enhanced CDD measures on the customer and, where applicable, the
+beneficial owner. These measures must include:
+
+(a)Obtaining additional information for identification and verification on the
+customer and beneficial owner, particularly for non face-to-face transactions (e.g.
+volume of assets and other information from public database);
+
+(b)Obtaining additional information on the intended level and nature of the
+business relationship;
+
+(c)Enquiring on the source of wealth and source of funds;
+
+(d)Updating on a more regular basis, the identification data of the customer
+and the beneficial owner;
+
+(e)Obtaining approval from the senior management before establishing (or
+continuing for existing customer) such business relationship with the customer;
+and
+
+(f)Conducting enhanced ongoing monitoring on the business relationship.
+[E3] chunk_index=81 source_rank=3 pages=[31] type=clause reasons=['ranked_seed']
+8.1.1 Section 16 of the AMLA among others clearly sets out customer identification
+requirements for reporting institutions. A reporting institution must conduct CDD on
+customer and obtain satisfactory evidence of the identity and legal existence of the
+customer and beneficial owner at the point of establishing the business relationship.
+
+8.1.2 A reporting institution must not keep anonymous accounts or accounts in fictitious
+names.
+
+8.1.4 A customer who fails to provide evidence of his identity must not be allowed to engage
+in business relations with the reporting institution. Additional measures must be
+undertaken to determine whether to proceed with the business relationship, where
+initial checks failed to identify the customer or give rise to suspicions that the
+information provided is false.
+
+8.1.5 Where applicable, in conducting CDD, a reporting institution is required to comply with
+requirements on targeted financial sanctions in relation to:
+
+(a) terrorism financing under Part VII of these Guidelines; and
+
+(b) proliferation financing under Part VIII of these Guidelines.
+[E4] chunk_index=108 source_rank=4 pages=[40, 41] type=list_item reasons=['ranked_seed']
+(v)The ownership structure of a company appears unusual or excessively
+complex given the nature of the company’s business.
+
+(vi)High-net-worth individuals and entities.
+
+(vii)Persons from jurisdictions known for their high crime rates (e.g. drug
+producing, trafficking, smuggling).
+
+(viii)Businesses/activities identified by the FATF as having higher risk for
+ML/TF/PF.
+
+(ix)Domestic PEPs.
+
+(x)Persons entrusted with prominent public function by international
+organisations (PEPFIO).
+
+(xi)Legal arrangements that are complex.
+
+(xii)Any persons who match the ‘red flag’ criteria of the reporting institution.
+
+(b)Country or geographic risk factors:
+
+(i)Countries identified by credible sources, such as mutual evaluation or
+published follow-up reports, as having inadequate AML/CFT/CPF systems.
+
+(ii)Countries subject to sanctions, embargos or similar measures issued by
+international organisations such as the United Nations.
+
+(iii)Countries with significant levels of corruption or other criminal activities.
+
+(iv)Countries or geographic areas identified as providing funding or support
+for terrorist activities, or that have designated terrorist organisations
+operating within their country.
+
+(v)Countries identified by the FATF, other FATF-style regional bodies or other
+international bodies as having higher ML/TF/PF risk.
+
+(c)Transaction or distribution channel risk factors:
+
+(i)Anonymous transactions (which may include cash transactions).
+
+(ii)Non-face-to-face business relationships or transactions.
+
+(iii)Payment received from multiple persons and/or countries that do not fit
+into the customer’s nature of business and risk profile.
+
+(iv)Payment received from unknown or unassociated third parties.
+[E5] chunk_index=82 source_rank=5 pages=[31] type=clause reasons=['ranked_seed']
+8.1.3 For the purpose of conducting CDD, a reporting institution is required to–
+
+(a)identify the customer (including foreign body corporate) and verify such
+customer’s identity using reliable, independent source of documents, data or
+information;
+
+(b)verify that any person purporting to act on behalf of the customer is authorised,
+and identify and verify the identity of that person;
+
+(c)identify the beneficial owner and take reasonable measures to verify the identity
+of the beneficial owner, using relevant information or data obtained from
+reliable sources, such that the reporting institution is satisfied that it knows who
+the beneficial owner is; and
+
+(d)understand, and where relevant, obtain information on the purpose of opening
+an account and the intended nature of the business relationship.
+
+
+====================================================================================================
+QUESTION: What should an institution do when a customer cannot complete identity verification in time?
+EXPECTATION: answerable
+STATUS: answered
+ELAPSED_SECONDS: 3.20
+RATE_LIMIT_RETRIES: 0
+PROVIDER: groq
+MODEL: openai/gpt-oss-120b
+PROMPT_VERSION: grounded_claims_v1
+RETRIEVAL_PROFILE: retrieval_v1_stage8_2_top5
+CONTEXT_CHUNKS: 5
+EXPANDED_CHUNKS: 0
+USED_EVIDENCE_IDS: ['E1']
+
+ANSWER:
+The institution should terminate the business relationship as soon as reasonably practicable when verification cannot be completed within the reasonable timeframe. The institution should refrain from carrying out further transactions after termination due to incomplete verification. After terminating the relationship, the institution may return funds or other assets to the customer. The institution must assess whether the failure to complete verification within the reasonable timeframe provides sufficient grounds to file a suspicious transaction report (STR) to the FIED.
+
+CLAIMS:
+- C1: The institution should terminate the business relationship as soon as reasonably practicable when verification cannot be completed within the reasonable timeframe. | evidence=['E1']
+- C2: The institution should refrain from carrying out further transactions after termination due to incomplete verification. | evidence=['E1']
+- C3: After terminating the relationship, the institution may return funds or other assets to the customer. | evidence=['E1']
+- C4: The institution must assess whether the failure to complete verification within the reasonable timeframe provides sufficient grounds to file a suspicious transaction report (STR) to the FIED. | evidence=['E1']
+
+EVIDENCE:
+[E1] chunk_index=101 source_rank=1 pages=[38, 39] type=clause reasons=['ranked_seed']
+8.1.24 A reporting institution may complete the verification after the establishment of the
+business relationship (“delayed verification”) to allow some flexibility for its customer
+and beneficial owner to furnish the relevant documents in circumstances where
+verification is not possible at the point of establishing business relationship.
+
+8.1.27 If verification cannot be completed within the reasonable timeframe, the reporting
+institution should terminate the business relationship as soon as reasonably practicable
+and refrain from carrying out further transactions. However, following the termination
+of business relationship, the reporting institution may return funds or other assets to
+the customers.
+
+8.1.28 The reporting institution must assess whether the failure to complete verification within
+the reasonable timeframe provides sufficient grounds for making a STR to the FIED.
+[E2] chunk_index=103 source_rank=2 pages=[38] type=clause reasons=['ranked_seed']
+8.1.26 The policies and procedures must include:
+
+(a) Establishing a reasonable timeframe for the completion of the identity verification
+measures to ensure that delayed verification occurs as reasonably practicable.
+The reasonable timeframe shall not exceed 10 working days or any other period
+as may be specified by the SC;
+
+(b) Measures that a reporting institution may take to manage risks of delayed
+verification including conditions under which the customer may utilize the
+business relationship prior to verification and placing appropriate limits on the
+number, types and/or amount of transactions that can be performed;
+
+(c) Monitoring of large and complex transactions being carried out outside the
+expected norms pending completion of verification; and
+
+(d) Keeping senior management periodically informed of any cases pending identity.
+[E3] chunk_index=84 source_rank=3 pages=[32] type=clause reasons=['ranked_seed']
+8.1.7 Where the above information is not sufficient for the reporting institution to complete its
+identification and verification process, the reporting institution must seek further relevant
+information from the individual customer or beneficial owner.
+[E4] chunk_index=100 source_rank=4 pages=[36, 37] type=clause reasons=['ranked_seed']
+8.1.23 This section applies when a reporting institution chooses to establish non-face-to-
+face business relationship.
+
+(a) A reporting institution must develop and implement policies and procedures to
+address and mitigate specific ML/TF/PF risks associated with establishing non
+face-to-face business relationship, as well as operational and information
+technology risk.
+
+(b) A reporting institution must establish appropriate measures for identification
+and verification of a customer’s identity before establishing non face-to-face
+business relationship.
+
+(c) For the purpose of identification and verification of the identity of a customer in
+a non face-to-face business relationship, a reporting institution must undertake
+one or more of the following measures:
+
+(i) Requesting for additional identification documents or information e.g.
+bank statements, utility bills;
+
+(ii) Substantiating the customer’s information with any independent source
+e.g. contacting the customer’s employer and verification through database
+maintained by any relevant authorities;
+
+(iii) Contacting the customer through any digital communication channel to
+visually identify and verify the customer’s identity;
+
+(iv) Requesting the customer to make a nominal payment from his own
+account with a licensed bank under the Financial Services Act 2013 or
+licensed Islamic bank under the Islamic Financial Services Act 2013 to
+enable the reporting institution to satisfy itself of the customer’s true
+identity; or
+
+(v) Using new technology solutions including, but not limited to, biometric
+technologies (e.g. fingerprint or iris scans, facial recognition), which
+should be linked incontrovertibly to the customer.
+
+(d) Where the reporting institution is unable to identify and verify the customer’s
+identity by adopting the measures provided under paragraph (c) above, the
+reporting institution must initiate face-to-face business relationship.
+
+(e) Sub-paragraphs (a) to (d) above are not applicable to:
+
+(i)Customers that are identified as foreign PEP;
+
+(ii)Customers from higher-risk and non co-operative jurisdictions as identified
+by the FATF; or
+
+(iii)Listed persons or entities subjected to targeted financial sanctions for
+terrorism financing and financing of proliferation of weapons of mass
+destruction pursuant to the UNSCR.
+
+(f) A reporting institution must ensure and be able to demonstrate on a continuing
+basis that appropriate measures for identification and verification of a customer’s
+identity when establishing non-face-to-face business relationship are as effective
+as that for face-to-face customer and implement monitoring and reporting
+mechanism to identify potential ML/TF/PF activities.
+[E5] chunk_index=159 source_rank=5 pages=[60, 61] type=clause reasons=['ranked_seed']
+14.4 For the purpose of implementing the obligations under section 66B and section 66C
+of the AMLA, a reporting institution must conduct checks on the names of potential
+and new customers, as well as regular checks on the names of existing customers,
+against the names in the database. If there is any name match, the reporting
+institution must take reasonable and appropriate measures to verify and confirm the
+identity of its customer. Upon such confirmation, the reporting institution must
+immediately–
+
+(a)freeze without delay the customer’s fund or block the transaction, if it is an
+existing customer;
+
+(b)reject the customer, if the transaction has not commenced;
+
+(c)lodge a STR with the FIED; and
+
+(d)notify the SC.
+
+
+====================================================================================================
+QUESTION: What information must be reported when there is a positive match with a designated person?
+EXPECTATION: answerable
+STATUS: answered
+ELAPSED_SECONDS: 3.33
+RATE_LIMIT_RETRIES: 0
+PROVIDER: groq
+MODEL: openai/gpt-oss-120b
+PROMPT_VERSION: grounded_claims_v1
+RETRIEVAL_PROFILE: retrieval_v1_stage8_2_top5
+CONTEXT_CHUNKS: 5
+EXPANDED_CHUNKS: 0
+USED_EVIDENCE_IDS: ['E5', 'E3']
+
+ANSWER:
+When there is a positive match with a designated person, the reporting institution must report the information set out in Appendix I, which includes UNSCR Permanent Ref No, Customer Name, Address, NRIC/Passport No., Intermediary Name (if reporting on a group basis), Branch maintaining the account/facility, Account No., Account Facility/Type, Date services given, Account/Facility Status on the date of freezing, Date account frozen, Account Balance, Related Parties, and Remarks.
+
+CLAIMS:
+- C1: When there is a positive match with a designated person, the reporting institution must report the information set out in Appendix I, which includes UNSCR Permanent Ref No, Customer Name, Address, NRIC/Passport No., Intermediary Name (if reporting on a group basis), Branch maintaining the account/facility, Account No., Account Facility/Type, Date services given, Account/Facility Status on the date of freezing, Date account frozen, Account Balance, Related Parties, and Remarks. | evidence=['E5', 'E3']
+
+EVIDENCE:
+[E1] chunk_index=165 source_rank=1 pages=[62, 63] type=clause reasons=['ranked_seed']
+17.1 A reporting institution must conduct sanctions screening on its existing, new and
+potential customers, to check for any positive name matched with any designated
+person.
+
+17.2 A reporting institution must screen its entire customer database without delay when
+new names are listed in the UNSCR.
+
+17.4 If there is a positive name match, a reporting institution must take reasonable and
+appropriate measures to verify and confirm the identity of its customer against the
+designated person.
+[E2] chunk_index=175 source_rank=2 pages=[66] type=clause reasons=['ranked_seed']
+19.4 The form for periodic reporting to the SC is set out in Appendix J.
+
+19.5 A reporting institution must submit a STR to the FIED in the following circumstances:
+
+(a) In the event of positive name matches arising from ongoing screening of their
+customer database involving designated person or person identified as related
+party related to the designated person; and
+
+(b) Where there is an attempted transaction by any of the designated person or its
+related party.
+
+19.6 The details on the lodgement of STR with FIED are set out in Appendix C.
+[E3] chunk_index=173 source_rank=3 pages=[66] type=clause reasons=['ranked_seed']
+19.1 A reporting institution must immediately report to the SC on any freezing, blocking or
+rejection actions undertaken in accordance with paragraph 18 towards the identified
+funds, properties or accounts.
+
+19.2 The form for reporting to the SC upon determination of a name match and actions
+taken by the reporting institution is attached as Appendix I.
+
+19.3 A reporting institution who has reported positive name matches and has control of
+frozen funds, properties or accounts of a designated person must report to the SC on
+any change to such frozen funds, properties or accounts by 31 January in the next
+calendar year (periodic reporting).
+[E4] chunk_index=170 source_rank=4 pages=[64] type=list_item reasons=['ranked_seed']
+(a)A reporting institution may forward queries to the SC to determine whether
+the customer is a designated person in the case of similar or common names.
+
+(b)Any query submitted to the SC must include any additional information,
+copies of identification documents and relevant analysis conducted by the
+reporting institution.
+
+(c)A reporting institution should advice any customers who complain about
+their accounts being inadvertently frozen or transactions being erroneously
+rejected or blocked to contact the Strategic Trade Controller under the STA
+to verify the false positive match.
+[E5] chunk_index=279 source_rank=5 pages=[107] type=table reasons=['ranked_seed']
+No | UNSCR Permanent Ref No | Customer Name | Address | NRIC / Passport No. | Intermediary Name - if reporting done on group basis | Branch maintaining the account/ facility Account No. | Account Facility/ Type | Date services given (DD/MM /YYYY) | Account/ Facility Status (on date of freezing) | Date account frozen (DD/MM /YYYY) | Account Balance as at: ________ | Related Parties | Remarks
+1 |  |  |  |  |  |  |  |  |  |  |  |  | 
+2 |  |  |  |  |  |  |  |  |  |  |  |  | 
+3 |  |  |  |  |  |  |  |  |  |  |  |  | 
+4 |  |  |  |  |  |  |  |  |  |  |  |  | 
+5 |  |  |  |  |  |  |  |  |  |  |  |  |
+
+
+====================================================================================================
+QUESTION: What is the current price of Bitcoin?
+EXPECTATION: should_abstain
+STATUS: insufficient_evidence
+ELAPSED_SECONDS: 1.55
+RATE_LIMIT_RETRIES: 0
+PROVIDER: groq
+MODEL: openai/gpt-oss-120b
+PROMPT_VERSION: grounded_claims_v1
+RETRIEVAL_PROFILE: retrieval_v1_stage8_2_top5
+CONTEXT_CHUNKS: 8
+EXPANDED_CHUNKS: 3
+USED_EVIDENCE_IDS: []
+
+ANSWER:
+The retrieved evidence is insufficient to answer this question reliably.
+
+CLAIMS:
+
+MISSING_INFORMATION:
+- Current price of Bitcoin
+
+EVIDENCE:
+[E1] chunk_index=282 source_rank=1 pages=[108] type=table reasons=['ranked_seed']
+Custo mer No | UNSCR Permanent Ref No (e.g. KPi.001, IRi.001) | Custo mer Name | NRIC / Passport No. Account No. | Account Facility/ Type | Date account frozen (DD/MM /YYYY) Account/ Facility Status | Previous Account Balance (previous reporting) | Transaction No | Tra (line Date (DD/MM /YYYY) | nsaction Details by line transaction) Transaction Type (for e.g. purchases, sales, redemptions, injections / deposits, withdrawals) Remarks | Amount (MYR) | New Account Balance as at: (DD/MM/YYYY) | Remarks
+1. |  |  |  |  |  |  | 1. |  |  |  |  | 
+ |  |  |  |  |  |  | 2. 3. |  |  |  |  | 
+2. |  |  |  |  |  |  | 1. |  |  |  |  | 
+3. |  |  |  |  |  |  | 1. |  |  |  |  |
+[E2] chunk_index=3 source_rank=2 pages=[1] type=figure reasons=['ranked_seed']
+1st issued
+Revised
+
+1st issued : 15 January 2014
+Revised : 13 June 2024
+[E3] chunk_index=4 source_rank=2 pages=[2] type=table reasons=['following_table']
+Effective date upon 1st issuance | 15 January 2014
+[E4] chunk_index=276 source_rank=3 pages=[106] type=clause reasons=['ranked_seed']
+1. The sanction lists are available in the respective UNSCR sanctions webpage (e.g. 1718
+for DPRK), under the heading of ‘Sanction List Materials’ including:
+
+(a) DPRK: United Nations Security Council Committee established pursuant to
+Resolution 1718 (2006); and
+
+(b) Any other UNSCR as specified by the SC in these Guidelines.
+
+2. The updated UN Consolidated List can be obtained at http://www.un.org/ or
+https://www.un.org/sc/suborg/en/sanctions/un-sc-consolidated-list
+
+3. A capital market intermediary must take note that Strategic Trade (Restricted End-
+Users and Prohibited End-Users) Order 2010 (P.U. (A) 484/2010) provides for an
+automatic application of the UNSCR lists by making reference to the updated list in
+the UN website. Therefore, for the UNSCR lists, a capital market intermediary is
+advised to update its database regularly, without delay.
+
+4. A capital market intermediary may consider subscribing to electronic subscription
+services to maintain the updated UNSCRs.
+
+5. The delisting of any designated country or designated person under UNSCRs shall
+automatically take effect when the designated country or person is removed by the
+relevant UNSC Sanctions Committee.
+[E5] chunk_index=196 source_rank=4 pages=[75] type=clause reasons=['preceding_intro']
+5.1 A reporting institution should determine the appropriate risk parameters when
+considering the risk factors such as customer, country or geographic, product
+or service and transaction or distribution channel. These risk parameters will assist the
+reporting institution in identifying the ML/TF/PF risk factors for customers for the
+purpose of risk profiling. Refer to Example 2 below for illustration purposes:
+[E6] chunk_index=197 source_rank=4 pages=[76] type=table reasons=['ranked_seed']
+Example 2:
+
+Risk Factor | Parameters determined for risk profiling | Risk Rating
+Customer | Type Individual | Low
+ | Legal Person | Medium
+ | Legal Arrangement | High
+ | Net Worth Less than RM500,000 | Low
+ | RM500,000 – RM3 million | Medium
+ | Above RM3 million | High
+Transaction | Over the Counter | Low
+or Distribution | On behalf | Medium
+Channel | Non Face-to-face | High
+[E7] chunk_index=190 source_rank=5 pages=[74] type=clause reasons=['preceding_intro']
+3.5 In considering each risk factor mentioned above, a reporting institution must
+formulate parameters that indicate their risk appetite to the potential ML/TF/PF risks
+it may be exposed to. The reporting institution should set the parameters according
+to the size and complexity of its business. Refer Example 1 below for illustration
+purposes:
+[E8] chunk_index=191 source_rank=5 pages=[74] type=table reasons=['ranked_seed']
+Example 1:
+
+Risk Factor | Examples | Formulated Parameters
+Customer | Percentage of high- net-worth customers within the reporting institution | • Customers with high-net- worth of RM5 million
+Transactions and Distribution Channels | Number of cash- based transaction | • Cash transaction above RM50,000
+Findings of the NRA | Sectors identified as highly vulnerable to ML/TF/PF risks | • Number of customers with occupation or nature of business from highly vulnerable sectors identified under the NRA

@@ -1,0 +1,89 @@
+{
+  "schema_version": "1.0",
+  "dataset_id": "sc_aml_cft_retrieval_regression_smoke_v1",
+  "formal_evaluation": false,
+  "warning": "These questions influenced retrieval development and MUST NOT be used as the only evidence for final retrieval-quality claims.",
+  "document_id": "485c4989-c300-45c8-ac06-79a59492bb5c",
+  "source_sha256": "e1d138edd3c55b3fa3dd36b3236876a1a8dd634c4d972cec74157e6bf816bc15",
+  "questions": [
+    {
+      "question_id": "SMOKE-001",
+      "question": "What is a politically exposed person?",
+      "behavior": "Definition retrieval",
+      "primary_chunk_indices": [
+        33
+      ],
+      "primary_chunk_ids": [
+        "485c4989-c300-45c8-ac06-79a59492bb5c-c0033-d2663cbf5c"
+      ],
+      "supporting_chunk_indices": [],
+      "supporting_chunk_ids": []
+    },
+    {
+      "question_id": "SMOKE-002",
+      "question": "What are the requirements for delayed verification?",
+      "behavior": "Exact regulatory requirement",
+      "primary_chunk_indices": [
+        102
+      ],
+      "primary_chunk_ids": [
+        "485c4989-c300-45c8-ac06-79a59492bb5c-c0102-6667285dd5"
+      ],
+      "supporting_chunk_indices": [
+        103,
+        101
+      ],
+      "supporting_chunk_ids": [
+        "485c4989-c300-45c8-ac06-79a59492bb5c-c0103-96fa91f378",
+        "485c4989-c300-45c8-ac06-79a59492bb5c-c0101-c09791e527"
+      ]
+    },
+    {
+      "question_id": "SMOKE-003",
+      "question": "What measures are required when establishing a non-face-to-face business relationship?",
+      "behavior": "Long structured clause",
+      "primary_chunk_indices": [
+        100
+      ],
+      "primary_chunk_ids": [
+        "485c4989-c300-45c8-ac06-79a59492bb5c-c0100-d1377a7b3c"
+      ],
+      "supporting_chunk_indices": [],
+      "supporting_chunk_ids": []
+    },
+    {
+      "question_id": "SMOKE-004",
+      "question": "What should an institution do when a customer cannot complete identity verification in time?",
+      "behavior": "Conceptual / paraphrased",
+      "primary_chunk_indices": [
+        101
+      ],
+      "primary_chunk_ids": [
+        "485c4989-c300-45c8-ac06-79a59492bb5c-c0101-c09791e527"
+      ],
+      "supporting_chunk_indices": [],
+      "supporting_chunk_ids": []
+    },
+    {
+      "question_id": "SMOKE-005",
+      "question": "What information must be reported when there is a positive match with a designated person?",
+      "behavior": "Appendix / form retrieval",
+      "primary_chunk_indices": [
+        279
+      ],
+      "primary_chunk_ids": [
+        "485c4989-c300-45c8-ac06-79a59492bb5c-c0279-a5f6ecd15c"
+      ],
+      "supporting_chunk_indices": [
+        278,
+        173,
+        175
+      ],
+      "supporting_chunk_ids": [
+        "485c4989-c300-45c8-ac06-79a59492bb5c-c0278-117291907b",
+        "485c4989-c300-45c8-ac06-79a59492bb5c-c0173-729312a3d9",
+        "485c4989-c300-45c8-ac06-79a59492bb5c-c0175-9774b5ede3"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,373 @@
+{
+  "document_id": "485c4989-c300-45c8-ac06-79a59492bb5c",
+  "query": "Which authorities must receive reports when a reporting institution possesses funds, properties or accounts of a listed entity, and what source of obligation is given for each authority?",
+  "embedding_model": "BAAI/bge-m3",
+  "requested_device": "auto",
+  "resolved_device": "cuda",
+  "top_k": 10,
+  "candidate_k": 20,
+  "embedded_chunk_count": 284,
+  "total_chunk_count": 284,
+  "fusion_method": "reciprocal_rank_fusion",
+  "rrf_k": 60,
+  "dense_weight": 1.0,
+  "lexical_weight": 1.0,
+  "lexical_ranking_method": "postgresql_fts_term_coverage_then_ts_rank_cd",
+  "lexical_query_mode": "or_content_terms_v1",
+  "lexical_terms": [
+    "authorities",
+    "receive",
+    "reports",
+    "reporting",
+    "institution",
+    "possesses",
+    "funds",
+    "properties",
+    "accounts",
+    "listed",
+    "entity",
+    "source",
+    "obligation",
+    "given",
+    "each",
+    "authority"
+  ],
+  "lexical_tsquery": "authorities | receive | reports | reporting | institution | possesses | funds | properties | accounts | listed | entity | source | obligation | given | each | authority",
+  "hits": [
+    {
+      "rank": 1,
+      "chunk_id": "485c4989-c300-45c8-ac06-79a59492bb5c-c0242-6008df2d99",
+      "chunk_index": 242,
+      "semantic_type": "clause",
+      "fusion_score": 0.03278688524590164,
+      "dense_rank": 1,
+      "dense_score": 0.7010748564556339,
+      "dense_distance": 0.29892514354436606,
+      "dense_rrf_score": 0.01639344262295082,
+      "lexical_rank": 1,
+      "lexical_score": 1.6,
+      "lexical_matched_term_count": 12,
+      "lexical_term_coverage": 0.75,
+      "lexical_rrf_score": 0.01639344262295082,
+      "text": "Section: APPENDIX D > Reporting requirements\nClause: 5.1\nGroup: Guidance on the Implementation of Targeted Financial Sanction in\nRelation to Terrorism Financing\n\n5.1 Once a reporting institution determines that it is in the possession of funds, properties\nor accounts that are owned or controlled by or on behalf of the listed entity, the\nreporting institution is required to report to the following authorities. This obligation\nalso extends to any attempted transactions undertaken by listed entities or related\nparties:\n\n2According to FATF, without delay is defined to be ideally within a matter of hours of designation by the United\nNations Security Council.",
+      "content_text": "5.1 Once a reporting institution determines that it is in the possession of funds, properties\nor accounts that are owned or controlled by or on behalf of the listed entity, the\nreporting institution is required to report to the following authorities. This obligation\nalso extends to any attempted transactions undertaken by listed entities or related\nparties:\n\n2According to FATF, without delay is defined to be ideally within a matter of hours of designation by the United\nNations Security Council.",
+      "token_count": 114,
+      "pages": [
+        89
+      ],
+      "section_path": [
+        "APPENDIX D",
+        "Reporting requirements"
+      ],
+      "source_element_ids": [
+        "p89-e10",
+        "p89-e11"
+      ]
+    },
+    {
+      "rank": 2,
+      "chunk_id": "485c4989-c300-45c8-ac06-79a59492bb5c-c0241-57faa0c1ac",
+      "chunk_index": 241,
+      "semantic_type": "clause",
+      "fusion_score": 0.03225806451612903,
+      "dense_rank": 2,
+      "dense_score": 0.6775588989257812,
+      "dense_distance": 0.32244110107421875,
+      "dense_rrf_score": 0.016129032258064516,
+      "lexical_rank": 2,
+      "lexical_score": 5.2000003,
+      "lexical_matched_term_count": 10,
+      "lexical_term_coverage": 0.625,
+      "lexical_rrf_score": 0.016129032258064516,
+      "text": "Section: APPENDIX D > Obligation to freeze funds, properties or accounts\nGroup: Guidance on the Implementation of Targeted Financial Sanction in\nRelation to Terrorism Financing\n\n4.1 A reporting institution is required to freeze funds, properties or accounts that are\nowned or controlled directly and indirectly by the listed entities without delay2.\n\n4.2 Funds, properties or accounts that are owned or controlled indirectly by the listed\nentities includes situation where the listed entity is a director of a customer. In such\ninstance, once the reporting institution is satisfied that the director owns or controls\ndirectly or indirectly the funds, properties or accounts of the customer, the reporting\ninstitution is required to freeze the same without delay.\n\n4.3 The obligation to freeze funds, properties or accounts of a listed entity continues until\nthe person is delisted from the sanction lists. Even death of the listed entity is not a\nbasis for a reporting institution not to continue its freezing obligation.\n\n4.4 If an asset is owned or controlled by a listed entity and the interest owned or\ncontrolled by the listed party cannot be segregated, then the entire asset should be\nsubjected to freezing.\n\n4.5 Notwithstanding the funds, properties or accounts are frozen, a reporting institution\nmay continue receiving dividends, interests, or other benefits, but such benefits shall\nstill remain frozen, so long as the individuals or entities continue to be listed.\n\n4.6 However no outgoing payment should be made out from the frozen funds, properties\nor accounts, including payment of any fees or service charges for maintaining the\nfrozen funds without the approval of Minister of Home Affairs.",
+      "content_text": "4.1 A reporting institution is required to freeze funds, properties or accounts that are\nowned or controlled directly and indirectly by the listed entities without delay2.\n\n4.2 Funds, properties or accounts that are owned or controlled indirectly by the listed\nentities includes situation where the listed entity is a director of a customer. In such\ninstance, once the reporting institution is satisfied that the director owns or controls\ndirectly or indirectly the funds, properties or accounts of the customer, the reporting\ninstitution is required to freeze the same without delay.\n\n4.3 The obligation to freeze funds, properties or accounts of a listed entity continues until\nthe person is delisted from the sanction lists. Even death of the listed entity is not a\nbasis for a reporting institution not to continue its freezing obligation.\n\n4.4 If an asset is owned or controlled by a listed entity and the interest owned or\ncontrolled by the listed party cannot be segregated, then the entire asset should be\nsubjected to freezing.\n\n4.5 Notwithstanding the funds, properties or accounts are frozen, a reporting institution\nmay continue receiving dividends, interests, or other benefits, but such benefits shall\nstill remain frozen, so long as the individuals or entities continue to be listed.\n\n4.6 However no outgoing payment should be made out from the frozen funds, properties\nor accounts, including payment of any fees or service charges for maintaining the\nfrozen funds without the approval of Minister of Home Affairs.",
+      "token_count": 305,
+      "pages": [
+        89
+      ],
+      "section_path": [
+        "APPENDIX D",
+        "Obligation to freeze funds, properties or accounts"
+      ],
+      "source_element_ids": [
+        "p89-e3",
+        "p89-e4",
+        "p89-e5",
+        "p89-e6",
+        "p89-e7",
+        "p89-e8"
+      ]
+    },
+    {
+      "rank": 3,
+      "chunk_id": "485c4989-c300-45c8-ac06-79a59492bb5c-c0172-3df0a657c5",
+      "chunk_index": 172,
+      "semantic_type": "list_item",
+      "fusion_score": 0.029571646010002173,
+      "dense_rank": 13,
+      "dense_score": 0.6168415914083487,
+      "dense_distance": 0.3831584085916513,
+      "dense_rrf_score": 0.0136986301369863,
+      "lexical_rank": 3,
+      "lexical_score": 2.7,
+      "lexical_matched_term_count": 9,
+      "lexical_term_coverage": 0.5625,
+      "lexical_rrf_score": 0.015873015873015872,
+      "text": "Section: PART VIII: COMBATING PROLIFERATION FINANCING > 18. REQUIREMENT TO FREEZE, BLOCK AND REJECT\nGroup: Guidance for paragraph 18\n\n(a)Funds, properties or accounts that are owned or controlled indirectly by the\ndesignated person includes situation where the designated person is a\ndirector of a customer. In such instance, once the reporting institution is\nsatisfied that the director owns or controls directly or indirectly the funds,\nproperties or accounts of the customer, the reporting institution is required\nto freeze.\n\n(b)The obligation to freeze funds, properties or accounts of a designated person\ncontinues until the person is delisted from the sanction lists. The freezing\nobligations remains even after the designated person passed away.\n\n(c)If an asset is owned or controlled by a designated person and the interest\nowned or controlled by the designated person cannot be segregated, then\nthe entire asset should be subjected to freezing.\n\n(d)Notwithstanding the funds, properties or accounts are frozen, a reporting\ninstitution may continue receiving dividends, interests, or other benefits, but\nsuch benefits shall still remain frozen, so long as the designated person\ncontinue to be listed.\n\n(e)No outgoing payment should be made from the frozen funds, properties or\naccounts including payment of any fees or service charges for maintaining\nthe frozen fund without prior written authorisation of the Strategic Trade\nController in consultation with the SC.",
+      "content_text": "(a)Funds, properties or accounts that are owned or controlled indirectly by the\ndesignated person includes situation where the designated person is a\ndirector of a customer. In such instance, once the reporting institution is\nsatisfied that the director owns or controls directly or indirectly the funds,\nproperties or accounts of the customer, the reporting institution is required\nto freeze.\n\n(b)The obligation to freeze funds, properties or accounts of a designated person\ncontinues until the person is delisted from the sanction lists. The freezing\nobligations remains even after the designated person passed away.\n\n(c)If an asset is owned or controlled by a designated person and the interest\nowned or controlled by the designated person cannot be segregated, then\nthe entire asset should be subjected to freezing.\n\n(d)Notwithstanding the funds, properties or accounts are frozen, a reporting\ninstitution may continue receiving dividends, interests, or other benefits, but\nsuch benefits shall still remain frozen, so long as the designated person\ncontinue to be listed.\n\n(e)No outgoing payment should be made from the frozen funds, properties or\naccounts including payment of any fees or service charges for maintaining\nthe frozen fund without prior written authorisation of the Strategic Trade\nController in consultation with the SC.",
+      "token_count": 260,
+      "pages": [
+        65
+      ],
+      "section_path": [
+        "PART VIII: COMBATING PROLIFERATION FINANCING",
+        "18. REQUIREMENT TO FREEZE, BLOCK AND REJECT"
+      ],
+      "source_element_ids": [
+        "p65-e2",
+        "p65-e3",
+        "p65-e4",
+        "p65-e5",
+        "p65-e6"
+      ]
+    },
+    {
+      "rank": 4,
+      "chunk_id": "485c4989-c300-45c8-ac06-79a59492bb5c-c0240-790411c67b",
+      "chunk_index": 240,
+      "semantic_type": "clause",
+      "fusion_score": 0.029437229437229435,
+      "dense_rank": 10,
+      "dense_score": 0.6197256034530881,
+      "dense_distance": 0.38027439654691186,
+      "dense_rrf_score": 0.014285714285714285,
+      "lexical_rank": 6,
+      "lexical_score": 1.5,
+      "lexical_matched_term_count": 9,
+      "lexical_term_coverage": 0.5625,
+      "lexical_rrf_score": 0.015151515151515152,
+      "text": "Section: APPENDIX D > Obligation to conduct screening on customers\nClause: 3.3\nGroup: Guidance on the Implementation of Targeted Financial Sanction in\nRelation to Terrorism Financing\n\n3.3 The obligation to conduct screening on customers also includes fund derived from\nproperty owned or controlled directly or indirectly by the listed entities or by persons\nacting on their behalf or at their discretion (related parties). Therefore, a reporting\ninstitution must also conduct checks on–\n\n(a) relationship and transactions connected with the listed entities;\n\n(b) properties or accounts that are jointly owned and/or indirectly controlled by\nthe listed entities; and\n\n(c) parties related to the frozen accounts including beneficial owners, signatories,\npower of attorney relationships, guarantors, nominees, trustees, assignees and\npayors.",
+      "content_text": "3.3 The obligation to conduct screening on customers also includes fund derived from\nproperty owned or controlled directly or indirectly by the listed entities or by persons\nacting on their behalf or at their discretion (related parties). Therefore, a reporting\ninstitution must also conduct checks on–\n\n(a) relationship and transactions connected with the listed entities;\n\n(b) properties or accounts that are jointly owned and/or indirectly controlled by\nthe listed entities; and\n\n(c) parties related to the frozen accounts including beneficial owners, signatories,\npower of attorney relationships, guarantors, nominees, trustees, assignees and\npayors.",
+      "token_count": 147,
+      "pages": [
+        88
+      ],
+      "section_path": [
+        "APPENDIX D",
+        "Obligation to conduct screening on customers"
+      ],
+      "source_element_ids": [
+        "p88-e10",
+        "p88-e11",
+        "p88-e12",
+        "p88-e13"
+      ]
+    },
+    {
+      "rank": 5,
+      "chunk_id": "485c4989-c300-45c8-ac06-79a59492bb5c-c0173-729312a3d9",
+      "chunk_index": 173,
+      "semantic_type": "clause",
+      "fusion_score": 0.0293236301369863,
+      "dense_rank": 4,
+      "dense_score": 0.6378200244253884,
+      "dense_distance": 0.36217997557461157,
+      "dense_rrf_score": 0.015625,
+      "lexical_rank": 13,
+      "lexical_score": 2.1000001,
+      "lexical_matched_term_count": 6,
+      "lexical_term_coverage": 0.375,
+      "lexical_rrf_score": 0.0136986301369863,
+      "text": "Section: PART VIII: COMBATING PROLIFERATION FINANCING > 19. REPORTING REQUIREMENTS\n\n19.1 A reporting institution must immediately report to the SC on any freezing, blocking or\nrejection actions undertaken in accordance with paragraph 18 towards the identified\nfunds, properties or accounts.\n\n19.2 The form for reporting to the SC upon determination of a name match and actions\ntaken by the reporting institution is attached as Appendix I.\n\n19.3 A reporting institution who has reported positive name matches and has control of\nfrozen funds, properties or accounts of a designated person must report to the SC on\nany change to such frozen funds, properties or accounts by 31 January in the next\ncalendar year (periodic reporting).",
+      "content_text": "19.1 A reporting institution must immediately report to the SC on any freezing, blocking or\nrejection actions undertaken in accordance with paragraph 18 towards the identified\nfunds, properties or accounts.\n\n19.2 The form for reporting to the SC upon determination of a name match and actions\ntaken by the reporting institution is attached as Appendix I.\n\n19.3 A reporting institution who has reported positive name matches and has control of\nfrozen funds, properties or accounts of a designated person must report to the SC on\nany change to such frozen funds, properties or accounts by 31 January in the next\ncalendar year (periodic reporting).",
+      "token_count": 132,
+      "pages": [
+        66
+      ],
+      "section_path": [
+        "PART VIII: COMBATING PROLIFERATION FINANCING",
+        "19. REPORTING REQUIREMENTS"
+      ],
+      "source_element_ids": [
+        "p66-e2",
+        "p66-e3",
+        "p66-e4"
+      ]
+    },
+    {
+      "rank": 6,
+      "chunk_id": "485c4989-c300-45c8-ac06-79a59492bb5c-c0244-51c99b8239",
+      "chunk_index": 244,
+      "semantic_type": "clause",
+      "fusion_score": 0.0288981288981289,
+      "dense_rank": 14,
+      "dense_score": 0.6114031076431274,
+      "dense_distance": 0.38859689235687256,
+      "dense_rrf_score": 0.013513513513513514,
+      "lexical_rank": 5,
+      "lexical_score": 1.8000001,
+      "lexical_matched_term_count": 9,
+      "lexical_term_coverage": 0.5625,
+      "lexical_rrf_score": 0.015384615384615385,
+      "text": "Section: APPENDIX D > Reporting requirements\nGroup: Guidance on the Implementation of Targeted Financial Sanction in\nRelation to Terrorism Financing\n\n5.2 For the purpose of submitting suspicious transaction report to the FIED, a reporting\ninstitution–\n\n(a)should include details and analysis of the CDD, ongoing CDD information,\nactivities of transactions of the listed entity or related parties; and\n\n(b)is encouraged to search, examine and analyse past financial activities of\ncustomers and related parties with a name match that have closed their accounts\nwith the reporting institution.\n\n5.3 A reporting institution is also under an obligation to report to the SC periodically every\nsix months for both lists on frozen funds, properties or accounts of customers that\nare listed.",
+      "content_text": "5.2 For the purpose of submitting suspicious transaction report to the FIED, a reporting\ninstitution–\n\n(a)should include details and analysis of the CDD, ongoing CDD information,\nactivities of transactions of the listed entity or related parties; and\n\n(b)is encouraged to search, examine and analyse past financial activities of\ncustomers and related parties with a name match that have closed their accounts\nwith the reporting institution.\n\n5.3 A reporting institution is also under an obligation to report to the SC periodically every\nsix months for both lists on frozen funds, properties or accounts of customers that\nare listed.",
+      "token_count": 138,
+      "pages": [
+        90
+      ],
+      "section_path": [
+        "APPENDIX D",
+        "Reporting requirements"
+      ],
+      "source_element_ids": [
+        "p90-e2",
+        "p90-e3",
+        "p90-e4",
+        "p90-e5"
+      ]
+    },
+    {
+      "rank": 7,
+      "chunk_id": "485c4989-c300-45c8-ac06-79a59492bb5c-c0237-06eb0908af",
+      "chunk_index": 237,
+      "semantic_type": "clause",
+      "fusion_score": 0.028169014084507043,
+      "dense_rank": 11,
+      "dense_score": 0.6195746660232544,
+      "dense_distance": 0.3804253339767456,
+      "dense_rrf_score": 0.014084507042253521,
+      "lexical_rank": 11,
+      "lexical_score": 3.4,
+      "lexical_matched_term_count": 6,
+      "lexical_term_coverage": 0.375,
+      "lexical_rrf_score": 0.014084507042253521,
+      "text": "Section: APPENDIX D > Obligation to maintain the sanctions list\nGroup: Guidance on the Implementation of Targeted Financial Sanction in\nRelation to Terrorism Financing\n\n2.1 In implementing the requirements in paragraphs 14.1 and 14.2 of the Guidelines, a\nreporting institution should have policies and procedures to ensure compliance with\nthe obligation to maintain the lists of listed entities in respect the UNSCR and domestic\nlists.\n\n2.3 For the domestic lists, a reporting institution should keep the lists updated as soon as\nthe subsidiary legislation via Orders are published in the gazette by the Ministry of\nHome Affairs.\n\n2.4 Reporting institution must observe the following for the purpose of delisting any listed\nentities:\n\n(a)For any listed entities under UNSCR list, delisting shall take effect automatically\nas soonest as the listed entities are removed from the UNSCR lists; and\n\n(b)For any listed entities under the domestic list, delisting shall take effect\nupon the publication of the subsidiary legislation via Orders by the Ministry of\nHome Affairs on removal of such listed entities.\n\n2.5 A reporting institution may consider subscribing electronic subscription services to\nmaintain the updated UNSCR and domestic lists. However, the ultimate responsibility\nto ensure that the lists are up to date remains with the reporting institution.",
+      "content_text": "2.1 In implementing the requirements in paragraphs 14.1 and 14.2 of the Guidelines, a\nreporting institution should have policies and procedures to ensure compliance with\nthe obligation to maintain the lists of listed entities in respect the UNSCR and domestic\nlists.\n\n2.3 For the domestic lists, a reporting institution should keep the lists updated as soon as\nthe subsidiary legislation via Orders are published in the gazette by the Ministry of\nHome Affairs.\n\n2.4 Reporting institution must observe the following for the purpose of delisting any listed\nentities:\n\n(a)For any listed entities under UNSCR list, delisting shall take effect automatically\nas soonest as the listed entities are removed from the UNSCR lists; and\n\n(b)For any listed entities under the domestic list, delisting shall take effect\nupon the publication of the subsidiary legislation via Orders by the Ministry of\nHome Affairs on removal of such listed entities.\n\n2.5 A reporting institution may consider subscribing electronic subscription services to\nmaintain the updated UNSCR and domestic lists. However, the ultimate responsibility\nto ensure that the lists are up to date remains with the reporting institution.",
+      "token_count": 238,
+      "pages": [
+        87,
+        88
+      ],
+      "section_path": [
+        "APPENDIX D",
+        "Obligation to maintain the sanctions list"
+      ],
+      "source_element_ids": [
+        "p87-e3",
+        "p88-e2",
+        "p88-e3",
+        "p88-e4",
+        "p88-e5",
+        "p88-e6"
+      ]
+    },
+    {
+      "rank": 8,
+      "chunk_id": "485c4989-c300-45c8-ac06-79a59492bb5c-c0250-f52650db4c",
+      "chunk_index": 250,
+      "semantic_type": "clause",
+      "fusion_score": 0.015873015873015872,
+      "dense_rank": 3,
+      "dense_score": 0.6452109217643738,
+      "dense_distance": 0.3547890782356262,
+      "dense_rrf_score": 0.015873015873015872,
+      "lexical_rank": null,
+      "lexical_score": null,
+      "lexical_matched_term_count": 0,
+      "lexical_term_coverage": 0.0,
+      "lexical_rrf_score": 0.0,
+      "text": "Section: APPENDIX E > Introduction\nClause: 1.1\n\n1.1 The obligations of a reporting institution on beneficial ownership requirements are:\n\n(a)identifying a natural person who is the beneficial owner of the customer and\nobtaining information that describes the ownership, control and structure of the\nlegal persons/ legal arrangements relating to the beneficial owner;\n\n(b)taking reasonable measures to verify the accuracy of the information obtained\nand keeping records of all relevant documents;\n\n(c)conducting customer risk profiling to identify the risk category of the beneficial\nowner; and\n\n(d)performing further regulatory obligations based on the risk category of the\nbeneficial owner such as CDD, sanction screening and high-risk jurisdiction.",
+      "content_text": "1.1 The obligations of a reporting institution on beneficial ownership requirements are:\n\n(a)identifying a natural person who is the beneficial owner of the customer and\nobtaining information that describes the ownership, control and structure of the\nlegal persons/ legal arrangements relating to the beneficial owner;\n\n(b)taking reasonable measures to verify the accuracy of the information obtained\nand keeping records of all relevant documents;\n\n(c)conducting customer risk profiling to identify the risk category of the beneficial\nowner; and\n\n(d)performing further regulatory obligations based on the risk category of the\nbeneficial owner such as CDD, sanction screening and high-risk jurisdiction.",
+      "token_count": 133,
+      "pages": [
+        92
+      ],
+      "section_path": [
+        "APPENDIX E",
+        "Introduction"
+      ],
+      "source_element_ids": [
+        "p92-e4",
+        "p92-e5",
+        "p92-e6",
+        "p92-e7",
+        "p92-e8"
+      ]
+    },
+    {
+      "rank": 9,
+      "chunk_id": "485c4989-c300-45c8-ac06-79a59492bb5c-c0100-d1377a7b3c",
+      "chunk_index": 100,
+      "semantic_type": "clause",
+      "fusion_score": 0.015625,
+      "dense_rank": null,
+      "dense_score": null,
+      "dense_distance": null,
+      "dense_rrf_score": 0.0,
+      "lexical_rank": 4,
+      "lexical_score": 2.2,
+      "lexical_matched_term_count": 9,
+      "lexical_term_coverage": 0.5625,
+      "lexical_rrf_score": 0.015625,
+      "text": "Section: PART III: CUSTOMER DUE DILIGENCE > 8. CUSTOMER DUE DILIGENCE (CDD) > 8.1 CDD at the point of establishing business relationship\nClause: 8.1.23\nGroup: CDD requirements for establishing non face-to-face business relationship\n\n8.1.23 This section applies when a reporting institution chooses to establish non-face-to-\nface business relationship.\n\n(a) A reporting institution must develop and implement policies and procedures to\naddress and mitigate specific ML/TF/PF risks associated with establishing non\nface-to-face business relationship, as well as operational and information\ntechnology risk.\n\n(b) A reporting institution must establish appropriate measures for identification\nand verification of a customer’s identity before establishing non face-to-face\nbusiness relationship.\n\n(c) For the purpose of identification and verification of the identity of a customer in\na non face-to-face business relationship, a reporting institution must undertake\none or more of the following measures:\n\n(i) Requesting for additional identification documents or information e.g.\nbank statements, utility bills;\n\n(ii) Substantiating the customer’s information with any independent source\ne.g. contacting the customer’s employer and verification through database\nmaintained by any relevant authorities;\n\n(iii) Contacting the customer through any digital communication channel to\nvisually identify and verify the customer’s identity;\n\n(iv) Requesting the customer to make a nominal payment from his own\naccount with a licensed bank under the Financial Services Act 2013 or\nlicensed Islamic bank under the Islamic Financial Services Act 2013 to\nenable the reporting institution to satisfy itself of the customer’s true\nidentity; or\n\n(v) Using new technology solutions including, but not limited to, biometric\ntechnologies (e.g. fingerprint or iris scans, facial recognition), which\nshould be linked incontrovertibly to the customer.\n\n(d) Where the reporting institution is unable to identify and verify the customer’s\nidentity by adopting the measures provided under paragraph (c) above, the\nreporting institution must initiate face-to-face business relationship.\n\n(e) Sub-paragraphs (a) to (d) above are not applicable to:\n\n(i)Customers that are identified as foreign PEP;\n\n(ii)Customers from higher-risk and non co-operative jurisdictions as identified\nby the FATF; or\n\n(iii)Listed persons or entities subjected to targeted financial sanctions for\nterrorism financing and financing of proliferation of weapons of mass\ndestruction pursuant to the UNSCR.\n\n(f) A reporting institution must ensure and be able to demonstrate on a continuing\nbasis that appropriate measures for identification and verification of a customer’s\nidentity when establishing non-face-to-face business relationship are as effective\nas that for face-to-face customer and implement monitoring and reporting\nmechanism to identify potential ML/TF/PF activities.",
+      "content_text": "8.1.23 This section applies when a reporting institution chooses to establish non-face-to-\nface business relationship.\n\n(a) A reporting institution must develop and implement policies and procedures to\naddress and mitigate specific ML/TF/PF risks associated with establishing non\nface-to-face business relationship, as well as operational and information\ntechnology risk.\n\n(b) A reporting institution must establish appropriate measures for identification\nand verification of a customer’s identity before establishing non face-to-face\nbusiness relationship.\n\n(c) For the purpose of identification and verification of the identity of a customer in\na non face-to-face business relationship, a reporting institution must undertake\none or more of the following measures:\n\n(i) Requesting for additional identification documents or information e.g.\nbank statements, utility bills;\n\n(ii) Substantiating the customer’s information with any independent source\ne.g. contacting the customer’s employer and verification through database\nmaintained by any relevant authorities;\n\n(iii) Contacting the customer through any digital communication channel to\nvisually identify and verify the customer’s identity;\n\n(iv) Requesting the customer to make a nominal payment from his own\naccount with a licensed bank under the Financial Services Act 2013 or\nlicensed Islamic bank under the Islamic Financial Services Act 2013 to\nenable the reporting institution to satisfy itself of the customer’s true\nidentity; or\n\n(v) Using new technology solutions including, but not limited to, biometric\ntechnologies (e.g. fingerprint or iris scans, facial recognition), which\nshould be linked incontrovertibly to the customer.\n\n(d) Where the reporting institution is unable to identify and verify the customer’s\nidentity by adopting the measures provided under paragraph (c) above, the\nreporting institution must initiate face-to-face business relationship.\n\n(e) Sub-paragraphs (a) to (d) above are not applicable to:\n\n(i)Customers that are identified as foreign PEP;\n\n(ii)Customers from higher-risk and non co-operative jurisdictions as identified\nby the FATF; or\n\n(iii)Listed persons or entities subjected to targeted financial sanctions for\nterrorism financing and financing of proliferation of weapons of mass\ndestruction pursuant to the UNSCR.\n\n(f) A reporting institution must ensure and be able to demonstrate on a continuing\nbasis that appropriate measures for identification and verification of a customer’s\nidentity when establishing non-face-to-face business relationship are as effective\nas that for face-to-face customer and implement monitoring and reporting\nmechanism to identify potential ML/TF/PF activities.",
+      "token_count": 550,
+      "pages": [
+        36,
+        37
+      ],
+      "section_path": [
+        "PART III: CUSTOMER DUE DILIGENCE",
+        "8. CUSTOMER DUE DILIGENCE (CDD)",
+        "8.1 CDD at the point of establishing business relationship"
+      ],
+      "source_element_ids": [
+        "p36-e10",
+        "p36-e11",
+        "p36-e12",
+        "p37-e1",
+        "p37-e2",
+        "p37-e3",
+        "p37-e4",
+        "p37-e5",
+        "p37-e6",
+        "p37-e7",
+        "p37-e8",
+        "p37-e9",
+        "p37-e10",
+        "p37-e11",
+        "p37-e12"
+      ]
+    },
+    {
+      "rank": 10,
+      "chunk_id": "485c4989-c300-45c8-ac06-79a59492bb5c-c0136-225386c91b",
+      "chunk_index": 136,
+      "semantic_type": "clause",
+      "fusion_score": 0.015384615384615385,
+      "dense_rank": 5,
+      "dense_score": 0.6320810160540368,
+      "dense_distance": 0.36791898394596323,
+      "dense_rrf_score": 0.015384615384615385,
+      "lexical_rank": null,
+      "lexical_score": null,
+      "lexical_matched_term_count": 0,
+      "lexical_term_coverage": 0.0,
+      "lexical_rrf_score": 0.0,
+      "text": "Section: PART IIIA: WIRE TRANSFER > 9. WIRE TRANSFER OF DIGITAL ASSETS > 9.2 Ordering institutions\nClause: 9.2.2\n\n9.2.2 A reporting institution which is an ordering institution must submit the information\nset out in paragraph 9.2.1 to the beneficiary institution immediately and securely.",
+      "content_text": "9.2.2 A reporting institution which is an ordering institution must submit the information\nset out in paragraph 9.2.1 to the beneficiary institution immediately and securely.",
+      "token_count": 62,
+      "pages": [
+        49
+      ],
+      "section_path": [
+        "PART IIIA: WIRE TRANSFER",
+        "9. WIRE TRANSFER OF DIGITAL ASSETS",
+        "9.2 Ordering institutions"
+      ],
+      "source_element_ids": [
+        "p49-e9"
+      ]
+    }
+  ]
+}

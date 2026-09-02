@@ -1,0 +1,258 @@
+{
+  "document_id": "485c4989-c300-45c8-ac06-79a59492bb5c",
+  "query": "Which categories of legal persons are exempt under paragraph 8.1.12 from obtaining constituent documents and verifying directors, shareholders or partners?",
+  "embedding_model": "BAAI/bge-m3",
+  "requested_device": "auto",
+  "resolved_device": "cuda",
+  "top_k": 10,
+  "embedded_chunk_count": 284,
+  "total_chunk_count": 284,
+  "hits": [
+    {
+      "rank": 1,
+      "chunk_id": "485c4989-c300-45c8-ac06-79a59492bb5c-c0090-1b0baef4bb",
+      "chunk_index": 90,
+      "semantic_type": "clause",
+      "score": 0.7011090725990856,
+      "distance": 0.2988909274009144,
+      "text": "Section: PART III: CUSTOMER DUE DILIGENCE > 8. CUSTOMER DUE DILIGENCE (CDD) > 8.1 CDD at the point of establishing business relationship\nClause: 8.1.12\nGroup: CDD requirements for legal persons\n\n8.1.12 Notwithstanding the above, a reporting institution is exempted from obtaining the\nconstituent document, and from verifying the identity of the directors and shareholders\nor partners of legal persons which fall under the following categories:\n\n(a)Public-listed companies/corporations listed on Bursa Malaysia or majority-owned\nsubsidiaries of such public-listed companies;\n\n(b)Foreign public-listed companies:\n\n(i)Listed on exchanges recognised by Bursa Malaysia. A reporting institution\nmay refer to the directive in relation to recognised stock exchanges issued\nby Bursa Malaysia; and\n\n(ii)\nNot listed in jurisdictions identified in the FATF Public Statements;\n\n(c)An authorised person, an operator of a designated payment system, under the\nFinancial Services Act 2013 or the Islamic Financial Services Act 2013;\n\n(d)Entities licensed under the Labuan Financial Services and Securities Act 2010 or the\nLabuan Islamic Financial Services and Securities Act 2010;\n\n(e)Persons licensed or registered under the CMSA;\n\n(f)Prescribed institutions under the Development Financial Institutions Act 2002; and",
+      "content_text": "8.1.12 Notwithstanding the above, a reporting institution is exempted from obtaining the\nconstituent document, and from verifying the identity of the directors and shareholders\nor partners of legal persons which fall under the following categories:\n\n(a)Public-listed companies/corporations listed on Bursa Malaysia or majority-owned\nsubsidiaries of such public-listed companies;\n\n(b)Foreign public-listed companies:\n\n(i)Listed on exchanges recognised by Bursa Malaysia. A reporting institution\nmay refer to the directive in relation to recognised stock exchanges issued\nby Bursa Malaysia; and\n\n(ii)\nNot listed in jurisdictions identified in the FATF Public Statements;\n\n(c)An authorised person, an operator of a designated payment system, under the\nFinancial Services Act 2013 or the Islamic Financial Services Act 2013;\n\n(d)Entities licensed under the Labuan Financial Services and Securities Act 2010 or the\nLabuan Islamic Financial Services and Securities Act 2010;\n\n(e)Persons licensed or registered under the CMSA;\n\n(f)Prescribed institutions under the Development Financial Institutions Act 2002; and",
+      "token_count": 243,
+      "pages": [
+        34
+      ],
+      "section_path": [
+        "PART III: CUSTOMER DUE DILIGENCE",
+        "8. CUSTOMER DUE DILIGENCE (CDD)",
+        "8.1 CDD at the point of establishing business relationship"
+      ],
+      "source_element_ids": [
+        "p34-e5",
+        "p34-e6",
+        "p34-e7",
+        "p34-e8",
+        "p34-e9",
+        "p34-e11",
+        "p34-e12",
+        "p34-e13",
+        "p34-e14"
+      ]
+    },
+    {
+      "rank": 2,
+      "chunk_id": "485c4989-c300-45c8-ac06-79a59492bb5c-c0092-c25594629e",
+      "chunk_index": 92,
+      "semantic_type": "clause",
+      "score": 0.5993248224258423,
+      "distance": 0.4006751775741577,
+      "text": "Section: PART III: CUSTOMER DUE DILIGENCE > 8. CUSTOMER DUE DILIGENCE (CDD) > 8.1 CDD at the point of establishing business relationship\nClause: 8.1.13\nGroup: CDD requirements for legal persons\n\n8.1.13 Notwithstanding the above, reporting institutions are required to identify and maintain\nthe information relating to the identity of the directors and shareholders or partners of\nlegal persons referred to in paragraph 8.1.12 (a) to (g), through a public register, other\nreliable sources or based on information provided by the customer.",
+      "content_text": "8.1.13 Notwithstanding the above, reporting institutions are required to identify and maintain\nthe information relating to the identity of the directors and shareholders or partners of\nlegal persons referred to in paragraph 8.1.12 (a) to (g), through a public register, other\nreliable sources or based on information provided by the customer.",
+      "token_count": 110,
+      "pages": [
+        35
+      ],
+      "section_path": [
+        "PART III: CUSTOMER DUE DILIGENCE",
+        "8. CUSTOMER DUE DILIGENCE (CDD)",
+        "8.1 CDD at the point of establishing business relationship"
+      ],
+      "source_element_ids": [
+        "p35-e2"
+      ]
+    },
+    {
+      "rank": 3,
+      "chunk_id": "485c4989-c300-45c8-ac06-79a59492bb5c-c0088-7f07c6b2b9",
+      "chunk_index": 88,
+      "semantic_type": "clause",
+      "score": 0.5674980540574767,
+      "distance": 0.43250194594252334,
+      "text": "Section: PART III: CUSTOMER DUE DILIGENCE > 8. CUSTOMER DUE DILIGENCE (CDD) > 8.1 CDD at the point of establishing business relationship\nClause: 8.1.11\nGroup: CDD requirements for legal persons\n\n8.1.11 A reporting institution is required to identify and take reasonable measures to verify\nthe identity of beneficial owners according to the following cascading steps:\n\n(a)the identity of the natural person(s) (if any) who ultimately has a controlling\nownership interest in a legal person. Where applicable, this includes identifying:\n\n(i)shareholders with equity interest of more than twenty-five percent in a\ncorporation; and\n\n(b) to the extent that there is doubt as to whether the person(s) with the controlling\nownership interest is the beneficial owner(s) referred to in paragraph 8.1.11(a)\nor where no natural person(s) exert control through ownership interests, the\nidentity of the natural person (if any) exercising control of the legal person\nthrough other means; and\n\n(c) where no natural person is identified under paragraphs 8.1.11(a) or (b), the\nidentity of the relevant natural person who holds the position of senior\nmanagement.\n\nFor the avoidance of doubt, a reporting institution is not required to pursue\nsteps (b) and (c) in circumstances where beneficial owner(s) have been\nidentified through step (a). Similarly, where beneficial owner(s) have been\nidentified at step (b), reporting institutions are not required to pursue step (c).",
+      "content_text": "8.1.11 A reporting institution is required to identify and take reasonable measures to verify\nthe identity of beneficial owners according to the following cascading steps:\n\n(a)the identity of the natural person(s) (if any) who ultimately has a controlling\nownership interest in a legal person. Where applicable, this includes identifying:\n\n(i)shareholders with equity interest of more than twenty-five percent in a\ncorporation; and\n\n(b) to the extent that there is doubt as to whether the person(s) with the controlling\nownership interest is the beneficial owner(s) referred to in paragraph 8.1.11(a)\nor where no natural person(s) exert control through ownership interests, the\nidentity of the natural person (if any) exercising control of the legal person\nthrough other means; and\n\n(c) where no natural person is identified under paragraphs 8.1.11(a) or (b), the\nidentity of the relevant natural person who holds the position of senior\nmanagement.\n\nFor the avoidance of doubt, a reporting institution is not required to pursue\nsteps (b) and (c) in circumstances where beneficial owner(s) have been\nidentified through step (a). Similarly, where beneficial owner(s) have been\nidentified at step (b), reporting institutions are not required to pursue step (c).",
+      "token_count": 311,
+      "pages": [
+        33,
+        34
+      ],
+      "section_path": [
+        "PART III: CUSTOMER DUE DILIGENCE",
+        "8. CUSTOMER DUE DILIGENCE (CDD)",
+        "8.1 CDD at the point of establishing business relationship"
+      ],
+      "source_element_ids": [
+        "p33-e10",
+        "p33-e11",
+        "p33-e12",
+        "p34-e2",
+        "p34-e3",
+        "p34-e4"
+      ]
+    },
+    {
+      "rank": 4,
+      "chunk_id": "485c4989-c300-45c8-ac06-79a59492bb5c-c0087-fd64fed063",
+      "chunk_index": 87,
+      "semantic_type": "clause",
+      "score": 0.5546005964279175,
+      "distance": 0.4453994035720825,
+      "text": "Section: PART III: CUSTOMER DUE DILIGENCE > 8. CUSTOMER DUE DILIGENCE (CDD) > 8.1 CDD at the point of establishing business relationship\nClause: 8.1.10\nGroup: CDD requirements for legal persons\n\n8.1.10 A reporting institution is required to identify and take reasonable measures to verify\nthe identity of the beneficial owner of a legal person by taking into consideration the\nfollowing information or document:\n\n(a) duly certified true copy/duly notarised copy of the latest Forms 24 and 49 as\nprescribed by the Companies Commission of Malaysia under the Companies\nAct 2016 or equivalent document for a foreign body corporate; and\nidentification document of the shareholders with an equity interest of more\nthan 25%, directors, partners and office bearers (as the case may be);\n\n(b) authorisation for any person to represent the company/business either via a\nletter of authority or directors resolution;\n\n(c) relevant document such as NRIC for Malaysians/permanent residents or\npassport for foreigners, to identify the identity of the person authorised to\nrepresent the company/business in its dealing with the reporting institution;\nand\n\n(d) to the extent, there is a doubt as to whether the controlling ownership interest\nis the beneficial owner or where no natural person exerts control through\nownership interest, the identity of the natural person (if any) who exercises\ncontrol of the legal person through other means or who holds the position of\nsenior management.",
+      "content_text": "8.1.10 A reporting institution is required to identify and take reasonable measures to verify\nthe identity of the beneficial owner of a legal person by taking into consideration the\nfollowing information or document:\n\n(a) duly certified true copy/duly notarised copy of the latest Forms 24 and 49 as\nprescribed by the Companies Commission of Malaysia under the Companies\nAct 2016 or equivalent document for a foreign body corporate; and\nidentification document of the shareholders with an equity interest of more\nthan 25%, directors, partners and office bearers (as the case may be);\n\n(b) authorisation for any person to represent the company/business either via a\nletter of authority or directors resolution;\n\n(c) relevant document such as NRIC for Malaysians/permanent residents or\npassport for foreigners, to identify the identity of the person authorised to\nrepresent the company/business in its dealing with the reporting institution;\nand\n\n(d) to the extent, there is a doubt as to whether the controlling ownership interest\nis the beneficial owner or where no natural person exerts control through\nownership interest, the identity of the natural person (if any) who exercises\ncontrol of the legal person through other means or who holds the position of\nsenior management.",
+      "token_count": 277,
+      "pages": [
+        33
+      ],
+      "section_path": [
+        "PART III: CUSTOMER DUE DILIGENCE",
+        "8. CUSTOMER DUE DILIGENCE (CDD)",
+        "8.1 CDD at the point of establishing business relationship"
+      ],
+      "source_element_ids": [
+        "p33-e5",
+        "p33-e6",
+        "p33-e7",
+        "p33-e8",
+        "p33-e9"
+      ]
+    },
+    {
+      "rank": 5,
+      "chunk_id": "485c4989-c300-45c8-ac06-79a59492bb5c-c0097-1867d471cc",
+      "chunk_index": 97,
+      "semantic_type": "paragraph",
+      "score": 0.5413512860923249,
+      "distance": 0.45864871390767514,
+      "text": "Section: PART III: CUSTOMER DUE DILIGENCE > 8. CUSTOMER DUE DILIGENCE (CDD) > 8.1 CDD at the point of establishing business relationship\nGroup: Guidance for paragraphs 8.1.8 to 8.1.17\n\nAppendix E of these Guidelines sets out guidance and recommended best practices\nto guide reporting institutions in complying with the relevant requirements in relation\nto identification of beneficial owners of legal persons and legal arrangement.",
+      "content_text": "Appendix E of these Guidelines sets out guidance and recommended best practices\nto guide reporting institutions in complying with the relevant requirements in relation\nto identification of beneficial owners of legal persons and legal arrangement.",
+      "token_count": 81,
+      "pages": [
+        36
+      ],
+      "section_path": [
+        "PART III: CUSTOMER DUE DILIGENCE",
+        "8. CUSTOMER DUE DILIGENCE (CDD)",
+        "8.1 CDD at the point of establishing business relationship"
+      ],
+      "source_element_ids": [
+        "p36-e2"
+      ]
+    },
+    {
+      "rank": 6,
+      "chunk_id": "485c4989-c300-45c8-ac06-79a59492bb5c-c0086-be706b977d",
+      "chunk_index": 86,
+      "semantic_type": "clause",
+      "score": 0.5386122465133667,
+      "distance": 0.4613877534866333,
+      "text": "Section: PART III: CUSTOMER DUE DILIGENCE > 8. CUSTOMER DUE DILIGENCE (CDD) > 8.1 CDD at the point of establishing business relationship\nClause: 8.1.9\nGroup: CDD requirements for legal persons\n\n8.1.9 A reporting institution is required to identify its customers and verify its identity\nthrough the following information:\n\n(a) Name, legal form and proof of existence, for instance the certified true copy\nor duly notarised copy of the constituent documents, as the case may be,\nunique identifier such as tax identification number or any other reliable\nreferences;\n\n(b) The powers that regulate and bind the customer such as directors’ resolution,\nas well as names of relevant persons having a senior management position;\nand\n\n(c) The address of the registered office and the principal place of business.",
+      "content_text": "8.1.9 A reporting institution is required to identify its customers and verify its identity\nthrough the following information:\n\n(a) Name, legal form and proof of existence, for instance the certified true copy\nor duly notarised copy of the constituent documents, as the case may be,\nunique identifier such as tax identification number or any other reliable\nreferences;\n\n(b) The powers that regulate and bind the customer such as directors’ resolution,\nas well as names of relevant persons having a senior management position;\nand\n\n(c) The address of the registered office and the principal place of business.",
+      "token_count": 159,
+      "pages": [
+        33
+      ],
+      "section_path": [
+        "PART III: CUSTOMER DUE DILIGENCE",
+        "8. CUSTOMER DUE DILIGENCE (CDD)",
+        "8.1 CDD at the point of establishing business relationship"
+      ],
+      "source_element_ids": [
+        "p33-e1",
+        "p33-e2",
+        "p33-e3",
+        "p33-e4"
+      ]
+    },
+    {
+      "rank": 7,
+      "chunk_id": "485c4989-c300-45c8-ac06-79a59492bb5c-c0094-0ee27622ec",
+      "chunk_index": 94,
+      "semantic_type": "clause",
+      "score": 0.5362395803999778,
+      "distance": 0.46376041960002223,
+      "text": "Section: PART III: CUSTOMER DUE DILIGENCE > 8. CUSTOMER DUE DILIGENCE (CDD) > 8.1 CDD at the point of establishing business relationship\nClause: 8.1.15\nGroup: CDD requirements for legal arrangements\n\n8.1.15 A reporting institution is required to identify its customers and verify its identity through\nthe following information:\n\n(a)Name, legal form and proof of existence, for instance the certified true copy or duly\nnotarised copy of the constituent documents, as the case may be, unique identifier\nsuch as tax identification number or any other reliable references;\n\n(b)The powers that regulate and bind the customer, as well as names of relevant\npersons having a senior management position; and\n\n(c)The address of the registered office and the principal place of business.",
+      "content_text": "8.1.15 A reporting institution is required to identify its customers and verify its identity through\nthe following information:\n\n(a)Name, legal form and proof of existence, for instance the certified true copy or duly\nnotarised copy of the constituent documents, as the case may be, unique identifier\nsuch as tax identification number or any other reliable references;\n\n(b)The powers that regulate and bind the customer, as well as names of relevant\npersons having a senior management position; and\n\n(c)The address of the registered office and the principal place of business.",
+      "token_count": 154,
+      "pages": [
+        35
+      ],
+      "section_path": [
+        "PART III: CUSTOMER DUE DILIGENCE",
+        "8. CUSTOMER DUE DILIGENCE (CDD)",
+        "8.1 CDD at the point of establishing business relationship"
+      ],
+      "source_element_ids": [
+        "p35-e5",
+        "p35-e6",
+        "p35-e7",
+        "p35-e8"
+      ]
+    },
+    {
+      "rank": 8,
+      "chunk_id": "485c4989-c300-45c8-ac06-79a59492bb5c-c0089-f1b88e8baa",
+      "chunk_index": 89,
+      "semantic_type": "list_item",
+      "score": 0.5291216654108971,
+      "distance": 0.4708783345891029,
+      "text": "Section: PART III: CUSTOMER DUE DILIGENCE > 8. CUSTOMER DUE DILIGENCE (CDD) > 8.1 CDD at the point of establishing business relationship\nGroup: CDD requirements for legal persons\n\n(ii)in the case of a limited liability partnership, partners with capital\ncontribution and/or voting rights of more than twenty-five percent;",
+      "content_text": "(ii)in the case of a limited liability partnership, partners with capital\ncontribution and/or voting rights of more than twenty-five percent;",
+      "token_count": 65,
+      "pages": [
+        34
+      ],
+      "section_path": [
+        "PART III: CUSTOMER DUE DILIGENCE",
+        "8. CUSTOMER DUE DILIGENCE (CDD)",
+        "8.1 CDD at the point of establishing business relationship"
+      ],
+      "source_element_ids": [
+        "p34-e1"
+      ]
+    },
+    {
+      "rank": 9,
+      "chunk_id": "485c4989-c300-45c8-ac06-79a59492bb5c-c0260-f49aebbfec",
+      "chunk_index": 260,
+      "semantic_type": "clause",
+      "score": 0.5257910490036011,
+      "distance": 0.4742089509963989,
+      "text": "Section: APPENDIX E > Identification\nClause: 1.10\nGroup: Steps to identify beneficial owner > Legal person\n\n1.10 Step 3: Identify the identity of natural persons holding the position of\nsenior management within the legal person\n\nFor the purpose of paragraph 1.9, “senior management” are identified as persons who\nexercise executive control over the daily or regular affairs of the legal person, which\nmay include, but are not limited to, directors, deputy directors, Board members, chief\nexecutive officer, chief financial officer, chief operating officer, or any other individual\nperforming similar management functions.",
+      "content_text": "1.10 Step 3: Identify the identity of natural persons holding the position of\nsenior management within the legal person\n\nFor the purpose of paragraph 1.9, “senior management” are identified as persons who\nexercise executive control over the daily or regular affairs of the legal person, which\nmay include, but are not limited to, directors, deputy directors, Board members, chief\nexecutive officer, chief financial officer, chief operating officer, or any other individual\nperforming similar management functions.",
+      "token_count": 114,
+      "pages": [
+        95
+      ],
+      "section_path": [
+        "APPENDIX E",
+        "Identification"
+      ],
+      "source_element_ids": [
+        "p95-e10",
+        "p95-e11"
+      ]
+    },
+    {
+      "rank": 10,
+      "chunk_id": "485c4989-c300-45c8-ac06-79a59492bb5c-c0095-b12c916c14",
+      "chunk_index": 95,
+      "semantic_type": "clause",
+      "score": 0.5243813991546631,
+      "distance": 0.4756186008453369,
+      "text": "Section: PART III: CUSTOMER DUE DILIGENCE > 8. CUSTOMER DUE DILIGENCE (CDD) > 8.1 CDD at the point of establishing business relationship\nClause: 8.1.16\nGroup: CDD requirements for legal arrangements\n\n8.1.16 A reporting institution is required to identify and take reasonable measures to verify the\nidentity of the beneficial owner of a legal arrangement by taking into consideration the\nfollowing information:\n\n(a) In the case of a trust, the identity of the settlor, the trustee or the protector, the\nbeneficiary or class of beneficiaries and objects of a power, and any other natural\nperson exercising ultimate effective control over the trust (including through a\nchain of control/ownership); or\n\n(b) In the case of other types of legal arrangement, the identity of the person in an\nequivalent or similar position referred to in (a) above.",
+      "content_text": "8.1.16 A reporting institution is required to identify and take reasonable measures to verify the\nidentity of the beneficial owner of a legal arrangement by taking into consideration the\nfollowing information:\n\n(a) In the case of a trust, the identity of the settlor, the trustee or the protector, the\nbeneficiary or class of beneficiaries and objects of a power, and any other natural\nperson exercising ultimate effective control over the trust (including through a\nchain of control/ownership); or\n\n(b) In the case of other types of legal arrangement, the identity of the person in an\nequivalent or similar position referred to in (a) above.",
+      "token_count": 169,
+      "pages": [
+        35
+      ],
+      "section_path": [
+        "PART III: CUSTOMER DUE DILIGENCE",
+        "8. CUSTOMER DUE DILIGENCE (CDD)",
+        "8.1 CDD at the point of establishing business relationship"
+      ],
+      "source_element_ids": [
+        "p35-e9",
+        "p35-e10",
+        "p35-e11"
+      ]
+    }
+  ]
+}

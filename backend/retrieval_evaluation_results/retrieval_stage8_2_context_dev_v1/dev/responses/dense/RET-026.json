@@ -1,0 +1,240 @@
+{
+  "document_id": "485c4989-c300-45c8-ac06-79a59492bb5c",
+  "query": "What information fields are included in Appendix J's periodic report on changes to frozen or blocked funds, properties or accounts?",
+  "embedding_model": "BAAI/bge-m3",
+  "requested_device": "auto",
+  "resolved_device": "cuda",
+  "top_k": 10,
+  "embedded_chunk_count": 284,
+  "total_chunk_count": 284,
+  "hits": [
+    {
+      "rank": 1,
+      "chunk_id": "485c4989-c300-45c8-ac06-79a59492bb5c-c0282-c9062a52a1",
+      "chunk_index": 282,
+      "semantic_type": "table",
+      "score": 0.7178235054016113,
+      "distance": 0.28217649459838867,
+      "text": "Section: APPENDIX J > PERIODIC REPORTING ON ANY CHANGES TO THE FROZEN OR BLOCKED FUNDS, PROPERTIES OR ACCOUNTS\nGroup: MEASURES PURSUANT TO THE STRATEGIC TRADE (UNITED NATIONS SECURITY COUNCIL RESOLUTIONS)\nREGULATIONS 2010 (P.U. (A) 481/2010)\n\nCusto mer No | UNSCR Permanent Ref No (e.g. KPi.001, IRi.001) | Custo mer Name | NRIC / Passport No. Account No. | Account Facility/ Type | Date account frozen (DD/MM /YYYY) Account/ Facility Status | Previous Account Balance (previous reporting) | Transaction No | Tra (line Date (DD/MM /YYYY) | nsaction Details by line transaction) Transaction Type (for e.g. purchases, sales, redemptions, injections / deposits, withdrawals) Remarks | Amount (MYR) | New Account Balance as at: (DD/MM/YYYY) | Remarks\n1. |  |  |  |  |  |  | 1. |  |  |  |  | \n |  |  |  |  |  |  | 2. 3. |  |  |  |  | \n2. |  |  |  |  |  |  | 1. |  |  |  |  | \n3. |  |  |  |  |  |  | 1. |  |  |  |  |",
+      "content_text": "Custo mer No | UNSCR Permanent Ref No (e.g. KPi.001, IRi.001) | Custo mer Name | NRIC / Passport No. Account No. | Account Facility/ Type | Date account frozen (DD/MM /YYYY) Account/ Facility Status | Previous Account Balance (previous reporting) | Transaction No | Tra (line Date (DD/MM /YYYY) | nsaction Details by line transaction) Transaction Type (for e.g. purchases, sales, redemptions, injections / deposits, withdrawals) Remarks | Amount (MYR) | New Account Balance as at: (DD/MM/YYYY) | Remarks\n1. |  |  |  |  |  |  | 1. |  |  |  |  | \n |  |  |  |  |  |  | 2. 3. |  |  |  |  | \n2. |  |  |  |  |  |  | 1. |  |  |  |  | \n3. |  |  |  |  |  |  | 1. |  |  |  |  |",
+      "token_count": 239,
+      "pages": [
+        108
+      ],
+      "section_path": [
+        "APPENDIX J",
+        "PERIODIC REPORTING ON ANY CHANGES TO THE FROZEN OR BLOCKED FUNDS, PROPERTIES OR ACCOUNTS"
+      ],
+      "source_element_ids": [
+        "p108-e5"
+      ]
+    },
+    {
+      "rank": 2,
+      "chunk_id": "485c4989-c300-45c8-ac06-79a59492bb5c-c0283-3f62c4db8f",
+      "chunk_index": 283,
+      "semantic_type": "paragraph",
+      "score": 0.7102677822113037,
+      "distance": 0.2897322177886963,
+      "text": "Section: APPENDIX J > PERIODIC REPORTING ON ANY CHANGES TO THE FROZEN OR BLOCKED FUNDS, PROPERTIES OR ACCOUNTS\nGroup: Note: Please provide supporting documents, i.e. copies of invoices and receipts for each transaction.\nDetails of Capital Market Intermediary\n\nName of Capital Market Intermediary :\nContact Person :\nDesignation :\nTel & Fax No. :\nEmail :\nReporting Date :",
+      "content_text": "Name of Capital Market Intermediary :\nContact Person :\nDesignation :\nTel & Fax No. :\nEmail :\nReporting Date :",
+      "token_count": 69,
+      "pages": [
+        108
+      ],
+      "section_path": [
+        "APPENDIX J",
+        "PERIODIC REPORTING ON ANY CHANGES TO THE FROZEN OR BLOCKED FUNDS, PROPERTIES OR ACCOUNTS"
+      ],
+      "source_element_ids": [
+        "p108-e7"
+      ]
+    },
+    {
+      "rank": 3,
+      "chunk_id": "485c4989-c300-45c8-ac06-79a59492bb5c-c0281-58246ab1a4",
+      "chunk_index": 281,
+      "semantic_type": "paragraph",
+      "score": 0.667744517326355,
+      "distance": 0.332255482673645,
+      "text": "Section: APPENDIX J > PERIODIC REPORTING ON ANY CHANGES TO THE FROZEN OR BLOCKED FUNDS, PROPERTIES OR ACCOUNTS\nGroup: MEASURES PURSUANT TO THE STRATEGIC TRADE (UNITED NATIONS SECURITY COUNCIL RESOLUTIONS)\nREGULATIONS 2010 (P.U. (A) 481/2010)\n\n(By 31 January of the following calendar year after first reporting on positive name match)",
+      "content_text": "(By 31 January of the following calendar year after first reporting on positive name match)",
+      "token_count": 66,
+      "pages": [
+        108
+      ],
+      "section_path": [
+        "APPENDIX J",
+        "PERIODIC REPORTING ON ANY CHANGES TO THE FROZEN OR BLOCKED FUNDS, PROPERTIES OR ACCOUNTS"
+      ],
+      "source_element_ids": [
+        "p108-e4"
+      ]
+    },
+    {
+      "rank": 4,
+      "chunk_id": "485c4989-c300-45c8-ac06-79a59492bb5c-c0173-729312a3d9",
+      "chunk_index": 173,
+      "semantic_type": "clause",
+      "score": 0.6198805159294761,
+      "distance": 0.38011948407052387,
+      "text": "Section: PART VIII: COMBATING PROLIFERATION FINANCING > 19. REPORTING REQUIREMENTS\n\n19.1 A reporting institution must immediately report to the SC on any freezing, blocking or\nrejection actions undertaken in accordance with paragraph 18 towards the identified\nfunds, properties or accounts.\n\n19.2 The form for reporting to the SC upon determination of a name match and actions\ntaken by the reporting institution is attached as Appendix I.\n\n19.3 A reporting institution who has reported positive name matches and has control of\nfrozen funds, properties or accounts of a designated person must report to the SC on\nany change to such frozen funds, properties or accounts by 31 January in the next\ncalendar year (periodic reporting).",
+      "content_text": "19.1 A reporting institution must immediately report to the SC on any freezing, blocking or\nrejection actions undertaken in accordance with paragraph 18 towards the identified\nfunds, properties or accounts.\n\n19.2 The form for reporting to the SC upon determination of a name match and actions\ntaken by the reporting institution is attached as Appendix I.\n\n19.3 A reporting institution who has reported positive name matches and has control of\nfrozen funds, properties or accounts of a designated person must report to the SC on\nany change to such frozen funds, properties or accounts by 31 January in the next\ncalendar year (periodic reporting).",
+      "token_count": 132,
+      "pages": [
+        66
+      ],
+      "section_path": [
+        "PART VIII: COMBATING PROLIFERATION FINANCING",
+        "19. REPORTING REQUIREMENTS"
+      ],
+      "source_element_ids": [
+        "p66-e2",
+        "p66-e3",
+        "p66-e4"
+      ]
+    },
+    {
+      "rank": 5,
+      "chunk_id": "485c4989-c300-45c8-ac06-79a59492bb5c-c0244-51c99b8239",
+      "chunk_index": 244,
+      "semantic_type": "clause",
+      "score": 0.6021250486373901,
+      "distance": 0.39787495136260986,
+      "text": "Section: APPENDIX D > Reporting requirements\nGroup: Guidance on the Implementation of Targeted Financial Sanction in\nRelation to Terrorism Financing\n\n5.2 For the purpose of submitting suspicious transaction report to the FIED, a reporting\ninstitution–\n\n(a)should include details and analysis of the CDD, ongoing CDD information,\nactivities of transactions of the listed entity or related parties; and\n\n(b)is encouraged to search, examine and analyse past financial activities of\ncustomers and related parties with a name match that have closed their accounts\nwith the reporting institution.\n\n5.3 A reporting institution is also under an obligation to report to the SC periodically every\nsix months for both lists on frozen funds, properties or accounts of customers that\nare listed.",
+      "content_text": "5.2 For the purpose of submitting suspicious transaction report to the FIED, a reporting\ninstitution–\n\n(a)should include details and analysis of the CDD, ongoing CDD information,\nactivities of transactions of the listed entity or related parties; and\n\n(b)is encouraged to search, examine and analyse past financial activities of\ncustomers and related parties with a name match that have closed their accounts\nwith the reporting institution.\n\n5.3 A reporting institution is also under an obligation to report to the SC periodically every\nsix months for both lists on frozen funds, properties or accounts of customers that\nare listed.",
+      "token_count": 138,
+      "pages": [
+        90
+      ],
+      "section_path": [
+        "APPENDIX D",
+        "Reporting requirements"
+      ],
+      "source_element_ids": [
+        "p90-e2",
+        "p90-e3",
+        "p90-e4",
+        "p90-e5"
+      ]
+    },
+    {
+      "rank": 6,
+      "chunk_id": "485c4989-c300-45c8-ac06-79a59492bb5c-c0241-57faa0c1ac",
+      "chunk_index": 241,
+      "semantic_type": "clause",
+      "score": 0.5986719727516174,
+      "distance": 0.40132802724838257,
+      "text": "Section: APPENDIX D > Obligation to freeze funds, properties or accounts\nGroup: Guidance on the Implementation of Targeted Financial Sanction in\nRelation to Terrorism Financing\n\n4.1 A reporting institution is required to freeze funds, properties or accounts that are\nowned or controlled directly and indirectly by the listed entities without delay2.\n\n4.2 Funds, properties or accounts that are owned or controlled indirectly by the listed\nentities includes situation where the listed entity is a director of a customer. In such\ninstance, once the reporting institution is satisfied that the director owns or controls\ndirectly or indirectly the funds, properties or accounts of the customer, the reporting\ninstitution is required to freeze the same without delay.\n\n4.3 The obligation to freeze funds, properties or accounts of a listed entity continues until\nthe person is delisted from the sanction lists. Even death of the listed entity is not a\nbasis for a reporting institution not to continue its freezing obligation.\n\n4.4 If an asset is owned or controlled by a listed entity and the interest owned or\ncontrolled by the listed party cannot be segregated, then the entire asset should be\nsubjected to freezing.\n\n4.5 Notwithstanding the funds, properties or accounts are frozen, a reporting institution\nmay continue receiving dividends, interests, or other benefits, but such benefits shall\nstill remain frozen, so long as the individuals or entities continue to be listed.\n\n4.6 However no outgoing payment should be made out from the frozen funds, properties\nor accounts, including payment of any fees or service charges for maintaining the\nfrozen funds without the approval of Minister of Home Affairs.",
+      "content_text": "4.1 A reporting institution is required to freeze funds, properties or accounts that are\nowned or controlled directly and indirectly by the listed entities without delay2.\n\n4.2 Funds, properties or accounts that are owned or controlled indirectly by the listed\nentities includes situation where the listed entity is a director of a customer. In such\ninstance, once the reporting institution is satisfied that the director owns or controls\ndirectly or indirectly the funds, properties or accounts of the customer, the reporting\ninstitution is required to freeze the same without delay.\n\n4.3 The obligation to freeze funds, properties or accounts of a listed entity continues until\nthe person is delisted from the sanction lists. Even death of the listed entity is not a\nbasis for a reporting institution not to continue its freezing obligation.\n\n4.4 If an asset is owned or controlled by a listed entity and the interest owned or\ncontrolled by the listed party cannot be segregated, then the entire asset should be\nsubjected to freezing.\n\n4.5 Notwithstanding the funds, properties or accounts are frozen, a reporting institution\nmay continue receiving dividends, interests, or other benefits, but such benefits shall\nstill remain frozen, so long as the individuals or entities continue to be listed.\n\n4.6 However no outgoing payment should be made out from the frozen funds, properties\nor accounts, including payment of any fees or service charges for maintaining the\nfrozen funds without the approval of Minister of Home Affairs.",
+      "token_count": 305,
+      "pages": [
+        89
+      ],
+      "section_path": [
+        "APPENDIX D",
+        "Obligation to freeze funds, properties or accounts"
+      ],
+      "source_element_ids": [
+        "p89-e3",
+        "p89-e4",
+        "p89-e5",
+        "p89-e6",
+        "p89-e7",
+        "p89-e8"
+      ]
+    },
+    {
+      "rank": 7,
+      "chunk_id": "485c4989-c300-45c8-ac06-79a59492bb5c-c0174-90d016e7ab",
+      "chunk_index": 174,
+      "semantic_type": "paragraph",
+      "score": 0.5923293828964233,
+      "distance": 0.40767061710357666,
+      "text": "Section: PART VIII: COMBATING PROLIFERATION FINANCING > 19. REPORTING REQUIREMENTS\nGroup: Guidance for paragraph 19.13\n\nExamples of changes to the frozen funds, properties or accounts of customers\nincludes among others, an increase in the funds or value of the property frozen due\nto interest payments or dividends pay outs.",
+      "content_text": "Examples of changes to the frozen funds, properties or accounts of customers\nincludes among others, an increase in the funds or value of the property frozen due\nto interest payments or dividends pay outs.",
+      "token_count": 58,
+      "pages": [
+        66
+      ],
+      "section_path": [
+        "PART VIII: COMBATING PROLIFERATION FINANCING",
+        "19. REPORTING REQUIREMENTS"
+      ],
+      "source_element_ids": [
+        "p66-e6"
+      ]
+    },
+    {
+      "rank": 8,
+      "chunk_id": "485c4989-c300-45c8-ac06-79a59492bb5c-c0279-a5f6ecd15c",
+      "chunk_index": 279,
+      "semantic_type": "table",
+      "score": 0.5921965837478638,
+      "distance": 0.40780341625213623,
+      "text": "Section: APPENDIX I > REPORTING UPON DETERMINATION\nGroup: Match with Designated Person(s) (YES / NO) :\n\nNo | UNSCR Permanent Ref No | Customer Name | Address | NRIC / Passport No. | Intermediary Name - if reporting done on group basis | Branch maintaining the account/ facility Account No. | Account Facility/ Type | Date services given (DD/MM /YYYY) | Account/ Facility Status (on date of freezing) | Date account frozen (DD/MM /YYYY) | Account Balance as at: ________ | Related Parties | Remarks\n1 |  |  |  |  |  |  |  |  |  |  |  |  | \n2 |  |  |  |  |  |  |  |  |  |  |  |  | \n3 |  |  |  |  |  |  |  |  |  |  |  |  | \n4 |  |  |  |  |  |  |  |  |  |  |  |  | \n5 |  |  |  |  |  |  |  |  |  |  |  |  |",
+      "content_text": "No | UNSCR Permanent Ref No | Customer Name | Address | NRIC / Passport No. | Intermediary Name - if reporting done on group basis | Branch maintaining the account/ facility Account No. | Account Facility/ Type | Date services given (DD/MM /YYYY) | Account/ Facility Status (on date of freezing) | Date account frozen (DD/MM /YYYY) | Account Balance as at: ________ | Related Parties | Remarks\n1 |  |  |  |  |  |  |  |  |  |  |  |  | \n2 |  |  |  |  |  |  |  |  |  |  |  |  | \n3 |  |  |  |  |  |  |  |  |  |  |  |  | \n4 |  |  |  |  |  |  |  |  |  |  |  |  | \n5 |  |  |  |  |  |  |  |  |  |  |  |  |",
+      "token_count": 180,
+      "pages": [
+        107
+      ],
+      "section_path": [
+        "APPENDIX I",
+        "REPORTING UPON DETERMINATION"
+      ],
+      "source_element_ids": [
+        "p107-e7"
+      ]
+    },
+    {
+      "rank": 9,
+      "chunk_id": "485c4989-c300-45c8-ac06-79a59492bb5c-c0172-3df0a657c5",
+      "chunk_index": 172,
+      "semantic_type": "list_item",
+      "score": 0.5650327542443735,
+      "distance": 0.4349672457556265,
+      "text": "Section: PART VIII: COMBATING PROLIFERATION FINANCING > 18. REQUIREMENT TO FREEZE, BLOCK AND REJECT\nGroup: Guidance for paragraph 18\n\n(a)Funds, properties or accounts that are owned or controlled indirectly by the\ndesignated person includes situation where the designated person is a\ndirector of a customer. In such instance, once the reporting institution is\nsatisfied that the director owns or controls directly or indirectly the funds,\nproperties or accounts of the customer, the reporting institution is required\nto freeze.\n\n(b)The obligation to freeze funds, properties or accounts of a designated person\ncontinues until the person is delisted from the sanction lists. The freezing\nobligations remains even after the designated person passed away.\n\n(c)If an asset is owned or controlled by a designated person and the interest\nowned or controlled by the designated person cannot be segregated, then\nthe entire asset should be subjected to freezing.\n\n(d)Notwithstanding the funds, properties or accounts are frozen, a reporting\ninstitution may continue receiving dividends, interests, or other benefits, but\nsuch benefits shall still remain frozen, so long as the designated person\ncontinue to be listed.\n\n(e)No outgoing payment should be made from the frozen funds, properties or\naccounts including payment of any fees or service charges for maintaining\nthe frozen fund without prior written authorisation of the Strategic Trade\nController in consultation with the SC.",
+      "content_text": "(a)Funds, properties or accounts that are owned or controlled indirectly by the\ndesignated person includes situation where the designated person is a\ndirector of a customer. In such instance, once the reporting institution is\nsatisfied that the director owns or controls directly or indirectly the funds,\nproperties or accounts of the customer, the reporting institution is required\nto freeze.\n\n(b)The obligation to freeze funds, properties or accounts of a designated person\ncontinues until the person is delisted from the sanction lists. The freezing\nobligations remains even after the designated person passed away.\n\n(c)If an asset is owned or controlled by a designated person and the interest\nowned or controlled by the designated person cannot be segregated, then\nthe entire asset should be subjected to freezing.\n\n(d)Notwithstanding the funds, properties or accounts are frozen, a reporting\ninstitution may continue receiving dividends, interests, or other benefits, but\nsuch benefits shall still remain frozen, so long as the designated person\ncontinue to be listed.\n\n(e)No outgoing payment should be made from the frozen funds, properties or\naccounts including payment of any fees or service charges for maintaining\nthe frozen fund without prior written authorisation of the Strategic Trade\nController in consultation with the SC.",
+      "token_count": 260,
+      "pages": [
+        65
+      ],
+      "section_path": [
+        "PART VIII: COMBATING PROLIFERATION FINANCING",
+        "18. REQUIREMENT TO FREEZE, BLOCK AND REJECT"
+      ],
+      "source_element_ids": [
+        "p65-e2",
+        "p65-e3",
+        "p65-e4",
+        "p65-e5",
+        "p65-e6"
+      ]
+    },
+    {
+      "rank": 10,
+      "chunk_id": "485c4989-c300-45c8-ac06-79a59492bb5c-c0175-9774b5ede3",
+      "chunk_index": 175,
+      "semantic_type": "clause",
+      "score": 0.5604787730885293,
+      "distance": 0.43952122691147066,
+      "text": "Section: PART VIII: COMBATING PROLIFERATION FINANCING > 19. REPORTING REQUIREMENTS\n\n19.4 The form for periodic reporting to the SC is set out in Appendix J.\n\n19.5 A reporting institution must submit a STR to the FIED in the following circumstances:\n\n(a) In the event of positive name matches arising from ongoing screening of their\ncustomer database involving designated person or person identified as related\nparty related to the designated person; and\n\n(b) Where there is an attempted transaction by any of the designated person or its\nrelated party.\n\n19.6 The details on the lodgement of STR with FIED are set out in Appendix C.",
+      "content_text": "19.4 The form for periodic reporting to the SC is set out in Appendix J.\n\n19.5 A reporting institution must submit a STR to the FIED in the following circumstances:\n\n(a) In the event of positive name matches arising from ongoing screening of their\ncustomer database involving designated person or person identified as related\nparty related to the designated person; and\n\n(b) Where there is an attempted transaction by any of the designated person or its\nrelated party.\n\n19.6 The details on the lodgement of STR with FIED are set out in Appendix C.",
+      "token_count": 122,
+      "pages": [
+        66
+      ],
+      "section_path": [
+        "PART VIII: COMBATING PROLIFERATION FINANCING",
+        "19. REPORTING REQUIREMENTS"
+      ],
+      "source_element_ids": [
+        "p66-e7",
+        "p66-e8",
+        "p66-e9",
+        "p66-e10",
+        "p66-e11"
+      ]
+    }
+  ]
+}

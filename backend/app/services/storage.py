@@ -5,6 +5,7 @@ from fastapi import UploadFile
 
 from app.config import settings
 from app.schemas import ChunkingArtifact, CorrectionArtifact, DocumentExtraction, DocumentRecord, ResolvedStructureArtifact, StructuredDocument
+from app.db.sync import run_database_write
 
 
 CHUNK_SIZE = 1024 * 1024
@@ -38,6 +39,13 @@ def _atomic_write_json(path: Path, payload: dict) -> None:
 def write_metadata(record: DocumentRecord) -> None:
     path = settings.metadata_dir / f"{record.document_id}.json"
     _atomic_write_json(path, record.model_dump(mode="json"))
+
+    def persist() -> None:
+        from app.db.repository import upsert_document
+
+        upsert_document(record)
+
+    run_database_write(persist)
 
 
 def read_metadata(document_id: str) -> DocumentRecord | None:
@@ -127,6 +135,15 @@ def write_chunking_artifact(artifact: ChunkingArtifact) -> None:
     path = settings.chunks_dir / f"{artifact.document_id}.json"
     _atomic_write_json(path, artifact.model_dump(mode="json"))
 
+    record = read_metadata(artifact.document_id)
+    if record is not None:
+        def persist() -> None:
+            from app.db.repository import replace_chunks
+
+            replace_chunks(record, artifact)
+
+        run_database_write(persist)
+
 
 def read_chunking_artifact(document_id: str) -> ChunkingArtifact | None:
     path = settings.chunks_dir / f"{document_id}.json"
@@ -137,6 +154,13 @@ def read_chunking_artifact(document_id: str) -> ChunkingArtifact | None:
 
 def delete_chunking_artifact(document_id: str) -> None:
     (settings.chunks_dir / f"{document_id}.json").unlink(missing_ok=True)
+
+    def persist() -> None:
+        from app.db.repository import delete_chunks
+
+        delete_chunks(document_id)
+
+    run_database_write(persist)
 
 
 def delete_correction_artifacts(document_id: str) -> None:

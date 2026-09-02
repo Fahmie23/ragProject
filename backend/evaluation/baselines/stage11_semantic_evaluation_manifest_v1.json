@@ -1,0 +1,11 @@
+{
+  "manifest_version": "1.0",
+  "baseline_id": "stage11_semantic_evaluation_v1",
+  "purpose": "Freeze the human-confirmed Stage 11 semantic rubric, calibration labels, and metric implementation. Changes require a new semantic evaluation version.",
+  "rubric_version": "stage11_semantic_rubric_v1",
+  "files": {
+    "backend/evaluation/generation/stage11_semantic_rubric_v1.json": "9082cd521c7ac7fdc4747474a2a2eb47291bd490a5ee46a52a9cbf9420ca2549",
+    "backend/evaluation/generation/answer_citation_eval_dev_calibration_v1_frozen.json": "46dae4cad6767aa23b8a6b20714d493c4288166ea5e3235f7a5813f9b23452f0",
+    "backend/app/services/evaluation/semantic_metrics.py": "1e7fc4363ce572b994beb6ae20d3392e973f41c25e0fe46f814b445e128af98a"
+  }
+}

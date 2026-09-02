@@ -1,0 +1,8 @@
+Dataset: evaluation/retrieval/retrieval_eval_v1.json
+Stage 5: /mnt/data/eval_build/stage5_semantic_v2_1.txt
+Questions: 40
+Splits: {'dev': 25, 'heldout': 15}
+Categories: {'definition': 5, 'direct_requirement': 6, 'paraphrase': 6, 'multi_clause': 5, 'table_form': 4, 'appendix': 4, 'cross_page': 3, 'exception_condition': 4, 'cross_reference': 3}
+Stage 5 chunks: 284
+
+PASS: retrieval evaluation dataset is internally consistent with the Stage 5 corpus.

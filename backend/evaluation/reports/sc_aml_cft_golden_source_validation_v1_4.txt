@@ -1,0 +1,2 @@
+Golden specification valid.
+Source SHA, page count, and every element text anchor were verified against the PDF.

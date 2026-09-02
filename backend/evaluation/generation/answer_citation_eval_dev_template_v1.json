@@ -1,0 +1,60 @@
+{
+  "schema_version": "1.0",
+  "dataset_id": "answer_citation_eval_dev_template_v1",
+  "benchmark_status": "draft",
+  "document": {
+    "document_id": "REPLACE_WITH_DOCUMENT_ID",
+    "source_sha256": "0000000000000000000000000000000000000000000000000000000000000000",
+    "pdf_page_count": 1
+  },
+  "policy": {
+    "retrieval_profile": "retrieval_v1_stage8_2_top5",
+    "retrieval_v1_frozen": true,
+    "stage4_frozen": true,
+    "stage5_frozen": true,
+    "stage10_frozen": true,
+    "citation_version": "deterministic_citations_v1_2",
+    "heldout_tuning_forbidden": true
+  },
+  "counts": {
+    "questions": 1,
+    "dev": 1,
+    "heldout": 0,
+    "answered": 1,
+    "insufficient_evidence": 0
+  },
+  "questions": [
+    {
+      "question_id": "ACIT-001",
+      "split": "dev",
+      "category": "direct_requirement",
+      "difficulty": "medium",
+      "question": "REPLACE WITH A NEW ANSWER/CITATION EVALUATION QUESTION",
+      "expected_status": "answered",
+      "gold": {
+        "required_claims": [
+          {
+            "claim_id": "GC1",
+            "requirement": "Describe the minimum fact that a correct answer must contain.",
+            "notes": "Semantic scoring is performed later under the frozen Stage 11 rubric."
+          }
+        ],
+        "required_source_groups": [
+          {
+            "group_id": "G1",
+            "description": "At least one of these structural locators must appear in the validated citations.",
+            "any_of": [
+              {
+                "kind": "clause",
+                "label": "REPLACE_WITH_CLAUSE_LABEL",
+                "pages": [1]
+              }
+            ]
+          }
+        ],
+        "answer_notes": "Authoritative notes for human/semantic judging. Do not place model-generated prose here."
+      },
+      "notes": "Template only. Do not treat this placeholder record as benchmark data."
+    }
+  ]
+}

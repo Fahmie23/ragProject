@@ -1,0 +1,25 @@
+Dataset: answer_citation_eval_heldout_v1 (18 frozen HELD-OUT questions)
+Frozen retrieval profile: retrieval_v1_stage8_2_top5
+Citation version: deterministic_citations_v1_2
+Held-out benchmark hash: PASS
+Prior-benchmark independence: PASS
+- ACIT-101 [definition/medium] Under the Guidelines, who can qualify as a 'related party' of a designated person?
+- ACIT-102 [direct_requirement/easy] If a reporting institution is jointly regulated by BNM and the SC, which AML/CFT/CPF guidelines must it follow when the requirements differ?
+- ACIT-103 [direct_requirement/medium] What consequences can follow from non-compliance with these Guidelines, and which people within a reporting institution may face enforcement action?
+- ACIT-104 [cross_page/hard] What five general principles must a reporting institution ensure when combating ML/TF/PF under paragraph 6.2?
+- ACIT-105 [multi_clause/hard] For a customer that is a trust or another legal arrangement, whose identity must be considered for beneficial ownership, and what status must trustees or equivalent persons disclose when establishing the relationship?
+- ACIT-106 [multi_clause/medium] What record-retention, availability and traceability obligations apply to originator and beneficiary information for digital-asset wire transfers?
+- ACIT-107 [multi_clause/hard] What minimum information must be retained in the records for each transaction under paragraph 10.1?
+- ACIT-108 [multi_clause/hard] If a reporting institution decides there are no reasonable grounds to lodge an STR, what must it document, and what should it do if a new suspicion later arises?
+- ACIT-109 [exception_condition/medium] What may a reporting institution do when it suspects ML/TF/PF and reasonably believes that carrying out CDD would tip off the customer?
+- ACIT-110 [multi_clause/hard] What safeguards in paragraphs 11.13 to 11.16 support the compliance officer’s independence and central role in suspicious-transaction reporting?
+- ACIT-111 [appendix/medium] Under Appendix B, how should a reporting institution treat family members or close associates of a PEP who no longer holds a prominent public function, and which factors may indicate continuing high risk?
+- ACIT-112 [appendix/hard] According to Appendix E, how do the three cascading steps identify the beneficial owner of a legal person, and when should the next step be used?
+- ACIT-113 [appendix/hard] In Appendix E Step 2, what are examples of control over a legal person through means other than ownership?
+- ACIT-114 [appendix/hard] What counter-proliferation-financing measures does Appendix G say Regulation 3 requires for designated countries and persons?
+- ACIT-115 [appendix/hard] According to Appendix H, how should a capital market intermediary keep UNSCR sanctions information current, and when does a UNSCR delisting take effect?
+- ACIT-116 [out_of_scope/easy] What is the current Overnight Policy Rate set by Bank Negara Malaysia?
+- ACIT-117 [out_of_scope/easy] What is the current retail price of one gram of 999 gold in Malaysia?
+- ACIT-118 [out_of_scope/easy] What is the air quality index in Kuala Lumpur right now?
+REFUSED: live held-out capture requires exact confirmation token:
+  --confirm-heldout RUN_FROZEN_ANSWER_CITATION_HELDOUT_V1

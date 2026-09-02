@@ -5,6 +5,9 @@ from app.schemas import (
     DocumentExtraction,
     DocumentRecord,
     ExtractionSummary,
+    CanonicalElement,
+    CanonicalSourceTrace,
+    SectionRecord,
     ExtractorInfo,
     PageExtraction,
     TableExtraction,
@@ -13,6 +16,7 @@ from app.schemas import (
     TextSpan,
 )
 from app.services.canonical import build_canonical_document
+from app.services.semantic.validator import validate_semantic_structure
 
 
 def _text_block(block_id: str, number: int, bbox: list[float], text: str, size: float) -> TextBlock:
@@ -3266,3 +3270,1285 @@ def test_semantic_v231_paragraph_list_intro_survives_intervening_figure_fragment
             and relation.target_element_id == member.element_id
             for relation in result.relationships
         )
+
+
+def test_semantic_v24_toc_navigation_headings_do_not_create_body_sections():
+    record, extraction, layout = _fixture()
+    raw = extraction.pages[0]
+    raw.blocks = [
+        _text_block("p1-b0", 0, [70, 40, 250, 65], "CONTENTS", 16),
+        _text_block("p1-b1", 1, [70, 100, 500, 125], "PART II: RISK-BASED APPROACH", 12),
+    ]
+    raw.tables = []
+    extraction.summary.text_block_count = 2
+    extraction.summary.table_count = 0
+    layout["result"]["toc"] = []
+    layout["result"]["pages"][0]["boxes"] = [
+        {"x0":70,"y0":40,"x1":250,"y1":65,"boxclass":"section-header","textlines":[{"spans":[{"text":"CONTENTS"}]}]},
+        {"x0":70,"y0":100,"x1":500,"y1":125,"boxclass":"section-header","textlines":[{"spans":[{"text":"PART II: RISK-BASED APPROACH"}]}]},
+    ]
+    result = build_canonical_document(record=record, extraction=extraction, layout_artifact=layout)
+    assert result.sections == []
+    part = next(item for item in result.pages[0].elements if item.text.startswith("PART II"))
+    assert part.type == "unknown"
+    assert "PART II" not in result.body_text
+
+
+def test_semantic_v24_numbering_repairs_parent_when_heading_levels_disagree():
+    record, extraction, layout = _fixture()
+    raw = extraction.pages[0]
+    raw.blocks = [
+        _text_block("p1-b0", 0, [50,40,300,70], "Sample Report", 22),
+        _text_block("p1-b1", 1, [70,90,500,115], "PART II: RISK-BASED APPROACH APPLICATION", 14),
+        _text_block("p1-b2", 2, [70,130,500,155], "7. RISK-BASED APPROACH APPLICATION", 13),
+        _text_block("p1-b3", 3, [70,170,500,195], "7.1 ML/TF Risk assessment", 12),
+        _text_block("p1-b4", 4, [70,210,500,235], "7.3 PF Risk assessment", 12),
+    ]
+    raw.tables = []
+    extraction.summary.text_block_count = len(raw.blocks)
+    extraction.summary.table_count = 0
+    # Deliberately inconsistent bookmark coverage: 7.3 must still be recovered
+    # from its numbering family rather than inheriting a wrong sibling level.
+    layout["result"]["toc"] = [[2, "7. RISK-BASED APPROACH APPLICATION", 1], [3, "7.1 ML/TF Risk assessment", 1]]
+    layout["result"]["pages"][0]["boxes"] = [
+        {"x0":50,"y0":40,"x1":300,"y1":70,"boxclass":"title","textlines":[{"spans":[{"text":"Sample Report"}]}]},
+        {"x0":70,"y0":90,"x1":500,"y1":115,"boxclass":"section-header","textlines":[{"spans":[{"text":"PART II: RISK-BASED APPROACH APPLICATION"}]}]},
+        {"x0":70,"y0":130,"x1":500,"y1":155,"boxclass":"section-header","textlines":[{"spans":[{"text":"7. RISK-BASED APPROACH APPLICATION"}]}]},
+        {"x0":70,"y0":170,"x1":500,"y1":195,"boxclass":"section-header","textlines":[{"spans":[{"text":"7.1 ML/TF Risk assessment"}]}]},
+        {"x0":70,"y0":210,"x1":500,"y1":235,"boxclass":"section-header","textlines":[{"spans":[{"text":"7.3 PF Risk assessment"}]}]},
+    ]
+    result = build_canonical_document(record=record, extraction=extraction, layout_artifact=layout)
+    sec7 = next(section for section in result.sections if section.title.startswith("7. RISK"))
+    sec71 = next(section for section in result.sections if section.title.startswith("7.1"))
+    sec73 = next(section for section in result.sections if section.title.startswith("7.3"))
+    assert sec71.parent_section_id == sec7.section_id
+    assert sec73.parent_section_id == sec7.section_id
+    assert sec73.level == sec71.level
+
+
+def test_semantic_v24_note_is_local_callout_and_cannot_absorb_next_clause():
+    record, extraction, layout = _fixture()
+    raw = extraction.pages[0]
+    raw.blocks = [
+        _text_block("p1-b0",0,[50,40,300,70],"Sample Report",22),
+        _text_block("p1-b1",1,[70,90,500,115],"14 IDENTIFICATION AND DESIGNATION",14),
+        _text_block("p1-b2",2,[70,140,530,175],"14.3 A reporting institution should maintain a database.",11),
+        _text_block("p1-b3",3,[95,200,160,220],"Note:",11),
+        _text_block("p1-b4",4,[95,230,530,260],"The updated list can be obtained from the relevant authority.",10),
+        _text_block("p1-b5",5,[70,300,530,345],"14.4 A reporting institution must conduct checks on customer names.",11),
+    ]
+    raw.tables=[]; extraction.summary.text_block_count=len(raw.blocks); extraction.summary.table_count=0
+    layout["result"]["toc"]=[]
+    layout["result"]["pages"][0]["boxes"]=[
+        {"x0":50,"y0":40,"x1":300,"y1":70,"boxclass":"title","textlines":[{"spans":[{"text":"Sample Report"}]}]},
+        {"x0":70,"y0":90,"x1":500,"y1":115,"boxclass":"section-header","textlines":[{"spans":[{"text":"14 IDENTIFICATION AND DESIGNATION"}]}]},
+        {"x0":70,"y0":140,"x1":530,"y1":175,"boxclass":"list-item","textlines":[{"spans":[{"text":"14.3 A reporting institution should maintain a database."}]}]},
+        {"x0":95,"y0":200,"x1":160,"y1":220,"boxclass":"section-header","textlines":[{"spans":[{"text":"Note:"}]}]},
+        {"x0":95,"y0":230,"x1":530,"y1":260,"boxclass":"text","textlines":[{"spans":[{"text":"The updated list can be obtained from the relevant authority."}]}]},
+        {"x0":70,"y0":300,"x1":530,"y1":345,"boxclass":"list-item","textlines":[{"spans":[{"text":"14.4 A reporting institution must conduct checks on customer names."}]}]},
+    ]
+    result=build_canonical_document(record=record,extraction=extraction,layout_artifact=layout)
+    note=next(item for item in result.pages[0].elements if item.text=="Note:")
+    clause14_4=next(item for item in result.pages[0].elements if item.text.startswith("14.4"))
+    assert note.type=="group_header"
+    assert note.element_id not in {section.element_id for section in result.sections}
+    assert not any(r.type=="introduces" and r.target_element_id==note.element_id for r in result.relationships)
+    assert not any(r.type=="introduces" and r.source_element_id==note.element_id and r.target_element_id==clause14_4.element_id for r in result.relationships)
+
+
+def test_semantic_v24_obligation_intro_generalizes_must_incorporate_the_following():
+    record, extraction, layout = _fixture()
+    raw=extraction.pages[0]
+    raw.blocks=[
+        _text_block("p1-b0",0,[50,40,300,70],"Sample Report",22),
+        _text_block("p1-b1",1,[70,100,530,140],"7.3.3 The risk assessment processes must incorporate the following:",11),
+        _text_block("p1-b2",2,[110,160,530,190],"(a) Documenting the risk assessments and findings;",11),
+        _text_block("p1-b3",3,[110,205,530,235],"(b) Considering all relevant risk factors;",11),
+    ]
+    raw.tables=[]; extraction.summary.text_block_count=len(raw.blocks); extraction.summary.table_count=0
+    layout["result"]["toc"]=[]
+    layout["result"]["pages"][0]["boxes"]=[
+        {"x0":50,"y0":40,"x1":300,"y1":70,"boxclass":"title","textlines":[{"spans":[{"text":"Sample Report"}]}]},
+        {"x0":70,"y0":100,"x1":530,"y1":140,"boxclass":"list-item","textlines":[{"spans":[{"text":"7.3.3 The risk assessment processes must incorporate the following:"}]}]},
+        {"x0":110,"y0":160,"x1":530,"y1":190,"boxclass":"list-item","textlines":[{"spans":[{"text":"(a) Documenting the risk assessments and findings;"}]}]},
+        {"x0":110,"y0":205,"x1":530,"y1":235,"boxclass":"list-item","textlines":[{"spans":[{"text":"(b) Considering all relevant risk factors;"}]}]},
+    ]
+    result=build_canonical_document(record=record,extraction=extraction,layout_artifact=layout)
+    members=[item for item in result.pages[0].elements if item.text.startswith(("(a)","(b)"))]
+    assert len(members)==2
+    assert all(item.type=="subclause" for item in members)
+
+
+def test_semantic_v24_marker_only_fragment_merges_with_same_row_content():
+    record, extraction, layout = _fixture()
+    raw=extraction.pages[0]
+    raw.blocks=[
+        _text_block("p1-b0",0,[50,40,300,70],"Sample Report",22),
+        _text_block("p1-b1",1,[140,180,520,205],"(ii) Not listed in jurisdictions identified in public statements;",11),
+    ]
+    raw.tables=[]; extraction.summary.text_block_count=2; extraction.summary.table_count=0
+    layout["result"]["toc"]=[]
+    layout["result"]["pages"][0]["boxes"]=[
+        {"x0":50,"y0":40,"x1":300,"y1":70,"boxclass":"title","textlines":[{"spans":[{"text":"Sample Report"}]}]},
+        {"x0":143,"y0":180,"x1":157,"y1":195,"boxclass":"list-item","textlines":[{"spans":[{"text":"(ii)"}]}]},
+        {"x0":171,"y0":180,"x1":500,"y1":195,"boxclass":"list-item","textlines":[{"spans":[{"text":"Not listed in jurisdictions identified in public statements;"}]}]},
+    ]
+    result=build_canonical_document(record=record,extraction=extraction,layout_artifact=layout)
+    matching=[item for item in result.pages[0].elements if "Not listed in jurisdictions" in item.text]
+    assert len(matching)==1
+    assert matching[0].text.startswith("(ii)")
+    assert len(result.pages[0].elements)==2
+
+
+def test_semantic_v24_wrapped_heading_fragments_merge_when_same_stage3_block():
+    record, extraction, layout = _fixture()
+    raw=extraction.pages[0]
+    raw.blocks=[
+        _text_block("p1-b0",0,[50,40,300,70],"Sample Report",22),
+        _text_block("p1-b1",1,[72,150,320,185],"Secretary General Ministry of Home Affairs",11),
+        _text_block("p1-b2",2,[72,220,500,250],"Level 10, Complex D",10),
+    ]
+    raw.tables=[]; extraction.summary.text_block_count=3; extraction.summary.table_count=0
+    layout["result"]["toc"]=[]
+    layout["result"]["pages"][0]["boxes"]=[
+        {"x0":50,"y0":40,"x1":300,"y1":70,"boxclass":"title","textlines":[{"spans":[{"text":"Sample Report"}]}]},
+        {"x0":72,"y0":150,"x1":280,"y1":165,"boxclass":"section-header","textlines":[{"spans":[{"text":"Secretary General Ministry of Home"}]}]},
+        {"x0":72,"y0":170,"x1":120,"y1":182,"boxclass":"section-header","textlines":[{"spans":[{"text":"Affairs"}]}]},
+        {"x0":72,"y0":220,"x1":500,"y1":250,"boxclass":"text","textlines":[{"spans":[{"text":"Level 10, Complex D"}]}]},
+    ]
+    result=build_canonical_document(record=record,extraction=extraction,layout_artifact=layout)
+    headings=[item for item in result.pages[0].elements if "Secretary General" in item.text]
+    assert len(headings)==1
+    assert "Home\nAffairs" in headings[0].text
+    assert not any(item.text=="Affairs" for item in result.pages[0].elements)
+
+
+def test_semantic_v24_complete_clause_does_not_continue_to_fresh_capitalized_paragraph():
+    record, extraction, layout = _fixture()
+    p1=[
+        _text_block("p1-b0",0,[50,40,300,70],"Sample Report",22),
+        _text_block("p1-b1",1,[70,700,530,770],"6.2 A reporting institution should direct customers to the authority.",11),
+    ]
+    p2=[_text_block("p2-b0",0,[70,45,530,90],"The contact point for the authority is:",11)]
+    extraction.pages=[_make_page(1,p1),_make_page(2,p2)]
+    extraction.summary.page_count=2; extraction.summary.text_block_count=3; extraction.summary.table_count=0
+    layout["result"]["page_count"]=2; layout["result"]["toc"]=[]
+    layout["result"]["pages"]=[
+        {"page_number":1,"width":600,"height":800,"boxes":[
+            {"x0":50,"y0":40,"x1":300,"y1":70,"boxclass":"title","textlines":[{"spans":[{"text":"Sample Report"}]}]},
+            {"x0":70,"y0":700,"x1":530,"y1":770,"boxclass":"list-item","textlines":[{"spans":[{"text":"6.2 A reporting institution should direct customers to the authority."}]}]},
+        ]},
+        {"page_number":2,"width":600,"height":800,"boxes":[
+            {"x0":70,"y0":45,"x1":530,"y1":90,"boxclass":"text","textlines":[{"spans":[{"text":"The contact point for the authority is:"}]}]},
+        ]},
+    ]
+    result=build_canonical_document(record=record,extraction=extraction,layout_artifact=layout)
+    source=next(item for item in result.pages[0].elements if item.text.startswith("6.2"))
+    target=result.pages[1].elements[0]
+    assert not any(r.type=="continues" and r.source_element_id==source.element_id and r.target_element_id==target.element_id for r in result.relationships)
+
+
+def test_semantic_v24_bottom_paragraph_with_marker_and_small_font_is_footnote():
+    record, extraction, layout = _fixture()
+    raw=extraction.pages[0]
+    raw.blocks=[
+        _text_block("p1-b0",0,[50,40,300,70],"Sample Report",22),
+        _text_block("p1-b1",1,[70,150,530,190],"Main body paragraph.",11),
+        _text_block("p1-b2",2,[45,710,555,755],"2 Refers to customers before the obligation became applicable.",9.2),
+    ]
+    raw.tables=[]; extraction.summary.text_block_count=3; extraction.summary.table_count=0
+    layout["result"]["toc"]=[]
+    layout["result"]["pages"][0]["boxes"]=[
+        {"x0":50,"y0":40,"x1":300,"y1":70,"boxclass":"title","textlines":[{"spans":[{"text":"Sample Report"}]}]},
+        {"x0":70,"y0":150,"x1":530,"y1":190,"boxclass":"text","textlines":[{"spans":[{"text":"Main body paragraph."}]}]},
+        {"x0":45,"y0":710,"x1":555,"y1":755,"boxclass":"text","textlines":[{"spans":[{"text":"2 Refers to customers before the obligation became applicable."}]}]},
+    ]
+    result=build_canonical_document(record=record,extraction=extraction,layout_artifact=layout)
+    foot=next(item for item in result.pages[0].elements if item.text.startswith("2 Refers"))
+    assert foot.type=="footnote"
+
+
+def test_semantic_v24_textual_picture_duplicates_are_suppressed_not_counted_as_figures():
+    record, extraction, layout = _fixture()
+    raw=extraction.pages[0]
+    raw.blocks=[
+        _text_block("p1-b0",0,[50,40,300,70],"Sample Report",22),
+        _text_block("p1-b1",1,[70,140,500,175],"The breakdown is as follows:",11),
+        _text_block("p1-b2",2,[70,190,500,225],"A) Alpha member",11),
+    ]
+    raw.tables=[]; extraction.summary.text_block_count=3; extraction.summary.table_count=0
+    layout["result"]["toc"]=[]
+    layout["result"]["pages"][0]["boxes"]=[
+        {"x0":50,"y0":40,"x1":300,"y1":70,"boxclass":"title","textlines":[{"spans":[{"text":"Sample Report"}]}]},
+        {"x0":70,"y0":140,"x1":500,"y1":175,"boxclass":"text","textlines":[{"spans":[{"text":"The breakdown is as follows:"}]}]},
+        {"x0":70,"y0":190,"x1":95,"y1":205,"boxclass":"picture","textlines":[{"spans":[{"text":"A)"}]}]},
+        {"x0":100,"y0":190,"x1":500,"y1":225,"boxclass":"picture","textlines":[{"spans":[{"text":"Alpha member"}]}]},
+        {"x0":70,"y0":192,"x1":500,"y1":225,"boxclass":"list-item","textlines":[{"spans":[{"text":"A) Alpha member"}]}]},
+    ]
+    result=build_canonical_document(record=record,extraction=extraction,layout_artifact=layout)
+    assert result.summary.figure_count==0
+    assert all(item.type!="figure" for item in result.pages[0].elements)
+    assert sum(item.type=="list_item" and item.text.startswith("A)") for item in result.pages[0].elements)==1
+
+
+def test_semantic_v24_unnumbered_appendix_sections_do_not_nest_from_fluctuating_toc_levels():
+    record, extraction, layout = _fixture()
+    raw=extraction.pages[0]
+    raw.blocks=[
+        _text_block("p1-b0",0,[70,40,250,65],"APPENDIX B",14),
+        _text_block("p1-b1",1,[70,75,500,95],"Guidance on Appendix Topic",12),
+        _text_block("p1-b2",2,[70,110,520,140],"1.1 Introductory appendix clause.",11),
+        _text_block("p1-b3",3,[70,180,300,200],"Family Members",11),
+        _text_block("p1-b4",4,[70,220,520,250],"1.3 First topic clause.",11),
+        _text_block("p1-b5",5,[70,290,300,310],"Close Associates",11),
+        _text_block("p1-b6",6,[70,330,520,360],"1.5 Second topic clause.",11),
+        _text_block("p1-b7",7,[70,400,400,420],"Source of Information",11),
+        _text_block("p1-b8",8,[70,440,520,470],"1.12 Third topic clause.",11),
+    ]
+    raw.tables=[]; extraction.summary.text_block_count=len(raw.blocks); extraction.summary.table_count=0
+    layout["result"]["toc"]=[[3,"Family Members",1],[4,"Close Associates",1],[5,"Source of Information",1]]
+    layout["result"]["pages"][0]["boxes"]=[
+        {"x0":70,"y0":40,"x1":250,"y1":65,"boxclass":"section-header","textlines":[{"spans":[{"text":"APPENDIX B"}]}]},
+        {"x0":70,"y0":75,"x1":500,"y1":95,"boxclass":"section-header","textlines":[{"spans":[{"text":"Guidance on Appendix Topic"}]}]},
+        {"x0":70,"y0":110,"x1":520,"y1":140,"boxclass":"list-item","textlines":[{"spans":[{"text":"1.1 Introductory appendix clause."}]}]},
+        {"x0":70,"y0":180,"x1":300,"y1":200,"boxclass":"section-header","textlines":[{"spans":[{"text":"Family Members"}]}]},
+        {"x0":70,"y0":220,"x1":520,"y1":250,"boxclass":"list-item","textlines":[{"spans":[{"text":"1.3 First topic clause."}]}]},
+        {"x0":70,"y0":290,"x1":300,"y1":310,"boxclass":"section-header","textlines":[{"spans":[{"text":"Close Associates"}]}]},
+        {"x0":70,"y0":330,"x1":520,"y1":360,"boxclass":"list-item","textlines":[{"spans":[{"text":"1.5 Second topic clause."}]}]},
+        {"x0":70,"y0":400,"x1":400,"y1":420,"boxclass":"section-header","textlines":[{"spans":[{"text":"Source of Information"}]}]},
+        {"x0":70,"y0":440,"x1":520,"y1":470,"boxclass":"list-item","textlines":[{"spans":[{"text":"1.12 Third topic clause."}]}]},
+    ]
+    result=build_canonical_document(record=record,extraction=extraction,layout_artifact=layout)
+    appendix=next(section for section in result.sections if section.title=="APPENDIX B")
+    topics=[section for section in result.sections if section.title in {"Family Members","Close Associates","Source of Information"}]
+    assert len(topics)==3
+    assert all(section.parent_section_id==appendix.section_id for section in topics)
+
+def test_semantic_v24_descriptive_phase_groups_own_nested_lists_without_clause_parent_corruption():
+    record, extraction, layout = _fixture()
+    raw=extraction.pages[0]
+    raw.blocks=[
+        _text_block("p1-b0",0,[50,40,300,70],"Sample Report",22),
+        _text_block("p1-b1",1,[70,100,530,140],"1.2 There are three phases in the process:",11),
+        _text_block("p1-b2",2,[110,160,220,180],"(a) Phase 1",11),
+        _text_block("p1-b3",3,[145,195,530,225],"(i) A reporting institution should identify the counterparty.",11),
+        _text_block("p1-b4",4,[110,250,220,270],"(b) Phase 2",11),
+        _text_block("p1-b5",5,[145,285,530,315],"(i) A reporting institution should assess eligibility.",11),
+        _text_block("p1-b6",6,[145,325,530,355],"(ii) A reporting institution may document the result.",11),
+        _text_block("p1-b7",7,[110,380,220,400],"(c) Phase 3",11),
+        _text_block("p1-b8",8,[145,415,530,445],"(i) A reporting institution should review the relationship.",11),
+    ]
+    raw.tables=[]; extraction.summary.text_block_count=len(raw.blocks); extraction.summary.table_count=0
+    layout["result"]["toc"]=[]
+    layout["result"]["pages"][0]["boxes"]=[
+        {"x0":50,"y0":40,"x1":300,"y1":70,"boxclass":"title","textlines":[{"spans":[{"text":"Sample Report"}]}]},
+        {"x0":70,"y0":100,"x1":530,"y1":140,"boxclass":"list-item","textlines":[{"spans":[{"text":"1.2 There are three phases in the process:"}]}]},
+        {"x0":110,"y0":160,"x1":220,"y1":180,"boxclass":"section-header","textlines":[{"spans":[{"text":"(a) Phase 1"}]}]},
+        {"x0":145,"y0":195,"x1":530,"y1":225,"boxclass":"list-item","textlines":[{"spans":[{"text":"(i) A reporting institution should identify the counterparty."}]}]},
+        {"x0":110,"y0":250,"x1":220,"y1":270,"boxclass":"list-item","textlines":[{"spans":[{"text":"(b) Phase 2"}]}]},
+        {"x0":145,"y0":285,"x1":530,"y1":315,"boxclass":"list-item","textlines":[{"spans":[{"text":"(i) A reporting institution should assess eligibility."}]}]},
+        {"x0":145,"y0":325,"x1":530,"y1":355,"boxclass":"list-item","textlines":[{"spans":[{"text":"(ii) A reporting institution may document the result."}]}]},
+        {"x0":110,"y0":380,"x1":220,"y1":400,"boxclass":"section-header","textlines":[{"spans":[{"text":"(c) Phase 3"}]}]},
+        {"x0":145,"y0":415,"x1":530,"y1":445,"boxclass":"list-item","textlines":[{"spans":[{"text":"(i) A reporting institution should review the relationship."}]}]},
+    ]
+    result=build_canonical_document(record=record,extraction=extraction,layout_artifact=layout)
+    clause=next(item for item in result.pages[0].elements if item.text.startswith("1.2"))
+    phases=[item for item in result.pages[0].elements if "Phase " in item.text]
+    nested=[item for item in result.pages[0].elements if item.text.startswith("(i)") or item.text.startswith("(ii)")]
+    assert len(phases)==3 and all(item.type=="list_item" for item in phases)
+    assert all(item.type=="list_item" for item in nested)
+    assert all(item.clause_id is None and item.parent_clause_id is None for item in nested)
+    for phase in phases:
+        assert any(r.type=="introduces" and r.source_element_id==clause.element_id and r.target_element_id==phase.element_id for r in result.relationships)
+    phase1=next(item for item in phases if "Phase 1" in item.text)
+    phase2=next(item for item in phases if "Phase 2" in item.text)
+    phase3=next(item for item in phases if "Phase 3" in item.text)
+    p1_child=next(item for item in nested if "identify the counterparty" in item.text)
+    p2_children=[item for item in nested if "assess eligibility" in item.text or "document the result" in item.text]
+    p3_child=next(item for item in nested if "review the relationship" in item.text)
+    assert any(r.type=="introduces" and r.source_element_id==phase1.element_id and r.target_element_id==p1_child.element_id for r in result.relationships)
+    assert all(any(r.type=="introduces" and r.source_element_id==phase2.element_id and r.target_element_id==child.element_id for r in result.relationships) for child in p2_children)
+    assert any(r.type=="introduces" and r.source_element_id==phase3.element_id and r.target_element_id==p3_child.element_id for r in result.relationships)
+
+
+def test_semantic_v24_numbered_heading_near_page_bottom_is_recovered_from_footer_role():
+    record, extraction, layout = _fixture()
+    p1 = [
+        _text_block("p1-b0", 0, [50, 40, 300, 70], "Sample Report", 22),
+        _text_block("p1-b1", 1, [70, 120, 500, 145], "8.3 Enhanced CDD measures", 12),
+        _text_block("p1-b2", 2, [72, 735, 430, 755], "8.4 Politically exposed persons (PEPs)", 11),
+    ]
+    p2 = [_text_block("p2-b0", 0, [72, 55, 530, 95], "8.4.1 The requirements also apply to family members.", 11)]
+    extraction.pages = [_make_page(1, p1), _make_page(2, p2)]
+    extraction.summary.page_count = 2
+    extraction.summary.text_block_count = 4
+    extraction.summary.table_count = 0
+    layout["result"]["page_count"] = 2
+    layout["result"]["toc"] = []
+    layout["result"]["pages"] = [
+        {"page_number": 1, "width": 600, "height": 800, "boxes": [
+            {"x0":50,"y0":40,"x1":300,"y1":70,"boxclass":"title","textlines":[{"spans":[{"text":"Sample Report"}]}]},
+            {"x0":70,"y0":120,"x1":500,"y1":145,"boxclass":"section-header","textlines":[{"spans":[{"text":"8.3 Enhanced CDD measures"}]}]},
+            {"x0":72,"y0":735,"x1":430,"y1":755,"boxclass":"page-footer","textlines":[{"spans":[{"text":"8.4Politically exposed persons (PEPs)"}]}]},
+        ]},
+        {"page_number": 2, "width": 600, "height": 800, "boxes": [
+            {"x0":72,"y0":55,"x1":530,"y1":95,"boxclass":"list-item","textlines":[{"spans":[{"text":"8.4.1 The requirements also apply to family members."}]}]},
+        ]},
+    ]
+    result = build_canonical_document(record=record, extraction=extraction, layout_artifact=layout)
+    heading = next(item for item in result.pages[0].elements if "Politically exposed" in item.text)
+    assert heading.type == "section_header"
+    assert heading.text.startswith("8.4 ")
+    section = next(section for section in result.sections if section.element_id == heading.element_id)
+    clause = next(item for item in result.pages[1].elements if item.text.startswith("8.4.1"))
+    assert clause.type == "clause"
+    assert clause.section_id == section.section_id
+
+
+def test_semantic_v24_numeric_guidance_points_are_not_promoted_to_global_clauses():
+    record, extraction, layout = _fixture()
+    raw = extraction.pages[0]
+    raw.blocks = [
+        _text_block("p1-b0", 0, [50,40,300,70], "Sample Report", 22),
+        _text_block("p1-b1", 1, [70,120,530,150], "9.2.1 A reporting institution must provide information.", 11),
+        _text_block("p1-b2", 2, [105,180,430,200], "Guidance for paragraph 9.2.1 (a)", 11),
+        _text_block("p1-b3", 3, [120,220,530,260], "1. Accurate means the information has been verified.", 11),
+        _text_block("p1-b4", 4, [70,310,530,350], "9.2.2 A reporting institution must submit the information securely.", 11),
+    ]
+    raw.tables=[]; extraction.summary.text_block_count=len(raw.blocks); extraction.summary.table_count=0
+    layout["result"]["toc"] = []
+    layout["result"]["pages"][0]["boxes"] = [
+        {"x0":50,"y0":40,"x1":300,"y1":70,"boxclass":"title","textlines":[{"spans":[{"text":"Sample Report"}]}]},
+        {"x0":70,"y0":120,"x1":530,"y1":150,"boxclass":"list-item","textlines":[{"spans":[{"text":"9.2.1 A reporting institution must provide information."}]}]},
+        {"x0":105,"y0":180,"x1":430,"y1":200,"boxclass":"section-header","textlines":[{"spans":[{"text":"Guidance for paragraph 9.2.1 (a)"}]}]},
+        {"x0":120,"y0":220,"x1":530,"y1":260,"boxclass":"list-item","textlines":[{"spans":[{"text":"1. Accurate means the information has been verified."}]}]},
+        {"x0":70,"y0":310,"x1":530,"y1":350,"boxclass":"list-item","textlines":[{"spans":[{"text":"9.2.2 A reporting institution must submit the information securely."}]}]},
+    ]
+    result = build_canonical_document(record=record, extraction=extraction, layout_artifact=layout)
+    guidance = next(item for item in result.pages[0].elements if item.text.startswith("Guidance for"))
+    point = next(item for item in result.pages[0].elements if item.text.startswith("1. Accurate"))
+    fresh = next(item for item in result.pages[0].elements if item.text.startswith("9.2.2"))
+    assert guidance.type == "group_header"
+    assert point.type != "clause"
+    assert point.clause_number is None
+    assert fresh.type == "clause"
+    assert any(r.type == "introduces" and r.source_element_id == guidance.element_id and r.target_element_id == point.element_id for r in result.relationships)
+    assert not any(r.type == "introduces" and r.source_element_id == guidance.element_id and r.target_element_id == fresh.element_id for r in result.relationships)
+
+
+def test_semantic_v24_guidance_sentence_items_do_not_inherit_previous_clause_parent():
+    record, extraction, layout = _fixture()
+    raw = extraction.pages[0]
+    raw.blocks = [
+        _text_block("p1-b0", 0, [50,40,300,70], "Sample Report", 22),
+        _text_block("p1-b1", 1, [70,120,530,150], "18.4 A reporting institution must reject the customer.", 11),
+        _text_block("p1-b2", 2, [105,180,430,200], "Guidance for paragraph 18", 11),
+        _text_block("p1-b3", 3, [120,220,530,275], "(a) Funds that are controlled indirectly by the designated person must be frozen.", 11),
+        _text_block("p1-b4", 4, [120,290,530,345], "(b) The obligation continues until the person is delisted.", 11),
+    ]
+    raw.tables=[]; extraction.summary.text_block_count=len(raw.blocks); extraction.summary.table_count=0
+    layout["result"]["toc"] = []
+    layout["result"]["pages"][0]["boxes"] = [
+        {"x0":50,"y0":40,"x1":300,"y1":70,"boxclass":"title","textlines":[{"spans":[{"text":"Sample Report"}]}]},
+        {"x0":70,"y0":120,"x1":530,"y1":150,"boxclass":"list-item","textlines":[{"spans":[{"text":"18.4 A reporting institution must reject the customer."}]}]},
+        {"x0":105,"y0":180,"x1":430,"y1":200,"boxclass":"section-header","textlines":[{"spans":[{"text":"Guidance for paragraph 18"}]}]},
+        {"x0":120,"y0":220,"x1":530,"y1":275,"boxclass":"list-item","textlines":[{"spans":[{"text":"(a) Funds that are controlled indirectly by the designated person must be frozen."}]}]},
+        {"x0":120,"y0":290,"x1":530,"y1":345,"boxclass":"list-item","textlines":[{"spans":[{"text":"(b) The obligation continues until the person is delisted."}]}]},
+    ]
+    result = build_canonical_document(record=record, extraction=extraction, layout_artifact=layout)
+    clause = next(item for item in result.pages[0].elements if item.text.startswith("18.4"))
+    guidance = next(item for item in result.pages[0].elements if item.text.startswith("Guidance for"))
+    members = [item for item in result.pages[0].elements if item.text.startswith("(a)") or item.text.startswith("(b)")]
+    assert guidance.type == "group_header"
+    assert all(item.type == "list_item" for item in members)
+    assert all(item.parent_clause_id is None for item in members)
+    assert all(any(r.type == "introduces" and r.source_element_id == guidance.element_id and r.target_element_id == item.element_id for r in result.relationships) for item in members)
+    assert not any(r.type == "parent_of" and r.source_element_id == clause.element_id and r.target_element_id in {item.element_id for item in members} for r in result.relationships)
+
+
+def test_semantic_v24_appendix_topic_label_between_number_families_becomes_section_boundary():
+    record, extraction, layout = _fixture()
+    raw = extraction.pages[0]
+    raw.blocks = [
+        _text_block("p1-b0",0,[70,40,250,65],"APPENDIX D",14),
+        _text_block("p1-b1",1,[70,90,520,120],"4.6 Previous topic clause.",11),
+        _text_block("p1-b2",2,[70,155,300,175],"Reporting requirements",11),
+        _text_block("p1-b3",3,[70,210,520,240],"5.1 Reporting starts here.",11),
+        _text_block("p1-b4",4,[70,275,300,295],"False positives",11),
+        _text_block("p1-b5",5,[70,330,520,360],"6.1 False-positive handling starts here.",11),
+    ]
+    raw.tables=[]; extraction.summary.text_block_count=len(raw.blocks); extraction.summary.table_count=0
+    layout["result"]["toc"] = []
+    layout["result"]["pages"][0]["boxes"] = [
+        {"x0":70,"y0":40,"x1":250,"y1":65,"boxclass":"section-header","textlines":[{"spans":[{"text":"APPENDIX D"}]}]},
+        {"x0":70,"y0":90,"x1":520,"y1":120,"boxclass":"list-item","textlines":[{"spans":[{"text":"4.6 Previous topic clause."}]}]},
+        {"x0":70,"y0":155,"x1":300,"y1":175,"boxclass":"section-header","textlines":[{"spans":[{"text":"Reporting requirements"}]}]},
+        {"x0":70,"y0":210,"x1":520,"y1":240,"boxclass":"list-item","textlines":[{"spans":[{"text":"5.1 Reporting starts here."}]}]},
+        {"x0":70,"y0":275,"x1":300,"y1":295,"boxclass":"section-header","textlines":[{"spans":[{"text":"False positives"}]}]},
+        {"x0":70,"y0":330,"x1":520,"y1":360,"boxclass":"list-item","textlines":[{"spans":[{"text":"6.1 False-positive handling starts here."}]}]},
+    ]
+    result = build_canonical_document(record=record, extraction=extraction, layout_artifact=layout)
+    appendix = next(section for section in result.sections if section.title == "APPENDIX D")
+    reporting = next(section for section in result.sections if section.title == "Reporting requirements")
+    falsepos = next(section for section in result.sections if section.title == "False positives")
+    assert reporting.parent_section_id == appendix.section_id
+    assert falsepos.parent_section_id == appendix.section_id
+    c5 = next(item for item in result.pages[0].elements if item.text.startswith("5.1"))
+    c6 = next(item for item in result.pages[0].elements if item.text.startswith("6.1"))
+    assert c5.section_id == reporting.section_id
+    assert c6.section_id == falsepos.section_id
+
+
+def test_semantic_v24_text_layout_guidance_label_is_recovered_as_local_group_header():
+    record, extraction, layout = _fixture()
+    p1 = [
+        _text_block("p1-b0",0,[50,40,300,70],"Sample Report",22),
+        _text_block("p1-b1",1,[70,690,530,745],"7.1.4 The institution must document the assessment.",11),
+    ]
+    p2 = [
+        _text_block("p2-b0",0,[95,50,500,70],"Guidance for paragraphs 7.1.1, 7.1.2, 7.1.3 and 7.1.4:",11),
+        _text_block("p2-b1",1,[110,90,530,125],"(a) Consider the national risk assessment;",11),
+        _text_block("p2-b2",2,[70,180,530,220],"7.1.5 A reporting institution must assess new products.",11),
+    ]
+    extraction.pages=[_make_page(1,p1),_make_page(2,p2)]
+    extraction.summary.page_count=2; extraction.summary.text_block_count=5; extraction.summary.table_count=0
+    layout["result"]["page_count"]=2; layout["result"]["toc"]=[]
+    layout["result"]["pages"]=[
+        {"page_number":1,"width":600,"height":800,"boxes":[
+            {"x0":50,"y0":40,"x1":300,"y1":70,"boxclass":"title","textlines":[{"spans":[{"text":"Sample Report"}]}]},
+            {"x0":70,"y0":690,"x1":530,"y1":745,"boxclass":"list-item","textlines":[{"spans":[{"text":"7.1.4 The institution must document the assessment."}]}]},
+        ]},
+        {"page_number":2,"width":600,"height":800,"boxes":[
+            {"x0":95,"y0":50,"x1":500,"y1":70,"boxclass":"text","textlines":[{"spans":[{"text":"Guidance for paragraphs 7.1.1, 7.1.2, 7.1.3 and 7.1.4:"}]}]},
+            {"x0":110,"y0":90,"x1":530,"y1":125,"boxclass":"list-item","textlines":[{"spans":[{"text":"(a) Consider the national risk assessment;"}]}]},
+            {"x0":70,"y0":180,"x1":530,"y1":220,"boxclass":"list-item","textlines":[{"spans":[{"text":"7.1.5 A reporting institution must assess new products."}]}]},
+        ]},
+    ]
+    result=build_canonical_document(record=record, extraction=extraction, layout_artifact=layout)
+    guidance=next(item for item in result.pages[1].elements if item.text.startswith("Guidance for"))
+    assert guidance.type=="group_header"
+    source=next(item for item in result.pages[0].elements if item.text.startswith("7.1.4"))
+    assert not any(r.type=="continues" and r.source_element_id==source.element_id and r.target_element_id==guidance.element_id for r in result.relationships)
+
+
+def test_semantic_v24_callout_resets_prior_subclause_marker_family():
+    record, extraction, layout = _fixture()
+    raw = extraction.pages[0]
+    raw.blocks = [
+        _text_block("p1-b0",0,[50,40,300,70],"Sample Report",22),
+        _text_block("p1-b1",1,[70,100,530,135],"18.2 The freezing of funds shall remain in effect until:",11),
+        _text_block("p1-b2",2,[110,150,530,180],"(a) The person is delisted; or",11),
+        _text_block("p1-b3",3,[110,190,530,230],"(b) The match is confirmed as a false positive.",11),
+        _text_block("p1-b4",4,[100,260,500,280],"Guidance for False Positive under paragraph 18.2(b)",11),
+        _text_block("p1-b5",5,[110,300,530,345],"(a) A reporting institution may forward queries to the authority.",11),
+        _text_block("p1-b6",6,[110,355,530,400],"(b) Any query must include additional information.",11),
+    ]
+    raw.tables=[]; extraction.summary.text_block_count=len(raw.blocks); extraction.summary.table_count=0
+    layout["result"]["toc"]=[]
+    layout["result"]["pages"][0]["boxes"]=[
+        {"x0":50,"y0":40,"x1":300,"y1":70,"boxclass":"title","textlines":[{"spans":[{"text":"Sample Report"}]}]},
+        {"x0":70,"y0":100,"x1":530,"y1":135,"boxclass":"list-item","textlines":[{"spans":[{"text":"18.2 The freezing of funds shall remain in effect until:"}]}]},
+        {"x0":110,"y0":150,"x1":530,"y1":180,"boxclass":"list-item","textlines":[{"spans":[{"text":"(a) The person is delisted; or"}]}]},
+        {"x0":110,"y0":190,"x1":530,"y1":230,"boxclass":"list-item","textlines":[{"spans":[{"text":"(b) The match is confirmed as a false positive."}]}]},
+        {"x0":100,"y0":260,"x1":500,"y1":280,"boxclass":"section-header","textlines":[{"spans":[{"text":"Guidance for False Positive under paragraph 18.2(b)"}]}]},
+        {"x0":110,"y0":300,"x1":530,"y1":345,"boxclass":"list-item","textlines":[{"spans":[{"text":"(a) A reporting institution may forward queries to the authority."}]}]},
+        {"x0":110,"y0":355,"x1":530,"y1":400,"boxclass":"list-item","textlines":[{"spans":[{"text":"(b) Any query must include additional information."}]}]},
+    ]
+    result=build_canonical_document(record=record, extraction=extraction, layout_artifact=layout)
+    main_items=[item for item in result.pages[0].elements if item.text.startswith("(a) The person") or item.text.startswith("(b) The match")]
+    guidance=next(item for item in result.pages[0].elements if item.text.startswith("Guidance for False"))
+    guidance_items=[item for item in result.pages[0].elements if item.text.startswith("(a) A reporting") or item.text.startswith("(b) Any query")]
+    assert all(item.type=="subclause" for item in main_items)
+    assert guidance.type=="group_header"
+    assert all(item.type=="list_item" and item.parent_clause_id is None for item in guidance_items)
+    assert all(any(r.type=="introduces" and r.source_element_id==guidance.element_id and r.target_element_id==item.element_id for r in result.relationships) for item in guidance_items)
+
+
+def test_semantic_v24_toc_inheritance_accepts_short_residual_table_fragment_and_suppresses_navigation_headings():
+    record, extraction, layout = _two_page_base()
+    p1_cells = [
+        ["1.", "Introduction", "5"],
+        ["2.", "Applicability", "6"],
+        ["3.", "Definitions", "8"],
+        ["4.", "General Description", "16"],
+    ]
+    p2_cells = [
+        ["8.7", "Failure to Complete CDD", "44"],
+        ["8.8", "Ongoing Due Diligence", "45"],
+    ]
+    p1_blocks=[_text_block("p1-b0",0,[50,40,300,70],"CONTENTS",16)]
+    p2_blocks=[_text_block("p2-b0",0,[70,230,400,250],"PART IIIA: WIRE TRANSFER",12)]
+    extraction.pages=[
+        _make_page(1,p1_blocks,[TableExtraction(table_id="p1-t1",bbox=[70,430,530,790],row_count=4,col_count=3,cells=p1_cells)]),
+        _make_page(2,p2_blocks,[TableExtraction(table_id="p2-t1",bbox=[72,45,532,180],row_count=2,col_count=3,cells=p2_cells)]),
+    ]
+    extraction.summary.text_block_count=2; extraction.summary.table_count=2
+    layout["result"]["toc"]=[]
+    layout["result"]["pages"]=[
+        {"page_number":1,"width":600,"height":800,"boxes":[
+            {"x0":50,"y0":40,"x1":300,"y1":70,"boxclass":"section-header","textlines":[{"spans":[{"text":"CONTENTS"}]}]},
+            _layout_table(70,430,530,790,p1_cells),
+        ]},
+        {"page_number":2,"width":600,"height":800,"boxes":[
+            _layout_table(72,45,532,180,p2_cells),
+            {"x0":70,"y0":230,"x1":400,"y1":250,"boxclass":"section-header","textlines":[{"spans":[{"text":"PART IIIA: WIRE TRANSFER"}]}]},
+        ]},
+    ]
+    result=build_canonical_document(record=record,extraction=extraction,layout_artifact=layout)
+    nav=next(item for item in result.pages[1].elements if item.text=="PART IIIA: WIRE TRANSFER")
+    assert nav.type=="unknown"
+    assert nav.element_id not in {section.element_id for section in result.sections}
+
+
+def test_semantic_v24_guidance_on_appendix_title_does_not_flatten_real_appendix_topics():
+    record, extraction, layout = _two_page_base()
+    p1=[_text_block("p1-b0",0,[50,30,300,60],"Sample Report",22)]
+    p2=[
+        _text_block("p2-b0",0,[430,80,550,100],"APPENDIX B",11),
+        _text_block("p2-b1",1,[70,120,540,150],"Guidance on Politically Exposed Persons",13),
+        _text_block("p2-b2",2,[70,175,530,210],"1.1 The requirements also extend to family members.",11),
+        _text_block("p2-b3",3,[70,240,300,260],"Family Members of a PEP",11),
+        _text_block("p2-b4",4,[70,285,530,320],"1.3 Family members are individuals related to a PEP.",11),
+        _text_block("p2-b5",5,[70,350,300,370],"Close Associates of a PEP",11),
+        _text_block("p2-b6",6,[70,395,530,430],"1.5 A close associate is an individual closely connected to a PEP.",11),
+    ]
+    extraction.pages=[_make_page(1,p1),_make_page(2,p2)]
+    extraction.summary.page_count=2; extraction.summary.text_block_count=len(p1)+len(p2); extraction.summary.table_count=0
+    layout["result"]["page_count"]=2; layout["result"]["toc"]=[]
+    layout["result"]["pages"]=[
+        {"page_number":1,"width":600,"height":800,"boxes":[
+            {"x0":50,"y0":30,"x1":300,"y1":60,"boxclass":"title","textlines":[{"spans":[{"text":"Sample Report"}]}]},
+        ]},
+        {"page_number":2,"width":600,"height":800,"boxes":[
+            {"x0":430,"y0":80,"x1":550,"y1":100,"boxclass":"page-header","textlines":[{"spans":[{"text":"APPENDIX B"}]}]},
+            {"x0":70,"y0":120,"x1":540,"y1":150,"boxclass":"section-header","textlines":[{"spans":[{"text":"Guidance on Politically Exposed Persons"}]}]},
+            {"x0":70,"y0":175,"x1":530,"y1":210,"boxclass":"list-item","textlines":[{"spans":[{"text":"1.1 The requirements also extend to family members."}]}]},
+            {"x0":70,"y0":240,"x1":300,"y1":260,"boxclass":"section-header","textlines":[{"spans":[{"text":"Family Members of a PEP"}]}]},
+            {"x0":70,"y0":285,"x1":530,"y1":320,"boxclass":"list-item","textlines":[{"spans":[{"text":"1.3 Family members are individuals related to a PEP."}]}]},
+            {"x0":70,"y0":350,"x1":300,"y1":370,"boxclass":"section-header","textlines":[{"spans":[{"text":"Close Associates of a PEP"}]}]},
+            {"x0":70,"y0":395,"x1":530,"y1":430,"boxclass":"list-item","textlines":[{"spans":[{"text":"1.5 A close associate is an individual closely connected to a PEP."}]}]},
+        ]},
+    ]
+    result=build_canonical_document(record=record, extraction=extraction, layout_artifact=layout)
+    title=next(item for item in result.pages[1].elements if item.text=="Guidance on Politically Exposed Persons")
+    intro=next(item for item in result.pages[1].elements if item.text.startswith("1.1"))
+    appendix=next(section for section in result.sections if section.title=="APPENDIX B")
+    family=next(section for section in result.sections if section.title=="Family Members of a PEP")
+    close=next(section for section in result.sections if section.title=="Close Associates of a PEP")
+    assert title.type=="group_header"
+    assert title.role_source=="semantic_appendix_title_scope"
+    assert intro.type=="clause"
+    assert family.parent_section_id==appendix.section_id
+    assert close.parent_section_id==appendix.section_id
+
+def test_semantic_v24_examples_of_ordinary_prose_is_not_mistaken_for_callout():
+    record, extraction, layout = _fixture()
+    raw=extraction.pages[0]
+    raw.blocks=[
+        _text_block("p1-b0",0,[50,40,300,70],"Sample Report",22),
+        _text_block("p1-b1",1,[70,95,500,120],"19 REPORTING REQUIREMENTS",14),
+        _text_block("p1-b2",2,[95,150,500,170],"Guidance for paragraph 19",11),
+        _text_block("p1-b3",3,[105,195,530,235],"Examples of changes to the frozen funds include changes in balance and account status.",10),
+        _text_block("p1-b4",4,[70,285,530,325],"19.4 A reporting institution must keep the information updated.",11),
+    ]
+    raw.tables=[]; extraction.summary.text_block_count=len(raw.blocks); extraction.summary.table_count=0
+    layout["result"]["toc"]=[]
+    layout["result"]["pages"][0]["boxes"]=[
+        {"x0":50,"y0":40,"x1":300,"y1":70,"boxclass":"title","textlines":[{"spans":[{"text":"Sample Report"}]}]},
+        {"x0":70,"y0":95,"x1":500,"y1":120,"boxclass":"section-header","textlines":[{"spans":[{"text":"19 REPORTING REQUIREMENTS"}]}]},
+        {"x0":95,"y0":150,"x1":500,"y1":170,"boxclass":"section-header","textlines":[{"spans":[{"text":"Guidance for paragraph 19"}]}]},
+        {"x0":105,"y0":195,"x1":530,"y1":235,"boxclass":"text","textlines":[{"spans":[{"text":"Examples of changes to the frozen funds include changes in balance and account status."}]}]},
+        {"x0":70,"y0":285,"x1":530,"y1":325,"boxclass":"list-item","textlines":[{"spans":[{"text":"19.4 A reporting institution must keep the information updated."}]}]},
+    ]
+    result=build_canonical_document(record=record, extraction=extraction, layout_artifact=layout)
+    examples=next(item for item in result.pages[0].elements if item.text.startswith("Examples of changes"))
+    clause=next(item for item in result.pages[0].elements if item.text.startswith("19.4"))
+    assert examples.type=="paragraph"
+    assert clause.type=="clause"
+
+
+def test_semantic_v24_callout_owns_prose_and_paragraph_owned_nested_list_until_fresh_clause():
+    record, extraction, layout = _fixture()
+    raw=extraction.pages[0]
+    raw.blocks=[
+        _text_block("p1-b0",0,[50,40,300,70],"Sample Report",22),
+        _text_block("p1-b1",1,[70,95,500,120],"14 IDENTIFICATION AND DESIGNATION",14),
+        _text_block("p1-b2",2,[95,150,150,170],"Note:",11),
+        _text_block("p1-b3",3,[105,195,530,225],"The following examples apply:",10),
+        _text_block("p1-b4",4,[125,245,530,275],"(a) First illustrative measure;",10),
+        _text_block("p1-b5",5,[125,290,530,320],"(b) Second illustrative measure.",10),
+        _text_block("p1-b6",6,[70,370,530,410],"14.4 A reporting institution must conduct the next required check.",11),
+    ]
+    raw.tables=[]; extraction.summary.text_block_count=len(raw.blocks); extraction.summary.table_count=0
+    layout["result"]["toc"]=[]
+    layout["result"]["pages"][0]["boxes"]=[
+        {"x0":50,"y0":40,"x1":300,"y1":70,"boxclass":"title","textlines":[{"spans":[{"text":"Sample Report"}]}]},
+        {"x0":70,"y0":95,"x1":500,"y1":120,"boxclass":"section-header","textlines":[{"spans":[{"text":"14 IDENTIFICATION AND DESIGNATION"}]}]},
+        {"x0":95,"y0":150,"x1":150,"y1":170,"boxclass":"section-header","textlines":[{"spans":[{"text":"Note:"}]}]},
+        {"x0":105,"y0":195,"x1":530,"y1":225,"boxclass":"text","textlines":[{"spans":[{"text":"The following examples apply:"}]}]},
+        {"x0":125,"y0":245,"x1":530,"y1":275,"boxclass":"list-item","textlines":[{"spans":[{"text":"(a) First illustrative measure;"}]}]},
+        {"x0":125,"y0":290,"x1":530,"y1":320,"boxclass":"list-item","textlines":[{"spans":[{"text":"(b) Second illustrative measure."}]}]},
+        {"x0":70,"y0":370,"x1":530,"y1":410,"boxclass":"list-item","textlines":[{"spans":[{"text":"14.4 A reporting institution must conduct the next required check."}]}]},
+    ]
+    result=build_canonical_document(record=record, extraction=extraction, layout_artifact=layout)
+    note=next(item for item in result.pages[0].elements if item.text=="Note:")
+    prose=next(item for item in result.pages[0].elements if item.text.startswith("The following examples"))
+    members=[item for item in result.pages[0].elements if item.text.startswith(("(a)","(b)"))]
+    clause=next(item for item in result.pages[0].elements if item.text.startswith("14.4"))
+    assert any(r.type=="introduces" and r.source_element_id==note.element_id and r.target_element_id==prose.element_id for r in result.relationships)
+    assert all(any(r.type=="introduces" and r.source_element_id==prose.element_id and r.target_element_id==item.element_id for r in result.relationships) for item in members)
+    assert not any(r.type=="introduces" and r.source_element_id==note.element_id and r.target_element_id==clause.element_id for r in result.relationships)
+
+
+def test_semantic_v24_cross_page_continuation_preserves_outer_list_owner_for_next_marker():
+    record, extraction, layout = _two_page_base()
+    p1=[
+        _text_block("p1-b0",0,[50,30,300,60],"Sample Report",22),
+        _text_block("p1-b1",1,[70,100,530,135],"1.2 There are three phases in the process:",11),
+        _text_block("p1-b2",2,[110,160,250,180],"(a) Phase 1",11),
+        _text_block("p1-b3",3,[143,195,530,225],"(i) Complete the first review.",11),
+        _text_block("p1-b4",4,[110,250,250,270],"(b) Phase 2",11),
+        _text_block("p1-b5",5,[143,285,530,315],"(i) Complete the second review.",11),
+        _text_block("p1-b6",6,[110,630,250,650],"(c) Phase 3",11),
+        _text_block("p1-b7",7,[143,690,530,760],"(iii) The due diligence results must be reviewed",11),
+    ]
+    p2=[
+        _text_block("p2-b0",0,[171,45,300,65],"periodically.",11),
+        _text_block("p2-b1",1,[143,90,530,130],"(iv) Repeat the assessment when material conditions change.",11),
+    ]
+    extraction.pages=[_make_page(1,p1),_make_page(2,p2)]
+    extraction.summary.page_count=2; extraction.summary.text_block_count=len(p1)+len(p2); extraction.summary.table_count=0
+    layout["result"]["page_count"]=2; layout["result"]["toc"]=[]
+    layout["result"]["pages"]=[
+        {"page_number":1,"width":600,"height":800,"boxes":[
+            {"x0":50,"y0":30,"x1":300,"y1":60,"boxclass":"title","textlines":[{"spans":[{"text":"Sample Report"}]}]},
+            {"x0":70,"y0":100,"x1":530,"y1":135,"boxclass":"list-item","textlines":[{"spans":[{"text":"1.2 There are three phases in the process:"}]}]},
+            {"x0":110,"y0":160,"x1":250,"y1":180,"boxclass":"list-item","textlines":[{"spans":[{"text":"(a) Phase 1"}]}]},
+            {"x0":143,"y0":195,"x1":530,"y1":225,"boxclass":"list-item","textlines":[{"spans":[{"text":"(i) Complete the first review."}]}]},
+            {"x0":110,"y0":250,"x1":250,"y1":270,"boxclass":"list-item","textlines":[{"spans":[{"text":"(b) Phase 2"}]}]},
+            {"x0":143,"y0":285,"x1":530,"y1":315,"boxclass":"list-item","textlines":[{"spans":[{"text":"(i) Complete the second review."}]}]},
+            {"x0":110,"y0":630,"x1":250,"y1":650,"boxclass":"list-item","textlines":[{"spans":[{"text":"(c) Phase 3"}]}]},
+            {"x0":143,"y0":690,"x1":530,"y1":760,"boxclass":"list-item","textlines":[{"spans":[{"text":"(iii) The due diligence results must be reviewed"}]}]},
+        ]},
+        {"page_number":2,"width":600,"height":800,"boxes":[
+            {"x0":171,"y0":45,"x1":300,"y1":65,"boxclass":"text","textlines":[{"spans":[{"text":"periodically."}]}]},
+            {"x0":143,"y0":90,"x1":530,"y1":130,"boxclass":"list-item","textlines":[{"spans":[{"text":"(iv) Repeat the assessment when material conditions change."}]}]},
+        ]},
+    ]
+    result=build_canonical_document(record=record, extraction=extraction, layout_artifact=layout)
+    phase3=next(item for item in result.pages[0].elements if "Phase 3" in item.text)
+    third=next(item for item in result.pages[0].elements if item.text.startswith("(iii)"))
+    continuation=next(item for item in result.pages[1].elements if item.text=="periodically.")
+    fourth=next(item for item in result.pages[1].elements if item.text.startswith("(iv)"))
+    assert any(r.type=="continues" and r.source_element_id==third.element_id and r.target_element_id==continuation.element_id for r in result.relationships)
+    assert any(r.type=="introduces" and r.source_element_id==phase3.element_id and r.target_element_id==fourth.element_id for r in result.relationships)
+
+
+def test_semantic_v24_validator_accepts_clause_inside_descendant_of_matching_numbered_section():
+    trace = CanonicalSourceTrace(layout_box_index=0, layout_box_class="section-header")
+    parent_el = CanonicalElement(
+        element_id="p1-e1", type="section_header", page_number=1, reading_order=0,
+        document_order=0, bbox=[70,80,500,100], text="8.1 Customer Due Diligence",
+        section_id="sec-1", source=trace,
+    )
+    child_el = CanonicalElement(
+        element_id="p1-e2", type="section_header", page_number=1, reading_order=1,
+        document_order=1, bbox=[70,120,500,140], text="Customer identification",
+        section_id="sec-2", source=trace,
+    )
+    clause_el = CanonicalElement(
+        element_id="p1-e3", type="clause", page_number=1, reading_order=2,
+        document_order=2, bbox=[70,160,530,200], text="8.1.6 A reporting institution must identify the customer.",
+        section_id="sec-2", clause_number="8.1.6", source=CanonicalSourceTrace(layout_box_index=2, layout_box_class="list-item"),
+    )
+    sections = [
+        SectionRecord(section_id="sec-1", title="8.1 Customer Due Diligence", level=2, page_number=1, element_id="p1-e1", parent_section_id=None, level_source="numbering"),
+        SectionRecord(section_id="sec-2", title="Customer identification", level=3, page_number=1, element_id="p1-e2", parent_section_id="sec-1", level_source="font_rank"),
+    ]
+    validation = validate_semantic_structure(elements=[parent_el, child_el, clause_el], sections=sections, relationships=[])
+    assert validation.clause_section_mismatch_ids == []
+
+
+def test_semantic_v24_merged_sequential_list_rows_are_split_before_semantic_resolution():
+    record, extraction, layout = _fixture()
+    raw = extraction.pages[0]
+    raw.blocks = [
+        _text_block("p1-b0", 0, [50, 40, 300, 70], "Sample Report", 22),
+        _text_block("p1-b1", 1, [70, 105, 530, 140], "6D.4 The roles include the following:", 11),
+        _text_block("p1-b2", 2, [110, 180, 530, 205], "(d) Timely reporting to the board of directors;", 11),
+        _text_block("p1-b3", 3, [110, 220, 530, 265], "(e) All employees are aware of the AML/CFT measures;", 11),
+        _text_block("p1-b4", 4, [110, 285, 530, 315], "(f) Internal reports are evaluated;", 11),
+    ]
+    raw.tables = []
+    extraction.summary.text_block_count = len(raw.blocks)
+    extraction.summary.table_count = 0
+    layout["result"]["toc"] = []
+    layout["result"]["pages"][0]["boxes"] = [
+        {"x0":50,"y0":40,"x1":300,"y1":70,"boxclass":"title","textlines":[{"spans":[{"text":"Sample Report"}]}]},
+        {"x0":70,"y0":105,"x1":530,"y1":140,"boxclass":"list-item","textlines":[{"spans":[{"text":"6D.4 The roles include the following:"}]}]},
+        {"x0":110,"y0":180,"x1":530,"y1":265,"boxclass":"list-item","textlines":[
+            {"spans":[{"text":"(d) Timely reporting to the board of directors;"}]},
+            {"spans":[{"text":"(e) All employees are aware of the AML/CFT measures;"}]},
+        ]},
+        {"x0":110,"y0":285,"x1":530,"y1":315,"boxclass":"list-item","textlines":[{"spans":[{"text":"(f) Internal reports are evaluated;"}]}]},
+    ]
+    result = build_canonical_document(record=record, extraction=extraction, layout_artifact=layout)
+    members = [item for item in result.pages[0].elements if item.text.startswith(("(d)", "(e)", "(f)"))]
+    assert [item.text[:3] for item in members] == ["(d)", "(e)", "(f)"]
+    assert len(members) == 3
+    assert all("\n(e)" not in item.text for item in members)
+
+
+def test_semantic_v24_main_body_unnumbered_topic_between_same_clause_family_is_local_group():
+    record, extraction, layout = _fixture()
+    raw = extraction.pages[0]
+    raw.blocks = [
+        _text_block("p1-b0", 0, [50,40,300,70], "Sample Report", 22),
+        _text_block("p1-b1", 1, [70,95,500,120], "8.1 Customer Due Diligence", 14),
+        _text_block("p1-b2", 2, [70,155,530,190], "8.1.19 Previous requirement.", 11),
+        _text_block("p1-b3", 3, [72,225,430,245], "CDD requirements for clubs, societies or charities", 11),
+        _text_block("p1-b4", 4, [70,285,530,325], "8.1.20 A reporting institution must conduct CDD.", 11),
+    ]
+    raw.tables=[]; extraction.summary.text_block_count=len(raw.blocks); extraction.summary.table_count=0
+    layout["result"]["toc"]=[]
+    layout["result"]["pages"][0]["boxes"]=[
+        {"x0":50,"y0":40,"x1":300,"y1":70,"boxclass":"title","textlines":[{"spans":[{"text":"Sample Report"}]}]},
+        {"x0":70,"y0":95,"x1":500,"y1":120,"boxclass":"section-header","textlines":[{"spans":[{"text":"8.1 Customer Due Diligence"}]}]},
+        {"x0":70,"y0":155,"x1":530,"y1":190,"boxclass":"list-item","textlines":[{"spans":[{"text":"8.1.19 Previous requirement."}]}]},
+        {"x0":72,"y0":225,"x1":430,"y1":245,"boxclass":"section-header","textlines":[{"spans":[{"text":"CDD requirements for clubs, societies or charities"}]}]},
+        {"x0":70,"y0":285,"x1":530,"y1":325,"boxclass":"list-item","textlines":[{"spans":[{"text":"8.1.20 A reporting institution must conduct CDD."}]}]},
+    ]
+    result=build_canonical_document(record=record, extraction=extraction, layout_artifact=layout)
+    outline=next(item for item in result.pages[0].elements if item.text.startswith("8.1 Customer"))
+    topic=next(item for item in result.pages[0].elements if item.text.startswith("CDD requirements"))
+    clause=next(item for item in result.pages[0].elements if item.text.startswith("8.1.20"))
+    assert topic.type == "group_header"
+    assert topic.element_id not in {section.element_id for section in result.sections}
+    outline_section=next(section for section in result.sections if section.element_id==outline.element_id)
+    assert clause.section_id == outline_section.section_id
+    assert any(r.type=="introduces" and r.source_element_id==topic.element_id and r.target_element_id==clause.element_id for r in result.relationships)
+
+
+def test_semantic_v24_paragraph_intro_owns_following_contact_label_not_stale_previous_clause():
+    record, extraction, layout = _two_page_base()
+    p1=[
+        _text_block("p1-b0",0,[50,30,300,60],"Sample Report",22),
+        _text_block("p1-b1",1,[70,690,530,750],"6.2 A reporting institution should direct its customers to the Ministry.",11),
+    ]
+    p2=[
+        _text_block("p2-b0",0,[70,45,530,80],"The contact point for the Ministry is:",11),
+        _text_block("p2-b1",1,[72,110,360,135],"Secretary General Ministry of Home Affairs",11),
+        _text_block("p2-b2",2,[72,155,530,220],"Level 10, Complex D, Putrajaya",10),
+    ]
+    extraction.pages=[_make_page(1,p1),_make_page(2,p2)]
+    extraction.summary.page_count=2; extraction.summary.text_block_count=len(p1)+len(p2); extraction.summary.table_count=0
+    layout["result"]["page_count"]=2; layout["result"]["toc"]=[]
+    layout["result"]["pages"]=[
+        {"page_number":1,"width":600,"height":800,"boxes":[
+            {"x0":50,"y0":30,"x1":300,"y1":60,"boxclass":"title","textlines":[{"spans":[{"text":"Sample Report"}]}]},
+            {"x0":70,"y0":690,"x1":530,"y1":750,"boxclass":"list-item","textlines":[{"spans":[{"text":"6.2 A reporting institution should direct its customers to the Ministry."}]}]},
+        ]},
+        {"page_number":2,"width":600,"height":800,"boxes":[
+            {"x0":70,"y0":45,"x1":530,"y1":80,"boxclass":"text","textlines":[{"spans":[{"text":"The contact point for the Ministry is:"}]}]},
+            {"x0":72,"y0":110,"x1":360,"y1":135,"boxclass":"section-header","textlines":[{"spans":[{"text":"Secretary General Ministry of Home Affairs"}]}]},
+            {"x0":72,"y0":155,"x1":530,"y1":220,"boxclass":"text","textlines":[{"spans":[{"text":"Level 10, Complex D, Putrajaya"}]}]},
+        ]},
+    ]
+    result=build_canonical_document(record=record, extraction=extraction, layout_artifact=layout)
+    clause=next(item for item in result.pages[0].elements if item.text.startswith("6.2"))
+    intro=next(item for item in result.pages[1].elements if item.text.startswith("The contact point"))
+    label=next(item for item in result.pages[1].elements if item.text.startswith("Secretary General"))
+    assert label.type == "group_header"
+    assert any(r.type=="introduces" and r.source_element_id==intro.element_id and r.target_element_id==label.element_id for r in result.relationships)
+    assert not any(r.type=="introduces" and r.source_element_id==clause.element_id and r.target_element_id==label.element_id for r in result.relationships)
+    assert not any(r.type=="continues" and r.source_element_id==clause.element_id and r.target_element_id==intro.element_id for r in result.relationships)
+
+
+def test_semantic_v24_figure_boundary_closes_stale_clause_group_scope():
+    record, extraction, layout = _fixture()
+    raw=extraction.pages[0]
+    raw.blocks=[
+        _text_block("p1-b0",0,[50,40,300,70],"Sample Report",22),
+        _text_block("p1-b1",1,[70,100,530,135],"1.2 There are three phases:",11),
+        _text_block("p1-b2",2,[70,180,530,210],"An overview is set out in Illustration 1 below.",11),
+        _text_block("p1-b3",3,[70,360,530,390],"Updated Guidance for Risk-Based Approach",11),
+    ]
+    raw.tables=[]; extraction.summary.text_block_count=len(raw.blocks); extraction.summary.table_count=0
+    layout["result"]["toc"]=[]
+    layout["result"]["pages"][0]["boxes"]=[
+        {"x0":50,"y0":40,"x1":300,"y1":70,"boxclass":"title","textlines":[{"spans":[{"text":"Sample Report"}]}]},
+        {"x0":70,"y0":100,"x1":530,"y1":135,"boxclass":"list-item","textlines":[{"spans":[{"text":"1.2 There are three phases:"}]}]},
+        {"x0":70,"y0":180,"x1":530,"y1":210,"boxclass":"text","textlines":[{"spans":[{"text":"An overview is set out in Illustration 1 below."}]}]},
+        {"x0":90,"y0":235,"x1":510,"y1":335,"boxclass":"picture","textlines":[]},
+        {"x0":70,"y0":360,"x1":530,"y1":390,"boxclass":"section-header","textlines":[{"spans":[{"text":"Updated Guidance for Risk-Based Approach"}]}]},
+    ]
+    result=build_canonical_document(record=record, extraction=extraction, layout_artifact=layout)
+    clause=next(item for item in result.pages[0].elements if item.text.startswith("1.2"))
+    source=next(item for item in result.pages[0].elements if item.text.startswith("Updated Guidance"))
+    assert not any(r.type=="introduces" and r.source_element_id==clause.element_id and r.target_element_id==source.element_id for r in result.relationships)
+
+
+def test_semantic_v24_modal_earlier_in_paragraph_does_not_turn_descriptive_tail_into_subclauses():
+    record, extraction, layout = _fixture()
+    raw = extraction.pages[0]
+    raw.blocks = [
+        _text_block("p1-b0", 0, [50,40,300,70], "Sample Report", 22),
+        _text_block("p1-b1", 1, [70,100,530,160], "Where control is identified, the assessment should be recorded. Such a situation may be observed through:", 11),
+        _text_block("p1-b2", 2, [110,185,530,220], "(i) personal connections to persons in positions of power", 11),
+        _text_block("p1-b3", 3, [110,240,530,275], "(ii) participation in financing of enterprises", 11),
+    ]
+    raw.tables=[]; extraction.summary.text_block_count=len(raw.blocks); extraction.summary.table_count=0
+    layout["result"]["toc"]=[]
+    layout["result"]["pages"][0]["boxes"]=[
+        {"x0":50,"y0":40,"x1":300,"y1":70,"boxclass":"title","textlines":[{"spans":[{"text":"Sample Report"}]}]},
+        {"x0":70,"y0":100,"x1":530,"y1":160,"boxclass":"text","textlines":[{"spans":[{"text":"Where control is identified, the assessment should be recorded. Such a situation may be observed through:"}]}]},
+        {"x0":110,"y0":185,"x1":530,"y1":220,"boxclass":"list-item","textlines":[{"spans":[{"text":"(i) personal connections to persons in positions of power"}]}]},
+        {"x0":110,"y0":240,"x1":530,"y1":275,"boxclass":"list-item","textlines":[{"spans":[{"text":"(ii) participation in financing of enterprises"}]}]},
+    ]
+    result=build_canonical_document(record=record, extraction=extraction, layout_artifact=layout)
+    members=[item for item in result.pages[0].elements if item.text.startswith(("(i)","(ii)"))]
+    assert len(members)==2
+    assert all(item.type=="list_item" for item in members)
+
+
+def test_semantic_v24_required_to_obtain_following_information_stays_descriptive_list():
+    record, extraction, layout = _fixture()
+    raw=extraction.pages[0]
+    raw.blocks=[
+        _text_block("p1-b0",0,[50,40,300,70],"Sample Report",22),
+        _text_block("p1-b1",1,[70,100,530,155],"8.1.6 A reporting institution is required to identify a customer, by obtaining at least the following information:",11),
+        _text_block("p1-b2",2,[110,180,530,205],"(a) Full name;",11),
+        _text_block("p1-b3",3,[110,225,530,250],"(b) Residential address;",11),
+    ]
+    raw.tables=[]; extraction.summary.text_block_count=len(raw.blocks); extraction.summary.table_count=0
+    layout["result"]["toc"]=[]
+    layout["result"]["pages"][0]["boxes"]=[
+        {"x0":50,"y0":40,"x1":300,"y1":70,"boxclass":"title","textlines":[{"spans":[{"text":"Sample Report"}]}]},
+        {"x0":70,"y0":100,"x1":530,"y1":155,"boxclass":"list-item","textlines":[{"spans":[{"text":"8.1.6 A reporting institution is required to identify a customer, by obtaining at least the following information:"}]}]},
+        {"x0":110,"y0":180,"x1":530,"y1":205,"boxclass":"list-item","textlines":[{"spans":[{"text":"(a) Full name;"}]}]},
+        {"x0":110,"y0":225,"x1":530,"y1":250,"boxclass":"list-item","textlines":[{"spans":[{"text":"(b) Residential address;"}]}]},
+    ]
+    result=build_canonical_document(record=record,extraction=extraction,layout_artifact=layout)
+    members=[item for item in result.pages[0].elements if item.text.startswith(("(a)","(b)"))]
+    assert len(members)==2
+    assert all(item.type=="list_item" for item in members)
+
+
+def test_semantic_v24_long_sentence_heading_that_introduces_list_is_body_paragraph():
+    record, extraction, layout = _fixture()
+    raw=extraction.pages[0]
+    intro="Regulation 3 requires the following counter-proliferation financing measures to be taken in relation to designated countries and persons:"
+    raw.blocks=[
+        _text_block("p1-b0",0,[50,40,300,70],"Sample Report",22),
+        _text_block("p1-b1",1,[70,95,220,120],"APPENDIX G",14),
+        _text_block("p1-b2",2,[70,190,530,255],intro,11),
+        _text_block("p1-b3",3,[110,280,530,315],"(a) Freezing of funds and other financial assets;",11),
+        _text_block("p1-b4",4,[110,335,530,370],"(b) Prohibition of restricted investment.",11),
+    ]
+    raw.tables=[]; extraction.summary.text_block_count=len(raw.blocks); extraction.summary.table_count=0
+    layout["result"]["toc"]=[]
+    layout["result"]["pages"][0]["boxes"]=[
+        {"x0":50,"y0":40,"x1":300,"y1":70,"boxclass":"title","textlines":[{"spans":[{"text":"Sample Report"}]}]},
+        {"x0":70,"y0":95,"x1":220,"y1":120,"boxclass":"section-header","textlines":[{"spans":[{"text":"APPENDIX G"}]}]},
+        {"x0":70,"y0":190,"x1":530,"y1":255,"boxclass":"section-header","textlines":[{"spans":[{"text":intro}]}]},
+        {"x0":110,"y0":280,"x1":530,"y1":315,"boxclass":"list-item","textlines":[{"spans":[{"text":"(a) Freezing of funds and other financial assets;"}]}]},
+        {"x0":110,"y0":335,"x1":530,"y1":370,"boxclass":"list-item","textlines":[{"spans":[{"text":"(b) Prohibition of restricted investment."}]}]},
+    ]
+    result=build_canonical_document(record=record,extraction=extraction,layout_artifact=layout)
+    intro_el=next(item for item in result.pages[0].elements if item.text.startswith("Regulation 3 requires"))
+    assert intro_el.type=="paragraph"
+    assert intro_el.element_id not in {section.element_id for section in result.sections}
+
+
+def test_semantic_v24_duplicate_textual_picture_shell_is_removed_after_provenance_merge():
+    record, extraction, layout = _fixture()
+    raw=extraction.pages[0]
+    text="A) Mr. W has 40% ownership of Company A and is a beneficial owner"
+    raw.blocks=[
+        _text_block("p1-b0",0,[50,40,300,70],"Sample Report",22),
+        _text_block("p1-b1",1,[70,180,530,215],text,11),
+    ]
+    raw.tables=[]; extraction.summary.text_block_count=len(raw.blocks); extraction.summary.table_count=0
+    layout["result"]["toc"]=[]
+    layout["result"]["pages"][0]["boxes"]=[
+        {"x0":50,"y0":40,"x1":300,"y1":70,"boxclass":"title","textlines":[{"spans":[{"text":"Sample Report"}]}]},
+        {"x0":95,"y0":180,"x1":500,"y1":215,"boxclass":"picture","textlines":[{"spans":[{"text":"Mr. W has 40% ownership of Company A and is a beneficial owner"}]}]},
+        {"x0":70,"y0":180,"x1":530,"y1":215,"boxclass":"list-item","textlines":[{"spans":[{"text":text}]}]},
+    ]
+    result=build_canonical_document(record=record,extraction=extraction,layout_artifact=layout)
+    matching=[item for item in result.pages[0].elements if "Mr. W has 40% ownership" in item.text]
+    assert len(matching)==1
+    assert matching[0].type=="list_item"
+    assert result.summary.figure_count==0
+
+
+def test_semantic_v24_outer_subclause_sequence_resumes_after_nested_roman_list():
+    record, extraction, layout = _fixture()
+    raw = extraction.pages[0]
+    raw.blocks = [
+        _text_block("p1-b0", 0, [50, 40, 300, 70], "Sample Report", 22),
+        _text_block("p1-b1", 1, [70, 95, 530, 145], "8.1.23 A reporting institution must apply the following controls:", 11),
+        _text_block("p1-b2", 2, [108, 165, 530, 220], "(c) For non face-to-face onboarding, a reporting institution must undertake one or more of the following measures:", 11),
+        _text_block("p1-b3", 3, [143, 235, 530, 270], "(i) Request additional identification information;", 11),
+        _text_block("p1-b4", 4, [143, 285, 530, 320], "(ii) Contact the customer through a verified channel.", 11),
+        _text_block("p1-b5", 5, [108, 345, 530, 400], "(d) Where those measures fail, the reporting institution must initiate face-to-face verification.", 11),
+        _text_block("p1-b6", 6, [108, 420, 530, 465], "(e) Sub-paragraphs (a) to (d) are not applicable to:", 11),
+        _text_block("p1-b7", 7, [143, 485, 530, 520], "(i) Foreign PEPs;", 11),
+        _text_block("p1-b8", 8, [143, 535, 530, 570], "(ii) Higher-risk jurisdictions.", 11),
+        _text_block("p1-b9", 9, [108, 600, 530, 650], "(f) A reporting institution must document the outcome.", 11),
+    ]
+    raw.tables = []
+    extraction.summary.text_block_count = len(raw.blocks)
+    extraction.summary.table_count = 0
+    layout["result"]["toc"] = []
+    layout["result"]["pages"][0]["boxes"] = [
+        {"x0":50,"y0":40,"x1":300,"y1":70,"boxclass":"title","textlines":[{"spans":[{"text":"Sample Report"}]}]},
+        {"x0":70,"y0":95,"x1":530,"y1":145,"boxclass":"list-item","textlines":[{"spans":[{"text":"8.1.23 A reporting institution must apply the following controls:"}]}]},
+        {"x0":108,"y0":165,"x1":530,"y1":220,"boxclass":"list-item","textlines":[{"spans":[{"text":"(c) For non face-to-face onboarding, a reporting institution must undertake one or more of the following measures:"}]}]},
+        {"x0":143,"y0":235,"x1":530,"y1":270,"boxclass":"list-item","textlines":[{"spans":[{"text":"(i) Request additional identification information;"}]}]},
+        {"x0":143,"y0":285,"x1":530,"y1":320,"boxclass":"list-item","textlines":[{"spans":[{"text":"(ii) Contact the customer through a verified channel."}]}]},
+        {"x0":108,"y0":345,"x1":530,"y1":400,"boxclass":"list-item","textlines":[{"spans":[{"text":"(d) Where those measures fail, the reporting institution must initiate face-to-face verification."}]}]},
+        {"x0":108,"y0":420,"x1":530,"y1":465,"boxclass":"list-item","textlines":[{"spans":[{"text":"(e) Sub-paragraphs (a) to (d) are not applicable to:"}]}]},
+        {"x0":143,"y0":485,"x1":530,"y1":520,"boxclass":"list-item","textlines":[{"spans":[{"text":"(i) Foreign PEPs;"}]}]},
+        {"x0":143,"y0":535,"x1":530,"y1":570,"boxclass":"list-item","textlines":[{"spans":[{"text":"(ii) Higher-risk jurisdictions."}]}]},
+        {"x0":108,"y0":600,"x1":530,"y1":650,"boxclass":"list-item","textlines":[{"spans":[{"text":"(f) A reporting institution must document the outcome."}]}]},
+    ]
+    result = build_canonical_document(record=record, extraction=extraction, layout_artifact=layout)
+    outer = [item for item in result.pages[0].elements if item.text.startswith(("(c)", "(d)", "(e)", "(f)"))]
+    assert len(outer) == 4
+    assert all(item.type == "subclause" for item in outer)
+    assert len({item.parent_clause_id for item in outer}) == 1
+    inner = [item for item in result.pages[0].elements if item.bbox[0] >= 140 and item.text.startswith(("(i)", "(ii)"))]
+    assert inner
+    assert all(item.type == "list_item" for item in inner)
+
+
+def test_semantic_v24_long_must_determine_following_intro_creates_subclauses():
+    record, extraction, layout = _fixture()
+    raw = extraction.pages[0]
+    intro = "2.6 A reporting institution must conduct due diligence on third-party deposits to determine the following:"
+    raw.blocks = [
+        _text_block("p1-b0", 0, [50,40,300,70], "Sample Report", 22),
+        _text_block("p1-b1", 1, [70,100,530,155], intro, 11),
+        _text_block("p1-b2", 2, [110,180,530,215], "(a) The identity of the third-party payor;", 11),
+        _text_block("p1-b3", 3, [110,230,530,265], "(b) The relationship between the customer and the third-party payor;", 11),
+        _text_block("p1-b4", 4, [110,280,530,315], "(c) The reason for making the deposit.", 11),
+    ]
+    raw.tables=[]
+    extraction.summary.text_block_count=len(raw.blocks)
+    extraction.summary.table_count=0
+    layout["result"]["toc"]=[]
+    layout["result"]["pages"][0]["boxes"]=[
+        {"x0":50,"y0":40,"x1":300,"y1":70,"boxclass":"title","textlines":[{"spans":[{"text":"Sample Report"}]}]},
+        {"x0":70,"y0":100,"x1":530,"y1":155,"boxclass":"list-item","textlines":[{"spans":[{"text":intro}]}]},
+        {"x0":110,"y0":180,"x1":530,"y1":215,"boxclass":"list-item","textlines":[{"spans":[{"text":"(a) The identity of the third-party payor;"}]}]},
+        {"x0":110,"y0":230,"x1":530,"y1":265,"boxclass":"list-item","textlines":[{"spans":[{"text":"(b) The relationship between the customer and the third-party payor;"}]}]},
+        {"x0":110,"y0":280,"x1":530,"y1":315,"boxclass":"list-item","textlines":[{"spans":[{"text":"(c) The reason for making the deposit."}]}]},
+    ]
+    result = build_canonical_document(record=record, extraction=extraction, layout_artifact=layout)
+    parent = next(item for item in result.pages[0].elements if item.text.startswith("2.6 "))
+    members = [item for item in result.pages[0].elements if item.text.startswith(("(a)","(b)","(c)"))]
+    assert parent.type == "clause"
+    assert len(members) == 3
+    assert all(item.type == "subclause" for item in members)
+    assert all(item.parent_clause_id == parent.clause_id for item in members)
+
+
+def test_semantic_v25_descriptive_parallel_family_stays_list_when_one_member_introduces_nested_list():
+    record, extraction, layout = _fixture()
+    raw = extraction.pages[0]
+    blocks = [
+        _text_block("p1-b0", 0, [50, 40, 300, 70], "Sample Report", 22),
+        _text_block("p1-b1", 1, [70, 95, 530, 145], "1.1 The Guidelines are issued pursuant to the following:", 11),
+        _text_block("p1-b2", 2, [108, 165, 530, 215], "(a) in relation to anti-money laundering legislation;", 11),
+        _text_block("p1-b3", 3, [108, 230, 530, 300], "(b) in relation to proliferation financing legislation which provides the legal basis for implementation under the following instruments:", 11),
+        _text_block("p1-b4", 4, [143, 320, 530, 350], "(i) Strategic Trade Act 2010;", 11),
+        _text_block("p1-b5", 5, [143, 365, 530, 395], "(ii) Strategic Trade Regulations 2010.", 11),
+    ]
+    raw.blocks = blocks
+    raw.tables = []
+    extraction.summary.text_block_count = len(blocks)
+    extraction.summary.table_count = 0
+    layout["result"]["toc"] = []
+    layout["result"]["pages"][0]["boxes"] = [
+        {"x0":50,"y0":40,"x1":300,"y1":70,"boxclass":"title","textlines":[{"spans":[{"text":"Sample Report"}]}]},
+        {"x0":70,"y0":95,"x1":530,"y1":145,"boxclass":"list-item","textlines":[{"spans":[{"text":blocks[1].text}]}]},
+        {"x0":108,"y0":165,"x1":530,"y1":215,"boxclass":"list-item","textlines":[{"spans":[{"text":blocks[2].text}]}]},
+        {"x0":108,"y0":230,"x1":530,"y1":300,"boxclass":"list-item","textlines":[{"spans":[{"text":blocks[3].text}]}]},
+        {"x0":143,"y0":320,"x1":530,"y1":350,"boxclass":"list-item","textlines":[{"spans":[{"text":blocks[4].text}]}]},
+        {"x0":143,"y0":365,"x1":530,"y1":395,"boxclass":"list-item","textlines":[{"spans":[{"text":blocks[5].text}]}]},
+    ]
+    result = build_canonical_document(record=record, extraction=extraction, layout_artifact=layout)
+    parent = next(item for item in result.pages[0].elements if item.text.startswith("1.1 "))
+    outer = [item for item in result.pages[0].elements if item.text.startswith(("(a)", "(b)")) and item.bbox[0] < 130]
+    assert parent.type == "clause"
+    assert len(outer) == 2
+    assert all(item.type == "list_item" for item in outer)
+    second = next(item for item in outer if item.text.startswith("(b)"))
+    nested = [item for item in result.pages[0].elements if item.bbox[0] >= 140 and item.text.startswith(("(i)", "(ii)"))]
+    assert len(nested) == 2
+    assert all(item.type == "list_item" for item in nested)
+    for item in nested:
+        assert any(
+            relation.type == "introduces"
+            and relation.source_element_id == second.element_id
+            and relation.target_element_id == item.element_id
+            for relation in result.relationships
+        )
+
+
+def test_semantic_v25_numbered_heading_clause_intro_resolves_before_enumerated_children():
+    record, extraction, layout = _fixture()
+    raw = extraction.pages[0]
+    blocks = [
+        _text_block("p1-b0", 0, [50, 40, 300, 70], "Sample Report", 22),
+        _text_block("p1-b1", 1, [70, 90, 530, 120], "7.3 PF Risk assessment", 14),
+        _text_block("p1-b2", 2, [70, 145, 530, 170], "7.3.5 A reporting institution is required to:", 11),
+        _text_block("p1-b3", 3, [108, 190, 530, 225], "(a) have policies and controls to manage the risk;", 11),
+        _text_block("p1-b4", 4, [108, 240, 530, 275], "(b) monitor implementation of those policies and controls; and", 11),
+        _text_block("p1-b5", 5, [108, 290, 530, 320], "(c) take commensurate measures to manage and mitigate the risks:", 11),
+        _text_block("p1-b6", 6, [143, 340, 530, 390], "(i) where higher risks are identified, the institution must ensure enhanced controls are applied;", 11),
+        _text_block("p1-b7", 7, [143, 405, 530, 455], "(ii) where lower risks are identified, the institution must ensure measures are commensurate with the risk.", 11),
+    ]
+    raw.blocks = blocks
+    raw.tables = []
+    extraction.summary.text_block_count = len(blocks)
+    extraction.summary.table_count = 0
+    layout["result"]["toc"] = []
+    layout["result"]["pages"][0]["boxes"] = [
+        {"x0":50,"y0":40,"x1":300,"y1":70,"boxclass":"title","textlines":[{"spans":[{"text":"Sample Report"}]}]},
+        {"x0":70,"y0":90,"x1":530,"y1":120,"boxclass":"section-header","textlines":[{"spans":[{"text":"7.3 PF Risk assessment"}]}]},
+        {"x0":70,"y0":145,"x1":530,"y1":170,"boxclass":"section-header","textlines":[{"spans":[{"text":blocks[2].text}]}]},
+        {"x0":108,"y0":190,"x1":530,"y1":225,"boxclass":"list-item","textlines":[{"spans":[{"text":blocks[3].text}]}]},
+        {"x0":108,"y0":240,"x1":530,"y1":275,"boxclass":"list-item","textlines":[{"spans":[{"text":blocks[4].text}]}]},
+        {"x0":108,"y0":290,"x1":530,"y1":320,"boxclass":"list-item","textlines":[{"spans":[{"text":blocks[5].text}]}]},
+        {"x0":143,"y0":340,"x1":530,"y1":390,"boxclass":"list-item","textlines":[{"spans":[{"text":blocks[6].text}]}]},
+        {"x0":143,"y0":405,"x1":530,"y1":455,"boxclass":"list-item","textlines":[{"spans":[{"text":blocks[7].text}]}]},
+    ]
+    result = build_canonical_document(record=record, extraction=extraction, layout_artifact=layout)
+    parent = next(item for item in result.pages[0].elements if item.text.startswith("7.3.5"))
+    assert parent.type == "clause"
+    outer = [item for item in result.pages[0].elements if item.bbox[0] < 130 and item.text.startswith(("(a)", "(b)", "(c)"))]
+    assert len(outer) == 3
+    assert all(item.type == "subclause" for item in outer)
+    assert all(item.parent_clause_id == parent.clause_id for item in outer)
+    third = next(item for item in outer if item.text.startswith("(c)"))
+    nested = [item for item in result.pages[0].elements if item.bbox[0] >= 140 and item.text.startswith(("(i)", "(ii)"))]
+    assert len(nested) == 2
+    # These are complete conditional obligations in their own right ("where
+    # ... the institution must ensure ..."), not merely dependent verb/noun
+    # phrases.  They remain subclauses even when the whole nested run happens
+    # to fit on one page.  This keeps semantic type independent of pagination.
+    assert all(item.type == "subclause" for item in nested)
+    assert all(item.parent_clause_id == third.clause_id for item in nested)
+    relation_pairs = {(rel.source_element_id, rel.target_element_id, rel.type) for rel in result.relationships}
+    assert all((third.element_id, item.element_id, "parent_of") in relation_pairs for item in nested)
+
+
+def test_semantic_v25_nested_dependent_run_keeps_relative_modal_member_in_list_family():
+    record, extraction, layout = _fixture()
+    raw = extraction.pages[0]
+    blocks = [
+        _text_block("p1-b0", 0, [50, 40, 300, 70], "Sample Report", 22),
+        _text_block("p1-b1", 1, [70, 95, 530, 140], "8.1.23 A reporting institution must apply the following controls:", 11),
+        _text_block("p1-b2", 2, [115, 160, 530, 210], "(c) For verification, a reporting institution must undertake one or more of the following measures:", 11),
+        _text_block("p1-b3", 3, [143, 225, 530, 255], "(i) Requesting additional identification information;", 11),
+        _text_block("p1-b4", 4, [143, 270, 530, 300], "(ii) Substantiating the information with an independent source;", 11),
+        _text_block("p1-b5", 5, [143, 315, 530, 345], "(iii) Contacting the customer through a verified channel;", 11),
+        _text_block("p1-b6", 6, [143, 360, 530, 390], "(iv) Requesting a nominal payment from the customer's own account; or", 11),
+        _text_block("p1-b7", 7, [143, 405, 530, 455], "(v) Using biometric technologies which should be linked incontrovertibly to the customer.", 11),
+        _text_block("p1-b8", 8, [115, 480, 530, 530], "(d) Where those measures fail, the reporting institution must initiate face-to-face verification.", 11),
+    ]
+    raw.blocks = blocks
+    raw.tables = []
+    extraction.summary.text_block_count = len(blocks)
+    extraction.summary.table_count = 0
+    layout["result"]["toc"] = []
+    layout["result"]["pages"][0]["boxes"] = [
+        {"x0":50,"y0":40,"x1":300,"y1":70,"boxclass":"title","textlines":[{"spans":[{"text":"Sample Report"}]}]},
+        {"x0":70,"y0":95,"x1":530,"y1":140,"boxclass":"list-item","textlines":[{"spans":[{"text":blocks[1].text}]}]},
+        {"x0":115,"y0":160,"x1":530,"y1":210,"boxclass":"list-item","textlines":[{"spans":[{"text":blocks[2].text}]}]},
+        {"x0":143,"y0":225,"x1":530,"y1":255,"boxclass":"list-item","textlines":[{"spans":[{"text":blocks[3].text}]}]},
+        {"x0":143,"y0":270,"x1":530,"y1":300,"boxclass":"list-item","textlines":[{"spans":[{"text":blocks[4].text}]}]},
+        {"x0":143,"y0":315,"x1":530,"y1":345,"boxclass":"list-item","textlines":[{"spans":[{"text":blocks[5].text}]}]},
+        {"x0":143,"y0":360,"x1":530,"y1":390,"boxclass":"list-item","textlines":[{"spans":[{"text":blocks[6].text}]}]},
+        {"x0":143,"y0":405,"x1":530,"y1":455,"boxclass":"list-item","textlines":[{"spans":[{"text":blocks[7].text}]}]},
+        {"x0":115,"y0":480,"x1":530,"y1":530,"boxclass":"list-item","textlines":[{"spans":[{"text":blocks[8].text}]}]},
+    ]
+    result = build_canonical_document(record=record, extraction=extraction, layout_artifact=layout)
+    outer_c = next(item for item in result.pages[0].elements if item.text.startswith("(c)"))
+    nested = [item for item in result.pages[0].elements if item.bbox[0] >= 140 and item.text.startswith(("(i)", "(ii)", "(iii)", "(iv)", "(v)"))]
+    assert outer_c.type == "subclause"
+    assert len(nested) == 5
+    assert all(item.type == "list_item" for item in nested)
+    for item in nested:
+        assert any(
+            relation.type == "introduces"
+            and relation.source_element_id == outer_c.element_id
+            and relation.target_element_id == item.element_id
+            for relation in result.relationships
+        )
+    outer_d = next(item for item in result.pages[0].elements if item.text.startswith("(d)"))
+    assert outer_d.type == "subclause"
+    assert outer_d.parent_clause_id == outer_c.parent_clause_id
+
+
+def _canonical_test_element(element_id, type_, page, order, bbox, text, *, table=None, definition_entry_id=None):
+    return CanonicalElement(
+        element_id=element_id,
+        type=type_,
+        page_number=page,
+        reading_order=order,
+        document_order=order,
+        bbox=bbox,
+        text=text,
+        definition_entry_id=definition_entry_id,
+        role_source="test",
+        table=table,
+        source=CanonicalSourceTrace(layout_box_index=order, layout_box_class="text"),
+    )
+
+
+def test_regression_clause_suffix_letter_is_preserved_without_consuming_prose_initial():
+    from app.services.canonical import _extract_clause_number, _normalize_structural_text
+    from app.services.semantic.features import extract_clause_number
+
+    assert _normalize_structural_text("11.6A A reporting institution is required") == "11.6A A reporting institution is required"
+    assert _extract_clause_number("11.6A A reporting institution is required") == "11.6A"
+    assert extract_clause_number("11.6A A reporting institution is required") == "11.6A"
+    assert _extract_clause_number("3.1Unless otherwise defined") == "3.1"
+
+
+def test_regression_repeated_cover_title_on_early_page_becomes_page_header():
+    from app.services.canonical import _suppress_repeated_document_headers
+    from app.schemas import StructuredPage
+
+    title = _canonical_test_element("p1-e1", "title", 1, 0, [60, 60, 540, 120], "Sample Regulatory Guidelines")
+    repeated = _canonical_test_element("p2-e1", "section_header", 2, 0, [60, 70, 540, 120], "Sample Regulatory Guidelines")
+    pages = [
+        StructuredPage(page_number=1, width=600, height=800, elements=[title], body_text=""),
+        StructuredPage(page_number=2, width=600, height=800, elements=[repeated], body_text=""),
+    ]
+    elements = [title, repeated]
+    assert _suppress_repeated_document_headers(elements, pages, title) == 1
+    assert repeated.type == "page_header"
+    assert repeated.heading_level is None
+
+
+def test_regression_definition_rows_are_serialized_term_then_definition():
+    from app.services.canonical import _reorder_definition_rows
+    from app.schemas import StructuredPage
+
+    t1 = _canonical_test_element("t1", "definition_term", 1, 0, [100, 100, 220, 120], "term one", definition_entry_id="def-1")
+    t2 = _canonical_test_element("t2", "definition_term", 1, 1, [100, 150, 220, 170], "term two", definition_entry_id="def-2")
+    d1 = _canonical_test_element("d1", "definition_text", 1, 2, [300, 100, 540, 130], "means first", definition_entry_id="def-1")
+    d2 = _canonical_test_element("d2", "definition_text", 1, 3, [300, 150, 540, 180], "means second", definition_entry_id="def-2")
+    page = StructuredPage(page_number=1, width=600, height=800, elements=[t1, t2, d1, d2], body_text="")
+    elements = list(page.elements)
+    assert _reorder_definition_rows(elements, [page]) == 1
+    assert [item.element_id for item in page.elements] == ["t1", "d1", "t2", "d2"]
+
+
+def test_regression_definition_spill_is_moved_to_next_row():
+    from app.services.canonical import _repair_definition_row_boundaries
+    from app.schemas import StructuredPage
+
+    t1 = _canonical_test_element("t1", "definition_term", 1, 0, [100, 100, 220, 120], "UNSCR", definition_entry_id="def-1")
+    d1 = _canonical_test_element("d1", "definition_text", 1, 1, [300, 100, 540, 180], "means United Nations Security Council Resolution. means any natural or legal person who is not", definition_entry_id="def-1")
+    t2 = _canonical_test_element("t2", "definition_term", 1, 2, [100, 160, 250, 180], "Virtual Asset Service Provider", definition_entry_id="def-2")
+    d2 = _canonical_test_element("d2", "definition_text", 1, 3, [300, 175, 540, 240], "covered elsewhere under the recommendations", definition_entry_id="def-2")
+    page = StructuredPage(page_number=1, width=600, height=800, elements=[t1, d1, t2, d2], body_text="")
+    elements = list(page.elements)
+    assert _repair_definition_row_boundaries(elements, [page]) == 1
+    assert d1.text == "means United Nations Security Council Resolution."
+    assert d2.text.startswith("means any natural or legal person who is not covered elsewhere")
+
+
+def test_regression_embedded_example_and_illustration_captions_are_split():
+    from app.services.canonical import _split_embedded_captions
+    from app.schemas import StructuredPage, CanonicalTable
+
+    table = CanonicalTable(
+        row_count=2,
+        col_count=3,
+        cells=[["Example 1:\nRisk Factor", "Examples", "Parameters"], ["Customer", "Example", "Value"]],
+        markdown=None,
+    )
+    table_el = _canonical_test_element("tbl", "table", 1, 0, [80, 100, 520, 300], "Example 1:\nRisk Factor\tExamples\tParameters", table=table)
+    intro = _canonical_test_element("intro", "paragraph", 1, 1, [70, 330, 500, 370], "An overview is shown below.\nIllustration 1:")
+    fig = _canonical_test_element("fig", "figure", 1, 2, [70, 380, 520, 650], "")
+    page = StructuredPage(page_number=1, width=600, height=800, elements=[table_el, intro, fig], body_text="")
+    elements = list(page.elements)
+    assert _split_embedded_captions(elements, [page]) == 2
+    assert any(item.type == "caption" and item.text == "Example 1:" for item in page.elements)
+    assert any(item.type == "caption" and item.text == "Illustration 1:" for item in page.elements)
+    repaired_table = next(item for item in page.elements if item.element_id == "tbl")
+    assert repaired_table.table.cells[0][0] == "Risk Factor"
+    repaired_intro = next(item for item in page.elements if item.element_id == "intro")
+    assert repaired_intro.text == "An overview is shown below."
+
+
+def test_regression_secondary_toc_table_major_part_row_is_repaired_but_arbitrary_group_is_not():
+    from app.services.canonical import _table_has_embedded_major_toc_heading, _repair_merged_toc_rows
+
+    part_cells = [
+        ["13.", "Compliance with Enforcement Orders", "58"],
+        ["PART\n14.", "VII: COMBATING TERRORISM FINANCING\nIdentification and Designation", "59"],
+        ["15.", "Definition and Interpretation", "61"],
+        ["16.", "Maintenance of Sanctions List", "61"],
+    ]
+    group_cells = [
+        ["GROUP\n9", "INTERNAL TEST SECTION\nUnrelated Entry", "70"],
+        ["9.1", "Unrelated A", "71"],
+        ["9.2", "Unrelated B", "72"],
+        ["9.3", "Unrelated C", "73"],
+    ]
+    assert _table_has_embedded_major_toc_heading(part_cells)
+    repaired, changed = _repair_merged_toc_rows(part_cells)
+    assert changed and ["PART", "VII: COMBATING TERRORISM FINANCING", ""] in repaired
+    assert not _table_has_embedded_major_toc_heading(group_cells)
+
+
+def test_regression_article_a_after_decimal_clause_is_not_suffix():
+    from app.services.canonical import _extract_clause_number, _normalize_structural_text
+    from app.services.semantic.features import extract_clause_number, strip_clause_prefix
+
+    cases = [
+        ("11.8A reporting institution is required", "11.8", "A reporting institution is required"),
+        ("7.1.1A reporting institution must take steps", "7.1.1", "A reporting institution must take steps"),
+        ("10.1A reporting institution must keep records", "10.1", "A reporting institution must keep records"),
+    ]
+    for raw, expected_number, expected_prose in cases:
+        normalized = _normalize_structural_text(raw)
+        assert normalized.startswith(expected_number + " ")
+        assert _extract_clause_number(normalized) == expected_number
+        assert extract_clause_number(raw) == expected_number
+        assert strip_clause_prefix(raw) == expected_prose
+
+    # The real suffix case remains intact.
+    assert _normalize_structural_text("11.6 A  A reporting institution is required") == "11.6A A reporting institution is required"
+    assert _extract_clause_number("11.6A A reporting institution is required") == "11.6A"
+    assert extract_clause_number("11.6A A reporting institution is required") == "11.6A"
+
+
+def test_regression_toc_major_heading_merged_after_previous_entry_is_split():
+    from app.services.canonical import _repair_merged_toc_rows, _table_has_embedded_major_toc_heading
+
+    cells = [
+        ["9", "Wire Transfer of Digital Assets", "47"],
+        ["9.1", "General", "47"],
+        ["9.2", "Ordering Institutions", "47"],
+        ["9.3", "Beneficiary Institutions", "49"],
+        ["9.4", "Sanctions Screening", "49"],
+        ["9.5\nPART", "Identification and Due Diligence on Counterparty Virtual Asset Service\nProviders\nIV: RETENTION OF RECORDS", "50"],
+        ["10.\nPART", "Record Keeping\nV: SUSPICIOUS TRANSACTIONS", "52"],
+        ["11.", "Reporting of Suspicious Transactions", "54"],
+        ["12.", "Confidentiality of Reporting", "57"],
+    ]
+    assert _table_has_embedded_major_toc_heading(cells)
+    repaired, changed = _repair_merged_toc_rows(cells)
+    assert changed
+    assert ["9.5", "Identification and Due Diligence on Counterparty Virtual Asset Service\nProviders", "50"] in repaired
+    assert ["PART", "IV: RETENTION OF RECORDS", ""] in repaired
+    assert ["10.", "Record Keeping", "52"] in repaired
+    assert ["PART", "V: SUSPICIOUS TRANSACTIONS", ""] in repaired

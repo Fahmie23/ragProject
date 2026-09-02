@@ -1,0 +1,3 @@
+Questions audited: 20
+Exact retrieval-question duplicates: 0
+Similarity warnings >= 0.70: 0

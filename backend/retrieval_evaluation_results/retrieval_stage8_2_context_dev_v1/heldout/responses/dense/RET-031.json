@@ -1,0 +1,262 @@
+{
+  "document_id": "485c4989-c300-45c8-ac06-79a59492bb5c",
+  "query": "What originator and beneficiary information must accompany a cross-border or domestic digital-asset wire transfer sent by an ordering institution?",
+  "embedding_model": "BAAI/bge-m3",
+  "requested_device": "auto",
+  "resolved_device": "cuda",
+  "top_k": 10,
+  "embedded_chunk_count": 284,
+  "total_chunk_count": 284,
+  "hits": [
+    {
+      "rank": 1,
+      "chunk_id": "485c4989-c300-45c8-ac06-79a59492bb5c-c0132-3c175526c2",
+      "chunk_index": 132,
+      "semantic_type": "clause",
+      "score": 0.8301753008156656,
+      "distance": 0.1698246991843344,
+      "text": "Section: PART IIIA: WIRE TRANSFER > 9. WIRE TRANSFER OF DIGITAL ASSETS > 9.2 Ordering institutions\nClause: 9.2.1\n\n9.2.1 A reporting institution which is an ordering institution must ensure that the message\nfor cross-border or domestic wire transfer are accompanied by the following:\n\n(a)Required and accurate originator information pertaining to:\n\n(i)Name of originator;\n\n(ii)National registration identity card number or passport number;\n\n(iii)Account number or digital wallet address or a unique transaction\nreference number used to process the transaction which permits\ntraceability of the transaction; and\n\n(b)Required beneficiary information pertaining to:\n\n(i)Name of beneficiary; and\n\n(ii)Account number or digital wallet address or a unique transaction\nreference number used to process the transaction which permits\ntraceability of the transaction.",
+      "content_text": "9.2.1 A reporting institution which is an ordering institution must ensure that the message\nfor cross-border or domestic wire transfer are accompanied by the following:\n\n(a)Required and accurate originator information pertaining to:\n\n(i)Name of originator;\n\n(ii)National registration identity card number or passport number;\n\n(iii)Account number or digital wallet address or a unique transaction\nreference number used to process the transaction which permits\ntraceability of the transaction; and\n\n(b)Required beneficiary information pertaining to:\n\n(i)Name of beneficiary; and\n\n(ii)Account number or digital wallet address or a unique transaction\nreference number used to process the transaction which permits\ntraceability of the transaction.",
+      "token_count": 162,
+      "pages": [
+        48,
+        49
+      ],
+      "section_path": [
+        "PART IIIA: WIRE TRANSFER",
+        "9. WIRE TRANSFER OF DIGITAL ASSETS",
+        "9.2 Ordering institutions"
+      ],
+      "source_element_ids": [
+        "p48-e13",
+        "p48-e14",
+        "p48-e15",
+        "p48-e16",
+        "p48-e17",
+        "p49-e2",
+        "p49-e3",
+        "p49-e4"
+      ]
+    },
+    {
+      "rank": 2,
+      "chunk_id": "485c4989-c300-45c8-ac06-79a59492bb5c-c0138-fc3eaa0c1a",
+      "chunk_index": 138,
+      "semantic_type": "clause",
+      "score": 0.7440850887247881,
+      "distance": 0.25591491127521193,
+      "text": "Section: PART IIIA: WIRE TRANSFER > 9. WIRE TRANSFER OF DIGITAL ASSETS > 9.3 Beneficiary Institutions\n\n9.3.1 A beneficiary institution must take reasonable measures, including post-event or real-\ntime monitoring where feasible, to identify cross border wire transfers or domestic\nwire transfers that lack the required originator information or required beneficiary\ninformation.\n\n9.3.2 A beneficiary institution is required to have effective risk-based policies and procedures\nfor determining―\n\n(a)when to execute, reject, or suspend a wire transfer lacking the required originator\nor required beneficiary information; and\n\n(b)the appropriate follow-up action.\n\n9.3.3 A beneficiary institution must verify the following beneficiary information received from\nthe ordering institution:\n\n(a)Name of beneficiary; and\n\n(b) Account number or digital wallet address or a unique transaction reference\nnumber used to process the transaction which permits traceability of the\ntransaction.",
+      "content_text": "9.3.1 A beneficiary institution must take reasonable measures, including post-event or real-\ntime monitoring where feasible, to identify cross border wire transfers or domestic\nwire transfers that lack the required originator information or required beneficiary\ninformation.\n\n9.3.2 A beneficiary institution is required to have effective risk-based policies and procedures\nfor determining―\n\n(a)when to execute, reject, or suspend a wire transfer lacking the required originator\nor required beneficiary information; and\n\n(b)the appropriate follow-up action.\n\n9.3.3 A beneficiary institution must verify the following beneficiary information received from\nthe ordering institution:\n\n(a)Name of beneficiary; and\n\n(b) Account number or digital wallet address or a unique transaction reference\nnumber used to process the transaction which permits traceability of the\ntransaction.",
+      "token_count": 178,
+      "pages": [
+        50
+      ],
+      "section_path": [
+        "PART IIIA: WIRE TRANSFER",
+        "9. WIRE TRANSFER OF DIGITAL ASSETS",
+        "9.3 Beneficiary Institutions"
+      ],
+      "source_element_ids": [
+        "p50-e2",
+        "p50-e3",
+        "p50-e4",
+        "p50-e5",
+        "p50-e6",
+        "p50-e7",
+        "p50-e8"
+      ]
+    },
+    {
+      "rank": 3,
+      "chunk_id": "485c4989-c300-45c8-ac06-79a59492bb5c-c0130-68d2d5136f",
+      "chunk_index": 130,
+      "semantic_type": "clause",
+      "score": 0.7035230751606136,
+      "distance": 0.29647692483938637,
+      "text": "Section: PART IIIA: WIRE TRANSFER > 9. WIRE TRANSFER OF DIGITAL ASSETS > 9.1 General\n\n9.1.1 The requirements under this Part are applicable to a reporting institution providing\ncross border wire transfer or domestic wire transfer of digital assets.\n\n9.1.2 A reporting institution must not execute wire transfer of digital assets if it does not comply\nwith the requirements specified in this Part IIIA.\n\n9.1.3 In providing wire transfer of a digital asset, the reporting institutions must comply\nwith requirements on targeted financial sanctions:\n\n(a)In relation to terrorism financing under Part VII of these Guidelines; and\n\n(b)In relation to proliferation financing Part VIII of these Guidelines.\n\n9.1.4 A reporting institution must obtain, hold and maintain all originator and beneficiary\ninformation collected under this Part IIIA, in accordance with record keeping\nrequirements under Part IV of these Guidelines.This information must be made\navailable to regulators or relevant authorities when necessary.\n\n9.1.5 A reporting institution must have in place adequate policies and procedures and the\nability to trace all wire transfers.",
+      "content_text": "9.1.1 The requirements under this Part are applicable to a reporting institution providing\ncross border wire transfer or domestic wire transfer of digital assets.\n\n9.1.2 A reporting institution must not execute wire transfer of digital assets if it does not comply\nwith the requirements specified in this Part IIIA.\n\n9.1.3 In providing wire transfer of a digital asset, the reporting institutions must comply\nwith requirements on targeted financial sanctions:\n\n(a)In relation to terrorism financing under Part VII of these Guidelines; and\n\n(b)In relation to proliferation financing Part VIII of these Guidelines.\n\n9.1.4 A reporting institution must obtain, hold and maintain all originator and beneficiary\ninformation collected under this Part IIIA, in accordance with record keeping\nrequirements under Part IV of these Guidelines.This information must be made\navailable to regulators or relevant authorities when necessary.\n\n9.1.5 A reporting institution must have in place adequate policies and procedures and the\nability to trace all wire transfers.",
+      "token_count": 212,
+      "pages": [
+        48
+      ],
+      "section_path": [
+        "PART IIIA: WIRE TRANSFER",
+        "9. WIRE TRANSFER OF DIGITAL ASSETS",
+        "9.1 General"
+      ],
+      "source_element_ids": [
+        "p48-e4",
+        "p48-e5",
+        "p48-e6",
+        "p48-e7",
+        "p48-e8",
+        "p48-e9",
+        "p48-e10"
+      ]
+    },
+    {
+      "rank": 4,
+      "chunk_id": "485c4989-c300-45c8-ac06-79a59492bb5c-c0136-225386c91b",
+      "chunk_index": 136,
+      "semantic_type": "clause",
+      "score": 0.6770544033549315,
+      "distance": 0.3229455966450685,
+      "text": "Section: PART IIIA: WIRE TRANSFER > 9. WIRE TRANSFER OF DIGITAL ASSETS > 9.2 Ordering institutions\nClause: 9.2.2\n\n9.2.2 A reporting institution which is an ordering institution must submit the information\nset out in paragraph 9.2.1 to the beneficiary institution immediately and securely.",
+      "content_text": "9.2.2 A reporting institution which is an ordering institution must submit the information\nset out in paragraph 9.2.1 to the beneficiary institution immediately and securely.",
+      "token_count": 62,
+      "pages": [
+        49
+      ],
+      "section_path": [
+        "PART IIIA: WIRE TRANSFER",
+        "9. WIRE TRANSFER OF DIGITAL ASSETS",
+        "9.2 Ordering institutions"
+      ],
+      "source_element_ids": [
+        "p49-e9"
+      ]
+    },
+    {
+      "rank": 5,
+      "chunk_id": "485c4989-c300-45c8-ac06-79a59492bb5c-c0131-50377c9927",
+      "chunk_index": 131,
+      "semantic_type": "paragraph",
+      "score": 0.663754045963292,
+      "distance": 0.336245954036708,
+      "text": "Section: PART IIIA: WIRE TRANSFER > 9. WIRE TRANSFER OF DIGITAL ASSETS > 9.2 Ordering institutions\n\nCross-Border or Domestic Wire Transfers",
+      "content_text": "Cross-Border or Domestic Wire Transfers",
+      "token_count": 28,
+      "pages": [
+        48
+      ],
+      "section_path": [
+        "PART IIIA: WIRE TRANSFER",
+        "9. WIRE TRANSFER OF DIGITAL ASSETS",
+        "9.2 Ordering institutions"
+      ],
+      "source_element_ids": [
+        "p48-e12"
+      ]
+    },
+    {
+      "rank": 6,
+      "chunk_id": "485c4989-c300-45c8-ac06-79a59492bb5c-c0031-0ba3acd474",
+      "chunk_index": 31,
+      "semantic_type": "definition",
+      "score": 0.6614039742109803,
+      "distance": 0.3385960257890197,
+      "text": "Section: PART I: INTRODUCTION AND APPLICABILITY > 3. DEFINITIONS\nDefinition: ordering institution\n\nordering institution\n\nrefers to the institution which initiates a wire transfer of digital asset upon receiving the request of a wire transfer of digital asset on behalf of the originator.",
+      "content_text": "ordering institution\n\nrefers to the institution which initiates a wire transfer of digital asset upon receiving the request of a wire transfer of digital asset on behalf of the originator.",
+      "token_count": 47,
+      "pages": [
+        13
+      ],
+      "section_path": [
+        "PART I: INTRODUCTION AND APPLICABILITY",
+        "3. DEFINITIONS"
+      ],
+      "source_element_ids": [
+        "p13-e1",
+        "p13-e4"
+      ]
+    },
+    {
+      "rank": 7,
+      "chunk_id": "485c4989-c300-45c8-ac06-79a59492bb5c-c0133-f431375115",
+      "chunk_index": 133,
+      "semantic_type": "list_item",
+      "score": 0.6479117307820813,
+      "distance": 0.3520882692179187,
+      "text": "Section: PART IIIA: WIRE TRANSFER > 9. WIRE TRANSFER OF DIGITAL ASSETS > 9.2 Ordering institutions\n\n(iv)Address or date and place of birth",
+      "content_text": "(iv)Address or date and place of birth",
+      "token_count": 31,
+      "pages": [
+        49
+      ],
+      "section_path": [
+        "PART IIIA: WIRE TRANSFER",
+        "9. WIRE TRANSFER OF DIGITAL ASSETS",
+        "9.2 Ordering institutions"
+      ],
+      "source_element_ids": [
+        "p49-e1"
+      ]
+    },
+    {
+      "rank": 8,
+      "chunk_id": "485c4989-c300-45c8-ac06-79a59492bb5c-c0139-f108162213",
+      "chunk_index": 139,
+      "semantic_type": "clause",
+      "score": 0.6355002739727346,
+      "distance": 0.36449972602726544,
+      "text": "Section: PART IIIA: WIRE TRANSFER > 9. WIRE TRANSFER OF DIGITAL ASSETS > 9.4 Sanctions Screening\n\n9.4.1 An ordering institution must conduct sanctions screening of the following persons:\n\n(a) its customer, at the point of onboarding and ongoing due diligence; and\n\n(b) the beneficiary, when a wire transfer is conducted.\n\n9.4.2 A beneficiary institution must conduct sanctions screening of the following persons:\n\n(a) its beneficiary, at the point of onboarding and ongoing due diligence; and\n\n(b) the originator, when a wire transfer is conducted.\n\n9.4.3 Once the person screened is identified as a designated person, the ordering or\nbeneficiary institution must take freezing actions and prohibit transactions.\n\n9.4.4 Ordering or beneficiary institutions must implement effective control frameworks to\nensure that they can comply with their targeted financial sanction obligations.\n\n9.4.5 A reporting institution must document their remediation control actions in their\nAML/CFT/CPF risk assessment.",
+      "content_text": "9.4.1 An ordering institution must conduct sanctions screening of the following persons:\n\n(a) its customer, at the point of onboarding and ongoing due diligence; and\n\n(b) the beneficiary, when a wire transfer is conducted.\n\n9.4.2 A beneficiary institution must conduct sanctions screening of the following persons:\n\n(a) its beneficiary, at the point of onboarding and ongoing due diligence; and\n\n(b) the originator, when a wire transfer is conducted.\n\n9.4.3 Once the person screened is identified as a designated person, the ordering or\nbeneficiary institution must take freezing actions and prohibit transactions.\n\n9.4.4 Ordering or beneficiary institutions must implement effective control frameworks to\nensure that they can comply with their targeted financial sanction obligations.\n\n9.4.5 A reporting institution must document their remediation control actions in their\nAML/CFT/CPF risk assessment.",
+      "token_count": 195,
+      "pages": [
+        50
+      ],
+      "section_path": [
+        "PART IIIA: WIRE TRANSFER",
+        "9. WIRE TRANSFER OF DIGITAL ASSETS",
+        "9.4 Sanctions Screening"
+      ],
+      "source_element_ids": [
+        "p50-e10",
+        "p50-e11",
+        "p50-e12",
+        "p50-e13",
+        "p50-e14",
+        "p50-e15",
+        "p50-e16",
+        "p50-e17",
+        "p50-e18"
+      ]
+    },
+    {
+      "rank": 9,
+      "chunk_id": "485c4989-c300-45c8-ac06-79a59492bb5c-c0137-98ec24b9b2",
+      "chunk_index": 137,
+      "semantic_type": "list_item",
+      "score": 0.6338844357935615,
+      "distance": 0.36611556420643854,
+      "text": "Section: PART IIIA: WIRE TRANSFER > 9. WIRE TRANSFER OF DIGITAL ASSETS > 9.2 Ordering institutions\nGroup: Guidance for paragraph 9.2.2:\n\na)The information can be submitted either directly or indirectly. It is\nnot necessary for this information to be attached directly to the\ndigital asset transfers.\n\nb)The phrase ‘immediately’ means that the reporting institutions\nshould submit the required information prior, simultaneously or\nconcurrently with the transfer itself. Post-facto submission of\nthe required information should not be permitted.\n\nc)The phrase ‘securely’ means that the reporting institutions should\ntransmit and store the required information in a secure manner.",
+      "content_text": "a)The information can be submitted either directly or indirectly. It is\nnot necessary for this information to be attached directly to the\ndigital asset transfers.\n\nb)The phrase ‘immediately’ means that the reporting institutions\nshould submit the required information prior, simultaneously or\nconcurrently with the transfer itself. Post-facto submission of\nthe required information should not be permitted.\n\nc)The phrase ‘securely’ means that the reporting institutions should\ntransmit and store the required information in a secure manner.",
+      "token_count": 125,
+      "pages": [
+        49
+      ],
+      "section_path": [
+        "PART IIIA: WIRE TRANSFER",
+        "9. WIRE TRANSFER OF DIGITAL ASSETS",
+        "9.2 Ordering institutions"
+      ],
+      "source_element_ids": [
+        "p49-e11",
+        "p49-e12",
+        "p49-e13"
+      ]
+    },
+    {
+      "rank": 10,
+      "chunk_id": "485c4989-c300-45c8-ac06-79a59492bb5c-c0135-c7a41d1edf",
+      "chunk_index": 135,
+      "semantic_type": "list_item",
+      "score": 0.6264541594440747,
+      "distance": 0.3735458405559253,
+      "text": "Section: PART IIIA: WIRE TRANSFER > 9. WIRE TRANSFER OF DIGITAL ASSETS > 9.2 Ordering institutions\nGroup: Guidance for paragraph 9.2.1 (b)\n\n2. The name of the beneficiary is not required to be verified for\naccuracy by the ordering institution. Notwithstanding this, the\nname of the beneficiary should be reviewed for the purpose of\nsuspicious transaction monitoring and sanction screening.",
+      "content_text": "2. The name of the beneficiary is not required to be verified for\naccuracy by the ordering institution. Notwithstanding this, the\nname of the beneficiary should be reviewed for the purpose of\nsuspicious transaction monitoring and sanction screening.",
+      "token_count": 76,
+      "pages": [
+        49
+      ],
+      "section_path": [
+        "PART IIIA: WIRE TRANSFER",
+        "9. WIRE TRANSFER OF DIGITAL ASSETS",
+        "9.2 Ordering institutions"
+      ],
+      "source_element_ids": [
+        "p49-e8"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,269 @@
+{
+  "document_id": "485c4989-c300-45c8-ac06-79a59492bb5c",
+  "query": "What actions are required when a reporting institution cannot satisfactorily complete CDD for a customer?",
+  "embedding_model": "BAAI/bge-m3",
+  "requested_device": "auto",
+  "resolved_device": "cuda",
+  "top_k": 10,
+  "embedded_chunk_count": 284,
+  "total_chunk_count": 284,
+  "hits": [
+    {
+      "rank": 1,
+      "chunk_id": "485c4989-c300-45c8-ac06-79a59492bb5c-c0123-4f5ad74283",
+      "chunk_index": 123,
+      "semantic_type": "clause",
+      "score": 0.7698886668814873,
+      "distance": 0.23011133311851273,
+      "text": "Section: PART III: CUSTOMER DUE DILIGENCE > 8. CUSTOMER DUE DILIGENCE (CDD) > 8.7 Failure to satisfactorily complete CDD\n\n8.7.1 A reporting institution must not commence any business relation, or execute any\ntransaction, or in the case of existing customers, must terminate such business\nrelationship, if the reporting institution fails to comply with the CDD requirement.\n\n8.7.2 In addition to the requirement in paragraph 8.7.1, the reporting institution must also\nconsider lodging a STR in relation to such customer with the FIED",
+      "content_text": "8.7.1 A reporting institution must not commence any business relation, or execute any\ntransaction, or in the case of existing customers, must terminate such business\nrelationship, if the reporting institution fails to comply with the CDD requirement.\n\n8.7.2 In addition to the requirement in paragraph 8.7.1, the reporting institution must also\nconsider lodging a STR in relation to such customer with the FIED",
+      "token_count": 107,
+      "pages": [
+        45
+      ],
+      "section_path": [
+        "PART III: CUSTOMER DUE DILIGENCE",
+        "8. CUSTOMER DUE DILIGENCE (CDD)",
+        "8.7 Failure to satisfactorily complete CDD"
+      ],
+      "source_element_ids": [
+        "p45-e11",
+        "p45-e12"
+      ]
+    },
+    {
+      "rank": 2,
+      "chunk_id": "485c4989-c300-45c8-ac06-79a59492bb5c-c0084-fb93596733",
+      "chunk_index": 84,
+      "semantic_type": "clause",
+      "score": 0.7182649374008179,
+      "distance": 0.28173506259918213,
+      "text": "Section: PART III: CUSTOMER DUE DILIGENCE > 8. CUSTOMER DUE DILIGENCE (CDD) > 8.1 CDD at the point of establishing business relationship\nClause: 8.1.7\nGroup: CDD requirements for individual customer and beneficial owner > Identification and Verification\n\n8.1.7 Where the above information is not sufficient for the reporting institution to complete its\nidentification and verification process, the reporting institution must seek further relevant\ninformation from the individual customer or beneficial owner.",
+      "content_text": "8.1.7 Where the above information is not sufficient for the reporting institution to complete its\nidentification and verification process, the reporting institution must seek further relevant\ninformation from the individual customer or beneficial owner.",
+      "token_count": 90,
+      "pages": [
+        32
+      ],
+      "section_path": [
+        "PART III: CUSTOMER DUE DILIGENCE",
+        "8. CUSTOMER DUE DILIGENCE (CDD)",
+        "8.1 CDD at the point of establishing business relationship"
+      ],
+      "source_element_ids": [
+        "p32-e15"
+      ]
+    },
+    {
+      "rank": 3,
+      "chunk_id": "485c4989-c300-45c8-ac06-79a59492bb5c-c0101-c09791e527",
+      "chunk_index": 101,
+      "semantic_type": "clause",
+      "score": 0.7122806310653687,
+      "distance": 0.28771936893463135,
+      "text": "Section: PART III: CUSTOMER DUE DILIGENCE > 8. CUSTOMER DUE DILIGENCE (CDD) > 8.1 CDD at the point of establishing business relationship\nGroup: Delayed verification\n\n8.1.24 A reporting institution may complete the verification after the establishment of the\nbusiness relationship (“delayed verification”) to allow some flexibility for its customer\nand beneficial owner to furnish the relevant documents in circumstances where\nverification is not possible at the point of establishing business relationship.\n\n8.1.27 If verification cannot be completed within the reasonable timeframe, the reporting\ninstitution should terminate the business relationship as soon as reasonably practicable\nand refrain from carrying out further transactions. However, following the termination\nof business relationship, the reporting institution may return funds or other assets to\nthe customers.\n\n8.1.28 The reporting institution must assess whether the failure to complete verification within\nthe reasonable timeframe provides sufficient grounds for making a STR to the FIED.",
+      "content_text": "8.1.24 A reporting institution may complete the verification after the establishment of the\nbusiness relationship (“delayed verification”) to allow some flexibility for its customer\nand beneficial owner to furnish the relevant documents in circumstances where\nverification is not possible at the point of establishing business relationship.\n\n8.1.27 If verification cannot be completed within the reasonable timeframe, the reporting\ninstitution should terminate the business relationship as soon as reasonably practicable\nand refrain from carrying out further transactions. However, following the termination\nof business relationship, the reporting institution may return funds or other assets to\nthe customers.\n\n8.1.28 The reporting institution must assess whether the failure to complete verification within\nthe reasonable timeframe provides sufficient grounds for making a STR to the FIED.",
+      "token_count": 177,
+      "pages": [
+        38,
+        39
+      ],
+      "section_path": [
+        "PART III: CUSTOMER DUE DILIGENCE",
+        "8. CUSTOMER DUE DILIGENCE (CDD)",
+        "8.1 CDD at the point of establishing business relationship"
+      ],
+      "source_element_ids": [
+        "p38-e2",
+        "p38-e13",
+        "p39-e1"
+      ]
+    },
+    {
+      "rank": 4,
+      "chunk_id": "485c4989-c300-45c8-ac06-79a59492bb5c-c0081-b1e4e8f0b7",
+      "chunk_index": 81,
+      "semantic_type": "clause",
+      "score": 0.7119798872464865,
+      "distance": 0.28802011275351347,
+      "text": "Section: PART III: CUSTOMER DUE DILIGENCE > 8. CUSTOMER DUE DILIGENCE (CDD) > 8.1 CDD at the point of establishing business relationship\n\n8.1.1 Section 16 of the AMLA among others clearly sets out customer identification\nrequirements for reporting institutions. A reporting institution must conduct CDD on\ncustomer and obtain satisfactory evidence of the identity and legal existence of the\ncustomer and beneficial owner at the point of establishing the business relationship.\n\n8.1.2 A reporting institution must not keep anonymous accounts or accounts in fictitious\nnames.\n\n8.1.4 A customer who fails to provide evidence of his identity must not be allowed to engage\nin business relations with the reporting institution. Additional measures must be\nundertaken to determine whether to proceed with the business relationship, where\ninitial checks failed to identify the customer or give rise to suspicions that the\ninformation provided is false.\n\n8.1.5 Where applicable, in conducting CDD, a reporting institution is required to comply with\nrequirements on targeted financial sanctions in relation to:\n\n(a) terrorism financing under Part VII of these Guidelines; and\n\n(b) proliferation financing under Part VIII of these Guidelines.",
+      "content_text": "8.1.1 Section 16 of the AMLA among others clearly sets out customer identification\nrequirements for reporting institutions. A reporting institution must conduct CDD on\ncustomer and obtain satisfactory evidence of the identity and legal existence of the\ncustomer and beneficial owner at the point of establishing the business relationship.\n\n8.1.2 A reporting institution must not keep anonymous accounts or accounts in fictitious\nnames.\n\n8.1.4 A customer who fails to provide evidence of his identity must not be allowed to engage\nin business relations with the reporting institution. Additional measures must be\nundertaken to determine whether to proceed with the business relationship, where\ninitial checks failed to identify the customer or give rise to suspicions that the\ninformation provided is false.\n\n8.1.5 Where applicable, in conducting CDD, a reporting institution is required to comply with\nrequirements on targeted financial sanctions in relation to:\n\n(a) terrorism financing under Part VII of these Guidelines; and\n\n(b) proliferation financing under Part VIII of these Guidelines.",
+      "token_count": 221,
+      "pages": [
+        31
+      ],
+      "section_path": [
+        "PART III: CUSTOMER DUE DILIGENCE",
+        "8. CUSTOMER DUE DILIGENCE (CDD)",
+        "8.1 CDD at the point of establishing business relationship"
+      ],
+      "source_element_ids": [
+        "p31-e4",
+        "p31-e5",
+        "p31-e11",
+        "p31-e12",
+        "p31-e13",
+        "p31-e14"
+      ]
+    },
+    {
+      "rank": 5,
+      "chunk_id": "485c4989-c300-45c8-ac06-79a59492bb5c-c0082-60739c961b",
+      "chunk_index": 82,
+      "semantic_type": "clause",
+      "score": 0.697231370375672,
+      "distance": 0.30276862962432805,
+      "text": "Section: PART III: CUSTOMER DUE DILIGENCE > 8. CUSTOMER DUE DILIGENCE (CDD) > 8.1 CDD at the point of establishing business relationship\nClause: 8.1.3\n\n8.1.3 For the purpose of conducting CDD, a reporting institution is required to–\n\n(a)identify the customer (including foreign body corporate) and verify such\ncustomer’s identity using reliable, independent source of documents, data or\ninformation;\n\n(b)verify that any person purporting to act on behalf of the customer is authorised,\nand identify and verify the identity of that person;\n\n(c)identify the beneficial owner and take reasonable measures to verify the identity\nof the beneficial owner, using relevant information or data obtained from\nreliable sources, such that the reporting institution is satisfied that it knows who\nthe beneficial owner is; and\n\n(d)understand, and where relevant, obtain information on the purpose of opening\nan account and the intended nature of the business relationship.",
+      "content_text": "8.1.3 For the purpose of conducting CDD, a reporting institution is required to–\n\n(a)identify the customer (including foreign body corporate) and verify such\ncustomer’s identity using reliable, independent source of documents, data or\ninformation;\n\n(b)verify that any person purporting to act on behalf of the customer is authorised,\nand identify and verify the identity of that person;\n\n(c)identify the beneficial owner and take reasonable measures to verify the identity\nof the beneficial owner, using relevant information or data obtained from\nreliable sources, such that the reporting institution is satisfied that it knows who\nthe beneficial owner is; and\n\n(d)understand, and where relevant, obtain information on the purpose of opening\nan account and the intended nature of the business relationship.",
+      "token_count": 188,
+      "pages": [
+        31
+      ],
+      "section_path": [
+        "PART III: CUSTOMER DUE DILIGENCE",
+        "8. CUSTOMER DUE DILIGENCE (CDD)",
+        "8.1 CDD at the point of establishing business relationship"
+      ],
+      "source_element_ids": [
+        "p31-e6",
+        "p31-e7",
+        "p31-e8",
+        "p31-e9",
+        "p31-e10"
+      ]
+    },
+    {
+      "rank": 6,
+      "chunk_id": "485c4989-c300-45c8-ac06-79a59492bb5c-c0117-340b2169f0",
+      "chunk_index": 117,
+      "semantic_type": "clause",
+      "score": 0.6912493293732817,
+      "distance": 0.30875067062671835,
+      "text": "Section: PART III: CUSTOMER DUE DILIGENCE > 8. CUSTOMER DUE DILIGENCE (CDD) > 8.6 Reliance on third-party institutions to conduct CDD\n\n8.6.1 A reporting institution may rely on a third-party institution to conduct CDD at the point\nof establishing a business relationship to identify and verify a customer or a beneficial\nowner. The reporting institution must immediately obtain the necessary information\nconcerning the identification and verification of the customer or the beneficial owner\nfrom the third-party institution.\n\n8.6.2 A reporting institution must have in place internal policies and procedures to mitigate\nthe risks when relying on a third-party institution, including those from foreign\njurisdictions. However, the reporting institution must ensure that the third-party\ninstitution adequately applies the FATF Recommendations in determining the extent\nto which reliance could be placed on such third-party institution.\n\n8.6.3 A reporting institution is prohibited from relying on a third-party institution located\nin higher- risk countries that have been identified as having ongoing or substantial\nML/TF/PF risks.",
+      "content_text": "8.6.1 A reporting institution may rely on a third-party institution to conduct CDD at the point\nof establishing a business relationship to identify and verify a customer or a beneficial\nowner. The reporting institution must immediately obtain the necessary information\nconcerning the identification and verification of the customer or the beneficial owner\nfrom the third-party institution.\n\n8.6.2 A reporting institution must have in place internal policies and procedures to mitigate\nthe risks when relying on a third-party institution, including those from foreign\njurisdictions. However, the reporting institution must ensure that the third-party\ninstitution adequately applies the FATF Recommendations in determining the extent\nto which reliance could be placed on such third-party institution.\n\n8.6.3 A reporting institution is prohibited from relying on a third-party institution located\nin higher- risk countries that have been identified as having ongoing or substantial\nML/TF/PF risks.",
+      "token_count": 206,
+      "pages": [
+        44
+      ],
+      "section_path": [
+        "PART III: CUSTOMER DUE DILIGENCE",
+        "8. CUSTOMER DUE DILIGENCE (CDD)",
+        "8.6 Reliance on third-party institutions to conduct CDD"
+      ],
+      "source_element_ids": [
+        "p44-e2",
+        "p44-e3",
+        "p44-e4"
+      ]
+    },
+    {
+      "rank": 7,
+      "chunk_id": "485c4989-c300-45c8-ac06-79a59492bb5c-c0111-026b10a78d",
+      "chunk_index": 111,
+      "semantic_type": "clause",
+      "score": 0.6907265186309814,
+      "distance": 0.30927348136901855,
+      "text": "Section: PART III: CUSTOMER DUE DILIGENCE > 8. CUSTOMER DUE DILIGENCE (CDD) > 8.3 Enhanced CDD measures\nClause: 8.3.1\n\n8.3.1 Where the ML/TF/PF risks are assessed as higher risk, a reporting institution must\nundertake enhanced CDD measures on the customer and, where applicable, the\nbeneficial owner. These measures must include:\n\n(a)Obtaining additional information for identification and verification on the\ncustomer and beneficial owner, particularly for non face-to-face transactions (e.g.\nvolume of assets and other information from public database);\n\n(b)Obtaining additional information on the intended level and nature of the\nbusiness relationship;\n\n(c)Enquiring on the source of wealth and source of funds;\n\n(d)Updating on a more regular basis, the identification data of the customer\nand the beneficial owner;\n\n(e)Obtaining approval from the senior management before establishing (or\ncontinuing for existing customer) such business relationship with the customer;\nand\n\n(f)Conducting enhanced ongoing monitoring on the business relationship.",
+      "content_text": "8.3.1 Where the ML/TF/PF risks are assessed as higher risk, a reporting institution must\nundertake enhanced CDD measures on the customer and, where applicable, the\nbeneficial owner. These measures must include:\n\n(a)Obtaining additional information for identification and verification on the\ncustomer and beneficial owner, particularly for non face-to-face transactions (e.g.\nvolume of assets and other information from public database);\n\n(b)Obtaining additional information on the intended level and nature of the\nbusiness relationship;\n\n(c)Enquiring on the source of wealth and source of funds;\n\n(d)Updating on a more regular basis, the identification data of the customer\nand the beneficial owner;\n\n(e)Obtaining approval from the senior management before establishing (or\ncontinuing for existing customer) such business relationship with the customer;\nand\n\n(f)Conducting enhanced ongoing monitoring on the business relationship.",
+      "token_count": 207,
+      "pages": [
+        41
+      ],
+      "section_path": [
+        "PART III: CUSTOMER DUE DILIGENCE",
+        "8. CUSTOMER DUE DILIGENCE (CDD)",
+        "8.3 Enhanced CDD measures"
+      ],
+      "source_element_ids": [
+        "p41-e7",
+        "p41-e8",
+        "p41-e9",
+        "p41-e10",
+        "p41-e11",
+        "p41-e12",
+        "p41-e13"
+      ]
+    },
+    {
+      "rank": 8,
+      "chunk_id": "485c4989-c300-45c8-ac06-79a59492bb5c-c0100-d1377a7b3c",
+      "chunk_index": 100,
+      "semantic_type": "clause",
+      "score": 0.6898277217047061,
+      "distance": 0.3101722782952939,
+      "text": "Section: PART III: CUSTOMER DUE DILIGENCE > 8. CUSTOMER DUE DILIGENCE (CDD) > 8.1 CDD at the point of establishing business relationship\nClause: 8.1.23\nGroup: CDD requirements for establishing non face-to-face business relationship\n\n8.1.23 This section applies when a reporting institution chooses to establish non-face-to-\nface business relationship.\n\n(a) A reporting institution must develop and implement policies and procedures to\naddress and mitigate specific ML/TF/PF risks associated with establishing non\nface-to-face business relationship, as well as operational and information\ntechnology risk.\n\n(b) A reporting institution must establish appropriate measures for identification\nand verification of a customer’s identity before establishing non face-to-face\nbusiness relationship.\n\n(c) For the purpose of identification and verification of the identity of a customer in\na non face-to-face business relationship, a reporting institution must undertake\none or more of the following measures:\n\n(i) Requesting for additional identification documents or information e.g.\nbank statements, utility bills;\n\n(ii) Substantiating the customer’s information with any independent source\ne.g. contacting the customer’s employer and verification through database\nmaintained by any relevant authorities;\n\n(iii) Contacting the customer through any digital communication channel to\nvisually identify and verify the customer’s identity;\n\n(iv) Requesting the customer to make a nominal payment from his own\naccount with a licensed bank under the Financial Services Act 2013 or\nlicensed Islamic bank under the Islamic Financial Services Act 2013 to\nenable the reporting institution to satisfy itself of the customer’s true\nidentity; or\n\n(v) Using new technology solutions including, but not limited to, biometric\ntechnologies (e.g. fingerprint or iris scans, facial recognition), which\nshould be linked incontrovertibly to the customer.\n\n(d) Where the reporting institution is unable to identify and verify the customer’s\nidentity by adopting the measures provided under paragraph (c) above, the\nreporting institution must initiate face-to-face business relationship.\n\n(e) Sub-paragraphs (a) to (d) above are not applicable to:\n\n(i)Customers that are identified as foreign PEP;\n\n(ii)Customers from higher-risk and non co-operative jurisdictions as identified\nby the FATF; or\n\n(iii)Listed persons or entities subjected to targeted financial sanctions for\nterrorism financing and financing of proliferation of weapons of mass\ndestruction pursuant to the UNSCR.\n\n(f) A reporting institution must ensure and be able to demonstrate on a continuing\nbasis that appropriate measures for identification and verification of a customer’s\nidentity when establishing non-face-to-face business relationship are as effective\nas that for face-to-face customer and implement monitoring and reporting\nmechanism to identify potential ML/TF/PF activities.",
+      "content_text": "8.1.23 This section applies when a reporting institution chooses to establish non-face-to-\nface business relationship.\n\n(a) A reporting institution must develop and implement policies and procedures to\naddress and mitigate specific ML/TF/PF risks associated with establishing non\nface-to-face business relationship, as well as operational and information\ntechnology risk.\n\n(b) A reporting institution must establish appropriate measures for identification\nand verification of a customer’s identity before establishing non face-to-face\nbusiness relationship.\n\n(c) For the purpose of identification and verification of the identity of a customer in\na non face-to-face business relationship, a reporting institution must undertake\none or more of the following measures:\n\n(i) Requesting for additional identification documents or information e.g.\nbank statements, utility bills;\n\n(ii) Substantiating the customer’s information with any independent source\ne.g. contacting the customer’s employer and verification through database\nmaintained by any relevant authorities;\n\n(iii) Contacting the customer through any digital communication channel to\nvisually identify and verify the customer’s identity;\n\n(iv) Requesting the customer to make a nominal payment from his own\naccount with a licensed bank under the Financial Services Act 2013 or\nlicensed Islamic bank under the Islamic Financial Services Act 2013 to\nenable the reporting institution to satisfy itself of the customer’s true\nidentity; or\n\n(v) Using new technology solutions including, but not limited to, biometric\ntechnologies (e.g. fingerprint or iris scans, facial recognition), which\nshould be linked incontrovertibly to the customer.\n\n(d) Where the reporting institution is unable to identify and verify the customer’s\nidentity by adopting the measures provided under paragraph (c) above, the\nreporting institution must initiate face-to-face business relationship.\n\n(e) Sub-paragraphs (a) to (d) above are not applicable to:\n\n(i)Customers that are identified as foreign PEP;\n\n(ii)Customers from higher-risk and non co-operative jurisdictions as identified\nby the FATF; or\n\n(iii)Listed persons or entities subjected to targeted financial sanctions for\nterrorism financing and financing of proliferation of weapons of mass\ndestruction pursuant to the UNSCR.\n\n(f) A reporting institution must ensure and be able to demonstrate on a continuing\nbasis that appropriate measures for identification and verification of a customer’s\nidentity when establishing non-face-to-face business relationship are as effective\nas that for face-to-face customer and implement monitoring and reporting\nmechanism to identify potential ML/TF/PF activities.",
+      "token_count": 550,
+      "pages": [
+        36,
+        37
+      ],
+      "section_path": [
+        "PART III: CUSTOMER DUE DILIGENCE",
+        "8. CUSTOMER DUE DILIGENCE (CDD)",
+        "8.1 CDD at the point of establishing business relationship"
+      ],
+      "source_element_ids": [
+        "p36-e10",
+        "p36-e11",
+        "p36-e12",
+        "p37-e1",
+        "p37-e2",
+        "p37-e3",
+        "p37-e4",
+        "p37-e5",
+        "p37-e6",
+        "p37-e7",
+        "p37-e8",
+        "p37-e9",
+        "p37-e10",
+        "p37-e11",
+        "p37-e12"
+      ]
+    },
+    {
+      "rank": 9,
+      "chunk_id": "485c4989-c300-45c8-ac06-79a59492bb5c-c0120-781c9e318c",
+      "chunk_index": 120,
+      "semantic_type": "clause",
+      "score": 0.6868858337402344,
+      "distance": 0.3131141662597656,
+      "text": "Section: PART III: CUSTOMER DUE DILIGENCE > 8. CUSTOMER DUE DILIGENCE (CDD) > 8.6 Reliance on third-party institutions to conduct CDD\nClause: 8.6.5\n\n8.6.5 A reporting institution must obtain an attestation from the third-party institution to\nsatisfy itself that the requirements in paragraph 8.6.4 have been met.",
+      "content_text": "8.6.5 A reporting institution must obtain an attestation from the third-party institution to\nsatisfy itself that the requirements in paragraph 8.6.4 have been met.",
+      "token_count": 72,
+      "pages": [
+        45
+      ],
+      "section_path": [
+        "PART III: CUSTOMER DUE DILIGENCE",
+        "8. CUSTOMER DUE DILIGENCE (CDD)",
+        "8.6 Reliance on third-party institutions to conduct CDD"
+      ],
+      "source_element_ids": [
+        "p45-e3"
+      ]
+    },
+    {
+      "rank": 10,
+      "chunk_id": "485c4989-c300-45c8-ac06-79a59492bb5c-c0098-03d8b3aa54",
+      "chunk_index": 98,
+      "semantic_type": "clause",
+      "score": 0.6840827668929927,
+      "distance": 0.31591723310700726,
+      "text": "Section: PART III: CUSTOMER DUE DILIGENCE > 8. CUSTOMER DUE DILIGENCE (CDD) > 8.1 CDD at the point of establishing business relationship\n\n8.1.18 A reporting institution may rely on a third-party institution to verify the identity of the\nbeneficiaries when it is not practical to identify every beneficiary.\n\n8.1.19 Where reliance is placed on a third-party institution under paragraph 8.1.18, a reporting\ninstitution is required to comply with paragraph 8.6 of these Guidelines.",
+      "content_text": "8.1.18 A reporting institution may rely on a third-party institution to verify the identity of the\nbeneficiaries when it is not practical to identify every beneficiary.\n\n8.1.19 Where reliance is placed on a third-party institution under paragraph 8.1.18, a reporting\ninstitution is required to comply with paragraph 8.6 of these Guidelines.",
+      "token_count": 101,
+      "pages": [
+        36
+      ],
+      "section_path": [
+        "PART III: CUSTOMER DUE DILIGENCE",
+        "8. CUSTOMER DUE DILIGENCE (CDD)",
+        "8.1 CDD at the point of establishing business relationship"
+      ],
+      "source_element_ids": [
+        "p36-e3",
+        "p36-e4"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,250 @@
+{
+  "document_id": "485c4989-c300-45c8-ac06-79a59492bb5c",
+  "query": "Who qualifies as a designated person under the Guidelines?",
+  "embedding_model": "BAAI/bge-m3",
+  "requested_device": "auto",
+  "resolved_device": "cuda",
+  "top_k": 10,
+  "embedded_chunk_count": 284,
+  "total_chunk_count": 284,
+  "hits": [
+    {
+      "rank": 1,
+      "chunk_id": "485c4989-c300-45c8-ac06-79a59492bb5c-c0021-56e4d3ded6",
+      "chunk_index": 21,
+      "semantic_type": "definition",
+      "score": 0.6146050325271479,
+      "distance": 0.38539496747285207,
+      "text": "Section: PART I: INTRODUCTION AND APPLICABILITY > 3. DEFINITIONS\nDefinition: designated person\n\ndesignated person\n\nmeans a person who has been designated under the Second Schedule of the Strategic Trade (Restricted End-Users and Prohibited End-Users) Order 2010 (P.U. (A) 484/2010).",
+      "content_text": "designated person\n\nmeans a person who has been designated under the Second Schedule of the Strategic Trade (Restricted End-Users and Prohibited End-Users) Order 2010 (P.U. (A) 484/2010).",
+      "token_count": 59,
+      "pages": [
+        11
+      ],
+      "section_path": [
+        "PART I: INTRODUCTION AND APPLICABILITY",
+        "3. DEFINITIONS"
+      ],
+      "source_element_ids": [
+        "p11-e1-table-r5-term",
+        "p11-e1-table-r5-definition"
+      ]
+    },
+    {
+      "rank": 2,
+      "chunk_id": "485c4989-c300-45c8-ac06-79a59492bb5c-c0097-1867d471cc",
+      "chunk_index": 97,
+      "semantic_type": "paragraph",
+      "score": 0.5718355689244784,
+      "distance": 0.4281644310755216,
+      "text": "Section: PART III: CUSTOMER DUE DILIGENCE > 8. CUSTOMER DUE DILIGENCE (CDD) > 8.1 CDD at the point of establishing business relationship\nGroup: Guidance for paragraphs 8.1.8 to 8.1.17\n\nAppendix E of these Guidelines sets out guidance and recommended best practices\nto guide reporting institutions in complying with the relevant requirements in relation\nto identification of beneficial owners of legal persons and legal arrangement.",
+      "content_text": "Appendix E of these Guidelines sets out guidance and recommended best practices\nto guide reporting institutions in complying with the relevant requirements in relation\nto identification of beneficial owners of legal persons and legal arrangement.",
+      "token_count": 81,
+      "pages": [
+        36
+      ],
+      "section_path": [
+        "PART III: CUSTOMER DUE DILIGENCE",
+        "8. CUSTOMER DUE DILIGENCE (CDD)",
+        "8.1 CDD at the point of establishing business relationship"
+      ],
+      "source_element_ids": [
+        "p36-e2"
+      ]
+    },
+    {
+      "rank": 3,
+      "chunk_id": "485c4989-c300-45c8-ac06-79a59492bb5c-c0112-8c652d9f62",
+      "chunk_index": 112,
+      "semantic_type": "clause",
+      "score": 0.5493138969762448,
+      "distance": 0.4506861030237552,
+      "text": "Section: PART III: CUSTOMER DUE DILIGENCE > 8. CUSTOMER DUE DILIGENCE (CDD) > 8.4 Politically exposed persons (PEPs)\n\n8.4.1 The requirements set out in paragraph 8.4 herein are also applicable to family\nmembers or close associates of PEPs. Appendix B of these Guidelines provides\nmeasures to be adopted by a reporting institution in dealing with the family members\nor close associates of PEPs.\n\n8.4.2 A reporting institution is required to have in place a risk management system to\ndetermine whether a customer or a beneficial owner is a foreign PEP.\n\n8.4.3 Upon determining that a customer or a beneficial owner is a foreign PEP, the\nrequirement to conduct enhanced CDD measures under paragraph 8.3 is applicable\nand the reporting institution is also required to conduct enhanced ongoing due\ndiligence.\n\n8.4.4 A reporting institution is required to have in place reasonable measures to determine\nwhether a customer or the beneficial owner is a domestic PEP or person entrusted\nwith a prominent function by an international organisation.\n\n8.4.5 The reporting institution is required to assess the level of ML/TF/PF risks posed by\nthe business relationship with the domestic PEP or person entrusted with a prominent\nfunction by an international organisation based on sufficient and appropriate\ninformation gathered through publicly available information or other reasonable\nmeans. The assessment of the ML/TF/PF risks also must take into account the profile\nof the customer under paragraph 7.5.3 of these Guidelines.\n\n8.4.6 For a higher-risk domestic PEP or higher-risk person entrusted with a prominent\nfunction by an international organisation, the requirements of enhanced CDD\nmeasures are as set out in paragraph 8.3.\n\n8.4.7 For a domestic PEP or person entrusted with a prominent function by an international\norganisation that is assessed as low risk, the reporting institution may apply the standard\nCDD measures.",
+      "content_text": "8.4.1 The requirements set out in paragraph 8.4 herein are also applicable to family\nmembers or close associates of PEPs. Appendix B of these Guidelines provides\nmeasures to be adopted by a reporting institution in dealing with the family members\nor close associates of PEPs.\n\n8.4.2 A reporting institution is required to have in place a risk management system to\ndetermine whether a customer or a beneficial owner is a foreign PEP.\n\n8.4.3 Upon determining that a customer or a beneficial owner is a foreign PEP, the\nrequirement to conduct enhanced CDD measures under paragraph 8.3 is applicable\nand the reporting institution is also required to conduct enhanced ongoing due\ndiligence.\n\n8.4.4 A reporting institution is required to have in place reasonable measures to determine\nwhether a customer or the beneficial owner is a domestic PEP or person entrusted\nwith a prominent function by an international organisation.\n\n8.4.5 The reporting institution is required to assess the level of ML/TF/PF risks posed by\nthe business relationship with the domestic PEP or person entrusted with a prominent\nfunction by an international organisation based on sufficient and appropriate\ninformation gathered through publicly available information or other reasonable\nmeans. The assessment of the ML/TF/PF risks also must take into account the profile\nof the customer under paragraph 7.5.3 of these Guidelines.\n\n8.4.6 For a higher-risk domestic PEP or higher-risk person entrusted with a prominent\nfunction by an international organisation, the requirements of enhanced CDD\nmeasures are as set out in paragraph 8.3.\n\n8.4.7 For a domestic PEP or person entrusted with a prominent function by an international\norganisation that is assessed as low risk, the reporting institution may apply the standard\nCDD measures.",
+      "token_count": 368,
+      "pages": [
+        42
+      ],
+      "section_path": [
+        "PART III: CUSTOMER DUE DILIGENCE",
+        "8. CUSTOMER DUE DILIGENCE (CDD)",
+        "8.4 Politically exposed persons (PEPs)"
+      ],
+      "source_element_ids": [
+        "p42-e1",
+        "p42-e2",
+        "p42-e3",
+        "p42-e4",
+        "p42-e5",
+        "p42-e6",
+        "p42-e7"
+      ]
+    },
+    {
+      "rank": 4,
+      "chunk_id": "485c4989-c300-45c8-ac06-79a59492bb5c-c0162-aded0a9984",
+      "chunk_index": 162,
+      "semantic_type": "clause",
+      "score": 0.5428127322904637,
+      "distance": 0.4571872677095363,
+      "text": "Section: PART VIII: COMBATING PROLIFERATION FINANCING > 15. DEFINITION AND INTERPRETATION\nClause: 15.1\n\n15.1 For the purpose of Part VIII of these Guidelines, “reporting institution” refers to\nreporting institution as defined in the Definition section under Part I of these Guidelines\nand includes a registered person under section 76 of the CMSA that is registered under\nthe Guidelines on the Registration of Venture Capital and Private Equity Corporations\nand Management Corporation.",
+      "content_text": "15.1 For the purpose of Part VIII of these Guidelines, “reporting institution” refers to\nreporting institution as defined in the Definition section under Part I of these Guidelines\nand includes a registered person under section 76 of the CMSA that is registered under\nthe Guidelines on the Registration of Venture Capital and Private Equity Corporations\nand Management Corporation.",
+      "token_count": 83,
+      "pages": [
+        62
+      ],
+      "section_path": [
+        "PART VIII: COMBATING PROLIFERATION FINANCING",
+        "15. DEFINITION AND INTERPRETATION"
+      ],
+      "source_element_ids": [
+        "p62-e3"
+      ]
+    },
+    {
+      "rank": 5,
+      "chunk_id": "485c4989-c300-45c8-ac06-79a59492bb5c-c0027-252e1736f2",
+      "chunk_index": 27,
+      "semantic_type": "definition",
+      "score": 0.5308037363524751,
+      "distance": 0.46919626364752487,
+      "text": "Section: PART I: INTRODUCTION AND APPLICABILITY > 3. DEFINITIONS\nDefinition: nominator\n\nnominator\n\nmeans an individual (or group of individuals) or legal person that issues instructions (directly or indirectly) to a nominee to act on its behalf in the capacity of a director or a shareholder, also sometimes referred to as a ‘shadow director’ or ‘silent partner’.",
+      "content_text": "nominator\n\nmeans an individual (or group of individuals) or legal person that issues instructions (directly or indirectly) to a nominee to act on its behalf in the capacity of a director or a shareholder, also sometimes referred to as a ‘shadow director’ or ‘silent partner’.",
+      "token_count": 70,
+      "pages": [
+        12
+      ],
+      "section_path": [
+        "PART I: INTRODUCTION AND APPLICABILITY",
+        "3. DEFINITIONS"
+      ],
+      "source_element_ids": [
+        "p12-e4-r1-term",
+        "p12-e4-r1-definition"
+      ]
+    },
+    {
+      "rank": 6,
+      "chunk_id": "485c4989-c300-45c8-ac06-79a59492bb5c-c0007-22ed76c058",
+      "chunk_index": 7,
+      "semantic_type": "clause",
+      "score": 0.5264572783436022,
+      "distance": 0.47354272165639777,
+      "text": "Section: PART I: INTRODUCTION AND APPLICABILITY > 1.0 INTRODUCTION\n\n1.2 These Guidelines are drawn up in accordance with the AMLA and the Financial Action Task\nForce (FATF) 40 Recommendations.\n\n1Regulation 3 of Strategic Trade (United Nations Security Council Resolutions) Regulations 2010 (P.U. (A) 481/2010) is set out in\nAppendix G of these Guidelines.\n\n1.3 These Guidelines provide:\n\n(a)requirements and obligations imposed on reporting institutions in preventing and\ncombating money laundering, terrorism financing, proliferation financing and\ntargeted financial sanctions; and\n\n(b)guidance for reporting institutions to comply with the obligations imposed under the\nAMLA and TFS-PF.\n\n1.4 These Guidelines supersede and replace the Guidelines on Implementation of Targeted\nFinancial Sanctions Relating to Proliferation Financing for Capital Markets.\n\n1.5 These Guidelines are made in addition to and not in derogation of any other guidelines\nissued by the Securities Commission Malaysia (SC) or any requirements as provided under\nthe securities laws and the AMLA. Therefore, a reporting institution must comply with\nother relevant guidelines and requirements.\n\n1.6 A reporting institution that is jointly regulated by Bank Negara Malaysia (BNM) and the\nSC, is required to comply with these Guidelines and the Anti-Money Laundering,\nCountering Financing of Terrorism, Countering Proliferation Financing and Targeted\nFinancial Sanctions for Financial Institutions (AML/CFT and TFS for FIs) issued by BNM.\nWhere there are differing requirements between the said guidelines, the more stringent\nrequirements shall apply.\n\n1.7 Non-compliance with any of the provisions in these Guidelines will subject the reporting\ninstitution to actions under the AMLA, Capital Markets and Services Act 2007 (CMSA) or\nany other relevant provisions under the laws of which these Guidelines are subject to.\nEnforcement actions can be taken against the reporting institutions including its directors,\nofficers, representatives, employees for any non-compliance with any requirements in these\nGuidelines.",
+      "content_text": "1.2 These Guidelines are drawn up in accordance with the AMLA and the Financial Action Task\nForce (FATF) 40 Recommendations.\n\n1Regulation 3 of Strategic Trade (United Nations Security Council Resolutions) Regulations 2010 (P.U. (A) 481/2010) is set out in\nAppendix G of these Guidelines.\n\n1.3 These Guidelines provide:\n\n(a)requirements and obligations imposed on reporting institutions in preventing and\ncombating money laundering, terrorism financing, proliferation financing and\ntargeted financial sanctions; and\n\n(b)guidance for reporting institutions to comply with the obligations imposed under the\nAMLA and TFS-PF.\n\n1.4 These Guidelines supersede and replace the Guidelines on Implementation of Targeted\nFinancial Sanctions Relating to Proliferation Financing for Capital Markets.\n\n1.5 These Guidelines are made in addition to and not in derogation of any other guidelines\nissued by the Securities Commission Malaysia (SC) or any requirements as provided under\nthe securities laws and the AMLA. Therefore, a reporting institution must comply with\nother relevant guidelines and requirements.\n\n1.6 A reporting institution that is jointly regulated by Bank Negara Malaysia (BNM) and the\nSC, is required to comply with these Guidelines and the Anti-Money Laundering,\nCountering Financing of Terrorism, Countering Proliferation Financing and Targeted\nFinancial Sanctions for Financial Institutions (AML/CFT and TFS for FIs) issued by BNM.\nWhere there are differing requirements between the said guidelines, the more stringent\nrequirements shall apply.\n\n1.7 Non-compliance with any of the provisions in these Guidelines will subject the reporting\ninstitution to actions under the AMLA, Capital Markets and Services Act 2007 (CMSA) or\nany other relevant provisions under the laws of which these Guidelines are subject to.\nEnforcement actions can be taken against the reporting institutions including its directors,\nofficers, representatives, employees for any non-compliance with any requirements in these\nGuidelines.",
+      "token_count": 368,
+      "pages": [
+        6,
+        7
+      ],
+      "section_path": [
+        "PART I: INTRODUCTION AND APPLICABILITY",
+        "1.0 INTRODUCTION"
+      ],
+      "source_element_ids": [
+        "p6-e11",
+        "p6-e12",
+        "p7-e1",
+        "p7-e2",
+        "p7-e3",
+        "p7-e4",
+        "p7-e5",
+        "p7-e6",
+        "p7-e7"
+      ]
+    },
+    {
+      "rank": 7,
+      "chunk_id": "485c4989-c300-45c8-ac06-79a59492bb5c-c0009-f530a789ad",
+      "chunk_index": 9,
+      "semantic_type": "clause",
+      "score": 0.518828539918153,
+      "distance": 0.48117146008184697,
+      "text": "Section: PART I: INTRODUCTION AND APPLICABILITY > 3. DEFINITIONS\nClause: 3.1\n\n3.1 Unless otherwise defined, all words used in these Guidelines shall have the following and\nthe same meaning as defined in the CMSA, AMLA and TFS-PF legislations:",
+      "content_text": "3.1 Unless otherwise defined, all words used in these Guidelines shall have the following and\nthe same meaning as defined in the CMSA, AMLA and TFS-PF legislations:",
+      "token_count": 51,
+      "pages": [
+        9
+      ],
+      "section_path": [
+        "PART I: INTRODUCTION AND APPLICABILITY",
+        "3. DEFINITIONS"
+      ],
+      "source_element_ids": [
+        "p9-e2"
+      ]
+    },
+    {
+      "rank": 8,
+      "chunk_id": "485c4989-c300-45c8-ac06-79a59492bb5c-c0088-7f07c6b2b9",
+      "chunk_index": 88,
+      "semantic_type": "clause",
+      "score": 0.5163295845592517,
+      "distance": 0.4836704154407483,
+      "text": "Section: PART III: CUSTOMER DUE DILIGENCE > 8. CUSTOMER DUE DILIGENCE (CDD) > 8.1 CDD at the point of establishing business relationship\nClause: 8.1.11\nGroup: CDD requirements for legal persons\n\n8.1.11 A reporting institution is required to identify and take reasonable measures to verify\nthe identity of beneficial owners according to the following cascading steps:\n\n(a)the identity of the natural person(s) (if any) who ultimately has a controlling\nownership interest in a legal person. Where applicable, this includes identifying:\n\n(i)shareholders with equity interest of more than twenty-five percent in a\ncorporation; and\n\n(b) to the extent that there is doubt as to whether the person(s) with the controlling\nownership interest is the beneficial owner(s) referred to in paragraph 8.1.11(a)\nor where no natural person(s) exert control through ownership interests, the\nidentity of the natural person (if any) exercising control of the legal person\nthrough other means; and\n\n(c) where no natural person is identified under paragraphs 8.1.11(a) or (b), the\nidentity of the relevant natural person who holds the position of senior\nmanagement.\n\nFor the avoidance of doubt, a reporting institution is not required to pursue\nsteps (b) and (c) in circumstances where beneficial owner(s) have been\nidentified through step (a). Similarly, where beneficial owner(s) have been\nidentified at step (b), reporting institutions are not required to pursue step (c).",
+      "content_text": "8.1.11 A reporting institution is required to identify and take reasonable measures to verify\nthe identity of beneficial owners according to the following cascading steps:\n\n(a)the identity of the natural person(s) (if any) who ultimately has a controlling\nownership interest in a legal person. Where applicable, this includes identifying:\n\n(i)shareholders with equity interest of more than twenty-five percent in a\ncorporation; and\n\n(b) to the extent that there is doubt as to whether the person(s) with the controlling\nownership interest is the beneficial owner(s) referred to in paragraph 8.1.11(a)\nor where no natural person(s) exert control through ownership interests, the\nidentity of the natural person (if any) exercising control of the legal person\nthrough other means; and\n\n(c) where no natural person is identified under paragraphs 8.1.11(a) or (b), the\nidentity of the relevant natural person who holds the position of senior\nmanagement.\n\nFor the avoidance of doubt, a reporting institution is not required to pursue\nsteps (b) and (c) in circumstances where beneficial owner(s) have been\nidentified through step (a). Similarly, where beneficial owner(s) have been\nidentified at step (b), reporting institutions are not required to pursue step (c).",
+      "token_count": 311,
+      "pages": [
+        33,
+        34
+      ],
+      "section_path": [
+        "PART III: CUSTOMER DUE DILIGENCE",
+        "8. CUSTOMER DUE DILIGENCE (CDD)",
+        "8.1 CDD at the point of establishing business relationship"
+      ],
+      "source_element_ids": [
+        "p33-e10",
+        "p33-e11",
+        "p33-e12",
+        "p34-e2",
+        "p34-e3",
+        "p34-e4"
+      ]
+    },
+    {
+      "rank": 9,
+      "chunk_id": "485c4989-c300-45c8-ac06-79a59492bb5c-c0156-1ec1ec242b",
+      "chunk_index": 156,
+      "semantic_type": "clause",
+      "score": 0.5144038779254105,
+      "distance": 0.48559612207458946,
+      "text": "Section: PART VII: COMBATING TERRORISM FINANCING > 14 IDENTIFICATION AND DESIGNATION\n\n14.1 For the purposes of this part, a reporting institution refers to reporting institution as\ndefined in the Definition section under Part I of these Guidelines and includes a\nregistered person under section 76 of the CMSA that is registered under the Guidelines\non the Registration of Venture Capital and Private Equity Corporations and\nManagement Corporation.\n\n14.3 In ensuring efficient detection of suspected financing of terrorism, a reporting\ninstitution should maintain a database of names and particulars of listed persons in\nthe UN Consolidated List and such orders as may be issued under sections 66B and\n66C of the AMLA by the Minister of Home Affairs (collectively referred to as “listed\npersons” or “listed entities” as the case may be).",
+      "content_text": "14.1 For the purposes of this part, a reporting institution refers to reporting institution as\ndefined in the Definition section under Part I of these Guidelines and includes a\nregistered person under section 76 of the CMSA that is registered under the Guidelines\non the Registration of Venture Capital and Private Equity Corporations and\nManagement Corporation.\n\n14.3 In ensuring efficient detection of suspected financing of terrorism, a reporting\ninstitution should maintain a database of names and particulars of listed persons in\nthe UN Consolidated List and such orders as may be issued under sections 66B and\n66C of the AMLA by the Minister of Home Affairs (collectively referred to as “listed\npersons” or “listed entities” as the case may be).",
+      "token_count": 147,
+      "pages": [
+        60
+      ],
+      "section_path": [
+        "PART VII: COMBATING TERRORISM FINANCING",
+        "14 IDENTIFICATION AND DESIGNATION"
+      ],
+      "source_element_ids": [
+        "p60-e3",
+        "p60-e7"
+      ]
+    },
+    {
+      "rank": 10,
+      "chunk_id": "485c4989-c300-45c8-ac06-79a59492bb5c-c0028-12ae3621f7",
+      "chunk_index": 28,
+      "semantic_type": "definition",
+      "score": 0.5137229851649422,
+      "distance": 0.4862770148350578,
+      "text": "Section: PART I: INTRODUCTION AND APPLICABILITY > 3. DEFINITIONS\nDefinition: nominee\n\nnominee\n\nmeans an individual or legal person instructed by the nominator to act on its behalf in a certain capacity regarding a legal person.",
+      "content_text": "nominee\n\nmeans an individual or legal person instructed by the nominator to act on its behalf in a certain capacity regarding a legal person.",
+      "token_count": 40,
+      "pages": [
+        12
+      ],
+      "section_path": [
+        "PART I: INTRODUCTION AND APPLICABILITY",
+        "3. DEFINITIONS"
+      ],
+      "source_element_ids": [
+        "p12-e5-r1-term",
+        "p12-e5-r1-definition"
+      ]
+    }
+  ]
+}

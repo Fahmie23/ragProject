@@ -1,0 +1,22 @@
+STAGE 8.2 STRUCTURAL CONTEXT — OFFLINE DEV REPLAY AUDIT
+=======================================================
+
+Important: this is a diagnostic replay over the previously supplied Stage 8.1 DEV rankings.
+It is NOT a new live API benchmark and must not replace the Stage 8.2 DEV rerun.
+
+Questions replayed: 25
+Stage 5 chunks: 284
+Raw ranking order: unchanged from Stage 8.1 report
+
+Context metrics:
+  ContextRecall@1: 87.3% | ContextCompleteEvidence@1: 80.0% | avg context chunks: 1.16
+  ContextRecall@3: 100.0% | ContextCompleteEvidence@3: 100.0% | avg context chunks: 3.24
+  ContextRecall@5: 100.0% | ContextCompleteEvidence@5: 100.0% | avg context chunks: 5.44
+  ContextRecall@10: 100.0% | ContextCompleteEvidence@10: 100.0% | avg context chunks: 10.68
+
+Expanded relation reasons across replayed Top-10 seeds: {'introduced_child': 7, 'preceding_intro': 3, 'following_table': 6, 'continuation_list_item': 1}
+
+Previously incomplete DEV questions:
+- RET-024: ContextRecall@1=1.000, ContextCompleteEvidence@1=1; expanded=[(243, ['following_table'], 1), (245, ['following_table'], 3), (167, ['introduced_child'], 7)]
+- RET-027: ContextRecall@1=1.000, ContextCompleteEvidence@1=1; expanded=[(181, ['introduced_child'], 1), (182, ['introduced_child'], 1), (197, ['following_table'], 8)]
+- RET-034: ContextRecall@1=1.000, ContextCompleteEvidence@1=1; expanded=[(91, ['continuation_list_item'], 1)]

@@ -1,0 +1,257 @@
+{
+  "document_id": "485c4989-c300-45c8-ac06-79a59492bb5c",
+  "question": "For a reporting institution that is part of a financial group, what must its group-wide AML/CFT/CPF programme include?",
+  "status": "answered",
+  "answer": "The group-wide AML/CFT/CPF programme must include (a) policies and procedures for sharing information required for CDD and ML/TF/PF risk management; (b) provision, at group-level compliance, audit, and/or AML/CFT/CPF functions, of customer, account, and transaction information from branches and subsidiaries when necessary for AML/CFT/CPF purposes; and (c) adequate safeguards on the confidentiality and use of information exchanged.",
+  "cited_answer": "The group-wide AML/CFT/CPF programme must include (a) policies and procedures for sharing information required for CDD and ML/TF/PF risk management; (b) provision, at group-level compliance, audit, and/or AML/CFT/CPF functions, of customer, account, and transaction information from branches and subsidiaries when necessary for AML/CFT/CPF purposes; and (c) adequate safeguards on the confidentiality and use of information exchanged. [1]",
+  "claims": [
+    {
+      "claim_id": "C1",
+      "text": "The group-wide AML/CFT/CPF programme must include (a) policies and procedures for sharing information required for CDD and ML/TF/PF risk management; (b) provision, at group-level compliance, audit, and/or AML/CFT/CPF functions, of customer, account, and transaction information from branches and subsidiaries when necessary for AML/CFT/CPF purposes; and (c) adequate safeguards on the confidentiality and use of information exchanged.",
+      "evidence_ids": [
+        "E1"
+      ],
+      "citation_ids": [
+        "CIT-E1"
+      ]
+    }
+  ],
+  "used_evidence_ids": [
+    "E1"
+  ],
+  "missing_information": [],
+  "evidence": [
+    {
+      "evidence_id": "E1",
+      "chunk_id": "485c4989-c300-45c8-ac06-79a59492bb5c-c0065-d4d36f22c0",
+      "chunk_index": 65,
+      "semantic_type": "clause",
+      "source_rank": 1,
+      "ranked_seed_rank": 1,
+      "reasons": [
+        "ranked_seed"
+      ],
+      "pages": [
+        25
+      ],
+      "section_path": [
+        "PART IA: AML/CFT/CPF INTERNAL PROGRAMMES AND\nOBLIGATIONS OF THE BOARD OF DIRECTORS, SENIOR\nMANAGEMENT AND COMPLIANCE OFFICER",
+        "6 E.   GROUP-WIDE AML/CFT/CPF PROGRAMMES"
+      ],
+      "source_element_ids": [
+        "p25-e3",
+        "p25-e4",
+        "p25-e5",
+        "p25-e6"
+      ],
+      "content_text": "6 E.2 Where applicable, a reporting institution is required to implement appropriate group-\nwide AML/CFT/CPF programmes appropriate to its branches and majority-owned\nsubsidiaries. Such AML/CFT/CPF programmes must include–\n\n(a)policies and procedures for sharing information required for the purposes of\nCDD and ML/TF/PF risk management;\n\n(b)the provision, at group-level compliance, audit, and/or AML/CFT/CPF functions,\nof customer, account, and transaction information from branches and\nsubsidiaries when necessary for AML/CFT/CPF purposes; and\n\n(c)adequate safeguards on the confidentiality and use of information exchanged."
+    },
+    {
+      "evidence_id": "E2",
+      "chunk_id": "485c4989-c300-45c8-ac06-79a59492bb5c-c0056-b117631798",
+      "chunk_index": 56,
+      "semantic_type": "clause",
+      "source_rank": 2,
+      "ranked_seed_rank": 2,
+      "reasons": [
+        "ranked_seed"
+      ],
+      "pages": [
+        21
+      ],
+      "section_path": [
+        "PART IA: AML/CFT/CPF INTERNAL PROGRAMMES AND\nOBLIGATIONS OF THE BOARD OF DIRECTORS, SENIOR\nMANAGEMENT AND COMPLIANCE OFFICER",
+        "6 A. INTERNAL PROGRAMMES, POLICIES, PROCEDURES AND CONTROLS"
+      ],
+      "source_element_ids": [
+        "p21-e3",
+        "p21-e4",
+        "p21-e5",
+        "p21-e6",
+        "p21-e7"
+      ],
+      "content_text": "6 A.1 A reporting institution shall adopt, develop and implement internal programmes,\npolicies, procedures and controls having regard to its ML/TF/PF risks and size of\nbusiness. These programmes shall include–\n\n(a)procedures to ensure high standards of integrity of its board of directors, senior\nmanagement, employees or persons acting on behalf of the reporting\ninstitution, and adopt a screening system to evaluate the personnel when hiring;\n\n(b)regular independent audit function to check on the compliance and\neffectiveness of the reporting institution’s AML/CFT/CPF framework in\nrelation to the AMLA and provisions of these Guidelines. Any audit findings and\nany necessary corrective measures to be undertaken must be tabled to the\nboard of directors;\n\n(c)effective internal control systems to assess, profile and address ML/TF/PF\nissues; and\n\n(d)structured ongoing training programmes for directors and employees to\nenhance compliance with the reporting institution’s policies and procedures on\nAML/CFT/CPF. The training programmes must be according to their level of\nresponsibilities."
+    },
+    {
+      "evidence_id": "E3",
+      "chunk_id": "485c4989-c300-45c8-ac06-79a59492bb5c-c0121-4863ecbe4f",
+      "chunk_index": 121,
+      "semantic_type": "clause",
+      "source_rank": 3,
+      "ranked_seed_rank": 3,
+      "reasons": [
+        "ranked_seed"
+      ],
+      "pages": [
+        45
+      ],
+      "section_path": [
+        "PART III: CUSTOMER DUE DILIGENCE",
+        "8. CUSTOMER DUE DILIGENCE (CDD)",
+        "8.6 Reliance on third-party institutions to conduct CDD"
+      ],
+      "source_element_ids": [
+        "p45-e4",
+        "p45-e5",
+        "p45-e6",
+        "p45-e7"
+      ],
+      "content_text": "8.6.6 In addition to the requirements set out in paragraph 8.6.4 above, a reporting institution\nthat relies on a third-party institution that is part of the same group is subject to the\nfollowing conditions:\n\n(a)The group applies CDD and record-keeping requirements and AML/CFT\nprogrammes in line with these Guidelines;\n\n(b)The implementation of those CDD and record-keeping requirements and\nAML/CFT programmes are supervised at a group level by the relevant\nsupervisory authority; and\n\n(c)Any higher country risk is adequately mitigated by the financial group’s AML/CFT\npolicies."
+    },
+    {
+      "evidence_id": "E4",
+      "chunk_id": "485c4989-c300-45c8-ac06-79a59492bb5c-c0064-18a546f126",
+      "chunk_index": 64,
+      "semantic_type": "clause",
+      "source_rank": 4,
+      "ranked_seed_rank": 4,
+      "reasons": [
+        "ranked_seed"
+      ],
+      "pages": [
+        25
+      ],
+      "section_path": [
+        "PART IA: AML/CFT/CPF INTERNAL PROGRAMMES AND\nOBLIGATIONS OF THE BOARD OF DIRECTORS, SENIOR\nMANAGEMENT AND COMPLIANCE OFFICER",
+        "6 E.   GROUP-WIDE AML/CFT/CPF PROGRAMMES"
+      ],
+      "source_element_ids": [
+        "p25-e2"
+      ],
+      "content_text": "6 E.1 The requirements under this paragraph 6E are only applicable to reporting institutions\nthat are part of a financial group."
+    },
+    {
+      "evidence_id": "E5",
+      "chunk_id": "485c4989-c300-45c8-ac06-79a59492bb5c-c0187-222788f826",
+      "chunk_index": 187,
+      "semantic_type": "clause",
+      "source_rank": 5,
+      "ranked_seed_rank": 5,
+      "reasons": [
+        "ranked_seed"
+      ],
+      "pages": [
+        71,
+        72,
+        73
+      ],
+      "section_path": [
+        "APPENDIX A",
+        "3.0 A: Perform Risk Assessment"
+      ],
+      "source_element_ids": [
+        "p71-e13",
+        "p71-e14",
+        "p72-e10",
+        "p72-e11",
+        "p72-e12",
+        "p72-e13",
+        "p72-e14",
+        "p72-e15",
+        "p72-e16",
+        "p72-e17",
+        "p72-e18",
+        "p73-e1",
+        "p73-e2",
+        "p73-e3",
+        "p73-e4",
+        "p73-e5"
+      ],
+      "content_text": "3.4 To assist a reporting institution in assessing the extent of its ML/TF/PF risks, the\nreporting institution may consider the following examples under the risk factors\nmentioned below for guidance:\n\n(a)Customers – in conducting business transactions, the reporting institution is\nexposed to various types of customers that may pose ML/TF/PF risks. In\nanalysing its customers’ risk, a reporting institution may consider the non-\nexhaustive examples below:\n\n(b)Countries or geographic – a reporting institution should take into account factors\nincluding the location of the reporting institution’s branches and subsidiaries and\nwhether its holding company is located within a jurisdiction with full\nAML/CFT/CPF compliance as identified by a credible source. Further non-\nexhaustive examples are as below:\n\n•\nLocation of its branches and subsidiaries in tourist hotspots, crime hotspots,\ncountry’s border and entry-points; and\n\n•\nLocation of its branches and subsidiaries in high-risk jurisdictions e.g.\ncountries identified by FATF and the Government of Malaysia, countries\nsubjected to sanctions by UN, etc.\n\n(c)Transactions and distribution channels – a reporting institution has various\nmodes of transaction and distribution of its products and services. Some of the\nmodes of transaction and distribution channels may be more susceptible to\nML/TF/PF risks. In this regard, a reporting institution must consider the\nappropriate ML/TF/PF risks attributed to these modes including the following\nexamples:\n\n•\nMode of distribution primarily via agents;\n\n•\nOnline or technology based transaction;\n\n•\nNon face-to face business relationship; and\n\n•Cash-based transactions.\n\n(d)Products and services – given the variety of financial products in the market, a\nreporting institution must identify the appropriate level of ML/TF/PF risks\nattached to the types of products and services offered. Some of the non-\n\n(e)exhaustive examples that the reporting institution may take into account are as\nfollows:\n\n•\nNature of the products i.e. transferability/liquidity of the products;\n\n•\nLevel of complexity of the products and services;\n\n•\nBearer instruments; and\n\n•\nNew technologies."
+    }
+  ],
+  "citations": [
+    {
+      "citation_id": "CIT-E1",
+      "marker": "[1]",
+      "evidence_id": "E1",
+      "chunk_id": "485c4989-c300-45c8-ac06-79a59492bb5c-c0065-d4d36f22c0",
+      "chunk_index": 65,
+      "source_filename": "sc_aml_cft.pdf",
+      "display": "Clause 6E.2 · Clause 6E.2(a) · Clause 6E.2(b) · Clause 6E.2(c) · PDF p. 25",
+      "pages": [
+        25
+      ],
+      "section_path": [
+        "PART IA: AML/CFT/CPF INTERNAL PROGRAMMES AND\nOBLIGATIONS OF THE BOARD OF DIRECTORS, SENIOR\nMANAGEMENT AND COMPLIANCE OFFICER",
+        "6 E.   GROUP-WIDE AML/CFT/CPF PROGRAMMES"
+      ],
+      "source_element_ids": [
+        "p25-e3",
+        "p25-e4",
+        "p25-e5",
+        "p25-e6"
+      ],
+      "locators": [
+        {
+          "kind": "clause",
+          "label": "Clause 6E.2",
+          "pages": [
+            25
+          ],
+          "source_element_ids": [
+            "p25-e3"
+          ]
+        },
+        {
+          "kind": "subclause",
+          "label": "Clause 6E.2(a)",
+          "pages": [
+            25
+          ],
+          "source_element_ids": [
+            "p25-e4"
+          ]
+        },
+        {
+          "kind": "subclause",
+          "label": "Clause 6E.2(b)",
+          "pages": [
+            25
+          ],
+          "source_element_ids": [
+            "p25-e5"
+          ]
+        },
+        {
+          "kind": "subclause",
+          "label": "Clause 6E.2(c)",
+          "pages": [
+            25
+          ],
+          "source_element_ids": [
+            "p25-e6"
+          ]
+        }
+      ],
+      "validation_status": "valid"
+    }
+  ],
+  "citation_version": "deterministic_citations_v1_2",
+  "citation_validation": {
+    "status": "valid",
+    "citation_count": 1,
+    "valid_citation_count": 1,
+    "errors": []
+  },
+  "generation_provider": "groq",
+  "generation_model": "openai/gpt-oss-120b",
+  "prompt_version": "grounded_claims_v1",
+  "generation_temperature": 0.0,
+  "generation_max_tokens": 1200,
+  "generation_json_mode": true,
+  "usage": {
+    "prompt_tokens": 1893,
+    "completion_tokens": 578,
+    "total_tokens": 2471
+  },
+  "retrieval_profile": "retrieval_v1_stage8_2_top5",
+  "retrieval_top_k": 5,
+  "retrieval_candidate_k": 20,
+  "retrieval_rrf_k": 60,
+  "retrieval_dense_weight": 1.0,
+  "retrieval_lexical_weight": 1.0,
+  "context_strategy": "structural_one_hop_v1",
+  "context_chunk_count": 5,
+  "expanded_chunk_count": 0
+}

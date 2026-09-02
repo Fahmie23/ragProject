@@ -1,0 +1,258 @@
+{
+  "document_id": "485c4989-c300-45c8-ac06-79a59492bb5c",
+  "query": "Which activities or operations cause a natural or legal person to fall within the Guidelines' definition of a Virtual Asset Service Provider (VASP)?",
+  "embedding_model": "BAAI/bge-m3",
+  "requested_device": "auto",
+  "resolved_device": "cuda",
+  "top_k": 10,
+  "embedded_chunk_count": 284,
+  "total_chunk_count": 284,
+  "hits": [
+    {
+      "rank": 1,
+      "chunk_id": "485c4989-c300-45c8-ac06-79a59492bb5c-c0047-9980cdd046",
+      "chunk_index": 47,
+      "semantic_type": "definition",
+      "score": 0.759625091575082,
+      "distance": 0.24037490842491804,
+      "text": "Section: PART I: INTRODUCTION AND APPLICABILITY > 3. DEFINITIONS\nDefinition: Virtual Asset Service Providers (VASP)\n\nVirtual Asset Service Providers (VASP)\n\nmeans any natural or legal person who is not covered elsewhere under the FATF Recommendations, and as a business conducts one or more of the following activities or operations for on behalf of another natural or legal person:\n(a)exchange between virtual assets and fiat currencies;\n(b)exchange between one or more forms of virtual assets;\n(c)transfer of virtual assets;\n(d)safekeeping and/or administration of virtual assets or instruments enabling\ncontrol over virtual assets; and\n(e)participation in and provision of financial services related to an issuer’s offer and/or sale of a virtual asset.",
+      "content_text": "Virtual Asset Service Providers (VASP)\n\nmeans any natural or legal person who is not covered elsewhere under the FATF Recommendations, and as a business conducts one or more of the following activities or operations for on behalf of another natural or legal person:\n(a)exchange between virtual assets and fiat currencies;\n(b)exchange between one or more forms of virtual assets;\n(c)transfer of virtual assets;\n(d)safekeeping and/or administration of virtual assets or instruments enabling\ncontrol over virtual assets; and\n(e)participation in and provision of financial services related to an issuer’s offer and/or sale of a virtual asset.",
+      "token_count": 146,
+      "pages": [
+        15,
+        16
+      ],
+      "section_path": [
+        "PART I: INTRODUCTION AND APPLICABILITY",
+        "3. DEFINITIONS"
+      ],
+      "source_element_ids": [
+        "p15-e5-r2-term",
+        "p15-e5-r2-definition",
+        "p15-e6",
+        "p15-e7",
+        "p15-e8",
+        "p15-e9",
+        "p16-e1",
+        "p16-e2"
+      ]
+    },
+    {
+      "rank": 2,
+      "chunk_id": "485c4989-c300-45c8-ac06-79a59492bb5c-c0271-236dca87b6",
+      "chunk_index": 271,
+      "semantic_type": "clause",
+      "score": 0.6139613850162763,
+      "distance": 0.3860386149837237,
+      "text": "Section: APPENDIX F > 1.0 Introduction\nClause: 1.1\nGroup: Guidance on Identification and Due Diligence on Counterparty Virtual Asset\nService Provider (VASP) (in relation to Paragraph 9.5 of the Guidelines)\n\n1.1 This Guidance seeks to outline the recommended process involved in conducting\nidentification and counterparty due diligenceon counterparty VASP. In the event a\nreporting institution has developed and adopted its own process, the adopted process\nmust be able to achieve the outcomes intended under this Guidance.",
+      "content_text": "1.1 This Guidance seeks to outline the recommended process involved in conducting\nidentification and counterparty due diligenceon counterparty VASP. In the event a\nreporting institution has developed and adopted its own process, the adopted process\nmust be able to achieve the outcomes intended under this Guidance.",
+      "token_count": 94,
+      "pages": [
+        103
+      ],
+      "section_path": [
+        "APPENDIX F",
+        "1.0 Introduction"
+      ],
+      "source_element_ids": [
+        "p103-e4"
+      ]
+    },
+    {
+      "rank": 3,
+      "chunk_id": "485c4989-c300-45c8-ac06-79a59492bb5c-c0273-a0f89ccd1b",
+      "chunk_index": 273,
+      "semantic_type": "list_item",
+      "score": 0.6080623140260799,
+      "distance": 0.3919376859739201,
+      "text": "Section: APPENDIX F > 1.0 Introduction\nGroup: Guidance on Identification and Due Diligence on Counterparty Virtual Asset\nService Provider (VASP) (in relation to Paragraph 9.5 of the Guidelines)\n\n(iv)Where a regulated originating institution decide to have a business relationship\nwith an unregulated beneficiary institution, the regulated originating institution\nmay require travel rule compliance from the unregulated beneficiary institutions\nby way of a contract.",
+      "content_text": "(iv)Where a regulated originating institution decide to have a business relationship\nwith an unregulated beneficiary institution, the regulated originating institution\nmay require travel rule compliance from the unregulated beneficiary institutions\nby way of a contract.",
+      "token_count": 78,
+      "pages": [
+        104
+      ],
+      "section_path": [
+        "APPENDIX F",
+        "1.0 Introduction"
+      ],
+      "source_element_ids": [
+        "p104-e2"
+      ]
+    },
+    {
+      "rank": 4,
+      "chunk_id": "485c4989-c300-45c8-ac06-79a59492bb5c-c0272-76a1d56662",
+      "chunk_index": 272,
+      "semantic_type": "clause",
+      "score": 0.5882153931791987,
+      "distance": 0.4117846068208013,
+      "text": "Section: APPENDIX F > 1.0 Introduction\nClause: 1.2\nGroup: Guidance on Identification and Due Diligence on Counterparty Virtual Asset\nService Provider (VASP) (in relation to Paragraph 9.5 of the Guidelines)\n\n1.2 There are three phases in conducting identification and due diligence on counterparty\nVASP:\n\n(a) Phase 1\n\n(i) A reporting institution should determine whether it will be transacting with\nanother counterparty VASP.\n\n(b) Phase 2\n\n(i) A reporting institution should identify the counterparty VASP. In this context,\nit is possible that the reporting institution only knows the “name” of the\ncounterparty VASP following its previous transaction with the counterparty\nVASP.\n\n(ii) A reporting institution may identify a counterparty VASP by itself using a\nreliable database (for example the website of the supervisory authority of\nthe counterparty VASPs), in line with any guidelines from a country on when\nto rely on such data; and\n\n(c) Phase 3\n\n(i) A reporting institution should assess whether the counterparty VASP is an\neligible counterparty for it to send customer data to and to have a business\nrelationship.\n\n(ii) A reporting institution should be able to demonstrate its risk-based analysis\nfrom an AML/CFT/CPF perspectives, as well as considering other compliance\nissues, including data storage and security, and the profitability of the business\nrelationship, which forms the basis of its decision to transact with the\ncounterparty VASP.\n\n(iii) The due diligence results on the counterparty VASPs must be reviewed\n\nperiodically.",
+      "content_text": "1.2 There are three phases in conducting identification and due diligence on counterparty\nVASP:\n\n(a) Phase 1\n\n(i) A reporting institution should determine whether it will be transacting with\nanother counterparty VASP.\n\n(b) Phase 2\n\n(i) A reporting institution should identify the counterparty VASP. In this context,\nit is possible that the reporting institution only knows the “name” of the\ncounterparty VASP following its previous transaction with the counterparty\nVASP.\n\n(ii) A reporting institution may identify a counterparty VASP by itself using a\nreliable database (for example the website of the supervisory authority of\nthe counterparty VASPs), in line with any guidelines from a country on when\nto rely on such data; and\n\n(c) Phase 3\n\n(i) A reporting institution should assess whether the counterparty VASP is an\neligible counterparty for it to send customer data to and to have a business\nrelationship.\n\n(ii) A reporting institution should be able to demonstrate its risk-based analysis\nfrom an AML/CFT/CPF perspectives, as well as considering other compliance\nissues, including data storage and security, and the profitability of the business\nrelationship, which forms the basis of its decision to transact with the\ncounterparty VASP.\n\n(iii) The due diligence results on the counterparty VASPs must be reviewed\n\nperiodically.",
+      "token_count": 291,
+      "pages": [
+        103,
+        104
+      ],
+      "section_path": [
+        "APPENDIX F",
+        "1.0 Introduction"
+      ],
+      "source_element_ids": [
+        "p103-e5",
+        "p103-e6",
+        "p103-e7",
+        "p103-e8",
+        "p103-e9",
+        "p103-e10",
+        "p103-e11",
+        "p103-e12",
+        "p103-e13",
+        "p103-e14",
+        "p104-e1"
+      ]
+    },
+    {
+      "rank": 5,
+      "chunk_id": "485c4989-c300-45c8-ac06-79a59492bb5c-c0142-87f1b197d7",
+      "chunk_index": 142,
+      "semantic_type": "list_item",
+      "score": 0.4961169960429084,
+      "distance": 0.5038830039570916,
+      "text": "Section: PART IIIA: WIRE TRANSFER > 9. WIRE TRANSFER OF DIGITAL ASSETS > 9.5 Identification and Due Diligence on Counterparty VASP\nGroup: Guidance for paragraph 9.5.1:\n\n•\nAs a guide, a reporting institution needs to conduct due diligence\non their counterparty VASP before the reporting institution\ntransmits the required information to avoid dealing with illicit actors\nor sanctioned actors unknowingly.\n\n•\nAdditionally, a reporting institution should use this due diligence\nprocess to determine whether a counterparty VASP can reasonably\nbe expected to protect the confidentiality of information shared\nwith it.",
+      "content_text": "•\nAs a guide, a reporting institution needs to conduct due diligence\non their counterparty VASP before the reporting institution\ntransmits the required information to avoid dealing with illicit actors\nor sanctioned actors unknowingly.\n\n•\nAdditionally, a reporting institution should use this due diligence\nprocess to determine whether a counterparty VASP can reasonably\nbe expected to protect the confidentiality of information shared\nwith it.",
+      "token_count": 105,
+      "pages": [
+        51
+      ],
+      "section_path": [
+        "PART IIIA: WIRE TRANSFER",
+        "9. WIRE TRANSFER OF DIGITAL ASSETS",
+        "9.5 Identification and Due Diligence on Counterparty VASP"
+      ],
+      "source_element_ids": [
+        "p51-e9",
+        "p51-e10"
+      ]
+    },
+    {
+      "rank": 6,
+      "chunk_id": "485c4989-c300-45c8-ac06-79a59492bb5c-c0162-aded0a9984",
+      "chunk_index": 162,
+      "semantic_type": "clause",
+      "score": 0.4782496107667925,
+      "distance": 0.5217503892332075,
+      "text": "Section: PART VIII: COMBATING PROLIFERATION FINANCING > 15. DEFINITION AND INTERPRETATION\nClause: 15.1\n\n15.1 For the purpose of Part VIII of these Guidelines, “reporting institution” refers to\nreporting institution as defined in the Definition section under Part I of these Guidelines\nand includes a registered person under section 76 of the CMSA that is registered under\nthe Guidelines on the Registration of Venture Capital and Private Equity Corporations\nand Management Corporation.",
+      "content_text": "15.1 For the purpose of Part VIII of these Guidelines, “reporting institution” refers to\nreporting institution as defined in the Definition section under Part I of these Guidelines\nand includes a registered person under section 76 of the CMSA that is registered under\nthe Guidelines on the Registration of Venture Capital and Private Equity Corporations\nand Management Corporation.",
+      "token_count": 83,
+      "pages": [
+        62
+      ],
+      "section_path": [
+        "PART VIII: COMBATING PROLIFERATION FINANCING",
+        "15. DEFINITION AND INTERPRETATION"
+      ],
+      "source_element_ids": [
+        "p62-e3"
+      ]
+    },
+    {
+      "rank": 7,
+      "chunk_id": "485c4989-c300-45c8-ac06-79a59492bb5c-c0141-ca25e4a05b",
+      "chunk_index": 141,
+      "semantic_type": "clause",
+      "score": 0.4733755620270297,
+      "distance": 0.5266244379729703,
+      "text": "Section: PART IIIA: WIRE TRANSFER > 9. WIRE TRANSFER OF DIGITAL ASSETS > 9.5 Identification and Due Diligence on Counterparty VASP\nClause: 9.5.1\n\n9.5.1 A reporting institution must identify and conduct due diligence on the counterparty VASP\nbefore the reporting institution transmits the required originator or beneficiary\ninformation.\n\nAppendix F sets out the guide on how due diligence on counterparty VASP could be\nundertaken.",
+      "content_text": "9.5.1 A reporting institution must identify and conduct due diligence on the counterparty VASP\nbefore the reporting institution transmits the required originator or beneficiary\ninformation.\n\nAppendix F sets out the guide on how due diligence on counterparty VASP could be\nundertaken.",
+      "token_count": 80,
+      "pages": [
+        51
+      ],
+      "section_path": [
+        "PART IIIA: WIRE TRANSFER",
+        "9. WIRE TRANSFER OF DIGITAL ASSETS",
+        "9.5 Identification and Due Diligence on Counterparty VASP"
+      ],
+      "source_element_ids": [
+        "p51-e6",
+        "p51-e7"
+      ]
+    },
+    {
+      "rank": 8,
+      "chunk_id": "485c4989-c300-45c8-ac06-79a59492bb5c-c0275-fced80927c",
+      "chunk_index": 275,
+      "semantic_type": "list_item",
+      "score": 0.46794825601270085,
+      "distance": 0.5320517439872992,
+      "text": "Section: APPENDIX G\nGroup: REGULATION 3 OF STRATEGIC TRADE (UNITED NATIONS SECURITY COUNCIL\nRESOLUTIONS) REGULATIONS 2010 (P.U. (A) 481/2010)\n(in relation to Paragraph 1.1 (b)(ii) of the Guidelines)\n\n(d)Prohibition of such other activities as may be required under the relevant decision of\nthe UNSC.\n\nNote:\n3 “Restricted activity” is defined under section 2 of the STA to mean:\na)Any activity that supports the development, production, handling, usage, maintenance, storage, inventory or proliferation of\nany weapon of mass destruction and its delivery systems; or\nb)Participation in transactions with persons engaged in such activities;",
+      "content_text": "(d)Prohibition of such other activities as may be required under the relevant decision of\nthe UNSC.\n\nNote:\n3 “Restricted activity” is defined under section 2 of the STA to mean:\na)Any activity that supports the development, production, handling, usage, maintenance, storage, inventory or proliferation of\nany weapon of mass destruction and its delivery systems; or\nb)Participation in transactions with persons engaged in such activities;",
+      "token_count": 134,
+      "pages": [
+        105
+      ],
+      "section_path": [
+        "APPENDIX G"
+      ],
+      "source_element_ids": [
+        "p105-e8",
+        "p105-e9"
+      ]
+    },
+    {
+      "rank": 9,
+      "chunk_id": "485c4989-c300-45c8-ac06-79a59492bb5c-c0088-7f07c6b2b9",
+      "chunk_index": 88,
+      "semantic_type": "clause",
+      "score": 0.4620296106303202,
+      "distance": 0.5379703893696798,
+      "text": "Section: PART III: CUSTOMER DUE DILIGENCE > 8. CUSTOMER DUE DILIGENCE (CDD) > 8.1 CDD at the point of establishing business relationship\nClause: 8.1.11\nGroup: CDD requirements for legal persons\n\n8.1.11 A reporting institution is required to identify and take reasonable measures to verify\nthe identity of beneficial owners according to the following cascading steps:\n\n(a)the identity of the natural person(s) (if any) who ultimately has a controlling\nownership interest in a legal person. Where applicable, this includes identifying:\n\n(i)shareholders with equity interest of more than twenty-five percent in a\ncorporation; and\n\n(b) to the extent that there is doubt as to whether the person(s) with the controlling\nownership interest is the beneficial owner(s) referred to in paragraph 8.1.11(a)\nor where no natural person(s) exert control through ownership interests, the\nidentity of the natural person (if any) exercising control of the legal person\nthrough other means; and\n\n(c) where no natural person is identified under paragraphs 8.1.11(a) or (b), the\nidentity of the relevant natural person who holds the position of senior\nmanagement.\n\nFor the avoidance of doubt, a reporting institution is not required to pursue\nsteps (b) and (c) in circumstances where beneficial owner(s) have been\nidentified through step (a). Similarly, where beneficial owner(s) have been\nidentified at step (b), reporting institutions are not required to pursue step (c).",
+      "content_text": "8.1.11 A reporting institution is required to identify and take reasonable measures to verify\nthe identity of beneficial owners according to the following cascading steps:\n\n(a)the identity of the natural person(s) (if any) who ultimately has a controlling\nownership interest in a legal person. Where applicable, this includes identifying:\n\n(i)shareholders with equity interest of more than twenty-five percent in a\ncorporation; and\n\n(b) to the extent that there is doubt as to whether the person(s) with the controlling\nownership interest is the beneficial owner(s) referred to in paragraph 8.1.11(a)\nor where no natural person(s) exert control through ownership interests, the\nidentity of the natural person (if any) exercising control of the legal person\nthrough other means; and\n\n(c) where no natural person is identified under paragraphs 8.1.11(a) or (b), the\nidentity of the relevant natural person who holds the position of senior\nmanagement.\n\nFor the avoidance of doubt, a reporting institution is not required to pursue\nsteps (b) and (c) in circumstances where beneficial owner(s) have been\nidentified through step (a). Similarly, where beneficial owner(s) have been\nidentified at step (b), reporting institutions are not required to pursue step (c).",
+      "token_count": 311,
+      "pages": [
+        33,
+        34
+      ],
+      "section_path": [
+        "PART III: CUSTOMER DUE DILIGENCE",
+        "8. CUSTOMER DUE DILIGENCE (CDD)",
+        "8.1 CDD at the point of establishing business relationship"
+      ],
+      "source_element_ids": [
+        "p33-e10",
+        "p33-e11",
+        "p33-e12",
+        "p34-e2",
+        "p34-e3",
+        "p34-e4"
+      ]
+    },
+    {
+      "rank": 10,
+      "chunk_id": "485c4989-c300-45c8-ac06-79a59492bb5c-c0257-818930868d",
+      "chunk_index": 257,
+      "semantic_type": "clause",
+      "score": 0.4611390852249222,
+      "distance": 0.5388609147750778,
+      "text": "Section: APPENDIX E > Identification\nClause: 1.8\nGroup: Steps to identify beneficial owner > Legal person\n\n1.8 Step 1: Identify the natural person(s), if any, who ultimately have\ncontrolling ownership interest in the legal person\n\n(a) Having ultimate controlling ownership interest over an entity includes having more\nthan 25% ownership or equity interest in an entity which may be observed, among\nothers, through share capital, capital contribution or voting rights. The ownership\nmay either be direct ownership (through ownership of shares within the entity\nitself) or indirect ownership (through chain of corporate vehicles). In the case of\na limited liability partnership - partners with capital contribution and/or voting\nrights of more than 25%.\n\n(b) Having a golden share within an entity is similar to having ultimate ownership of\nthe entity, as it refers to 51% ownership.\n\n(c) Shareholders may exercise control alone or together with other shareholders,\nincluding through any contract, understanding, relationship, intermediary or tiered\nentity. In most circumstances, ownership over an entity implies control over the\nentity, as ownership may come with the power and authority to take actions\nand make decisions for the entity. Such a situation can be observed, among\nothers, where:\n\n(i)The natural person has majority voting power within the entity to make\ndecisions; or\n\n(ii)The natural person exercises his right to appoint or remove directors\nor senior management, as a major shareholder.\n\n(d) In implementing Step 1, a natural person identified as fulfilling the criteria in (a)\nshall be identified as the beneficial owner. However, where there is doubt that\nthe person identified under Step 1 is not the beneficial owner; or where no natural\nperson has ultimate controlling ownership interest over the legal person, the\nreporting institution shall carry out Step 2.",
+      "content_text": "1.8 Step 1: Identify the natural person(s), if any, who ultimately have\ncontrolling ownership interest in the legal person\n\n(a) Having ultimate controlling ownership interest over an entity includes having more\nthan 25% ownership or equity interest in an entity which may be observed, among\nothers, through share capital, capital contribution or voting rights. The ownership\nmay either be direct ownership (through ownership of shares within the entity\nitself) or indirect ownership (through chain of corporate vehicles). In the case of\na limited liability partnership - partners with capital contribution and/or voting\nrights of more than 25%.\n\n(b) Having a golden share within an entity is similar to having ultimate ownership of\nthe entity, as it refers to 51% ownership.\n\n(c) Shareholders may exercise control alone or together with other shareholders,\nincluding through any contract, understanding, relationship, intermediary or tiered\nentity. In most circumstances, ownership over an entity implies control over the\nentity, as ownership may come with the power and authority to take actions\nand make decisions for the entity. Such a situation can be observed, among\nothers, where:\n\n(i)The natural person has majority voting power within the entity to make\ndecisions; or\n\n(ii)The natural person exercises his right to appoint or remove directors\nor senior management, as a major shareholder.\n\n(d) In implementing Step 1, a natural person identified as fulfilling the criteria in (a)\nshall be identified as the beneficial owner. However, where there is doubt that\nthe person identified under Step 1 is not the beneficial owner; or where no natural\nperson has ultimate controlling ownership interest over the legal person, the\nreporting institution shall carry out Step 2.",
+      "token_count": 355,
+      "pages": [
+        94
+      ],
+      "section_path": [
+        "APPENDIX E",
+        "Identification"
+      ],
+      "source_element_ids": [
+        "p94-e1",
+        "p94-e2",
+        "p94-e3",
+        "p94-e4",
+        "p94-e6",
+        "p94-e7",
+        "p94-e8"
+      ]
+    }
+  ]
+}

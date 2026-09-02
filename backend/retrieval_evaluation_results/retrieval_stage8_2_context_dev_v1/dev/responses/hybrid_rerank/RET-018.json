@@ -1,0 +1,678 @@
+{
+  "document_id": "485c4989-c300-45c8-ac06-79a59492bb5c",
+  "query": "What safeguards apply when relying on a third-party institution to conduct CDD, and who remains ultimately responsible for the CDD?",
+  "embedding_model": "BAAI/bge-m3",
+  "embedding_requested_device": "auto",
+  "embedding_resolved_device": "cuda",
+  "reranker_model": "BAAI/bge-reranker-v2-m3",
+  "reranker_requested_device": "auto",
+  "reranker_resolved_device": "cuda",
+  "reranker_batch_size": 2,
+  "reranker_max_length": 1024,
+  "top_k": 10,
+  "candidate_k": 20,
+  "candidate_union_count": 27,
+  "embedded_chunk_count": 284,
+  "total_chunk_count": 284,
+  "candidate_strategy": "dense_lexical_union",
+  "ranking_method": "cross_encoder",
+  "fusion_method": "reciprocal_rank_fusion_trace",
+  "rrf_k": 60,
+  "dense_weight": 1.0,
+  "lexical_weight": 1.0,
+  "lexical_ranking_method": "postgresql_fts_term_coverage_then_ts_rank_cd",
+  "lexical_query_mode": "or_content_terms_v1",
+  "lexical_terms": [
+    "safeguards",
+    "apply",
+    "relying",
+    "third",
+    "party",
+    "institution",
+    "conduct",
+    "cdd",
+    "remains",
+    "ultimately",
+    "responsible"
+  ],
+  "lexical_tsquery": "safeguards | apply | relying | third | party | institution | conduct | cdd | remains | ultimately | responsible",
+  "hits": [
+    {
+      "rank": 1,
+      "chunk_id": "485c4989-c300-45c8-ac06-79a59492bb5c-c0122-db2b4be2b1",
+      "chunk_index": 122,
+      "semantic_type": "clause",
+      "reranker_score": 0.9977084398269653,
+      "hybrid_candidate_rank": 1,
+      "fusion_score": 0.03278688524590164,
+      "dense_rank": 1,
+      "dense_score": 0.7063440680503845,
+      "dense_distance": 0.2936559319496155,
+      "dense_rrf_score": 0.01639344262295082,
+      "lexical_rank": 1,
+      "lexical_score": 2.2,
+      "lexical_matched_term_count": 9,
+      "lexical_term_coverage": 0.8181818181818182,
+      "lexical_rrf_score": 0.01639344262295082,
+      "text": "Section: PART III: CUSTOMER DUE DILIGENCE > 8. CUSTOMER DUE DILIGENCE (CDD) > 8.6 Reliance on third-party institutions to conduct CDD\n\n8.6.7 Where a reporting institution relies on a third-party institution, the ultimate\nresponsibility and accountability for CDD measures remains with the reporting\ninstitution.\n\n8.6.8 A reporting institution shall not rely on a third-party institution to conduct ongoing\ndue diligence of its customers.",
+      "content_text": "8.6.7 Where a reporting institution relies on a third-party institution, the ultimate\nresponsibility and accountability for CDD measures remains with the reporting\ninstitution.\n\n8.6.8 A reporting institution shall not rely on a third-party institution to conduct ongoing\ndue diligence of its customers.",
+      "token_count": 87,
+      "pages": [
+        45
+      ],
+      "section_path": [
+        "PART III: CUSTOMER DUE DILIGENCE",
+        "8. CUSTOMER DUE DILIGENCE (CDD)",
+        "8.6 Reliance on third-party institutions to conduct CDD"
+      ],
+      "source_element_ids": [
+        "p45-e8",
+        "p45-e9"
+      ]
+    },
+    {
+      "rank": 2,
+      "chunk_id": "485c4989-c300-45c8-ac06-79a59492bb5c-c0117-340b2169f0",
+      "chunk_index": 117,
+      "semantic_type": "clause",
+      "reranker_score": 0.975618302822113,
+      "hybrid_candidate_rank": 2,
+      "fusion_score": 0.03200204813108039,
+      "dense_rank": 3,
+      "dense_score": 0.6696880060620316,
+      "dense_distance": 0.3303119939379684,
+      "dense_rrf_score": 0.015873015873015872,
+      "lexical_rank": 2,
+      "lexical_score": 3.5,
+      "lexical_matched_term_count": 7,
+      "lexical_term_coverage": 0.6363636363636364,
+      "lexical_rrf_score": 0.016129032258064516,
+      "text": "Section: PART III: CUSTOMER DUE DILIGENCE > 8. CUSTOMER DUE DILIGENCE (CDD) > 8.6 Reliance on third-party institutions to conduct CDD\n\n8.6.1 A reporting institution may rely on a third-party institution to conduct CDD at the point\nof establishing a business relationship to identify and verify a customer or a beneficial\nowner. The reporting institution must immediately obtain the necessary information\nconcerning the identification and verification of the customer or the beneficial owner\nfrom the third-party institution.\n\n8.6.2 A reporting institution must have in place internal policies and procedures to mitigate\nthe risks when relying on a third-party institution, including those from foreign\njurisdictions. However, the reporting institution must ensure that the third-party\ninstitution adequately applies the FATF Recommendations in determining the extent\nto which reliance could be placed on such third-party institution.\n\n8.6.3 A reporting institution is prohibited from relying on a third-party institution located\nin higher- risk countries that have been identified as having ongoing or substantial\nML/TF/PF risks.",
+      "content_text": "8.6.1 A reporting institution may rely on a third-party institution to conduct CDD at the point\nof establishing a business relationship to identify and verify a customer or a beneficial\nowner. The reporting institution must immediately obtain the necessary information\nconcerning the identification and verification of the customer or the beneficial owner\nfrom the third-party institution.\n\n8.6.2 A reporting institution must have in place internal policies and procedures to mitigate\nthe risks when relying on a third-party institution, including those from foreign\njurisdictions. However, the reporting institution must ensure that the third-party\ninstitution adequately applies the FATF Recommendations in determining the extent\nto which reliance could be placed on such third-party institution.\n\n8.6.3 A reporting institution is prohibited from relying on a third-party institution located\nin higher- risk countries that have been identified as having ongoing or substantial\nML/TF/PF risks.",
+      "token_count": 206,
+      "pages": [
+        44
+      ],
+      "section_path": [
+        "PART III: CUSTOMER DUE DILIGENCE",
+        "8. CUSTOMER DUE DILIGENCE (CDD)",
+        "8.6 Reliance on third-party institutions to conduct CDD"
+      ],
+      "source_element_ids": [
+        "p44-e2",
+        "p44-e3",
+        "p44-e4"
+      ]
+    },
+    {
+      "rank": 3,
+      "chunk_id": "485c4989-c300-45c8-ac06-79a59492bb5c-c0118-f54ab82946",
+      "chunk_index": 118,
+      "semantic_type": "clause",
+      "reranker_score": 0.960162341594696,
+      "hybrid_candidate_rank": 3,
+      "fusion_score": 0.03200204813108039,
+      "dense_rank": 2,
+      "dense_score": 0.6799730467780273,
+      "dense_distance": 0.3200269532219727,
+      "dense_rrf_score": 0.016129032258064516,
+      "lexical_rank": 3,
+      "lexical_score": 2.7,
+      "lexical_matched_term_count": 7,
+      "lexical_term_coverage": 0.6363636363636364,
+      "lexical_rrf_score": 0.015873015873015872,
+      "text": "Section: PART III: CUSTOMER DUE DILIGENCE > 8. CUSTOMER DUE DILIGENCE (CDD) > 8.6 Reliance on third-party institutions to conduct CDD\nClause: 8.6.4\n\n8.6.4 The relationship between a reporting institution and the third-party institution relied\nupon by the reporting institution to conduct the CDD, shall be governed by an\narrangement that clearly specifies the rights, responsibilities and expectations of all\nparties. In placing the reliance on the third-party institution, the reporting institution at\nthe minimum:\n\n(a)Must be able to obtain immediately the necessary information concerning the CDD\nin paragraph 8.1 above;\n\n(b)Must be satisfied that the third-party institution:\n\n(i)has adequate CDD processes;\n\n(ii)has measures in place for record keeping requirements;\n\n(iii)can provide the standard CDD or enhanced CDD information and\nprovide copies of the relevant documentation immediately upon\nrequest;\n\n(iv)is properly regulated and supervised by the respective authorities; and\n\n(v)complies with the provisions of any applicable laws.",
+      "content_text": "8.6.4 The relationship between a reporting institution and the third-party institution relied\nupon by the reporting institution to conduct the CDD, shall be governed by an\narrangement that clearly specifies the rights, responsibilities and expectations of all\nparties. In placing the reliance on the third-party institution, the reporting institution at\nthe minimum:\n\n(a)Must be able to obtain immediately the necessary information concerning the CDD\nin paragraph 8.1 above;\n\n(b)Must be satisfied that the third-party institution:\n\n(i)has adequate CDD processes;\n\n(ii)has measures in place for record keeping requirements;\n\n(iii)can provide the standard CDD or enhanced CDD information and\nprovide copies of the relevant documentation immediately upon\nrequest;\n\n(iv)is properly regulated and supervised by the respective authorities; and\n\n(v)complies with the provisions of any applicable laws.",
+      "token_count": 206,
+      "pages": [
+        44
+      ],
+      "section_path": [
+        "PART III: CUSTOMER DUE DILIGENCE",
+        "8. CUSTOMER DUE DILIGENCE (CDD)",
+        "8.6 Reliance on third-party institutions to conduct CDD"
+      ],
+      "source_element_ids": [
+        "p44-e5",
+        "p44-e6",
+        "p44-e7",
+        "p44-e8",
+        "p44-e9",
+        "p44-e10",
+        "p44-e11",
+        "p44-e12"
+      ]
+    },
+    {
+      "rank": 4,
+      "chunk_id": "485c4989-c300-45c8-ac06-79a59492bb5c-c0121-4863ecbe4f",
+      "chunk_index": 121,
+      "semantic_type": "clause",
+      "reranker_score": 0.915044903755188,
+      "hybrid_candidate_rank": 4,
+      "fusion_score": 0.03125,
+      "dense_rank": 4,
+      "dense_score": 0.6579146385192871,
+      "dense_distance": 0.3420853614807129,
+      "dense_rrf_score": 0.015625,
+      "lexical_rank": 4,
+      "lexical_score": 1.4,
+      "lexical_matched_term_count": 7,
+      "lexical_term_coverage": 0.6363636363636364,
+      "lexical_rrf_score": 0.015625,
+      "text": "Section: PART III: CUSTOMER DUE DILIGENCE > 8. CUSTOMER DUE DILIGENCE (CDD) > 8.6 Reliance on third-party institutions to conduct CDD\nClause: 8.6.6\n\n8.6.6 In addition to the requirements set out in paragraph 8.6.4 above, a reporting institution\nthat relies on a third-party institution that is part of the same group is subject to the\nfollowing conditions:\n\n(a)The group applies CDD and record-keeping requirements and AML/CFT\nprogrammes in line with these Guidelines;\n\n(b)The implementation of those CDD and record-keeping requirements and\nAML/CFT programmes are supervised at a group level by the relevant\nsupervisory authority; and\n\n(c)Any higher country risk is adequately mitigated by the financial group’s AML/CFT\npolicies.",
+      "content_text": "8.6.6 In addition to the requirements set out in paragraph 8.6.4 above, a reporting institution\nthat relies on a third-party institution that is part of the same group is subject to the\nfollowing conditions:\n\n(a)The group applies CDD and record-keeping requirements and AML/CFT\nprogrammes in line with these Guidelines;\n\n(b)The implementation of those CDD and record-keeping requirements and\nAML/CFT programmes are supervised at a group level by the relevant\nsupervisory authority; and\n\n(c)Any higher country risk is adequately mitigated by the financial group’s AML/CFT\npolicies.",
+      "token_count": 158,
+      "pages": [
+        45
+      ],
+      "section_path": [
+        "PART III: CUSTOMER DUE DILIGENCE",
+        "8. CUSTOMER DUE DILIGENCE (CDD)",
+        "8.6 Reliance on third-party institutions to conduct CDD"
+      ],
+      "source_element_ids": [
+        "p45-e4",
+        "p45-e5",
+        "p45-e6",
+        "p45-e7"
+      ]
+    },
+    {
+      "rank": 5,
+      "chunk_id": "485c4989-c300-45c8-ac06-79a59492bb5c-c0119-081d7cfeb3",
+      "chunk_index": 119,
+      "semantic_type": "paragraph",
+      "reranker_score": 0.8577300906181335,
+      "hybrid_candidate_rank": 5,
+      "fusion_score": 0.030536130536130537,
+      "dense_rank": 5,
+      "dense_score": 0.6503818035125732,
+      "dense_distance": 0.34961819648742676,
+      "dense_rrf_score": 0.015384615384615385,
+      "lexical_rank": 6,
+      "lexical_score": 1.2,
+      "lexical_matched_term_count": 5,
+      "lexical_term_coverage": 0.45454545454545453,
+      "lexical_rrf_score": 0.015151515151515152,
+      "text": "Section: PART III: CUSTOMER DUE DILIGENCE > 8. CUSTOMER DUE DILIGENCE (CDD) > 8.6 Reliance on third-party institutions to conduct CDD\nGroup: Guidance for paragraph 8.6.4:\n\nA reporting institution may obtain written confirmation from the third-party\ninstitution that it has conducted CDD on the customer or the beneficial owner in\naccordance with paragraph 8.1.",
+      "content_text": "A reporting institution may obtain written confirmation from the third-party\ninstitution that it has conducted CDD on the customer or the beneficial owner in\naccordance with paragraph 8.1.",
+      "token_count": 74,
+      "pages": [
+        45
+      ],
+      "section_path": [
+        "PART III: CUSTOMER DUE DILIGENCE",
+        "8. CUSTOMER DUE DILIGENCE (CDD)",
+        "8.6 Reliance on third-party institutions to conduct CDD"
+      ],
+      "source_element_ids": [
+        "p45-e2"
+      ]
+    },
+    {
+      "rank": 6,
+      "chunk_id": "485c4989-c300-45c8-ac06-79a59492bb5c-c0098-03d8b3aa54",
+      "chunk_index": 98,
+      "semantic_type": "clause",
+      "reranker_score": 0.7383458614349365,
+      "hybrid_candidate_rank": 6,
+      "fusion_score": 0.03007688828584351,
+      "dense_rank": 6,
+      "dense_score": 0.6469654633690558,
+      "dense_distance": 0.3530345366309442,
+      "dense_rrf_score": 0.015151515151515152,
+      "lexical_rank": 7,
+      "lexical_score": 1.1,
+      "lexical_matched_term_count": 5,
+      "lexical_term_coverage": 0.45454545454545453,
+      "lexical_rrf_score": 0.014925373134328358,
+      "text": "Section: PART III: CUSTOMER DUE DILIGENCE > 8. CUSTOMER DUE DILIGENCE (CDD) > 8.1 CDD at the point of establishing business relationship\n\n8.1.18 A reporting institution may rely on a third-party institution to verify the identity of the\nbeneficiaries when it is not practical to identify every beneficiary.\n\n8.1.19 Where reliance is placed on a third-party institution under paragraph 8.1.18, a reporting\ninstitution is required to comply with paragraph 8.6 of these Guidelines.",
+      "content_text": "8.1.18 A reporting institution may rely on a third-party institution to verify the identity of the\nbeneficiaries when it is not practical to identify every beneficiary.\n\n8.1.19 Where reliance is placed on a third-party institution under paragraph 8.1.18, a reporting\ninstitution is required to comply with paragraph 8.6 of these Guidelines.",
+      "token_count": 101,
+      "pages": [
+        36
+      ],
+      "section_path": [
+        "PART III: CUSTOMER DUE DILIGENCE",
+        "8. CUSTOMER DUE DILIGENCE (CDD)",
+        "8.1 CDD at the point of establishing business relationship"
+      ],
+      "source_element_ids": [
+        "p36-e3",
+        "p36-e4"
+      ]
+    },
+    {
+      "rank": 7,
+      "chunk_id": "485c4989-c300-45c8-ac06-79a59492bb5c-c0039-8eac7375e8",
+      "chunk_index": 39,
+      "semantic_type": "definition",
+      "reranker_score": 0.7285588383674622,
+      "hybrid_candidate_rank": 8,
+      "fusion_score": 0.029273504273504274,
+      "dense_rank": 12,
+      "dense_score": 0.5782725121650126,
+      "dense_distance": 0.42172748783498737,
+      "dense_rrf_score": 0.013888888888888888,
+      "lexical_rank": 5,
+      "lexical_score": 1.3000001,
+      "lexical_matched_term_count": 5,
+      "lexical_term_coverage": 0.45454545454545453,
+      "lexical_rrf_score": 0.015384615384615385,
+      "text": "Section: PART I: INTRODUCTION AND APPLICABILITY > 3. DEFINITIONS\nDefinition: third-party institution\n\nthird-party institution\n\nmeans a financial institution that is supervised and monitored and meets the requirements under paragraph 8.6 of these Guidelines, who is relied upon by the reporting institution to conduct the due diligence process.\nReliance on third-party often occurs through introductions made by another member of the\nsame group or by another reporting institution. This definition does not include outsourcing or agency relationship.",
+      "content_text": "third-party institution\n\nmeans a financial institution that is supervised and monitored and meets the requirements under paragraph 8.6 of these Guidelines, who is relied upon by the reporting institution to conduct the due diligence process.\nReliance on third-party often occurs through introductions made by another member of the\nsame group or by another reporting institution. This definition does not include outsourcing or agency relationship.",
+      "token_count": 92,
+      "pages": [
+        14,
+        15
+      ],
+      "section_path": [
+        "PART I: INTRODUCTION AND APPLICABILITY",
+        "3. DEFINITIONS"
+      ],
+      "source_element_ids": [
+        "p14-e4-r5-term",
+        "p14-e4-r5-definition",
+        "p14-e5",
+        "p15-e1"
+      ]
+    },
+    {
+      "rank": 8,
+      "chunk_id": "485c4989-c300-45c8-ac06-79a59492bb5c-c0120-781c9e318c",
+      "chunk_index": 120,
+      "semantic_type": "clause",
+      "reranker_score": 0.720219612121582,
+      "hybrid_candidate_rank": 7,
+      "fusion_score": 0.029631255487269532,
+      "dense_rank": 7,
+      "dense_score": 0.641130268573761,
+      "dense_distance": 0.358869731426239,
+      "dense_rrf_score": 0.014925373134328358,
+      "lexical_rank": 8,
+      "lexical_score": 1.0,
+      "lexical_matched_term_count": 5,
+      "lexical_term_coverage": 0.45454545454545453,
+      "lexical_rrf_score": 0.014705882352941176,
+      "text": "Section: PART III: CUSTOMER DUE DILIGENCE > 8. CUSTOMER DUE DILIGENCE (CDD) > 8.6 Reliance on third-party institutions to conduct CDD\nClause: 8.6.5\n\n8.6.5 A reporting institution must obtain an attestation from the third-party institution to\nsatisfy itself that the requirements in paragraph 8.6.4 have been met.",
+      "content_text": "8.6.5 A reporting institution must obtain an attestation from the third-party institution to\nsatisfy itself that the requirements in paragraph 8.6.4 have been met.",
+      "token_count": 72,
+      "pages": [
+        45
+      ],
+      "section_path": [
+        "PART III: CUSTOMER DUE DILIGENCE",
+        "8. CUSTOMER DUE DILIGENCE (CDD)",
+        "8.6 Reliance on third-party institutions to conduct CDD"
+      ],
+      "source_element_ids": [
+        "p45-e3"
+      ]
+    },
+    {
+      "rank": 9,
+      "chunk_id": "485c4989-c300-45c8-ac06-79a59492bb5c-c0082-60739c961b",
+      "chunk_index": 82,
+      "semantic_type": "clause",
+      "reranker_score": 0.4045340120792389,
+      "hybrid_candidate_rank": 14,
+      "fusion_score": 0.014705882352941176,
+      "dense_rank": 8,
+      "dense_score": 0.5984755397751617,
+      "dense_distance": 0.40152446022483834,
+      "dense_rrf_score": 0.014705882352941176,
+      "lexical_rank": null,
+      "lexical_score": null,
+      "lexical_matched_term_count": 0,
+      "lexical_term_coverage": 0.0,
+      "lexical_rrf_score": 0.0,
+      "text": "Section: PART III: CUSTOMER DUE DILIGENCE > 8. CUSTOMER DUE DILIGENCE (CDD) > 8.1 CDD at the point of establishing business relationship\nClause: 8.1.3\n\n8.1.3 For the purpose of conducting CDD, a reporting institution is required to–\n\n(a)identify the customer (including foreign body corporate) and verify such\ncustomer’s identity using reliable, independent source of documents, data or\ninformation;\n\n(b)verify that any person purporting to act on behalf of the customer is authorised,\nand identify and verify the identity of that person;\n\n(c)identify the beneficial owner and take reasonable measures to verify the identity\nof the beneficial owner, using relevant information or data obtained from\nreliable sources, such that the reporting institution is satisfied that it knows who\nthe beneficial owner is; and\n\n(d)understand, and where relevant, obtain information on the purpose of opening\nan account and the intended nature of the business relationship.",
+      "content_text": "8.1.3 For the purpose of conducting CDD, a reporting institution is required to–\n\n(a)identify the customer (including foreign body corporate) and verify such\ncustomer’s identity using reliable, independent source of documents, data or\ninformation;\n\n(b)verify that any person purporting to act on behalf of the customer is authorised,\nand identify and verify the identity of that person;\n\n(c)identify the beneficial owner and take reasonable measures to verify the identity\nof the beneficial owner, using relevant information or data obtained from\nreliable sources, such that the reporting institution is satisfied that it knows who\nthe beneficial owner is; and\n\n(d)understand, and where relevant, obtain information on the purpose of opening\nan account and the intended nature of the business relationship.",
+      "token_count": 188,
+      "pages": [
+        31
+      ],
+      "section_path": [
+        "PART III: CUSTOMER DUE DILIGENCE",
+        "8. CUSTOMER DUE DILIGENCE (CDD)",
+        "8.1 CDD at the point of establishing business relationship"
+      ],
+      "source_element_ids": [
+        "p31-e6",
+        "p31-e7",
+        "p31-e8",
+        "p31-e9",
+        "p31-e10"
+      ]
+    },
+    {
+      "rank": 10,
+      "chunk_id": "485c4989-c300-45c8-ac06-79a59492bb5c-c0095-b12c916c14",
+      "chunk_index": 95,
+      "semantic_type": "clause",
+      "reranker_score": 0.31132447719573975,
+      "hybrid_candidate_rank": 23,
+      "fusion_score": 0.012987012987012988,
+      "dense_rank": 17,
+      "dense_score": 0.5681154727935791,
+      "dense_distance": 0.4318845272064209,
+      "dense_rrf_score": 0.012987012987012988,
+      "lexical_rank": null,
+      "lexical_score": null,
+      "lexical_matched_term_count": 0,
+      "lexical_term_coverage": 0.0,
+      "lexical_rrf_score": 0.0,
+      "text": "Section: PART III: CUSTOMER DUE DILIGENCE > 8. CUSTOMER DUE DILIGENCE (CDD) > 8.1 CDD at the point of establishing business relationship\nClause: 8.1.16\nGroup: CDD requirements for legal arrangements\n\n8.1.16 A reporting institution is required to identify and take reasonable measures to verify the\nidentity of the beneficial owner of a legal arrangement by taking into consideration the\nfollowing information:\n\n(a) In the case of a trust, the identity of the settlor, the trustee or the protector, the\nbeneficiary or class of beneficiaries and objects of a power, and any other natural\nperson exercising ultimate effective control over the trust (including through a\nchain of control/ownership); or\n\n(b) In the case of other types of legal arrangement, the identity of the person in an\nequivalent or similar position referred to in (a) above.",
+      "content_text": "8.1.16 A reporting institution is required to identify and take reasonable measures to verify the\nidentity of the beneficial owner of a legal arrangement by taking into consideration the\nfollowing information:\n\n(a) In the case of a trust, the identity of the settlor, the trustee or the protector, the\nbeneficiary or class of beneficiaries and objects of a power, and any other natural\nperson exercising ultimate effective control over the trust (including through a\nchain of control/ownership); or\n\n(b) In the case of other types of legal arrangement, the identity of the person in an\nequivalent or similar position referred to in (a) above.",
+      "token_count": 169,
+      "pages": [
+        35
+      ],
+      "section_path": [
+        "PART III: CUSTOMER DUE DILIGENCE",
+        "8. CUSTOMER DUE DILIGENCE (CDD)",
+        "8.1 CDD at the point of establishing business relationship"
+      ],
+      "source_element_ids": [
+        "p35-e9",
+        "p35-e10",
+        "p35-e11"
+      ]
+    }
+  ],
+  "context_strategy": "structural_one_hop_v1",
+  "context_recursive": false,
+  "context_same_section_required": true,
+  "context_max_forward_neighbors_per_seed": 2,
+  "context_max_backward_neighbors_per_seed": 1,
+  "context_max_page_gap": 1,
+  "context_max_chunks": 30,
+  "context_chunk_count": 10,
+  "expanded_chunk_count": 0,
+  "context_chunks": [
+    {
+      "context_order": 1,
+      "chunk_id": "485c4989-c300-45c8-ac06-79a59492bb5c-c0122-db2b4be2b1",
+      "chunk_index": 122,
+      "semantic_type": "clause",
+      "source_rank": 1,
+      "ranked_seed_rank": 1,
+      "reasons": [
+        "ranked_seed"
+      ],
+      "attached_from_chunk_ids": [],
+      "text": "Section: PART III: CUSTOMER DUE DILIGENCE > 8. CUSTOMER DUE DILIGENCE (CDD) > 8.6 Reliance on third-party institutions to conduct CDD\n\n8.6.7 Where a reporting institution relies on a third-party institution, the ultimate\nresponsibility and accountability for CDD measures remains with the reporting\ninstitution.\n\n8.6.8 A reporting institution shall not rely on a third-party institution to conduct ongoing\ndue diligence of its customers.",
+      "content_text": "8.6.7 Where a reporting institution relies on a third-party institution, the ultimate\nresponsibility and accountability for CDD measures remains with the reporting\ninstitution.\n\n8.6.8 A reporting institution shall not rely on a third-party institution to conduct ongoing\ndue diligence of its customers.",
+      "token_count": 87,
+      "pages": [
+        45
+      ],
+      "section_path": [
+        "PART III: CUSTOMER DUE DILIGENCE",
+        "8. CUSTOMER DUE DILIGENCE (CDD)",
+        "8.6 Reliance on third-party institutions to conduct CDD"
+      ],
+      "source_element_ids": [
+        "p45-e8",
+        "p45-e9"
+      ]
+    },
+    {
+      "context_order": 2,
+      "chunk_id": "485c4989-c300-45c8-ac06-79a59492bb5c-c0117-340b2169f0",
+      "chunk_index": 117,
+      "semantic_type": "clause",
+      "source_rank": 2,
+      "ranked_seed_rank": 2,
+      "reasons": [
+        "ranked_seed"
+      ],
+      "attached_from_chunk_ids": [],
+      "text": "Section: PART III: CUSTOMER DUE DILIGENCE > 8. CUSTOMER DUE DILIGENCE (CDD) > 8.6 Reliance on third-party institutions to conduct CDD\n\n8.6.1 A reporting institution may rely on a third-party institution to conduct CDD at the point\nof establishing a business relationship to identify and verify a customer or a beneficial\nowner. The reporting institution must immediately obtain the necessary information\nconcerning the identification and verification of the customer or the beneficial owner\nfrom the third-party institution.\n\n8.6.2 A reporting institution must have in place internal policies and procedures to mitigate\nthe risks when relying on a third-party institution, including those from foreign\njurisdictions. However, the reporting institution must ensure that the third-party\ninstitution adequately applies the FATF Recommendations in determining the extent\nto which reliance could be placed on such third-party institution.\n\n8.6.3 A reporting institution is prohibited from relying on a third-party institution located\nin higher- risk countries that have been identified as having ongoing or substantial\nML/TF/PF risks.",
+      "content_text": "8.6.1 A reporting institution may rely on a third-party institution to conduct CDD at the point\nof establishing a business relationship to identify and verify a customer or a beneficial\nowner. The reporting institution must immediately obtain the necessary information\nconcerning the identification and verification of the customer or the beneficial owner\nfrom the third-party institution.\n\n8.6.2 A reporting institution must have in place internal policies and procedures to mitigate\nthe risks when relying on a third-party institution, including those from foreign\njurisdictions. However, the reporting institution must ensure that the third-party\ninstitution adequately applies the FATF Recommendations in determining the extent\nto which reliance could be placed on such third-party institution.\n\n8.6.3 A reporting institution is prohibited from relying on a third-party institution located\nin higher- risk countries that have been identified as having ongoing or substantial\nML/TF/PF risks.",
+      "token_count": 206,
+      "pages": [
+        44
+      ],
+      "section_path": [
+        "PART III: CUSTOMER DUE DILIGENCE",
+        "8. CUSTOMER DUE DILIGENCE (CDD)",
+        "8.6 Reliance on third-party institutions to conduct CDD"
+      ],
+      "source_element_ids": [
+        "p44-e2",
+        "p44-e3",
+        "p44-e4"
+      ]
+    },
+    {
+      "context_order": 3,
+      "chunk_id": "485c4989-c300-45c8-ac06-79a59492bb5c-c0118-f54ab82946",
+      "chunk_index": 118,
+      "semantic_type": "clause",
+      "source_rank": 3,
+      "ranked_seed_rank": 3,
+      "reasons": [
+        "ranked_seed"
+      ],
+      "attached_from_chunk_ids": [],
+      "text": "Section: PART III: CUSTOMER DUE DILIGENCE > 8. CUSTOMER DUE DILIGENCE (CDD) > 8.6 Reliance on third-party institutions to conduct CDD\nClause: 8.6.4\n\n8.6.4 The relationship between a reporting institution and the third-party institution relied\nupon by the reporting institution to conduct the CDD, shall be governed by an\narrangement that clearly specifies the rights, responsibilities and expectations of all\nparties. In placing the reliance on the third-party institution, the reporting institution at\nthe minimum:\n\n(a)Must be able to obtain immediately the necessary information concerning the CDD\nin paragraph 8.1 above;\n\n(b)Must be satisfied that the third-party institution:\n\n(i)has adequate CDD processes;\n\n(ii)has measures in place for record keeping requirements;\n\n(iii)can provide the standard CDD or enhanced CDD information and\nprovide copies of the relevant documentation immediately upon\nrequest;\n\n(iv)is properly regulated and supervised by the respective authorities; and\n\n(v)complies with the provisions of any applicable laws.",
+      "content_text": "8.6.4 The relationship between a reporting institution and the third-party institution relied\nupon by the reporting institution to conduct the CDD, shall be governed by an\narrangement that clearly specifies the rights, responsibilities and expectations of all\nparties. In placing the reliance on the third-party institution, the reporting institution at\nthe minimum:\n\n(a)Must be able to obtain immediately the necessary information concerning the CDD\nin paragraph 8.1 above;\n\n(b)Must be satisfied that the third-party institution:\n\n(i)has adequate CDD processes;\n\n(ii)has measures in place for record keeping requirements;\n\n(iii)can provide the standard CDD or enhanced CDD information and\nprovide copies of the relevant documentation immediately upon\nrequest;\n\n(iv)is properly regulated and supervised by the respective authorities; and\n\n(v)complies with the provisions of any applicable laws.",
+      "token_count": 206,
+      "pages": [
+        44
+      ],
+      "section_path": [
+        "PART III: CUSTOMER DUE DILIGENCE",
+        "8. CUSTOMER DUE DILIGENCE (CDD)",
+        "8.6 Reliance on third-party institutions to conduct CDD"
+      ],
+      "source_element_ids": [
+        "p44-e5",
+        "p44-e6",
+        "p44-e7",
+        "p44-e8",
+        "p44-e9",
+        "p44-e10",
+        "p44-e11",
+        "p44-e12"
+      ]
+    },
+    {
+      "context_order": 4,
+      "chunk_id": "485c4989-c300-45c8-ac06-79a59492bb5c-c0121-4863ecbe4f",
+      "chunk_index": 121,
+      "semantic_type": "clause",
+      "source_rank": 4,
+      "ranked_seed_rank": 4,
+      "reasons": [
+        "ranked_seed"
+      ],
+      "attached_from_chunk_ids": [],
+      "text": "Section: PART III: CUSTOMER DUE DILIGENCE > 8. CUSTOMER DUE DILIGENCE (CDD) > 8.6 Reliance on third-party institutions to conduct CDD\nClause: 8.6.6\n\n8.6.6 In addition to the requirements set out in paragraph 8.6.4 above, a reporting institution\nthat relies on a third-party institution that is part of the same group is subject to the\nfollowing conditions:\n\n(a)The group applies CDD and record-keeping requirements and AML/CFT\nprogrammes in line with these Guidelines;\n\n(b)The implementation of those CDD and record-keeping requirements and\nAML/CFT programmes are supervised at a group level by the relevant\nsupervisory authority; and\n\n(c)Any higher country risk is adequately mitigated by the financial group’s AML/CFT\npolicies.",
+      "content_text": "8.6.6 In addition to the requirements set out in paragraph 8.6.4 above, a reporting institution\nthat relies on a third-party institution that is part of the same group is subject to the\nfollowing conditions:\n\n(a)The group applies CDD and record-keeping requirements and AML/CFT\nprogrammes in line with these Guidelines;\n\n(b)The implementation of those CDD and record-keeping requirements and\nAML/CFT programmes are supervised at a group level by the relevant\nsupervisory authority; and\n\n(c)Any higher country risk is adequately mitigated by the financial group’s AML/CFT\npolicies.",
+      "token_count": 158,
+      "pages": [
+        45
+      ],
+      "section_path": [
+        "PART III: CUSTOMER DUE DILIGENCE",
+        "8. CUSTOMER DUE DILIGENCE (CDD)",
+        "8.6 Reliance on third-party institutions to conduct CDD"
+      ],
+      "source_element_ids": [
+        "p45-e4",
+        "p45-e5",
+        "p45-e6",
+        "p45-e7"
+      ]
+    },
+    {
+      "context_order": 5,
+      "chunk_id": "485c4989-c300-45c8-ac06-79a59492bb5c-c0119-081d7cfeb3",
+      "chunk_index": 119,
+      "semantic_type": "paragraph",
+      "source_rank": 5,
+      "ranked_seed_rank": 5,
+      "reasons": [
+        "ranked_seed"
+      ],
+      "attached_from_chunk_ids": [],
+      "text": "Section: PART III: CUSTOMER DUE DILIGENCE > 8. CUSTOMER DUE DILIGENCE (CDD) > 8.6 Reliance on third-party institutions to conduct CDD\nGroup: Guidance for paragraph 8.6.4:\n\nA reporting institution may obtain written confirmation from the third-party\ninstitution that it has conducted CDD on the customer or the beneficial owner in\naccordance with paragraph 8.1.",
+      "content_text": "A reporting institution may obtain written confirmation from the third-party\ninstitution that it has conducted CDD on the customer or the beneficial owner in\naccordance with paragraph 8.1.",
+      "token_count": 74,
+      "pages": [
+        45
+      ],
+      "section_path": [
+        "PART III: CUSTOMER DUE DILIGENCE",
+        "8. CUSTOMER DUE DILIGENCE (CDD)",
+        "8.6 Reliance on third-party institutions to conduct CDD"
+      ],
+      "source_element_ids": [
+        "p45-e2"
+      ]
+    },
+    {
+      "context_order": 6,
+      "chunk_id": "485c4989-c300-45c8-ac06-79a59492bb5c-c0098-03d8b3aa54",
+      "chunk_index": 98,
+      "semantic_type": "clause",
+      "source_rank": 6,
+      "ranked_seed_rank": 6,
+      "reasons": [
+        "ranked_seed"
+      ],
+      "attached_from_chunk_ids": [],
+      "text": "Section: PART III: CUSTOMER DUE DILIGENCE > 8. CUSTOMER DUE DILIGENCE (CDD) > 8.1 CDD at the point of establishing business relationship\n\n8.1.18 A reporting institution may rely on a third-party institution to verify the identity of the\nbeneficiaries when it is not practical to identify every beneficiary.\n\n8.1.19 Where reliance is placed on a third-party institution under paragraph 8.1.18, a reporting\ninstitution is required to comply with paragraph 8.6 of these Guidelines.",
+      "content_text": "8.1.18 A reporting institution may rely on a third-party institution to verify the identity of the\nbeneficiaries when it is not practical to identify every beneficiary.\n\n8.1.19 Where reliance is placed on a third-party institution under paragraph 8.1.18, a reporting\ninstitution is required to comply with paragraph 8.6 of these Guidelines.",
+      "token_count": 101,
+      "pages": [
+        36
+      ],
+      "section_path": [
+        "PART III: CUSTOMER DUE DILIGENCE",
+        "8. CUSTOMER DUE DILIGENCE (CDD)",
+        "8.1 CDD at the point of establishing business relationship"
+      ],
+      "source_element_ids": [
+        "p36-e3",
+        "p36-e4"
+      ]
+    },
+    {
+      "context_order": 7,
+      "chunk_id": "485c4989-c300-45c8-ac06-79a59492bb5c-c0039-8eac7375e8",
+      "chunk_index": 39,
+      "semantic_type": "definition",
+      "source_rank": 7,
+      "ranked_seed_rank": 7,
+      "reasons": [
+        "ranked_seed"
+      ],
+      "attached_from_chunk_ids": [],
+      "text": "Section: PART I: INTRODUCTION AND APPLICABILITY > 3. DEFINITIONS\nDefinition: third-party institution\n\nthird-party institution\n\nmeans a financial institution that is supervised and monitored and meets the requirements under paragraph 8.6 of these Guidelines, who is relied upon by the reporting institution to conduct the due diligence process.\nReliance on third-party often occurs through introductions made by another member of the\nsame group or by another reporting institution. This definition does not include outsourcing or agency relationship.",
+      "content_text": "third-party institution\n\nmeans a financial institution that is supervised and monitored and meets the requirements under paragraph 8.6 of these Guidelines, who is relied upon by the reporting institution to conduct the due diligence process.\nReliance on third-party often occurs through introductions made by another member of the\nsame group or by another reporting institution. This definition does not include outsourcing or agency relationship.",
+      "token_count": 92,
+      "pages": [
+        14,
+        15
+      ],
+      "section_path": [
+        "PART I: INTRODUCTION AND APPLICABILITY",
+        "3. DEFINITIONS"
+      ],
+      "source_element_ids": [
+        "p14-e4-r5-term",
+        "p14-e4-r5-definition",
+        "p14-e5",
+        "p15-e1"
+      ]
+    },
+    {
+      "context_order": 8,
+      "chunk_id": "485c4989-c300-45c8-ac06-79a59492bb5c-c0120-781c9e318c",
+      "chunk_index": 120,
+      "semantic_type": "clause",
+      "source_rank": 8,
+      "ranked_seed_rank": 8,
+      "reasons": [
+        "ranked_seed"
+      ],
+      "attached_from_chunk_ids": [],
+      "text": "Section: PART III: CUSTOMER DUE DILIGENCE > 8. CUSTOMER DUE DILIGENCE (CDD) > 8.6 Reliance on third-party institutions to conduct CDD\nClause: 8.6.5\n\n8.6.5 A reporting institution must obtain an attestation from the third-party institution to\nsatisfy itself that the requirements in paragraph 8.6.4 have been met.",
+      "content_text": "8.6.5 A reporting institution must obtain an attestation from the third-party institution to\nsatisfy itself that the requirements in paragraph 8.6.4 have been met.",
+      "token_count": 72,
+      "pages": [
+        45
+      ],
+      "section_path": [
+        "PART III: CUSTOMER DUE DILIGENCE",
+        "8. CUSTOMER DUE DILIGENCE (CDD)",
+        "8.6 Reliance on third-party institutions to conduct CDD"
+      ],
+      "source_element_ids": [
+        "p45-e3"
+      ]
+    },
+    {
+      "context_order": 9,
+      "chunk_id": "485c4989-c300-45c8-ac06-79a59492bb5c-c0082-60739c961b",
+      "chunk_index": 82,
+      "semantic_type": "clause",
+      "source_rank": 9,
+      "ranked_seed_rank": 9,
+      "reasons": [
+        "ranked_seed"
+      ],
+      "attached_from_chunk_ids": [],
+      "text": "Section: PART III: CUSTOMER DUE DILIGENCE > 8. CUSTOMER DUE DILIGENCE (CDD) > 8.1 CDD at the point of establishing business relationship\nClause: 8.1.3\n\n8.1.3 For the purpose of conducting CDD, a reporting institution is required to–\n\n(a)identify the customer (including foreign body corporate) and verify such\ncustomer’s identity using reliable, independent source of documents, data or\ninformation;\n\n(b)verify that any person purporting to act on behalf of the customer is authorised,\nand identify and verify the identity of that person;\n\n(c)identify the beneficial owner and take reasonable measures to verify the identity\nof the beneficial owner, using relevant information or data obtained from\nreliable sources, such that the reporting institution is satisfied that it knows who\nthe beneficial owner is; and\n\n(d)understand, and where relevant, obtain information on the purpose of opening\nan account and the intended nature of the business relationship.",
+      "content_text": "8.1.3 For the purpose of conducting CDD, a reporting institution is required to–\n\n(a)identify the customer (including foreign body corporate) and verify such\ncustomer’s identity using reliable, independent source of documents, data or\ninformation;\n\n(b)verify that any person purporting to act on behalf of the customer is authorised,\nand identify and verify the identity of that person;\n\n(c)identify the beneficial owner and take reasonable measures to verify the identity\nof the beneficial owner, using relevant information or data obtained from\nreliable sources, such that the reporting institution is satisfied that it knows who\nthe beneficial owner is; and\n\n(d)understand, and where relevant, obtain information on the purpose of opening\nan account and the intended nature of the business relationship.",
+      "token_count": 188,
+      "pages": [
+        31
+      ],
+      "section_path": [
+        "PART III: CUSTOMER DUE DILIGENCE",
+        "8. CUSTOMER DUE DILIGENCE (CDD)",
+        "8.1 CDD at the point of establishing business relationship"
+      ],
+      "source_element_ids": [
+        "p31-e6",
+        "p31-e7",
+        "p31-e8",
+        "p31-e9",
+        "p31-e10"
+      ]
+    },
+    {
+      "context_order": 10,
+      "chunk_id": "485c4989-c300-45c8-ac06-79a59492bb5c-c0095-b12c916c14",
+      "chunk_index": 95,
+      "semantic_type": "clause",
+      "source_rank": 10,
+      "ranked_seed_rank": 10,
+      "reasons": [
+        "ranked_seed"
+      ],
+      "attached_from_chunk_ids": [],
+      "text": "Section: PART III: CUSTOMER DUE DILIGENCE > 8. CUSTOMER DUE DILIGENCE (CDD) > 8.1 CDD at the point of establishing business relationship\nClause: 8.1.16\nGroup: CDD requirements for legal arrangements\n\n8.1.16 A reporting institution is required to identify and take reasonable measures to verify the\nidentity of the beneficial owner of a legal arrangement by taking into consideration the\nfollowing information:\n\n(a) In the case of a trust, the identity of the settlor, the trustee or the protector, the\nbeneficiary or class of beneficiaries and objects of a power, and any other natural\nperson exercising ultimate effective control over the trust (including through a\nchain of control/ownership); or\n\n(b) In the case of other types of legal arrangement, the identity of the person in an\nequivalent or similar position referred to in (a) above.",
+      "content_text": "8.1.16 A reporting institution is required to identify and take reasonable measures to verify the\nidentity of the beneficial owner of a legal arrangement by taking into consideration the\nfollowing information:\n\n(a) In the case of a trust, the identity of the settlor, the trustee or the protector, the\nbeneficiary or class of beneficiaries and objects of a power, and any other natural\nperson exercising ultimate effective control over the trust (including through a\nchain of control/ownership); or\n\n(b) In the case of other types of legal arrangement, the identity of the person in an\nequivalent or similar position referred to in (a) above.",
+      "token_count": 169,
+      "pages": [
+        35
+      ],
+      "section_path": [
+        "PART III: CUSTOMER DUE DILIGENCE",
+        "8. CUSTOMER DUE DILIGENCE (CDD)",
+        "8.1 CDD at the point of establishing business relationship"
+      ],
+      "source_element_ids": [
+        "p35-e9",
+        "p35-e10",
+        "p35-e11"
+      ]
+    }
+  ]
+}

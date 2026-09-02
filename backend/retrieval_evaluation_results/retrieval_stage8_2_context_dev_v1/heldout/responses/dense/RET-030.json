@@ -1,0 +1,251 @@
+{
+  "document_id": "485c4989-c300-45c8-ac06-79a59492bb5c",
+  "query": "What are the three phases for identifying and conducting due diligence on a counterparty VASP in Appendix F?",
+  "embedding_model": "BAAI/bge-m3",
+  "requested_device": "auto",
+  "resolved_device": "cuda",
+  "top_k": 10,
+  "embedded_chunk_count": 284,
+  "total_chunk_count": 284,
+  "hits": [
+    {
+      "rank": 1,
+      "chunk_id": "485c4989-c300-45c8-ac06-79a59492bb5c-c0272-76a1d56662",
+      "chunk_index": 272,
+      "semantic_type": "clause",
+      "score": 0.8004526734487023,
+      "distance": 0.1995473265512977,
+      "text": "Section: APPENDIX F > 1.0 Introduction\nClause: 1.2\nGroup: Guidance on Identification and Due Diligence on Counterparty Virtual Asset\nService Provider (VASP) (in relation to Paragraph 9.5 of the Guidelines)\n\n1.2 There are three phases in conducting identification and due diligence on counterparty\nVASP:\n\n(a) Phase 1\n\n(i) A reporting institution should determine whether it will be transacting with\nanother counterparty VASP.\n\n(b) Phase 2\n\n(i) A reporting institution should identify the counterparty VASP. In this context,\nit is possible that the reporting institution only knows the “name” of the\ncounterparty VASP following its previous transaction with the counterparty\nVASP.\n\n(ii) A reporting institution may identify a counterparty VASP by itself using a\nreliable database (for example the website of the supervisory authority of\nthe counterparty VASPs), in line with any guidelines from a country on when\nto rely on such data; and\n\n(c) Phase 3\n\n(i) A reporting institution should assess whether the counterparty VASP is an\neligible counterparty for it to send customer data to and to have a business\nrelationship.\n\n(ii) A reporting institution should be able to demonstrate its risk-based analysis\nfrom an AML/CFT/CPF perspectives, as well as considering other compliance\nissues, including data storage and security, and the profitability of the business\nrelationship, which forms the basis of its decision to transact with the\ncounterparty VASP.\n\n(iii) The due diligence results on the counterparty VASPs must be reviewed\n\nperiodically.",
+      "content_text": "1.2 There are three phases in conducting identification and due diligence on counterparty\nVASP:\n\n(a) Phase 1\n\n(i) A reporting institution should determine whether it will be transacting with\nanother counterparty VASP.\n\n(b) Phase 2\n\n(i) A reporting institution should identify the counterparty VASP. In this context,\nit is possible that the reporting institution only knows the “name” of the\ncounterparty VASP following its previous transaction with the counterparty\nVASP.\n\n(ii) A reporting institution may identify a counterparty VASP by itself using a\nreliable database (for example the website of the supervisory authority of\nthe counterparty VASPs), in line with any guidelines from a country on when\nto rely on such data; and\n\n(c) Phase 3\n\n(i) A reporting institution should assess whether the counterparty VASP is an\neligible counterparty for it to send customer data to and to have a business\nrelationship.\n\n(ii) A reporting institution should be able to demonstrate its risk-based analysis\nfrom an AML/CFT/CPF perspectives, as well as considering other compliance\nissues, including data storage and security, and the profitability of the business\nrelationship, which forms the basis of its decision to transact with the\ncounterparty VASP.\n\n(iii) The due diligence results on the counterparty VASPs must be reviewed\n\nperiodically.",
+      "token_count": 291,
+      "pages": [
+        103,
+        104
+      ],
+      "section_path": [
+        "APPENDIX F",
+        "1.0 Introduction"
+      ],
+      "source_element_ids": [
+        "p103-e5",
+        "p103-e6",
+        "p103-e7",
+        "p103-e8",
+        "p103-e9",
+        "p103-e10",
+        "p103-e11",
+        "p103-e12",
+        "p103-e13",
+        "p103-e14",
+        "p104-e1"
+      ]
+    },
+    {
+      "rank": 2,
+      "chunk_id": "485c4989-c300-45c8-ac06-79a59492bb5c-c0271-236dca87b6",
+      "chunk_index": 271,
+      "semantic_type": "clause",
+      "score": 0.7334526340095632,
+      "distance": 0.2665473659904368,
+      "text": "Section: APPENDIX F > 1.0 Introduction\nClause: 1.1\nGroup: Guidance on Identification and Due Diligence on Counterparty Virtual Asset\nService Provider (VASP) (in relation to Paragraph 9.5 of the Guidelines)\n\n1.1 This Guidance seeks to outline the recommended process involved in conducting\nidentification and counterparty due diligenceon counterparty VASP. In the event a\nreporting institution has developed and adopted its own process, the adopted process\nmust be able to achieve the outcomes intended under this Guidance.",
+      "content_text": "1.1 This Guidance seeks to outline the recommended process involved in conducting\nidentification and counterparty due diligenceon counterparty VASP. In the event a\nreporting institution has developed and adopted its own process, the adopted process\nmust be able to achieve the outcomes intended under this Guidance.",
+      "token_count": 94,
+      "pages": [
+        103
+      ],
+      "section_path": [
+        "APPENDIX F",
+        "1.0 Introduction"
+      ],
+      "source_element_ids": [
+        "p103-e4"
+      ]
+    },
+    {
+      "rank": 3,
+      "chunk_id": "485c4989-c300-45c8-ac06-79a59492bb5c-c0141-ca25e4a05b",
+      "chunk_index": 141,
+      "semantic_type": "clause",
+      "score": 0.719614701294024,
+      "distance": 0.28038529870597595,
+      "text": "Section: PART IIIA: WIRE TRANSFER > 9. WIRE TRANSFER OF DIGITAL ASSETS > 9.5 Identification and Due Diligence on Counterparty VASP\nClause: 9.5.1\n\n9.5.1 A reporting institution must identify and conduct due diligence on the counterparty VASP\nbefore the reporting institution transmits the required originator or beneficiary\ninformation.\n\nAppendix F sets out the guide on how due diligence on counterparty VASP could be\nundertaken.",
+      "content_text": "9.5.1 A reporting institution must identify and conduct due diligence on the counterparty VASP\nbefore the reporting institution transmits the required originator or beneficiary\ninformation.\n\nAppendix F sets out the guide on how due diligence on counterparty VASP could be\nundertaken.",
+      "token_count": 80,
+      "pages": [
+        51
+      ],
+      "section_path": [
+        "PART IIIA: WIRE TRANSFER",
+        "9. WIRE TRANSFER OF DIGITAL ASSETS",
+        "9.5 Identification and Due Diligence on Counterparty VASP"
+      ],
+      "source_element_ids": [
+        "p51-e6",
+        "p51-e7"
+      ]
+    },
+    {
+      "rank": 4,
+      "chunk_id": "485c4989-c300-45c8-ac06-79a59492bb5c-c0142-87f1b197d7",
+      "chunk_index": 142,
+      "semantic_type": "list_item",
+      "score": 0.6793739795684814,
+      "distance": 0.32062602043151855,
+      "text": "Section: PART IIIA: WIRE TRANSFER > 9. WIRE TRANSFER OF DIGITAL ASSETS > 9.5 Identification and Due Diligence on Counterparty VASP\nGroup: Guidance for paragraph 9.5.1:\n\n•\nAs a guide, a reporting institution needs to conduct due diligence\non their counterparty VASP before the reporting institution\ntransmits the required information to avoid dealing with illicit actors\nor sanctioned actors unknowingly.\n\n•\nAdditionally, a reporting institution should use this due diligence\nprocess to determine whether a counterparty VASP can reasonably\nbe expected to protect the confidentiality of information shared\nwith it.",
+      "content_text": "•\nAs a guide, a reporting institution needs to conduct due diligence\non their counterparty VASP before the reporting institution\ntransmits the required information to avoid dealing with illicit actors\nor sanctioned actors unknowingly.\n\n•\nAdditionally, a reporting institution should use this due diligence\nprocess to determine whether a counterparty VASP can reasonably\nbe expected to protect the confidentiality of information shared\nwith it.",
+      "token_count": 105,
+      "pages": [
+        51
+      ],
+      "section_path": [
+        "PART IIIA: WIRE TRANSFER",
+        "9. WIRE TRANSFER OF DIGITAL ASSETS",
+        "9.5 Identification and Due Diligence on Counterparty VASP"
+      ],
+      "source_element_ids": [
+        "p51-e9",
+        "p51-e10"
+      ]
+    },
+    {
+      "rank": 5,
+      "chunk_id": "485c4989-c300-45c8-ac06-79a59492bb5c-c0143-b3079bbd42",
+      "chunk_index": 143,
+      "semantic_type": "clause",
+      "score": 0.6533076373751391,
+      "distance": 0.3466923626248609,
+      "text": "Section: PART IIIA: WIRE TRANSFER > 9. WIRE TRANSFER OF DIGITAL ASSETS > 9.5 Identification and Due Diligence on Counterparty VASP\n\n9.5.2 A reporting institution does not need to undertake due diligence process on the\ncounterparty VASP for every individual wire transfer when dealing with a counterparty\nVASP for which it has previously conducted counterparty due diligence, unless there is\na suspicious transaction history or other information (for example published adverse\nmedia information, published regulatory or criminal action involving the counterparty\nVASP) indicating that it should refresh the due diligence process.\n\n9.5.3 A reporting institution must update its counterparty VASP due diligence information\nperiodically or when risk emerges from the relationship in line with a reporting\ninstitution’s defined risk-based assessment control structure.",
+      "content_text": "9.5.2 A reporting institution does not need to undertake due diligence process on the\ncounterparty VASP for every individual wire transfer when dealing with a counterparty\nVASP for which it has previously conducted counterparty due diligence, unless there is\na suspicious transaction history or other information (for example published adverse\nmedia information, published regulatory or criminal action involving the counterparty\nVASP) indicating that it should refresh the due diligence process.\n\n9.5.3 A reporting institution must update its counterparty VASP due diligence information\nperiodically or when risk emerges from the relationship in line with a reporting\ninstitution’s defined risk-based assessment control structure.",
+      "token_count": 145,
+      "pages": [
+        51,
+        52
+      ],
+      "section_path": [
+        "PART IIIA: WIRE TRANSFER",
+        "9. WIRE TRANSFER OF DIGITAL ASSETS",
+        "9.5 Identification and Due Diligence on Counterparty VASP"
+      ],
+      "source_element_ids": [
+        "p51-e11",
+        "p52-e1"
+      ]
+    },
+    {
+      "rank": 6,
+      "chunk_id": "485c4989-c300-45c8-ac06-79a59492bb5c-c0273-a0f89ccd1b",
+      "chunk_index": 273,
+      "semantic_type": "list_item",
+      "score": 0.542795685363074,
+      "distance": 0.457204314636926,
+      "text": "Section: APPENDIX F > 1.0 Introduction\nGroup: Guidance on Identification and Due Diligence on Counterparty Virtual Asset\nService Provider (VASP) (in relation to Paragraph 9.5 of the Guidelines)\n\n(iv)Where a regulated originating institution decide to have a business relationship\nwith an unregulated beneficiary institution, the regulated originating institution\nmay require travel rule compliance from the unregulated beneficiary institutions\nby way of a contract.",
+      "content_text": "(iv)Where a regulated originating institution decide to have a business relationship\nwith an unregulated beneficiary institution, the regulated originating institution\nmay require travel rule compliance from the unregulated beneficiary institutions\nby way of a contract.",
+      "token_count": 78,
+      "pages": [
+        104
+      ],
+      "section_path": [
+        "APPENDIX F",
+        "1.0 Introduction"
+      ],
+      "source_element_ids": [
+        "p104-e2"
+      ]
+    },
+    {
+      "rank": 7,
+      "chunk_id": "485c4989-c300-45c8-ac06-79a59492bb5c-c0212-f40ff47418",
+      "chunk_index": 212,
+      "semantic_type": "clause",
+      "score": 0.5326704978942871,
+      "distance": 0.4673295021057129,
+      "text": "Section: APPENDIX A1 > 2.0 Policies and procedures > Monitoring systems and controls to identify and accept third-party deposits\nClause: 2.6\nGroup: Due diligence and evaluation\n\n2.6 On a risk-based approach, a reporting institution must conduct a due-diligence on\nthird- party deposits to determine the following:\n\n(a)The identity of the third-party payor, including national registration identity\ncard number or passport number, residential address and contact number;\n\n(b)The relationship between the customer and the third-party payor;\n\n(c)The reason for making deposits into the customer account; and\n\n(d)Whether the third-party exercises trading authority over the customer’s account.",
+      "content_text": "2.6 On a risk-based approach, a reporting institution must conduct a due-diligence on\nthird- party deposits to determine the following:\n\n(a)The identity of the third-party payor, including national registration identity\ncard number or passport number, residential address and contact number;\n\n(b)The relationship between the customer and the third-party payor;\n\n(c)The reason for making deposits into the customer account; and\n\n(d)Whether the third-party exercises trading authority over the customer’s account.",
+      "token_count": 139,
+      "pages": [
+        80
+      ],
+      "section_path": [
+        "APPENDIX A1",
+        "2.0 Policies and procedures",
+        "Monitoring systems and controls to identify and accept third-party deposits"
+      ],
+      "source_element_ids": [
+        "p80-e4",
+        "p80-e5-split-1",
+        "p80-e5-split-2",
+        "p80-e6",
+        "p80-e7"
+      ]
+    },
+    {
+      "rank": 8,
+      "chunk_id": "485c4989-c300-45c8-ac06-79a59492bb5c-c0213-79d797bb84",
+      "chunk_index": 213,
+      "semantic_type": "clause",
+      "score": 0.5207809781097237,
+      "distance": 0.4792190218902763,
+      "text": "Section: APPENDIX A1 > 2.0 Policies and procedures > Monitoring systems and controls to identify and accept third-party deposits\nClause: 2.7\nGroup: Due diligence and evaluation\n\n2.7 A reporting institution must evaluate the reasons and the need for third-party deposits\nto ensure that a third-party deposit is reasonably in line with the customer’s profile and\nnormal commercial practices (including the frequency and pattern of previous third-\nparty deposits). The evaluations and assessments must include:\n\n(a)Conducting further inquiries with the customers; and\n\n(b)Obtaining corroborative evidence from relevant sources;",
+      "content_text": "2.7 A reporting institution must evaluate the reasons and the need for third-party deposits\nto ensure that a third-party deposit is reasonably in line with the customer’s profile and\nnormal commercial practices (including the frequency and pattern of previous third-\nparty deposits). The evaluations and assessments must include:\n\n(a)Conducting further inquiries with the customers; and\n\n(b)Obtaining corroborative evidence from relevant sources;",
+      "token_count": 117,
+      "pages": [
+        80
+      ],
+      "section_path": [
+        "APPENDIX A1",
+        "2.0 Policies and procedures",
+        "Monitoring systems and controls to identify and accept third-party deposits"
+      ],
+      "source_element_ids": [
+        "p80-e8",
+        "p80-e9",
+        "p80-e10"
+      ]
+    },
+    {
+      "rank": 9,
+      "chunk_id": "485c4989-c300-45c8-ac06-79a59492bb5c-c0208-9e5f3f0038",
+      "chunk_index": 208,
+      "semantic_type": "clause",
+      "score": 0.5048090219497681,
+      "distance": 0.49519097805023193,
+      "text": "Section: APPENDIX A1 > 2.0 Policies and procedures\n\n2.1 A reporting institution which accepts third-party deposits must establish and implement\na clear, comprehensive and effective policies and procedures to monitor third-party\ndeposits and have control measures to be carried out before accepting third-party\ndeposits to mitigate ML/TF/PF risk and other associated risks.\n\n2.2 A reporting institution is required to comply with the requirements of paragraph 7.6 of\nthese Guidelines in establishing and implementing third-party deposits policies and\nprocedures.",
+      "content_text": "2.1 A reporting institution which accepts third-party deposits must establish and implement\na clear, comprehensive and effective policies and procedures to monitor third-party\ndeposits and have control measures to be carried out before accepting third-party\ndeposits to mitigate ML/TF/PF risk and other associated risks.\n\n2.2 A reporting institution is required to comply with the requirements of paragraph 7.6 of\nthese Guidelines in establishing and implementing third-party deposits policies and\nprocedures.",
+      "token_count": 102,
+      "pages": [
+        79
+      ],
+      "section_path": [
+        "APPENDIX A1",
+        "2.0 Policies and procedures"
+      ],
+      "source_element_ids": [
+        "p79-e8",
+        "p79-e9"
+      ]
+    },
+    {
+      "rank": 10,
+      "chunk_id": "485c4989-c300-45c8-ac06-79a59492bb5c-c0215-2461243dc4",
+      "chunk_index": 215,
+      "semantic_type": "clause",
+      "score": 0.49822112917900085,
+      "distance": 0.5017788708209991,
+      "text": "Section: APPENDIX A1 > 2.0 Policies and procedures > Monitoring systems and controls to identify and accept third-party deposits\nGroup: On-going monitoring\n\n2.9 A reporting institution must implement an on-going monitoring of customers’ accounts\ninvolving third-party deposits. A suspicious transaction report should be made\nimmediately to the FIED when there are grounds for suspicion of ML/TF/PF.\n\n2.10 A reporting institution must ‘flag’ accounts with suspicious transactions relating to\nthird- party deposits for monitoring purposes.",
+      "content_text": "2.9 A reporting institution must implement an on-going monitoring of customers’ accounts\ninvolving third-party deposits. A suspicious transaction report should be made\nimmediately to the FIED when there are grounds for suspicion of ML/TF/PF.\n\n2.10 A reporting institution must ‘flag’ accounts with suspicious transactions relating to\nthird- party deposits for monitoring purposes.",
+      "token_count": 101,
+      "pages": [
+        80
+      ],
+      "section_path": [
+        "APPENDIX A1",
+        "2.0 Policies and procedures",
+        "Monitoring systems and controls to identify and accept third-party deposits"
+      ],
+      "source_element_ids": [
+        "p80-e13",
+        "p80-e14"
+      ]
+    }
+  ]
+}

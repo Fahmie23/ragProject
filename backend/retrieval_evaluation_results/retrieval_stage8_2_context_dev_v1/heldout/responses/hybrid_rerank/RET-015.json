@@ -1,0 +1,720 @@
+{
+  "document_id": "485c4989-c300-45c8-ac06-79a59492bb5c",
+  "query": "How must a reporting institution deal with a business relationship or transaction involving a person from a higher-risk country?",
+  "embedding_model": "BAAI/bge-m3",
+  "embedding_requested_device": "auto",
+  "embedding_resolved_device": "cuda",
+  "reranker_model": "BAAI/bge-reranker-v2-m3",
+  "reranker_requested_device": "auto",
+  "reranker_resolved_device": "cuda",
+  "reranker_batch_size": 2,
+  "reranker_max_length": 1024,
+  "top_k": 10,
+  "candidate_k": 20,
+  "candidate_union_count": 27,
+  "embedded_chunk_count": 284,
+  "total_chunk_count": 284,
+  "candidate_strategy": "dense_lexical_union",
+  "ranking_method": "cross_encoder",
+  "fusion_method": "reciprocal_rank_fusion_trace",
+  "rrf_k": 60,
+  "dense_weight": 1.0,
+  "lexical_weight": 1.0,
+  "lexical_ranking_method": "postgresql_fts_term_coverage_then_ts_rank_cd",
+  "lexical_query_mode": "or_content_terms_v1",
+  "lexical_terms": [
+    "reporting",
+    "institution",
+    "deal",
+    "business",
+    "relationship",
+    "transaction",
+    "involving",
+    "person",
+    "higher",
+    "risk",
+    "country"
+  ],
+  "lexical_tsquery": "reporting | institution | deal | business | relationship | transaction | involving | person | higher | risk | country",
+  "hits": [
+    {
+      "rank": 1,
+      "chunk_id": "485c4989-c300-45c8-ac06-79a59492bb5c-c0114-88e54fa045",
+      "chunk_index": 114,
+      "semantic_type": "clause",
+      "reranker_score": 0.9959542751312256,
+      "hybrid_candidate_rank": 2,
+      "fusion_score": 0.032018442622950824,
+      "dense_rank": 1,
+      "dense_score": 0.6764415888259901,
+      "dense_distance": 0.32355841117400985,
+      "dense_rrf_score": 0.01639344262295082,
+      "lexical_rank": 4,
+      "lexical_score": 1.2,
+      "lexical_matched_term_count": 9,
+      "lexical_term_coverage": 0.8181818181818182,
+      "lexical_rrf_score": 0.015625,
+      "text": "Section: PART III: CUSTOMER DUE DILIGENCE > 8. CUSTOMER DUE DILIGENCE (CDD) > 8.5 Higher-Risk Countries\nClause: 8.5.1\n\n8.5.1 A reporting institution is required to conduct enhanced CDD for any business\nrelationship and transaction with any person from countries identified by–\n\n(a)the FATF as issued under the “FATF Public Statement” – on jurisdictions\nsubject to a FATF call on its members and other jurisdictions to apply counter-\nmeasures to protect the international financial system from the ongoing and\nsubstantial ML/TF/PF risks emanating from such jurisdictions; or\n\n(b)the Government of Malaysia as having ongoing or substantial ML/TF/PF risks.",
+      "content_text": "8.5.1 A reporting institution is required to conduct enhanced CDD for any business\nrelationship and transaction with any person from countries identified by–\n\n(a)the FATF as issued under the “FATF Public Statement” – on jurisdictions\nsubject to a FATF call on its members and other jurisdictions to apply counter-\nmeasures to protect the international financial system from the ongoing and\nsubstantial ML/TF/PF risks emanating from such jurisdictions; or\n\n(b)the Government of Malaysia as having ongoing or substantial ML/TF/PF risks.",
+      "token_count": 135,
+      "pages": [
+        43
+      ],
+      "section_path": [
+        "PART III: CUSTOMER DUE DILIGENCE",
+        "8. CUSTOMER DUE DILIGENCE (CDD)",
+        "8.5 Higher-Risk Countries"
+      ],
+      "source_element_ids": [
+        "p43-e2",
+        "p43-e3",
+        "p43-e4"
+      ]
+    },
+    {
+      "rank": 2,
+      "chunk_id": "485c4989-c300-45c8-ac06-79a59492bb5c-c0115-ea57db8635",
+      "chunk_index": 115,
+      "semantic_type": "clause",
+      "reranker_score": 0.9910370111465454,
+      "hybrid_candidate_rank": 1,
+      "fusion_score": 0.03225806451612903,
+      "dense_rank": 2,
+      "dense_score": 0.6707668696919835,
+      "dense_distance": 0.3292331303080165,
+      "dense_rrf_score": 0.016129032258064516,
+      "lexical_rank": 2,
+      "lexical_score": 1.8000001,
+      "lexical_matched_term_count": 9,
+      "lexical_term_coverage": 0.8181818181818182,
+      "lexical_rrf_score": 0.016129032258064516,
+      "text": "Section: PART III: CUSTOMER DUE DILIGENCE > 8. CUSTOMER DUE DILIGENCE (CDD) > 8.5 Higher-Risk Countries\nClause: 8.5.2\n\n8.5.2 In addition to the enhanced CDD measures required under paragraph 8.5.1 above,\nthe reporting institution is required to apply appropriate counter-measures,\nproportionate to the risk, for higher-risk countries as follows:\n\n(a)Limiting business relationships or financial transactions with identified countries or\npersons located in the country concerned;\n\n(b)Where relevant, to conduct enhanced external audit, by increasing the intensity\nand frequency, for branches and subsidiaries of the reporting institution or\nfinancial group, located in the country concerned; and\n\n(c)Conduct any other measures as may be specified by the SC.",
+      "content_text": "8.5.2 In addition to the enhanced CDD measures required under paragraph 8.5.1 above,\nthe reporting institution is required to apply appropriate counter-measures,\nproportionate to the risk, for higher-risk countries as follows:\n\n(a)Limiting business relationships or financial transactions with identified countries or\npersons located in the country concerned;\n\n(b)Where relevant, to conduct enhanced external audit, by increasing the intensity\nand frequency, for branches and subsidiaries of the reporting institution or\nfinancial group, located in the country concerned; and\n\n(c)Conduct any other measures as may be specified by the SC.",
+      "token_count": 152,
+      "pages": [
+        43
+      ],
+      "section_path": [
+        "PART III: CUSTOMER DUE DILIGENCE",
+        "8. CUSTOMER DUE DILIGENCE (CDD)",
+        "8.5 Higher-Risk Countries"
+      ],
+      "source_element_ids": [
+        "p43-e5",
+        "p43-e6",
+        "p43-e7",
+        "p43-e8"
+      ]
+    },
+    {
+      "rank": 3,
+      "chunk_id": "485c4989-c300-45c8-ac06-79a59492bb5c-c0116-b6adec1458",
+      "chunk_index": 116,
+      "semantic_type": "clause",
+      "reranker_score": 0.9896951913833618,
+      "hybrid_candidate_rank": 3,
+      "fusion_score": 0.031746031746031744,
+      "dense_rank": 3,
+      "dense_score": 0.6542212183211782,
+      "dense_distance": 0.3457787816788218,
+      "dense_rrf_score": 0.015873015873015872,
+      "lexical_rank": 3,
+      "lexical_score": 1.6,
+      "lexical_matched_term_count": 9,
+      "lexical_term_coverage": 0.8181818181818182,
+      "lexical_rrf_score": 0.015873015873015872,
+      "text": "Section: PART III: CUSTOMER DUE DILIGENCE > 8. CUSTOMER DUE DILIGENCE (CDD) > 8.5 Higher-Risk Countries\nClause: 8.5.3\n\n8.5.3 For business relationship and transaction with any person from countries identified\nby–\n\n(a)the FATF as issued under the “FATF Public Statement”- on jurisdictions with\nstrategic AML/CFT/CPF deficiencies that have not made sufficient progress in\naddressing the deficiencies or have not committed to an action plan developed\nwith the FATF to address the deficiencies; or\n\n(b)the Government of Malaysia as having strategic AML/CFT/CPF deficiencies and\nhave not made sufficient progress in addressing the deficiencies;\n\na reporting institution is required to assess the risk and where the risk is identified\nas higher risk, the reporting institution is required to conduct enhanced CDD as set\nout in paragraph 8.3 above.",
+      "content_text": "8.5.3 For business relationship and transaction with any person from countries identified\nby–\n\n(a)the FATF as issued under the “FATF Public Statement”- on jurisdictions with\nstrategic AML/CFT/CPF deficiencies that have not made sufficient progress in\naddressing the deficiencies or have not committed to an action plan developed\nwith the FATF to address the deficiencies; or\n\n(b)the Government of Malaysia as having strategic AML/CFT/CPF deficiencies and\nhave not made sufficient progress in addressing the deficiencies;\n\na reporting institution is required to assess the risk and where the risk is identified\nas higher risk, the reporting institution is required to conduct enhanced CDD as set\nout in paragraph 8.3 above.",
+      "token_count": 168,
+      "pages": [
+        43
+      ],
+      "section_path": [
+        "PART III: CUSTOMER DUE DILIGENCE",
+        "8. CUSTOMER DUE DILIGENCE (CDD)",
+        "8.5 Higher-Risk Countries"
+      ],
+      "source_element_ids": [
+        "p43-e9",
+        "p43-e10",
+        "p43-e11",
+        "p43-e12"
+      ]
+    },
+    {
+      "rank": 4,
+      "chunk_id": "485c4989-c300-45c8-ac06-79a59492bb5c-c0077-d9ccfb4d42",
+      "chunk_index": 77,
+      "semantic_type": "clause",
+      "reranker_score": 0.9806346893310547,
+      "hybrid_candidate_rank": 4,
+      "fusion_score": 0.029910714285714284,
+      "dense_rank": 4,
+      "dense_score": 0.6404891442669458,
+      "dense_distance": 0.3595108557330542,
+      "dense_rrf_score": 0.015625,
+      "lexical_rank": 10,
+      "lexical_score": 2.9,
+      "lexical_matched_term_count": 7,
+      "lexical_term_coverage": 0.6363636363636364,
+      "lexical_rrf_score": 0.014285714285714285,
+      "text": "Section: PART II: RISK-BASED APPROACH APPLICATION > 7. RISK-BASED APPROACH APPLICATION > 7.5 Risk profiling of customers\n\n7.5.1 A reporting institution must implement and maintain appropriate policies and procedures\nto conduct risk profiling of its customer.\n\n7.5.2 A reporting institution must conduct risk profiling on its customers during the\nestablishment of the business relationship and assign a ML/TF/PF risk rating that\ncommensurate with the customer’s risk profile.\n\n7.5.4 In assessing the level of risk of a customer from a particular country, a reporting\ninstitution shall assess the standards of prevention of ML/TF/PF in that country based on\nthe reporting institution’s knowledge, experience and other reliable sources of that\ncountry. The higher the risk, the greater the due diligence measures that should be\napplied when undertaking business with the customer from that country.\n\n7.5.5 After the initial acceptance of the customer, reporting institutions are required to regularly\nupdate the customer’s risk profile based on their level of ML/TF/PF risks.",
+      "content_text": "7.5.1 A reporting institution must implement and maintain appropriate policies and procedures\nto conduct risk profiling of its customer.\n\n7.5.2 A reporting institution must conduct risk profiling on its customers during the\nestablishment of the business relationship and assign a ML/TF/PF risk rating that\ncommensurate with the customer’s risk profile.\n\n7.5.4 In assessing the level of risk of a customer from a particular country, a reporting\ninstitution shall assess the standards of prevention of ML/TF/PF in that country based on\nthe reporting institution’s knowledge, experience and other reliable sources of that\ncountry. The higher the risk, the greater the due diligence measures that should be\napplied when undertaking business with the customer from that country.\n\n7.5.5 After the initial acceptance of the customer, reporting institutions are required to regularly\nupdate the customer’s risk profile based on their level of ML/TF/PF risks.",
+      "token_count": 210,
+      "pages": [
+        29
+      ],
+      "section_path": [
+        "PART II: RISK-BASED APPROACH APPLICATION",
+        "7. RISK-BASED APPROACH APPLICATION",
+        "7.5 Risk profiling of customers"
+      ],
+      "source_element_ids": [
+        "p29-e5",
+        "p29-e6",
+        "p29-e13",
+        "p29-e14"
+      ]
+    },
+    {
+      "rank": 5,
+      "chunk_id": "485c4989-c300-45c8-ac06-79a59492bb5c-c0117-340b2169f0",
+      "chunk_index": 117,
+      "semantic_type": "clause",
+      "reranker_score": 0.9798879623413086,
+      "hybrid_candidate_rank": 5,
+      "fusion_score": 0.029236022193768675,
+      "dense_rank": 6,
+      "dense_score": 0.6344688374437287,
+      "dense_distance": 0.36553116255627127,
+      "dense_rrf_score": 0.015151515151515152,
+      "lexical_rank": 11,
+      "lexical_score": 2.4,
+      "lexical_matched_term_count": 7,
+      "lexical_term_coverage": 0.6363636363636364,
+      "lexical_rrf_score": 0.014084507042253521,
+      "text": "Section: PART III: CUSTOMER DUE DILIGENCE > 8. CUSTOMER DUE DILIGENCE (CDD) > 8.6 Reliance on third-party institutions to conduct CDD\n\n8.6.1 A reporting institution may rely on a third-party institution to conduct CDD at the point\nof establishing a business relationship to identify and verify a customer or a beneficial\nowner. The reporting institution must immediately obtain the necessary information\nconcerning the identification and verification of the customer or the beneficial owner\nfrom the third-party institution.\n\n8.6.2 A reporting institution must have in place internal policies and procedures to mitigate\nthe risks when relying on a third-party institution, including those from foreign\njurisdictions. However, the reporting institution must ensure that the third-party\ninstitution adequately applies the FATF Recommendations in determining the extent\nto which reliance could be placed on such third-party institution.\n\n8.6.3 A reporting institution is prohibited from relying on a third-party institution located\nin higher- risk countries that have been identified as having ongoing or substantial\nML/TF/PF risks.",
+      "content_text": "8.6.1 A reporting institution may rely on a third-party institution to conduct CDD at the point\nof establishing a business relationship to identify and verify a customer or a beneficial\nowner. The reporting institution must immediately obtain the necessary information\nconcerning the identification and verification of the customer or the beneficial owner\nfrom the third-party institution.\n\n8.6.2 A reporting institution must have in place internal policies and procedures to mitigate\nthe risks when relying on a third-party institution, including those from foreign\njurisdictions. However, the reporting institution must ensure that the third-party\ninstitution adequately applies the FATF Recommendations in determining the extent\nto which reliance could be placed on such third-party institution.\n\n8.6.3 A reporting institution is prohibited from relying on a third-party institution located\nin higher- risk countries that have been identified as having ongoing or substantial\nML/TF/PF risks.",
+      "token_count": 206,
+      "pages": [
+        44
+      ],
+      "section_path": [
+        "PART III: CUSTOMER DUE DILIGENCE",
+        "8. CUSTOMER DUE DILIGENCE (CDD)",
+        "8.6 Reliance on third-party institutions to conduct CDD"
+      ],
+      "source_element_ids": [
+        "p44-e2",
+        "p44-e3",
+        "p44-e4"
+      ]
+    },
+    {
+      "rank": 6,
+      "chunk_id": "485c4989-c300-45c8-ac06-79a59492bb5c-c0124-0f8256155c",
+      "chunk_index": 124,
+      "semantic_type": "clause",
+      "reranker_score": 0.9441183805465698,
+      "hybrid_candidate_rank": 22,
+      "fusion_score": 0.0136986301369863,
+      "dense_rank": null,
+      "dense_score": null,
+      "dense_distance": null,
+      "dense_rrf_score": 0.0,
+      "lexical_rank": 13,
+      "lexical_score": 1.6,
+      "lexical_matched_term_count": 7,
+      "lexical_term_coverage": 0.6363636363636364,
+      "lexical_rrf_score": 0.0136986301369863,
+      "text": "Section: PART III: CUSTOMER DUE DILIGENCE > 8. CUSTOMER DUE DILIGENCE (CDD) > 8.8 Ongoing Due Diligence\nClause: 8.8.1\n\n8.8.1 A reporting institution must conduct ongoing due diligence and scrutiny of the business\nrelationship with its customers throughout the course of the business relationship.\nSuch measures shall include–\n\n(a)monitoring, detecting and scrutinizing transactions undertaken throughout the\ncourse of that business relationship to ensure that the transactions being\nconducted are consistent with the reporting institution’s knowledge of the\ncustomer, its business and risk profile, including where necessary, the source\nof funds; and\n\n(b)ensuring that documents, data or information collected under the CDD process\nis kept up-to-date and are relevant, by undertaking periodic reviews of existing\nrecords, particularly for higher-risk categories of customer.",
+      "content_text": "8.8.1 A reporting institution must conduct ongoing due diligence and scrutiny of the business\nrelationship with its customers throughout the course of the business relationship.\nSuch measures shall include–\n\n(a)monitoring, detecting and scrutinizing transactions undertaken throughout the\ncourse of that business relationship to ensure that the transactions being\nconducted are consistent with the reporting institution’s knowledge of the\ncustomer, its business and risk profile, including where necessary, the source\nof funds; and\n\n(b)ensuring that documents, data or information collected under the CDD process\nis kept up-to-date and are relevant, by undertaking periodic reviews of existing\nrecords, particularly for higher-risk categories of customer.",
+      "token_count": 162,
+      "pages": [
+        46
+      ],
+      "section_path": [
+        "PART III: CUSTOMER DUE DILIGENCE",
+        "8. CUSTOMER DUE DILIGENCE (CDD)",
+        "8.8 Ongoing Due Diligence"
+      ],
+      "source_element_ids": [
+        "p46-e2",
+        "p46-e3",
+        "p46-e4"
+      ]
+    },
+    {
+      "rank": 7,
+      "chunk_id": "485c4989-c300-45c8-ac06-79a59492bb5c-c0100-d1377a7b3c",
+      "chunk_index": 100,
+      "semantic_type": "clause",
+      "reranker_score": 0.9331961870193481,
+      "hybrid_candidate_rank": 7,
+      "fusion_score": 0.028577260665441927,
+      "dense_rank": 11,
+      "dense_score": 0.6212549805641219,
+      "dense_distance": 0.3787450194358781,
+      "dense_rrf_score": 0.014084507042253521,
+      "lexical_rank": 9,
+      "lexical_score": 3.8,
+      "lexical_matched_term_count": 7,
+      "lexical_term_coverage": 0.6363636363636364,
+      "lexical_rrf_score": 0.014492753623188406,
+      "text": "Section: PART III: CUSTOMER DUE DILIGENCE > 8. CUSTOMER DUE DILIGENCE (CDD) > 8.1 CDD at the point of establishing business relationship\nClause: 8.1.23\nGroup: CDD requirements for establishing non face-to-face business relationship\n\n8.1.23 This section applies when a reporting institution chooses to establish non-face-to-\nface business relationship.\n\n(a) A reporting institution must develop and implement policies and procedures to\naddress and mitigate specific ML/TF/PF risks associated with establishing non\nface-to-face business relationship, as well as operational and information\ntechnology risk.\n\n(b) A reporting institution must establish appropriate measures for identification\nand verification of a customer’s identity before establishing non face-to-face\nbusiness relationship.\n\n(c) For the purpose of identification and verification of the identity of a customer in\na non face-to-face business relationship, a reporting institution must undertake\none or more of the following measures:\n\n(i) Requesting for additional identification documents or information e.g.\nbank statements, utility bills;\n\n(ii) Substantiating the customer’s information with any independent source\ne.g. contacting the customer’s employer and verification through database\nmaintained by any relevant authorities;\n\n(iii) Contacting the customer through any digital communication channel to\nvisually identify and verify the customer’s identity;\n\n(iv) Requesting the customer to make a nominal payment from his own\naccount with a licensed bank under the Financial Services Act 2013 or\nlicensed Islamic bank under the Islamic Financial Services Act 2013 to\nenable the reporting institution to satisfy itself of the customer’s true\nidentity; or\n\n(v) Using new technology solutions including, but not limited to, biometric\ntechnologies (e.g. fingerprint or iris scans, facial recognition), which\nshould be linked incontrovertibly to the customer.\n\n(d) Where the reporting institution is unable to identify and verify the customer’s\nidentity by adopting the measures provided under paragraph (c) above, the\nreporting institution must initiate face-to-face business relationship.\n\n(e) Sub-paragraphs (a) to (d) above are not applicable to:\n\n(i)Customers that are identified as foreign PEP;\n\n(ii)Customers from higher-risk and non co-operative jurisdictions as identified\nby the FATF; or\n\n(iii)Listed persons or entities subjected to targeted financial sanctions for\nterrorism financing and financing of proliferation of weapons of mass\ndestruction pursuant to the UNSCR.\n\n(f) A reporting institution must ensure and be able to demonstrate on a continuing\nbasis that appropriate measures for identification and verification of a customer’s\nidentity when establishing non-face-to-face business relationship are as effective\nas that for face-to-face customer and implement monitoring and reporting\nmechanism to identify potential ML/TF/PF activities.",
+      "content_text": "8.1.23 This section applies when a reporting institution chooses to establish non-face-to-\nface business relationship.\n\n(a) A reporting institution must develop and implement policies and procedures to\naddress and mitigate specific ML/TF/PF risks associated with establishing non\nface-to-face business relationship, as well as operational and information\ntechnology risk.\n\n(b) A reporting institution must establish appropriate measures for identification\nand verification of a customer’s identity before establishing non face-to-face\nbusiness relationship.\n\n(c) For the purpose of identification and verification of the identity of a customer in\na non face-to-face business relationship, a reporting institution must undertake\none or more of the following measures:\n\n(i) Requesting for additional identification documents or information e.g.\nbank statements, utility bills;\n\n(ii) Substantiating the customer’s information with any independent source\ne.g. contacting the customer’s employer and verification through database\nmaintained by any relevant authorities;\n\n(iii) Contacting the customer through any digital communication channel to\nvisually identify and verify the customer’s identity;\n\n(iv) Requesting the customer to make a nominal payment from his own\naccount with a licensed bank under the Financial Services Act 2013 or\nlicensed Islamic bank under the Islamic Financial Services Act 2013 to\nenable the reporting institution to satisfy itself of the customer’s true\nidentity; or\n\n(v) Using new technology solutions including, but not limited to, biometric\ntechnologies (e.g. fingerprint or iris scans, facial recognition), which\nshould be linked incontrovertibly to the customer.\n\n(d) Where the reporting institution is unable to identify and verify the customer’s\nidentity by adopting the measures provided under paragraph (c) above, the\nreporting institution must initiate face-to-face business relationship.\n\n(e) Sub-paragraphs (a) to (d) above are not applicable to:\n\n(i)Customers that are identified as foreign PEP;\n\n(ii)Customers from higher-risk and non co-operative jurisdictions as identified\nby the FATF; or\n\n(iii)Listed persons or entities subjected to targeted financial sanctions for\nterrorism financing and financing of proliferation of weapons of mass\ndestruction pursuant to the UNSCR.\n\n(f) A reporting institution must ensure and be able to demonstrate on a continuing\nbasis that appropriate measures for identification and verification of a customer’s\nidentity when establishing non-face-to-face business relationship are as effective\nas that for face-to-face customer and implement monitoring and reporting\nmechanism to identify potential ML/TF/PF activities.",
+      "token_count": 550,
+      "pages": [
+        36,
+        37
+      ],
+      "section_path": [
+        "PART III: CUSTOMER DUE DILIGENCE",
+        "8. CUSTOMER DUE DILIGENCE (CDD)",
+        "8.1 CDD at the point of establishing business relationship"
+      ],
+      "source_element_ids": [
+        "p36-e10",
+        "p36-e11",
+        "p36-e12",
+        "p37-e1",
+        "p37-e2",
+        "p37-e3",
+        "p37-e4",
+        "p37-e5",
+        "p37-e6",
+        "p37-e7",
+        "p37-e8",
+        "p37-e9",
+        "p37-e10",
+        "p37-e11",
+        "p37-e12"
+      ]
+    },
+    {
+      "rank": 8,
+      "chunk_id": "485c4989-c300-45c8-ac06-79a59492bb5c-c0111-026b10a78d",
+      "chunk_index": 111,
+      "semantic_type": "clause",
+      "reranker_score": 0.9259825944900513,
+      "hybrid_candidate_rank": 13,
+      "fusion_score": 0.026013513513513515,
+      "dense_rank": 20,
+      "dense_score": 0.6079062457140548,
+      "dense_distance": 0.3920937542859452,
+      "dense_rrf_score": 0.0125,
+      "lexical_rank": 14,
+      "lexical_score": 1.2,
+      "lexical_matched_term_count": 7,
+      "lexical_term_coverage": 0.6363636363636364,
+      "lexical_rrf_score": 0.013513513513513514,
+      "text": "Section: PART III: CUSTOMER DUE DILIGENCE > 8. CUSTOMER DUE DILIGENCE (CDD) > 8.3 Enhanced CDD measures\nClause: 8.3.1\n\n8.3.1 Where the ML/TF/PF risks are assessed as higher risk, a reporting institution must\nundertake enhanced CDD measures on the customer and, where applicable, the\nbeneficial owner. These measures must include:\n\n(a)Obtaining additional information for identification and verification on the\ncustomer and beneficial owner, particularly for non face-to-face transactions (e.g.\nvolume of assets and other information from public database);\n\n(b)Obtaining additional information on the intended level and nature of the\nbusiness relationship;\n\n(c)Enquiring on the source of wealth and source of funds;\n\n(d)Updating on a more regular basis, the identification data of the customer\nand the beneficial owner;\n\n(e)Obtaining approval from the senior management before establishing (or\ncontinuing for existing customer) such business relationship with the customer;\nand\n\n(f)Conducting enhanced ongoing monitoring on the business relationship.",
+      "content_text": "8.3.1 Where the ML/TF/PF risks are assessed as higher risk, a reporting institution must\nundertake enhanced CDD measures on the customer and, where applicable, the\nbeneficial owner. These measures must include:\n\n(a)Obtaining additional information for identification and verification on the\ncustomer and beneficial owner, particularly for non face-to-face transactions (e.g.\nvolume of assets and other information from public database);\n\n(b)Obtaining additional information on the intended level and nature of the\nbusiness relationship;\n\n(c)Enquiring on the source of wealth and source of funds;\n\n(d)Updating on a more regular basis, the identification data of the customer\nand the beneficial owner;\n\n(e)Obtaining approval from the senior management before establishing (or\ncontinuing for existing customer) such business relationship with the customer;\nand\n\n(f)Conducting enhanced ongoing monitoring on the business relationship.",
+      "token_count": 207,
+      "pages": [
+        41
+      ],
+      "section_path": [
+        "PART III: CUSTOMER DUE DILIGENCE",
+        "8. CUSTOMER DUE DILIGENCE (CDD)",
+        "8.3 Enhanced CDD measures"
+      ],
+      "source_element_ids": [
+        "p41-e7",
+        "p41-e8",
+        "p41-e9",
+        "p41-e10",
+        "p41-e11",
+        "p41-e12",
+        "p41-e13"
+      ]
+    },
+    {
+      "rank": 9,
+      "chunk_id": "485c4989-c300-45c8-ac06-79a59492bb5c-c0112-8c652d9f62",
+      "chunk_index": 112,
+      "semantic_type": "clause",
+      "reranker_score": 0.9139026403427124,
+      "hybrid_candidate_rank": 6,
+      "fusion_score": 0.02871794871794872,
+      "dense_rank": 15,
+      "dense_score": 0.6182041623348996,
+      "dense_distance": 0.3817958376651004,
+      "dense_rrf_score": 0.013333333333333334,
+      "lexical_rank": 5,
+      "lexical_score": 2.8,
+      "lexical_matched_term_count": 8,
+      "lexical_term_coverage": 0.7272727272727273,
+      "lexical_rrf_score": 0.015384615384615385,
+      "text": "Section: PART III: CUSTOMER DUE DILIGENCE > 8. CUSTOMER DUE DILIGENCE (CDD) > 8.4 Politically exposed persons (PEPs)\n\n8.4.1 The requirements set out in paragraph 8.4 herein are also applicable to family\nmembers or close associates of PEPs. Appendix B of these Guidelines provides\nmeasures to be adopted by a reporting institution in dealing with the family members\nor close associates of PEPs.\n\n8.4.2 A reporting institution is required to have in place a risk management system to\ndetermine whether a customer or a beneficial owner is a foreign PEP.\n\n8.4.3 Upon determining that a customer or a beneficial owner is a foreign PEP, the\nrequirement to conduct enhanced CDD measures under paragraph 8.3 is applicable\nand the reporting institution is also required to conduct enhanced ongoing due\ndiligence.\n\n8.4.4 A reporting institution is required to have in place reasonable measures to determine\nwhether a customer or the beneficial owner is a domestic PEP or person entrusted\nwith a prominent function by an international organisation.\n\n8.4.5 The reporting institution is required to assess the level of ML/TF/PF risks posed by\nthe business relationship with the domestic PEP or person entrusted with a prominent\nfunction by an international organisation based on sufficient and appropriate\ninformation gathered through publicly available information or other reasonable\nmeans. The assessment of the ML/TF/PF risks also must take into account the profile\nof the customer under paragraph 7.5.3 of these Guidelines.\n\n8.4.6 For a higher-risk domestic PEP or higher-risk person entrusted with a prominent\nfunction by an international organisation, the requirements of enhanced CDD\nmeasures are as set out in paragraph 8.3.\n\n8.4.7 For a domestic PEP or person entrusted with a prominent function by an international\norganisation that is assessed as low risk, the reporting institution may apply the standard\nCDD measures.",
+      "content_text": "8.4.1 The requirements set out in paragraph 8.4 herein are also applicable to family\nmembers or close associates of PEPs. Appendix B of these Guidelines provides\nmeasures to be adopted by a reporting institution in dealing with the family members\nor close associates of PEPs.\n\n8.4.2 A reporting institution is required to have in place a risk management system to\ndetermine whether a customer or a beneficial owner is a foreign PEP.\n\n8.4.3 Upon determining that a customer or a beneficial owner is a foreign PEP, the\nrequirement to conduct enhanced CDD measures under paragraph 8.3 is applicable\nand the reporting institution is also required to conduct enhanced ongoing due\ndiligence.\n\n8.4.4 A reporting institution is required to have in place reasonable measures to determine\nwhether a customer or the beneficial owner is a domestic PEP or person entrusted\nwith a prominent function by an international organisation.\n\n8.4.5 The reporting institution is required to assess the level of ML/TF/PF risks posed by\nthe business relationship with the domestic PEP or person entrusted with a prominent\nfunction by an international organisation based on sufficient and appropriate\ninformation gathered through publicly available information or other reasonable\nmeans. The assessment of the ML/TF/PF risks also must take into account the profile\nof the customer under paragraph 7.5.3 of these Guidelines.\n\n8.4.6 For a higher-risk domestic PEP or higher-risk person entrusted with a prominent\nfunction by an international organisation, the requirements of enhanced CDD\nmeasures are as set out in paragraph 8.3.\n\n8.4.7 For a domestic PEP or person entrusted with a prominent function by an international\norganisation that is assessed as low risk, the reporting institution may apply the standard\nCDD measures.",
+      "token_count": 368,
+      "pages": [
+        42
+      ],
+      "section_path": [
+        "PART III: CUSTOMER DUE DILIGENCE",
+        "8. CUSTOMER DUE DILIGENCE (CDD)",
+        "8.4 Politically exposed persons (PEPs)"
+      ],
+      "source_element_ids": [
+        "p42-e1",
+        "p42-e2",
+        "p42-e3",
+        "p42-e4",
+        "p42-e5",
+        "p42-e6",
+        "p42-e7"
+      ]
+    },
+    {
+      "rank": 10,
+      "chunk_id": "485c4989-c300-45c8-ac06-79a59492bb5c-c0198-03ed594e25",
+      "chunk_index": 198,
+      "semantic_type": "clause",
+      "reranker_score": 0.8980922102928162,
+      "hybrid_candidate_rank": 11,
+      "fusion_score": 0.0261986301369863,
+      "dense_rank": 13,
+      "dense_score": 0.6206253027170535,
+      "dense_distance": 0.3793746972829465,
+      "dense_rrf_score": 0.0136986301369863,
+      "lexical_rank": 20,
+      "lexical_score": 2.3,
+      "lexical_matched_term_count": 6,
+      "lexical_term_coverage": 0.5454545454545454,
+      "lexical_rrf_score": 0.0125,
+      "text": "Section: APPENDIX A > 5.0 A: Determine the risk parameters for customer profiling\nGroup: Relationship-based Risk Assessment (RbRA)\n\n5.2 Where relevant, a reporting institution may adopt similar risk parameters that have\nbeen used for the assessment of the ML/TF/PF risks considered under the BbRA.\n\n5.3 The different parameters considered within the customer, country or geographic,\nproduct or service and transaction or distribution channel risk factors, may either\nindividually or in combination impact the level of risk posed by each customer.\n\n5.4 Identifying one high-risk indicator for a customer does not necessarily mean that the\ncustomer is high risk, except for circumstances where a high-risk indicator is identified\npursuant to high-risk customer relationships prescribed by FATF standards1. The RbRA\nultimately requires the reporting institution to draw together all risk factors,\nparameters considered, including patterns of transaction and activity to determine\nhow best to assess the risk of such customer on an ongoing basis.\n\n5.5 Therefore, a reporting institution must ensure that the onboarding and ongoing CDD\ninformation obtained is accurate and up to date.",
+      "content_text": "5.2 Where relevant, a reporting institution may adopt similar risk parameters that have\nbeen used for the assessment of the ML/TF/PF risks considered under the BbRA.\n\n5.3 The different parameters considered within the customer, country or geographic,\nproduct or service and transaction or distribution channel risk factors, may either\nindividually or in combination impact the level of risk posed by each customer.\n\n5.4 Identifying one high-risk indicator for a customer does not necessarily mean that the\ncustomer is high risk, except for circumstances where a high-risk indicator is identified\npursuant to high-risk customer relationships prescribed by FATF standards1. The RbRA\nultimately requires the reporting institution to draw together all risk factors,\nparameters considered, including patterns of transaction and activity to determine\nhow best to assess the risk of such customer on an ongoing basis.\n\n5.5 Therefore, a reporting institution must ensure that the onboarding and ongoing CDD\ninformation obtained is accurate and up to date.",
+      "token_count": 213,
+      "pages": [
+        76
+      ],
+      "section_path": [
+        "APPENDIX A",
+        "5.0 A: Determine the risk parameters for customer profiling"
+      ],
+      "source_element_ids": [
+        "p76-e3",
+        "p76-e4",
+        "p76-e5",
+        "p76-e6"
+      ]
+    }
+  ],
+  "context_strategy": "structural_one_hop_v1",
+  "context_recursive": false,
+  "context_same_section_required": true,
+  "context_max_forward_neighbors_per_seed": 2,
+  "context_max_backward_neighbors_per_seed": 1,
+  "context_max_page_gap": 1,
+  "context_max_chunks": 30,
+  "context_chunk_count": 10,
+  "expanded_chunk_count": 0,
+  "context_chunks": [
+    {
+      "context_order": 1,
+      "chunk_id": "485c4989-c300-45c8-ac06-79a59492bb5c-c0114-88e54fa045",
+      "chunk_index": 114,
+      "semantic_type": "clause",
+      "source_rank": 1,
+      "ranked_seed_rank": 1,
+      "reasons": [
+        "ranked_seed"
+      ],
+      "attached_from_chunk_ids": [],
+      "text": "Section: PART III: CUSTOMER DUE DILIGENCE > 8. CUSTOMER DUE DILIGENCE (CDD) > 8.5 Higher-Risk Countries\nClause: 8.5.1\n\n8.5.1 A reporting institution is required to conduct enhanced CDD for any business\nrelationship and transaction with any person from countries identified by–\n\n(a)the FATF as issued under the “FATF Public Statement” – on jurisdictions\nsubject to a FATF call on its members and other jurisdictions to apply counter-\nmeasures to protect the international financial system from the ongoing and\nsubstantial ML/TF/PF risks emanating from such jurisdictions; or\n\n(b)the Government of Malaysia as having ongoing or substantial ML/TF/PF risks.",
+      "content_text": "8.5.1 A reporting institution is required to conduct enhanced CDD for any business\nrelationship and transaction with any person from countries identified by–\n\n(a)the FATF as issued under the “FATF Public Statement” – on jurisdictions\nsubject to a FATF call on its members and other jurisdictions to apply counter-\nmeasures to protect the international financial system from the ongoing and\nsubstantial ML/TF/PF risks emanating from such jurisdictions; or\n\n(b)the Government of Malaysia as having ongoing or substantial ML/TF/PF risks.",
+      "token_count": 135,
+      "pages": [
+        43
+      ],
+      "section_path": [
+        "PART III: CUSTOMER DUE DILIGENCE",
+        "8. CUSTOMER DUE DILIGENCE (CDD)",
+        "8.5 Higher-Risk Countries"
+      ],
+      "source_element_ids": [
+        "p43-e2",
+        "p43-e3",
+        "p43-e4"
+      ]
+    },
+    {
+      "context_order": 2,
+      "chunk_id": "485c4989-c300-45c8-ac06-79a59492bb5c-c0115-ea57db8635",
+      "chunk_index": 115,
+      "semantic_type": "clause",
+      "source_rank": 2,
+      "ranked_seed_rank": 2,
+      "reasons": [
+        "ranked_seed"
+      ],
+      "attached_from_chunk_ids": [],
+      "text": "Section: PART III: CUSTOMER DUE DILIGENCE > 8. CUSTOMER DUE DILIGENCE (CDD) > 8.5 Higher-Risk Countries\nClause: 8.5.2\n\n8.5.2 In addition to the enhanced CDD measures required under paragraph 8.5.1 above,\nthe reporting institution is required to apply appropriate counter-measures,\nproportionate to the risk, for higher-risk countries as follows:\n\n(a)Limiting business relationships or financial transactions with identified countries or\npersons located in the country concerned;\n\n(b)Where relevant, to conduct enhanced external audit, by increasing the intensity\nand frequency, for branches and subsidiaries of the reporting institution or\nfinancial group, located in the country concerned; and\n\n(c)Conduct any other measures as may be specified by the SC.",
+      "content_text": "8.5.2 In addition to the enhanced CDD measures required under paragraph 8.5.1 above,\nthe reporting institution is required to apply appropriate counter-measures,\nproportionate to the risk, for higher-risk countries as follows:\n\n(a)Limiting business relationships or financial transactions with identified countries or\npersons located in the country concerned;\n\n(b)Where relevant, to conduct enhanced external audit, by increasing the intensity\nand frequency, for branches and subsidiaries of the reporting institution or\nfinancial group, located in the country concerned; and\n\n(c)Conduct any other measures as may be specified by the SC.",
+      "token_count": 152,
+      "pages": [
+        43
+      ],
+      "section_path": [
+        "PART III: CUSTOMER DUE DILIGENCE",
+        "8. CUSTOMER DUE DILIGENCE (CDD)",
+        "8.5 Higher-Risk Countries"
+      ],
+      "source_element_ids": [
+        "p43-e5",
+        "p43-e6",
+        "p43-e7",
+        "p43-e8"
+      ]
+    },
+    {
+      "context_order": 3,
+      "chunk_id": "485c4989-c300-45c8-ac06-79a59492bb5c-c0116-b6adec1458",
+      "chunk_index": 116,
+      "semantic_type": "clause",
+      "source_rank": 3,
+      "ranked_seed_rank": 3,
+      "reasons": [
+        "ranked_seed"
+      ],
+      "attached_from_chunk_ids": [],
+      "text": "Section: PART III: CUSTOMER DUE DILIGENCE > 8. CUSTOMER DUE DILIGENCE (CDD) > 8.5 Higher-Risk Countries\nClause: 8.5.3\n\n8.5.3 For business relationship and transaction with any person from countries identified\nby–\n\n(a)the FATF as issued under the “FATF Public Statement”- on jurisdictions with\nstrategic AML/CFT/CPF deficiencies that have not made sufficient progress in\naddressing the deficiencies or have not committed to an action plan developed\nwith the FATF to address the deficiencies; or\n\n(b)the Government of Malaysia as having strategic AML/CFT/CPF deficiencies and\nhave not made sufficient progress in addressing the deficiencies;\n\na reporting institution is required to assess the risk and where the risk is identified\nas higher risk, the reporting institution is required to conduct enhanced CDD as set\nout in paragraph 8.3 above.",
+      "content_text": "8.5.3 For business relationship and transaction with any person from countries identified\nby–\n\n(a)the FATF as issued under the “FATF Public Statement”- on jurisdictions with\nstrategic AML/CFT/CPF deficiencies that have not made sufficient progress in\naddressing the deficiencies or have not committed to an action plan developed\nwith the FATF to address the deficiencies; or\n\n(b)the Government of Malaysia as having strategic AML/CFT/CPF deficiencies and\nhave not made sufficient progress in addressing the deficiencies;\n\na reporting institution is required to assess the risk and where the risk is identified\nas higher risk, the reporting institution is required to conduct enhanced CDD as set\nout in paragraph 8.3 above.",
+      "token_count": 168,
+      "pages": [
+        43
+      ],
+      "section_path": [
+        "PART III: CUSTOMER DUE DILIGENCE",
+        "8. CUSTOMER DUE DILIGENCE (CDD)",
+        "8.5 Higher-Risk Countries"
+      ],
+      "source_element_ids": [
+        "p43-e9",
+        "p43-e10",
+        "p43-e11",
+        "p43-e12"
+      ]
+    },
+    {
+      "context_order": 4,
+      "chunk_id": "485c4989-c300-45c8-ac06-79a59492bb5c-c0077-d9ccfb4d42",
+      "chunk_index": 77,
+      "semantic_type": "clause",
+      "source_rank": 4,
+      "ranked_seed_rank": 4,
+      "reasons": [
+        "ranked_seed"
+      ],
+      "attached_from_chunk_ids": [],
+      "text": "Section: PART II: RISK-BASED APPROACH APPLICATION > 7. RISK-BASED APPROACH APPLICATION > 7.5 Risk profiling of customers\n\n7.5.1 A reporting institution must implement and maintain appropriate policies and procedures\nto conduct risk profiling of its customer.\n\n7.5.2 A reporting institution must conduct risk profiling on its customers during the\nestablishment of the business relationship and assign a ML/TF/PF risk rating that\ncommensurate with the customer’s risk profile.\n\n7.5.4 In assessing the level of risk of a customer from a particular country, a reporting\ninstitution shall assess the standards of prevention of ML/TF/PF in that country based on\nthe reporting institution’s knowledge, experience and other reliable sources of that\ncountry. The higher the risk, the greater the due diligence measures that should be\napplied when undertaking business with the customer from that country.\n\n7.5.5 After the initial acceptance of the customer, reporting institutions are required to regularly\nupdate the customer’s risk profile based on their level of ML/TF/PF risks.",
+      "content_text": "7.5.1 A reporting institution must implement and maintain appropriate policies and procedures\nto conduct risk profiling of its customer.\n\n7.5.2 A reporting institution must conduct risk profiling on its customers during the\nestablishment of the business relationship and assign a ML/TF/PF risk rating that\ncommensurate with the customer’s risk profile.\n\n7.5.4 In assessing the level of risk of a customer from a particular country, a reporting\ninstitution shall assess the standards of prevention of ML/TF/PF in that country based on\nthe reporting institution’s knowledge, experience and other reliable sources of that\ncountry. The higher the risk, the greater the due diligence measures that should be\napplied when undertaking business with the customer from that country.\n\n7.5.5 After the initial acceptance of the customer, reporting institutions are required to regularly\nupdate the customer’s risk profile based on their level of ML/TF/PF risks.",
+      "token_count": 210,
+      "pages": [
+        29
+      ],
+      "section_path": [
+        "PART II: RISK-BASED APPROACH APPLICATION",
+        "7. RISK-BASED APPROACH APPLICATION",
+        "7.5 Risk profiling of customers"
+      ],
+      "source_element_ids": [
+        "p29-e5",
+        "p29-e6",
+        "p29-e13",
+        "p29-e14"
+      ]
+    },
+    {
+      "context_order": 5,
+      "chunk_id": "485c4989-c300-45c8-ac06-79a59492bb5c-c0117-340b2169f0",
+      "chunk_index": 117,
+      "semantic_type": "clause",
+      "source_rank": 5,
+      "ranked_seed_rank": 5,
+      "reasons": [
+        "ranked_seed"
+      ],
+      "attached_from_chunk_ids": [],
+      "text": "Section: PART III: CUSTOMER DUE DILIGENCE > 8. CUSTOMER DUE DILIGENCE (CDD) > 8.6 Reliance on third-party institutions to conduct CDD\n\n8.6.1 A reporting institution may rely on a third-party institution to conduct CDD at the point\nof establishing a business relationship to identify and verify a customer or a beneficial\nowner. The reporting institution must immediately obtain the necessary information\nconcerning the identification and verification of the customer or the beneficial owner\nfrom the third-party institution.\n\n8.6.2 A reporting institution must have in place internal policies and procedures to mitigate\nthe risks when relying on a third-party institution, including those from foreign\njurisdictions. However, the reporting institution must ensure that the third-party\ninstitution adequately applies the FATF Recommendations in determining the extent\nto which reliance could be placed on such third-party institution.\n\n8.6.3 A reporting institution is prohibited from relying on a third-party institution located\nin higher- risk countries that have been identified as having ongoing or substantial\nML/TF/PF risks.",
+      "content_text": "8.6.1 A reporting institution may rely on a third-party institution to conduct CDD at the point\nof establishing a business relationship to identify and verify a customer or a beneficial\nowner. The reporting institution must immediately obtain the necessary information\nconcerning the identification and verification of the customer or the beneficial owner\nfrom the third-party institution.\n\n8.6.2 A reporting institution must have in place internal policies and procedures to mitigate\nthe risks when relying on a third-party institution, including those from foreign\njurisdictions. However, the reporting institution must ensure that the third-party\ninstitution adequately applies the FATF Recommendations in determining the extent\nto which reliance could be placed on such third-party institution.\n\n8.6.3 A reporting institution is prohibited from relying on a third-party institution located\nin higher- risk countries that have been identified as having ongoing or substantial\nML/TF/PF risks.",
+      "token_count": 206,
+      "pages": [
+        44
+      ],
+      "section_path": [
+        "PART III: CUSTOMER DUE DILIGENCE",
+        "8. CUSTOMER DUE DILIGENCE (CDD)",
+        "8.6 Reliance on third-party institutions to conduct CDD"
+      ],
+      "source_element_ids": [
+        "p44-e2",
+        "p44-e3",
+        "p44-e4"
+      ]
+    },
+    {
+      "context_order": 6,
+      "chunk_id": "485c4989-c300-45c8-ac06-79a59492bb5c-c0124-0f8256155c",
+      "chunk_index": 124,
+      "semantic_type": "clause",
+      "source_rank": 6,
+      "ranked_seed_rank": 6,
+      "reasons": [
+        "ranked_seed"
+      ],
+      "attached_from_chunk_ids": [],
+      "text": "Section: PART III: CUSTOMER DUE DILIGENCE > 8. CUSTOMER DUE DILIGENCE (CDD) > 8.8 Ongoing Due Diligence\nClause: 8.8.1\n\n8.8.1 A reporting institution must conduct ongoing due diligence and scrutiny of the business\nrelationship with its customers throughout the course of the business relationship.\nSuch measures shall include–\n\n(a)monitoring, detecting and scrutinizing transactions undertaken throughout the\ncourse of that business relationship to ensure that the transactions being\nconducted are consistent with the reporting institution’s knowledge of the\ncustomer, its business and risk profile, including where necessary, the source\nof funds; and\n\n(b)ensuring that documents, data or information collected under the CDD process\nis kept up-to-date and are relevant, by undertaking periodic reviews of existing\nrecords, particularly for higher-risk categories of customer.",
+      "content_text": "8.8.1 A reporting institution must conduct ongoing due diligence and scrutiny of the business\nrelationship with its customers throughout the course of the business relationship.\nSuch measures shall include–\n\n(a)monitoring, detecting and scrutinizing transactions undertaken throughout the\ncourse of that business relationship to ensure that the transactions being\nconducted are consistent with the reporting institution’s knowledge of the\ncustomer, its business and risk profile, including where necessary, the source\nof funds; and\n\n(b)ensuring that documents, data or information collected under the CDD process\nis kept up-to-date and are relevant, by undertaking periodic reviews of existing\nrecords, particularly for higher-risk categories of customer.",
+      "token_count": 162,
+      "pages": [
+        46
+      ],
+      "section_path": [
+        "PART III: CUSTOMER DUE DILIGENCE",
+        "8. CUSTOMER DUE DILIGENCE (CDD)",
+        "8.8 Ongoing Due Diligence"
+      ],
+      "source_element_ids": [
+        "p46-e2",
+        "p46-e3",
+        "p46-e4"
+      ]
+    },
+    {
+      "context_order": 7,
+      "chunk_id": "485c4989-c300-45c8-ac06-79a59492bb5c-c0100-d1377a7b3c",
+      "chunk_index": 100,
+      "semantic_type": "clause",
+      "source_rank": 7,
+      "ranked_seed_rank": 7,
+      "reasons": [
+        "ranked_seed"
+      ],
+      "attached_from_chunk_ids": [],
+      "text": "Section: PART III: CUSTOMER DUE DILIGENCE > 8. CUSTOMER DUE DILIGENCE (CDD) > 8.1 CDD at the point of establishing business relationship\nClause: 8.1.23\nGroup: CDD requirements for establishing non face-to-face business relationship\n\n8.1.23 This section applies when a reporting institution chooses to establish non-face-to-\nface business relationship.\n\n(a) A reporting institution must develop and implement policies and procedures to\naddress and mitigate specific ML/TF/PF risks associated with establishing non\nface-to-face business relationship, as well as operational and information\ntechnology risk.\n\n(b) A reporting institution must establish appropriate measures for identification\nand verification of a customer’s identity before establishing non face-to-face\nbusiness relationship.\n\n(c) For the purpose of identification and verification of the identity of a customer in\na non face-to-face business relationship, a reporting institution must undertake\none or more of the following measures:\n\n(i) Requesting for additional identification documents or information e.g.\nbank statements, utility bills;\n\n(ii) Substantiating the customer’s information with any independent source\ne.g. contacting the customer’s employer and verification through database\nmaintained by any relevant authorities;\n\n(iii) Contacting the customer through any digital communication channel to\nvisually identify and verify the customer’s identity;\n\n(iv) Requesting the customer to make a nominal payment from his own\naccount with a licensed bank under the Financial Services Act 2013 or\nlicensed Islamic bank under the Islamic Financial Services Act 2013 to\nenable the reporting institution to satisfy itself of the customer’s true\nidentity; or\n\n(v) Using new technology solutions including, but not limited to, biometric\ntechnologies (e.g. fingerprint or iris scans, facial recognition), which\nshould be linked incontrovertibly to the customer.\n\n(d) Where the reporting institution is unable to identify and verify the customer’s\nidentity by adopting the measures provided under paragraph (c) above, the\nreporting institution must initiate face-to-face business relationship.\n\n(e) Sub-paragraphs (a) to (d) above are not applicable to:\n\n(i)Customers that are identified as foreign PEP;\n\n(ii)Customers from higher-risk and non co-operative jurisdictions as identified\nby the FATF; or\n\n(iii)Listed persons or entities subjected to targeted financial sanctions for\nterrorism financing and financing of proliferation of weapons of mass\ndestruction pursuant to the UNSCR.\n\n(f) A reporting institution must ensure and be able to demonstrate on a continuing\nbasis that appropriate measures for identification and verification of a customer’s\nidentity when establishing non-face-to-face business relationship are as effective\nas that for face-to-face customer and implement monitoring and reporting\nmechanism to identify potential ML/TF/PF activities.",
+      "content_text": "8.1.23 This section applies when a reporting institution chooses to establish non-face-to-\nface business relationship.\n\n(a) A reporting institution must develop and implement policies and procedures to\naddress and mitigate specific ML/TF/PF risks associated with establishing non\nface-to-face business relationship, as well as operational and information\ntechnology risk.\n\n(b) A reporting institution must establish appropriate measures for identification\nand verification of a customer’s identity before establishing non face-to-face\nbusiness relationship.\n\n(c) For the purpose of identification and verification of the identity of a customer in\na non face-to-face business relationship, a reporting institution must undertake\none or more of the following measures:\n\n(i) Requesting for additional identification documents or information e.g.\nbank statements, utility bills;\n\n(ii) Substantiating the customer’s information with any independent source\ne.g. contacting the customer’s employer and verification through database\nmaintained by any relevant authorities;\n\n(iii) Contacting the customer through any digital communication channel to\nvisually identify and verify the customer’s identity;\n\n(iv) Requesting the customer to make a nominal payment from his own\naccount with a licensed bank under the Financial Services Act 2013 or\nlicensed Islamic bank under the Islamic Financial Services Act 2013 to\nenable the reporting institution to satisfy itself of the customer’s true\nidentity; or\n\n(v) Using new technology solutions including, but not limited to, biometric\ntechnologies (e.g. fingerprint or iris scans, facial recognition), which\nshould be linked incontrovertibly to the customer.\n\n(d) Where the reporting institution is unable to identify and verify the customer’s\nidentity by adopting the measures provided under paragraph (c) above, the\nreporting institution must initiate face-to-face business relationship.\n\n(e) Sub-paragraphs (a) to (d) above are not applicable to:\n\n(i)Customers that are identified as foreign PEP;\n\n(ii)Customers from higher-risk and non co-operative jurisdictions as identified\nby the FATF; or\n\n(iii)Listed persons or entities subjected to targeted financial sanctions for\nterrorism financing and financing of proliferation of weapons of mass\ndestruction pursuant to the UNSCR.\n\n(f) A reporting institution must ensure and be able to demonstrate on a continuing\nbasis that appropriate measures for identification and verification of a customer’s\nidentity when establishing non-face-to-face business relationship are as effective\nas that for face-to-face customer and implement monitoring and reporting\nmechanism to identify potential ML/TF/PF activities.",
+      "token_count": 550,
+      "pages": [
+        36,
+        37
+      ],
+      "section_path": [
+        "PART III: CUSTOMER DUE DILIGENCE",
+        "8. CUSTOMER DUE DILIGENCE (CDD)",
+        "8.1 CDD at the point of establishing business relationship"
+      ],
+      "source_element_ids": [
+        "p36-e10",
+        "p36-e11",
+        "p36-e12",
+        "p37-e1",
+        "p37-e2",
+        "p37-e3",
+        "p37-e4",
+        "p37-e5",
+        "p37-e6",
+        "p37-e7",
+        "p37-e8",
+        "p37-e9",
+        "p37-e10",
+        "p37-e11",
+        "p37-e12"
+      ]
+    },
+    {
+      "context_order": 8,
+      "chunk_id": "485c4989-c300-45c8-ac06-79a59492bb5c-c0111-026b10a78d",
+      "chunk_index": 111,
+      "semantic_type": "clause",
+      "source_rank": 8,
+      "ranked_seed_rank": 8,
+      "reasons": [
+        "ranked_seed"
+      ],
+      "attached_from_chunk_ids": [],
+      "text": "Section: PART III: CUSTOMER DUE DILIGENCE > 8. CUSTOMER DUE DILIGENCE (CDD) > 8.3 Enhanced CDD measures\nClause: 8.3.1\n\n8.3.1 Where the ML/TF/PF risks are assessed as higher risk, a reporting institution must\nundertake enhanced CDD measures on the customer and, where applicable, the\nbeneficial owner. These measures must include:\n\n(a)Obtaining additional information for identification and verification on the\ncustomer and beneficial owner, particularly for non face-to-face transactions (e.g.\nvolume of assets and other information from public database);\n\n(b)Obtaining additional information on the intended level and nature of the\nbusiness relationship;\n\n(c)Enquiring on the source of wealth and source of funds;\n\n(d)Updating on a more regular basis, the identification data of the customer\nand the beneficial owner;\n\n(e)Obtaining approval from the senior management before establishing (or\ncontinuing for existing customer) such business relationship with the customer;\nand\n\n(f)Conducting enhanced ongoing monitoring on the business relationship.",
+      "content_text": "8.3.1 Where the ML/TF/PF risks are assessed as higher risk, a reporting institution must\nundertake enhanced CDD measures on the customer and, where applicable, the\nbeneficial owner. These measures must include:\n\n(a)Obtaining additional information for identification and verification on the\ncustomer and beneficial owner, particularly for non face-to-face transactions (e.g.\nvolume of assets and other information from public database);\n\n(b)Obtaining additional information on the intended level and nature of the\nbusiness relationship;\n\n(c)Enquiring on the source of wealth and source of funds;\n\n(d)Updating on a more regular basis, the identification data of the customer\nand the beneficial owner;\n\n(e)Obtaining approval from the senior management before establishing (or\ncontinuing for existing customer) such business relationship with the customer;\nand\n\n(f)Conducting enhanced ongoing monitoring on the business relationship.",
+      "token_count": 207,
+      "pages": [
+        41
+      ],
+      "section_path": [
+        "PART III: CUSTOMER DUE DILIGENCE",
+        "8. CUSTOMER DUE DILIGENCE (CDD)",
+        "8.3 Enhanced CDD measures"
+      ],
+      "source_element_ids": [
+        "p41-e7",
+        "p41-e8",
+        "p41-e9",
+        "p41-e10",
+        "p41-e11",
+        "p41-e12",
+        "p41-e13"
+      ]
+    },
+    {
+      "context_order": 9,
+      "chunk_id": "485c4989-c300-45c8-ac06-79a59492bb5c-c0112-8c652d9f62",
+      "chunk_index": 112,
+      "semantic_type": "clause",
+      "source_rank": 9,
+      "ranked_seed_rank": 9,
+      "reasons": [
+        "ranked_seed"
+      ],
+      "attached_from_chunk_ids": [],
+      "text": "Section: PART III: CUSTOMER DUE DILIGENCE > 8. CUSTOMER DUE DILIGENCE (CDD) > 8.4 Politically exposed persons (PEPs)\n\n8.4.1 The requirements set out in paragraph 8.4 herein are also applicable to family\nmembers or close associates of PEPs. Appendix B of these Guidelines provides\nmeasures to be adopted by a reporting institution in dealing with the family members\nor close associates of PEPs.\n\n8.4.2 A reporting institution is required to have in place a risk management system to\ndetermine whether a customer or a beneficial owner is a foreign PEP.\n\n8.4.3 Upon determining that a customer or a beneficial owner is a foreign PEP, the\nrequirement to conduct enhanced CDD measures under paragraph 8.3 is applicable\nand the reporting institution is also required to conduct enhanced ongoing due\ndiligence.\n\n8.4.4 A reporting institution is required to have in place reasonable measures to determine\nwhether a customer or the beneficial owner is a domestic PEP or person entrusted\nwith a prominent function by an international organisation.\n\n8.4.5 The reporting institution is required to assess the level of ML/TF/PF risks posed by\nthe business relationship with the domestic PEP or person entrusted with a prominent\nfunction by an international organisation based on sufficient and appropriate\ninformation gathered through publicly available information or other reasonable\nmeans. The assessment of the ML/TF/PF risks also must take into account the profile\nof the customer under paragraph 7.5.3 of these Guidelines.\n\n8.4.6 For a higher-risk domestic PEP or higher-risk person entrusted with a prominent\nfunction by an international organisation, the requirements of enhanced CDD\nmeasures are as set out in paragraph 8.3.\n\n8.4.7 For a domestic PEP or person entrusted with a prominent function by an international\norganisation that is assessed as low risk, the reporting institution may apply the standard\nCDD measures.",
+      "content_text": "8.4.1 The requirements set out in paragraph 8.4 herein are also applicable to family\nmembers or close associates of PEPs. Appendix B of these Guidelines provides\nmeasures to be adopted by a reporting institution in dealing with the family members\nor close associates of PEPs.\n\n8.4.2 A reporting institution is required to have in place a risk management system to\ndetermine whether a customer or a beneficial owner is a foreign PEP.\n\n8.4.3 Upon determining that a customer or a beneficial owner is a foreign PEP, the\nrequirement to conduct enhanced CDD measures under paragraph 8.3 is applicable\nand the reporting institution is also required to conduct enhanced ongoing due\ndiligence.\n\n8.4.4 A reporting institution is required to have in place reasonable measures to determine\nwhether a customer or the beneficial owner is a domestic PEP or person entrusted\nwith a prominent function by an international organisation.\n\n8.4.5 The reporting institution is required to assess the level of ML/TF/PF risks posed by\nthe business relationship with the domestic PEP or person entrusted with a prominent\nfunction by an international organisation based on sufficient and appropriate\ninformation gathered through publicly available information or other reasonable\nmeans. The assessment of the ML/TF/PF risks also must take into account the profile\nof the customer under paragraph 7.5.3 of these Guidelines.\n\n8.4.6 For a higher-risk domestic PEP or higher-risk person entrusted with a prominent\nfunction by an international organisation, the requirements of enhanced CDD\nmeasures are as set out in paragraph 8.3.\n\n8.4.7 For a domestic PEP or person entrusted with a prominent function by an international\norganisation that is assessed as low risk, the reporting institution may apply the standard\nCDD measures.",
+      "token_count": 368,
+      "pages": [
+        42
+      ],
+      "section_path": [
+        "PART III: CUSTOMER DUE DILIGENCE",
+        "8. CUSTOMER DUE DILIGENCE (CDD)",
+        "8.4 Politically exposed persons (PEPs)"
+      ],
+      "source_element_ids": [
+        "p42-e1",
+        "p42-e2",
+        "p42-e3",
+        "p42-e4",
+        "p42-e5",
+        "p42-e6",
+        "p42-e7"
+      ]
+    },
+    {
+      "context_order": 10,
+      "chunk_id": "485c4989-c300-45c8-ac06-79a59492bb5c-c0198-03ed594e25",
+      "chunk_index": 198,
+      "semantic_type": "clause",
+      "source_rank": 10,
+      "ranked_seed_rank": 10,
+      "reasons": [
+        "ranked_seed"
+      ],
+      "attached_from_chunk_ids": [],
+      "text": "Section: APPENDIX A > 5.0 A: Determine the risk parameters for customer profiling\nGroup: Relationship-based Risk Assessment (RbRA)\n\n5.2 Where relevant, a reporting institution may adopt similar risk parameters that have\nbeen used for the assessment of the ML/TF/PF risks considered under the BbRA.\n\n5.3 The different parameters considered within the customer, country or geographic,\nproduct or service and transaction or distribution channel risk factors, may either\nindividually or in combination impact the level of risk posed by each customer.\n\n5.4 Identifying one high-risk indicator for a customer does not necessarily mean that the\ncustomer is high risk, except for circumstances where a high-risk indicator is identified\npursuant to high-risk customer relationships prescribed by FATF standards1. The RbRA\nultimately requires the reporting institution to draw together all risk factors,\nparameters considered, including patterns of transaction and activity to determine\nhow best to assess the risk of such customer on an ongoing basis.\n\n5.5 Therefore, a reporting institution must ensure that the onboarding and ongoing CDD\ninformation obtained is accurate and up to date.",
+      "content_text": "5.2 Where relevant, a reporting institution may adopt similar risk parameters that have\nbeen used for the assessment of the ML/TF/PF risks considered under the BbRA.\n\n5.3 The different parameters considered within the customer, country or geographic,\nproduct or service and transaction or distribution channel risk factors, may either\nindividually or in combination impact the level of risk posed by each customer.\n\n5.4 Identifying one high-risk indicator for a customer does not necessarily mean that the\ncustomer is high risk, except for circumstances where a high-risk indicator is identified\npursuant to high-risk customer relationships prescribed by FATF standards1. The RbRA\nultimately requires the reporting institution to draw together all risk factors,\nparameters considered, including patterns of transaction and activity to determine\nhow best to assess the risk of such customer on an ongoing basis.\n\n5.5 Therefore, a reporting institution must ensure that the onboarding and ongoing CDD\ninformation obtained is accurate and up to date.",
+      "token_count": 213,
+      "pages": [
+        76
+      ],
+      "section_path": [
+        "APPENDIX A",
+        "5.0 A: Determine the risk parameters for customer profiling"
+      ],
+      "source_element_ids": [
+        "p76-e3",
+        "p76-e4",
+        "p76-e5",
+        "p76-e6"
+      ]
+    }
+  ]
+}

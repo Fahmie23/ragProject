@@ -14,6 +14,7 @@ _CONTINUATION_START_RE = re.compile(
     re.IGNORECASE,
 )
 _TERMINAL_BOUNDARY_RE = re.compile(r"[.!?;:]\s*$")
+_MARKER_ONLY_RE = re.compile(r"^\s*(?:\((?:[A-Za-z]|\d{1,3}|[ivxlcdmIVXLCDM]{1,8})\)|(?:\d{1,3}|[A-Za-z])[.)])\s*$")
 _DEFINITION_BODY_START_RE = re.compile(
     r"^\s*(?:means?|refers?\s+to|includes?|has\s+the\s+meaning|is\s+defined\s+as)\b",
     re.IGNORECASE,
@@ -103,6 +104,56 @@ def _merge_into_left(
         evidence=evidence,
         alternatives=[],
     )
+
+
+def _vertical_overlap_ratio(left: CanonicalElement, right: CanonicalElement) -> float:
+    overlap = max(0.0, min(float(left.bbox[3]), float(right.bbox[3])) - max(float(left.bbox[1]), float(right.bbox[1])))
+    denom = max(1.0, min(float(left.bbox[3]) - float(left.bbox[1]), float(right.bbox[3]) - float(right.bbox[1])))
+    return overlap / denom
+
+
+def _is_marker_only_fragment_pair(left: CanonicalElement, right: CanonicalElement) -> bool:
+    """Detect a list marker split from its same-line content by the layout engine."""
+    if left.type not in {"list_item", "subclause", "paragraph"}:
+        return False
+    if right.type not in {"list_item", "paragraph"}:
+        return False
+    if _MARKER_ONLY_RE.fullmatch(" ".join((left.text or "").split()).strip()) is None:
+        return False
+    if _has_fresh_marker(right.text):
+        return False
+    if not _shared_stage3_block(left, right):
+        return False
+    if _vertical_overlap_ratio(left, right) < 0.65:
+        return False
+    horizontal_gap = float(right.bbox[0]) - float(left.bbox[2])
+    if horizontal_gap < -3.0 or horizontal_gap > 48.0:
+        return False
+    return _font_compatible(left, right, tolerance=2.0)
+
+
+def _is_wrapped_heading_fragment(left: CanonicalElement, right: CanonicalElement) -> bool:
+    """Merge a single heading that the vendor split across adjacent lines/boxes."""
+    if left.type not in {"section_header", "group_header"} or right.type not in {"section_header", "group_header"}:
+        return False
+    if not _shared_stage3_block(left, right):
+        return False
+    if _has_fresh_marker(left.text) or _has_fresh_marker(right.text):
+        return False
+    if not _font_compatible(left, right, tolerance=1.0):
+        return False
+    gap = _vertical_gap(left, right)
+    if gap < -1.0 or gap > 9.0:
+        return False
+    if abs(float(left.bbox[0]) - float(right.bbox[0])) > 8.0:
+        return False
+    left_text = " ".join((left.text or "").split()).strip()
+    right_text = " ".join((right.text or "").split()).strip()
+    if not left_text or not right_text or _TERMINAL_BOUNDARY_RE.search(left_text):
+        return False
+    # Keep this intentionally narrow: wrapped headings are short label-like
+    # fragments, not two full prose sentences that happen to share a raw block.
+    return len(left_text.split()) <= 10 and len(right_text.split()) <= 6 and len((left_text + " " + right_text).split()) <= 14
 
 
 def _is_unmarked_body_continuation(
@@ -227,7 +278,35 @@ def reconcile_same_page_semantic_continuity(
                 left = page.elements[index]
                 right = page.elements[index + 1]
 
-                if _is_unmarked_body_continuation(left, right):
+                if _is_marker_only_fragment_pair(left, right):
+                    selected_type = "list_item" if left.type != "subclause" else "subclause"
+                    _merge_into_left(
+                        left,
+                        right,
+                        selected_type=selected_type,
+                        confidence=0.98,
+                        evidence=[
+                            "marker-only fragment and following content share the same Stage 3 text block",
+                            "fragments occupy the same visual row with a small horizontal gap",
+                            "following fragment has no fresh structural marker",
+                            "marker and content reconstructed as one enumerated semantic unit",
+                        ],
+                    )
+                elif _is_wrapped_heading_fragment(left, right):
+                    selected_type = "group_header" if "group_header" in {left.type, right.type} else "section_header"
+                    _merge_into_left(
+                        left,
+                        right,
+                        selected_type=selected_type,
+                        confidence=0.97,
+                        evidence=[
+                            "adjacent heading fragments share the same Stage 3 text block",
+                            "heading fragments align vertically with compatible typography",
+                            "neither fragment starts a new numbered/enumerated unit",
+                            "wrapped heading reconstructed as one semantic label",
+                        ],
+                    )
+                elif _is_unmarked_body_continuation(left, right):
                     selected_type = left.type
                     _merge_into_left(
                         left,

@@ -1,0 +1,352 @@
+{
+  "document_id": "485c4989-c300-45c8-ac06-79a59492bb5c",
+  "query": "When must a suspicious transaction be reported to FIED, and does the amount of the transaction affect the obligation to lodge an STR?",
+  "embedding_model": "BAAI/bge-m3",
+  "requested_device": "auto",
+  "resolved_device": "cuda",
+  "top_k": 10,
+  "candidate_k": 20,
+  "embedded_chunk_count": 284,
+  "total_chunk_count": 284,
+  "fusion_method": "reciprocal_rank_fusion",
+  "rrf_k": 60,
+  "dense_weight": 1.0,
+  "lexical_weight": 1.0,
+  "lexical_ranking_method": "postgresql_fts_term_coverage_then_ts_rank_cd",
+  "lexical_query_mode": "or_content_terms_v1",
+  "lexical_terms": [
+    "suspicious",
+    "transaction",
+    "reported",
+    "fied",
+    "amount",
+    "affect",
+    "obligation",
+    "lodge",
+    "str"
+  ],
+  "lexical_tsquery": "suspicious | transaction | reported | fied | amount | affect | obligation | lodge | str",
+  "hits": [
+    {
+      "rank": 1,
+      "chunk_id": "485c4989-c300-45c8-ac06-79a59492bb5c-c0149-324f72fd13",
+      "chunk_index": 149,
+      "semantic_type": "clause",
+      "fusion_score": 0.03252247488101534,
+      "dense_rank": 1,
+      "dense_score": 0.7506617456280158,
+      "dense_distance": 0.2493382543719842,
+      "dense_rrf_score": 0.01639344262295082,
+      "lexical_rank": 2,
+      "lexical_score": 3.3,
+      "lexical_matched_term_count": 7,
+      "lexical_term_coverage": 0.7777777777777778,
+      "lexical_rrf_score": 0.016129032258064516,
+      "text": "Section: PART V: SUSPICIOUS TRANSACTIONS > 11 REPORTING OF SUSPICIOUS TRANSACTIONS\n\n11.10 The fact that a STR may have been lodged with the FIED previously should not\npreclude the reporting institution from lodging a fresh STR as and when a new\nsuspicion arises.\n\n11.11 When required by FIED, a reporting institution must provide additional information\nand documentation and respond promptly to any further enquiries with regard to the\nSTR lodged.\n\n11.12 Where a reporting institution forms a suspicion of ML/TF/PF and reasonably believes\nthat performing the CDD process would tip off the customer, the reporting institution\nis permitted not to pursue the CDD process and is required to lodge a STR.\n\n11.13 The reporting institution must ensure that the compliance officer maintains a complete\nfile of all internal reports on suspicious transactions and STRs lodged with FIED\ntogether with the relevant supporting documentary evidence.\n\n11.14 The board of directors must ensure that the compliance officer has the necessary\nauthority, resources and support to discharge his obligation independently and\neffectively in complying with the reporting institution’s compliance policies and\nprocedures on AML/CFT/CPF, particularly on reporting suspicious transactions.\n\n11.15 The compliance officer has the sole discretion and independence to report suspicious\ntransactions.",
+      "content_text": "11.10 The fact that a STR may have been lodged with the FIED previously should not\npreclude the reporting institution from lodging a fresh STR as and when a new\nsuspicion arises.\n\n11.11 When required by FIED, a reporting institution must provide additional information\nand documentation and respond promptly to any further enquiries with regard to the\nSTR lodged.\n\n11.12 Where a reporting institution forms a suspicion of ML/TF/PF and reasonably believes\nthat performing the CDD process would tip off the customer, the reporting institution\nis permitted not to pursue the CDD process and is required to lodge a STR.\n\n11.13 The reporting institution must ensure that the compliance officer maintains a complete\nfile of all internal reports on suspicious transactions and STRs lodged with FIED\ntogether with the relevant supporting documentary evidence.\n\n11.14 The board of directors must ensure that the compliance officer has the necessary\nauthority, resources and support to discharge his obligation independently and\neffectively in complying with the reporting institution’s compliance policies and\nprocedures on AML/CFT/CPF, particularly on reporting suspicious transactions.\n\n11.15 The compliance officer has the sole discretion and independence to report suspicious\ntransactions.",
+      "token_count": 234,
+      "pages": [
+        56
+      ],
+      "section_path": [
+        "PART V: SUSPICIOUS TRANSACTIONS",
+        "11 REPORTING OF SUSPICIOUS TRANSACTIONS"
+      ],
+      "source_element_ids": [
+        "p56-e5",
+        "p56-e6",
+        "p56-e7",
+        "p56-e8",
+        "p56-e9",
+        "p56-e10"
+      ]
+    },
+    {
+      "rank": 2,
+      "chunk_id": "485c4989-c300-45c8-ac06-79a59492bb5c-c0147-4ce9ccc098",
+      "chunk_index": 147,
+      "semantic_type": "clause",
+      "fusion_score": 0.032266458495966696,
+      "dense_rank": 3,
+      "dense_score": 0.7110648499649942,
+      "dense_distance": 0.2889351500350058,
+      "dense_rrf_score": 0.015873015873015872,
+      "lexical_rank": 1,
+      "lexical_score": 5.0,
+      "lexical_matched_term_count": 7,
+      "lexical_term_coverage": 0.7777777777777778,
+      "lexical_rrf_score": 0.01639344262295082,
+      "text": "Section: PART V: SUSPICIOUS TRANSACTIONS > 11 REPORTING OF SUSPICIOUS TRANSACTIONS\n\n11.1 A reporting institution must establish in place strong mechanisms for reporting\nsuspicious transactions, including having an appointed AML/CFT/CPF compliance\nofficer, and where appropriate, having a unit primarily responsible for complying with\nthe AML/CFT/CPF requirements on reporting of suspicious transactions.\n\n11.2 A reporting institution must also ensure that the suspicious transaction reporting\nmechanism is operated in a secured environment to maintain the confidentiality and\npreservation of secrecy.\n\n11.3 A reporting institution must clarify the economic background and purpose of any\ntransaction or business relationship if it appears unusual in relation to the reporting\ninstitution’s knowledge of the customer, or if the economic purpose or legality of the\ntransaction is not immediately clear. Special attention should also be paid to all\ncomplex and unusual patterns of transaction.\n\n11.4 A reporting institution must also consider whether the transactions involve a number\nof factors which when taken together may raise a suspicion that the transactions may\nbe connected with certain unlawful activities.\n\n11.6 If in bringing together all relevant factors, a reporting institution has reasonable\ngrounds to suspect that the transaction or the funds utilised involve proceeds of an\nunlawful activity or is related to terrorism financing and proliferation financing, such\ntransaction should be reported immediately to the FIED through lodgement of a STR.\n\n11.6A A reporting institution is required to have in place policies on the duration upon which\ninternal suspicious transaction reports must be reviewed by the reporting institution,\nincluding the circumstances when the timeframe can be exceeded, where necessary.\n\n11.7 Where the reporting institution decides that there are no reasonable grounds for\nsuspicion to warrant a lodgement of a STR, the reporting institution must establish the\ngrounds for such decision. In this regard, the compliance officer must ensure that the\nreporting institution’s decision together with all supporting documentary evidence is\nrecorded and maintained.\n\n11.8 A reporting institution is required to report all suspicious transactions, including\nattempted transactions, regardless of the amount of the transaction. A reporting\ninstitution should be aware that in some cases, suspicion may be formed after a\nconsiderable time from the date of the transaction, in view of subsequent additional\ninformation.\n\n11.9 STRs must be lodged to the FIED in accordance with the method as provided in\nAppendix C herein.",
+      "content_text": "11.1 A reporting institution must establish in place strong mechanisms for reporting\nsuspicious transactions, including having an appointed AML/CFT/CPF compliance\nofficer, and where appropriate, having a unit primarily responsible for complying with\nthe AML/CFT/CPF requirements on reporting of suspicious transactions.\n\n11.2 A reporting institution must also ensure that the suspicious transaction reporting\nmechanism is operated in a secured environment to maintain the confidentiality and\npreservation of secrecy.\n\n11.3 A reporting institution must clarify the economic background and purpose of any\ntransaction or business relationship if it appears unusual in relation to the reporting\ninstitution’s knowledge of the customer, or if the economic purpose or legality of the\ntransaction is not immediately clear. Special attention should also be paid to all\ncomplex and unusual patterns of transaction.\n\n11.4 A reporting institution must also consider whether the transactions involve a number\nof factors which when taken together may raise a suspicion that the transactions may\nbe connected with certain unlawful activities.\n\n11.6 If in bringing together all relevant factors, a reporting institution has reasonable\ngrounds to suspect that the transaction or the funds utilised involve proceeds of an\nunlawful activity or is related to terrorism financing and proliferation financing, such\ntransaction should be reported immediately to the FIED through lodgement of a STR.\n\n11.6A A reporting institution is required to have in place policies on the duration upon which\ninternal suspicious transaction reports must be reviewed by the reporting institution,\nincluding the circumstances when the timeframe can be exceeded, where necessary.\n\n11.7 Where the reporting institution decides that there are no reasonable grounds for\nsuspicion to warrant a lodgement of a STR, the reporting institution must establish the\ngrounds for such decision. In this regard, the compliance officer must ensure that the\nreporting institution’s decision together with all supporting documentary evidence is\nrecorded and maintained.\n\n11.8 A reporting institution is required to report all suspicious transactions, including\nattempted transactions, regardless of the amount of the transaction. A reporting\ninstitution should be aware that in some cases, suspicion may be formed after a\nconsiderable time from the date of the transaction, in view of subsequent additional\ninformation.\n\n11.9 STRs must be lodged to the FIED in accordance with the method as provided in\nAppendix C herein.",
+      "token_count": 442,
+      "pages": [
+        55,
+        56
+      ],
+      "section_path": [
+        "PART V: SUSPICIOUS TRANSACTIONS",
+        "11 REPORTING OF SUSPICIOUS TRANSACTIONS"
+      ],
+      "source_element_ids": [
+        "p55-e3",
+        "p55-e4",
+        "p55-e5",
+        "p55-e6",
+        "p55-e13",
+        "p56-e1",
+        "p56-e2",
+        "p56-e3",
+        "p56-e4"
+      ]
+    },
+    {
+      "rank": 3,
+      "chunk_id": "485c4989-c300-45c8-ac06-79a59492bb5c-c0151-26ad315899",
+      "chunk_index": 151,
+      "semantic_type": "list_item",
+      "fusion_score": 0.03128054740957967,
+      "dense_rank": 2,
+      "dense_score": 0.7176691079834399,
+      "dense_distance": 0.28233089201656014,
+      "dense_rrf_score": 0.016129032258064516,
+      "lexical_rank": 6,
+      "lexical_score": 1.3000001,
+      "lexical_matched_term_count": 5,
+      "lexical_term_coverage": 0.5555555555555556,
+      "lexical_rrf_score": 0.015151515151515152,
+      "text": "Section: PART V: SUSPICIOUS TRANSACTIONS > 11 REPORTING OF SUSPICIOUS TRANSACTIONS\n\n(a) analysing identified suspicious transactions;\n\n(b) reviewing regularly all internal reports on suspicious transactions or ad hoc\nreports made by employees; and\n\n(c) lodging of STRs to the FIED.",
+      "content_text": "(a) analysing identified suspicious transactions;\n\n(b) reviewing regularly all internal reports on suspicious transactions or ad hoc\nreports made by employees; and\n\n(c) lodging of STRs to the FIED.",
+      "token_count": 51,
+      "pages": [
+        57
+      ],
+      "section_path": [
+        "PART V: SUSPICIOUS TRANSACTIONS",
+        "11 REPORTING OF SUSPICIOUS TRANSACTIONS"
+      ],
+      "source_element_ids": [
+        "p57-e1",
+        "p57-e2",
+        "p57-e3"
+      ]
+    },
+    {
+      "rank": 4,
+      "chunk_id": "485c4989-c300-45c8-ac06-79a59492bb5c-c0231-c2c0877b53",
+      "chunk_index": 231,
+      "semantic_type": "clause",
+      "fusion_score": 0.031009615384615385,
+      "dense_rank": 5,
+      "dense_score": 0.6737028153296929,
+      "dense_distance": 0.3262971846703071,
+      "dense_rrf_score": 0.015384615384615385,
+      "lexical_rank": 4,
+      "lexical_score": 0.8,
+      "lexical_matched_term_count": 6,
+      "lexical_term_coverage": 0.6666666666666666,
+      "lexical_rrf_score": 0.015625,
+      "text": "Section: APPENDIX C\nClause: 1\nGroup: Submission of Suspicious Transaction Report (STR)\n\n1. A STR should be lodged with the FIED using the prescribed STR form which can\nbe downloaded via the BNM’s website.",
+      "content_text": "1. A STR should be lodged with the FIED using the prescribed STR form which can\nbe downloaded via the BNM’s website.",
+      "token_count": 43,
+      "pages": [
+        85
+      ],
+      "section_path": [
+        "APPENDIX C"
+      ],
+      "source_element_ids": [
+        "p85-e3"
+      ]
+    },
+    {
+      "rank": 5,
+      "chunk_id": "485c4989-c300-45c8-ac06-79a59492bb5c-c0152-d3eb78134e",
+      "chunk_index": 152,
+      "semantic_type": "clause",
+      "fusion_score": 0.029910714285714284,
+      "dense_rank": 4,
+      "dense_score": 0.6941162736977285,
+      "dense_distance": 0.30588372630227145,
+      "dense_rrf_score": 0.015625,
+      "lexical_rank": 10,
+      "lexical_score": 0.8,
+      "lexical_matched_term_count": 5,
+      "lexical_term_coverage": 0.5555555555555556,
+      "lexical_rrf_score": 0.014285714285714285,
+      "text": "Section: PART V: SUSPICIOUS TRANSACTIONS > 11 REPORTING OF SUSPICIOUS TRANSACTIONS\nClause: 11.17\n\n11.17 For the avoidance of doubt, unless permitted by law, a reporting institution and its\ndirectors, officers and employees are prohibited from disclosing the fact that a STR or\nrelated information is being filed with the FIED.",
+      "content_text": "11.17 For the avoidance of doubt, unless permitted by law, a reporting institution and its\ndirectors, officers and employees are prohibited from disclosing the fact that a STR or\nrelated information is being filed with the FIED.",
+      "token_count": 61,
+      "pages": [
+        57
+      ],
+      "section_path": [
+        "PART V: SUSPICIOUS TRANSACTIONS",
+        "11 REPORTING OF SUSPICIOUS TRANSACTIONS"
+      ],
+      "source_element_ids": [
+        "p57-e4"
+      ]
+    },
+    {
+      "rank": 6,
+      "chunk_id": "485c4989-c300-45c8-ac06-79a59492bb5c-c0244-51c99b8239",
+      "chunk_index": 244,
+      "semantic_type": "clause",
+      "fusion_score": 0.029631255487269532,
+      "dense_rank": 7,
+      "dense_score": 0.6576255167945924,
+      "dense_distance": 0.34237448320540764,
+      "dense_rrf_score": 0.014925373134328358,
+      "lexical_rank": 8,
+      "lexical_score": 1.1,
+      "lexical_matched_term_count": 5,
+      "lexical_term_coverage": 0.5555555555555556,
+      "lexical_rrf_score": 0.014705882352941176,
+      "text": "Section: APPENDIX D > Reporting requirements\nGroup: Guidance on the Implementation of Targeted Financial Sanction in\nRelation to Terrorism Financing\n\n5.2 For the purpose of submitting suspicious transaction report to the FIED, a reporting\ninstitution–\n\n(a)should include details and analysis of the CDD, ongoing CDD information,\nactivities of transactions of the listed entity or related parties; and\n\n(b)is encouraged to search, examine and analyse past financial activities of\ncustomers and related parties with a name match that have closed their accounts\nwith the reporting institution.\n\n5.3 A reporting institution is also under an obligation to report to the SC periodically every\nsix months for both lists on frozen funds, properties or accounts of customers that\nare listed.",
+      "content_text": "5.2 For the purpose of submitting suspicious transaction report to the FIED, a reporting\ninstitution–\n\n(a)should include details and analysis of the CDD, ongoing CDD information,\nactivities of transactions of the listed entity or related parties; and\n\n(b)is encouraged to search, examine and analyse past financial activities of\ncustomers and related parties with a name match that have closed their accounts\nwith the reporting institution.\n\n5.3 A reporting institution is also under an obligation to report to the SC periodically every\nsix months for both lists on frozen funds, properties or accounts of customers that\nare listed.",
+      "token_count": 138,
+      "pages": [
+        90
+      ],
+      "section_path": [
+        "APPENDIX D",
+        "Reporting requirements"
+      ],
+      "source_element_ids": [
+        "p90-e2",
+        "p90-e3",
+        "p90-e4",
+        "p90-e5"
+      ]
+    },
+    {
+      "rank": 7,
+      "chunk_id": "485c4989-c300-45c8-ac06-79a59492bb5c-c0154-efe91f5828",
+      "chunk_index": 154,
+      "semantic_type": "clause",
+      "fusion_score": 0.029211087420042643,
+      "dense_rank": 10,
+      "dense_score": 0.6464489138515758,
+      "dense_distance": 0.35355108614842423,
+      "dense_rrf_score": 0.014285714285714285,
+      "lexical_rank": 7,
+      "lexical_score": 1.1,
+      "lexical_matched_term_count": 5,
+      "lexical_term_coverage": 0.5555555555555556,
+      "lexical_rrf_score": 0.014925373134328358,
+      "text": "Section: PART V: SUSPICIOUS TRANSACTIONS > 12 CONFIDENTIALITY OF REPORTING\n\n12.1 It shall be an offence to disclose to anyone any information that a suspicion has been\nformed or that information or a STR has been communicated to the FIED and the SC\nor to infer that any of these have occurred.\n\n12.2 A person does not commit an offence under paragraph 12.1 above, where such a\ndisclosure is made pursuant to the provisions of the AMLA.\n\n12.3 A reporting institution is required to establish proper policies and procedures to\nensure effective controls when considering disclosures of report or related information\nunder section 14A(3) of the AMLA.\n\n12.4 The reporting institution must establish parameters on the circumstances where\ndisclosure is required, types of report or related information that may be disclosed\nand to whom it may be disclosed under section 14A(3) of the AMLA. All disclosures\nmade pursuant to these parameters must be properly documented with reasonable\njustification.\n\n12.5 The compliance officer must ensure that the transmission of the report or related\ninformation must be conducted in a controlled environment and that confidentiality\nof the report or related information is safeguarded to avoid any leakage to an\nunauthorised third part.",
+      "content_text": "12.1 It shall be an offence to disclose to anyone any information that a suspicion has been\nformed or that information or a STR has been communicated to the FIED and the SC\nor to infer that any of these have occurred.\n\n12.2 A person does not commit an offence under paragraph 12.1 above, where such a\ndisclosure is made pursuant to the provisions of the AMLA.\n\n12.3 A reporting institution is required to establish proper policies and procedures to\nensure effective controls when considering disclosures of report or related information\nunder section 14A(3) of the AMLA.\n\n12.4 The reporting institution must establish parameters on the circumstances where\ndisclosure is required, types of report or related information that may be disclosed\nand to whom it may be disclosed under section 14A(3) of the AMLA. All disclosures\nmade pursuant to these parameters must be properly documented with reasonable\njustification.\n\n12.5 The compliance officer must ensure that the transmission of the report or related\ninformation must be conducted in a controlled environment and that confidentiality\nof the report or related information is safeguarded to avoid any leakage to an\nunauthorised third part.",
+      "token_count": 228,
+      "pages": [
+        58
+      ],
+      "section_path": [
+        "PART V: SUSPICIOUS TRANSACTIONS",
+        "12 CONFIDENTIALITY OF REPORTING"
+      ],
+      "source_element_ids": [
+        "p58-e2",
+        "p58-e3",
+        "p58-e4",
+        "p58-e5",
+        "p58-e6"
+      ]
+    },
+    {
+      "rank": 8,
+      "chunk_id": "485c4989-c300-45c8-ac06-79a59492bb5c-c0127-f692bde454",
+      "chunk_index": 127,
+      "semantic_type": "clause",
+      "fusion_score": 0.028850145288501453,
+      "dense_rank": 6,
+      "dense_score": 0.6632482014150511,
+      "dense_distance": 0.33675179858494886,
+      "dense_rrf_score": 0.015151515151515152,
+      "lexical_rank": 13,
+      "lexical_score": 0.6,
+      "lexical_matched_term_count": 5,
+      "lexical_term_coverage": 0.5555555555555556,
+      "lexical_rrf_score": 0.0136986301369863,
+      "text": "Section: PART III: CUSTOMER DUE DILIGENCE > 8. CUSTOMER DUE DILIGENCE (CDD) > 8.8 Ongoing Due Diligence\nClause: 8.8.5\nGroup: Monitoring of accounts\n\n8.8.5 A reporting institution should consider reclassifying a customer as higher risk and\nconsider lodging a STR with the FIED under the following circumstances:\n\n(a)Following initial acceptance of the customer, the pattern of account activity\nof the customer is inconsistent and does not fit in with the reporting\ninstitution’s profile knowledge of the customer;\n\n(b)The transaction appears unusual and not in line with the customer’s normal\ntrading pattern; or\n\n(c)There is a material change in the way the account is operated.",
+      "content_text": "8.8.5 A reporting institution should consider reclassifying a customer as higher risk and\nconsider lodging a STR with the FIED under the following circumstances:\n\n(a)Following initial acceptance of the customer, the pattern of account activity\nof the customer is inconsistent and does not fit in with the reporting\ninstitution’s profile knowledge of the customer;\n\n(b)The transaction appears unusual and not in line with the customer’s normal\ntrading pattern; or\n\n(c)There is a material change in the way the account is operated.",
+      "token_count": 139,
+      "pages": [
+        46
+      ],
+      "section_path": [
+        "PART III: CUSTOMER DUE DILIGENCE",
+        "8. CUSTOMER DUE DILIGENCE (CDD)",
+        "8.8 Ongoing Due Diligence"
+      ],
+      "source_element_ids": [
+        "p46-e9",
+        "p46-e10",
+        "p46-e11",
+        "p46-e12"
+      ]
+    },
+    {
+      "rank": 9,
+      "chunk_id": "485c4989-c300-45c8-ac06-79a59492bb5c-c0037-80d9ee8daf",
+      "chunk_index": 37,
+      "semantic_type": "definition",
+      "fusion_score": 0.028594771241830064,
+      "dense_rank": 8,
+      "dense_score": 0.6571489981235268,
+      "dense_distance": 0.3428510018764732,
+      "dense_rrf_score": 0.014705882352941176,
+      "lexical_rank": 12,
+      "lexical_score": 0.6,
+      "lexical_matched_term_count": 5,
+      "lexical_term_coverage": 0.5555555555555556,
+      "lexical_rrf_score": 0.013888888888888888,
+      "text": "Section: PART I: INTRODUCTION AND APPLICABILITY > 3. DEFINITIONS\nDefinition: STR\n\nSTR\n\nmeans a Suspicious Transaction Report, to be submitted to FIED as in Appendix C .",
+      "content_text": "STR\n\nmeans a Suspicious Transaction Report, to be submitted to FIED as in Appendix C .",
+      "token_count": 32,
+      "pages": [
+        14
+      ],
+      "section_path": [
+        "PART I: INTRODUCTION AND APPLICABILITY",
+        "3. DEFINITIONS"
+      ],
+      "source_element_ids": [
+        "p14-e4-r3-term",
+        "p14-e4-r3-definition"
+      ]
+    },
+    {
+      "rank": 10,
+      "chunk_id": "485c4989-c300-45c8-ac06-79a59492bb5c-c0175-9774b5ede3",
+      "chunk_index": 175,
+      "semantic_type": "clause",
+      "fusion_score": 0.027650648360030512,
+      "dense_rank": 9,
+      "dense_score": 0.6532692130483135,
+      "dense_distance": 0.34673078695168646,
+      "dense_rrf_score": 0.014492753623188406,
+      "lexical_rank": 16,
+      "lexical_score": 0.8,
+      "lexical_matched_term_count": 4,
+      "lexical_term_coverage": 0.4444444444444444,
+      "lexical_rrf_score": 0.013157894736842105,
+      "text": "Section: PART VIII: COMBATING PROLIFERATION FINANCING > 19. REPORTING REQUIREMENTS\n\n19.4 The form for periodic reporting to the SC is set out in Appendix J.\n\n19.5 A reporting institution must submit a STR to the FIED in the following circumstances:\n\n(a) In the event of positive name matches arising from ongoing screening of their\ncustomer database involving designated person or person identified as related\nparty related to the designated person; and\n\n(b) Where there is an attempted transaction by any of the designated person or its\nrelated party.\n\n19.6 The details on the lodgement of STR with FIED are set out in Appendix C.",
+      "content_text": "19.4 The form for periodic reporting to the SC is set out in Appendix J.\n\n19.5 A reporting institution must submit a STR to the FIED in the following circumstances:\n\n(a) In the event of positive name matches arising from ongoing screening of their\ncustomer database involving designated person or person identified as related\nparty related to the designated person; and\n\n(b) Where there is an attempted transaction by any of the designated person or its\nrelated party.\n\n19.6 The details on the lodgement of STR with FIED are set out in Appendix C.",
+      "token_count": 122,
+      "pages": [
+        66
+      ],
+      "section_path": [
+        "PART VIII: COMBATING PROLIFERATION FINANCING",
+        "19. REPORTING REQUIREMENTS"
+      ],
+      "source_element_ids": [
+        "p66-e7",
+        "p66-e8",
+        "p66-e9",
+        "p66-e10",
+        "p66-e11"
+      ]
+    }
+  ]
+}

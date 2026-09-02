@@ -1,0 +1,385 @@
+{
+  "document_id": "485c4989-c300-45c8-ac06-79a59492bb5c",
+  "query": "What is a nominee director, and does holding that role make the nominee director the beneficial owner of a legal person?",
+  "embedding_model": "BAAI/bge-m3",
+  "embedding_requested_device": "auto",
+  "embedding_resolved_device": "cuda",
+  "reranker_model": "BAAI/bge-reranker-v2-m3",
+  "reranker_requested_device": "auto",
+  "reranker_resolved_device": "cuda",
+  "reranker_batch_size": 2,
+  "reranker_max_length": 1024,
+  "top_k": 10,
+  "candidate_k": 20,
+  "candidate_union_count": 26,
+  "embedded_chunk_count": 284,
+  "total_chunk_count": 284,
+  "candidate_strategy": "dense_lexical_union",
+  "ranking_method": "cross_encoder",
+  "fusion_method": "reciprocal_rank_fusion_trace",
+  "rrf_k": 60,
+  "dense_weight": 1.0,
+  "lexical_weight": 1.0,
+  "lexical_ranking_method": "postgresql_fts_term_coverage_then_ts_rank_cd",
+  "lexical_query_mode": "or_content_terms_v1",
+  "lexical_terms": [
+    "nominee",
+    "director",
+    "holding",
+    "role",
+    "make",
+    "beneficial",
+    "owner",
+    "legal",
+    "person"
+  ],
+  "lexical_tsquery": "nominee | director | holding | role | make | beneficial | owner | legal | person",
+  "hits": [
+    {
+      "rank": 1,
+      "chunk_id": "485c4989-c300-45c8-ac06-79a59492bb5c-c0029-974710badf",
+      "chunk_index": 29,
+      "semantic_type": "definition",
+      "reranker_score": 0.9978179931640625,
+      "hybrid_candidate_rank": 1,
+      "fusion_score": 0.031544957774465976,
+      "dense_rank": 1,
+      "dense_score": 0.7267966487049061,
+      "dense_distance": 0.2732033512950939,
+      "dense_rrf_score": 0.01639344262295082,
+      "lexical_rank": 6,
+      "lexical_score": 1.2,
+      "lexical_matched_term_count": 6,
+      "lexical_term_coverage": 0.6666666666666666,
+      "lexical_rrf_score": 0.015151515151515152,
+      "text": "Section: PART I: INTRODUCTION AND APPLICABILITY > 3. DEFINITIONS\nDefinition: nominee director\n\nnominee director\n\nmeans an individual or legal entity that routinely exercises the functions of the director in the company on behalf of and subject to the direct or indirect instructions of the nominator. A nominee director is never the beneficial owner of a legal person.",
+      "content_text": "nominee director\n\nmeans an individual or legal entity that routinely exercises the functions of the director in the company on behalf of and subject to the direct or indirect instructions of the nominator. A nominee director is never the beneficial owner of a legal person.",
+      "token_count": 63,
+      "pages": [
+        12
+      ],
+      "section_path": [
+        "PART I: INTRODUCTION AND APPLICABILITY",
+        "3. DEFINITIONS"
+      ],
+      "source_element_ids": [
+        "p12-e6-r1-term",
+        "p12-e6-r1-definition"
+      ]
+    },
+    {
+      "rank": 2,
+      "chunk_id": "485c4989-c300-45c8-ac06-79a59492bb5c-c0030-201f15c668",
+      "chunk_index": 30,
+      "semantic_type": "definition",
+      "reranker_score": 0.8082047700881958,
+      "hybrid_candidate_rank": 2,
+      "fusion_score": 0.031054405392392875,
+      "dense_rank": 2,
+      "dense_score": 0.6279347760716225,
+      "dense_distance": 0.3720652239283775,
+      "dense_rrf_score": 0.016129032258064516,
+      "lexical_rank": 7,
+      "lexical_score": 1.1,
+      "lexical_matched_term_count": 6,
+      "lexical_term_coverage": 0.6666666666666666,
+      "lexical_rrf_score": 0.014925373134328358,
+      "text": "Section: PART I: INTRODUCTION AND APPLICABILITY > 3. DEFINITIONS\nDefinition: nominee shareholder\n\nnominee shareholder\n\nmeans an individual or legal person that exercises the associated voting rights according to the instructions of the nominator and/or receives dividends on behalf of the nominator. A nominee shareholder is never the beneficial owner of a legal person based on the shares it holds as a nominee.",
+      "content_text": "nominee shareholder\n\nmeans an individual or legal person that exercises the associated voting rights according to the instructions of the nominator and/or receives dividends on behalf of the nominator. A nominee shareholder is never the beneficial owner of a legal person based on the shares it holds as a nominee.",
+      "token_count": 70,
+      "pages": [
+        12
+      ],
+      "section_path": [
+        "PART I: INTRODUCTION AND APPLICABILITY",
+        "3. DEFINITIONS"
+      ],
+      "source_element_ids": [
+        "p12-e7-r1-term",
+        "p12-e7-r1-definition"
+      ]
+    },
+    {
+      "rank": 3,
+      "chunk_id": "485c4989-c300-45c8-ac06-79a59492bb5c-c0264-8a6eead80a",
+      "chunk_index": 264,
+      "semantic_type": "table",
+      "reranker_score": 0.7491699457168579,
+      "hybrid_candidate_rank": 4,
+      "fusion_score": 0.03047794966520434,
+      "dense_rank": 11,
+      "dense_score": 0.5131747722625732,
+      "dense_distance": 0.48682522773742676,
+      "dense_rrf_score": 0.014084507042253521,
+      "lexical_rank": 1,
+      "lexical_score": 1.3000001,
+      "lexical_matched_term_count": 7,
+      "lexical_term_coverage": 0.7777777777777778,
+      "lexical_rrf_score": 0.01639344262295082,
+      "text": "Section: APPENDIX E > Identification\nGroup: Methods to identify beneficial owners\n\nType of legal person/legal arrangement | Relationships to be determined, if any\nCompanies (private and public) | • Shareholders • Senior management • Joint venture agreement • Persons with voting rights • Nominee directors/shadow directors • Persons with power to appoint or remove directors • Other persons with interest within the company\nPartnership | • Partners within the partnership • Other natural persons with effective control over the partnership\nGovernment linked companies, state-owned enterprises etc | • Persons authorised in the government to exercise or influence decision making on the GLC • Other persons who exercise or influence decisions over the GLC\nClubs/societies/foundations/charities | • Office bearer (e.g. president, secretary,\n/NGOs/cooperatives | treasurer or other committee)\n | • Senior management/management team",
+      "content_text": "Type of legal person/legal arrangement | Relationships to be determined, if any\nCompanies (private and public) | • Shareholders • Senior management • Joint venture agreement • Persons with voting rights • Nominee directors/shadow directors • Persons with power to appoint or remove directors • Other persons with interest within the company\nPartnership | • Partners within the partnership • Other natural persons with effective control over the partnership\nGovernment linked companies, state-owned enterprises etc | • Persons authorised in the government to exercise or influence decision making on the GLC • Other persons who exercise or influence decisions over the GLC\nClubs/societies/foundations/charities | • Office bearer (e.g. president, secretary,\n/NGOs/cooperatives | treasurer or other committee)\n | • Senior management/management team",
+      "token_count": 162,
+      "pages": [
+        97,
+        98
+      ],
+      "section_path": [
+        "APPENDIX E",
+        "Identification"
+      ],
+      "source_element_ids": [
+        "p97-e3",
+        "p98-e1"
+      ]
+    },
+    {
+      "rank": 4,
+      "chunk_id": "485c4989-c300-45c8-ac06-79a59492bb5c-c0027-252e1736f2",
+      "chunk_index": 27,
+      "semantic_type": "definition",
+      "reranker_score": 0.6599478721618652,
+      "hybrid_candidate_rank": 11,
+      "fusion_score": 0.028373015873015873,
+      "dense_rank": 3,
+      "dense_score": 0.6168328155974867,
+      "dense_distance": 0.3831671844025133,
+      "dense_rrf_score": 0.015873015873015872,
+      "lexical_rank": 20,
+      "lexical_score": 0.5,
+      "lexical_matched_term_count": 4,
+      "lexical_term_coverage": 0.4444444444444444,
+      "lexical_rrf_score": 0.0125,
+      "text": "Section: PART I: INTRODUCTION AND APPLICABILITY > 3. DEFINITIONS\nDefinition: nominator\n\nnominator\n\nmeans an individual (or group of individuals) or legal person that issues instructions (directly or indirectly) to a nominee to act on its behalf in the capacity of a director or a shareholder, also sometimes referred to as a ‘shadow director’ or ‘silent partner’.",
+      "content_text": "nominator\n\nmeans an individual (or group of individuals) or legal person that issues instructions (directly or indirectly) to a nominee to act on its behalf in the capacity of a director or a shareholder, also sometimes referred to as a ‘shadow director’ or ‘silent partner’.",
+      "token_count": 70,
+      "pages": [
+        12
+      ],
+      "section_path": [
+        "PART I: INTRODUCTION AND APPLICABILITY",
+        "3. DEFINITIONS"
+      ],
+      "source_element_ids": [
+        "p12-e4-r1-term",
+        "p12-e4-r1-definition"
+      ]
+    },
+    {
+      "rank": 5,
+      "chunk_id": "485c4989-c300-45c8-ac06-79a59492bb5c-c0011-01b2d194b2",
+      "chunk_index": 11,
+      "semantic_type": "definition",
+      "reranker_score": 0.34875011444091797,
+      "hybrid_candidate_rank": 6,
+      "fusion_score": 0.029857397504456328,
+      "dense_rank": 6,
+      "dense_score": 0.5657404065132141,
+      "dense_distance": 0.4342595934867859,
+      "dense_rrf_score": 0.015151515151515152,
+      "lexical_rank": 8,
+      "lexical_score": 2.9,
+      "lexical_matched_term_count": 5,
+      "lexical_term_coverage": 0.5555555555555556,
+      "lexical_rrf_score": 0.014705882352941176,
+      "text": "Section: PART I: INTRODUCTION AND APPLICABILITY > 3. DEFINITIONS\nDefinition: beneficial owner\n\nbeneficial owner\n\nin the context of legal person, means any natural person who ultimately owns or controls a customer and/or the natural person on whose behalf a transaction is being conducted. It also includes the natural person who exercises ultimate effective control over a legal person.\nReference to “ultimately owns or controls” and “ultimate effective control” refer to situations in which ownership or control is exercised through a chain of ownership or by means of control other than direct control.\nin the context of legal arrangements, beneficial owner includes: (a) the settlor(s); (b) the trustee(s); (c) the protector(s) (if any); (d) each beneficiary, or where applicable, the class of beneficiaries and objects of a power; and (e) any other natural person(s) exercising ultimate effective control over the legal arrangement. In the case of a legal arrangement similar to an express trust, beneficial owner refers to the natural person(s) holding an equivalent position to those referred above. When the trustee and any other party to the legal arrangement is a legal person, the beneficial owner of that legal person should be identified.\nReference to “ultimate effective control” over trusts or similar legal arrangements includes situations in which ownership or control is exercised through a chain of ownership or control.",
+      "content_text": "beneficial owner\n\nin the context of legal person, means any natural person who ultimately owns or controls a customer and/or the natural person on whose behalf a transaction is being conducted. It also includes the natural person who exercises ultimate effective control over a legal person.\nReference to “ultimately owns or controls” and “ultimate effective control” refer to situations in which ownership or control is exercised through a chain of ownership or by means of control other than direct control.\nin the context of legal arrangements, beneficial owner includes: (a) the settlor(s); (b) the trustee(s); (c) the protector(s) (if any); (d) each beneficiary, or where applicable, the class of beneficiaries and objects of a power; and (e) any other natural person(s) exercising ultimate effective control over the legal arrangement. In the case of a legal arrangement similar to an express trust, beneficial owner refers to the natural person(s) holding an equivalent position to those referred above. When the trustee and any other party to the legal arrangement is a legal person, the beneficial owner of that legal person should be identified.\nReference to “ultimate effective control” over trusts or similar legal arrangements includes situations in which ownership or control is exercised through a chain of ownership or control.",
+      "token_count": 277,
+      "pages": [
+        9
+      ],
+      "section_path": [
+        "PART I: INTRODUCTION AND APPLICABILITY",
+        "3. DEFINITIONS"
+      ],
+      "source_element_ids": [
+        "p9-e5",
+        "p9-e6",
+        "p9-e7",
+        "p9-e8",
+        "p9-e9"
+      ]
+    },
+    {
+      "rank": 6,
+      "chunk_id": "485c4989-c300-45c8-ac06-79a59492bb5c-c0262-dc090ebe7a",
+      "chunk_index": 262,
+      "semantic_type": "table",
+      "reranker_score": 0.19759903848171234,
+      "hybrid_candidate_rank": 17,
+      "fusion_score": 0.014285714285714285,
+      "dense_rank": null,
+      "dense_score": null,
+      "dense_distance": null,
+      "dense_rrf_score": 0.0,
+      "lexical_rank": 10,
+      "lexical_score": 1.8000001,
+      "lexical_matched_term_count": 5,
+      "lexical_term_coverage": 0.5555555555555556,
+      "lexical_rrf_score": 0.014285714285714285,
+      "text": "Section: APPENDIX E > Identification\nGroup: Methods to identify beneficial owners\n\nType of legal person/ legal arrangement | Information relating to beneficial ownership | Source documents\nPrivate and public companies/ Bodies corporate/ Partnership/ | Legal vehicle (e.g. corporate, partnership etc) | • Certificate of incorporation • Certificate of registration • Company constitution • Minutes of Board meeting\nGovernment linked companies (GLC) | • Shareholding including information on parent company and subsidiaries information • Direct or indirect ownership • Relationship to conglomerates/ corporate groups • Company tree | • Director’s and shareholder’s resolution • Partnership agreement • Appointment/ Authorisation letter • Senior management list • Company’s annual report and annual return • Joint venture agreement, shareholder’s agreements and other related agreements • Director nomination agreement • Register of member including beneficial owner • Any other source documents that sufficiently identifies the beneficial owner\nTrust arrangement | • Parties to the trust • Persons involved in the trust establishment | • Trust deed • Trust registration document\nType of legal person/ legal arrangement | Information relating to beneficial ownership | Source documents\n | • Administrator of the trust • Type of trust | \nCooperatives | • Management of the cooperatives • Rules governing the cooperatives | • Registration form of the Cooperatives • By-laws of the cooperative • Minutes of General Meeting\nClubs/ Societies/ Foundations/ Charities/ NGOs | • Rules governing the clubs/ societies/ foundations/ charities/ NGO | • Constitution/ charter/ rules • Registration form • Minutes of meeting • List of members of committee",
+      "content_text": "Type of legal person/ legal arrangement | Information relating to beneficial ownership | Source documents\nPrivate and public companies/ Bodies corporate/ Partnership/ | Legal vehicle (e.g. corporate, partnership etc) | • Certificate of incorporation • Certificate of registration • Company constitution • Minutes of Board meeting\nGovernment linked companies (GLC) | • Shareholding including information on parent company and subsidiaries information • Direct or indirect ownership • Relationship to conglomerates/ corporate groups • Company tree | • Director’s and shareholder’s resolution • Partnership agreement • Appointment/ Authorisation letter • Senior management list • Company’s annual report and annual return • Joint venture agreement, shareholder’s agreements and other related agreements • Director nomination agreement • Register of member including beneficial owner • Any other source documents that sufficiently identifies the beneficial owner\nTrust arrangement | • Parties to the trust • Persons involved in the trust establishment | • Trust deed • Trust registration document\nType of legal person/ legal arrangement | Information relating to beneficial ownership | Source documents\n | • Administrator of the trust • Type of trust | \nCooperatives | • Management of the cooperatives • Rules governing the cooperatives | • Registration form of the Cooperatives • By-laws of the cooperative • Minutes of General Meeting\nClubs/ Societies/ Foundations/ Charities/ NGOs | • Rules governing the clubs/ societies/ foundations/ charities/ NGO | • Constitution/ charter/ rules • Registration form • Minutes of meeting • List of members of committee",
+      "token_count": 291,
+      "pages": [
+        96,
+        97
+      ],
+      "section_path": [
+        "APPENDIX E",
+        "Identification"
+      ],
+      "source_element_ids": [
+        "p96-e1",
+        "p97-e1"
+      ]
+    },
+    {
+      "rank": 7,
+      "chunk_id": "485c4989-c300-45c8-ac06-79a59492bb5c-c0257-818930868d",
+      "chunk_index": 257,
+      "semantic_type": "clause",
+      "reranker_score": 0.17182308435440063,
+      "hybrid_candidate_rank": 5,
+      "fusion_score": 0.03036576949620428,
+      "dense_rank": 9,
+      "dense_score": 0.5339651107788086,
+      "dense_distance": 0.4660348892211914,
+      "dense_rrf_score": 0.014492753623188406,
+      "lexical_rank": 3,
+      "lexical_score": 2.1000001,
+      "lexical_matched_term_count": 6,
+      "lexical_term_coverage": 0.6666666666666666,
+      "lexical_rrf_score": 0.015873015873015872,
+      "text": "Section: APPENDIX E > Identification\nClause: 1.8\nGroup: Steps to identify beneficial owner > Legal person\n\n1.8 Step 1: Identify the natural person(s), if any, who ultimately have\ncontrolling ownership interest in the legal person\n\n(a) Having ultimate controlling ownership interest over an entity includes having more\nthan 25% ownership or equity interest in an entity which may be observed, among\nothers, through share capital, capital contribution or voting rights. The ownership\nmay either be direct ownership (through ownership of shares within the entity\nitself) or indirect ownership (through chain of corporate vehicles). In the case of\na limited liability partnership - partners with capital contribution and/or voting\nrights of more than 25%.\n\n(b) Having a golden share within an entity is similar to having ultimate ownership of\nthe entity, as it refers to 51% ownership.\n\n(c) Shareholders may exercise control alone or together with other shareholders,\nincluding through any contract, understanding, relationship, intermediary or tiered\nentity. In most circumstances, ownership over an entity implies control over the\nentity, as ownership may come with the power and authority to take actions\nand make decisions for the entity. Such a situation can be observed, among\nothers, where:\n\n(i)The natural person has majority voting power within the entity to make\ndecisions; or\n\n(ii)The natural person exercises his right to appoint or remove directors\nor senior management, as a major shareholder.\n\n(d) In implementing Step 1, a natural person identified as fulfilling the criteria in (a)\nshall be identified as the beneficial owner. However, where there is doubt that\nthe person identified under Step 1 is not the beneficial owner; or where no natural\nperson has ultimate controlling ownership interest over the legal person, the\nreporting institution shall carry out Step 2.",
+      "content_text": "1.8 Step 1: Identify the natural person(s), if any, who ultimately have\ncontrolling ownership interest in the legal person\n\n(a) Having ultimate controlling ownership interest over an entity includes having more\nthan 25% ownership or equity interest in an entity which may be observed, among\nothers, through share capital, capital contribution or voting rights. The ownership\nmay either be direct ownership (through ownership of shares within the entity\nitself) or indirect ownership (through chain of corporate vehicles). In the case of\na limited liability partnership - partners with capital contribution and/or voting\nrights of more than 25%.\n\n(b) Having a golden share within an entity is similar to having ultimate ownership of\nthe entity, as it refers to 51% ownership.\n\n(c) Shareholders may exercise control alone or together with other shareholders,\nincluding through any contract, understanding, relationship, intermediary or tiered\nentity. In most circumstances, ownership over an entity implies control over the\nentity, as ownership may come with the power and authority to take actions\nand make decisions for the entity. Such a situation can be observed, among\nothers, where:\n\n(i)The natural person has majority voting power within the entity to make\ndecisions; or\n\n(ii)The natural person exercises his right to appoint or remove directors\nor senior management, as a major shareholder.\n\n(d) In implementing Step 1, a natural person identified as fulfilling the criteria in (a)\nshall be identified as the beneficial owner. However, where there is doubt that\nthe person identified under Step 1 is not the beneficial owner; or where no natural\nperson has ultimate controlling ownership interest over the legal person, the\nreporting institution shall carry out Step 2.",
+      "token_count": 355,
+      "pages": [
+        94
+      ],
+      "section_path": [
+        "APPENDIX E",
+        "Identification"
+      ],
+      "source_element_ids": [
+        "p94-e1",
+        "p94-e2",
+        "p94-e3",
+        "p94-e4",
+        "p94-e6",
+        "p94-e7",
+        "p94-e8"
+      ]
+    },
+    {
+      "rank": 8,
+      "chunk_id": "485c4989-c300-45c8-ac06-79a59492bb5c-c0087-fd64fed063",
+      "chunk_index": 87,
+      "semantic_type": "clause",
+      "reranker_score": 0.1406715363264084,
+      "hybrid_candidate_rank": 16,
+      "fusion_score": 0.015625,
+      "dense_rank": null,
+      "dense_score": null,
+      "dense_distance": null,
+      "dense_rrf_score": 0.0,
+      "lexical_rank": 4,
+      "lexical_score": 1.7,
+      "lexical_matched_term_count": 6,
+      "lexical_term_coverage": 0.6666666666666666,
+      "lexical_rrf_score": 0.015625,
+      "text": "Section: PART III: CUSTOMER DUE DILIGENCE > 8. CUSTOMER DUE DILIGENCE (CDD) > 8.1 CDD at the point of establishing business relationship\nClause: 8.1.10\nGroup: CDD requirements for legal persons\n\n8.1.10 A reporting institution is required to identify and take reasonable measures to verify\nthe identity of the beneficial owner of a legal person by taking into consideration the\nfollowing information or document:\n\n(a) duly certified true copy/duly notarised copy of the latest Forms 24 and 49 as\nprescribed by the Companies Commission of Malaysia under the Companies\nAct 2016 or equivalent document for a foreign body corporate; and\nidentification document of the shareholders with an equity interest of more\nthan 25%, directors, partners and office bearers (as the case may be);\n\n(b) authorisation for any person to represent the company/business either via a\nletter of authority or directors resolution;\n\n(c) relevant document such as NRIC for Malaysians/permanent residents or\npassport for foreigners, to identify the identity of the person authorised to\nrepresent the company/business in its dealing with the reporting institution;\nand\n\n(d) to the extent, there is a doubt as to whether the controlling ownership interest\nis the beneficial owner or where no natural person exerts control through\nownership interest, the identity of the natural person (if any) who exercises\ncontrol of the legal person through other means or who holds the position of\nsenior management.",
+      "content_text": "8.1.10 A reporting institution is required to identify and take reasonable measures to verify\nthe identity of the beneficial owner of a legal person by taking into consideration the\nfollowing information or document:\n\n(a) duly certified true copy/duly notarised copy of the latest Forms 24 and 49 as\nprescribed by the Companies Commission of Malaysia under the Companies\nAct 2016 or equivalent document for a foreign body corporate; and\nidentification document of the shareholders with an equity interest of more\nthan 25%, directors, partners and office bearers (as the case may be);\n\n(b) authorisation for any person to represent the company/business either via a\nletter of authority or directors resolution;\n\n(c) relevant document such as NRIC for Malaysians/permanent residents or\npassport for foreigners, to identify the identity of the person authorised to\nrepresent the company/business in its dealing with the reporting institution;\nand\n\n(d) to the extent, there is a doubt as to whether the controlling ownership interest\nis the beneficial owner or where no natural person exerts control through\nownership interest, the identity of the natural person (if any) who exercises\ncontrol of the legal person through other means or who holds the position of\nsenior management.",
+      "token_count": 277,
+      "pages": [
+        33
+      ],
+      "section_path": [
+        "PART III: CUSTOMER DUE DILIGENCE",
+        "8. CUSTOMER DUE DILIGENCE (CDD)",
+        "8.1 CDD at the point of establishing business relationship"
+      ],
+      "source_element_ids": [
+        "p33-e5",
+        "p33-e6",
+        "p33-e7",
+        "p33-e8",
+        "p33-e9"
+      ]
+    },
+    {
+      "rank": 9,
+      "chunk_id": "485c4989-c300-45c8-ac06-79a59492bb5c-c0088-7f07c6b2b9",
+      "chunk_index": 88,
+      "semantic_type": "clause",
+      "reranker_score": 0.12878459692001343,
+      "hybrid_candidate_rank": 10,
+      "fusion_score": 0.028381642512077296,
+      "dense_rank": 12,
+      "dense_score": 0.5091303283494524,
+      "dense_distance": 0.4908696716505476,
+      "dense_rrf_score": 0.013888888888888888,
+      "lexical_rank": 9,
+      "lexical_score": 2.1000001,
+      "lexical_matched_term_count": 5,
+      "lexical_term_coverage": 0.5555555555555556,
+      "lexical_rrf_score": 0.014492753623188406,
+      "text": "Section: PART III: CUSTOMER DUE DILIGENCE > 8. CUSTOMER DUE DILIGENCE (CDD) > 8.1 CDD at the point of establishing business relationship\nClause: 8.1.11\nGroup: CDD requirements for legal persons\n\n8.1.11 A reporting institution is required to identify and take reasonable measures to verify\nthe identity of beneficial owners according to the following cascading steps:\n\n(a)the identity of the natural person(s) (if any) who ultimately has a controlling\nownership interest in a legal person. Where applicable, this includes identifying:\n\n(i)shareholders with equity interest of more than twenty-five percent in a\ncorporation; and\n\n(b) to the extent that there is doubt as to whether the person(s) with the controlling\nownership interest is the beneficial owner(s) referred to in paragraph 8.1.11(a)\nor where no natural person(s) exert control through ownership interests, the\nidentity of the natural person (if any) exercising control of the legal person\nthrough other means; and\n\n(c) where no natural person is identified under paragraphs 8.1.11(a) or (b), the\nidentity of the relevant natural person who holds the position of senior\nmanagement.\n\nFor the avoidance of doubt, a reporting institution is not required to pursue\nsteps (b) and (c) in circumstances where beneficial owner(s) have been\nidentified through step (a). Similarly, where beneficial owner(s) have been\nidentified at step (b), reporting institutions are not required to pursue step (c).",
+      "content_text": "8.1.11 A reporting institution is required to identify and take reasonable measures to verify\nthe identity of beneficial owners according to the following cascading steps:\n\n(a)the identity of the natural person(s) (if any) who ultimately has a controlling\nownership interest in a legal person. Where applicable, this includes identifying:\n\n(i)shareholders with equity interest of more than twenty-five percent in a\ncorporation; and\n\n(b) to the extent that there is doubt as to whether the person(s) with the controlling\nownership interest is the beneficial owner(s) referred to in paragraph 8.1.11(a)\nor where no natural person(s) exert control through ownership interests, the\nidentity of the natural person (if any) exercising control of the legal person\nthrough other means; and\n\n(c) where no natural person is identified under paragraphs 8.1.11(a) or (b), the\nidentity of the relevant natural person who holds the position of senior\nmanagement.\n\nFor the avoidance of doubt, a reporting institution is not required to pursue\nsteps (b) and (c) in circumstances where beneficial owner(s) have been\nidentified through step (a). Similarly, where beneficial owner(s) have been\nidentified at step (b), reporting institutions are not required to pursue step (c).",
+      "token_count": 311,
+      "pages": [
+        33,
+        34
+      ],
+      "section_path": [
+        "PART III: CUSTOMER DUE DILIGENCE",
+        "8. CUSTOMER DUE DILIGENCE (CDD)",
+        "8.1 CDD at the point of establishing business relationship"
+      ],
+      "source_element_ids": [
+        "p33-e10",
+        "p33-e11",
+        "p33-e12",
+        "p34-e2",
+        "p34-e3",
+        "p34-e4"
+      ]
+    },
+    {
+      "rank": 10,
+      "chunk_id": "485c4989-c300-45c8-ac06-79a59492bb5c-c0258-cd8455196d",
+      "chunk_index": 258,
+      "semantic_type": "clause",
+      "reranker_score": 0.12497734278440475,
+      "hybrid_candidate_rank": 3,
+      "fusion_score": 0.030834914611005692,
+      "dense_rank": 8,
+      "dense_score": 0.5424081683158875,
+      "dense_distance": 0.45759183168411255,
+      "dense_rrf_score": 0.014705882352941176,
+      "lexical_rank": 2,
+      "lexical_score": 2.2,
+      "lexical_matched_term_count": 6,
+      "lexical_term_coverage": 0.6666666666666666,
+      "lexical_rrf_score": 0.016129032258064516,
+      "text": "Section: APPENDIX E > Identification\nClause: 1.9\nGroup: Steps to identify beneficial owner > Legal person\n\n1.9 Step 2: Identify the natural person, if any, exercising control of the\nlegal person, through other means\n\n(a) A natural person may also exercise effective control over an entity if he has the\npowers and authority to take actions and make decisions for the entity, including\non matters relating to its financial affairs, financial relationships, operations or\nother matters that may fundamentally affect the business or direction of the\nentity, without having ownership interest over the entity.\n\n(b) Such powers and authority may be attained through other means, such as:\n\n(c) A natural person demonstrating control may be, among others, the entity’s senior\nmanagement, directors, authorised signatory, controller and etc.\n\nWhere, in the course of identifying beneficial owners, reporting institutions\nidentified natural persons who exert control over an entity but have no direct\nownership or apparent control over the entity, this assessment along with\nthe person suspected of being a beneficial owner, should be recorded. Such a\nsituation may be observed through:\n\n(i)personal connections to persons in positions of power within the entity or\npersons who possess ownership over an entity (close or intimate family\nrelationships and historical or contractual associations)\n\n(ii)participation in financing of enterprises which may allow enjoyment or\nbenefits from assets of the legal person",
+      "content_text": "1.9 Step 2: Identify the natural person, if any, exercising control of the\nlegal person, through other means\n\n(a) A natural person may also exercise effective control over an entity if he has the\npowers and authority to take actions and make decisions for the entity, including\non matters relating to its financial affairs, financial relationships, operations or\nother matters that may fundamentally affect the business or direction of the\nentity, without having ownership interest over the entity.\n\n(b) Such powers and authority may be attained through other means, such as:\n\n(c) A natural person demonstrating control may be, among others, the entity’s senior\nmanagement, directors, authorised signatory, controller and etc.\n\nWhere, in the course of identifying beneficial owners, reporting institutions\nidentified natural persons who exert control over an entity but have no direct\nownership or apparent control over the entity, this assessment along with\nthe person suspected of being a beneficial owner, should be recorded. Such a\nsituation may be observed through:\n\n(i)personal connections to persons in positions of power within the entity or\npersons who possess ownership over an entity (close or intimate family\nrelationships and historical or contractual associations)\n\n(ii)participation in financing of enterprises which may allow enjoyment or\nbenefits from assets of the legal person",
+      "token_count": 271,
+      "pages": [
+        94,
+        95
+      ],
+      "section_path": [
+        "APPENDIX E",
+        "Identification"
+      ],
+      "source_element_ids": [
+        "p94-e9",
+        "p94-e10",
+        "p94-e11",
+        "p95-e6",
+        "p95-e7",
+        "p95-e8",
+        "p95-e9"
+      ]
+    }
+  ]
+}

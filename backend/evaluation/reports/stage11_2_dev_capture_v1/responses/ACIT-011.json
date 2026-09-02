@@ -1,0 +1,228 @@
+{
+  "document_id": "485c4989-c300-45c8-ac06-79a59492bb5c",
+  "question": "Under Part VIII, what must a reporting institution do to keep its proliferation-financing sanctions information current?",
+  "status": "answered",
+  "answer": "A reporting institution must put in place and implement policies and procedures to keep itself updated with the various United Nations Security Council resolutions on proliferation‑financing, including the list of countries and persons designated under the relevant UNSCR as published on the UN website whenever new or subsequent decisions are made A reporting institution must maintain an updated and current database of names and particulars of designated persons in the UN Consolidated List to enable it to detect suspected proliferators",
+  "cited_answer": "A reporting institution must put in place and implement policies and procedures to keep itself updated with the various United Nations Security Council resolutions on proliferation‑financing, including the list of countries and persons designated under the relevant UNSCR as published on the UN website whenever new or subsequent decisions are made [1] A reporting institution must maintain an updated and current database of names and particulars of designated persons in the UN Consolidated List to enable it to detect suspected proliferators [1]",
+  "claims": [
+    {
+      "claim_id": "C1",
+      "text": "A reporting institution must put in place and implement policies and procedures to keep itself updated with the various United Nations Security Council resolutions on proliferation‑financing, including the list of countries and persons designated under the relevant UNSCR as published on the UN website whenever new or subsequent decisions are made",
+      "evidence_ids": [
+        "E1"
+      ],
+      "citation_ids": [
+        "CIT-E1"
+      ]
+    },
+    {
+      "claim_id": "C2",
+      "text": "A reporting institution must maintain an updated and current database of names and particulars of designated persons in the UN Consolidated List to enable it to detect suspected proliferators",
+      "evidence_ids": [
+        "E1"
+      ],
+      "citation_ids": [
+        "CIT-E1"
+      ]
+    }
+  ],
+  "used_evidence_ids": [
+    "E1"
+  ],
+  "missing_information": [],
+  "evidence": [
+    {
+      "evidence_id": "E1",
+      "chunk_id": "485c4989-c300-45c8-ac06-79a59492bb5c-c0163-0d80ab7fa7",
+      "chunk_index": 163,
+      "semantic_type": "clause",
+      "source_rank": 1,
+      "ranked_seed_rank": 1,
+      "reasons": [
+        "ranked_seed"
+      ],
+      "pages": [
+        62
+      ],
+      "section_path": [
+        "PART VIII: COMBATING PROLIFERATION FINANCING",
+        "16. MAINTENANCE OF SANCTIONS LIST"
+      ],
+      "source_element_ids": [
+        "p62-e5",
+        "p62-e6",
+        "p62-e7"
+      ],
+      "content_text": "16.1 A reporting institution must put in place and implement policies and procedures to:\n\n(a) keep itself updated with the various resolutions passed by the United Nations\nSecurity Council on TFS-PF, in particular the list of countries and persons\ndesignated under the relevant UNSCR published on the UN website as and when\nthere are new or subsequent decisions by the relevant UNSC Sanctions\nCommittee; and\n\n(b) maintain an updated and current database of names and particulars of\ndesignated persons in the UN Consolidated List to enable it to detect suspected\nproliferators."
+    },
+    {
+      "evidence_id": "E2",
+      "chunk_id": "485c4989-c300-45c8-ac06-79a59492bb5c-c0165-8354c916df",
+      "chunk_index": 165,
+      "semantic_type": "clause",
+      "source_rank": 2,
+      "ranked_seed_rank": 2,
+      "reasons": [
+        "ranked_seed"
+      ],
+      "pages": [
+        62,
+        63
+      ],
+      "section_path": [
+        "PART VIII: COMBATING PROLIFERATION FINANCING",
+        "17. CONDUCT SANCTIONS SCREENING ON CUSTOMERS"
+      ],
+      "source_element_ids": [
+        "p62-e10",
+        "p62-e11",
+        "p63-e3"
+      ],
+      "content_text": "17.1 A reporting institution must conduct sanctions screening on its existing, new and\npotential customers, to check for any positive name matched with any designated\nperson.\n\n17.2 A reporting institution must screen its entire customer database without delay when\nnew names are listed in the UNSCR.\n\n17.4 If there is a positive name match, a reporting institution must take reasonable and\nappropriate measures to verify and confirm the identity of its customer against the\ndesignated person."
+    },
+    {
+      "evidence_id": "E3",
+      "chunk_id": "485c4989-c300-45c8-ac06-79a59492bb5c-c0081-b1e4e8f0b7",
+      "chunk_index": 81,
+      "semantic_type": "clause",
+      "source_rank": 3,
+      "ranked_seed_rank": 3,
+      "reasons": [
+        "ranked_seed"
+      ],
+      "pages": [
+        31
+      ],
+      "section_path": [
+        "PART III: CUSTOMER DUE DILIGENCE",
+        "8. CUSTOMER DUE DILIGENCE (CDD)",
+        "8.1 CDD at the point of establishing business relationship"
+      ],
+      "source_element_ids": [
+        "p31-e4",
+        "p31-e5",
+        "p31-e11",
+        "p31-e12",
+        "p31-e13",
+        "p31-e14"
+      ],
+      "content_text": "8.1.1 Section 16 of the AMLA among others clearly sets out customer identification\nrequirements for reporting institutions. A reporting institution must conduct CDD on\ncustomer and obtain satisfactory evidence of the identity and legal existence of the\ncustomer and beneficial owner at the point of establishing the business relationship.\n\n8.1.2 A reporting institution must not keep anonymous accounts or accounts in fictitious\nnames.\n\n8.1.4 A customer who fails to provide evidence of his identity must not be allowed to engage\nin business relations with the reporting institution. Additional measures must be\nundertaken to determine whether to proceed with the business relationship, where\ninitial checks failed to identify the customer or give rise to suspicions that the\ninformation provided is false.\n\n8.1.5 Where applicable, in conducting CDD, a reporting institution is required to comply with\nrequirements on targeted financial sanctions in relation to:\n\n(a) terrorism financing under Part VII of these Guidelines; and\n\n(b) proliferation financing under Part VIII of these Guidelines."
+    },
+    {
+      "evidence_id": "E4",
+      "chunk_id": "485c4989-c300-45c8-ac06-79a59492bb5c-c0166-2be11686ea",
+      "chunk_index": 166,
+      "semantic_type": "clause",
+      "source_rank": 4,
+      "ranked_seed_rank": 5,
+      "reasons": [
+        "ranked_seed",
+        "preceding_intro"
+      ],
+      "pages": [
+        62,
+        63
+      ],
+      "section_path": [
+        "PART VIII: COMBATING PROLIFERATION FINANCING",
+        "17. CONDUCT SANCTIONS SCREENING ON CUSTOMERS"
+      ],
+      "source_element_ids": [
+        "p62-e12",
+        "p62-e13",
+        "p63-e1",
+        "p63-e2"
+      ],
+      "content_text": "17.3 The obligation to conduct sanctions screening on customers also includes funds\nderived from property owned or controlled directly or indirectly by the designated\nperson or by any of its related party. In this regard, a reporting institution must conduct\nchecks on:\n\n(a) relationship and transactions connected with the designated person;\n\n(b) properties or accounts that are jointly owned and/or indirectly controlled by the\ndesignated person; and\n\n(c) parties related to the frozen accounts including beneficial owners, signatories,\npower of attorney relationships, guarantors, nominees, trustees, assignees and\npayors."
+    },
+    {
+      "evidence_id": "E5",
+      "chunk_id": "485c4989-c300-45c8-ac06-79a59492bb5c-c0167-5fb13811a7",
+      "chunk_index": 167,
+      "semantic_type": "list_item",
+      "source_rank": 4,
+      "ranked_seed_rank": 4,
+      "reasons": [
+        "ranked_seed",
+        "introduced_child"
+      ],
+      "pages": [
+        63
+      ],
+      "section_path": [
+        "PART VIII: COMBATING PROLIFERATION FINANCING",
+        "17. CONDUCT SANCTIONS SCREENING ON CUSTOMERS"
+      ],
+      "source_element_ids": [
+        "p63-e5",
+        "p63-e6",
+        "p63-e7",
+        "p63-e8"
+      ],
+      "content_text": "(a)According to the standards prescribed by the FATF, “without delay” means,\nideally within a matter of hours of a designation by the UNSC or its relevant\nSanctions Committee. The phrase “without delay” should be interpreted in\nthe context of the need to prevent the flight or dissipation of funds or other\nassets which are linked to the financing of proliferation of weapons of mass\ndestruction.\n\n(b)A reporting institution is also advised to search, examine and analyse past\nfinancial activities of the designated person or related party, where relevant.\n\n(c)A reporting institution must always be wary of the possible use of among\nothers, false identities, dual nationalities, multiple names and identities\nwhen performing name searches for each designated person to prevent\nunintended omissions.\n\n(d)The screening obligations under these Guidelines extend to the delisting of\naffected customers from the list of countries and persons designated under\nthe relevant UNSCRs."
+    }
+  ],
+  "citations": [
+    {
+      "citation_id": "CIT-E1",
+      "marker": "[1]",
+      "evidence_id": "E1",
+      "chunk_id": "485c4989-c300-45c8-ac06-79a59492bb5c-c0163-0d80ab7fa7",
+      "chunk_index": 163,
+      "source_filename": "sc_aml_cft.pdf",
+      "display": "Clause 16.1 · PDF p. 62",
+      "pages": [
+        62
+      ],
+      "section_path": [
+        "PART VIII: COMBATING PROLIFERATION FINANCING",
+        "16. MAINTENANCE OF SANCTIONS LIST"
+      ],
+      "source_element_ids": [
+        "p62-e5",
+        "p62-e6",
+        "p62-e7"
+      ],
+      "locators": [
+        {
+          "kind": "clause",
+          "label": "Clause 16.1",
+          "pages": [
+            62
+          ],
+          "source_element_ids": [
+            "p62-e5"
+          ]
+        }
+      ],
+      "validation_status": "valid"
+    }
+  ],
+  "citation_version": "deterministic_citations_v1_2",
+  "citation_validation": {
+    "status": "valid",
+    "citation_count": 1,
+    "valid_citation_count": 1,
+    "errors": []
+  },
+  "generation_provider": "groq",
+  "generation_model": "openai/gpt-oss-120b",
+  "prompt_version": "grounded_claims_v1",
+  "generation_temperature": 0.0,
+  "generation_max_tokens": 1200,
+  "generation_json_mode": true,
+  "usage": {
+    "prompt_tokens": 1616,
+    "completion_tokens": 430,
+    "total_tokens": 2046
+  },
+  "retrieval_profile": "retrieval_v1_stage8_2_top5",
+  "retrieval_top_k": 5,
+  "retrieval_candidate_k": 20,
+  "retrieval_rrf_k": 60,
+  "retrieval_dense_weight": 1.0,
+  "retrieval_lexical_weight": 1.0,
+  "context_strategy": "structural_one_hop_v1",
+  "context_chunk_count": 5,
+  "expanded_chunk_count": 0
+}

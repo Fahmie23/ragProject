@@ -1,0 +1,407 @@
+{
+  "document_id": "485c4989-c300-45c8-ac06-79a59492bb5c",
+  "query": "Where are the explanatory notes for maintaining the proliferation-financing sanctions list provided?",
+  "embedding_model": "BAAI/bge-m3",
+  "embedding_requested_device": "auto",
+  "embedding_resolved_device": "cuda",
+  "reranker_model": "BAAI/bge-reranker-v2-m3",
+  "reranker_requested_device": "auto",
+  "reranker_resolved_device": "cuda",
+  "reranker_batch_size": 2,
+  "reranker_max_length": 1024,
+  "top_k": 10,
+  "candidate_k": 20,
+  "candidate_union_count": 30,
+  "embedded_chunk_count": 284,
+  "total_chunk_count": 284,
+  "candidate_strategy": "dense_lexical_union",
+  "ranking_method": "cross_encoder",
+  "fusion_method": "reciprocal_rank_fusion_trace",
+  "rrf_k": 60,
+  "dense_weight": 1.0,
+  "lexical_weight": 1.0,
+  "lexical_ranking_method": "postgresql_fts_term_coverage_then_ts_rank_cd",
+  "lexical_query_mode": "or_content_terms_v1",
+  "lexical_terms": [
+    "explanatory",
+    "notes",
+    "maintaining",
+    "proliferation",
+    "financing",
+    "sanctions",
+    "list",
+    "provided"
+  ],
+  "lexical_tsquery": "explanatory | notes | maintaining | proliferation | financing | sanctions | list | provided",
+  "hits": [
+    {
+      "rank": 1,
+      "chunk_id": "485c4989-c300-45c8-ac06-79a59492bb5c-c0164-45aead3b04",
+      "chunk_index": 164,
+      "semantic_type": "clause",
+      "reranker_score": 0.9951877593994141,
+      "hybrid_candidate_rank": 1,
+      "fusion_score": 0.032266458495966696,
+      "dense_rank": 1,
+      "dense_score": 0.6966428341482492,
+      "dense_distance": 0.30335716585175077,
+      "dense_rrf_score": 0.01639344262295082,
+      "lexical_rank": 3,
+      "lexical_score": 0.8,
+      "lexical_matched_term_count": 6,
+      "lexical_term_coverage": 0.75,
+      "lexical_rrf_score": 0.015873015873015872,
+      "text": "Section: PART VIII: COMBATING PROLIFERATION FINANCING > 16. MAINTENANCE OF SANCTIONS LIST\nClause: 16.2\n\n16.2 Explanatory notes in relation to maintenance of sanctions list are set out in Appendix\nH.",
+      "content_text": "16.2 Explanatory notes in relation to maintenance of sanctions list are set out in Appendix\nH.",
+      "token_count": 39,
+      "pages": [
+        62
+      ],
+      "section_path": [
+        "PART VIII: COMBATING PROLIFERATION FINANCING",
+        "16. MAINTENANCE OF SANCTIONS LIST"
+      ],
+      "source_element_ids": [
+        "p62-e8"
+      ]
+    },
+    {
+      "rank": 2,
+      "chunk_id": "485c4989-c300-45c8-ac06-79a59492bb5c-c0276-b02b6aba4d",
+      "chunk_index": 276,
+      "semantic_type": "clause",
+      "reranker_score": 0.9558671712875366,
+      "hybrid_candidate_rank": 2,
+      "fusion_score": 0.032266458495966696,
+      "dense_rank": 3,
+      "dense_score": 0.6101963984732196,
+      "dense_distance": 0.3898036015267804,
+      "dense_rrf_score": 0.015873015873015872,
+      "lexical_rank": 1,
+      "lexical_score": 1.7,
+      "lexical_matched_term_count": 6,
+      "lexical_term_coverage": 0.75,
+      "lexical_rrf_score": 0.01639344262295082,
+      "text": "Section: APPENDIX H\nGroup: EXPLANATORY NOTES IN RELATION TO MAINTENANCE OF SANCTIONS LIST\n(in relation to Paragraph 16.2 of the Guidelines)\n\n1. The sanction lists are available in the respective UNSCR sanctions webpage (e.g. 1718\nfor DPRK), under the heading of ‘Sanction List Materials’ including:\n\n(a) DPRK: United Nations Security Council Committee established pursuant to\nResolution 1718 (2006); and\n\n(b) Any other UNSCR as specified by the SC in these Guidelines.\n\n2. The updated UN Consolidated List can be obtained at http://www.un.org/ or\nhttps://www.un.org/sc/suborg/en/sanctions/un-sc-consolidated-list\n\n3. A capital market intermediary must take note that Strategic Trade (Restricted End-\nUsers and Prohibited End-Users) Order 2010 (P.U. (A) 484/2010) provides for an\nautomatic application of the UNSCR lists by making reference to the updated list in\nthe UN website. Therefore, for the UNSCR lists, a capital market intermediary is\nadvised to update its database regularly, without delay.\n\n4. A capital market intermediary may consider subscribing to electronic subscription\nservices to maintain the updated UNSCRs.\n\n5. The delisting of any designated country or designated person under UNSCRs shall\nautomatically take effect when the designated country or person is removed by the\nrelevant UNSC Sanctions Committee.",
+      "content_text": "1. The sanction lists are available in the respective UNSCR sanctions webpage (e.g. 1718\nfor DPRK), under the heading of ‘Sanction List Materials’ including:\n\n(a) DPRK: United Nations Security Council Committee established pursuant to\nResolution 1718 (2006); and\n\n(b) Any other UNSCR as specified by the SC in these Guidelines.\n\n2. The updated UN Consolidated List can be obtained at http://www.un.org/ or\nhttps://www.un.org/sc/suborg/en/sanctions/un-sc-consolidated-list\n\n3. A capital market intermediary must take note that Strategic Trade (Restricted End-\nUsers and Prohibited End-Users) Order 2010 (P.U. (A) 484/2010) provides for an\nautomatic application of the UNSCR lists by making reference to the updated list in\nthe UN website. Therefore, for the UNSCR lists, a capital market intermediary is\nadvised to update its database regularly, without delay.\n\n4. A capital market intermediary may consider subscribing to electronic subscription\nservices to maintain the updated UNSCRs.\n\n5. The delisting of any designated country or designated person under UNSCRs shall\nautomatically take effect when the designated country or person is removed by the\nrelevant UNSC Sanctions Committee.",
+      "token_count": 274,
+      "pages": [
+        106
+      ],
+      "section_path": [
+        "APPENDIX H"
+      ],
+      "source_element_ids": [
+        "p106-e3",
+        "p106-e4",
+        "p106-e5",
+        "p106-e6",
+        "p106-e7",
+        "p106-e8",
+        "p106-e9"
+      ]
+    },
+    {
+      "rank": 3,
+      "chunk_id": "485c4989-c300-45c8-ac06-79a59492bb5c-c0163-0d80ab7fa7",
+      "chunk_index": 163,
+      "semantic_type": "clause",
+      "reranker_score": 0.6687608957290649,
+      "hybrid_candidate_rank": 4,
+      "fusion_score": 0.03128054740957967,
+      "dense_rank": 2,
+      "dense_score": 0.6239916534433823,
+      "dense_distance": 0.37600834655661775,
+      "dense_rrf_score": 0.016129032258064516,
+      "lexical_rank": 6,
+      "lexical_score": 0.90000004,
+      "lexical_matched_term_count": 5,
+      "lexical_term_coverage": 0.625,
+      "lexical_rrf_score": 0.015151515151515152,
+      "text": "Section: PART VIII: COMBATING PROLIFERATION FINANCING > 16. MAINTENANCE OF SANCTIONS LIST\nClause: 16.1\n\n16.1 A reporting institution must put in place and implement policies and procedures to:\n\n(a) keep itself updated with the various resolutions passed by the United Nations\nSecurity Council on TFS-PF, in particular the list of countries and persons\ndesignated under the relevant UNSCR published on the UN website as and when\nthere are new or subsequent decisions by the relevant UNSC Sanctions\nCommittee; and\n\n(b) maintain an updated and current database of names and particulars of\ndesignated persons in the UN Consolidated List to enable it to detect suspected\nproliferators.",
+      "content_text": "16.1 A reporting institution must put in place and implement policies and procedures to:\n\n(a) keep itself updated with the various resolutions passed by the United Nations\nSecurity Council on TFS-PF, in particular the list of countries and persons\ndesignated under the relevant UNSCR published on the UN website as and when\nthere are new or subsequent decisions by the relevant UNSC Sanctions\nCommittee; and\n\n(b) maintain an updated and current database of names and particulars of\ndesignated persons in the UN Consolidated List to enable it to detect suspected\nproliferators.",
+      "token_count": 123,
+      "pages": [
+        62
+      ],
+      "section_path": [
+        "PART VIII: COMBATING PROLIFERATION FINANCING",
+        "16. MAINTENANCE OF SANCTIONS LIST"
+      ],
+      "source_element_ids": [
+        "p62-e5",
+        "p62-e6",
+        "p62-e7"
+      ]
+    },
+    {
+      "rank": 4,
+      "chunk_id": "485c4989-c300-45c8-ac06-79a59492bb5c-c0053-46174d100c",
+      "chunk_index": 53,
+      "semantic_type": "clause",
+      "reranker_score": 0.5132591128349304,
+      "hybrid_candidate_rank": 5,
+      "fusion_score": 0.03076923076923077,
+      "dense_rank": 5,
+      "dense_score": 0.5728763851074754,
+      "dense_distance": 0.4271236148925246,
+      "dense_rrf_score": 0.015384615384615385,
+      "lexical_rank": 5,
+      "lexical_score": 2.2,
+      "lexical_matched_term_count": 5,
+      "lexical_term_coverage": 0.625,
+      "lexical_rrf_score": 0.015384615384615385,
+      "text": "Section: PART I: INTRODUCTION AND APPLICABILITY > 5 A. GENERAL DESCRIPTION OF PROLIFERATION FINANCING\n\n5 A.1 In response to growing concerns over the proliferation of nuclear, biological and\nchemical weapons and their means of delivery which continue to pose a significant\nthreat to international peace and security, the United Nations Security Council (UNSC)\nhas intensified efforts to strengthen its global sanctions regime in order to prevent,\nsuppress and disrupt proliferation of weapons of mass destruction and its financing.\n\n5 A.2 As is the case with other UNSC sanctions programmes, targeted financial sanctions on\ncountries and specifically identified individuals and entities (i.e. designated persons)\nis the primary aspect of its overall sanctions regime to effectively disrupt financial\nflows across known proliferation networks.\n\n5 A.3 Recommendation 7 of the Financial Action Task Force (FATF) Standards requires\ncountries to implement TFS-PF made under UNSCRs. Under this standard, countries\nare required to implement targeted financial sanctions without delay to comply with\nUNSCRs relating to the prevention, suppression and disruption of the proliferation of\nweapons of mass destruction and its financing.\n\n5 A.4 Proliferation financing refers to the act of raising, moving, or making available funds,\nother assets or other economic resources, or financing, in whole or in part, to persons\nor entities for purposes of weapons of mass destruction (WMD) proliferation, including\nthe proliferation of their means of delivery or related materials (including both dual-\nuse technologies and dual-use goods for non-legitimate purposes).\n\n5 A.5 TFS-PF are applicable to persons designated by the UNSC or the relevant committees\nset up by the UNSC. Designation or listing criteria are:\n\n(a) Person engaging in or providing support for, including through illicit means,\nproliferation-sensitive activities and programmes;\n\n(b) Acting on behalf of or at the direction of designated person;\n\n(c) Owned or controlled by designated person; and\n\n(d) Person assisting designated person in evading sanctions, or violating UNSCR\nprovisions.",
+      "content_text": "5 A.1 In response to growing concerns over the proliferation of nuclear, biological and\nchemical weapons and their means of delivery which continue to pose a significant\nthreat to international peace and security, the United Nations Security Council (UNSC)\nhas intensified efforts to strengthen its global sanctions regime in order to prevent,\nsuppress and disrupt proliferation of weapons of mass destruction and its financing.\n\n5 A.2 As is the case with other UNSC sanctions programmes, targeted financial sanctions on\ncountries and specifically identified individuals and entities (i.e. designated persons)\nis the primary aspect of its overall sanctions regime to effectively disrupt financial\nflows across known proliferation networks.\n\n5 A.3 Recommendation 7 of the Financial Action Task Force (FATF) Standards requires\ncountries to implement TFS-PF made under UNSCRs. Under this standard, countries\nare required to implement targeted financial sanctions without delay to comply with\nUNSCRs relating to the prevention, suppression and disruption of the proliferation of\nweapons of mass destruction and its financing.\n\n5 A.4 Proliferation financing refers to the act of raising, moving, or making available funds,\nother assets or other economic resources, or financing, in whole or in part, to persons\nor entities for purposes of weapons of mass destruction (WMD) proliferation, including\nthe proliferation of their means of delivery or related materials (including both dual-\nuse technologies and dual-use goods for non-legitimate purposes).\n\n5 A.5 TFS-PF are applicable to persons designated by the UNSC or the relevant committees\nset up by the UNSC. Designation or listing criteria are:\n\n(a) Person engaging in or providing support for, including through illicit means,\nproliferation-sensitive activities and programmes;\n\n(b) Acting on behalf of or at the direction of designated person;\n\n(c) Owned or controlled by designated person; and\n\n(d) Person assisting designated person in evading sanctions, or violating UNSCR\nprovisions.",
+      "token_count": 384,
+      "pages": [
+        18,
+        19
+      ],
+      "section_path": [
+        "PART I: INTRODUCTION AND APPLICABILITY",
+        "5 A. GENERAL DESCRIPTION OF PROLIFERATION FINANCING"
+      ],
+      "source_element_ids": [
+        "p18-e9",
+        "p18-e10",
+        "p18-e11",
+        "p18-e12",
+        "p19-e1",
+        "p19-e2",
+        "p19-e3",
+        "p19-e4",
+        "p19-e5"
+      ]
+    },
+    {
+      "rank": 5,
+      "chunk_id": "485c4989-c300-45c8-ac06-79a59492bb5c-c0238-d6ba6b2474",
+      "chunk_index": 238,
+      "semantic_type": "clause",
+      "reranker_score": 0.3323800563812256,
+      "hybrid_candidate_rank": 3,
+      "fusion_score": 0.031754032258064516,
+      "dense_rank": 4,
+      "dense_score": 0.5772818830869378,
+      "dense_distance": 0.42271811691306216,
+      "dense_rrf_score": 0.015625,
+      "lexical_rank": 2,
+      "lexical_score": 1.0,
+      "lexical_matched_term_count": 6,
+      "lexical_term_coverage": 0.75,
+      "lexical_rrf_score": 0.016129032258064516,
+      "text": "Section: APPENDIX D > Obligation to maintain the sanctions list\nClause: 2.2\nGroup: Guidance on the Implementation of Targeted Financial Sanction in\nRelation to Terrorism Financing\n\n2.2 A reporting institution must take note that Amendment Order 2014 (P.U. (A)\n225/2014) provides for an automatic application of the UNSCR lists by making\nreference to the updated list in the UN website. Therefore, for the UNSCR lists, a\n\nreporting institution is advised to update its database regularly, not more than two\nweeks interval.",
+      "content_text": "2.2 A reporting institution must take note that Amendment Order 2014 (P.U. (A)\n225/2014) provides for an automatic application of the UNSCR lists by making\nreference to the updated list in the UN website. Therefore, for the UNSCR lists, a\n\nreporting institution is advised to update its database regularly, not more than two\nweeks interval.",
+      "token_count": 102,
+      "pages": [
+        87,
+        88
+      ],
+      "section_path": [
+        "APPENDIX D",
+        "Obligation to maintain the sanctions list"
+      ],
+      "source_element_ids": [
+        "p87-e4",
+        "p88-e1"
+      ]
+    },
+    {
+      "rank": 6,
+      "chunk_id": "485c4989-c300-45c8-ac06-79a59492bb5c-c0006-7370ea1972",
+      "chunk_index": 6,
+      "semantic_type": "clause",
+      "reranker_score": 0.3092750012874603,
+      "hybrid_candidate_rank": 7,
+      "fusion_score": 0.02857142857142857,
+      "dense_rank": 10,
+      "dense_score": 0.5175615219661861,
+      "dense_distance": 0.4824384780338139,
+      "dense_rrf_score": 0.014285714285714285,
+      "lexical_rank": 10,
+      "lexical_score": 1.4,
+      "lexical_matched_term_count": 4,
+      "lexical_term_coverage": 0.5,
+      "lexical_rrf_score": 0.014285714285714285,
+      "text": "Section: PART I: INTRODUCTION AND APPLICABILITY > 1.0 INTRODUCTION\nClause: 1.1\n\n1.1 The Guidelines on Prevention of Money Laundering, Countering Financing of Terrorism,\nCountering Proliferation Financing and Targeted Financial Sanctions for Reporting\nInstitutions in the Capital Market (Guidelines) are issued pursuant to the following:\n\n(a) in relation to anti-money laundering and countering financing of terrorism including\nTargeted Financial Sanctions relating to Terrorism Financing (TFS-TF), section\n158(1) and section 160A of the Securities Commission Malaysia Act 1993 (SCMA)\nread together with section 66B, section 66E and section 83 of the Anti-Money\nLaundering, Anti-Terrorism Financing and Proceeds of Unlawful Activities Act 2001\n(AMLA);\n\n(b) in relation to countering proliferation financing including Targeted Financial\nSanctions relating to Proliferation Financing (TFS-PF), section 158(1) and section\n160A of the SCMA read together with the following legislations (collectively referred\nto as “TFS-PF related legislations”) which provides the legal basis for domestic\nimplementation of TFS-PF in relation to United Nations Security Council Resolutions\n(UNSCR) imposed on the designated countries and persons:\n\n(i) Strategic Trade Act 2010 (Act 708) (STA);\n\n(ii) Strategic Trade (United Nations Security Council Resolutions)\nRegulations 2010 (P.U. (A) 481/2010) 1;\n\n(iii) Strategic Trade (Restricted End-Users and Prohibited End-Users) Order\n2010 (P.U. (A) 484/2010);\n\n(iv) Strategic Trade (Delisting of Prohibited End-Users) Regulations 2014\n(P.U. (A) 289/2014); and\n\n(v) Strategic Trade (Unfreezing of Property in relation to Prohibited End-\nUsers) Regulations 2014 (P.U. (A) 290/2014).",
+      "content_text": "1.1 The Guidelines on Prevention of Money Laundering, Countering Financing of Terrorism,\nCountering Proliferation Financing and Targeted Financial Sanctions for Reporting\nInstitutions in the Capital Market (Guidelines) are issued pursuant to the following:\n\n(a) in relation to anti-money laundering and countering financing of terrorism including\nTargeted Financial Sanctions relating to Terrorism Financing (TFS-TF), section\n158(1) and section 160A of the Securities Commission Malaysia Act 1993 (SCMA)\nread together with section 66B, section 66E and section 83 of the Anti-Money\nLaundering, Anti-Terrorism Financing and Proceeds of Unlawful Activities Act 2001\n(AMLA);\n\n(b) in relation to countering proliferation financing including Targeted Financial\nSanctions relating to Proliferation Financing (TFS-PF), section 158(1) and section\n160A of the SCMA read together with the following legislations (collectively referred\nto as “TFS-PF related legislations”) which provides the legal basis for domestic\nimplementation of TFS-PF in relation to United Nations Security Council Resolutions\n(UNSCR) imposed on the designated countries and persons:\n\n(i) Strategic Trade Act 2010 (Act 708) (STA);\n\n(ii) Strategic Trade (United Nations Security Council Resolutions)\nRegulations 2010 (P.U. (A) 481/2010) 1;\n\n(iii) Strategic Trade (Restricted End-Users and Prohibited End-Users) Order\n2010 (P.U. (A) 484/2010);\n\n(iv) Strategic Trade (Delisting of Prohibited End-Users) Regulations 2014\n(P.U. (A) 289/2014); and\n\n(v) Strategic Trade (Unfreezing of Property in relation to Prohibited End-\nUsers) Regulations 2014 (P.U. (A) 290/2014).",
+      "token_count": 357,
+      "pages": [
+        6
+      ],
+      "section_path": [
+        "PART I: INTRODUCTION AND APPLICABILITY",
+        "1.0 INTRODUCTION"
+      ],
+      "source_element_ids": [
+        "p6-e3",
+        "p6-e4",
+        "p6-e5",
+        "p6-e6",
+        "p6-e7",
+        "p6-e8",
+        "p6-e9",
+        "p6-e10"
+      ]
+    },
+    {
+      "rank": 7,
+      "chunk_id": "485c4989-c300-45c8-ac06-79a59492bb5c-c0237-06eb0908af",
+      "chunk_index": 237,
+      "semantic_type": "clause",
+      "reranker_score": 0.24522970616817474,
+      "hybrid_candidate_rank": 6,
+      "fusion_score": 0.029418126757516764,
+      "dense_rank": 7,
+      "dense_score": 0.5479654016536034,
+      "dense_distance": 0.4520345983463966,
+      "dense_rrf_score": 0.014925373134328358,
+      "lexical_rank": 9,
+      "lexical_score": 2.2,
+      "lexical_matched_term_count": 4,
+      "lexical_term_coverage": 0.5,
+      "lexical_rrf_score": 0.014492753623188406,
+      "text": "Section: APPENDIX D > Obligation to maintain the sanctions list\nGroup: Guidance on the Implementation of Targeted Financial Sanction in\nRelation to Terrorism Financing\n\n2.1 In implementing the requirements in paragraphs 14.1 and 14.2 of the Guidelines, a\nreporting institution should have policies and procedures to ensure compliance with\nthe obligation to maintain the lists of listed entities in respect the UNSCR and domestic\nlists.\n\n2.3 For the domestic lists, a reporting institution should keep the lists updated as soon as\nthe subsidiary legislation via Orders are published in the gazette by the Ministry of\nHome Affairs.\n\n2.4 Reporting institution must observe the following for the purpose of delisting any listed\nentities:\n\n(a)For any listed entities under UNSCR list, delisting shall take effect automatically\nas soonest as the listed entities are removed from the UNSCR lists; and\n\n(b)For any listed entities under the domestic list, delisting shall take effect\nupon the publication of the subsidiary legislation via Orders by the Ministry of\nHome Affairs on removal of such listed entities.\n\n2.5 A reporting institution may consider subscribing electronic subscription services to\nmaintain the updated UNSCR and domestic lists. However, the ultimate responsibility\nto ensure that the lists are up to date remains with the reporting institution.",
+      "content_text": "2.1 In implementing the requirements in paragraphs 14.1 and 14.2 of the Guidelines, a\nreporting institution should have policies and procedures to ensure compliance with\nthe obligation to maintain the lists of listed entities in respect the UNSCR and domestic\nlists.\n\n2.3 For the domestic lists, a reporting institution should keep the lists updated as soon as\nthe subsidiary legislation via Orders are published in the gazette by the Ministry of\nHome Affairs.\n\n2.4 Reporting institution must observe the following for the purpose of delisting any listed\nentities:\n\n(a)For any listed entities under UNSCR list, delisting shall take effect automatically\nas soonest as the listed entities are removed from the UNSCR lists; and\n\n(b)For any listed entities under the domestic list, delisting shall take effect\nupon the publication of the subsidiary legislation via Orders by the Ministry of\nHome Affairs on removal of such listed entities.\n\n2.5 A reporting institution may consider subscribing electronic subscription services to\nmaintain the updated UNSCR and domestic lists. However, the ultimate responsibility\nto ensure that the lists are up to date remains with the reporting institution.",
+      "token_count": 238,
+      "pages": [
+        87,
+        88
+      ],
+      "section_path": [
+        "APPENDIX D",
+        "Obligation to maintain the sanctions list"
+      ],
+      "source_element_ids": [
+        "p87-e3",
+        "p88-e2",
+        "p88-e3",
+        "p88-e4",
+        "p88-e5",
+        "p88-e6"
+      ]
+    },
+    {
+      "rank": 8,
+      "chunk_id": "485c4989-c300-45c8-ac06-79a59492bb5c-c0007-22ed76c058",
+      "chunk_index": 7,
+      "semantic_type": "clause",
+      "reranker_score": 0.18911799788475037,
+      "hybrid_candidate_rank": 8,
+      "fusion_score": 0.028169014084507043,
+      "dense_rank": 11,
+      "dense_score": 0.5174258330552813,
+      "dense_distance": 0.48257416694471866,
+      "dense_rrf_score": 0.014084507042253521,
+      "lexical_rank": 11,
+      "lexical_score": 1.3000001,
+      "lexical_matched_term_count": 4,
+      "lexical_term_coverage": 0.5,
+      "lexical_rrf_score": 0.014084507042253521,
+      "text": "Section: PART I: INTRODUCTION AND APPLICABILITY > 1.0 INTRODUCTION\n\n1.2 These Guidelines are drawn up in accordance with the AMLA and the Financial Action Task\nForce (FATF) 40 Recommendations.\n\n1Regulation 3 of Strategic Trade (United Nations Security Council Resolutions) Regulations 2010 (P.U. (A) 481/2010) is set out in\nAppendix G of these Guidelines.\n\n1.3 These Guidelines provide:\n\n(a)requirements and obligations imposed on reporting institutions in preventing and\ncombating money laundering, terrorism financing, proliferation financing and\ntargeted financial sanctions; and\n\n(b)guidance for reporting institutions to comply with the obligations imposed under the\nAMLA and TFS-PF.\n\n1.4 These Guidelines supersede and replace the Guidelines on Implementation of Targeted\nFinancial Sanctions Relating to Proliferation Financing for Capital Markets.\n\n1.5 These Guidelines are made in addition to and not in derogation of any other guidelines\nissued by the Securities Commission Malaysia (SC) or any requirements as provided under\nthe securities laws and the AMLA. Therefore, a reporting institution must comply with\nother relevant guidelines and requirements.\n\n1.6 A reporting institution that is jointly regulated by Bank Negara Malaysia (BNM) and the\nSC, is required to comply with these Guidelines and the Anti-Money Laundering,\nCountering Financing of Terrorism, Countering Proliferation Financing and Targeted\nFinancial Sanctions for Financial Institutions (AML/CFT and TFS for FIs) issued by BNM.\nWhere there are differing requirements between the said guidelines, the more stringent\nrequirements shall apply.\n\n1.7 Non-compliance with any of the provisions in these Guidelines will subject the reporting\ninstitution to actions under the AMLA, Capital Markets and Services Act 2007 (CMSA) or\nany other relevant provisions under the laws of which these Guidelines are subject to.\nEnforcement actions can be taken against the reporting institutions including its directors,\nofficers, representatives, employees for any non-compliance with any requirements in these\nGuidelines.",
+      "content_text": "1.2 These Guidelines are drawn up in accordance with the AMLA and the Financial Action Task\nForce (FATF) 40 Recommendations.\n\n1Regulation 3 of Strategic Trade (United Nations Security Council Resolutions) Regulations 2010 (P.U. (A) 481/2010) is set out in\nAppendix G of these Guidelines.\n\n1.3 These Guidelines provide:\n\n(a)requirements and obligations imposed on reporting institutions in preventing and\ncombating money laundering, terrorism financing, proliferation financing and\ntargeted financial sanctions; and\n\n(b)guidance for reporting institutions to comply with the obligations imposed under the\nAMLA and TFS-PF.\n\n1.4 These Guidelines supersede and replace the Guidelines on Implementation of Targeted\nFinancial Sanctions Relating to Proliferation Financing for Capital Markets.\n\n1.5 These Guidelines are made in addition to and not in derogation of any other guidelines\nissued by the Securities Commission Malaysia (SC) or any requirements as provided under\nthe securities laws and the AMLA. Therefore, a reporting institution must comply with\nother relevant guidelines and requirements.\n\n1.6 A reporting institution that is jointly regulated by Bank Negara Malaysia (BNM) and the\nSC, is required to comply with these Guidelines and the Anti-Money Laundering,\nCountering Financing of Terrorism, Countering Proliferation Financing and Targeted\nFinancial Sanctions for Financial Institutions (AML/CFT and TFS for FIs) issued by BNM.\nWhere there are differing requirements between the said guidelines, the more stringent\nrequirements shall apply.\n\n1.7 Non-compliance with any of the provisions in these Guidelines will subject the reporting\ninstitution to actions under the AMLA, Capital Markets and Services Act 2007 (CMSA) or\nany other relevant provisions under the laws of which these Guidelines are subject to.\nEnforcement actions can be taken against the reporting institutions including its directors,\nofficers, representatives, employees for any non-compliance with any requirements in these\nGuidelines.",
+      "token_count": 368,
+      "pages": [
+        6,
+        7
+      ],
+      "section_path": [
+        "PART I: INTRODUCTION AND APPLICABILITY",
+        "1.0 INTRODUCTION"
+      ],
+      "source_element_ids": [
+        "p6-e11",
+        "p6-e12",
+        "p7-e1",
+        "p7-e2",
+        "p7-e3",
+        "p7-e4",
+        "p7-e5",
+        "p7-e6",
+        "p7-e7"
+      ]
+    },
+    {
+      "rank": 9,
+      "chunk_id": "485c4989-c300-45c8-ac06-79a59492bb5c-c0100-d1377a7b3c",
+      "chunk_index": 100,
+      "semantic_type": "clause",
+      "reranker_score": 0.18572723865509033,
+      "hybrid_candidate_rank": 11,
+      "fusion_score": 0.015625,
+      "dense_rank": null,
+      "dense_score": null,
+      "dense_distance": null,
+      "dense_rrf_score": 0.0,
+      "lexical_rank": 4,
+      "lexical_score": 0.7,
+      "lexical_matched_term_count": 6,
+      "lexical_term_coverage": 0.75,
+      "lexical_rrf_score": 0.015625,
+      "text": "Section: PART III: CUSTOMER DUE DILIGENCE > 8. CUSTOMER DUE DILIGENCE (CDD) > 8.1 CDD at the point of establishing business relationship\nClause: 8.1.23\nGroup: CDD requirements for establishing non face-to-face business relationship\n\n8.1.23 This section applies when a reporting institution chooses to establish non-face-to-\nface business relationship.\n\n(a) A reporting institution must develop and implement policies and procedures to\naddress and mitigate specific ML/TF/PF risks associated with establishing non\nface-to-face business relationship, as well as operational and information\ntechnology risk.\n\n(b) A reporting institution must establish appropriate measures for identification\nand verification of a customer’s identity before establishing non face-to-face\nbusiness relationship.\n\n(c) For the purpose of identification and verification of the identity of a customer in\na non face-to-face business relationship, a reporting institution must undertake\none or more of the following measures:\n\n(i) Requesting for additional identification documents or information e.g.\nbank statements, utility bills;\n\n(ii) Substantiating the customer’s information with any independent source\ne.g. contacting the customer’s employer and verification through database\nmaintained by any relevant authorities;\n\n(iii) Contacting the customer through any digital communication channel to\nvisually identify and verify the customer’s identity;\n\n(iv) Requesting the customer to make a nominal payment from his own\naccount with a licensed bank under the Financial Services Act 2013 or\nlicensed Islamic bank under the Islamic Financial Services Act 2013 to\nenable the reporting institution to satisfy itself of the customer’s true\nidentity; or\n\n(v) Using new technology solutions including, but not limited to, biometric\ntechnologies (e.g. fingerprint or iris scans, facial recognition), which\nshould be linked incontrovertibly to the customer.\n\n(d) Where the reporting institution is unable to identify and verify the customer’s\nidentity by adopting the measures provided under paragraph (c) above, the\nreporting institution must initiate face-to-face business relationship.\n\n(e) Sub-paragraphs (a) to (d) above are not applicable to:\n\n(i)Customers that are identified as foreign PEP;\n\n(ii)Customers from higher-risk and non co-operative jurisdictions as identified\nby the FATF; or\n\n(iii)Listed persons or entities subjected to targeted financial sanctions for\nterrorism financing and financing of proliferation of weapons of mass\ndestruction pursuant to the UNSCR.\n\n(f) A reporting institution must ensure and be able to demonstrate on a continuing\nbasis that appropriate measures for identification and verification of a customer’s\nidentity when establishing non-face-to-face business relationship are as effective\nas that for face-to-face customer and implement monitoring and reporting\nmechanism to identify potential ML/TF/PF activities.",
+      "content_text": "8.1.23 This section applies when a reporting institution chooses to establish non-face-to-\nface business relationship.\n\n(a) A reporting institution must develop and implement policies and procedures to\naddress and mitigate specific ML/TF/PF risks associated with establishing non\nface-to-face business relationship, as well as operational and information\ntechnology risk.\n\n(b) A reporting institution must establish appropriate measures for identification\nand verification of a customer’s identity before establishing non face-to-face\nbusiness relationship.\n\n(c) For the purpose of identification and verification of the identity of a customer in\na non face-to-face business relationship, a reporting institution must undertake\none or more of the following measures:\n\n(i) Requesting for additional identification documents or information e.g.\nbank statements, utility bills;\n\n(ii) Substantiating the customer’s information with any independent source\ne.g. contacting the customer’s employer and verification through database\nmaintained by any relevant authorities;\n\n(iii) Contacting the customer through any digital communication channel to\nvisually identify and verify the customer’s identity;\n\n(iv) Requesting the customer to make a nominal payment from his own\naccount with a licensed bank under the Financial Services Act 2013 or\nlicensed Islamic bank under the Islamic Financial Services Act 2013 to\nenable the reporting institution to satisfy itself of the customer’s true\nidentity; or\n\n(v) Using new technology solutions including, but not limited to, biometric\ntechnologies (e.g. fingerprint or iris scans, facial recognition), which\nshould be linked incontrovertibly to the customer.\n\n(d) Where the reporting institution is unable to identify and verify the customer’s\nidentity by adopting the measures provided under paragraph (c) above, the\nreporting institution must initiate face-to-face business relationship.\n\n(e) Sub-paragraphs (a) to (d) above are not applicable to:\n\n(i)Customers that are identified as foreign PEP;\n\n(ii)Customers from higher-risk and non co-operative jurisdictions as identified\nby the FATF; or\n\n(iii)Listed persons or entities subjected to targeted financial sanctions for\nterrorism financing and financing of proliferation of weapons of mass\ndestruction pursuant to the UNSCR.\n\n(f) A reporting institution must ensure and be able to demonstrate on a continuing\nbasis that appropriate measures for identification and verification of a customer’s\nidentity when establishing non-face-to-face business relationship are as effective\nas that for face-to-face customer and implement monitoring and reporting\nmechanism to identify potential ML/TF/PF activities.",
+      "token_count": 550,
+      "pages": [
+        36,
+        37
+      ],
+      "section_path": [
+        "PART III: CUSTOMER DUE DILIGENCE",
+        "8. CUSTOMER DUE DILIGENCE (CDD)",
+        "8.1 CDD at the point of establishing business relationship"
+      ],
+      "source_element_ids": [
+        "p36-e10",
+        "p36-e11",
+        "p36-e12",
+        "p37-e1",
+        "p37-e2",
+        "p37-e3",
+        "p37-e4",
+        "p37-e5",
+        "p37-e6",
+        "p37-e7",
+        "p37-e8",
+        "p37-e9",
+        "p37-e10",
+        "p37-e11",
+        "p37-e12"
+      ]
+    },
+    {
+      "rank": 10,
+      "chunk_id": "485c4989-c300-45c8-ac06-79a59492bb5c-c0167-5fb13811a7",
+      "chunk_index": 167,
+      "semantic_type": "list_item",
+      "reranker_score": 0.1462123841047287,
+      "hybrid_candidate_rank": 9,
+      "fusion_score": 0.02758751902587519,
+      "dense_rank": 12,
+      "dense_score": 0.5148185456231724,
+      "dense_distance": 0.4851814543768276,
+      "dense_rrf_score": 0.013888888888888888,
+      "lexical_rank": 13,
+      "lexical_score": 0.7,
+      "lexical_matched_term_count": 4,
+      "lexical_term_coverage": 0.5,
+      "lexical_rrf_score": 0.0136986301369863,
+      "text": "Section: PART VIII: COMBATING PROLIFERATION FINANCING > 17. CONDUCT SANCTIONS SCREENING ON CUSTOMERS\nGroup: Guidance for paragraph 17\n\n(a)According to the standards prescribed by the FATF, “without delay” means,\nideally within a matter of hours of a designation by the UNSC or its relevant\nSanctions Committee. The phrase “without delay” should be interpreted in\nthe context of the need to prevent the flight or dissipation of funds or other\nassets which are linked to the financing of proliferation of weapons of mass\ndestruction.\n\n(b)A reporting institution is also advised to search, examine and analyse past\nfinancial activities of the designated person or related party, where relevant.\n\n(c)A reporting institution must always be wary of the possible use of among\nothers, false identities, dual nationalities, multiple names and identities\nwhen performing name searches for each designated person to prevent\nunintended omissions.\n\n(d)The screening obligations under these Guidelines extend to the delisting of\naffected customers from the list of countries and persons designated under\nthe relevant UNSCRs.",
+      "content_text": "(a)According to the standards prescribed by the FATF, “without delay” means,\nideally within a matter of hours of a designation by the UNSC or its relevant\nSanctions Committee. The phrase “without delay” should be interpreted in\nthe context of the need to prevent the flight or dissipation of funds or other\nassets which are linked to the financing of proliferation of weapons of mass\ndestruction.\n\n(b)A reporting institution is also advised to search, examine and analyse past\nfinancial activities of the designated person or related party, where relevant.\n\n(c)A reporting institution must always be wary of the possible use of among\nothers, false identities, dual nationalities, multiple names and identities\nwhen performing name searches for each designated person to prevent\nunintended omissions.\n\n(d)The screening obligations under these Guidelines extend to the delisting of\naffected customers from the list of countries and persons designated under\nthe relevant UNSCRs.",
+      "token_count": 197,
+      "pages": [
+        63
+      ],
+      "section_path": [
+        "PART VIII: COMBATING PROLIFERATION FINANCING",
+        "17. CONDUCT SANCTIONS SCREENING ON CUSTOMERS"
+      ],
+      "source_element_ids": [
+        "p63-e5",
+        "p63-e6",
+        "p63-e7",
+        "p63-e8"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,239 @@
+{
+  "document_id": "485c4989-c300-45c8-ac06-79a59492bb5c",
+  "question": "In the Guidelines, how does the meaning of 'beneficiary' differ between trust law and a wire transfer?",
+  "status": "answered",
+  "answer": "In trust law, a beneficiary is the person or persons who are entitled to the benefit of any trust arrangement, which may be a natural or legal person or arrangement, and trusts must have ascertainable beneficiaries. In the context of a wire transfer, a beneficiary is the natural or legal person or legal arrangement identified by the originator as the receiver of the requested wire transfer.",
+  "cited_answer": "In trust law, a beneficiary is the person or persons who are entitled to the benefit of any trust arrangement, which may be a natural or legal person or arrangement, and trusts must have ascertainable beneficiaries. [1] In the context of a wire transfer, a beneficiary is the natural or legal person or legal arrangement identified by the originator as the receiver of the requested wire transfer. [1]",
+  "claims": [
+    {
+      "claim_id": "C1",
+      "text": "In trust law, a beneficiary is the person or persons who are entitled to the benefit of any trust arrangement, which may be a natural or legal person or arrangement, and trusts must have ascertainable beneficiaries.",
+      "evidence_ids": [
+        "E1"
+      ],
+      "citation_ids": [
+        "CIT-E1"
+      ]
+    },
+    {
+      "claim_id": "C2",
+      "text": "In the context of a wire transfer, a beneficiary is the natural or legal person or legal arrangement identified by the originator as the receiver of the requested wire transfer.",
+      "evidence_ids": [
+        "E1"
+      ],
+      "citation_ids": [
+        "CIT-E1"
+      ]
+    }
+  ],
+  "used_evidence_ids": [
+    "E1"
+  ],
+  "missing_information": [],
+  "evidence": [
+    {
+      "evidence_id": "E1",
+      "chunk_id": "485c4989-c300-45c8-ac06-79a59492bb5c-c0012-255abb45a1",
+      "chunk_index": 12,
+      "semantic_type": "definition",
+      "source_rank": 1,
+      "ranked_seed_rank": 1,
+      "reasons": [
+        "ranked_seed"
+      ],
+      "pages": [
+        9,
+        10
+      ],
+      "section_path": [
+        "PART I: INTRODUCTION AND APPLICABILITY",
+        "3. DEFINITIONS"
+      ],
+      "source_element_ids": [
+        "p9-e11",
+        "p9-e10",
+        "p10-e1",
+        "p10-e2",
+        "p10-e3"
+      ],
+      "content_text": "beneficiary\n\nthe meaning of the term beneficiary depends on\nthe context.\nin trust law, a beneficiary refers to the person or persons who are entitled to the benefit of any trust arrangement. A beneficiary can be a natural or legal person or arrangement. All trusts (other than charitable or statutory permitted non- charitable trusts) are required to have ascertainable beneficiaries. While trusts must always have some ultimately ascertainable beneficiary, trusts may have no defined existing beneficiaries but only objects of a power until some person becomes entitled as beneficiary to income or capital on the expiry of a defined period, known as the accumulation period or following exercise of trustee discretion in the case of a discretionary trust.\nIn wire transfer, refers to the natural or legal person or legal arrangement identified by the originator as the receiver of the requested wire transfer."
+    },
+    {
+      "evidence_id": "E2",
+      "chunk_id": "485c4989-c300-45c8-ac06-79a59492bb5c-c0013-a4ff83921b",
+      "chunk_index": 13,
+      "semantic_type": "definition",
+      "source_rank": 2,
+      "ranked_seed_rank": 2,
+      "reasons": [
+        "ranked_seed"
+      ],
+      "pages": [
+        10
+      ],
+      "section_path": [
+        "PART I: INTRODUCTION AND APPLICABILITY",
+        "3. DEFINITIONS"
+      ],
+      "source_element_ids": [
+        "p10-e4",
+        "p10-e5"
+      ],
+      "content_text": "beneficiary institution\n\nin wire transfer, refers to the institution which receives the wire transfer from the ordering institution and makes the digital assets available to the beneficiary."
+    },
+    {
+      "evidence_id": "E3",
+      "chunk_id": "485c4989-c300-45c8-ac06-79a59492bb5c-c0048-d2b22019bf",
+      "chunk_index": 48,
+      "semantic_type": "definition",
+      "source_rank": 3,
+      "ranked_seed_rank": 3,
+      "reasons": [
+        "ranked_seed"
+      ],
+      "pages": [
+        16
+      ],
+      "section_path": [
+        "PART I: INTRODUCTION AND APPLICABILITY",
+        "3. DEFINITIONS"
+      ],
+      "source_element_ids": [
+        "p16-e3",
+        "p16-e4"
+      ],
+      "content_text": "wire transfer\n\nrefers to any transaction carried out on behalf of an originator through an institution by electronic means with a view to making an amount of digital asset available to a beneficiary at a beneficiary institution irrespective of whether the originator and the beneficiary are the same person."
+    },
+    {
+      "evidence_id": "E4",
+      "chunk_id": "485c4989-c300-45c8-ac06-79a59492bb5c-c0139-f108162213",
+      "chunk_index": 139,
+      "semantic_type": "clause",
+      "source_rank": 4,
+      "ranked_seed_rank": 4,
+      "reasons": [
+        "ranked_seed"
+      ],
+      "pages": [
+        50
+      ],
+      "section_path": [
+        "PART IIIA: WIRE TRANSFER",
+        "9. WIRE TRANSFER OF DIGITAL ASSETS",
+        "9.4 Sanctions Screening"
+      ],
+      "source_element_ids": [
+        "p50-e10",
+        "p50-e11",
+        "p50-e12",
+        "p50-e13",
+        "p50-e14",
+        "p50-e15",
+        "p50-e16",
+        "p50-e17",
+        "p50-e18"
+      ],
+      "content_text": "9.4.1 An ordering institution must conduct sanctions screening of the following persons:\n\n(a) its customer, at the point of onboarding and ongoing due diligence; and\n\n(b) the beneficiary, when a wire transfer is conducted.\n\n9.4.2 A beneficiary institution must conduct sanctions screening of the following persons:\n\n(a) its beneficiary, at the point of onboarding and ongoing due diligence; and\n\n(b) the originator, when a wire transfer is conducted.\n\n9.4.3 Once the person screened is identified as a designated person, the ordering or\nbeneficiary institution must take freezing actions and prohibit transactions.\n\n9.4.4 Ordering or beneficiary institutions must implement effective control frameworks to\nensure that they can comply with their targeted financial sanction obligations.\n\n9.4.5 A reporting institution must document their remediation control actions in their\nAML/CFT/CPF risk assessment."
+    },
+    {
+      "evidence_id": "E5",
+      "chunk_id": "485c4989-c300-45c8-ac06-79a59492bb5c-c0138-fc3eaa0c1a",
+      "chunk_index": 138,
+      "semantic_type": "clause",
+      "source_rank": 5,
+      "ranked_seed_rank": 5,
+      "reasons": [
+        "ranked_seed"
+      ],
+      "pages": [
+        50
+      ],
+      "section_path": [
+        "PART IIIA: WIRE TRANSFER",
+        "9. WIRE TRANSFER OF DIGITAL ASSETS",
+        "9.3 Beneficiary Institutions"
+      ],
+      "source_element_ids": [
+        "p50-e2",
+        "p50-e3",
+        "p50-e4",
+        "p50-e5",
+        "p50-e6",
+        "p50-e7",
+        "p50-e8"
+      ],
+      "content_text": "9.3.1 A beneficiary institution must take reasonable measures, including post-event or real-\ntime monitoring where feasible, to identify cross border wire transfers or domestic\nwire transfers that lack the required originator information or required beneficiary\ninformation.\n\n9.3.2 A beneficiary institution is required to have effective risk-based policies and procedures\nfor determining―\n\n(a)when to execute, reject, or suspend a wire transfer lacking the required originator\nor required beneficiary information; and\n\n(b)the appropriate follow-up action.\n\n9.3.3 A beneficiary institution must verify the following beneficiary information received from\nthe ordering institution:\n\n(a)Name of beneficiary; and\n\n(b) Account number or digital wallet address or a unique transaction reference\nnumber used to process the transaction which permits traceability of the\ntransaction."
+    }
+  ],
+  "citations": [
+    {
+      "citation_id": "CIT-E1",
+      "marker": "[1]",
+      "evidence_id": "E1",
+      "chunk_id": "485c4989-c300-45c8-ac06-79a59492bb5c-c0012-255abb45a1",
+      "chunk_index": 12,
+      "source_filename": "sc_aml_cft.pdf",
+      "display": "Definition “beneficiary” · PDF pp. 9–10",
+      "pages": [
+        9,
+        10
+      ],
+      "section_path": [
+        "PART I: INTRODUCTION AND APPLICABILITY",
+        "3. DEFINITIONS"
+      ],
+      "source_element_ids": [
+        "p9-e11",
+        "p9-e10",
+        "p10-e1",
+        "p10-e2",
+        "p10-e3"
+      ],
+      "locators": [
+        {
+          "kind": "definition",
+          "label": "Definition “beneficiary”",
+          "pages": [
+            9,
+            10
+          ],
+          "source_element_ids": [
+            "p9-e11",
+            "p9-e10",
+            "p10-e1",
+            "p10-e2",
+            "p10-e3"
+          ]
+        }
+      ],
+      "validation_status": "valid"
+    }
+  ],
+  "citation_version": "deterministic_citations_v1_2",
+  "citation_validation": {
+    "status": "valid",
+    "citation_count": 1,
+    "valid_citation_count": 1,
+    "errors": []
+  },
+  "generation_provider": "groq",
+  "generation_model": "openai/gpt-oss-120b",
+  "prompt_version": "grounded_claims_v1",
+  "generation_temperature": 0.0,
+  "generation_max_tokens": 1200,
+  "generation_json_mode": true,
+  "usage": {
+    "prompt_tokens": 1426,
+    "completion_tokens": 435,
+    "total_tokens": 1861
+  },
+  "retrieval_profile": "retrieval_v1_stage8_2_top5",
+  "retrieval_top_k": 5,
+  "retrieval_candidate_k": 20,
+  "retrieval_rrf_k": 60,
+  "retrieval_dense_weight": 1.0,
+  "retrieval_lexical_weight": 1.0,
+  "context_strategy": "structural_one_hop_v1",
+  "context_chunk_count": 5,
+  "expanded_chunk_count": 0
+}

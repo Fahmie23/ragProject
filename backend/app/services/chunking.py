@@ -36,6 +36,21 @@ _INTRO_PHRASE_RE = re.compile(
 )
 _CONTEXTUAL_NOTE_RE = re.compile(r"^\s*(\d{1,3})\s+(?:refers?|means?|for|where|note|this|the)\b", re.IGNORECASE)
 _NAV_TITLES = {"contents", "table of contents", "index"}
+_TOC_ENTRY_MARKER_RE = re.compile(
+    r"^(?:\d+[A-Za-z]?(?:\.\d+)*\.?|PART|APPEND(?:IX|ICES)(?:\s+[A-Z0-9]+:?)?)$",
+    re.IGNORECASE,
+)
+_TOC_PAGE_NUMBER_RE = re.compile(r"^\d{1,4}$")
+_NAVIGATION_EVIDENCE_RE = re.compile(r"(?:table[- ]of[- ]contents|\bTOC\b).*navigation|navigation.*(?:table[- ]of[- ]contents|\bTOC\b)", re.IGNORECASE)
+_GENERIC_FIGURE_CAPTION_RE = re.compile(
+    r"^\s*(?:figure|illustration|diagram|chart|image|flowchart|exhibit)\s*(?:no\.?\s*)?[A-Za-z0-9]+(?:[.\-][A-Za-z0-9]+)*\s*:?\s*$",
+    re.IGNORECASE,
+)
+_REFERENTIAL_FIGURE_INTRO_RE = re.compile(
+    r"(?:\b(?:figure|illustration|diagram|chart|flowchart|image|overview|process)\b.*\b(?:below|above|shown|illustrated|depicted|presented|set\s+out)\b"
+    r"|\b(?:shown|illustrated|depicted|presented|set\s+out)\b.*\b(?:figure|illustration|diagram|chart|flowchart|image|overview|process)\b)",
+    re.IGNORECASE,
+)
 
 
 @dataclass
@@ -179,6 +194,214 @@ def _navigation_section_ids(structure: StructuredDocument) -> set[str]:
     return navigation_ids
 
 
+def _element_has_explicit_navigation_signal(element: CanonicalElement) -> bool:
+    """Return whether Stage 4 explicitly marked an element as navigation-only.
+
+    Stage 4 deliberately preserves TOC labels for provenance while suppressing
+    them from the canonical body hierarchy. Stage 5 must consume that signal
+    directly instead of relying only on section ancestry, because TOC tables
+    may inherit an unrelated front-matter section id.
+    """
+
+    if element.role_source == "toc_navigation_suppression":
+        return True
+    classification = element.classification
+    if classification is None:
+        return False
+    if classification.source == "document_zone_resolver" and any(
+        _NAVIGATION_EVIDENCE_RE.search(evidence or "") for evidence in classification.evidence
+    ):
+        return True
+    return False
+
+
+def _looks_like_toc_table(element: CanonicalElement) -> bool:
+    """Conservatively recognize table-of-contents style tables.
+
+    This is intentionally structural rather than domain-specific: a TOC table
+    typically has a marker/title/page layout, many numeric rightmost cells,
+    and optionally PART/APPENDIX navigation rows. The predicate is strict so
+    ordinary numeric data tables are not discarded merely for having numbers.
+    """
+
+    if element.type != "table" or element.table is None or not element.table.cells:
+        return False
+    rows = [row for row in element.table.cells if any(str(cell or "").strip() for cell in row)]
+    if len(rows) < 2:
+        return False
+    width = max((len(row) for row in rows), default=0)
+    if width < 2:
+        return False
+
+    marker_rows = 0
+    page_rows = 0
+    explicit_page_header = False
+    navigation_marker_rows = 0
+    for row in rows:
+        first = " ".join(str(row[0] or "").split()).strip(" :") if row else ""
+        last = " ".join(str(row[-1] or "").split()).strip() if row else ""
+        if _TOC_ENTRY_MARKER_RE.fullmatch(first):
+            marker_rows += 1
+        if re.fullmatch(r"PART|APPEND(?:IX|ICES)(?:\s+[A-Z0-9]+:?)?", first, re.IGNORECASE):
+            navigation_marker_rows += 1
+        if last.lower() == "page":
+            explicit_page_header = True
+        elif _TOC_PAGE_NUMBER_RE.fullmatch(last):
+            page_rows += 1
+
+    entry_ratio = marker_rows / len(rows)
+    page_ratio = page_rows / len(rows)
+    return bool(
+        (explicit_page_header and entry_ratio >= 0.35)
+        or (navigation_marker_rows > 0 and entry_ratio >= 0.50 and page_ratio >= 0.35)
+    )
+
+
+def _navigation_page_numbers(structure: StructuredDocument) -> set[int]:
+    """Infer complete TOC/navigation pages from explicit Stage 4 signals.
+
+    Explicit Stage 4 navigation markers are authoritative. TOC-like tables on
+    the same or immediately adjacent pages extend the navigation zone so a
+    continuation page containing only a table (for example an appendices index)
+    cannot leak into retrieval.
+    """
+
+    pages = {page.page_number: page for page in structure.pages}
+    navigation_pages = {
+        page.page_number
+        for page in structure.pages
+        if any(_element_has_explicit_navigation_signal(element) for element in page.elements)
+    }
+
+    toc_table_pages = {
+        page.page_number
+        for page in structure.pages
+        if any(_looks_like_toc_table(element) for element in page.elements)
+    }
+    navigation_pages |= {
+        page_number
+        for page_number in toc_table_pages
+        if page_number in navigation_pages
+        or (page_number - 1) in navigation_pages
+        or (page_number + 1) in navigation_pages
+    }
+
+    # Propagate through a contiguous TOC table run. This handles a continuation
+    # page that has no standalone CONTENTS/PART label of its own.
+    changed = True
+    while changed:
+        changed = False
+        for page_number in sorted(toc_table_pages):
+            if page_number in navigation_pages:
+                continue
+            if (page_number - 1) in navigation_pages or (page_number + 1) in navigation_pages:
+                navigation_pages.add(page_number)
+                changed = True
+    return {page_number for page_number in navigation_pages if page_number in pages}
+
+
+
+
+def _looks_like_generic_figure_caption(text: str) -> bool:
+    return bool(_GENERIC_FIGURE_CAPTION_RE.match(" ".join(text.split())))
+
+
+def _looks_like_referential_figure_intro(text: str) -> bool:
+    """Return True for short prose that merely points the reader at a visual.
+
+    This is intentionally conservative: long or information-bearing prose is not
+    suppressed merely because it mentions a figure.
+    """
+
+    normalized = " ".join(text.split())
+    if len(re.findall(r"\b\w+\b", normalized)) > 45:
+        return False
+    return bool(_REFERENTIAL_FIGURE_INTRO_RE.search(normalized))
+
+
+def _figure_context_only_reasons(
+    structure: StructuredDocument,
+    *,
+    suppress_intro_only: bool = True,
+    suppress_non_explanatory_shells: bool = True,
+) -> dict[str, str]:
+    """Identify figure-related text that should not be answer-bearing text chunks.
+
+    Two conservative cases are handled:
+
+    * ``figure_intro_context_only``: an empty visual with only a referential
+      introduction (the Stage 5.6 rule).
+    * ``figure_non_explanatory_context_only``: an empty visual with no
+      explanation, where any caption is only a generic label (for example
+      ``Illustration 1``), any introduction merely points to the visual, and the
+      remaining support is source/citation text. This prevents a citation shell
+      from ranking as though it contained the process or diagram it references.
+
+    Stage 4 provenance remains authoritative; this function only controls what is
+    independently retrievable by the text-only Stage 5/6 path.
+    """
+
+    element_by_id = {element.element_id: element for page in structure.pages for element in page.elements}
+
+    def meaningful_text(element_id: str) -> str:
+        element = element_by_id.get(element_id)
+        if element is None:
+            return ""
+        return _normalize_text(
+            element.text,
+            normalize_whitespace=True,
+            dehyphenate_line_breaks=False,
+        )
+
+    reasons: dict[str, str] = {}
+    for figure in structure.figures:
+        own_text = meaningful_text(figure.element_id)
+        intro_ids = [element_id for element_id in figure.intro_element_ids if meaningful_text(element_id)]
+        caption_ids = [element_id for element_id in figure.caption_element_ids if meaningful_text(element_id)]
+        explanation_ids = [element_id for element_id in figure.explanation_element_ids if meaningful_text(element_id)]
+        source_ids = [element_id for element_id in figure.source_element_ids if meaningful_text(element_id)]
+
+        # If the visual itself or an explicit explanation contains text, the
+        # figure has an answer-bearing text representation and must be retained.
+        if own_text or explanation_ids:
+            continue
+
+        if suppress_intro_only and intro_ids and not caption_ids and not source_ids:
+            for element_id in intro_ids:
+                reasons[element_id] = "figure_intro_context_only"
+            continue
+
+        if not suppress_non_explanatory_shells:
+            continue
+
+        captions_are_generic = not caption_ids or all(
+            _looks_like_generic_figure_caption(meaningful_text(element_id))
+            for element_id in caption_ids
+        )
+        intros_are_referential = not intro_ids or all(
+            _looks_like_referential_figure_intro(meaningful_text(element_id))
+            or _looks_like_generic_figure_caption(meaningful_text(element_id))
+            for element_id in intro_ids
+        )
+        shell_ids = [*intro_ids, *caption_ids, *source_ids]
+
+        if shell_ids and captions_are_generic and intros_are_referential:
+            for element_id in shell_ids:
+                reasons[element_id] = "figure_non_explanatory_context_only"
+
+    return reasons
+
+
+def _intro_only_figure_context_ids(structure: StructuredDocument) -> set[str]:
+    """Backward-compatible helper used by quality checks and older tests."""
+
+    reasons = _figure_context_only_reasons(
+        structure,
+        suppress_intro_only=True,
+        suppress_non_explanatory_shells=False,
+    )
+    return {element_id for element_id, reason in reasons.items() if reason == "figure_intro_context_only"}
+
 def _looks_like_intro(text: str) -> bool:
     value = " ".join(text.split())
     return bool(_INTRO_END_RE.search(value) or _INTRO_PHRASE_RE.search(value))
@@ -196,6 +419,16 @@ def _cleaning_decisions(
     repeated_margin_texts = _margin_repeat_texts(structure, config)
     overlapping_duplicates = _overlapping_duplicate_ids(structure, config)
     navigation_section_ids = _navigation_section_ids(structure) if config.strategy == "semantic_v2" and config.exclude_navigation_sections else set()
+    navigation_pages = _navigation_page_numbers(structure) if config.strategy == "semantic_v2" and config.exclude_navigation_sections else set()
+    figure_context_only_reasons = (
+        _figure_context_only_reasons(
+            structure,
+            suppress_intro_only=config.suppress_intro_only_figure_chunks,
+            suppress_non_explanatory_shells=config.suppress_non_explanatory_figure_shells,
+        )
+        if config.strategy == "semantic_v2"
+        else {}
+    )
     page_height = {page.page_number: max(page.height, 1.0) for page in structure.pages}
     decisions: dict[str, CleaningDecision] = {}
     normalized_text: dict[str, str] = {}
@@ -239,9 +472,23 @@ def _cleaning_decisions(
         elif normalized_key in repeated_margin_texts and near_margin:
             action = "exclude"
             reason = "repeated_margin_text"
-        elif element.section_id in navigation_section_ids and element.type in {"table", "paragraph", "list_item", "group_header"}:
+        elif (
+            config.exclude_navigation_sections
+            and (
+                _element_has_explicit_navigation_signal(element)
+                or element.page_number in navigation_pages
+                or element.section_id in navigation_section_ids
+            )
+            and element.type in {"table", "paragraph", "list_item", "group_header", "unknown", "section_header"}
+        ):
             action = "exclude"
             reason = "navigation_only"
+        elif element.element_id in figure_context_only_reasons:
+            # Preserve the Stage 4 figure relationship in the cleaning audit,
+            # while preventing answer-poor visual shells from becoming text
+            # retrieval candidates.
+            action = "context"
+            reason = figure_context_only_reasons[element.element_id]
         elif element.type == "footnote" and not config.cleaning.include_footnotes:
             action = "exclude"
             reason = "footnote_disabled"
@@ -329,6 +576,43 @@ def _build_semantic_units_v1(
         decision = decisions.get(element_id)
         return bool(decision and decision.action == "include" and element_id not in consumed)
 
+    figure_caption_ids = {
+        element_id
+        for figure in structure.figures
+        for element_id in figure.caption_element_ids
+    }
+
+    def adjacent_table_caption_ids(member_ids: list[str]) -> list[str]:
+        """Attach an immediately preceding standalone caption to a table.
+
+        Figure-owned captions are excluded here because FigureRecord already
+        owns them. Requiring direct document-order adjacency keeps this generic
+        and prevents a distant label from being guessed as table context.
+        """
+
+        members = [element_by_id[element_id] for element_id in member_ids if element_id in element_by_id]
+        if not members:
+            return []
+        first = min(members, key=lambda item: item.document_order)
+        prior = next(
+            (
+                candidate
+                for candidate in reversed(elements)
+                if candidate.document_order < first.document_order
+            ),
+            None,
+        )
+        if (
+            prior is None
+            or prior.document_order != first.document_order - 1
+            or prior.page_number != first.page_number
+            or prior.type != "caption"
+            or prior.element_id in figure_caption_ids
+            or not available(prior.element_id)
+        ):
+            return []
+        return [prior.element_id]
+
     # Definitions are a first-class semantic unit. Keep the term and its complete
     # definition together even when they span pages; oversized definitions are
     # split later with the definition term repeated as context.
@@ -366,20 +650,26 @@ def _build_semantic_units_v1(
         member_ids = [element_id for element_id in table.fragment_element_ids if available(element_id)]
         if not member_ids:
             continue
+        caption_ids = adjacent_table_caption_ids(member_ids)
         text = _serialize_table(table.cells)
         if not text:
             text = "\n\n".join(normalized_text[element_id] for element_id in member_ids if normalized_text.get(element_id))
         if not text:
             continue
-        consumed.update(member_ids)
+        caption_text = "\n\n".join(normalized_text[element_id] for element_id in caption_ids if normalized_text.get(element_id))
+        if caption_text:
+            text = f"{caption_text}\n\n{text}"
+        source_ids = [*caption_ids, *member_ids]
+        consumed.update(source_ids)
         units.append(_Unit(
             semantic_type="table",
             content_text=text,
             section_id=table.section_id,
-            pages=_collect_pages(member_ids, element_by_id) or list(range(table.start_page, table.end_page + 1)),
-            source_element_ids=member_ids,
+            pages=_collect_pages(source_ids, element_by_id) or list(range(table.start_page, table.end_page + 1)),
+            source_element_ids=source_ids,
             atomic=True,
-            context_label="Table",
+            context_label=caption_text or "Table",
+            refinement_tags=["caption_attachment"] if caption_ids else None,
         ))
 
     # Figure records combine the figure's meaningful text with captions,
@@ -413,7 +703,7 @@ def _build_semantic_units_v1(
             context_label="Figure",
         ))
 
-    structural_boundaries = {"section_header", "group_header", "clause", "subclause", "definition_term", "definition_text", "table", "figure"}
+    structural_boundaries = {"section_header", "group_header", "clause", "subclause", "definition_term", "definition_text", "table", "figure", "caption"}
 
     # Clauses/subclauses absorb immediately following prose/list content until the
     # next semantic boundary. This keeps markers/headings from becoming orphaned
@@ -448,18 +738,24 @@ def _build_semantic_units_v1(
     for element in elements:
         if element.type != "table" or not available(element.element_id):
             continue
+        caption_ids = adjacent_table_caption_ids([element.element_id])
         text = _serialize_table(element.table.cells) if element.table else normalized_text.get(element.element_id, "")
         if not text:
             continue
-        consumed.add(element.element_id)
+        caption_text = "\n\n".join(normalized_text[element_id] for element_id in caption_ids if normalized_text.get(element_id))
+        if caption_text:
+            text = f"{caption_text}\n\n{text}"
+        source_ids = [*caption_ids, element.element_id]
+        consumed.update(source_ids)
         units.append(_Unit(
             semantic_type="table",
             content_text=text,
             section_id=element.section_id,
             pages=[element.page_number],
-            source_element_ids=[element.element_id],
+            source_element_ids=source_ids,
             atomic=True,
-            context_label="Table",
+            context_label=caption_text or "Table",
+            refinement_tags=["caption_attachment"] if caption_ids else None,
         ))
 
     # Remaining elements are small semantic units. They are packed later only
@@ -529,6 +825,19 @@ def _refine_semantic_units_v2(
         source_unit = unit_by_element.get(source_id)
         target_unit = unit_by_element.get(target_id)
         if source_unit is None or target_unit is None or source_unit == target_unit:
+            return
+        source_element = element_by_id.get(source_id)
+        target_element = element_by_id.get(target_id)
+        # In semantic-v2, local group headers are retrieval context rather than
+        # answer-bearing source text. Do not absorb them into dependency groups;
+        # the relation-aware group-context pass below preserves their scope and
+        # provenance without polluting content_text.
+        if (
+            config.attach_group_headers_as_context
+            and source_element is not None
+            and target_element is not None
+            and (source_element.type == "group_header" or target_element.type == "group_header")
+        ):
             return
         parent_to_children[source_unit].add(target_unit)
         child_to_parents[target_unit].add(source_unit)
@@ -800,6 +1109,216 @@ def _refine_semantic_units_v2(
     )
 
 
+
+
+def _attach_group_header_context(
+    units: list[_Unit],
+    structure: StructuredDocument,
+    config: ChunkingConfig,
+) -> list[_Unit]:
+    """Turn header-only local groups into retrieval context for their body.
+
+    Stage 4 uses ``group_header`` for local scopes that should not become global
+    sections. Indexing those labels alone wastes Top-K slots. This pass keeps the
+    label in ``context_element_ids`` and repeats it on the answer-bearing units
+    until the next local group or section boundary. Consecutive local headers are
+    treated as a compact context chain.
+    """
+
+    if not config.attach_group_headers_as_context or not units:
+        return units
+
+    element_by_id = {element.element_id: element for page in structure.pages for element in page.elements}
+    section_by_id = {section.section_id: section for section in structure.sections}
+
+    def section_root(section_id: str | None) -> str | None:
+        if section_id is None:
+            return None
+        current = section_id
+        seen: set[str] = set()
+        while current and current not in seen:
+            seen.add(current)
+            section = section_by_id.get(current)
+            if section is None or not section.parent_section_id:
+                return current
+            current = section.parent_section_id
+        return current
+
+    introduced_targets_by_header: dict[str, list[CanonicalElement]] = defaultdict(list)
+    for relation in structure.relationships:
+        if relation.type != "introduces":
+            continue
+        source = element_by_id.get(relation.source_element_id)
+        target = element_by_id.get(relation.target_element_id)
+        if source is None or target is None or source.type != "group_header":
+            continue
+        introduced_targets_by_header[source.element_id].append(target)
+
+    def is_descendant_section(child_id: str | None, ancestor_id: str | None) -> bool:
+        """Return whether ``child_id`` is structurally below ``ancestor_id``.
+
+        Resolved Stage 4.5 artifacts can legitimately preserve the section tree even
+        when a nearby ``group_header -> section_header`` ``introduces`` edge is not
+        carried forward.  The tree is therefore a safe fallback signal for an
+        appendix/title-like group immediately followed by body in a descendant
+        section.
+        """
+
+        if child_id is None or ancestor_id is None or child_id == ancestor_id:
+            return False
+        current = child_id
+        seen: set[str] = set()
+        while current and current not in seen:
+            seen.add(current)
+            section = section_by_id.get(current)
+            if section is None or not section.parent_section_id:
+                return False
+            if section.parent_section_id == ancestor_id:
+                return True
+            current = section.parent_section_id
+        return False
+
+    def header_scope_mode(header_units: list[_Unit], first_target: _Unit | None) -> str:
+        """Classify local-group scope using canonical structure evidence.
+
+        ``introduces`` remains the strongest signal.  If a resolved artifact has
+        dropped that local edge but the next answer-bearing unit is in a descendant
+        section of the header's section, the canonical section tree provides a
+        conservative fallback for section-scoped appendix/title labels.  ``local``
+        scopes remain intentionally narrow and stop before the next numbered clause.
+        """
+
+        target_types: set[str] = set()
+        has_explicit_targets = False
+        for header in header_units:
+            for element_id in header.source_element_ids:
+                targets = introduced_targets_by_header.get(element_id, [])
+                if targets:
+                    has_explicit_targets = True
+                target_types.update(target.type for target in targets)
+        if "section_header" in target_types:
+            return "section"
+        if target_types & {"clause", "subclause"}:
+            return "clause"
+        if not has_explicit_targets and first_target is not None:
+            # Some Stage 4.5 resolved artifacts retain the parent/child section tree
+            # but omit the redundant local ``introduces`` edge.  If the header lives
+            # on the parent section and the immediately following retrieval unit is
+            # already inside a child section, treat the header as section context
+            # rather than spending a standalone Top-K slot on it.
+            if any(
+                is_descendant_section(first_target.section_id, header.section_id)
+                for header in header_units
+            ):
+                return "section"
+
+            first_types = {
+                element_by_id[element_id].type
+                for element_id in first_target.source_element_ids
+                if element_id in element_by_id
+            }
+            if first_types & {"clause", "subclause"}:
+                return "clause"
+        return "local"
+
+    def header_only(unit: _Unit) -> bool:
+        if unit.semantic_type != "group_header" or not unit.source_element_ids:
+            return False
+        return all(
+            element_by_id.get(element_id) is not None
+            and element_by_id[element_id].type == "group_header"
+            for element_id in unit.source_element_ids
+        )
+
+    def header_parts(header_units: list[_Unit]) -> list[str]:
+        parts: list[str] = []
+        for header in header_units:
+            for part in [value.strip() for value in header.content_text.split("\n\n") if value.strip()]:
+                if part not in parts:
+                    parts.append(part)
+        return parts
+
+    def with_context(unit: _Unit, context_text: str, context_ids: list[str]) -> _Unit:
+        existing_context = unit.retrieval_context_text.strip()
+        merged_context = "\n".join(
+            value for value in [context_text, existing_context] if value
+        )
+        return _Unit(
+            semantic_type=unit.semantic_type,
+            content_text=unit.content_text,
+            section_id=unit.section_id,
+            pages=list(unit.pages),
+            source_element_ids=list(unit.source_element_ids),
+            atomic=unit.atomic,
+            context_label=unit.context_label,
+            retrieval_context_text=merged_context,
+            context_element_ids=list(dict.fromkeys([*(context_ids or []), *(unit.context_element_ids or [])])),
+            refinement_tags=list(dict.fromkeys([*(unit.refinement_tags or []), "group_header_context"])),
+        )
+
+    output: list[_Unit] = []
+    cursor = 0
+    while cursor < len(units):
+        unit = units[cursor]
+        if not header_only(unit):
+            output.append(unit)
+            cursor += 1
+            continue
+
+        section_id = unit.section_id
+        scope_root = section_root(section_id)
+        headers: list[_Unit] = []
+        header_cursor = cursor
+        while header_cursor < len(units) and header_only(units[header_cursor]):
+            candidate = units[header_cursor]
+            if section_root(candidate.section_id) != scope_root:
+                break
+            headers.append(candidate)
+            header_cursor += 1
+
+        target_cursor = header_cursor
+        first_target = units[target_cursor] if target_cursor < len(units) else None
+        scope_mode = header_scope_mode(headers, first_target)
+        targets: list[_Unit] = []
+        while target_cursor < len(units):
+            target = units[target_cursor]
+            target_root = section_root(target.section_id)
+            target_source_types = {
+                element_by_id[element_id].type
+                for element_id in target.source_element_ids
+                if element_id in element_by_id
+            }
+            contains_local_header = "group_header" in target_source_types
+            if target_root != scope_root or target.semantic_type == "group_header" or contains_local_header:
+                break
+            if scope_mode == "local":
+                # Local callout/group labels apply only to nearby prose/list/visual
+                # members in the same canonical section. A new numbered clause is
+                # a strong independent boundary unless Stage 4 explicitly said
+                # the group scopes a clause/section.
+                if target.section_id != section_id or target_source_types & {"clause", "subclause"}:
+                    break
+            targets.append(target)
+            target_cursor += 1
+
+        if not targets:
+            # A genuinely header-only tail is retained rather than silently lost.
+            output.extend(headers)
+            cursor = header_cursor
+            continue
+
+        parts = header_parts(headers)
+        group_context = f"Group: {' > '.join(parts)}" if parts else ""
+        context_ids = list(dict.fromkeys(
+            element_id
+            for header in headers
+            for element_id in header.source_element_ids
+        ))
+        output.extend(with_context(target, group_context, context_ids) for target in targets)
+        cursor = target_cursor
+
+    return output
+
 def _build_semantic_units(
     structure: StructuredDocument,
     decisions: dict[str, CleaningDecision],
@@ -809,7 +1328,8 @@ def _build_semantic_units(
     baseline = _build_semantic_units_v1(structure, decisions, normalized_text)
     if config.strategy == "semantic_v1":
         return baseline
-    return _refine_semantic_units_v2(baseline, structure, config)
+    refined = _refine_semantic_units_v2(baseline, structure, config)
+    return _attach_group_header_context(refined, structure, config)
 
 def _context_for_unit(
     unit: _Unit,
@@ -841,22 +1361,46 @@ def _merge_generic_units(units: list[_Unit], config: ChunkingConfig) -> list[_Un
         if not current:
             return
         semantic_types = {unit.semantic_type for unit in current}
+        retrieval_contexts = list(dict.fromkeys(
+            unit.retrieval_context_text.strip()
+            for unit in current
+            if unit.retrieval_context_text.strip()
+        ))
         merged.append(_Unit(
             semantic_type=next(iter(semantic_types)) if len(semantic_types) == 1 else "mixed",
             content_text="\n\n".join(unit.content_text for unit in current if unit.content_text),
             section_id=current[0].section_id,
             pages=sorted({page for unit in current for page in unit.pages}),
-            source_element_ids=[element_id for unit in current for element_id in unit.source_element_ids],
+            source_element_ids=list(dict.fromkeys(element_id for unit in current for element_id in unit.source_element_ids)),
             atomic=False,
+            retrieval_context_text="\n".join(retrieval_contexts),
+            context_element_ids=list(dict.fromkeys(
+                element_id for unit in current for element_id in (unit.context_element_ids or [])
+            )),
+            refinement_tags=list(dict.fromkeys(
+                tag for unit in current for tag in (unit.refinement_tags or [])
+            )),
         ))
         current = []
+
+    def context_signature(unit: _Unit) -> tuple[str, tuple[str, ...]]:
+        return (
+            unit.retrieval_context_text.strip(),
+            tuple(unit.context_element_ids or []),
+        )
 
     for unit in units:
         if unit.atomic:
             flush()
             merged.append(unit)
             continue
-        if current and unit.section_id != current[0].section_id:
+        if current and (
+            unit.section_id != current[0].section_id
+            or context_signature(unit) != context_signature(current[0])
+        ):
+            # Retrieval context is a semantic boundary. Merging units that carry
+            # different group labels would create a chunk whose context claims
+            # multiple scopes at once (for example BbRA + RbRA).
             flush()
         candidate = "\n\n".join([*(item.content_text for item in current), unit.content_text])
         if current and estimate_tokens(candidate) > config.target_tokens:
@@ -1127,7 +1671,19 @@ def _build_deterministic_quality_report(
             source = element_by_id.get(relation.source_element_id)
             target = element_by_id.get(relation.target_element_id)
             semantic_dependency_types = {"group_header", "clause", "subclause", "list_item"}
-            if source and target and source.type in semantic_dependency_types and target.type in semantic_dependency_types:
+            if (
+                source
+                and target
+                and source.type in semantic_dependency_types
+                and target.type in semantic_dependency_types
+                and not (
+                    config.attach_group_headers_as_context
+                    and (source.type == "group_header" or target.type == "group_header")
+                )
+            ):
+                # Group-header ``introduces`` edges define retrieval scope in
+                # semantic-v2; they are not hard parent/child content edges once
+                # the header is represented through context_element_ids.
                 parent_by_child[relation.target_element_id] = relation.source_element_id
                 children_by_parent[relation.source_element_id].add(relation.target_element_id)
     clause_element_by_id = {clause.clause_id: clause.element_id for clause in structure.clauses}
@@ -1138,10 +1694,32 @@ def _build_deterministic_quality_report(
             children_by_parent[parent_id].add(clause.element_id)
 
     navigation_ids = _navigation_section_ids(structure)
+    explicit_navigation_pages = {
+        page.page_number
+        for page in structure.pages
+        if any(_element_has_explicit_navigation_signal(element) for element in page.elements)
+    }
+    figure_context_only_reasons = _figure_context_only_reasons(
+        structure,
+        suppress_intro_only=True,
+        suppress_non_explanatory_shells=True,
+    )
+    intro_only_figure_ids = {
+        element_id
+        for element_id, reason in figure_context_only_reasons.items()
+        if reason == "figure_intro_context_only"
+    }
+    non_explanatory_figure_ids = {
+        element_id
+        for element_id, reason in figure_context_only_reasons.items()
+        if reason == "figure_non_explanatory_context_only"
+    }
     signals: list[DeterministicChunkQualitySignal] = []
     orphan_count = 0
     dangling_count = 0
     nav_count = 0
+    intro_only_figure_count = 0
+    non_explanatory_figure_count = 0
 
     for chunk in chunks:
         present = set(chunk.source_element_ids) | set(chunk.context_element_ids)
@@ -1174,7 +1752,24 @@ def _build_deterministic_quality_report(
                 message="An introductory parent ends with an open dependency but its children are not present.",
             ))
 
-        if any((element_by_id.get(element_id) and element_by_id[element_id].section_id in navigation_ids) for element_id in chunk.source_element_ids):
+        navigation_source = False
+        for element_id in chunk.source_element_ids:
+            element = element_by_id.get(element_id)
+            if element is None:
+                continue
+            # Keep this check independent from navigation-page propagation used
+            # by the cleaner: explicit Stage 4 signals and TOC-table structure
+            # are sufficient to flag a leaked chunk even if section ancestry is
+            # wrong or page-zone inference regresses.
+            if (
+                element.section_id in navigation_ids
+                or _element_has_explicit_navigation_signal(element)
+                or element.page_number in explicit_navigation_pages
+                or _looks_like_toc_table(element)
+            ):
+                navigation_source = True
+                break
+        if navigation_source:
             nav_count += 1
             signals.append(DeterministicChunkQualitySignal(
                 code="navigation_content",
@@ -1182,11 +1777,47 @@ def _build_deterministic_quality_report(
                 message="Navigation-only content remains in the retrieval artifact.",
             ))
 
+        if config.suppress_intro_only_figure_chunks and any(
+            element_id in intro_only_figure_ids for element_id in chunk.source_element_ids
+        ):
+            intro_only_figure_count += 1
+            signals.append(DeterministicChunkQualitySignal(
+                code="intro_only_figure",
+                chunk_id=chunk.chunk_id,
+                message="A figure introduction with no answer-bearing visual text remains independently retrievable.",
+            ))
+
+        if config.suppress_non_explanatory_figure_shells and any(
+            element_id in non_explanatory_figure_ids for element_id in chunk.source_element_ids
+        ):
+            non_explanatory_figure_count += 1
+            signals.append(DeterministicChunkQualitySignal(
+                code="non_explanatory_figure_shell",
+                chunk_id=chunk.chunk_id,
+                message="A figure shell containing only referential intro/generic caption/source text remains independently retrievable.",
+            ))
+
+    standalone_group_header_count = sum(
+        chunk.semantic_type == "group_header"
+        and bool(chunk.source_element_ids)
+        and all(
+            element_by_id.get(element_id) is not None
+            and element_by_id[element_id].type == "group_header"
+            for element_id in chunk.source_element_ids
+        )
+        for chunk in chunks
+    )
     tiny_count = sum(
         chunk.token_count < config.soft_min_tokens and chunk.semantic_type not in {"definition", "table"}
         for chunk in chunks
     )
-    hard_issue_count = orphan_count + dangling_count + nav_count
+    hard_issue_count = (
+        orphan_count
+        + dangling_count
+        + nav_count
+        + intro_only_figure_count
+        + non_explanatory_figure_count
+    )
     return DeterministicChunkQualityReport(
         status="review" if hard_issue_count else "pass",
         soft_min_tokens=config.soft_min_tokens,
@@ -1200,6 +1831,11 @@ def _build_deterministic_quality_report(
         sibling_pack_chunk_count=sum("short_sibling_pack" in chunk.refinement_tags for chunk in chunks),
         table_split_chunk_count=sum("table_row_split" in chunk.refinement_tags for chunk in chunks),
         note_attachment_chunk_count=sum("note_attachment" in chunk.refinement_tags for chunk in chunks),
+        caption_attachment_chunk_count=sum("caption_attachment" in chunk.refinement_tags for chunk in chunks),
+        group_header_context_chunk_count=sum("group_header_context" in chunk.refinement_tags for chunk in chunks),
+        standalone_group_header_chunk_count=standalone_group_header_count,
+        intro_only_figure_chunk_count=intro_only_figure_count,
+        non_explanatory_figure_chunk_count=non_explanatory_figure_count,
         signals=signals,
     )
 
@@ -1248,7 +1884,7 @@ def build_chunking_artifact(
         source_resolved_schema_version=resolved.schema_version,
         source_resolved_at=resolved.resolved_at,
         base_structured_at=resolved.base_structured_at,
-        strategy_version="semantic-v2" if config.strategy == "semantic_v2" else "semantic-v1",
+        strategy_version="semantic-v2.1" if config.strategy == "semantic_v2" else "semantic-v1",
         config=config,
         cleaning=cleaning_summary,
         summary=summary,

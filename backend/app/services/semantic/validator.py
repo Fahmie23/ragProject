@@ -4,10 +4,13 @@ from dataclasses import dataclass, field
 import re
 
 from app.schemas import CanonicalElement, SectionRecord, StructuralRelation
+from app.services.semantic.patterns import ends_complete_sentence, is_callout_heading
 
 
 _ENUMERATED_PREFIX_RE = re.compile(r"^\s*(?:\([A-Za-z0-9ivxlcdmIVXLCDM]+\)|[A-Za-z0-9]+[.)])\s*")
 _APPENDIX_LABEL_RE = re.compile(r"^\s*APPENDIX\s+[A-Z0-9IVXLC]+\s*$", re.IGNORECASE)
+_NUMBERED_HEADING_RE = re.compile(r"^\s*(?:section\s+|chapter\s+)?(\d+(?:\.\d+){0,5})(?:[.)])?(?=\s|[A-Za-z])", re.IGNORECASE)
+_NUMBERED_CLAUSE_RE = re.compile(r"^\s*(\d+(?:\.\d+){1,6})(?=\s|[A-Za-z])", re.IGNORECASE)
 
 
 def _looks_like_form_field_block(text: str) -> bool:
@@ -32,6 +35,9 @@ class SemanticValidationResult:
     detached_clause_tail_ids: list[str] = field(default_factory=list)
     style_split_continuation_ids: list[str] = field(default_factory=list)
     redundant_appendix_title_section_ids: list[str] = field(default_factory=list)
+    numbered_section_parent_mismatch_ids: list[str] = field(default_factory=list)
+    clause_section_mismatch_ids: list[str] = field(default_factory=list)
+    callout_scope_leak_relation_ids: list[str] = field(default_factory=list)
 
 
 def validate_semantic_structure(
@@ -51,6 +57,29 @@ def validate_semantic_structure(
     result = SemanticValidationResult()
     element_by_id = {element.element_id: element for element in elements}
     section_element_ids = {section.element_id for section in sections}
+    section_by_id = {section.section_id: section for section in sections}
+
+    def section_number(section: SectionRecord) -> str | None:
+        match = _NUMBERED_HEADING_RE.match(" ".join((section.title or "").split()))
+        return match.group(1) if match else None
+
+    def section_is_same_or_descendant(section_id: str | None, ancestor_id: str) -> bool:
+        """Return True when section_id is ancestor_id or nested beneath it.
+
+        A numbered clause can legitimately live inside an unnumbered local
+        topic section nested below its matching numbered outline section.  The
+        validator therefore checks semantic ancestry rather than requiring the
+        clause's immediate section_id to equal the numbered section exactly.
+        """
+        current = section_id
+        seen: set[str] = set()
+        while current and current not in seen:
+            if current == ancestor_id:
+                return True
+            seen.add(current)
+            section = section_by_id.get(current)
+            current = section.parent_section_id if section is not None else None
+        return False
 
     for element in elements:
         classification = element.classification
@@ -168,6 +197,86 @@ def validate_semantic_structure(
         if source.type == "section_header" and source.element_id in section_element_ids:
             result.redundant_appendix_title_section_ids.append(source.element_id)
 
+    # Numbering is a semantic invariant for structured regulatory/policy prose.
+    # A dotted section such as 7.3 should attach to the nearest preceding 7
+    # section in the same active major region whenever that explicit parent
+    # exists.  This is an advisory validator check, not a repair.
+    latest_numbered: dict[str, SectionRecord] = {}
+    for section in sections:
+        number = section_number(section)
+        if number:
+            parts = number.split(".")
+            if len(parts) > 1:
+                expected_parent_number = ".".join(parts[:-1])
+                expected_parent = latest_numbered.get(expected_parent_number)
+                if expected_parent is not None and section.parent_section_id != expected_parent.section_id:
+                    result.numbered_section_parent_mismatch_ids.append(section.element_id)
+            latest_numbered[number] = section
+        elif section.parent_section_id is None:
+            # Major unnumbered boundaries (PART/APPENDIX/etc.) reset the local
+            # numbering namespace so repeated numbering in appendices does not
+            # compare against the main body.
+            latest_numbered = {}
+
+    # A numbered clause belongs to the longest matching numbered section that
+    # precedes it.  For example 8.4.2 must not remain under section 8.3 when an
+    # 8.4 section exists.
+    sections_by_order = sorted(
+        sections,
+        key=lambda section: element_by_id.get(section.element_id).document_order
+        if element_by_id.get(section.element_id) is not None else 10**9,
+    )
+    major_boundary_re = re.compile(r"^\s*(?:PART|CHAPTER|BOOK|DIVISION|APPENDIX)\b", re.IGNORECASE)
+    major_boundaries: list[int] = []
+    for section in sections_by_order:
+        section_element = element_by_id.get(section.element_id)
+        if section_element is None:
+            continue
+        if section.parent_section_id is None and major_boundary_re.match(section.title or ""):
+            major_boundaries.append(section_element.document_order)
+
+    for element in elements:
+        if element.type != "clause" or not element.clause_number:
+            continue
+        clause_match = _NUMBERED_CLAUSE_RE.match(element.clause_number)
+        clause_number = clause_match.group(1) if clause_match else element.clause_number
+        region_start = max((order for order in major_boundaries if order < element.document_order), default=-1)
+        candidates: list[tuple[int, SectionRecord]] = []
+        for section in sections_by_order:
+            section_element = element_by_id.get(section.element_id)
+            if section_element is None:
+                continue
+            if section_element.document_order <= region_start:
+                continue
+            if section_element.document_order >= element.document_order:
+                break
+            number = section_number(section)
+            if number and (clause_number == number or clause_number.startswith(number + ".")):
+                candidates.append((len(number.split(".")), section))
+        if candidates:
+            expected = max(candidates, key=lambda item: item[0])[1]
+            if not section_is_same_or_descendant(element.section_id, expected.section_id):
+                result.clause_section_mismatch_ids.append(element.element_id)
+
+    # Local guidance/note callouts may introduce their own prose/list members,
+    # but a fresh numbered clause is a hard scope boundary and must not be
+    # swallowed by the callout.
+    for relation in relationships:
+        if relation.type != "introduces":
+            continue
+        source = element_by_id.get(relation.source_element_id)
+        target = element_by_id.get(relation.target_element_id)
+        if (
+            source is not None
+            and target is not None
+            and source.type == "group_header"
+            and is_callout_heading(source.text)
+            and source.element_id not in appendix_title_sources
+            and target.type == "clause"
+            and target.clause_number
+        ):
+            result.callout_scope_leak_relation_ids.append(relation.relation_id)
+
     children_by_parent: dict[str, list[SectionRecord]] = {}
     for section in sections:
         if section.parent_section_id:
@@ -184,8 +293,19 @@ def validate_semantic_structure(
     for relation in relationships:
         if relation.type != "continues":
             continue
+        source = element_by_id.get(relation.source_element_id)
         target = element_by_id.get(relation.target_element_id)
         if target is not None and target.type == "clause" and target.clause_number:
+            result.suspicious_continuation_relation_ids.append(relation.relation_id)
+            continue
+        if source is None or target is None:
+            continue
+        target_text = " ".join((target.text or "").split()).strip()
+        if (
+            ends_complete_sentence(source.text)
+            and target_text[:1].isupper()
+            and target.type in {"paragraph", "clause", "subclause", "list_item"}
+        ):
             result.suspicious_continuation_relation_ids.append(relation.relation_id)
 
     if result.low_confidence_element_ids:
@@ -227,5 +347,20 @@ def validate_semantic_structure(
         result.warnings.append(
             f"Semantic heading-scope review recommended for {len(result.redundant_appendix_title_section_ids)} appendix title(s) "
             "that are already represented by AppendixRecord metadata but still create duplicate SectionRecords."
+        )
+    if result.numbered_section_parent_mismatch_ids:
+        result.warnings.append(
+            f"Semantic numbering review required for {len(result.numbered_section_parent_mismatch_ids)} numbered section(s) "
+            "whose parent conflicts with the explicit outline-number prefix."
+        )
+    if result.clause_section_mismatch_ids:
+        result.warnings.append(
+            f"Semantic section ownership review required for {len(result.clause_section_mismatch_ids)} numbered clause(s) "
+            "assigned outside the longest matching numbered section."
+        )
+    if result.callout_scope_leak_relation_ids:
+        result.warnings.append(
+            f"Semantic callout-scope review required for {len(result.callout_scope_leak_relation_ids)} relation(s) "
+            "where a guidance/note callout introduces a fresh numbered clause."
         )
     return result

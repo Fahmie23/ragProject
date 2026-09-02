@@ -1,0 +1,272 @@
+{
+  "document_id": "485c4989-c300-45c8-ac06-79a59492bb5c",
+  "question": "According to the List of Revisions, what were the revision date, effective date, and series number for the third revision?",
+  "status": "answered",
+  "answer": "The third revision's revision date was 13.6.2024 The third revision's effective date was 13.6.2024 The third revision's series number was SC-GL/AML-2014 (R3- 2024)",
+  "cited_answer": "The third revision's revision date was 13.6.2024 [1] The third revision's effective date was 13.6.2024 [1] The third revision's series number was SC-GL/AML-2014 (R3- 2024) [1]",
+  "claims": [
+    {
+      "claim_id": "C1",
+      "text": "The third revision's revision date was 13.6.2024",
+      "evidence_ids": [
+        "E1"
+      ],
+      "citation_ids": [
+        "CIT-E1"
+      ]
+    },
+    {
+      "claim_id": "C2",
+      "text": "The third revision's effective date was 13.6.2024",
+      "evidence_ids": [
+        "E1"
+      ],
+      "citation_ids": [
+        "CIT-E1"
+      ]
+    },
+    {
+      "claim_id": "C3",
+      "text": "The third revision's series number was SC-GL/AML-2014 (R3- 2024)",
+      "evidence_ids": [
+        "E1"
+      ],
+      "citation_ids": [
+        "CIT-E1"
+      ]
+    }
+  ],
+  "used_evidence_ids": [
+    "E1"
+  ],
+  "missing_information": [],
+  "evidence": [
+    {
+      "evidence_id": "E1",
+      "chunk_id": "485c4989-c300-45c8-ac06-79a59492bb5c-c0005-41313ec096",
+      "chunk_index": 5,
+      "semantic_type": "table",
+      "source_rank": 1,
+      "ranked_seed_rank": 1,
+      "reasons": [
+        "ranked_seed"
+      ],
+      "pages": [
+        2
+      ],
+      "section_path": [
+        "List of Revisions"
+      ],
+      "source_element_ids": [
+        "p2-e6"
+      ],
+      "content_text": "Revision Series | Revision Date | Effective Date of Revision | Series Number\n1st revision | 7.12.2016 | 7.12.2016 | SC-GL/AML-2014 (R1- 2016)\n2nd revision | 26.4.2021 | 26.4.2021 | SC-GL/AML-2014 (R2- 2021)\n3rd revision | 13.6.2024 | 13.6.2024 | SC-GL/AML-2014 (R3- 2024)"
+    },
+    {
+      "evidence_id": "E2",
+      "chunk_id": "485c4989-c300-45c8-ac06-79a59492bb5c-c0003-23401b62e1",
+      "chunk_index": 3,
+      "semantic_type": "figure",
+      "source_rank": 2,
+      "ranked_seed_rank": 2,
+      "reasons": [
+        "ranked_seed"
+      ],
+      "pages": [
+        1
+      ],
+      "section_path": [],
+      "source_element_ids": [
+        "p1-e6",
+        "p1-e7"
+      ],
+      "content_text": "1st issued\nRevised\n\n1st issued : 15 January 2014\nRevised : 13 June 2024"
+    },
+    {
+      "evidence_id": "E3",
+      "chunk_id": "485c4989-c300-45c8-ac06-79a59492bb5c-c0004-1a0bff1898",
+      "chunk_index": 4,
+      "semantic_type": "table",
+      "source_rank": 2,
+      "ranked_seed_rank": null,
+      "reasons": [
+        "following_table"
+      ],
+      "pages": [
+        2
+      ],
+      "section_path": [],
+      "source_element_ids": [
+        "p2-e4"
+      ],
+      "content_text": "Effective date upon 1st issuance | 15 January 2014"
+    },
+    {
+      "evidence_id": "E4",
+      "chunk_id": "485c4989-c300-45c8-ac06-79a59492bb5c-c0147-4ce9ccc098",
+      "chunk_index": 147,
+      "semantic_type": "clause",
+      "source_rank": 3,
+      "ranked_seed_rank": 3,
+      "reasons": [
+        "ranked_seed"
+      ],
+      "pages": [
+        55,
+        56
+      ],
+      "section_path": [
+        "PART V: SUSPICIOUS TRANSACTIONS",
+        "11 REPORTING OF SUSPICIOUS TRANSACTIONS"
+      ],
+      "source_element_ids": [
+        "p55-e3",
+        "p55-e4",
+        "p55-e5",
+        "p55-e6",
+        "p55-e13",
+        "p56-e1",
+        "p56-e2",
+        "p56-e3",
+        "p56-e4"
+      ],
+      "content_text": "11.1 A reporting institution must establish in place strong mechanisms for reporting\nsuspicious transactions, including having an appointed AML/CFT/CPF compliance\nofficer, and where appropriate, having a unit primarily responsible for complying with\nthe AML/CFT/CPF requirements on reporting of suspicious transactions.\n\n11.2 A reporting institution must also ensure that the suspicious transaction reporting\nmechanism is operated in a secured environment to maintain the confidentiality and\npreservation of secrecy.\n\n11.3 A reporting institution must clarify the economic background and purpose of any\ntransaction or business relationship if it appears unusual in relation to the reporting\ninstitution’s knowledge of the customer, or if the economic purpose or legality of the\ntransaction is not immediately clear. Special attention should also be paid to all\ncomplex and unusual patterns of transaction.\n\n11.4 A reporting institution must also consider whether the transactions involve a number\nof factors which when taken together may raise a suspicion that the transactions may\nbe connected with certain unlawful activities.\n\n11.6 If in bringing together all relevant factors, a reporting institution has reasonable\ngrounds to suspect that the transaction or the funds utilised involve proceeds of an\nunlawful activity or is related to terrorism financing and proliferation financing, such\ntransaction should be reported immediately to the FIED through lodgement of a STR.\n\n11.6A A reporting institution is required to have in place policies on the duration upon which\ninternal suspicious transaction reports must be reviewed by the reporting institution,\nincluding the circumstances when the timeframe can be exceeded, where necessary.\n\n11.7 Where the reporting institution decides that there are no reasonable grounds for\nsuspicion to warrant a lodgement of a STR, the reporting institution must establish the\ngrounds for such decision. In this regard, the compliance officer must ensure that the\nreporting institution’s decision together with all supporting documentary evidence is\nrecorded and maintained.\n\n11.8 A reporting institution is required to report all suspicious transactions, including\nattempted transactions, regardless of the amount of the transaction. A reporting\ninstitution should be aware that in some cases, suspicion may be formed after a\nconsiderable time from the date of the transaction, in view of subsequent additional\ninformation.\n\n11.9 STRs must be lodged to the FIED in accordance with the method as provided in\nAppendix C herein."
+    },
+    {
+      "evidence_id": "E5",
+      "chunk_id": "485c4989-c300-45c8-ac06-79a59492bb5c-c0235-8ccfd3b8c3",
+      "chunk_index": 235,
+      "semantic_type": "clause",
+      "source_rank": 4,
+      "ranked_seed_rank": null,
+      "reasons": [
+        "preceding_intro"
+      ],
+      "pages": [
+        86
+      ],
+      "section_path": [
+        "APPENDIX D",
+        "The relevant legal instruments"
+      ],
+      "source_element_ids": [
+        "p86-e5"
+      ],
+      "content_text": "1.2 In implementing TFS-TF, a reporting institution should refer to the relevant legal\ninstruments as stated below:"
+    },
+    {
+      "evidence_id": "E6",
+      "chunk_id": "485c4989-c300-45c8-ac06-79a59492bb5c-c0236-63f196d79f",
+      "chunk_index": 236,
+      "semantic_type": "table",
+      "source_rank": 4,
+      "ranked_seed_rank": 4,
+      "reasons": [
+        "ranked_seed"
+      ],
+      "pages": [
+        86,
+        87
+      ],
+      "section_path": [
+        "APPENDIX D",
+        "The relevant legal instruments"
+      ],
+      "source_element_ids": [
+        "p86-e6",
+        "p87-e1"
+      ],
+      "content_text": "AMLA Provision | Section 66C | Section 66B\nListing | UNSCR List | Domestic List\nUNSC Resolutions | • UNSCR 1267 (1999) and UNSCR 1989 (2011) (Individuals and entities associated with Al-Qaida) • UNSCR 1988 (2011) and other subsequent resolutions (Individuals and entities associated with Taliban) • UNSCR 2253 (2015) and other subsequent resolutions (Individuals and entities associated with Islamic State in Iraq) | UNSCR 1373(2001)\nSubsidiary Legislation | • Anti-Money Laundering and Anti-Terrorism Financing (Security Council Resolution) (Al-Qaida and Taliban) (Amendment) Order 2011 (P.U.(A) 402/2011); • Anti-Money Laundering and Anti-Terrorism Financing (Security Council Resolution) (Al-Qaida and Taliban) (Amendment) Order 2013 (P.U.(A) 187/2013); • Anti-Money Laundering and Anti-Terrorism Financing (Security Council Resolutions) (Al-Qaida and Taliban) (Amendment) Order 2014 (P.U. (A) 255/2014); and • Other subsidiary legislations made under section 66C of the AMLA which may be issued by the Ministry of Home Affairs from time to time. | • Anti-Money Laundering and Anti-Terrorism Financing (Declaration of Specified Entities and Reporting Requirements) Order 2014 (P.U.(A)93/2014); • Anti-Money Laundering and Anti-Terrorism Financing (Declaration of Specified Entities and Reporting Requirements) (Amendment) Order 2014 (P.U.(A) 301/2014); and • Other subsidiary legislations made under section 66B of the AMLA which may be issued by the Ministry of Home Affairs from time to time."
+    },
+    {
+      "evidence_id": "E7",
+      "chunk_id": "485c4989-c300-45c8-ac06-79a59492bb5c-c0063-e2642bd95c",
+      "chunk_index": 63,
+      "semantic_type": "clause",
+      "source_rank": 5,
+      "ranked_seed_rank": 5,
+      "reasons": [
+        "ranked_seed"
+      ],
+      "pages": [
+        24
+      ],
+      "section_path": [
+        "PART IA: AML/CFT/CPF INTERNAL PROGRAMMES AND\nOBLIGATIONS OF THE BOARD OF DIRECTORS, SENIOR\nMANAGEMENT AND COMPLIANCE OFFICER",
+        "6 D. COMPLIANCE OFFICER"
+      ],
+      "source_element_ids": [
+        "p24-e5",
+        "p24-e6",
+        "p24-e7",
+        "p24-e8",
+        "p24-e9-split-1",
+        "p24-e9-split-2",
+        "p24-e10",
+        "p24-e11",
+        "p24-e12"
+      ],
+      "content_text": "6 D.4 The roles and responsibilities of a compliance officer include to ensure the following:\n\n(a)The reporting institution’s compliance with the AML/CFT/CPF requirements;\n\n(b)Effective implementation of appropriate AML/CFT/CPF policies and procedures,\nincluding CDD, ongoing due diligence, reporting of suspicious transactions,\nrecord keeping, combating the financing of terrorism and compliance and\ntraining programmes;\n\n(c)AML/CFT/CPF policies and procedures are regularly assessed and kept up-to-date\nto ensure that they are effective and sufficient to address any changes in\nML/TF/PF trends;\n\n(d)Timely reporting of the risk-based approach measures to the board of directors;\n\n(e)All employees are aware of the reporting institution’s AML/CFT/CPF measures,\nincluding policies, control mechanism and reporting channels;\n\n(f)Internally generated suspicious transactions reports are appropriately evaluated\nand recorded before submission to the FIED;\n\n(g)The channel of communication for reporting suspicious transactions is secured and\nthat information is kept confidential; and\n\n(h)The ML/TF/PF risks associated with new products and services or arising from the\nreporting institution’s operational changes, including the introduction of new\ntechnology and processes, are identified and are brought to the attention of the\nboard of directors."
+    }
+  ],
+  "citations": [
+    {
+      "citation_id": "CIT-E1",
+      "marker": "[1]",
+      "evidence_id": "E1",
+      "chunk_id": "485c4989-c300-45c8-ac06-79a59492bb5c-c0005-41313ec096",
+      "chunk_index": 5,
+      "source_filename": "sc_aml_cft.pdf",
+      "display": "List of Revisions · PDF p. 2",
+      "pages": [
+        2
+      ],
+      "section_path": [
+        "List of Revisions"
+      ],
+      "source_element_ids": [
+        "p2-e6"
+      ],
+      "locators": [
+        {
+          "kind": "section",
+          "label": "List of Revisions",
+          "pages": [
+            2
+          ],
+          "source_element_ids": [
+            "p2-e6"
+          ]
+        }
+      ],
+      "validation_status": "valid"
+    }
+  ],
+  "citation_version": "deterministic_citations_v1_2",
+  "citation_validation": {
+    "status": "valid",
+    "citation_count": 1,
+    "valid_citation_count": 1,
+    "errors": []
+  },
+  "generation_provider": "groq",
+  "generation_model": "openai/gpt-oss-120b",
+  "prompt_version": "grounded_claims_v1",
+  "generation_temperature": 0.0,
+  "generation_max_tokens": 1200,
+  "generation_json_mode": true,
+  "usage": {
+    "prompt_tokens": 2301,
+    "completion_tokens": 403,
+    "total_tokens": 2704
+  },
+  "retrieval_profile": "retrieval_v1_stage8_2_top5",
+  "retrieval_top_k": 5,
+  "retrieval_candidate_k": 20,
+  "retrieval_rrf_k": 60,
+  "retrieval_dense_weight": 1.0,
+  "retrieval_lexical_weight": 1.0,
+  "context_strategy": "structural_one_hop_v1",
+  "context_chunk_count": 7,
+  "expanded_chunk_count": 2
+}

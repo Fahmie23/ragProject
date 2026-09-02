@@ -1,0 +1,270 @@
+{
+  "document_id": "485c4989-c300-45c8-ac06-79a59492bb5c",
+  "query": "When does a reporting institution not need to repeat counterparty-VASP due diligence for every individual wire transfer, and what circumstances require the due diligence to be refreshed?",
+  "embedding_model": "BAAI/bge-m3",
+  "requested_device": "auto",
+  "resolved_device": "cuda",
+  "top_k": 10,
+  "embedded_chunk_count": 284,
+  "total_chunk_count": 284,
+  "hits": [
+    {
+      "rank": 1,
+      "chunk_id": "485c4989-c300-45c8-ac06-79a59492bb5c-c0143-b3079bbd42",
+      "chunk_index": 143,
+      "semantic_type": "clause",
+      "score": 0.8081350681741548,
+      "distance": 0.1918649318258452,
+      "text": "Section: PART IIIA: WIRE TRANSFER > 9. WIRE TRANSFER OF DIGITAL ASSETS > 9.5 Identification and Due Diligence on Counterparty VASP\n\n9.5.2 A reporting institution does not need to undertake due diligence process on the\ncounterparty VASP for every individual wire transfer when dealing with a counterparty\nVASP for which it has previously conducted counterparty due diligence, unless there is\na suspicious transaction history or other information (for example published adverse\nmedia information, published regulatory or criminal action involving the counterparty\nVASP) indicating that it should refresh the due diligence process.\n\n9.5.3 A reporting institution must update its counterparty VASP due diligence information\nperiodically or when risk emerges from the relationship in line with a reporting\ninstitution’s defined risk-based assessment control structure.",
+      "content_text": "9.5.2 A reporting institution does not need to undertake due diligence process on the\ncounterparty VASP for every individual wire transfer when dealing with a counterparty\nVASP for which it has previously conducted counterparty due diligence, unless there is\na suspicious transaction history or other information (for example published adverse\nmedia information, published regulatory or criminal action involving the counterparty\nVASP) indicating that it should refresh the due diligence process.\n\n9.5.3 A reporting institution must update its counterparty VASP due diligence information\nperiodically or when risk emerges from the relationship in line with a reporting\ninstitution’s defined risk-based assessment control structure.",
+      "token_count": 145,
+      "pages": [
+        51,
+        52
+      ],
+      "section_path": [
+        "PART IIIA: WIRE TRANSFER",
+        "9. WIRE TRANSFER OF DIGITAL ASSETS",
+        "9.5 Identification and Due Diligence on Counterparty VASP"
+      ],
+      "source_element_ids": [
+        "p51-e11",
+        "p52-e1"
+      ]
+    },
+    {
+      "rank": 2,
+      "chunk_id": "485c4989-c300-45c8-ac06-79a59492bb5c-c0142-87f1b197d7",
+      "chunk_index": 142,
+      "semantic_type": "list_item",
+      "score": 0.6787805759543355,
+      "distance": 0.3212194240456645,
+      "text": "Section: PART IIIA: WIRE TRANSFER > 9. WIRE TRANSFER OF DIGITAL ASSETS > 9.5 Identification and Due Diligence on Counterparty VASP\nGroup: Guidance for paragraph 9.5.1:\n\n•\nAs a guide, a reporting institution needs to conduct due diligence\non their counterparty VASP before the reporting institution\ntransmits the required information to avoid dealing with illicit actors\nor sanctioned actors unknowingly.\n\n•\nAdditionally, a reporting institution should use this due diligence\nprocess to determine whether a counterparty VASP can reasonably\nbe expected to protect the confidentiality of information shared\nwith it.",
+      "content_text": "•\nAs a guide, a reporting institution needs to conduct due diligence\non their counterparty VASP before the reporting institution\ntransmits the required information to avoid dealing with illicit actors\nor sanctioned actors unknowingly.\n\n•\nAdditionally, a reporting institution should use this due diligence\nprocess to determine whether a counterparty VASP can reasonably\nbe expected to protect the confidentiality of information shared\nwith it.",
+      "token_count": 105,
+      "pages": [
+        51
+      ],
+      "section_path": [
+        "PART IIIA: WIRE TRANSFER",
+        "9. WIRE TRANSFER OF DIGITAL ASSETS",
+        "9.5 Identification and Due Diligence on Counterparty VASP"
+      ],
+      "source_element_ids": [
+        "p51-e9",
+        "p51-e10"
+      ]
+    },
+    {
+      "rank": 3,
+      "chunk_id": "485c4989-c300-45c8-ac06-79a59492bb5c-c0141-ca25e4a05b",
+      "chunk_index": 141,
+      "semantic_type": "clause",
+      "score": 0.6727426447647049,
+      "distance": 0.3272573552352951,
+      "text": "Section: PART IIIA: WIRE TRANSFER > 9. WIRE TRANSFER OF DIGITAL ASSETS > 9.5 Identification and Due Diligence on Counterparty VASP\nClause: 9.5.1\n\n9.5.1 A reporting institution must identify and conduct due diligence on the counterparty VASP\nbefore the reporting institution transmits the required originator or beneficiary\ninformation.\n\nAppendix F sets out the guide on how due diligence on counterparty VASP could be\nundertaken.",
+      "content_text": "9.5.1 A reporting institution must identify and conduct due diligence on the counterparty VASP\nbefore the reporting institution transmits the required originator or beneficiary\ninformation.\n\nAppendix F sets out the guide on how due diligence on counterparty VASP could be\nundertaken.",
+      "token_count": 80,
+      "pages": [
+        51
+      ],
+      "section_path": [
+        "PART IIIA: WIRE TRANSFER",
+        "9. WIRE TRANSFER OF DIGITAL ASSETS",
+        "9.5 Identification and Due Diligence on Counterparty VASP"
+      ],
+      "source_element_ids": [
+        "p51-e6",
+        "p51-e7"
+      ]
+    },
+    {
+      "rank": 4,
+      "chunk_id": "485c4989-c300-45c8-ac06-79a59492bb5c-c0272-76a1d56662",
+      "chunk_index": 272,
+      "semantic_type": "clause",
+      "score": 0.6448470738439008,
+      "distance": 0.35515292615609917,
+      "text": "Section: APPENDIX F > 1.0 Introduction\nClause: 1.2\nGroup: Guidance on Identification and Due Diligence on Counterparty Virtual Asset\nService Provider (VASP) (in relation to Paragraph 9.5 of the Guidelines)\n\n1.2 There are three phases in conducting identification and due diligence on counterparty\nVASP:\n\n(a) Phase 1\n\n(i) A reporting institution should determine whether it will be transacting with\nanother counterparty VASP.\n\n(b) Phase 2\n\n(i) A reporting institution should identify the counterparty VASP. In this context,\nit is possible that the reporting institution only knows the “name” of the\ncounterparty VASP following its previous transaction with the counterparty\nVASP.\n\n(ii) A reporting institution may identify a counterparty VASP by itself using a\nreliable database (for example the website of the supervisory authority of\nthe counterparty VASPs), in line with any guidelines from a country on when\nto rely on such data; and\n\n(c) Phase 3\n\n(i) A reporting institution should assess whether the counterparty VASP is an\neligible counterparty for it to send customer data to and to have a business\nrelationship.\n\n(ii) A reporting institution should be able to demonstrate its risk-based analysis\nfrom an AML/CFT/CPF perspectives, as well as considering other compliance\nissues, including data storage and security, and the profitability of the business\nrelationship, which forms the basis of its decision to transact with the\ncounterparty VASP.\n\n(iii) The due diligence results on the counterparty VASPs must be reviewed\n\nperiodically.",
+      "content_text": "1.2 There are three phases in conducting identification and due diligence on counterparty\nVASP:\n\n(a) Phase 1\n\n(i) A reporting institution should determine whether it will be transacting with\nanother counterparty VASP.\n\n(b) Phase 2\n\n(i) A reporting institution should identify the counterparty VASP. In this context,\nit is possible that the reporting institution only knows the “name” of the\ncounterparty VASP following its previous transaction with the counterparty\nVASP.\n\n(ii) A reporting institution may identify a counterparty VASP by itself using a\nreliable database (for example the website of the supervisory authority of\nthe counterparty VASPs), in line with any guidelines from a country on when\nto rely on such data; and\n\n(c) Phase 3\n\n(i) A reporting institution should assess whether the counterparty VASP is an\neligible counterparty for it to send customer data to and to have a business\nrelationship.\n\n(ii) A reporting institution should be able to demonstrate its risk-based analysis\nfrom an AML/CFT/CPF perspectives, as well as considering other compliance\nissues, including data storage and security, and the profitability of the business\nrelationship, which forms the basis of its decision to transact with the\ncounterparty VASP.\n\n(iii) The due diligence results on the counterparty VASPs must be reviewed\n\nperiodically.",
+      "token_count": 291,
+      "pages": [
+        103,
+        104
+      ],
+      "section_path": [
+        "APPENDIX F",
+        "1.0 Introduction"
+      ],
+      "source_element_ids": [
+        "p103-e5",
+        "p103-e6",
+        "p103-e7",
+        "p103-e8",
+        "p103-e9",
+        "p103-e10",
+        "p103-e11",
+        "p103-e12",
+        "p103-e13",
+        "p103-e14",
+        "p104-e1"
+      ]
+    },
+    {
+      "rank": 5,
+      "chunk_id": "485c4989-c300-45c8-ac06-79a59492bb5c-c0271-236dca87b6",
+      "chunk_index": 271,
+      "semantic_type": "clause",
+      "score": 0.6085948166669984,
+      "distance": 0.39140518333300156,
+      "text": "Section: APPENDIX F > 1.0 Introduction\nClause: 1.1\nGroup: Guidance on Identification and Due Diligence on Counterparty Virtual Asset\nService Provider (VASP) (in relation to Paragraph 9.5 of the Guidelines)\n\n1.1 This Guidance seeks to outline the recommended process involved in conducting\nidentification and counterparty due diligenceon counterparty VASP. In the event a\nreporting institution has developed and adopted its own process, the adopted process\nmust be able to achieve the outcomes intended under this Guidance.",
+      "content_text": "1.1 This Guidance seeks to outline the recommended process involved in conducting\nidentification and counterparty due diligenceon counterparty VASP. In the event a\nreporting institution has developed and adopted its own process, the adopted process\nmust be able to achieve the outcomes intended under this Guidance.",
+      "token_count": 94,
+      "pages": [
+        103
+      ],
+      "section_path": [
+        "APPENDIX F",
+        "1.0 Introduction"
+      ],
+      "source_element_ids": [
+        "p103-e4"
+      ]
+    },
+    {
+      "rank": 6,
+      "chunk_id": "485c4989-c300-45c8-ac06-79a59492bb5c-c0138-fc3eaa0c1a",
+      "chunk_index": 138,
+      "semantic_type": "clause",
+      "score": 0.5918932137457497,
+      "distance": 0.40810678625425034,
+      "text": "Section: PART IIIA: WIRE TRANSFER > 9. WIRE TRANSFER OF DIGITAL ASSETS > 9.3 Beneficiary Institutions\n\n9.3.1 A beneficiary institution must take reasonable measures, including post-event or real-\ntime monitoring where feasible, to identify cross border wire transfers or domestic\nwire transfers that lack the required originator information or required beneficiary\ninformation.\n\n9.3.2 A beneficiary institution is required to have effective risk-based policies and procedures\nfor determining―\n\n(a)when to execute, reject, or suspend a wire transfer lacking the required originator\nor required beneficiary information; and\n\n(b)the appropriate follow-up action.\n\n9.3.3 A beneficiary institution must verify the following beneficiary information received from\nthe ordering institution:\n\n(a)Name of beneficiary; and\n\n(b) Account number or digital wallet address or a unique transaction reference\nnumber used to process the transaction which permits traceability of the\ntransaction.",
+      "content_text": "9.3.1 A beneficiary institution must take reasonable measures, including post-event or real-\ntime monitoring where feasible, to identify cross border wire transfers or domestic\nwire transfers that lack the required originator information or required beneficiary\ninformation.\n\n9.3.2 A beneficiary institution is required to have effective risk-based policies and procedures\nfor determining―\n\n(a)when to execute, reject, or suspend a wire transfer lacking the required originator\nor required beneficiary information; and\n\n(b)the appropriate follow-up action.\n\n9.3.3 A beneficiary institution must verify the following beneficiary information received from\nthe ordering institution:\n\n(a)Name of beneficiary; and\n\n(b) Account number or digital wallet address or a unique transaction reference\nnumber used to process the transaction which permits traceability of the\ntransaction.",
+      "token_count": 178,
+      "pages": [
+        50
+      ],
+      "section_path": [
+        "PART IIIA: WIRE TRANSFER",
+        "9. WIRE TRANSFER OF DIGITAL ASSETS",
+        "9.3 Beneficiary Institutions"
+      ],
+      "source_element_ids": [
+        "p50-e2",
+        "p50-e3",
+        "p50-e4",
+        "p50-e5",
+        "p50-e6",
+        "p50-e7",
+        "p50-e8"
+      ]
+    },
+    {
+      "rank": 7,
+      "chunk_id": "485c4989-c300-45c8-ac06-79a59492bb5c-c0130-68d2d5136f",
+      "chunk_index": 130,
+      "semantic_type": "clause",
+      "score": 0.5774478144214231,
+      "distance": 0.4225521855785769,
+      "text": "Section: PART IIIA: WIRE TRANSFER > 9. WIRE TRANSFER OF DIGITAL ASSETS > 9.1 General\n\n9.1.1 The requirements under this Part are applicable to a reporting institution providing\ncross border wire transfer or domestic wire transfer of digital assets.\n\n9.1.2 A reporting institution must not execute wire transfer of digital assets if it does not comply\nwith the requirements specified in this Part IIIA.\n\n9.1.3 In providing wire transfer of a digital asset, the reporting institutions must comply\nwith requirements on targeted financial sanctions:\n\n(a)In relation to terrorism financing under Part VII of these Guidelines; and\n\n(b)In relation to proliferation financing Part VIII of these Guidelines.\n\n9.1.4 A reporting institution must obtain, hold and maintain all originator and beneficiary\ninformation collected under this Part IIIA, in accordance with record keeping\nrequirements under Part IV of these Guidelines.This information must be made\navailable to regulators or relevant authorities when necessary.\n\n9.1.5 A reporting institution must have in place adequate policies and procedures and the\nability to trace all wire transfers.",
+      "content_text": "9.1.1 The requirements under this Part are applicable to a reporting institution providing\ncross border wire transfer or domestic wire transfer of digital assets.\n\n9.1.2 A reporting institution must not execute wire transfer of digital assets if it does not comply\nwith the requirements specified in this Part IIIA.\n\n9.1.3 In providing wire transfer of a digital asset, the reporting institutions must comply\nwith requirements on targeted financial sanctions:\n\n(a)In relation to terrorism financing under Part VII of these Guidelines; and\n\n(b)In relation to proliferation financing Part VIII of these Guidelines.\n\n9.1.4 A reporting institution must obtain, hold and maintain all originator and beneficiary\ninformation collected under this Part IIIA, in accordance with record keeping\nrequirements under Part IV of these Guidelines.This information must be made\navailable to regulators or relevant authorities when necessary.\n\n9.1.5 A reporting institution must have in place adequate policies and procedures and the\nability to trace all wire transfers.",
+      "token_count": 212,
+      "pages": [
+        48
+      ],
+      "section_path": [
+        "PART IIIA: WIRE TRANSFER",
+        "9. WIRE TRANSFER OF DIGITAL ASSETS",
+        "9.1 General"
+      ],
+      "source_element_ids": [
+        "p48-e4",
+        "p48-e5",
+        "p48-e6",
+        "p48-e7",
+        "p48-e8",
+        "p48-e9",
+        "p48-e10"
+      ]
+    },
+    {
+      "rank": 8,
+      "chunk_id": "485c4989-c300-45c8-ac06-79a59492bb5c-c0139-f108162213",
+      "chunk_index": 139,
+      "semantic_type": "clause",
+      "score": 0.5769524150178559,
+      "distance": 0.4230475849821441,
+      "text": "Section: PART IIIA: WIRE TRANSFER > 9. WIRE TRANSFER OF DIGITAL ASSETS > 9.4 Sanctions Screening\n\n9.4.1 An ordering institution must conduct sanctions screening of the following persons:\n\n(a) its customer, at the point of onboarding and ongoing due diligence; and\n\n(b) the beneficiary, when a wire transfer is conducted.\n\n9.4.2 A beneficiary institution must conduct sanctions screening of the following persons:\n\n(a) its beneficiary, at the point of onboarding and ongoing due diligence; and\n\n(b) the originator, when a wire transfer is conducted.\n\n9.4.3 Once the person screened is identified as a designated person, the ordering or\nbeneficiary institution must take freezing actions and prohibit transactions.\n\n9.4.4 Ordering or beneficiary institutions must implement effective control frameworks to\nensure that they can comply with their targeted financial sanction obligations.\n\n9.4.5 A reporting institution must document their remediation control actions in their\nAML/CFT/CPF risk assessment.",
+      "content_text": "9.4.1 An ordering institution must conduct sanctions screening of the following persons:\n\n(a) its customer, at the point of onboarding and ongoing due diligence; and\n\n(b) the beneficiary, when a wire transfer is conducted.\n\n9.4.2 A beneficiary institution must conduct sanctions screening of the following persons:\n\n(a) its beneficiary, at the point of onboarding and ongoing due diligence; and\n\n(b) the originator, when a wire transfer is conducted.\n\n9.4.3 Once the person screened is identified as a designated person, the ordering or\nbeneficiary institution must take freezing actions and prohibit transactions.\n\n9.4.4 Ordering or beneficiary institutions must implement effective control frameworks to\nensure that they can comply with their targeted financial sanction obligations.\n\n9.4.5 A reporting institution must document their remediation control actions in their\nAML/CFT/CPF risk assessment.",
+      "token_count": 195,
+      "pages": [
+        50
+      ],
+      "section_path": [
+        "PART IIIA: WIRE TRANSFER",
+        "9. WIRE TRANSFER OF DIGITAL ASSETS",
+        "9.4 Sanctions Screening"
+      ],
+      "source_element_ids": [
+        "p50-e10",
+        "p50-e11",
+        "p50-e12",
+        "p50-e13",
+        "p50-e14",
+        "p50-e15",
+        "p50-e16",
+        "p50-e17",
+        "p50-e18"
+      ]
+    },
+    {
+      "rank": 9,
+      "chunk_id": "485c4989-c300-45c8-ac06-79a59492bb5c-c0129-2767b9c481",
+      "chunk_index": 129,
+      "semantic_type": "clause",
+      "score": 0.5754771404110536,
+      "distance": 0.4245228595889464,
+      "text": "Section: PART III: CUSTOMER DUE DILIGENCE > 8. CUSTOMER DUE DILIGENCE (CDD) > 8.8 Ongoing Due Diligence\nClause: 8.8.7\nGroup: Renewed CDD\n\n8.8.7 A reporting institution is required to undertake a renewed CDD when:\n\n(a)The customer’s account has been dormant or inactive and the customer is\nseeking to reactivate its account or resume its activities;\n\n(b)There is a change in circumstances relating to a customer which give rise\nto a suspicion of ML/TF/PF risks; or\n\n(c)There is a doubt about the veracity or adequacy of previously obtained\nidentification data.",
+      "content_text": "8.8.7 A reporting institution is required to undertake a renewed CDD when:\n\n(a)The customer’s account has been dormant or inactive and the customer is\nseeking to reactivate its account or resume its activities;\n\n(b)There is a change in circumstances relating to a customer which give rise\nto a suspicion of ML/TF/PF risks; or\n\n(c)There is a doubt about the veracity or adequacy of previously obtained\nidentification data.",
+      "token_count": 125,
+      "pages": [
+        47
+      ],
+      "section_path": [
+        "PART III: CUSTOMER DUE DILIGENCE",
+        "8. CUSTOMER DUE DILIGENCE (CDD)",
+        "8.8 Ongoing Due Diligence"
+      ],
+      "source_element_ids": [
+        "p47-e3",
+        "p47-e4",
+        "p47-e5",
+        "p47-e6"
+      ]
+    },
+    {
+      "rank": 10,
+      "chunk_id": "485c4989-c300-45c8-ac06-79a59492bb5c-c0213-79d797bb84",
+      "chunk_index": 213,
+      "semantic_type": "clause",
+      "score": 0.5719419802479229,
+      "distance": 0.42805801975207713,
+      "text": "Section: APPENDIX A1 > 2.0 Policies and procedures > Monitoring systems and controls to identify and accept third-party deposits\nClause: 2.7\nGroup: Due diligence and evaluation\n\n2.7 A reporting institution must evaluate the reasons and the need for third-party deposits\nto ensure that a third-party deposit is reasonably in line with the customer’s profile and\nnormal commercial practices (including the frequency and pattern of previous third-\nparty deposits). The evaluations and assessments must include:\n\n(a)Conducting further inquiries with the customers; and\n\n(b)Obtaining corroborative evidence from relevant sources;",
+      "content_text": "2.7 A reporting institution must evaluate the reasons and the need for third-party deposits\nto ensure that a third-party deposit is reasonably in line with the customer’s profile and\nnormal commercial practices (including the frequency and pattern of previous third-\nparty deposits). The evaluations and assessments must include:\n\n(a)Conducting further inquiries with the customers; and\n\n(b)Obtaining corroborative evidence from relevant sources;",
+      "token_count": 117,
+      "pages": [
+        80
+      ],
+      "section_path": [
+        "APPENDIX A1",
+        "2.0 Policies and procedures",
+        "Monitoring systems and controls to identify and accept third-party deposits"
+      ],
+      "source_element_ids": [
+        "p80-e8",
+        "p80-e9",
+        "p80-e10"
+      ]
+    }
+  ]
+}

@@ -573,6 +573,9 @@ class ChunkingConfig(BaseModel):
     attach_parent_context_on_split: bool = True
     pack_short_sibling_clauses: bool = True
     attach_contextual_notes: bool = True
+    attach_group_headers_as_context: bool = True
+    suppress_intro_only_figure_chunks: bool = True
+    suppress_non_explanatory_figure_shells: bool = True
     exclude_navigation_sections: bool = True
     row_aware_table_splitting: bool = True
     cleaning: RetrievalCleaningPolicy = Field(default_factory=RetrievalCleaningPolicy)
@@ -667,6 +670,11 @@ class DeterministicChunkQualityReport(BaseModel):
     sibling_pack_chunk_count: int = 0
     table_split_chunk_count: int = 0
     note_attachment_chunk_count: int = 0
+    caption_attachment_chunk_count: int = 0
+    group_header_context_chunk_count: int = 0
+    standalone_group_header_chunk_count: int = 0
+    intro_only_figure_chunk_count: int = 0
+    non_explanatory_figure_chunk_count: int = 0
     signals: list[DeterministicChunkQualitySignal] = Field(default_factory=list)
 
 
@@ -677,7 +685,7 @@ class ChunkingArtifact(BaseModel):
     source_resolved_schema_version: str
     source_resolved_at: datetime
     base_structured_at: datetime
-    strategy_version: str = "semantic-v2"
+    strategy_version: str = "semantic-v2.1"
     token_count_method: str = "regex_estimate_v1"
     config: ChunkingConfig
     cleaning: RetrievalCleaningSummary
@@ -686,3 +694,409 @@ class ChunkingArtifact(BaseModel):
     chunks: list[RetrievalChunk] = Field(default_factory=list)
     warnings: list[str] = Field(default_factory=list)
     generated_at: datetime
+
+
+class GenerateEmbeddingsRequest(BaseModel):
+    embedding_model: str | None = None
+    embedding_device: str | None = None
+    force: bool = False
+    batch_size: int | None = Field(default=None, ge=1, le=512)
+
+
+class EmbeddingCompatibilityViolation(BaseModel):
+    chunk_id: str
+    chunk_index: int
+    model_token_count: int
+    model_max_seq_length: int
+
+
+class EmbeddingCompatibilityResponse(BaseModel):
+    document_id: str
+    embedding_model: str
+    requested_device: str
+    resolved_device: str
+    chunk_count: int
+    compatible_chunk_count: int
+    compatible: bool
+    violation_count: int
+    model_max_seq_length: int | None = None
+    max_model_token_count: int | None = None
+    longest_chunk_id: str | None = None
+    longest_chunk_index: int | None = None
+    violations: list[EmbeddingCompatibilityViolation] = Field(default_factory=list)
+
+
+class EmbeddingStatusResponse(BaseModel):
+    document_id: str
+    embedding_model: str
+    chunk_count: int
+    embedded_chunk_count: int
+    missing_chunk_count: int
+    dimension: int | None = None
+    complete: bool
+
+
+class GenerateEmbeddingsResponse(EmbeddingStatusResponse):
+    generated_count: int
+    reused_count: int
+    requested_device: str
+    resolved_device: str
+
+
+class DenseRetrievalRequest(BaseModel):
+    document_id: str
+    query: str = Field(min_length=1, max_length=4000)
+    top_k: int = Field(default=5, ge=1, le=50)
+    embedding_model: str | None = None
+    embedding_device: str | None = None
+    semantic_types: list[str] = Field(default_factory=list)
+
+
+class DenseRetrievalHit(BaseModel):
+    rank: int
+    chunk_id: str
+    chunk_index: int
+    semantic_type: str
+    score: float
+    distance: float
+    text: str
+    content_text: str
+    token_count: int
+    pages: list[int] = Field(default_factory=list)
+    section_path: list[str] = Field(default_factory=list)
+    source_element_ids: list[str] = Field(default_factory=list)
+
+
+class DenseRetrievalResponse(BaseModel):
+    document_id: str
+    query: str
+    embedding_model: str
+    requested_device: str
+    resolved_device: str
+    top_k: int
+    embedded_chunk_count: int
+    total_chunk_count: int
+    hits: list[DenseRetrievalHit] = Field(default_factory=list)
+
+
+
+class LexicalRetrievalRequest(BaseModel):
+    document_id: str
+    query: str = Field(min_length=1, max_length=4000)
+    top_k: int = Field(default=5, ge=1, le=50)
+    semantic_types: list[str] = Field(default_factory=list)
+
+
+class LexicalRetrievalHit(BaseModel):
+    rank: int
+    chunk_id: str
+    chunk_index: int
+    semantic_type: str
+    score: float
+    matched_term_count: int = 0
+    term_coverage: float = 0.0
+    text: str
+    content_text: str
+    token_count: int
+    pages: list[int] = Field(default_factory=list)
+    section_path: list[str] = Field(default_factory=list)
+    source_element_ids: list[str] = Field(default_factory=list)
+
+
+class LexicalRetrievalResponse(BaseModel):
+    document_id: str
+    query: str
+    top_k: int
+    total_chunk_count: int
+    search_config: str = "english"
+    ranking_method: str = "postgresql_fts_term_coverage_then_ts_rank_cd"
+    lexical_query_mode: str = "or_content_terms_v1"
+    lexical_terms: list[str] = Field(default_factory=list)
+    lexical_tsquery: str
+    hits: list[LexicalRetrievalHit] = Field(default_factory=list)
+
+
+class HybridRetrievalRequest(BaseModel):
+    document_id: str
+    query: str = Field(min_length=1, max_length=4000)
+    top_k: int = Field(default=5, ge=1, le=50)
+    candidate_k: int = Field(default=20, ge=1, le=100)
+    rrf_k: int = Field(default=60, ge=1, le=1000)
+    dense_weight: float = Field(default=1.0, ge=0.0, le=10.0)
+    lexical_weight: float = Field(default=1.0, ge=0.0, le=10.0)
+    embedding_model: str | None = None
+    embedding_device: str | None = None
+    semantic_types: list[str] = Field(default_factory=list)
+
+    @model_validator(mode="after")
+    def validate_hybrid_limits(self):
+        if self.candidate_k < self.top_k:
+            raise ValueError("candidate_k must be greater than or equal to top_k")
+        if self.dense_weight == 0 and self.lexical_weight == 0:
+            raise ValueError("At least one hybrid retrieval weight must be greater than zero")
+        return self
+
+
+class HybridRetrievalHit(BaseModel):
+    rank: int
+    chunk_id: str
+    chunk_index: int
+    semantic_type: str
+    fusion_score: float
+    dense_rank: int | None = None
+    dense_score: float | None = None
+    dense_distance: float | None = None
+    dense_rrf_score: float = 0.0
+    lexical_rank: int | None = None
+    lexical_score: float | None = None
+    lexical_matched_term_count: int = 0
+    lexical_term_coverage: float = 0.0
+    lexical_rrf_score: float = 0.0
+    text: str
+    content_text: str
+    token_count: int
+    pages: list[int] = Field(default_factory=list)
+    section_path: list[str] = Field(default_factory=list)
+    source_element_ids: list[str] = Field(default_factory=list)
+
+
+class HybridRetrievalResponse(BaseModel):
+    document_id: str
+    query: str
+    embedding_model: str
+    requested_device: str
+    resolved_device: str
+    top_k: int
+    candidate_k: int
+    embedded_chunk_count: int
+    total_chunk_count: int
+    fusion_method: str = "reciprocal_rank_fusion"
+    rrf_k: int = 60
+    dense_weight: float = 1.0
+    lexical_weight: float = 1.0
+    lexical_ranking_method: str = "postgresql_fts_term_coverage_then_ts_rank_cd"
+    lexical_query_mode: str = "or_content_terms_v1"
+    lexical_terms: list[str] = Field(default_factory=list)
+    lexical_tsquery: str
+    hits: list[HybridRetrievalHit] = Field(default_factory=list)
+
+
+class RerankedRetrievalRequest(BaseModel):
+    document_id: str
+    query: str = Field(min_length=1, max_length=4000)
+    top_k: int = Field(default=5, ge=1, le=50)
+    candidate_k: int = Field(default=20, ge=1, le=100)
+    rrf_k: int = Field(default=60, ge=1, le=1000)
+    dense_weight: float = Field(default=1.0, ge=0.0, le=10.0)
+    lexical_weight: float = Field(default=1.0, ge=0.0, le=10.0)
+    embedding_model: str | None = None
+    embedding_device: str | None = None
+    reranker_model: str | None = None
+    reranker_device: str | None = None
+    reranker_batch_size: int | None = Field(default=None, ge=1, le=128)
+    semantic_types: list[str] = Field(default_factory=list)
+
+    @model_validator(mode="after")
+    def validate_reranked_limits(self):
+        if self.candidate_k < self.top_k:
+            raise ValueError("candidate_k must be greater than or equal to top_k")
+        if self.dense_weight == 0 and self.lexical_weight == 0:
+            raise ValueError("At least one hybrid retrieval weight must be greater than zero")
+        return self
+
+
+class RerankedRetrievalHit(BaseModel):
+    rank: int
+    chunk_id: str
+    chunk_index: int
+    semantic_type: str
+    reranker_score: float
+    hybrid_candidate_rank: int
+    fusion_score: float
+    dense_rank: int | None = None
+    dense_score: float | None = None
+    dense_distance: float | None = None
+    dense_rrf_score: float = 0.0
+    lexical_rank: int | None = None
+    lexical_score: float | None = None
+    lexical_matched_term_count: int = 0
+    lexical_term_coverage: float = 0.0
+    lexical_rrf_score: float = 0.0
+    text: str
+    content_text: str
+    token_count: int
+    pages: list[int] = Field(default_factory=list)
+    section_path: list[str] = Field(default_factory=list)
+    source_element_ids: list[str] = Field(default_factory=list)
+
+
+class RerankedRetrievalResponse(BaseModel):
+    document_id: str
+    query: str
+    embedding_model: str
+    embedding_requested_device: str
+    embedding_resolved_device: str
+    reranker_model: str
+    reranker_requested_device: str
+    reranker_resolved_device: str
+    reranker_batch_size: int
+    reranker_max_length: int
+    top_k: int
+    candidate_k: int
+    candidate_union_count: int
+    embedded_chunk_count: int
+    total_chunk_count: int
+    candidate_strategy: str = "dense_lexical_union"
+    ranking_method: str = "cross_encoder"
+    fusion_method: str = "reciprocal_rank_fusion_trace"
+    rrf_k: int = 60
+    dense_weight: float = 1.0
+    lexical_weight: float = 1.0
+    lexical_ranking_method: str = "postgresql_fts_term_coverage_then_ts_rank_cd"
+    lexical_query_mode: str = "or_content_terms_v1"
+    lexical_terms: list[str] = Field(default_factory=list)
+    lexical_tsquery: str
+    hits: list[RerankedRetrievalHit] = Field(default_factory=list)
+
+class StructuralContextChunk(BaseModel):
+    context_order: int
+    chunk_id: str
+    chunk_index: int
+    semantic_type: str
+    source_rank: int
+    ranked_seed_rank: int | None = None
+    reasons: list[str] = Field(default_factory=list)
+    attached_from_chunk_ids: list[str] = Field(default_factory=list)
+    text: str
+    content_text: str
+    token_count: int
+    pages: list[int] = Field(default_factory=list)
+    section_path: list[str] = Field(default_factory=list)
+    source_element_ids: list[str] = Field(default_factory=list)
+
+
+class ContextExpandedRetrievalRequest(RerankedRetrievalRequest):
+    context_max_forward_neighbors_per_seed: int = Field(default=2, ge=0, le=4)
+    context_max_backward_neighbors_per_seed: int = Field(default=1, ge=0, le=2)
+    context_max_page_gap: int = Field(default=1, ge=0, le=3)
+    context_max_chunks: int = Field(default=30, ge=1, le=100)
+
+    @model_validator(mode="after")
+    def validate_context_limits(self):
+        if self.context_max_chunks < self.top_k:
+            raise ValueError("context_max_chunks must be greater than or equal to top_k")
+        return self
+
+
+class ContextExpandedRetrievalResponse(RerankedRetrievalResponse):
+    context_strategy: str = "structural_one_hop_v1"
+    context_recursive: bool = False
+    context_same_section_required: bool = True
+    context_max_forward_neighbors_per_seed: int = 2
+    context_max_backward_neighbors_per_seed: int = 1
+    context_max_page_gap: int = 1
+    context_max_chunks: int = 30
+    context_chunk_count: int
+    expanded_chunk_count: int
+    context_chunks: list[StructuralContextChunk] = Field(default_factory=list)
+
+
+
+# ---------------------------------------------------------------------------
+# Stage 9 — grounded answer generation
+# ---------------------------------------------------------------------------
+
+class GroundedAnswerRequest(BaseModel):
+    document_id: str
+    question: str = Field(min_length=1, max_length=4000)
+
+
+class GenerationEvidence(BaseModel):
+    evidence_id: str
+    chunk_id: str
+    chunk_index: int
+    semantic_type: str
+    source_rank: int
+    ranked_seed_rank: int | None = None
+    reasons: list[str] = Field(default_factory=list)
+    pages: list[int] = Field(default_factory=list)
+    section_path: list[str] = Field(default_factory=list)
+    source_element_ids: list[str] = Field(default_factory=list)
+    content_text: str
+
+
+class CitationLocator(BaseModel):
+    kind: Literal["clause", "subclause", "definition", "appendix", "section", "page"]
+    label: str
+    pages: list[int] = Field(default_factory=list)
+    source_element_ids: list[str] = Field(default_factory=list)
+
+
+class SourceCitation(BaseModel):
+    citation_id: str
+    marker: str
+    evidence_id: str
+    chunk_id: str
+    chunk_index: int
+    source_filename: str
+    display: str
+    pages: list[int] = Field(default_factory=list)
+    section_path: list[str] = Field(default_factory=list)
+    source_element_ids: list[str] = Field(default_factory=list)
+    locators: list[CitationLocator] = Field(default_factory=list)
+    validation_status: Literal["valid"] = "valid"
+
+
+class CitationValidationSummary(BaseModel):
+    status: Literal["valid"] = "valid"
+    citation_count: int = 0
+    valid_citation_count: int = 0
+    errors: list[str] = Field(default_factory=list)
+
+
+class GroundedClaim(BaseModel):
+    claim_id: str
+    text: str
+    evidence_ids: list[str] = Field(min_length=1)
+    citation_ids: list[str] = Field(default_factory=list)
+
+
+class GenerationUsage(BaseModel):
+    prompt_tokens: int | None = None
+    completion_tokens: int | None = None
+    total_tokens: int | None = None
+
+
+class GroundedAnswerResponse(BaseModel):
+    document_id: str
+    question: str
+    status: Literal["answered", "insufficient_evidence"]
+    answer: str
+    cited_answer: str = ""
+    claims: list[GroundedClaim] = Field(default_factory=list)
+    used_evidence_ids: list[str] = Field(default_factory=list)
+    missing_information: list[str] = Field(default_factory=list)
+    evidence: list[GenerationEvidence] = Field(default_factory=list)
+    citations: list[SourceCitation] = Field(default_factory=list)
+    citation_version: str = "deterministic_citations_v1_2"
+    citation_validation: CitationValidationSummary = Field(default_factory=CitationValidationSummary)
+
+    # Generation trace. The API never returns an API key.
+    generation_provider: str
+    generation_model: str
+    prompt_version: str
+    generation_temperature: float
+    generation_max_tokens: int
+    generation_json_mode: bool
+    usage: GenerationUsage | None = None
+
+    # Frozen Retrieval-v1 / Stage-8.2 production profile used to build evidence.
+    retrieval_profile: str
+    retrieval_top_k: int
+    retrieval_candidate_k: int
+    retrieval_rrf_k: int
+    retrieval_dense_weight: float
+    retrieval_lexical_weight: float
+    context_strategy: str
+    context_chunk_count: int
+    expanded_chunk_count: int

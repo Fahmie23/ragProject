@@ -1,0 +1,36 @@
+FORMAL RETRIEVAL EVALUATION COMPARISON
+======================================
+
+Dataset        : sc_aml_cft_retrieval_eval_v1
+Document ID    : 485c4989-c300-45c8-ac06-79a59492bb5c
+Source SHA-256 : e1d138edd3c55b3fa3dd36b3236876a1a8dd634c4d972cec74157e6bf816bc15
+Split          : dev
+Questions      : 25
+Config ID      : retrieval_stage8_1_frozen_v1
+Config status  : frozen
+MRR cutoff     : 10
+
+Metric              | dense  | hybrid | hybrid_rerank
+--------------------+--------+--------+--------------
+Hit@1               | 92.0%  | 88.0%  | 96.0%        
+Hit@3               | 100.0% | 100.0% | 100.0%       
+Hit@5               | 100.0% | 100.0% | 100.0%       
+Hit@10              | 100.0% | 100.0% | 100.0%       
+Recall@1            | 76.7%  | 70.7%  | 80.7%        
+Recall@3            | 87.3%  | 91.3%  | 93.3%        
+Recall@5            | 93.3%  | 91.3%  | 93.3%        
+Recall@10           | 93.3%  | 93.3%  | 93.3%        
+MRR@10              | 0.9600 | 0.9333 | 0.9800       
+CompleteEvidence@1  | 64.0%  | 56.0%  | 68.0%        
+CompleteEvidence@3  | 76.0%  | 84.0%  | 88.0%        
+CompleteEvidence@5  | 88.0%  | 84.0%  | 88.0%        
+CompleteEvidence@10 | 88.0%  | 88.0%  | 88.0%        
+
+Validity
+--------
+dense: valid=True successful=25/25 failed=0
+hybrid: valid=True successful=25/25 failed=0
+hybrid_rerank: valid=True successful=25/25 failed=0
+
+Important: development results may be used for diagnosis. Held-out results must not be used
+to retune retrieval and then reported as unbiased held-out performance.

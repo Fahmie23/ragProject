@@ -1,0 +1,687 @@
+{
+  "document_id": "485c4989-c300-45c8-ac06-79a59492bb5c",
+  "query": "What responsibilities does the board of directors have for AML/CFT/CPF oversight and governance?",
+  "embedding_model": "BAAI/bge-m3",
+  "embedding_requested_device": "auto",
+  "embedding_resolved_device": "cuda",
+  "reranker_model": "BAAI/bge-reranker-v2-m3",
+  "reranker_requested_device": "auto",
+  "reranker_resolved_device": "cuda",
+  "reranker_batch_size": 2,
+  "reranker_max_length": 1024,
+  "top_k": 10,
+  "candidate_k": 20,
+  "candidate_union_count": 29,
+  "embedded_chunk_count": 284,
+  "total_chunk_count": 284,
+  "candidate_strategy": "dense_lexical_union",
+  "ranking_method": "cross_encoder",
+  "fusion_method": "reciprocal_rank_fusion_trace",
+  "rrf_k": 60,
+  "dense_weight": 1.0,
+  "lexical_weight": 1.0,
+  "lexical_ranking_method": "postgresql_fts_term_coverage_then_ts_rank_cd",
+  "lexical_query_mode": "or_content_terms_v1",
+  "lexical_terms": [
+    "responsibilities",
+    "board",
+    "directors",
+    "aml",
+    "cft",
+    "cpf",
+    "oversight",
+    "governance"
+  ],
+  "lexical_tsquery": "responsibilities | board | directors | aml | cft | cpf | oversight | governance",
+  "hits": [
+    {
+      "rank": 1,
+      "chunk_id": "485c4989-c300-45c8-ac06-79a59492bb5c-c0058-cd24b0151c",
+      "chunk_index": 58,
+      "semantic_type": "list_item",
+      "reranker_score": 0.9981297850608826,
+      "hybrid_candidate_rank": 2,
+      "fusion_score": 0.03225806451612903,
+      "dense_rank": 2,
+      "dense_score": 0.7560971975326538,
+      "dense_distance": 0.2439028024673462,
+      "dense_rrf_score": 0.016129032258064516,
+      "lexical_rank": 2,
+      "lexical_score": 0.7,
+      "lexical_matched_term_count": 4,
+      "lexical_term_coverage": 0.5,
+      "lexical_rrf_score": 0.016129032258064516,
+      "text": "Section: PART IA: AML/CFT/CPF INTERNAL PROGRAMMES AND\nOBLIGATIONS OF THE BOARD OF DIRECTORS, SENIOR\nMANAGEMENT AND COMPLIANCE OFFICER > 6 B. BOARD OF DIRECTORS\n\n(b)provide oversight and accord adequate priority and dedicated resources to\nmanage ML/TF/PF risks faced by the reporting institution including defining the\nlines of authority and responsibility for implementing the AML/CFT/CPF\nmeasures;\n\n(c)approve policies and procedures regarding AML/CFT/CPF measures within the\nreporting institution;\n\n(d)ensure that the policies and procedures are implemented effectively by the\nsenior management;\n\n(e)monitor the effectiveness of the implementation of the policies and procedures;\n\n(f)ensure that the policies and procedures are periodically reviewed and improved\nwhere required in line with the changes and developments in the reporting\ninstitution’s products and services, technology as well as trends in ML/TF/PF;\n\n(g)ensure effective independent audit function in assessing and evaluating the\nrobustness and adequacy of overall AML/CFT/CPF measures; and\n\n(h)ensure that the board keeps itself updated and is aware of new or emerging\ntrends of ML/TF/PF including the relevant UNSCRs and any order issued\npursuant to section 66B of the AMLA and understand the potential impact of\nsuch developments to the reporting institution.",
+      "content_text": "(b)provide oversight and accord adequate priority and dedicated resources to\nmanage ML/TF/PF risks faced by the reporting institution including defining the\nlines of authority and responsibility for implementing the AML/CFT/CPF\nmeasures;\n\n(c)approve policies and procedures regarding AML/CFT/CPF measures within the\nreporting institution;\n\n(d)ensure that the policies and procedures are implemented effectively by the\nsenior management;\n\n(e)monitor the effectiveness of the implementation of the policies and procedures;\n\n(f)ensure that the policies and procedures are periodically reviewed and improved\nwhere required in line with the changes and developments in the reporting\ninstitution’s products and services, technology as well as trends in ML/TF/PF;\n\n(g)ensure effective independent audit function in assessing and evaluating the\nrobustness and adequacy of overall AML/CFT/CPF measures; and\n\n(h)ensure that the board keeps itself updated and is aware of new or emerging\ntrends of ML/TF/PF including the relevant UNSCRs and any order issued\npursuant to section 66B of the AMLA and understand the potential impact of\nsuch developments to the reporting institution.",
+      "token_count": 249,
+      "pages": [
+        22
+      ],
+      "section_path": [
+        "PART IA: AML/CFT/CPF INTERNAL PROGRAMMES AND\nOBLIGATIONS OF THE BOARD OF DIRECTORS, SENIOR\nMANAGEMENT AND COMPLIANCE OFFICER",
+        "6 B. BOARD OF DIRECTORS"
+      ],
+      "source_element_ids": [
+        "p22-e1",
+        "p22-e2",
+        "p22-e3",
+        "p22-e4",
+        "p22-e5",
+        "p22-e6",
+        "p22-e7"
+      ]
+    },
+    {
+      "rank": 2,
+      "chunk_id": "485c4989-c300-45c8-ac06-79a59492bb5c-c0057-fb625c5113",
+      "chunk_index": 57,
+      "semantic_type": "clause",
+      "reranker_score": 0.9975054860115051,
+      "hybrid_candidate_rank": 1,
+      "fusion_score": 0.03278688524590164,
+      "dense_rank": 1,
+      "dense_score": 0.7697619795799255,
+      "dense_distance": 0.23023802042007446,
+      "dense_rrf_score": 0.01639344262295082,
+      "lexical_rank": 1,
+      "lexical_score": 1.1,
+      "lexical_matched_term_count": 4,
+      "lexical_term_coverage": 0.5,
+      "lexical_rrf_score": 0.01639344262295082,
+      "text": "Section: PART IA: AML/CFT/CPF INTERNAL PROGRAMMES AND\nOBLIGATIONS OF THE BOARD OF DIRECTORS, SENIOR\nMANAGEMENT AND COMPLIANCE OFFICER > 6 B. BOARD OF DIRECTORS\n\n6 B.1 The ultimate responsibility for proper supervision, reporting and compliance pursuant\nto AMLA and these Guidelines remains with the reporting institution and its board of\ndirectors.\n\n6 B.2 The board of directors has the following roles and responsibilities:\n\n(a)maintain accountability and oversight for establishing AML/CFT/CPF policies and\nprocedures;",
+      "content_text": "6 B.1 The ultimate responsibility for proper supervision, reporting and compliance pursuant\nto AMLA and these Guidelines remains with the reporting institution and its board of\ndirectors.\n\n6 B.2 The board of directors has the following roles and responsibilities:\n\n(a)maintain accountability and oversight for establishing AML/CFT/CPF policies and\nprocedures;",
+      "token_count": 96,
+      "pages": [
+        21
+      ],
+      "section_path": [
+        "PART IA: AML/CFT/CPF INTERNAL PROGRAMMES AND\nOBLIGATIONS OF THE BOARD OF DIRECTORS, SENIOR\nMANAGEMENT AND COMPLIANCE OFFICER",
+        "6 B. BOARD OF DIRECTORS"
+      ],
+      "source_element_ids": [
+        "p21-e9",
+        "p21-e10",
+        "p21-e11"
+      ]
+    },
+    {
+      "rank": 3,
+      "chunk_id": "485c4989-c300-45c8-ac06-79a59492bb5c-c0061-0ca350a45f",
+      "chunk_index": 61,
+      "semantic_type": "clause",
+      "reranker_score": 0.9826875329017639,
+      "hybrid_candidate_rank": 3,
+      "fusion_score": 0.031746031746031744,
+      "dense_rank": 3,
+      "dense_score": 0.6988588571548462,
+      "dense_distance": 0.3011411428451538,
+      "dense_rrf_score": 0.015873015873015872,
+      "lexical_rank": 3,
+      "lexical_score": 1.0,
+      "lexical_matched_term_count": 3,
+      "lexical_term_coverage": 0.375,
+      "lexical_rrf_score": 0.015873015873015872,
+      "text": "Section: PART IA: AML/CFT/CPF INTERNAL PROGRAMMES AND\nOBLIGATIONS OF THE BOARD OF DIRECTORS, SENIOR\nMANAGEMENT AND COMPLIANCE OFFICER > 6 C. SENIOR MANAGEMENT\nClause: 6C.1\n\n6 C.1 The senior management is responsible for effective implementation of AML/CFT/CPF\ninternal programmes, policies and procedures that can manage the ML/TF/PF risks\nidentified. In particular, the senior management has the following roles and\nresponsibilities:\n\n(a)be aware of and understand the ML/TF/PF risks associated with among others\nits business activities or strategies, delivery channels and geographical coverage\nof its business products and services offered and to be offered including new\nbusiness activities or strategies, new products, new delivery channels and new\ngeographical coverage;\n\n(b)formulate AML/CFT/CPF policies to ensure that they are in line with the risks\nprofiles, nature of business, complexity, value or volume of the transactions\nundertaken by the reporting institution and its geographical coverage;\n\n(c)establish appropriate mechanisms to effectively formulate and implement\nAML/CFT/CPF policies and procedures approved by the board of directors;\n\n(d)undertake review and propose to the board of directors the necessary\nenhancements to the AML/CFT/CPF policies to reflect changes in the reporting\ninstitution’s risk profiles;\n\n(e)provide periodic reporting to the board of directors on the level of ML/TF/PF\nrisks faced by the reporting institution, strength and adequacy of risk\nmanagement and internal controls implemented to manage the risks and the\nlatest development on AML/CFT/CPF which may have an impact on the reporting\ninstitution;\n\n(f)allocate adequate resources to effectively implement and administer\nAML/CFT/CPF compliance programmes that are reflective of the size and\ncomplexity of the reporting institution’s operations and risk profiles;\n\n(g)ensure that there is a proper channel of communication in place to effectively\ncommunicate the AML/CFT/CPF policies and procedures to all relevant\nemployees;\n\n(h)ensure that AML/CFT/CPF issues raised are addressed in a timely manner; and\n\n(i)provide appropriate levels of AML/CFT/CPF training for employees throughout\nthe organisation.",
+      "content_text": "6 C.1 The senior management is responsible for effective implementation of AML/CFT/CPF\ninternal programmes, policies and procedures that can manage the ML/TF/PF risks\nidentified. In particular, the senior management has the following roles and\nresponsibilities:\n\n(a)be aware of and understand the ML/TF/PF risks associated with among others\nits business activities or strategies, delivery channels and geographical coverage\nof its business products and services offered and to be offered including new\nbusiness activities or strategies, new products, new delivery channels and new\ngeographical coverage;\n\n(b)formulate AML/CFT/CPF policies to ensure that they are in line with the risks\nprofiles, nature of business, complexity, value or volume of the transactions\nundertaken by the reporting institution and its geographical coverage;\n\n(c)establish appropriate mechanisms to effectively formulate and implement\nAML/CFT/CPF policies and procedures approved by the board of directors;\n\n(d)undertake review and propose to the board of directors the necessary\nenhancements to the AML/CFT/CPF policies to reflect changes in the reporting\ninstitution’s risk profiles;\n\n(e)provide periodic reporting to the board of directors on the level of ML/TF/PF\nrisks faced by the reporting institution, strength and adequacy of risk\nmanagement and internal controls implemented to manage the risks and the\nlatest development on AML/CFT/CPF which may have an impact on the reporting\ninstitution;\n\n(f)allocate adequate resources to effectively implement and administer\nAML/CFT/CPF compliance programmes that are reflective of the size and\ncomplexity of the reporting institution’s operations and risk profiles;\n\n(g)ensure that there is a proper channel of communication in place to effectively\ncommunicate the AML/CFT/CPF policies and procedures to all relevant\nemployees;\n\n(h)ensure that AML/CFT/CPF issues raised are addressed in a timely manner; and\n\n(i)provide appropriate levels of AML/CFT/CPF training for employees throughout\nthe organisation.",
+      "token_count": 417,
+      "pages": [
+        23
+      ],
+      "section_path": [
+        "PART IA: AML/CFT/CPF INTERNAL PROGRAMMES AND\nOBLIGATIONS OF THE BOARD OF DIRECTORS, SENIOR\nMANAGEMENT AND COMPLIANCE OFFICER",
+        "6 C. SENIOR MANAGEMENT"
+      ],
+      "source_element_ids": [
+        "p23-e2",
+        "p23-e3",
+        "p23-e4",
+        "p23-e5",
+        "p23-e6",
+        "p23-e7",
+        "p23-e8",
+        "p23-e9",
+        "p23-e10",
+        "p23-e11"
+      ]
+    },
+    {
+      "rank": 4,
+      "chunk_id": "485c4989-c300-45c8-ac06-79a59492bb5c-c0063-e2642bd95c",
+      "chunk_index": 63,
+      "semantic_type": "clause",
+      "reranker_score": 0.9631670713424683,
+      "hybrid_candidate_rank": 5,
+      "fusion_score": 0.030776515151515152,
+      "dense_rank": 4,
+      "dense_score": 0.679327666759491,
+      "dense_distance": 0.32067233324050903,
+      "dense_rrf_score": 0.015625,
+      "lexical_rank": 6,
+      "lexical_score": 0.7,
+      "lexical_matched_term_count": 3,
+      "lexical_term_coverage": 0.375,
+      "lexical_rrf_score": 0.015151515151515152,
+      "text": "Section: PART IA: AML/CFT/CPF INTERNAL PROGRAMMES AND\nOBLIGATIONS OF THE BOARD OF DIRECTORS, SENIOR\nMANAGEMENT AND COMPLIANCE OFFICER > 6 D. COMPLIANCE OFFICER\nClause: 6D.4\n\n6 D.4 The roles and responsibilities of a compliance officer include to ensure the following:\n\n(a)The reporting institution’s compliance with the AML/CFT/CPF requirements;\n\n(b)Effective implementation of appropriate AML/CFT/CPF policies and procedures,\nincluding CDD, ongoing due diligence, reporting of suspicious transactions,\nrecord keeping, combating the financing of terrorism and compliance and\ntraining programmes;\n\n(c)AML/CFT/CPF policies and procedures are regularly assessed and kept up-to-date\nto ensure that they are effective and sufficient to address any changes in\nML/TF/PF trends;\n\n(d)Timely reporting of the risk-based approach measures to the board of directors;\n\n(e)All employees are aware of the reporting institution’s AML/CFT/CPF measures,\nincluding policies, control mechanism and reporting channels;\n\n(f)Internally generated suspicious transactions reports are appropriately evaluated\nand recorded before submission to the FIED;\n\n(g)The channel of communication for reporting suspicious transactions is secured and\nthat information is kept confidential; and\n\n(h)The ML/TF/PF risks associated with new products and services or arising from the\nreporting institution’s operational changes, including the introduction of new\ntechnology and processes, are identified and are brought to the attention of the\nboard of directors.",
+      "content_text": "6 D.4 The roles and responsibilities of a compliance officer include to ensure the following:\n\n(a)The reporting institution’s compliance with the AML/CFT/CPF requirements;\n\n(b)Effective implementation of appropriate AML/CFT/CPF policies and procedures,\nincluding CDD, ongoing due diligence, reporting of suspicious transactions,\nrecord keeping, combating the financing of terrorism and compliance and\ntraining programmes;\n\n(c)AML/CFT/CPF policies and procedures are regularly assessed and kept up-to-date\nto ensure that they are effective and sufficient to address any changes in\nML/TF/PF trends;\n\n(d)Timely reporting of the risk-based approach measures to the board of directors;\n\n(e)All employees are aware of the reporting institution’s AML/CFT/CPF measures,\nincluding policies, control mechanism and reporting channels;\n\n(f)Internally generated suspicious transactions reports are appropriately evaluated\nand recorded before submission to the FIED;\n\n(g)The channel of communication for reporting suspicious transactions is secured and\nthat information is kept confidential; and\n\n(h)The ML/TF/PF risks associated with new products and services or arising from the\nreporting institution’s operational changes, including the introduction of new\ntechnology and processes, are identified and are brought to the attention of the\nboard of directors.",
+      "token_count": 292,
+      "pages": [
+        24
+      ],
+      "section_path": [
+        "PART IA: AML/CFT/CPF INTERNAL PROGRAMMES AND\nOBLIGATIONS OF THE BOARD OF DIRECTORS, SENIOR\nMANAGEMENT AND COMPLIANCE OFFICER",
+        "6 D. COMPLIANCE OFFICER"
+      ],
+      "source_element_ids": [
+        "p24-e5",
+        "p24-e6",
+        "p24-e7",
+        "p24-e8",
+        "p24-e9-split-1",
+        "p24-e9-split-2",
+        "p24-e10",
+        "p24-e11",
+        "p24-e12"
+      ]
+    },
+    {
+      "rank": 5,
+      "chunk_id": "485c4989-c300-45c8-ac06-79a59492bb5c-c0059-bb2e3b039b",
+      "chunk_index": 59,
+      "semantic_type": "paragraph",
+      "reranker_score": 0.9621471762657166,
+      "hybrid_candidate_rank": 6,
+      "fusion_score": 0.029877369007803793,
+      "dense_rank": 5,
+      "dense_score": 0.6645064353942871,
+      "dense_distance": 0.3354935646057129,
+      "dense_rrf_score": 0.015384615384615385,
+      "lexical_rank": 9,
+      "lexical_score": 0.4,
+      "lexical_matched_term_count": 2,
+      "lexical_term_coverage": 0.25,
+      "lexical_rrf_score": 0.014492753623188406,
+      "text": "Section: PART IA: AML/CFT/CPF INTERNAL PROGRAMMES AND\nOBLIGATIONS OF THE BOARD OF DIRECTORS, SENIOR\nMANAGEMENT AND COMPLIANCE OFFICER > 6 B. BOARD OF DIRECTORS\nGroup: Guidance for paragraph 6B.2(c):\n\nAML/CFT/CPF measures include but are not limited to those required for risk\nassessment, mitigation and profiling, customer due diligence (CDD), record\nkeeping, enhanced CDD and ongoing due diligence, suspicious transaction\nreport and targeted financial sanctions.",
+      "content_text": "AML/CFT/CPF measures include but are not limited to those required for risk\nassessment, mitigation and profiling, customer due diligence (CDD), record\nkeeping, enhanced CDD and ongoing due diligence, suspicious transaction\nreport and targeted financial sanctions.",
+      "token_count": 91,
+      "pages": [
+        22
+      ],
+      "section_path": [
+        "PART IA: AML/CFT/CPF INTERNAL PROGRAMMES AND\nOBLIGATIONS OF THE BOARD OF DIRECTORS, SENIOR\nMANAGEMENT AND COMPLIANCE OFFICER",
+        "6 B. BOARD OF DIRECTORS"
+      ],
+      "source_element_ids": [
+        "p22-e9"
+      ]
+    },
+    {
+      "rank": 6,
+      "chunk_id": "485c4989-c300-45c8-ac06-79a59492bb5c-c0056-b117631798",
+      "chunk_index": 56,
+      "semantic_type": "clause",
+      "reranker_score": 0.9619301557540894,
+      "hybrid_candidate_rank": 4,
+      "fusion_score": 0.030776515151515152,
+      "dense_rank": 6,
+      "dense_score": 0.6584300006371748,
+      "dense_distance": 0.34156999936282517,
+      "dense_rrf_score": 0.015151515151515152,
+      "lexical_rank": 4,
+      "lexical_score": 0.8,
+      "lexical_matched_term_count": 3,
+      "lexical_term_coverage": 0.375,
+      "lexical_rrf_score": 0.015625,
+      "text": "Section: PART IA: AML/CFT/CPF INTERNAL PROGRAMMES AND\nOBLIGATIONS OF THE BOARD OF DIRECTORS, SENIOR\nMANAGEMENT AND COMPLIANCE OFFICER > 6 A. INTERNAL PROGRAMMES, POLICIES, PROCEDURES AND CONTROLS\nClause: 6A.1\n\n6 A.1 A reporting institution shall adopt, develop and implement internal programmes,\npolicies, procedures and controls having regard to its ML/TF/PF risks and size of\nbusiness. These programmes shall include–\n\n(a)procedures to ensure high standards of integrity of its board of directors, senior\nmanagement, employees or persons acting on behalf of the reporting\ninstitution, and adopt a screening system to evaluate the personnel when hiring;\n\n(b)regular independent audit function to check on the compliance and\neffectiveness of the reporting institution’s AML/CFT/CPF framework in\nrelation to the AMLA and provisions of these Guidelines. Any audit findings and\nany necessary corrective measures to be undertaken must be tabled to the\nboard of directors;\n\n(c)effective internal control systems to assess, profile and address ML/TF/PF\nissues; and\n\n(d)structured ongoing training programmes for directors and employees to\nenhance compliance with the reporting institution’s policies and procedures on\nAML/CFT/CPF. The training programmes must be according to their level of\nresponsibilities.",
+      "content_text": "6 A.1 A reporting institution shall adopt, develop and implement internal programmes,\npolicies, procedures and controls having regard to its ML/TF/PF risks and size of\nbusiness. These programmes shall include–\n\n(a)procedures to ensure high standards of integrity of its board of directors, senior\nmanagement, employees or persons acting on behalf of the reporting\ninstitution, and adopt a screening system to evaluate the personnel when hiring;\n\n(b)regular independent audit function to check on the compliance and\neffectiveness of the reporting institution’s AML/CFT/CPF framework in\nrelation to the AMLA and provisions of these Guidelines. Any audit findings and\nany necessary corrective measures to be undertaken must be tabled to the\nboard of directors;\n\n(c)effective internal control systems to assess, profile and address ML/TF/PF\nissues; and\n\n(d)structured ongoing training programmes for directors and employees to\nenhance compliance with the reporting institution’s policies and procedures on\nAML/CFT/CPF. The training programmes must be according to their level of\nresponsibilities.",
+      "token_count": 245,
+      "pages": [
+        21
+      ],
+      "section_path": [
+        "PART IA: AML/CFT/CPF INTERNAL PROGRAMMES AND\nOBLIGATIONS OF THE BOARD OF DIRECTORS, SENIOR\nMANAGEMENT AND COMPLIANCE OFFICER",
+        "6 A. INTERNAL PROGRAMMES, POLICIES, PROCEDURES AND CONTROLS"
+      ],
+      "source_element_ids": [
+        "p21-e3",
+        "p21-e4",
+        "p21-e5",
+        "p21-e6",
+        "p21-e7"
+      ]
+    },
+    {
+      "rank": 7,
+      "chunk_id": "485c4989-c300-45c8-ac06-79a59492bb5c-c0062-fece9a1a38",
+      "chunk_index": 62,
+      "semantic_type": "clause",
+      "reranker_score": 0.9323915243148804,
+      "hybrid_candidate_rank": 7,
+      "fusion_score": 0.029631255487269532,
+      "dense_rank": 7,
+      "dense_score": 0.6385453558835187,
+      "dense_distance": 0.3614546441164813,
+      "dense_rrf_score": 0.014925373134328358,
+      "lexical_rank": 8,
+      "lexical_score": 0.5,
+      "lexical_matched_term_count": 3,
+      "lexical_term_coverage": 0.375,
+      "lexical_rrf_score": 0.014705882352941176,
+      "text": "Section: PART IA: AML/CFT/CPF INTERNAL PROGRAMMES AND\nOBLIGATIONS OF THE BOARD OF DIRECTORS, SENIOR\nMANAGEMENT AND COMPLIANCE OFFICER > 6 D. COMPLIANCE OFFICER\n\n6 D.1 A reporting institution shall designate compliance officers at management level in each\nof its branches, who will be responsible for the compliance of the AML/CFT/CPF internal\nprogrammes, policies and procedures.\n\n6 D.2 The compliance officer appointed by a reporting institution must have necessary\nknowledge, expertise and the required authority to discharge his responsibilities\neffectively, including knowledge on the relevant laws and regulations and the latest\nAML/CFT/CPF developments. A reporting institution should encourage its compliance\nofficer to pursue professional qualifications in AML/CFT/CPF to enable him to carry out\nhis obligations effectively.\n\n6 D.3 A reporting institution must also ensure that the roles and responsibilities of the\ncompliance officer are clearly defined and documented.",
+      "content_text": "6 D.1 A reporting institution shall designate compliance officers at management level in each\nof its branches, who will be responsible for the compliance of the AML/CFT/CPF internal\nprogrammes, policies and procedures.\n\n6 D.2 The compliance officer appointed by a reporting institution must have necessary\nknowledge, expertise and the required authority to discharge his responsibilities\neffectively, including knowledge on the relevant laws and regulations and the latest\nAML/CFT/CPF developments. A reporting institution should encourage its compliance\nofficer to pursue professional qualifications in AML/CFT/CPF to enable him to carry out\nhis obligations effectively.\n\n6 D.3 A reporting institution must also ensure that the roles and responsibilities of the\ncompliance officer are clearly defined and documented.",
+      "token_count": 171,
+      "pages": [
+        24
+      ],
+      "section_path": [
+        "PART IA: AML/CFT/CPF INTERNAL PROGRAMMES AND\nOBLIGATIONS OF THE BOARD OF DIRECTORS, SENIOR\nMANAGEMENT AND COMPLIANCE OFFICER",
+        "6 D. COMPLIANCE OFFICER"
+      ],
+      "source_element_ids": [
+        "p24-e2",
+        "p24-e3",
+        "p24-e4"
+      ]
+    },
+    {
+      "rank": 8,
+      "chunk_id": "485c4989-c300-45c8-ac06-79a59492bb5c-c0060-b979658811",
+      "chunk_index": 60,
+      "semantic_type": "paragraph",
+      "reranker_score": 0.9256482124328613,
+      "hybrid_candidate_rank": 9,
+      "fusion_score": 0.027984344422700584,
+      "dense_rank": 13,
+      "dense_score": 0.5659674406051636,
+      "dense_distance": 0.4340325593948364,
+      "dense_rrf_score": 0.0136986301369863,
+      "lexical_rank": 10,
+      "lexical_score": 0.4,
+      "lexical_matched_term_count": 2,
+      "lexical_term_coverage": 0.25,
+      "lexical_rrf_score": 0.014285714285714285,
+      "text": "Section: PART IA: AML/CFT/CPF INTERNAL PROGRAMMES AND\nOBLIGATIONS OF THE BOARD OF DIRECTORS, SENIOR\nMANAGEMENT AND COMPLIANCE OFFICER > 6 B. BOARD OF DIRECTORS\nGroup: Guidance for paragraph 6B.2(f):\n\nPeriodic reviews and improvements of policies and procedures are to be\nconducted where there are changes and developments in a reporting\ninstitution’s products, services, technology, regulatory development, nature of\nbusiness to capture changes in distribution channel, clients’ segment and etc.",
+      "content_text": "Periodic reviews and improvements of policies and procedures are to be\nconducted where there are changes and developments in a reporting\ninstitution’s products, services, technology, regulatory development, nature of\nbusiness to capture changes in distribution channel, clients’ segment and etc.",
+      "token_count": 93,
+      "pages": [
+        22
+      ],
+      "section_path": [
+        "PART IA: AML/CFT/CPF INTERNAL PROGRAMMES AND\nOBLIGATIONS OF THE BOARD OF DIRECTORS, SENIOR\nMANAGEMENT AND COMPLIANCE OFFICER",
+        "6 B. BOARD OF DIRECTORS"
+      ],
+      "source_element_ids": [
+        "p22-e11"
+      ]
+    },
+    {
+      "rank": 9,
+      "chunk_id": "485c4989-c300-45c8-ac06-79a59492bb5c-c0149-324f72fd13",
+      "chunk_index": 149,
+      "semantic_type": "clause",
+      "reranker_score": 0.8888356685638428,
+      "hybrid_candidate_rank": 26,
+      "fusion_score": 0.012658227848101266,
+      "dense_rank": null,
+      "dense_score": null,
+      "dense_distance": null,
+      "dense_rrf_score": 0.0,
+      "lexical_rank": 19,
+      "lexical_score": 0.2,
+      "lexical_matched_term_count": 2,
+      "lexical_term_coverage": 0.25,
+      "lexical_rrf_score": 0.012658227848101266,
+      "text": "Section: PART V: SUSPICIOUS TRANSACTIONS > 11 REPORTING OF SUSPICIOUS TRANSACTIONS\n\n11.10 The fact that a STR may have been lodged with the FIED previously should not\npreclude the reporting institution from lodging a fresh STR as and when a new\nsuspicion arises.\n\n11.11 When required by FIED, a reporting institution must provide additional information\nand documentation and respond promptly to any further enquiries with regard to the\nSTR lodged.\n\n11.12 Where a reporting institution forms a suspicion of ML/TF/PF and reasonably believes\nthat performing the CDD process would tip off the customer, the reporting institution\nis permitted not to pursue the CDD process and is required to lodge a STR.\n\n11.13 The reporting institution must ensure that the compliance officer maintains a complete\nfile of all internal reports on suspicious transactions and STRs lodged with FIED\ntogether with the relevant supporting documentary evidence.\n\n11.14 The board of directors must ensure that the compliance officer has the necessary\nauthority, resources and support to discharge his obligation independently and\neffectively in complying with the reporting institution’s compliance policies and\nprocedures on AML/CFT/CPF, particularly on reporting suspicious transactions.\n\n11.15 The compliance officer has the sole discretion and independence to report suspicious\ntransactions.",
+      "content_text": "11.10 The fact that a STR may have been lodged with the FIED previously should not\npreclude the reporting institution from lodging a fresh STR as and when a new\nsuspicion arises.\n\n11.11 When required by FIED, a reporting institution must provide additional information\nand documentation and respond promptly to any further enquiries with regard to the\nSTR lodged.\n\n11.12 Where a reporting institution forms a suspicion of ML/TF/PF and reasonably believes\nthat performing the CDD process would tip off the customer, the reporting institution\nis permitted not to pursue the CDD process and is required to lodge a STR.\n\n11.13 The reporting institution must ensure that the compliance officer maintains a complete\nfile of all internal reports on suspicious transactions and STRs lodged with FIED\ntogether with the relevant supporting documentary evidence.\n\n11.14 The board of directors must ensure that the compliance officer has the necessary\nauthority, resources and support to discharge his obligation independently and\neffectively in complying with the reporting institution’s compliance policies and\nprocedures on AML/CFT/CPF, particularly on reporting suspicious transactions.\n\n11.15 The compliance officer has the sole discretion and independence to report suspicious\ntransactions.",
+      "token_count": 234,
+      "pages": [
+        56
+      ],
+      "section_path": [
+        "PART V: SUSPICIOUS TRANSACTIONS",
+        "11 REPORTING OF SUSPICIOUS TRANSACTIONS"
+      ],
+      "source_element_ids": [
+        "p56-e5",
+        "p56-e6",
+        "p56-e7",
+        "p56-e8",
+        "p56-e9",
+        "p56-e10"
+      ]
+    },
+    {
+      "rank": 10,
+      "chunk_id": "485c4989-c300-45c8-ac06-79a59492bb5c-c0065-d4d36f22c0",
+      "chunk_index": 65,
+      "semantic_type": "clause",
+      "reranker_score": 0.8852414488792419,
+      "hybrid_candidate_rank": 8,
+      "fusion_score": 0.02803921568627451,
+      "dense_rank": 8,
+      "dense_score": 0.6064654950180955,
+      "dense_distance": 0.39353450498190445,
+      "dense_rrf_score": 0.014705882352941176,
+      "lexical_rank": 15,
+      "lexical_score": 0.2,
+      "lexical_matched_term_count": 2,
+      "lexical_term_coverage": 0.25,
+      "lexical_rrf_score": 0.013333333333333334,
+      "text": "Section: PART IA: AML/CFT/CPF INTERNAL PROGRAMMES AND\nOBLIGATIONS OF THE BOARD OF DIRECTORS, SENIOR\nMANAGEMENT AND COMPLIANCE OFFICER > 6 E.   GROUP-WIDE AML/CFT/CPF PROGRAMMES\nClause: 6E.2\n\n6 E.2 Where applicable, a reporting institution is required to implement appropriate group-\nwide AML/CFT/CPF programmes appropriate to its branches and majority-owned\nsubsidiaries. Such AML/CFT/CPF programmes must include–\n\n(a)policies and procedures for sharing information required for the purposes of\nCDD and ML/TF/PF risk management;\n\n(b)the provision, at group-level compliance, audit, and/or AML/CFT/CPF functions,\nof customer, account, and transaction information from branches and\nsubsidiaries when necessary for AML/CFT/CPF purposes; and\n\n(c)adequate safeguards on the confidentiality and use of information exchanged.",
+      "content_text": "6 E.2 Where applicable, a reporting institution is required to implement appropriate group-\nwide AML/CFT/CPF programmes appropriate to its branches and majority-owned\nsubsidiaries. Such AML/CFT/CPF programmes must include–\n\n(a)policies and procedures for sharing information required for the purposes of\nCDD and ML/TF/PF risk management;\n\n(b)the provision, at group-level compliance, audit, and/or AML/CFT/CPF functions,\nof customer, account, and transaction information from branches and\nsubsidiaries when necessary for AML/CFT/CPF purposes; and\n\n(c)adequate safeguards on the confidentiality and use of information exchanged.",
+      "token_count": 172,
+      "pages": [
+        25
+      ],
+      "section_path": [
+        "PART IA: AML/CFT/CPF INTERNAL PROGRAMMES AND\nOBLIGATIONS OF THE BOARD OF DIRECTORS, SENIOR\nMANAGEMENT AND COMPLIANCE OFFICER",
+        "6 E.   GROUP-WIDE AML/CFT/CPF PROGRAMMES"
+      ],
+      "source_element_ids": [
+        "p25-e3",
+        "p25-e4",
+        "p25-e5",
+        "p25-e6"
+      ]
+    }
+  ],
+  "context_strategy": "structural_one_hop_v1",
+  "context_recursive": false,
+  "context_same_section_required": true,
+  "context_max_forward_neighbors_per_seed": 2,
+  "context_max_backward_neighbors_per_seed": 1,
+  "context_max_page_gap": 1,
+  "context_max_chunks": 30,
+  "context_chunk_count": 10,
+  "expanded_chunk_count": 0,
+  "context_chunks": [
+    {
+      "context_order": 1,
+      "chunk_id": "485c4989-c300-45c8-ac06-79a59492bb5c-c0058-cd24b0151c",
+      "chunk_index": 58,
+      "semantic_type": "list_item",
+      "source_rank": 1,
+      "ranked_seed_rank": 1,
+      "reasons": [
+        "ranked_seed"
+      ],
+      "attached_from_chunk_ids": [],
+      "text": "Section: PART IA: AML/CFT/CPF INTERNAL PROGRAMMES AND\nOBLIGATIONS OF THE BOARD OF DIRECTORS, SENIOR\nMANAGEMENT AND COMPLIANCE OFFICER > 6 B. BOARD OF DIRECTORS\n\n(b)provide oversight and accord adequate priority and dedicated resources to\nmanage ML/TF/PF risks faced by the reporting institution including defining the\nlines of authority and responsibility for implementing the AML/CFT/CPF\nmeasures;\n\n(c)approve policies and procedures regarding AML/CFT/CPF measures within the\nreporting institution;\n\n(d)ensure that the policies and procedures are implemented effectively by the\nsenior management;\n\n(e)monitor the effectiveness of the implementation of the policies and procedures;\n\n(f)ensure that the policies and procedures are periodically reviewed and improved\nwhere required in line with the changes and developments in the reporting\ninstitution’s products and services, technology as well as trends in ML/TF/PF;\n\n(g)ensure effective independent audit function in assessing and evaluating the\nrobustness and adequacy of overall AML/CFT/CPF measures; and\n\n(h)ensure that the board keeps itself updated and is aware of new or emerging\ntrends of ML/TF/PF including the relevant UNSCRs and any order issued\npursuant to section 66B of the AMLA and understand the potential impact of\nsuch developments to the reporting institution.",
+      "content_text": "(b)provide oversight and accord adequate priority and dedicated resources to\nmanage ML/TF/PF risks faced by the reporting institution including defining the\nlines of authority and responsibility for implementing the AML/CFT/CPF\nmeasures;\n\n(c)approve policies and procedures regarding AML/CFT/CPF measures within the\nreporting institution;\n\n(d)ensure that the policies and procedures are implemented effectively by the\nsenior management;\n\n(e)monitor the effectiveness of the implementation of the policies and procedures;\n\n(f)ensure that the policies and procedures are periodically reviewed and improved\nwhere required in line with the changes and developments in the reporting\ninstitution’s products and services, technology as well as trends in ML/TF/PF;\n\n(g)ensure effective independent audit function in assessing and evaluating the\nrobustness and adequacy of overall AML/CFT/CPF measures; and\n\n(h)ensure that the board keeps itself updated and is aware of new or emerging\ntrends of ML/TF/PF including the relevant UNSCRs and any order issued\npursuant to section 66B of the AMLA and understand the potential impact of\nsuch developments to the reporting institution.",
+      "token_count": 249,
+      "pages": [
+        22
+      ],
+      "section_path": [
+        "PART IA: AML/CFT/CPF INTERNAL PROGRAMMES AND\nOBLIGATIONS OF THE BOARD OF DIRECTORS, SENIOR\nMANAGEMENT AND COMPLIANCE OFFICER",
+        "6 B. BOARD OF DIRECTORS"
+      ],
+      "source_element_ids": [
+        "p22-e1",
+        "p22-e2",
+        "p22-e3",
+        "p22-e4",
+        "p22-e5",
+        "p22-e6",
+        "p22-e7"
+      ]
+    },
+    {
+      "context_order": 2,
+      "chunk_id": "485c4989-c300-45c8-ac06-79a59492bb5c-c0057-fb625c5113",
+      "chunk_index": 57,
+      "semantic_type": "clause",
+      "source_rank": 2,
+      "ranked_seed_rank": 2,
+      "reasons": [
+        "ranked_seed"
+      ],
+      "attached_from_chunk_ids": [],
+      "text": "Section: PART IA: AML/CFT/CPF INTERNAL PROGRAMMES AND\nOBLIGATIONS OF THE BOARD OF DIRECTORS, SENIOR\nMANAGEMENT AND COMPLIANCE OFFICER > 6 B. BOARD OF DIRECTORS\n\n6 B.1 The ultimate responsibility for proper supervision, reporting and compliance pursuant\nto AMLA and these Guidelines remains with the reporting institution and its board of\ndirectors.\n\n6 B.2 The board of directors has the following roles and responsibilities:\n\n(a)maintain accountability and oversight for establishing AML/CFT/CPF policies and\nprocedures;",
+      "content_text": "6 B.1 The ultimate responsibility for proper supervision, reporting and compliance pursuant\nto AMLA and these Guidelines remains with the reporting institution and its board of\ndirectors.\n\n6 B.2 The board of directors has the following roles and responsibilities:\n\n(a)maintain accountability and oversight for establishing AML/CFT/CPF policies and\nprocedures;",
+      "token_count": 96,
+      "pages": [
+        21
+      ],
+      "section_path": [
+        "PART IA: AML/CFT/CPF INTERNAL PROGRAMMES AND\nOBLIGATIONS OF THE BOARD OF DIRECTORS, SENIOR\nMANAGEMENT AND COMPLIANCE OFFICER",
+        "6 B. BOARD OF DIRECTORS"
+      ],
+      "source_element_ids": [
+        "p21-e9",
+        "p21-e10",
+        "p21-e11"
+      ]
+    },
+    {
+      "context_order": 3,
+      "chunk_id": "485c4989-c300-45c8-ac06-79a59492bb5c-c0061-0ca350a45f",
+      "chunk_index": 61,
+      "semantic_type": "clause",
+      "source_rank": 3,
+      "ranked_seed_rank": 3,
+      "reasons": [
+        "ranked_seed"
+      ],
+      "attached_from_chunk_ids": [],
+      "text": "Section: PART IA: AML/CFT/CPF INTERNAL PROGRAMMES AND\nOBLIGATIONS OF THE BOARD OF DIRECTORS, SENIOR\nMANAGEMENT AND COMPLIANCE OFFICER > 6 C. SENIOR MANAGEMENT\nClause: 6C.1\n\n6 C.1 The senior management is responsible for effective implementation of AML/CFT/CPF\ninternal programmes, policies and procedures that can manage the ML/TF/PF risks\nidentified. In particular, the senior management has the following roles and\nresponsibilities:\n\n(a)be aware of and understand the ML/TF/PF risks associated with among others\nits business activities or strategies, delivery channels and geographical coverage\nof its business products and services offered and to be offered including new\nbusiness activities or strategies, new products, new delivery channels and new\ngeographical coverage;\n\n(b)formulate AML/CFT/CPF policies to ensure that they are in line with the risks\nprofiles, nature of business, complexity, value or volume of the transactions\nundertaken by the reporting institution and its geographical coverage;\n\n(c)establish appropriate mechanisms to effectively formulate and implement\nAML/CFT/CPF policies and procedures approved by the board of directors;\n\n(d)undertake review and propose to the board of directors the necessary\nenhancements to the AML/CFT/CPF policies to reflect changes in the reporting\ninstitution’s risk profiles;\n\n(e)provide periodic reporting to the board of directors on the level of ML/TF/PF\nrisks faced by the reporting institution, strength and adequacy of risk\nmanagement and internal controls implemented to manage the risks and the\nlatest development on AML/CFT/CPF which may have an impact on the reporting\ninstitution;\n\n(f)allocate adequate resources to effectively implement and administer\nAML/CFT/CPF compliance programmes that are reflective of the size and\ncomplexity of the reporting institution’s operations and risk profiles;\n\n(g)ensure that there is a proper channel of communication in place to effectively\ncommunicate the AML/CFT/CPF policies and procedures to all relevant\nemployees;\n\n(h)ensure that AML/CFT/CPF issues raised are addressed in a timely manner; and\n\n(i)provide appropriate levels of AML/CFT/CPF training for employees throughout\nthe organisation.",
+      "content_text": "6 C.1 The senior management is responsible for effective implementation of AML/CFT/CPF\ninternal programmes, policies and procedures that can manage the ML/TF/PF risks\nidentified. In particular, the senior management has the following roles and\nresponsibilities:\n\n(a)be aware of and understand the ML/TF/PF risks associated with among others\nits business activities or strategies, delivery channels and geographical coverage\nof its business products and services offered and to be offered including new\nbusiness activities or strategies, new products, new delivery channels and new\ngeographical coverage;\n\n(b)formulate AML/CFT/CPF policies to ensure that they are in line with the risks\nprofiles, nature of business, complexity, value or volume of the transactions\nundertaken by the reporting institution and its geographical coverage;\n\n(c)establish appropriate mechanisms to effectively formulate and implement\nAML/CFT/CPF policies and procedures approved by the board of directors;\n\n(d)undertake review and propose to the board of directors the necessary\nenhancements to the AML/CFT/CPF policies to reflect changes in the reporting\ninstitution’s risk profiles;\n\n(e)provide periodic reporting to the board of directors on the level of ML/TF/PF\nrisks faced by the reporting institution, strength and adequacy of risk\nmanagement and internal controls implemented to manage the risks and the\nlatest development on AML/CFT/CPF which may have an impact on the reporting\ninstitution;\n\n(f)allocate adequate resources to effectively implement and administer\nAML/CFT/CPF compliance programmes that are reflective of the size and\ncomplexity of the reporting institution’s operations and risk profiles;\n\n(g)ensure that there is a proper channel of communication in place to effectively\ncommunicate the AML/CFT/CPF policies and procedures to all relevant\nemployees;\n\n(h)ensure that AML/CFT/CPF issues raised are addressed in a timely manner; and\n\n(i)provide appropriate levels of AML/CFT/CPF training for employees throughout\nthe organisation.",
+      "token_count": 417,
+      "pages": [
+        23
+      ],
+      "section_path": [
+        "PART IA: AML/CFT/CPF INTERNAL PROGRAMMES AND\nOBLIGATIONS OF THE BOARD OF DIRECTORS, SENIOR\nMANAGEMENT AND COMPLIANCE OFFICER",
+        "6 C. SENIOR MANAGEMENT"
+      ],
+      "source_element_ids": [
+        "p23-e2",
+        "p23-e3",
+        "p23-e4",
+        "p23-e5",
+        "p23-e6",
+        "p23-e7",
+        "p23-e8",
+        "p23-e9",
+        "p23-e10",
+        "p23-e11"
+      ]
+    },
+    {
+      "context_order": 4,
+      "chunk_id": "485c4989-c300-45c8-ac06-79a59492bb5c-c0063-e2642bd95c",
+      "chunk_index": 63,
+      "semantic_type": "clause",
+      "source_rank": 4,
+      "ranked_seed_rank": 4,
+      "reasons": [
+        "ranked_seed"
+      ],
+      "attached_from_chunk_ids": [],
+      "text": "Section: PART IA: AML/CFT/CPF INTERNAL PROGRAMMES AND\nOBLIGATIONS OF THE BOARD OF DIRECTORS, SENIOR\nMANAGEMENT AND COMPLIANCE OFFICER > 6 D. COMPLIANCE OFFICER\nClause: 6D.4\n\n6 D.4 The roles and responsibilities of a compliance officer include to ensure the following:\n\n(a)The reporting institution’s compliance with the AML/CFT/CPF requirements;\n\n(b)Effective implementation of appropriate AML/CFT/CPF policies and procedures,\nincluding CDD, ongoing due diligence, reporting of suspicious transactions,\nrecord keeping, combating the financing of terrorism and compliance and\ntraining programmes;\n\n(c)AML/CFT/CPF policies and procedures are regularly assessed and kept up-to-date\nto ensure that they are effective and sufficient to address any changes in\nML/TF/PF trends;\n\n(d)Timely reporting of the risk-based approach measures to the board of directors;\n\n(e)All employees are aware of the reporting institution’s AML/CFT/CPF measures,\nincluding policies, control mechanism and reporting channels;\n\n(f)Internally generated suspicious transactions reports are appropriately evaluated\nand recorded before submission to the FIED;\n\n(g)The channel of communication for reporting suspicious transactions is secured and\nthat information is kept confidential; and\n\n(h)The ML/TF/PF risks associated with new products and services or arising from the\nreporting institution’s operational changes, including the introduction of new\ntechnology and processes, are identified and are brought to the attention of the\nboard of directors.",
+      "content_text": "6 D.4 The roles and responsibilities of a compliance officer include to ensure the following:\n\n(a)The reporting institution’s compliance with the AML/CFT/CPF requirements;\n\n(b)Effective implementation of appropriate AML/CFT/CPF policies and procedures,\nincluding CDD, ongoing due diligence, reporting of suspicious transactions,\nrecord keeping, combating the financing of terrorism and compliance and\ntraining programmes;\n\n(c)AML/CFT/CPF policies and procedures are regularly assessed and kept up-to-date\nto ensure that they are effective and sufficient to address any changes in\nML/TF/PF trends;\n\n(d)Timely reporting of the risk-based approach measures to the board of directors;\n\n(e)All employees are aware of the reporting institution’s AML/CFT/CPF measures,\nincluding policies, control mechanism and reporting channels;\n\n(f)Internally generated suspicious transactions reports are appropriately evaluated\nand recorded before submission to the FIED;\n\n(g)The channel of communication for reporting suspicious transactions is secured and\nthat information is kept confidential; and\n\n(h)The ML/TF/PF risks associated with new products and services or arising from the\nreporting institution’s operational changes, including the introduction of new\ntechnology and processes, are identified and are brought to the attention of the\nboard of directors.",
+      "token_count": 292,
+      "pages": [
+        24
+      ],
+      "section_path": [
+        "PART IA: AML/CFT/CPF INTERNAL PROGRAMMES AND\nOBLIGATIONS OF THE BOARD OF DIRECTORS, SENIOR\nMANAGEMENT AND COMPLIANCE OFFICER",
+        "6 D. COMPLIANCE OFFICER"
+      ],
+      "source_element_ids": [
+        "p24-e5",
+        "p24-e6",
+        "p24-e7",
+        "p24-e8",
+        "p24-e9-split-1",
+        "p24-e9-split-2",
+        "p24-e10",
+        "p24-e11",
+        "p24-e12"
+      ]
+    },
+    {
+      "context_order": 5,
+      "chunk_id": "485c4989-c300-45c8-ac06-79a59492bb5c-c0059-bb2e3b039b",
+      "chunk_index": 59,
+      "semantic_type": "paragraph",
+      "source_rank": 5,
+      "ranked_seed_rank": 5,
+      "reasons": [
+        "ranked_seed"
+      ],
+      "attached_from_chunk_ids": [],
+      "text": "Section: PART IA: AML/CFT/CPF INTERNAL PROGRAMMES AND\nOBLIGATIONS OF THE BOARD OF DIRECTORS, SENIOR\nMANAGEMENT AND COMPLIANCE OFFICER > 6 B. BOARD OF DIRECTORS\nGroup: Guidance for paragraph 6B.2(c):\n\nAML/CFT/CPF measures include but are not limited to those required for risk\nassessment, mitigation and profiling, customer due diligence (CDD), record\nkeeping, enhanced CDD and ongoing due diligence, suspicious transaction\nreport and targeted financial sanctions.",
+      "content_text": "AML/CFT/CPF measures include but are not limited to those required for risk\nassessment, mitigation and profiling, customer due diligence (CDD), record\nkeeping, enhanced CDD and ongoing due diligence, suspicious transaction\nreport and targeted financial sanctions.",
+      "token_count": 91,
+      "pages": [
+        22
+      ],
+      "section_path": [
+        "PART IA: AML/CFT/CPF INTERNAL PROGRAMMES AND\nOBLIGATIONS OF THE BOARD OF DIRECTORS, SENIOR\nMANAGEMENT AND COMPLIANCE OFFICER",
+        "6 B. BOARD OF DIRECTORS"
+      ],
+      "source_element_ids": [
+        "p22-e9"
+      ]
+    },
+    {
+      "context_order": 6,
+      "chunk_id": "485c4989-c300-45c8-ac06-79a59492bb5c-c0056-b117631798",
+      "chunk_index": 56,
+      "semantic_type": "clause",
+      "source_rank": 6,
+      "ranked_seed_rank": 6,
+      "reasons": [
+        "ranked_seed"
+      ],
+      "attached_from_chunk_ids": [],
+      "text": "Section: PART IA: AML/CFT/CPF INTERNAL PROGRAMMES AND\nOBLIGATIONS OF THE BOARD OF DIRECTORS, SENIOR\nMANAGEMENT AND COMPLIANCE OFFICER > 6 A. INTERNAL PROGRAMMES, POLICIES, PROCEDURES AND CONTROLS\nClause: 6A.1\n\n6 A.1 A reporting institution shall adopt, develop and implement internal programmes,\npolicies, procedures and controls having regard to its ML/TF/PF risks and size of\nbusiness. These programmes shall include–\n\n(a)procedures to ensure high standards of integrity of its board of directors, senior\nmanagement, employees or persons acting on behalf of the reporting\ninstitution, and adopt a screening system to evaluate the personnel when hiring;\n\n(b)regular independent audit function to check on the compliance and\neffectiveness of the reporting institution’s AML/CFT/CPF framework in\nrelation to the AMLA and provisions of these Guidelines. Any audit findings and\nany necessary corrective measures to be undertaken must be tabled to the\nboard of directors;\n\n(c)effective internal control systems to assess, profile and address ML/TF/PF\nissues; and\n\n(d)structured ongoing training programmes for directors and employees to\nenhance compliance with the reporting institution’s policies and procedures on\nAML/CFT/CPF. The training programmes must be according to their level of\nresponsibilities.",
+      "content_text": "6 A.1 A reporting institution shall adopt, develop and implement internal programmes,\npolicies, procedures and controls having regard to its ML/TF/PF risks and size of\nbusiness. These programmes shall include–\n\n(a)procedures to ensure high standards of integrity of its board of directors, senior\nmanagement, employees or persons acting on behalf of the reporting\ninstitution, and adopt a screening system to evaluate the personnel when hiring;\n\n(b)regular independent audit function to check on the compliance and\neffectiveness of the reporting institution’s AML/CFT/CPF framework in\nrelation to the AMLA and provisions of these Guidelines. Any audit findings and\nany necessary corrective measures to be undertaken must be tabled to the\nboard of directors;\n\n(c)effective internal control systems to assess, profile and address ML/TF/PF\nissues; and\n\n(d)structured ongoing training programmes for directors and employees to\nenhance compliance with the reporting institution’s policies and procedures on\nAML/CFT/CPF. The training programmes must be according to their level of\nresponsibilities.",
+      "token_count": 245,
+      "pages": [
+        21
+      ],
+      "section_path": [
+        "PART IA: AML/CFT/CPF INTERNAL PROGRAMMES AND\nOBLIGATIONS OF THE BOARD OF DIRECTORS, SENIOR\nMANAGEMENT AND COMPLIANCE OFFICER",
+        "6 A. INTERNAL PROGRAMMES, POLICIES, PROCEDURES AND CONTROLS"
+      ],
+      "source_element_ids": [
+        "p21-e3",
+        "p21-e4",
+        "p21-e5",
+        "p21-e6",
+        "p21-e7"
+      ]
+    },
+    {
+      "context_order": 7,
+      "chunk_id": "485c4989-c300-45c8-ac06-79a59492bb5c-c0062-fece9a1a38",
+      "chunk_index": 62,
+      "semantic_type": "clause",
+      "source_rank": 7,
+      "ranked_seed_rank": 7,
+      "reasons": [
+        "ranked_seed"
+      ],
+      "attached_from_chunk_ids": [],
+      "text": "Section: PART IA: AML/CFT/CPF INTERNAL PROGRAMMES AND\nOBLIGATIONS OF THE BOARD OF DIRECTORS, SENIOR\nMANAGEMENT AND COMPLIANCE OFFICER > 6 D. COMPLIANCE OFFICER\n\n6 D.1 A reporting institution shall designate compliance officers at management level in each\nof its branches, who will be responsible for the compliance of the AML/CFT/CPF internal\nprogrammes, policies and procedures.\n\n6 D.2 The compliance officer appointed by a reporting institution must have necessary\nknowledge, expertise and the required authority to discharge his responsibilities\neffectively, including knowledge on the relevant laws and regulations and the latest\nAML/CFT/CPF developments. A reporting institution should encourage its compliance\nofficer to pursue professional qualifications in AML/CFT/CPF to enable him to carry out\nhis obligations effectively.\n\n6 D.3 A reporting institution must also ensure that the roles and responsibilities of the\ncompliance officer are clearly defined and documented.",
+      "content_text": "6 D.1 A reporting institution shall designate compliance officers at management level in each\nof its branches, who will be responsible for the compliance of the AML/CFT/CPF internal\nprogrammes, policies and procedures.\n\n6 D.2 The compliance officer appointed by a reporting institution must have necessary\nknowledge, expertise and the required authority to discharge his responsibilities\neffectively, including knowledge on the relevant laws and regulations and the latest\nAML/CFT/CPF developments. A reporting institution should encourage its compliance\nofficer to pursue professional qualifications in AML/CFT/CPF to enable him to carry out\nhis obligations effectively.\n\n6 D.3 A reporting institution must also ensure that the roles and responsibilities of the\ncompliance officer are clearly defined and documented.",
+      "token_count": 171,
+      "pages": [
+        24
+      ],
+      "section_path": [
+        "PART IA: AML/CFT/CPF INTERNAL PROGRAMMES AND\nOBLIGATIONS OF THE BOARD OF DIRECTORS, SENIOR\nMANAGEMENT AND COMPLIANCE OFFICER",
+        "6 D. COMPLIANCE OFFICER"
+      ],
+      "source_element_ids": [
+        "p24-e2",
+        "p24-e3",
+        "p24-e4"
+      ]
+    },
+    {
+      "context_order": 8,
+      "chunk_id": "485c4989-c300-45c8-ac06-79a59492bb5c-c0060-b979658811",
+      "chunk_index": 60,
+      "semantic_type": "paragraph",
+      "source_rank": 8,
+      "ranked_seed_rank": 8,
+      "reasons": [
+        "ranked_seed"
+      ],
+      "attached_from_chunk_ids": [],
+      "text": "Section: PART IA: AML/CFT/CPF INTERNAL PROGRAMMES AND\nOBLIGATIONS OF THE BOARD OF DIRECTORS, SENIOR\nMANAGEMENT AND COMPLIANCE OFFICER > 6 B. BOARD OF DIRECTORS\nGroup: Guidance for paragraph 6B.2(f):\n\nPeriodic reviews and improvements of policies and procedures are to be\nconducted where there are changes and developments in a reporting\ninstitution’s products, services, technology, regulatory development, nature of\nbusiness to capture changes in distribution channel, clients’ segment and etc.",
+      "content_text": "Periodic reviews and improvements of policies and procedures are to be\nconducted where there are changes and developments in a reporting\ninstitution’s products, services, technology, regulatory development, nature of\nbusiness to capture changes in distribution channel, clients’ segment and etc.",
+      "token_count": 93,
+      "pages": [
+        22
+      ],
+      "section_path": [
+        "PART IA: AML/CFT/CPF INTERNAL PROGRAMMES AND\nOBLIGATIONS OF THE BOARD OF DIRECTORS, SENIOR\nMANAGEMENT AND COMPLIANCE OFFICER",
+        "6 B. BOARD OF DIRECTORS"
+      ],
+      "source_element_ids": [
+        "p22-e11"
+      ]
+    },
+    {
+      "context_order": 9,
+      "chunk_id": "485c4989-c300-45c8-ac06-79a59492bb5c-c0149-324f72fd13",
+      "chunk_index": 149,
+      "semantic_type": "clause",
+      "source_rank": 9,
+      "ranked_seed_rank": 9,
+      "reasons": [
+        "ranked_seed"
+      ],
+      "attached_from_chunk_ids": [],
+      "text": "Section: PART V: SUSPICIOUS TRANSACTIONS > 11 REPORTING OF SUSPICIOUS TRANSACTIONS\n\n11.10 The fact that a STR may have been lodged with the FIED previously should not\npreclude the reporting institution from lodging a fresh STR as and when a new\nsuspicion arises.\n\n11.11 When required by FIED, a reporting institution must provide additional information\nand documentation and respond promptly to any further enquiries with regard to the\nSTR lodged.\n\n11.12 Where a reporting institution forms a suspicion of ML/TF/PF and reasonably believes\nthat performing the CDD process would tip off the customer, the reporting institution\nis permitted not to pursue the CDD process and is required to lodge a STR.\n\n11.13 The reporting institution must ensure that the compliance officer maintains a complete\nfile of all internal reports on suspicious transactions and STRs lodged with FIED\ntogether with the relevant supporting documentary evidence.\n\n11.14 The board of directors must ensure that the compliance officer has the necessary\nauthority, resources and support to discharge his obligation independently and\neffectively in complying with the reporting institution’s compliance policies and\nprocedures on AML/CFT/CPF, particularly on reporting suspicious transactions.\n\n11.15 The compliance officer has the sole discretion and independence to report suspicious\ntransactions.",
+      "content_text": "11.10 The fact that a STR may have been lodged with the FIED previously should not\npreclude the reporting institution from lodging a fresh STR as and when a new\nsuspicion arises.\n\n11.11 When required by FIED, a reporting institution must provide additional information\nand documentation and respond promptly to any further enquiries with regard to the\nSTR lodged.\n\n11.12 Where a reporting institution forms a suspicion of ML/TF/PF and reasonably believes\nthat performing the CDD process would tip off the customer, the reporting institution\nis permitted not to pursue the CDD process and is required to lodge a STR.\n\n11.13 The reporting institution must ensure that the compliance officer maintains a complete\nfile of all internal reports on suspicious transactions and STRs lodged with FIED\ntogether with the relevant supporting documentary evidence.\n\n11.14 The board of directors must ensure that the compliance officer has the necessary\nauthority, resources and support to discharge his obligation independently and\neffectively in complying with the reporting institution’s compliance policies and\nprocedures on AML/CFT/CPF, particularly on reporting suspicious transactions.\n\n11.15 The compliance officer has the sole discretion and independence to report suspicious\ntransactions.",
+      "token_count": 234,
+      "pages": [
+        56
+      ],
+      "section_path": [
+        "PART V: SUSPICIOUS TRANSACTIONS",
+        "11 REPORTING OF SUSPICIOUS TRANSACTIONS"
+      ],
+      "source_element_ids": [
+        "p56-e5",
+        "p56-e6",
+        "p56-e7",
+        "p56-e8",
+        "p56-e9",
+        "p56-e10"
+      ]
+    },
+    {
+      "context_order": 10,
+      "chunk_id": "485c4989-c300-45c8-ac06-79a59492bb5c-c0065-d4d36f22c0",
+      "chunk_index": 65,
+      "semantic_type": "clause",
+      "source_rank": 10,
+      "ranked_seed_rank": 10,
+      "reasons": [
+        "ranked_seed"
+      ],
+      "attached_from_chunk_ids": [],
+      "text": "Section: PART IA: AML/CFT/CPF INTERNAL PROGRAMMES AND\nOBLIGATIONS OF THE BOARD OF DIRECTORS, SENIOR\nMANAGEMENT AND COMPLIANCE OFFICER > 6 E.   GROUP-WIDE AML/CFT/CPF PROGRAMMES\nClause: 6E.2\n\n6 E.2 Where applicable, a reporting institution is required to implement appropriate group-\nwide AML/CFT/CPF programmes appropriate to its branches and majority-owned\nsubsidiaries. Such AML/CFT/CPF programmes must include–\n\n(a)policies and procedures for sharing information required for the purposes of\nCDD and ML/TF/PF risk management;\n\n(b)the provision, at group-level compliance, audit, and/or AML/CFT/CPF functions,\nof customer, account, and transaction information from branches and\nsubsidiaries when necessary for AML/CFT/CPF purposes; and\n\n(c)adequate safeguards on the confidentiality and use of information exchanged.",
+      "content_text": "6 E.2 Where applicable, a reporting institution is required to implement appropriate group-\nwide AML/CFT/CPF programmes appropriate to its branches and majority-owned\nsubsidiaries. Such AML/CFT/CPF programmes must include–\n\n(a)policies and procedures for sharing information required for the purposes of\nCDD and ML/TF/PF risk management;\n\n(b)the provision, at group-level compliance, audit, and/or AML/CFT/CPF functions,\nof customer, account, and transaction information from branches and\nsubsidiaries when necessary for AML/CFT/CPF purposes; and\n\n(c)adequate safeguards on the confidentiality and use of information exchanged.",
+      "token_count": 172,
+      "pages": [
+        25
+      ],
+      "section_path": [
+        "PART IA: AML/CFT/CPF INTERNAL PROGRAMMES AND\nOBLIGATIONS OF THE BOARD OF DIRECTORS, SENIOR\nMANAGEMENT AND COMPLIANCE OFFICER",
+        "6 E.   GROUP-WIDE AML/CFT/CPF PROGRAMMES"
+      ],
+      "source_element_ids": [
+        "p25-e3",
+        "p25-e4",
+        "p25-e5",
+        "p25-e6"
+      ]
+    }
+  ]
+}

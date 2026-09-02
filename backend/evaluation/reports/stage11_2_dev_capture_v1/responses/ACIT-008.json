@@ -1,0 +1,269 @@
+{
+  "document_id": "485c4989-c300-45c8-ac06-79a59492bb5c",
+  "question": "What confidentiality rule applies to suspicion or STR reporting, and when does a disclosure not constitute the offence described by the Guidelines?",
+  "status": "answered",
+  "answer": "It shall be an offence to disclose to anyone any information that a suspicion has been formed or that information or a STR has been communicated to the FIED and the SC or to infer that any of these have occurred. A disclosure does not constitute the offence when it is made pursuant to the provisions of the AMLA.",
+  "cited_answer": "It shall be an offence to disclose to anyone any information that a suspicion has been formed or that information or a STR has been communicated to the FIED and the SC or to infer that any of these have occurred. [1] A disclosure does not constitute the offence when it is made pursuant to the provisions of the AMLA. [1]",
+  "claims": [
+    {
+      "claim_id": "C1",
+      "text": "It shall be an offence to disclose to anyone any information that a suspicion has been formed or that information or a STR has been communicated to the FIED and the SC or to infer that any of these have occurred.",
+      "evidence_ids": [
+        "E1"
+      ],
+      "citation_ids": [
+        "CIT-E1"
+      ]
+    },
+    {
+      "claim_id": "C2",
+      "text": "A disclosure does not constitute the offence when it is made pursuant to the provisions of the AMLA.",
+      "evidence_ids": [
+        "E1"
+      ],
+      "citation_ids": [
+        "CIT-E1"
+      ]
+    }
+  ],
+  "used_evidence_ids": [
+    "E1"
+  ],
+  "missing_information": [],
+  "evidence": [
+    {
+      "evidence_id": "E1",
+      "chunk_id": "485c4989-c300-45c8-ac06-79a59492bb5c-c0154-efe91f5828",
+      "chunk_index": 154,
+      "semantic_type": "clause",
+      "source_rank": 1,
+      "ranked_seed_rank": 1,
+      "reasons": [
+        "ranked_seed"
+      ],
+      "pages": [
+        58
+      ],
+      "section_path": [
+        "PART V: SUSPICIOUS TRANSACTIONS",
+        "12 CONFIDENTIALITY OF REPORTING"
+      ],
+      "source_element_ids": [
+        "p58-e2",
+        "p58-e3",
+        "p58-e4",
+        "p58-e5",
+        "p58-e6"
+      ],
+      "content_text": "12.1 It shall be an offence to disclose to anyone any information that a suspicion has been\nformed or that information or a STR has been communicated to the FIED and the SC\nor to infer that any of these have occurred.\n\n12.2 A person does not commit an offence under paragraph 12.1 above, where such a\ndisclosure is made pursuant to the provisions of the AMLA.\n\n12.3 A reporting institution is required to establish proper policies and procedures to\nensure effective controls when considering disclosures of report or related information\nunder section 14A(3) of the AMLA.\n\n12.4 The reporting institution must establish parameters on the circumstances where\ndisclosure is required, types of report or related information that may be disclosed\nand to whom it may be disclosed under section 14A(3) of the AMLA. All disclosures\nmade pursuant to these parameters must be properly documented with reasonable\njustification.\n\n12.5 The compliance officer must ensure that the transmission of the report or related\ninformation must be conducted in a controlled environment and that confidentiality\nof the report or related information is safeguarded to avoid any leakage to an\nunauthorised third part."
+    },
+    {
+      "evidence_id": "E2",
+      "chunk_id": "485c4989-c300-45c8-ac06-79a59492bb5c-c0147-4ce9ccc098",
+      "chunk_index": 147,
+      "semantic_type": "clause",
+      "source_rank": 2,
+      "ranked_seed_rank": 2,
+      "reasons": [
+        "ranked_seed"
+      ],
+      "pages": [
+        55,
+        56
+      ],
+      "section_path": [
+        "PART V: SUSPICIOUS TRANSACTIONS",
+        "11 REPORTING OF SUSPICIOUS TRANSACTIONS"
+      ],
+      "source_element_ids": [
+        "p55-e3",
+        "p55-e4",
+        "p55-e5",
+        "p55-e6",
+        "p55-e13",
+        "p56-e1",
+        "p56-e2",
+        "p56-e3",
+        "p56-e4"
+      ],
+      "content_text": "11.1 A reporting institution must establish in place strong mechanisms for reporting\nsuspicious transactions, including having an appointed AML/CFT/CPF compliance\nofficer, and where appropriate, having a unit primarily responsible for complying with\nthe AML/CFT/CPF requirements on reporting of suspicious transactions.\n\n11.2 A reporting institution must also ensure that the suspicious transaction reporting\nmechanism is operated in a secured environment to maintain the confidentiality and\npreservation of secrecy.\n\n11.3 A reporting institution must clarify the economic background and purpose of any\ntransaction or business relationship if it appears unusual in relation to the reporting\ninstitution’s knowledge of the customer, or if the economic purpose or legality of the\ntransaction is not immediately clear. Special attention should also be paid to all\ncomplex and unusual patterns of transaction.\n\n11.4 A reporting institution must also consider whether the transactions involve a number\nof factors which when taken together may raise a suspicion that the transactions may\nbe connected with certain unlawful activities.\n\n11.6 If in bringing together all relevant factors, a reporting institution has reasonable\ngrounds to suspect that the transaction or the funds utilised involve proceeds of an\nunlawful activity or is related to terrorism financing and proliferation financing, such\ntransaction should be reported immediately to the FIED through lodgement of a STR.\n\n11.6A A reporting institution is required to have in place policies on the duration upon which\ninternal suspicious transaction reports must be reviewed by the reporting institution,\nincluding the circumstances when the timeframe can be exceeded, where necessary.\n\n11.7 Where the reporting institution decides that there are no reasonable grounds for\nsuspicion to warrant a lodgement of a STR, the reporting institution must establish the\ngrounds for such decision. In this regard, the compliance officer must ensure that the\nreporting institution’s decision together with all supporting documentary evidence is\nrecorded and maintained.\n\n11.8 A reporting institution is required to report all suspicious transactions, including\nattempted transactions, regardless of the amount of the transaction. A reporting\ninstitution should be aware that in some cases, suspicion may be formed after a\nconsiderable time from the date of the transaction, in view of subsequent additional\ninformation.\n\n11.9 STRs must be lodged to the FIED in accordance with the method as provided in\nAppendix C herein."
+    },
+    {
+      "evidence_id": "E3",
+      "chunk_id": "485c4989-c300-45c8-ac06-79a59492bb5c-c0149-324f72fd13",
+      "chunk_index": 149,
+      "semantic_type": "clause",
+      "source_rank": 3,
+      "ranked_seed_rank": 3,
+      "reasons": [
+        "ranked_seed"
+      ],
+      "pages": [
+        56
+      ],
+      "section_path": [
+        "PART V: SUSPICIOUS TRANSACTIONS",
+        "11 REPORTING OF SUSPICIOUS TRANSACTIONS"
+      ],
+      "source_element_ids": [
+        "p56-e5",
+        "p56-e6",
+        "p56-e7",
+        "p56-e8",
+        "p56-e9",
+        "p56-e10"
+      ],
+      "content_text": "11.10 The fact that a STR may have been lodged with the FIED previously should not\npreclude the reporting institution from lodging a fresh STR as and when a new\nsuspicion arises.\n\n11.11 When required by FIED, a reporting institution must provide additional information\nand documentation and respond promptly to any further enquiries with regard to the\nSTR lodged.\n\n11.12 Where a reporting institution forms a suspicion of ML/TF/PF and reasonably believes\nthat performing the CDD process would tip off the customer, the reporting institution\nis permitted not to pursue the CDD process and is required to lodge a STR.\n\n11.13 The reporting institution must ensure that the compliance officer maintains a complete\nfile of all internal reports on suspicious transactions and STRs lodged with FIED\ntogether with the relevant supporting documentary evidence.\n\n11.14 The board of directors must ensure that the compliance officer has the necessary\nauthority, resources and support to discharge his obligation independently and\neffectively in complying with the reporting institution’s compliance policies and\nprocedures on AML/CFT/CPF, particularly on reporting suspicious transactions.\n\n11.15 The compliance officer has the sole discretion and independence to report suspicious\ntransactions."
+    },
+    {
+      "evidence_id": "E4",
+      "chunk_id": "485c4989-c300-45c8-ac06-79a59492bb5c-c0152-d3eb78134e",
+      "chunk_index": 152,
+      "semantic_type": "clause",
+      "source_rank": 4,
+      "ranked_seed_rank": 4,
+      "reasons": [
+        "ranked_seed"
+      ],
+      "pages": [
+        57
+      ],
+      "section_path": [
+        "PART V: SUSPICIOUS TRANSACTIONS",
+        "11 REPORTING OF SUSPICIOUS TRANSACTIONS"
+      ],
+      "source_element_ids": [
+        "p57-e4"
+      ],
+      "content_text": "11.17 For the avoidance of doubt, unless permitted by law, a reporting institution and its\ndirectors, officers and employees are prohibited from disclosing the fact that a STR or\nrelated information is being filed with the FIED."
+    },
+    {
+      "evidence_id": "E5",
+      "chunk_id": "485c4989-c300-45c8-ac06-79a59492bb5c-c0037-80d9ee8daf",
+      "chunk_index": 37,
+      "semantic_type": "definition",
+      "source_rank": 5,
+      "ranked_seed_rank": 5,
+      "reasons": [
+        "ranked_seed"
+      ],
+      "pages": [
+        14
+      ],
+      "section_path": [
+        "PART I: INTRODUCTION AND APPLICABILITY",
+        "3. DEFINITIONS"
+      ],
+      "source_element_ids": [
+        "p14-e4-r3-term",
+        "p14-e4-r3-definition"
+      ],
+      "content_text": "STR\n\nmeans a Suspicious Transaction Report, to be submitted to FIED as in Appendix C ."
+    }
+  ],
+  "citations": [
+    {
+      "citation_id": "CIT-E1",
+      "marker": "[1]",
+      "evidence_id": "E1",
+      "chunk_id": "485c4989-c300-45c8-ac06-79a59492bb5c-c0154-efe91f5828",
+      "chunk_index": 154,
+      "source_filename": "sc_aml_cft.pdf",
+      "display": "Clause 12.1 · Clause 12.2 · Clause 12.3 · Clause 12.4 · Clause 12.5 · PDF p. 58",
+      "pages": [
+        58
+      ],
+      "section_path": [
+        "PART V: SUSPICIOUS TRANSACTIONS",
+        "12 CONFIDENTIALITY OF REPORTING"
+      ],
+      "source_element_ids": [
+        "p58-e2",
+        "p58-e3",
+        "p58-e4",
+        "p58-e5",
+        "p58-e6"
+      ],
+      "locators": [
+        {
+          "kind": "clause",
+          "label": "Clause 12.1",
+          "pages": [
+            58
+          ],
+          "source_element_ids": [
+            "p58-e2"
+          ]
+        },
+        {
+          "kind": "clause",
+          "label": "Clause 12.2",
+          "pages": [
+            58
+          ],
+          "source_element_ids": [
+            "p58-e3"
+          ]
+        },
+        {
+          "kind": "clause",
+          "label": "Clause 12.3",
+          "pages": [
+            58
+          ],
+          "source_element_ids": [
+            "p58-e4"
+          ]
+        },
+        {
+          "kind": "clause",
+          "label": "Clause 12.4",
+          "pages": [
+            58
+          ],
+          "source_element_ids": [
+            "p58-e5"
+          ]
+        },
+        {
+          "kind": "clause",
+          "label": "Clause 12.5",
+          "pages": [
+            58
+          ],
+          "source_element_ids": [
+            "p58-e6"
+          ]
+        }
+      ],
+      "validation_status": "valid"
+    }
+  ],
+  "citation_version": "deterministic_citations_v1_2",
+  "citation_validation": {
+    "status": "valid",
+    "citation_count": 1,
+    "valid_citation_count": 1,
+    "errors": []
+  },
+  "generation_provider": "groq",
+  "generation_model": "openai/gpt-oss-120b",
+  "prompt_version": "grounded_claims_v1",
+  "generation_temperature": 0.0,
+  "generation_max_tokens": 1200,
+  "generation_json_mode": true,
+  "usage": {
+    "prompt_tokens": 1870,
+    "completion_tokens": 427,
+    "total_tokens": 2297
+  },
+  "retrieval_profile": "retrieval_v1_stage8_2_top5",
+  "retrieval_top_k": 5,
+  "retrieval_candidate_k": 20,
+  "retrieval_rrf_k": 60,
+  "retrieval_dense_weight": 1.0,
+  "retrieval_lexical_weight": 1.0,
+  "context_strategy": "structural_one_hop_v1",
+  "context_chunk_count": 5,
+  "expanded_chunk_count": 0
+}

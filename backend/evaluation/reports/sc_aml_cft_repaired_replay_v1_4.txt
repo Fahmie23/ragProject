@@ -1,0 +1,6 @@
+Benchmark: sc-aml-cft-stage4-primary-v1 (1.4)
+Source match: yes
+Required: 235/235 (100.0%)
+Advisory: 6/6 (100.0%)
+
+Open taxonomy questions: 3

@@ -1,0 +1,17 @@
+{
+  "calibration_id": "answer_citation_eval_dev_calibration_v1",
+  "dataset_id": "answer_citation_eval_dev_v1",
+  "rubric_status": "frozen_v1_calibration_selection",
+  "question_ids": [
+    "ACIT-001",
+    "ACIT-003",
+    "ACIT-006",
+    "ACIT-008",
+    "ACIT-012",
+    "ACIT-014",
+    "ACIT-016",
+    "ACIT-017",
+    "ACIT-018"
+  ],
+  "selection_rationale": "Human-confirmed calibration subset covering cross-page definition, conditional obligations, multi-clause generation, confidentiality, cross-page sanctions screening, appendix provenance, a real completeness failure, table evidence, and abstention. ACIT-016 was added before freeze to exercise partially-supported and missing labels on a real DEV response."
+}

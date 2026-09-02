@@ -1,0 +1,781 @@
+FORMAL RETRIEVAL EVALUATION COMPARISON
+======================================
+
+Dataset        : sc_aml_cft_retrieval_eval_v1
+Document ID    : 485c4989-c300-45c8-ac06-79a59492bb5c
+Source SHA-256 : e1d138edd3c55b3fa3dd36b3236876a1a8dd634c4d972cec74157e6bf816bc15
+Split          : heldout
+Questions      : 15
+Config ID      : retrieval_stage8_2_context_dev_v1
+Config status  : frozen
+MRR cutoff     : 10
+
+Metric              | dense  | hybrid | hybrid_rerank
+--------------------+--------+--------+--------------
+Hit@1               | 66.7%  | 60.0%  | 86.7%        
+Hit@3               | 73.3%  | 80.0%  | 86.7%        
+Hit@5               | 73.3%  | 93.3%  | 93.3%        
+Hit@10              | 100.0% | 93.3%  | 93.3%        
+Recall@1            | 56.7%  | 50.0%  | 76.7%        
+Recall@3            | 70.0%  | 76.7%  | 83.3%        
+Recall@5            | 70.0%  | 90.0%  | 86.7%        
+Recall@10           | 96.7%  | 90.0%  | 90.0%        
+MRR@10              | 0.7225 | 0.7189 | 0.8800       
+CompleteEvidence@1  | 46.7%  | 40.0%  | 66.7%        
+CompleteEvidence@3  | 66.7%  | 73.3%  | 80.0%        
+CompleteEvidence@5  | 66.7%  | 86.7%  | 80.0%        
+CompleteEvidence@10 | 93.3%  | 86.7%  | 86.7%        
+
+STRUCTURAL CONTEXT ASSEMBLY (Hybrid + Reranker only)
+-----------------------------------------------------
+Raw ranking metrics above are unchanged. Context metrics count bounded structural attachments
+whose source_rank is within K; expanded chunks never receive retrieval ranks.
+ContextRecall@1: 76.7% | ContextCompleteEvidence@1: 66.7% | avg context chunks: 1.0000
+ContextRecall@3: 83.3% | ContextCompleteEvidence@3: 80.0% | avg context chunks: 3.2000
+ContextRecall@5: 90.0% | ContextCompleteEvidence@5: 86.7% | avg context chunks: 5.2667
+ContextRecall@10: 90.0% | ContextCompleteEvidence@10: 86.7% | avg context chunks: 10.4667
+
+Validity
+--------
+dense: valid=True successful=15/15 failed=0
+hybrid: valid=True successful=15/15 failed=0
+hybrid_rerank: valid=True successful=15/15 failed=0
+
+Important: development results may be used for diagnosis. Held-out results must not be used
+to retune retrieval and then reported as unbiased held-out performance.
+
+
+PER-QUESTION RESULTS
+====================
+
+====================================================================================================
+RET-002 | definition | easy | split=heldout
+====================================================================================================
+Question: Who qualifies as a designated person under the Guidelines?
+Primary gold chunk(s): ['485c4989-c300-45c8-ac06-79a59492bb5c-c0021-56e4d3ded6']
+Supporting chunk(s)  : []
+
+[dense] status=ok elapsed=0.35s
+first_relevant_rank=1 | RR=1.0000 | Hit@1=1 | Hit@3=1 | Hit@5=1 | Hit@10=1 | Recall@1=1.000 | Recall@3=1.000 | Recall@5=1.000 | Recall@10=1.000 | Complete@1=1 | Complete@3=1 | Complete@5=1 | Complete@10=1
+ * # 1 chunk_index=21 score=0.6146050325271479 type=definition pages=[11] chunk_id=485c4989-c300-45c8-ac06-79a59492bb5c-c0021-56e4d3ded6
+   # 2 chunk_index=97 score=0.5718355689244784 type=paragraph pages=[36] chunk_id=485c4989-c300-45c8-ac06-79a59492bb5c-c0097-1867d471cc
+   # 3 chunk_index=112 score=0.5493138969762448 type=clause pages=[42] chunk_id=485c4989-c300-45c8-ac06-79a59492bb5c-c0112-8c652d9f62
+   # 4 chunk_index=162 score=0.5428127322904637 type=clause pages=[62] chunk_id=485c4989-c300-45c8-ac06-79a59492bb5c-c0162-aded0a9984
+   # 5 chunk_index=27 score=0.5308037363524751 type=definition pages=[12] chunk_id=485c4989-c300-45c8-ac06-79a59492bb5c-c0027-252e1736f2
+   # 6 chunk_index=7 score=0.5264572783436022 type=clause pages=[6, 7] chunk_id=485c4989-c300-45c8-ac06-79a59492bb5c-c0007-22ed76c058
+   # 7 chunk_index=9 score=0.518828539918153 type=clause pages=[9] chunk_id=485c4989-c300-45c8-ac06-79a59492bb5c-c0009-f530a789ad
+   # 8 chunk_index=88 score=0.5163295845592517 type=clause pages=[33, 34] chunk_id=485c4989-c300-45c8-ac06-79a59492bb5c-c0088-7f07c6b2b9
+   # 9 chunk_index=156 score=0.5144038779254105 type=clause pages=[60] chunk_id=485c4989-c300-45c8-ac06-79a59492bb5c-c0156-1ec1ec242b
+   #10 chunk_index=28 score=0.5137229851649422 type=definition pages=[12] chunk_id=485c4989-c300-45c8-ac06-79a59492bb5c-c0028-12ae3621f7
+
+[hybrid] status=ok elapsed=0.19s
+first_relevant_rank=1 | RR=1.0000 | Hit@1=1 | Hit@3=1 | Hit@5=1 | Hit@10=1 | Recall@1=1.000 | Recall@3=1.000 | Recall@5=1.000 | Recall@10=1.000 | Complete@1=1 | Complete@3=1 | Complete@5=1 | Complete@10=1
+ * # 1 chunk_index=21 score=0.03047794966520434 type=definition pages=[11] chunk_id=485c4989-c300-45c8-ac06-79a59492bb5c-c0021-56e4d3ded6
+   # 2 chunk_index=112 score=0.03036576949620428 type=clause pages=[42] chunk_id=485c4989-c300-45c8-ac06-79a59492bb5c-c0112-8c652d9f62
+   # 3 chunk_index=156 score=0.030117753623188408 type=clause pages=[60] chunk_id=485c4989-c300-45c8-ac06-79a59492bb5c-c0156-1ec1ec242b
+   # 4 chunk_index=172 score=0.02904040404040404 type=list_item pages=[65] chunk_id=485c4989-c300-45c8-ac06-79a59492bb5c-c0172-3df0a657c5
+   # 5 chunk_index=162 score=0.028782894736842105 type=clause pages=[62] chunk_id=485c4989-c300-45c8-ac06-79a59492bb5c-c0162-aded0a9984
+   # 6 chunk_index=167 score=0.01639344262295082 type=list_item pages=[63] chunk_id=485c4989-c300-45c8-ac06-79a59492bb5c-c0167-5fb13811a7
+   # 7 chunk_index=97 score=0.016129032258064516 type=paragraph pages=[36] chunk_id=485c4989-c300-45c8-ac06-79a59492bb5c-c0097-1867d471cc
+   # 8 chunk_index=274 score=0.016129032258064516 type=mixed pages=[105] chunk_id=485c4989-c300-45c8-ac06-79a59492bb5c-c0274-fb4537476c
+   # 9 chunk_index=276 score=0.015873015873015872 type=clause pages=[106] chunk_id=485c4989-c300-45c8-ac06-79a59492bb5c-c0276-b02b6aba4d
+   #10 chunk_index=6 score=0.015384615384615385 type=clause pages=[6] chunk_id=485c4989-c300-45c8-ac06-79a59492bb5c-c0006-7370ea1972
+
+[hybrid_rerank] status=ok elapsed=1.15s
+first_relevant_rank=1 | RR=1.0000 | Hit@1=1 | Hit@3=1 | Hit@5=1 | Hit@10=1 | Recall@1=1.000 | Recall@3=1.000 | Recall@5=1.000 | Recall@10=1.000 | Complete@1=1 | Complete@3=1 | Complete@5=1 | Complete@10=1
+ContextRecall@1=1.000 | ContextComplete@1=1 | ContextChunks@1=1 | ContextRecall@3=1.000 | ContextComplete@3=1 | ContextChunks@3=4 | ContextRecall@5=1.000 | ContextComplete@5=1 | ContextChunks@5=6 | ContextRecall@10=1.000 | ContextComplete@10=1 | ContextChunks@10=11
+ * # 1 chunk_index=21 score=0.4182858169078827 type=definition pages=[11] chunk_id=485c4989-c300-45c8-ac06-79a59492bb5c-c0021-56e4d3ded6
+   # 2 chunk_index=167 score=0.2887010872364044 type=list_item pages=[63] chunk_id=485c4989-c300-45c8-ac06-79a59492bb5c-c0167-5fb13811a7
+   # 3 chunk_index=53 score=0.24990889430046082 type=clause pages=[18, 19] chunk_id=485c4989-c300-45c8-ac06-79a59492bb5c-c0053-46174d100c
+   # 4 chunk_index=276 score=0.22454865276813507 type=clause pages=[106] chunk_id=485c4989-c300-45c8-ac06-79a59492bb5c-c0276-b02b6aba4d
+   # 5 chunk_index=172 score=0.21055501699447632 type=list_item pages=[65] chunk_id=485c4989-c300-45c8-ac06-79a59492bb5c-c0172-3df0a657c5
+   # 6 chunk_index=274 score=0.1481480747461319 type=mixed pages=[105] chunk_id=485c4989-c300-45c8-ac06-79a59492bb5c-c0274-fb4537476c
+   # 7 chunk_index=156 score=0.14535930752754211 type=clause pages=[60] chunk_id=485c4989-c300-45c8-ac06-79a59492bb5c-c0156-1ec1ec242b
+   # 8 chunk_index=139 score=0.12225756794214249 type=clause pages=[50] chunk_id=485c4989-c300-45c8-ac06-79a59492bb5c-c0139-f108162213
+   # 9 chunk_index=175 score=0.04201408103108406 type=clause pages=[66] chunk_id=485c4989-c300-45c8-ac06-79a59492bb5c-c0175-9774b5ede3
+   #10 chunk_index=112 score=0.04162002354860306 type=clause pages=[42] chunk_id=485c4989-c300-45c8-ac06-79a59492bb5c-c0112-8c652d9f62
+  Context assembly (separate from ranking):
+     context#2 chunk_index=166 source_rank=2 seed_rank=None reasons=['preceding_intro'] pages=[62, 63] chunk_id=485c4989-c300-45c8-ac06-79a59492bb5c-c0166-2be11686ea
+
+====================================================================================================
+RET-004 | definition | medium | split=heldout
+====================================================================================================
+Question: What do the Guidelines mean by a third-party institution for CDD reliance purposes?
+Primary gold chunk(s): ['485c4989-c300-45c8-ac06-79a59492bb5c-c0039-8eac7375e8']
+Supporting chunk(s)  : []
+
+[dense] status=ok elapsed=0.03s
+first_relevant_rank=8 | RR=0.1250 | Hit@1=0 | Hit@3=0 | Hit@5=0 | Hit@10=1 | Recall@1=0.000 | Recall@3=0.000 | Recall@5=0.000 | Recall@10=1.000 | Complete@1=0 | Complete@3=0 | Complete@5=0 | Complete@10=1
+   # 1 chunk_index=117 score=0.6772938563052514 type=clause pages=[44] chunk_id=485c4989-c300-45c8-ac06-79a59492bb5c-c0117-340b2169f0
+   # 2 chunk_index=98 score=0.6745539508627045 type=clause pages=[36] chunk_id=485c4989-c300-45c8-ac06-79a59492bb5c-c0098-03d8b3aa54
+   # 3 chunk_index=122 score=0.6696864366531372 type=clause pages=[45] chunk_id=485c4989-c300-45c8-ac06-79a59492bb5c-c0122-db2b4be2b1
+   # 4 chunk_index=121 score=0.6659519672393799 type=clause pages=[45] chunk_id=485c4989-c300-45c8-ac06-79a59492bb5c-c0121-4863ecbe4f
+   # 5 chunk_index=118 score=0.6539009603202927 type=clause pages=[44] chunk_id=485c4989-c300-45c8-ac06-79a59492bb5c-c0118-f54ab82946
+   # 6 chunk_index=119 score=0.6410330533981323 type=paragraph pages=[45] chunk_id=485c4989-c300-45c8-ac06-79a59492bb5c-c0119-081d7cfeb3
+   # 7 chunk_index=120 score=0.6255592107772827 type=clause pages=[45] chunk_id=485c4989-c300-45c8-ac06-79a59492bb5c-c0120-781c9e318c
+ * # 8 chunk_index=39 score=0.6241658181946539 type=definition pages=[14, 15] chunk_id=485c4989-c300-45c8-ac06-79a59492bb5c-c0039-8eac7375e8
+   # 9 chunk_index=97 score=0.5980251671060831 type=paragraph pages=[36] chunk_id=485c4989-c300-45c8-ac06-79a59492bb5c-c0097-1867d471cc
+   #10 chunk_index=84 score=0.5750315189361572 type=clause pages=[32] chunk_id=485c4989-c300-45c8-ac06-79a59492bb5c-c0084-fb93596733
+
+[hybrid] status=ok elapsed=0.25s
+first_relevant_rank=4 | RR=0.2500 | Hit@1=0 | Hit@3=0 | Hit@5=1 | Hit@10=1 | Recall@1=0.000 | Recall@3=0.000 | Recall@5=1.000 | Recall@10=1.000 | Complete@1=0 | Complete@3=0 | Complete@5=1 | Complete@10=1
+   # 1 chunk_index=117 score=0.032018442622950824 type=clause pages=[44] chunk_id=485c4989-c300-45c8-ac06-79a59492bb5c-c0117-340b2169f0
+   # 2 chunk_index=98 score=0.03200204813108039 type=clause pages=[36] chunk_id=485c4989-c300-45c8-ac06-79a59492bb5c-c0098-03d8b3aa54
+   # 3 chunk_index=121 score=0.031754032258064516 type=clause pages=[45] chunk_id=485c4989-c300-45c8-ac06-79a59492bb5c-c0121-4863ecbe4f
+ * # 4 chunk_index=39 score=0.031099324975891997 type=definition pages=[14, 15] chunk_id=485c4989-c300-45c8-ac06-79a59492bb5c-c0039-8eac7375e8
+   # 5 chunk_index=122 score=0.031024531024531024 type=clause pages=[45] chunk_id=485c4989-c300-45c8-ac06-79a59492bb5c-c0122-db2b4be2b1
+   # 6 chunk_index=118 score=0.03076923076923077 type=clause pages=[44] chunk_id=485c4989-c300-45c8-ac06-79a59492bb5c-c0118-f54ab82946
+   # 7 chunk_index=119 score=0.03007688828584351 type=paragraph pages=[45] chunk_id=485c4989-c300-45c8-ac06-79a59492bb5c-c0119-081d7cfeb3
+   # 8 chunk_index=120 score=0.029631255487269532 type=clause pages=[45] chunk_id=485c4989-c300-45c8-ac06-79a59492bb5c-c0120-781c9e318c
+   # 9 chunk_index=112 score=0.02761904761904762 type=clause pages=[42] chunk_id=485c4989-c300-45c8-ac06-79a59492bb5c-c0112-8c652d9f62
+   #10 chunk_index=81 score=0.025645240835114255 type=clause pages=[31] chunk_id=485c4989-c300-45c8-ac06-79a59492bb5c-c0081-b1e4e8f0b7
+
+[hybrid_rerank] status=ok elapsed=1.11s
+first_relevant_rank=1 | RR=1.0000 | Hit@1=1 | Hit@3=1 | Hit@5=1 | Hit@10=1 | Recall@1=1.000 | Recall@3=1.000 | Recall@5=1.000 | Recall@10=1.000 | Complete@1=1 | Complete@3=1 | Complete@5=1 | Complete@10=1
+ContextRecall@1=1.000 | ContextComplete@1=1 | ContextChunks@1=1 | ContextRecall@3=1.000 | ContextComplete@3=1 | ContextChunks@3=3 | ContextRecall@5=1.000 | ContextComplete@5=1 | ContextChunks@5=5 | ContextRecall@10=1.000 | ContextComplete@10=1 | ContextChunks@10=10
+ * # 1 chunk_index=39 score=0.9814121723175049 type=definition pages=[14, 15] chunk_id=485c4989-c300-45c8-ac06-79a59492bb5c-c0039-8eac7375e8
+   # 2 chunk_index=98 score=0.9639747738838196 type=clause pages=[36] chunk_id=485c4989-c300-45c8-ac06-79a59492bb5c-c0098-03d8b3aa54
+   # 3 chunk_index=121 score=0.9587230682373047 type=clause pages=[45] chunk_id=485c4989-c300-45c8-ac06-79a59492bb5c-c0121-4863ecbe4f
+   # 4 chunk_index=117 score=0.9496272206306458 type=clause pages=[44] chunk_id=485c4989-c300-45c8-ac06-79a59492bb5c-c0117-340b2169f0
+   # 5 chunk_index=118 score=0.9418343901634216 type=clause pages=[44] chunk_id=485c4989-c300-45c8-ac06-79a59492bb5c-c0118-f54ab82946
+   # 6 chunk_index=122 score=0.9206058382987976 type=clause pages=[45] chunk_id=485c4989-c300-45c8-ac06-79a59492bb5c-c0122-db2b4be2b1
+   # 7 chunk_index=119 score=0.9163442850112915 type=paragraph pages=[45] chunk_id=485c4989-c300-45c8-ac06-79a59492bb5c-c0119-081d7cfeb3
+   # 8 chunk_index=120 score=0.7666428685188293 type=clause pages=[45] chunk_id=485c4989-c300-45c8-ac06-79a59492bb5c-c0120-781c9e318c
+   # 9 chunk_index=112 score=0.44207292795181274 type=clause pages=[42] chunk_id=485c4989-c300-45c8-ac06-79a59492bb5c-c0112-8c652d9f62
+   #10 chunk_index=81 score=0.32720306515693665 type=clause pages=[31] chunk_id=485c4989-c300-45c8-ac06-79a59492bb5c-c0081-b1e4e8f0b7
+  Context assembly (separate from ranking):
+
+====================================================================================================
+RET-007 | direct_requirement | medium | split=heldout
+====================================================================================================
+Question: What responsibilities does the board of directors have for AML/CFT/CPF oversight and governance?
+Primary gold chunk(s): ['485c4989-c300-45c8-ac06-79a59492bb5c-c0057-fb625c5113', '485c4989-c300-45c8-ac06-79a59492bb5c-c0058-cd24b0151c']
+Supporting chunk(s)  : ['485c4989-c300-45c8-ac06-79a59492bb5c-c0059-bb2e3b039b', '485c4989-c300-45c8-ac06-79a59492bb5c-c0060-b979658811']
+
+[dense] status=ok elapsed=0.03s
+first_relevant_rank=1 | RR=1.0000 | Hit@1=1 | Hit@3=1 | Hit@5=1 | Hit@10=1 | Recall@1=0.500 | Recall@3=1.000 | Recall@5=1.000 | Recall@10=1.000 | Complete@1=0 | Complete@3=1 | Complete@5=1 | Complete@10=1
+ * # 1 chunk_index=57 score=0.7697619795799255 type=clause pages=[21] chunk_id=485c4989-c300-45c8-ac06-79a59492bb5c-c0057-fb625c5113
+ * # 2 chunk_index=58 score=0.7560971975326538 type=list_item pages=[22] chunk_id=485c4989-c300-45c8-ac06-79a59492bb5c-c0058-cd24b0151c
+   # 3 chunk_index=61 score=0.6988588571548462 type=clause pages=[23] chunk_id=485c4989-c300-45c8-ac06-79a59492bb5c-c0061-0ca350a45f
+   # 4 chunk_index=63 score=0.679327666759491 type=clause pages=[24] chunk_id=485c4989-c300-45c8-ac06-79a59492bb5c-c0063-e2642bd95c
+   # 5 chunk_index=59 score=0.6645064353942871 type=paragraph pages=[22] chunk_id=485c4989-c300-45c8-ac06-79a59492bb5c-c0059-bb2e3b039b
+   # 6 chunk_index=56 score=0.6584300006371748 type=clause pages=[21] chunk_id=485c4989-c300-45c8-ac06-79a59492bb5c-c0056-b117631798
+   # 7 chunk_index=62 score=0.6385453558835187 type=clause pages=[24] chunk_id=485c4989-c300-45c8-ac06-79a59492bb5c-c0062-fece9a1a38
+   # 8 chunk_index=65 score=0.6064654950180955 type=clause pages=[25] chunk_id=485c4989-c300-45c8-ac06-79a59492bb5c-c0065-d4d36f22c0
+   # 9 chunk_index=150 score=0.5904878973960876 type=clause pages=[56] chunk_id=485c4989-c300-45c8-ac06-79a59492bb5c-c0150-58da50754b
+   #10 chunk_index=194 score=0.5862831966539429 type=clause pages=[75] chunk_id=485c4989-c300-45c8-ac06-79a59492bb5c-c0194-70ddf1a2bb
+
+[hybrid] status=ok elapsed=0.12s
+first_relevant_rank=1 | RR=1.0000 | Hit@1=1 | Hit@3=1 | Hit@5=1 | Hit@10=1 | Recall@1=0.500 | Recall@3=1.000 | Recall@5=1.000 | Recall@10=1.000 | Complete@1=0 | Complete@3=1 | Complete@5=1 | Complete@10=1
+ * # 1 chunk_index=57 score=0.03278688524590164 type=clause pages=[21] chunk_id=485c4989-c300-45c8-ac06-79a59492bb5c-c0057-fb625c5113
+ * # 2 chunk_index=58 score=0.03225806451612903 type=list_item pages=[22] chunk_id=485c4989-c300-45c8-ac06-79a59492bb5c-c0058-cd24b0151c
+   # 3 chunk_index=61 score=0.031746031746031744 type=clause pages=[23] chunk_id=485c4989-c300-45c8-ac06-79a59492bb5c-c0061-0ca350a45f
+   # 4 chunk_index=56 score=0.030776515151515152 type=clause pages=[21] chunk_id=485c4989-c300-45c8-ac06-79a59492bb5c-c0056-b117631798
+   # 5 chunk_index=63 score=0.030776515151515152 type=clause pages=[24] chunk_id=485c4989-c300-45c8-ac06-79a59492bb5c-c0063-e2642bd95c
+   # 6 chunk_index=59 score=0.029877369007803793 type=paragraph pages=[22] chunk_id=485c4989-c300-45c8-ac06-79a59492bb5c-c0059-bb2e3b039b
+   # 7 chunk_index=62 score=0.029631255487269532 type=clause pages=[24] chunk_id=485c4989-c300-45c8-ac06-79a59492bb5c-c0062-fece9a1a38
+   # 8 chunk_index=65 score=0.02803921568627451 type=clause pages=[25] chunk_id=485c4989-c300-45c8-ac06-79a59492bb5c-c0065-d4d36f22c0
+   # 9 chunk_index=60 score=0.027984344422700584 type=paragraph pages=[22] chunk_id=485c4989-c300-45c8-ac06-79a59492bb5c-c0060-b979658811
+   #10 chunk_index=70 score=0.027046783625730993 type=clause pages=[27] chunk_id=485c4989-c300-45c8-ac06-79a59492bb5c-c0070-bfadb14a87
+
+[hybrid_rerank] status=ok elapsed=1.07s
+first_relevant_rank=1 | RR=1.0000 | Hit@1=1 | Hit@3=1 | Hit@5=1 | Hit@10=1 | Recall@1=0.500 | Recall@3=1.000 | Recall@5=1.000 | Recall@10=1.000 | Complete@1=0 | Complete@3=1 | Complete@5=1 | Complete@10=1
+ContextRecall@1=0.500 | ContextComplete@1=0 | ContextChunks@1=1 | ContextRecall@3=1.000 | ContextComplete@3=1 | ContextChunks@3=3 | ContextRecall@5=1.000 | ContextComplete@5=1 | ContextChunks@5=5 | ContextRecall@10=1.000 | ContextComplete@10=1 | ContextChunks@10=10
+ * # 1 chunk_index=58 score=0.9981297850608826 type=list_item pages=[22] chunk_id=485c4989-c300-45c8-ac06-79a59492bb5c-c0058-cd24b0151c
+ * # 2 chunk_index=57 score=0.9975054860115051 type=clause pages=[21] chunk_id=485c4989-c300-45c8-ac06-79a59492bb5c-c0057-fb625c5113
+   # 3 chunk_index=61 score=0.9826875329017639 type=clause pages=[23] chunk_id=485c4989-c300-45c8-ac06-79a59492bb5c-c0061-0ca350a45f
+   # 4 chunk_index=63 score=0.9631670713424683 type=clause pages=[24] chunk_id=485c4989-c300-45c8-ac06-79a59492bb5c-c0063-e2642bd95c
+   # 5 chunk_index=59 score=0.9621471762657166 type=paragraph pages=[22] chunk_id=485c4989-c300-45c8-ac06-79a59492bb5c-c0059-bb2e3b039b
+   # 6 chunk_index=56 score=0.9619301557540894 type=clause pages=[21] chunk_id=485c4989-c300-45c8-ac06-79a59492bb5c-c0056-b117631798
+   # 7 chunk_index=62 score=0.9323915243148804 type=clause pages=[24] chunk_id=485c4989-c300-45c8-ac06-79a59492bb5c-c0062-fece9a1a38
+   # 8 chunk_index=60 score=0.9256482124328613 type=paragraph pages=[22] chunk_id=485c4989-c300-45c8-ac06-79a59492bb5c-c0060-b979658811
+   # 9 chunk_index=149 score=0.8888356685638428 type=clause pages=[56] chunk_id=485c4989-c300-45c8-ac06-79a59492bb5c-c0149-324f72fd13
+   #10 chunk_index=65 score=0.8852414488792419 type=clause pages=[25] chunk_id=485c4989-c300-45c8-ac06-79a59492bb5c-c0065-d4d36f22c0
+  Context assembly (separate from ranking):
+
+====================================================================================================
+RET-010 | direct_requirement | medium | split=heldout
+====================================================================================================
+Question: Which factors must be considered when determining a customer's ML/TF/PF risk profile?
+Primary gold chunk(s): ['485c4989-c300-45c8-ac06-79a59492bb5c-c0078-f2b180259e']
+Supporting chunk(s)  : []
+
+[dense] status=ok elapsed=0.03s
+first_relevant_rank=7 | RR=0.1429 | Hit@1=0 | Hit@3=0 | Hit@5=0 | Hit@10=1 | Recall@1=0.000 | Recall@3=0.000 | Recall@5=0.000 | Recall@10=1.000 | Complete@1=0 | Complete@3=0 | Complete@5=0 | Complete@10=1
+   # 1 chunk_index=77 score=0.7206486630053138 type=clause pages=[29] chunk_id=485c4989-c300-45c8-ac06-79a59492bb5c-c0077-d9ccfb4d42
+   # 2 chunk_index=187 score=0.7165336608886719 type=clause pages=[71, 72, 73] chunk_id=485c4989-c300-45c8-ac06-79a59492bb5c-c0187-222788f826
+   # 3 chunk_index=196 score=0.7039581537246704 type=clause pages=[75] chunk_id=485c4989-c300-45c8-ac06-79a59492bb5c-c0196-08986b7945
+   # 4 chunk_index=185 score=0.6962528047712341 type=clause pages=[71] chunk_id=485c4989-c300-45c8-ac06-79a59492bb5c-c0185-cc49cfc122
+   # 5 chunk_index=198 score=0.6896744555428961 type=clause pages=[76] chunk_id=485c4989-c300-45c8-ac06-79a59492bb5c-c0198-03ed594e25
+   # 6 chunk_index=182 score=0.6785884286655917 type=mixed pages=[69] chunk_id=485c4989-c300-45c8-ac06-79a59492bb5c-c0182-ec484a2599
+ * # 7 chunk_index=78 score=0.6752504706382751 type=clause pages=[29] chunk_id=485c4989-c300-45c8-ac06-79a59492bb5c-c0078-f2b180259e
+   # 8 chunk_index=111 score=0.6733213663101196 type=clause pages=[41] chunk_id=485c4989-c300-45c8-ac06-79a59492bb5c-c0111-026b10a78d
+   # 9 chunk_index=189 score=0.6704193353652954 type=subclause pages=[73] chunk_id=485c4989-c300-45c8-ac06-79a59492bb5c-c0189-da8ccc8fc0
+   #10 chunk_index=181 score=0.6679358880481665 type=mixed pages=[69] chunk_id=485c4989-c300-45c8-ac06-79a59492bb5c-c0181-272be0f4ef
+
+[hybrid] status=ok elapsed=0.24s
+first_relevant_rank=5 | RR=0.2000 | Hit@1=0 | Hit@3=0 | Hit@5=1 | Hit@10=1 | Recall@1=0.000 | Recall@3=0.000 | Recall@5=1.000 | Recall@10=1.000 | Complete@1=0 | Complete@3=0 | Complete@5=1 | Complete@10=1
+   # 1 chunk_index=196 score=0.031746031746031744 type=clause pages=[75] chunk_id=485c4989-c300-45c8-ac06-79a59492bb5c-c0196-08986b7945
+   # 2 chunk_index=182 score=0.031544957774465976 type=mixed pages=[69] chunk_id=485c4989-c300-45c8-ac06-79a59492bb5c-c0182-ec484a2599
+   # 3 chunk_index=198 score=0.0315136476426799 type=clause pages=[76] chunk_id=485c4989-c300-45c8-ac06-79a59492bb5c-c0198-03ed594e25
+   # 4 chunk_index=187 score=0.030621785881252923 type=clause pages=[71, 72, 73] chunk_id=485c4989-c300-45c8-ac06-79a59492bb5c-c0187-222788f826
+ * # 5 chunk_index=78 score=0.03055037313432836 type=clause pages=[29] chunk_id=485c4989-c300-45c8-ac06-79a59492bb5c-c0078-f2b180259e
+   # 6 chunk_index=185 score=0.029513888888888888 type=clause pages=[71] chunk_id=485c4989-c300-45c8-ac06-79a59492bb5c-c0185-cc49cfc122
+   # 7 chunk_index=189 score=0.02919863597612958 type=subclause pages=[73] chunk_id=485c4989-c300-45c8-ac06-79a59492bb5c-c0189-da8ccc8fc0
+   # 8 chunk_index=181 score=0.028370221327967807 type=mixed pages=[69] chunk_id=485c4989-c300-45c8-ac06-79a59492bb5c-c0181-272be0f4ef
+   # 9 chunk_index=199 score=0.027745885954841176 type=clause pages=[76, 77] chunk_id=485c4989-c300-45c8-ac06-79a59492bb5c-c0199-e83e41447b
+   #10 chunk_index=200 score=0.026709401709401708 type=clause pages=[77] chunk_id=485c4989-c300-45c8-ac06-79a59492bb5c-c0200-7c4abccddb
+
+[hybrid_rerank] status=ok elapsed=1.10s
+first_relevant_rank=None | RR=0.0000 | Hit@1=0 | Hit@3=0 | Hit@5=0 | Hit@10=0 | Recall@1=0.000 | Recall@3=0.000 | Recall@5=0.000 | Recall@10=0.000 | Complete@1=0 | Complete@3=0 | Complete@5=0 | Complete@10=0
+ContextRecall@1=0.000 | ContextComplete@1=0 | ContextChunks@1=1 | ContextRecall@3=0.000 | ContextComplete@3=0 | ContextChunks@3=4 | ContextRecall@5=0.000 | ContextComplete@5=0 | ContextChunks@5=6 | ContextRecall@10=0.000 | ContextComplete@10=0 | ContextChunks@10=12
+   # 1 chunk_index=185 score=0.9966880679130554 type=clause pages=[71] chunk_id=485c4989-c300-45c8-ac06-79a59492bb5c-c0185-cc49cfc122
+   # 2 chunk_index=196 score=0.9963549375534058 type=clause pages=[75] chunk_id=485c4989-c300-45c8-ac06-79a59492bb5c-c0196-08986b7945
+   # 3 chunk_index=187 score=0.9942399263381958 type=clause pages=[71, 72, 73] chunk_id=485c4989-c300-45c8-ac06-79a59492bb5c-c0187-222788f826
+   # 4 chunk_index=189 score=0.9912242889404297 type=subclause pages=[73] chunk_id=485c4989-c300-45c8-ac06-79a59492bb5c-c0189-da8ccc8fc0
+   # 5 chunk_index=198 score=0.9869307279586792 type=clause pages=[76] chunk_id=485c4989-c300-45c8-ac06-79a59492bb5c-c0198-03ed594e25
+   # 6 chunk_index=182 score=0.9828831553459167 type=mixed pages=[69] chunk_id=485c4989-c300-45c8-ac06-79a59492bb5c-c0182-ec484a2599
+   # 7 chunk_index=108 score=0.9665312767028809 type=list_item pages=[40, 41] chunk_id=485c4989-c300-45c8-ac06-79a59492bb5c-c0108-746e0d9d19
+   # 8 chunk_index=186 score=0.9512376189231873 type=clause pages=[71] chunk_id=485c4989-c300-45c8-ac06-79a59492bb5c-c0186-33ed98b32a
+   # 9 chunk_index=181 score=0.9470877647399902 type=mixed pages=[69] chunk_id=485c4989-c300-45c8-ac06-79a59492bb5c-c0181-272be0f4ef
+   #10 chunk_index=66 score=0.9320837259292603 type=clause pages=[26] chunk_id=485c4989-c300-45c8-ac06-79a59492bb5c-c0066-84f6cf0cfe
+  Context assembly (separate from ranking):
+     context#3 chunk_index=197 source_rank=2 seed_rank=None reasons=['following_table'] pages=[76] chunk_id=485c4989-c300-45c8-ac06-79a59492bb5c-c0197-a07173f789
+     context#10 chunk_index=180 source_rank=9 seed_rank=None reasons=['preceding_intro'] pages=[69] chunk_id=485c4989-c300-45c8-ac06-79a59492bb5c-c0180-ac3abad846
+
+====================================================================================================
+RET-013 | paraphrase | medium | split=heldout
+====================================================================================================
+Question: If the information initially collected is not enough to finish customer identification and verification, what should the reporting institution do?
+Primary gold chunk(s): ['485c4989-c300-45c8-ac06-79a59492bb5c-c0084-fb93596733']
+Supporting chunk(s)  : []
+
+[dense] status=ok elapsed=0.03s
+first_relevant_rank=1 | RR=1.0000 | Hit@1=1 | Hit@3=1 | Hit@5=1 | Hit@10=1 | Recall@1=1.000 | Recall@3=1.000 | Recall@5=1.000 | Recall@10=1.000 | Complete@1=1 | Complete@3=1 | Complete@5=1 | Complete@10=1
+ * # 1 chunk_index=84 score=0.7470981478691101 type=clause pages=[32] chunk_id=485c4989-c300-45c8-ac06-79a59492bb5c-c0084-fb93596733
+   # 2 chunk_index=101 score=0.7041352987289429 type=clause pages=[38, 39] chunk_id=485c4989-c300-45c8-ac06-79a59492bb5c-c0101-c09791e527
+   # 3 chunk_index=81 score=0.6967029779166873 type=clause pages=[31] chunk_id=485c4989-c300-45c8-ac06-79a59492bb5c-c0081-b1e4e8f0b7
+   # 4 chunk_index=159 score=0.6964853432612456 type=clause pages=[60, 61] chunk_id=485c4989-c300-45c8-ac06-79a59492bb5c-c0159-7448ed6ef9
+   # 5 chunk_index=82 score=0.6959522547750333 type=clause pages=[31] chunk_id=485c4989-c300-45c8-ac06-79a59492bb5c-c0082-60739c961b
+   # 6 chunk_index=98 score=0.6939755884997725 type=clause pages=[36] chunk_id=485c4989-c300-45c8-ac06-79a59492bb5c-c0098-03d8b3aa54
+   # 7 chunk_index=86 score=0.6910191178321838 type=clause pages=[33] chunk_id=485c4989-c300-45c8-ac06-79a59492bb5c-c0086-be706b977d
+   # 8 chunk_index=94 score=0.6890584435778395 type=clause pages=[35] chunk_id=485c4989-c300-45c8-ac06-79a59492bb5c-c0094-0ee27622ec
+   # 9 chunk_index=83 score=0.6870096921920776 type=clause pages=[32] chunk_id=485c4989-c300-45c8-ac06-79a59492bb5c-c0083-747260288c
+   #10 chunk_index=88 score=0.665889819509399 type=clause pages=[33, 34] chunk_id=485c4989-c300-45c8-ac06-79a59492bb5c-c0088-7f07c6b2b9
+
+[hybrid] status=ok elapsed=0.30s
+first_relevant_rank=1 | RR=1.0000 | Hit@1=1 | Hit@3=1 | Hit@5=1 | Hit@10=1 | Recall@1=1.000 | Recall@3=1.000 | Recall@5=1.000 | Recall@10=1.000 | Complete@1=1 | Complete@3=1 | Complete@5=1 | Complete@10=1
+ * # 1 chunk_index=84 score=0.031544957774465976 type=clause pages=[32] chunk_id=485c4989-c300-45c8-ac06-79a59492bb5c-c0084-fb93596733
+   # 2 chunk_index=81 score=0.03149801587301587 type=clause pages=[31] chunk_id=485c4989-c300-45c8-ac06-79a59492bb5c-c0081-b1e4e8f0b7
+   # 3 chunk_index=100 score=0.03047794966520434 type=clause pages=[36, 37] chunk_id=485c4989-c300-45c8-ac06-79a59492bb5c-c0100-d1377a7b3c
+   # 4 chunk_index=117 score=0.029827662395050816 type=clause pages=[44] chunk_id=485c4989-c300-45c8-ac06-79a59492bb5c-c0117-340b2169f0
+   # 5 chunk_index=83 score=0.029418126757516764 type=clause pages=[32] chunk_id=485c4989-c300-45c8-ac06-79a59492bb5c-c0083-747260288c
+   # 6 chunk_index=86 score=0.028438886647841874 type=clause pages=[33] chunk_id=485c4989-c300-45c8-ac06-79a59492bb5c-c0086-be706b977d
+   # 7 chunk_index=111 score=0.028205128205128206 type=clause pages=[41] chunk_id=485c4989-c300-45c8-ac06-79a59492bb5c-c0111-026b10a78d
+   # 8 chunk_index=94 score=0.02786377708978328 type=clause pages=[35] chunk_id=485c4989-c300-45c8-ac06-79a59492bb5c-c0094-0ee27622ec
+   # 9 chunk_index=103 score=0.027443609022556388 type=clause pages=[38] chunk_id=485c4989-c300-45c8-ac06-79a59492bb5c-c0103-96fa91f378
+   #10 chunk_index=170 score=0.027212143650499815 type=list_item pages=[64] chunk_id=485c4989-c300-45c8-ac06-79a59492bb5c-c0170-bca06805f2
+
+[hybrid_rerank] status=ok elapsed=1.26s
+first_relevant_rank=1 | RR=1.0000 | Hit@1=1 | Hit@3=1 | Hit@5=1 | Hit@10=1 | Recall@1=1.000 | Recall@3=1.000 | Recall@5=1.000 | Recall@10=1.000 | Complete@1=1 | Complete@3=1 | Complete@5=1 | Complete@10=1
+ContextRecall@1=1.000 | ContextComplete@1=1 | ContextChunks@1=1 | ContextRecall@3=1.000 | ContextComplete@3=1 | ContextChunks@3=3 | ContextRecall@5=1.000 | ContextComplete@5=1 | ContextChunks@5=5 | ContextRecall@10=1.000 | ContextComplete@10=1 | ContextChunks@10=10
+ * # 1 chunk_index=84 score=0.9903907775878906 type=clause pages=[32] chunk_id=485c4989-c300-45c8-ac06-79a59492bb5c-c0084-fb93596733
+   # 2 chunk_index=100 score=0.9339039325714111 type=clause pages=[36, 37] chunk_id=485c4989-c300-45c8-ac06-79a59492bb5c-c0100-d1377a7b3c
+   # 3 chunk_index=101 score=0.9289430975914001 type=clause pages=[38, 39] chunk_id=485c4989-c300-45c8-ac06-79a59492bb5c-c0101-c09791e527
+   # 4 chunk_index=159 score=0.859792172908783 type=clause pages=[60, 61] chunk_id=485c4989-c300-45c8-ac06-79a59492bb5c-c0159-7448ed6ef9
+   # 5 chunk_index=81 score=0.8389386534690857 type=clause pages=[31] chunk_id=485c4989-c300-45c8-ac06-79a59492bb5c-c0081-b1e4e8f0b7
+   # 6 chunk_index=82 score=0.7711376547813416 type=clause pages=[31] chunk_id=485c4989-c300-45c8-ac06-79a59492bb5c-c0082-60739c961b
+   # 7 chunk_index=99 score=0.7612535357475281 type=clause pages=[36] chunk_id=485c4989-c300-45c8-ac06-79a59492bb5c-c0099-f01751640f
+   # 8 chunk_index=111 score=0.7446797490119934 type=clause pages=[41] chunk_id=485c4989-c300-45c8-ac06-79a59492bb5c-c0111-026b10a78d
+   # 9 chunk_index=117 score=0.7387509942054749 type=clause pages=[44] chunk_id=485c4989-c300-45c8-ac06-79a59492bb5c-c0117-340b2169f0
+   #10 chunk_index=269 score=0.7282100319862366 type=figure pages=[101] chunk_id=485c4989-c300-45c8-ac06-79a59492bb5c-c0269-e1860cf2dd
+  Context assembly (separate from ranking):
+
+====================================================================================================
+RET-015 | paraphrase | hard | split=heldout
+====================================================================================================
+Question: How must a reporting institution deal with a business relationship or transaction involving a person from a higher-risk country?
+Primary gold chunk(s): ['485c4989-c300-45c8-ac06-79a59492bb5c-c0114-88e54fa045', '485c4989-c300-45c8-ac06-79a59492bb5c-c0115-ea57db8635']
+Supporting chunk(s)  : ['485c4989-c300-45c8-ac06-79a59492bb5c-c0116-b6adec1458']
+
+[dense] status=ok elapsed=0.04s
+first_relevant_rank=1 | RR=1.0000 | Hit@1=1 | Hit@3=1 | Hit@5=1 | Hit@10=1 | Recall@1=0.500 | Recall@3=1.000 | Recall@5=1.000 | Recall@10=1.000 | Complete@1=0 | Complete@3=1 | Complete@5=1 | Complete@10=1
+ * # 1 chunk_index=114 score=0.6764415888259901 type=clause pages=[43] chunk_id=485c4989-c300-45c8-ac06-79a59492bb5c-c0114-88e54fa045
+ * # 2 chunk_index=115 score=0.6707668696919835 type=clause pages=[43] chunk_id=485c4989-c300-45c8-ac06-79a59492bb5c-c0115-ea57db8635
+   # 3 chunk_index=116 score=0.6542212183211782 type=clause pages=[43] chunk_id=485c4989-c300-45c8-ac06-79a59492bb5c-c0116-b6adec1458
+   # 4 chunk_index=77 score=0.6404891442669458 type=clause pages=[29] chunk_id=485c4989-c300-45c8-ac06-79a59492bb5c-c0077-d9ccfb4d42
+   # 5 chunk_index=269 score=0.6383106328063838 type=figure pages=[101] chunk_id=485c4989-c300-45c8-ac06-79a59492bb5c-c0269-e1860cf2dd
+   # 6 chunk_index=117 score=0.6344688374437287 type=clause pages=[44] chunk_id=485c4989-c300-45c8-ac06-79a59492bb5c-c0117-340b2169f0
+   # 7 chunk_index=147 score=0.623922988900782 type=clause pages=[55, 56] chunk_id=485c4989-c300-45c8-ac06-79a59492bb5c-c0147-4ce9ccc098
+   # 8 chunk_index=66 score=0.6227256138219343 type=clause pages=[26] chunk_id=485c4989-c300-45c8-ac06-79a59492bb5c-c0066-84f6cf0cfe
+   # 9 chunk_index=185 score=0.6217930316925093 type=clause pages=[71] chunk_id=485c4989-c300-45c8-ac06-79a59492bb5c-c0185-cc49cfc122
+   #10 chunk_index=109 score=0.6214720832424125 type=clause pages=[41] chunk_id=485c4989-c300-45c8-ac06-79a59492bb5c-c0109-a770399a63
+
+[hybrid] status=ok elapsed=0.34s
+first_relevant_rank=1 | RR=1.0000 | Hit@1=1 | Hit@3=1 | Hit@5=1 | Hit@10=1 | Recall@1=0.500 | Recall@3=1.000 | Recall@5=1.000 | Recall@10=1.000 | Complete@1=0 | Complete@3=1 | Complete@5=1 | Complete@10=1
+ * # 1 chunk_index=115 score=0.03225806451612903 type=clause pages=[43] chunk_id=485c4989-c300-45c8-ac06-79a59492bb5c-c0115-ea57db8635
+ * # 2 chunk_index=114 score=0.032018442622950824 type=clause pages=[43] chunk_id=485c4989-c300-45c8-ac06-79a59492bb5c-c0114-88e54fa045
+   # 3 chunk_index=116 score=0.031746031746031744 type=clause pages=[43] chunk_id=485c4989-c300-45c8-ac06-79a59492bb5c-c0116-b6adec1458
+   # 4 chunk_index=77 score=0.029910714285714284 type=clause pages=[29] chunk_id=485c4989-c300-45c8-ac06-79a59492bb5c-c0077-d9ccfb4d42
+   # 5 chunk_index=117 score=0.029236022193768675 type=clause pages=[44] chunk_id=485c4989-c300-45c8-ac06-79a59492bb5c-c0117-340b2169f0
+   # 6 chunk_index=112 score=0.02871794871794872 type=clause pages=[42] chunk_id=485c4989-c300-45c8-ac06-79a59492bb5c-c0112-8c652d9f62
+   # 7 chunk_index=100 score=0.028577260665441927 type=clause pages=[36, 37] chunk_id=485c4989-c300-45c8-ac06-79a59492bb5c-c0100-d1377a7b3c
+   # 8 chunk_index=147 score=0.027912386121341344 type=clause pages=[55, 56] chunk_id=485c4989-c300-45c8-ac06-79a59492bb5c-c0147-4ce9ccc098
+   # 9 chunk_index=188 score=0.027809742999616416 type=list_item pages=[72] chunk_id=485c4989-c300-45c8-ac06-79a59492bb5c-c0188-535a8e9ddc
+   #10 chunk_index=187 score=0.027526395173453996 type=clause pages=[71, 72, 73] chunk_id=485c4989-c300-45c8-ac06-79a59492bb5c-c0187-222788f826
+
+[hybrid_rerank] status=ok elapsed=1.36s
+first_relevant_rank=1 | RR=1.0000 | Hit@1=1 | Hit@3=1 | Hit@5=1 | Hit@10=1 | Recall@1=0.500 | Recall@3=1.000 | Recall@5=1.000 | Recall@10=1.000 | Complete@1=0 | Complete@3=1 | Complete@5=1 | Complete@10=1
+ContextRecall@1=0.500 | ContextComplete@1=0 | ContextChunks@1=1 | ContextRecall@3=1.000 | ContextComplete@3=1 | ContextChunks@3=3 | ContextRecall@5=1.000 | ContextComplete@5=1 | ContextChunks@5=5 | ContextRecall@10=1.000 | ContextComplete@10=1 | ContextChunks@10=10
+ * # 1 chunk_index=114 score=0.9959542751312256 type=clause pages=[43] chunk_id=485c4989-c300-45c8-ac06-79a59492bb5c-c0114-88e54fa045
+ * # 2 chunk_index=115 score=0.9910370111465454 type=clause pages=[43] chunk_id=485c4989-c300-45c8-ac06-79a59492bb5c-c0115-ea57db8635
+   # 3 chunk_index=116 score=0.9896951913833618 type=clause pages=[43] chunk_id=485c4989-c300-45c8-ac06-79a59492bb5c-c0116-b6adec1458
+   # 4 chunk_index=77 score=0.9806346893310547 type=clause pages=[29] chunk_id=485c4989-c300-45c8-ac06-79a59492bb5c-c0077-d9ccfb4d42
+   # 5 chunk_index=117 score=0.9798879623413086 type=clause pages=[44] chunk_id=485c4989-c300-45c8-ac06-79a59492bb5c-c0117-340b2169f0
+   # 6 chunk_index=124 score=0.9441183805465698 type=clause pages=[46] chunk_id=485c4989-c300-45c8-ac06-79a59492bb5c-c0124-0f8256155c
+   # 7 chunk_index=100 score=0.9331961870193481 type=clause pages=[36, 37] chunk_id=485c4989-c300-45c8-ac06-79a59492bb5c-c0100-d1377a7b3c
+   # 8 chunk_index=111 score=0.9259825944900513 type=clause pages=[41] chunk_id=485c4989-c300-45c8-ac06-79a59492bb5c-c0111-026b10a78d
+   # 9 chunk_index=112 score=0.9139026403427124 type=clause pages=[42] chunk_id=485c4989-c300-45c8-ac06-79a59492bb5c-c0112-8c652d9f62
+   #10 chunk_index=198 score=0.8980922102928162 type=clause pages=[76] chunk_id=485c4989-c300-45c8-ac06-79a59492bb5c-c0198-03ed594e25
+  Context assembly (separate from ranking):
+
+====================================================================================================
+RET-019 | multi_clause | medium | split=heldout
+====================================================================================================
+Question: What actions are required when a reporting institution cannot satisfactorily complete CDD for a customer?
+Primary gold chunk(s): ['485c4989-c300-45c8-ac06-79a59492bb5c-c0123-4f5ad74283']
+Supporting chunk(s)  : []
+
+[dense] status=ok elapsed=0.03s
+first_relevant_rank=1 | RR=1.0000 | Hit@1=1 | Hit@3=1 | Hit@5=1 | Hit@10=1 | Recall@1=1.000 | Recall@3=1.000 | Recall@5=1.000 | Recall@10=1.000 | Complete@1=1 | Complete@3=1 | Complete@5=1 | Complete@10=1
+ * # 1 chunk_index=123 score=0.7698886668814873 type=clause pages=[45] chunk_id=485c4989-c300-45c8-ac06-79a59492bb5c-c0123-4f5ad74283
+   # 2 chunk_index=84 score=0.7182649374008179 type=clause pages=[32] chunk_id=485c4989-c300-45c8-ac06-79a59492bb5c-c0084-fb93596733
+   # 3 chunk_index=101 score=0.7122806310653687 type=clause pages=[38, 39] chunk_id=485c4989-c300-45c8-ac06-79a59492bb5c-c0101-c09791e527
+   # 4 chunk_index=81 score=0.7119798872464865 type=clause pages=[31] chunk_id=485c4989-c300-45c8-ac06-79a59492bb5c-c0081-b1e4e8f0b7
+   # 5 chunk_index=82 score=0.697231370375672 type=clause pages=[31] chunk_id=485c4989-c300-45c8-ac06-79a59492bb5c-c0082-60739c961b
+   # 6 chunk_index=117 score=0.6912493293732817 type=clause pages=[44] chunk_id=485c4989-c300-45c8-ac06-79a59492bb5c-c0117-340b2169f0
+   # 7 chunk_index=111 score=0.6907265186309814 type=clause pages=[41] chunk_id=485c4989-c300-45c8-ac06-79a59492bb5c-c0111-026b10a78d
+   # 8 chunk_index=100 score=0.6898277217047061 type=clause pages=[36, 37] chunk_id=485c4989-c300-45c8-ac06-79a59492bb5c-c0100-d1377a7b3c
+   # 9 chunk_index=120 score=0.6868858337402344 type=clause pages=[45] chunk_id=485c4989-c300-45c8-ac06-79a59492bb5c-c0120-781c9e318c
+   #10 chunk_index=98 score=0.6840827668929927 type=clause pages=[36] chunk_id=485c4989-c300-45c8-ac06-79a59492bb5c-c0098-03d8b3aa54
+
+[hybrid] status=ok elapsed=0.27s
+first_relevant_rank=1 | RR=1.0000 | Hit@1=1 | Hit@3=1 | Hit@5=1 | Hit@10=1 | Recall@1=1.000 | Recall@3=1.000 | Recall@5=1.000 | Recall@10=1.000 | Complete@1=1 | Complete@3=1 | Complete@5=1 | Complete@10=1
+ * # 1 chunk_index=123 score=0.03278688524590164 type=clause pages=[45] chunk_id=485c4989-c300-45c8-ac06-79a59492bb5c-c0123-4f5ad74283
+   # 2 chunk_index=84 score=0.031754032258064516 type=clause pages=[32] chunk_id=485c4989-c300-45c8-ac06-79a59492bb5c-c0084-fb93596733
+   # 3 chunk_index=101 score=0.031746031746031744 type=clause pages=[38, 39] chunk_id=485c4989-c300-45c8-ac06-79a59492bb5c-c0101-c09791e527
+   # 4 chunk_index=81 score=0.030330882352941176 type=clause pages=[31] chunk_id=485c4989-c300-45c8-ac06-79a59492bb5c-c0081-b1e4e8f0b7
+   # 5 chunk_index=100 score=0.029857397504456328 type=clause pages=[36, 37] chunk_id=485c4989-c300-45c8-ac06-79a59492bb5c-c0100-d1377a7b3c
+   # 6 chunk_index=82 score=0.028371628371628373 type=clause pages=[31] chunk_id=485c4989-c300-45c8-ac06-79a59492bb5c-c0082-60739c961b
+   # 7 chunk_index=99 score=0.02782608695652174 type=clause pages=[36] chunk_id=485c4989-c300-45c8-ac06-79a59492bb5c-c0099-f01751640f
+   # 8 chunk_index=118 score=0.027443609022556388 type=clause pages=[44] chunk_id=485c4989-c300-45c8-ac06-79a59492bb5c-c0118-f54ab82946
+   # 9 chunk_index=83 score=0.026709401709401708 type=clause pages=[32] chunk_id=485c4989-c300-45c8-ac06-79a59492bb5c-c0083-747260288c
+   #10 chunk_index=149 score=0.016129032258064516 type=clause pages=[56] chunk_id=485c4989-c300-45c8-ac06-79a59492bb5c-c0149-324f72fd13
+
+[hybrid_rerank] status=ok elapsed=1.23s
+first_relevant_rank=1 | RR=1.0000 | Hit@1=1 | Hit@3=1 | Hit@5=1 | Hit@10=1 | Recall@1=1.000 | Recall@3=1.000 | Recall@5=1.000 | Recall@10=1.000 | Complete@1=1 | Complete@3=1 | Complete@5=1 | Complete@10=1
+ContextRecall@1=1.000 | ContextComplete@1=1 | ContextChunks@1=1 | ContextRecall@3=1.000 | ContextComplete@3=1 | ContextChunks@3=3 | ContextRecall@5=1.000 | ContextComplete@5=1 | ContextChunks@5=5 | ContextRecall@10=1.000 | ContextComplete@10=1 | ContextChunks@10=10
+ * # 1 chunk_index=123 score=0.9920445680618286 type=clause pages=[45] chunk_id=485c4989-c300-45c8-ac06-79a59492bb5c-c0123-4f5ad74283
+   # 2 chunk_index=101 score=0.9525020122528076 type=clause pages=[38, 39] chunk_id=485c4989-c300-45c8-ac06-79a59492bb5c-c0101-c09791e527
+   # 3 chunk_index=81 score=0.9430150985717773 type=clause pages=[31] chunk_id=485c4989-c300-45c8-ac06-79a59492bb5c-c0081-b1e4e8f0b7
+   # 4 chunk_index=84 score=0.9304380416870117 type=clause pages=[32] chunk_id=485c4989-c300-45c8-ac06-79a59492bb5c-c0084-fb93596733
+   # 5 chunk_index=100 score=0.9097725749015808 type=clause pages=[36, 37] chunk_id=485c4989-c300-45c8-ac06-79a59492bb5c-c0100-d1377a7b3c
+   # 6 chunk_index=129 score=0.8764072060585022 type=clause pages=[47] chunk_id=485c4989-c300-45c8-ac06-79a59492bb5c-c0129-2767b9c481
+   # 7 chunk_index=82 score=0.8449763059616089 type=clause pages=[31] chunk_id=485c4989-c300-45c8-ac06-79a59492bb5c-c0082-60739c961b
+   # 8 chunk_index=112 score=0.7850664854049683 type=clause pages=[42] chunk_id=485c4989-c300-45c8-ac06-79a59492bb5c-c0112-8c652d9f62
+   # 9 chunk_index=149 score=0.7488816380500793 type=clause pages=[56] chunk_id=485c4989-c300-45c8-ac06-79a59492bb5c-c0149-324f72fd13
+   #10 chunk_index=111 score=0.7445273995399475 type=clause pages=[41] chunk_id=485c4989-c300-45c8-ac06-79a59492bb5c-c0111-026b10a78d
+  Context assembly (separate from ranking):
+
+====================================================================================================
+RET-021 | multi_clause | medium | split=heldout
+====================================================================================================
+Question: When must a suspicious transaction be reported to FIED, and does the amount of the transaction affect the obligation to lodge an STR?
+Primary gold chunk(s): ['485c4989-c300-45c8-ac06-79a59492bb5c-c0147-4ce9ccc098']
+Supporting chunk(s)  : []
+
+[dense] status=ok elapsed=0.03s
+first_relevant_rank=3 | RR=0.3333 | Hit@1=0 | Hit@3=1 | Hit@5=1 | Hit@10=1 | Recall@1=0.000 | Recall@3=1.000 | Recall@5=1.000 | Recall@10=1.000 | Complete@1=0 | Complete@3=1 | Complete@5=1 | Complete@10=1
+   # 1 chunk_index=149 score=0.7506617456280158 type=clause pages=[56] chunk_id=485c4989-c300-45c8-ac06-79a59492bb5c-c0149-324f72fd13
+   # 2 chunk_index=151 score=0.7176691079834399 type=list_item pages=[57] chunk_id=485c4989-c300-45c8-ac06-79a59492bb5c-c0151-26ad315899
+ * # 3 chunk_index=147 score=0.7110648499649942 type=clause pages=[55, 56] chunk_id=485c4989-c300-45c8-ac06-79a59492bb5c-c0147-4ce9ccc098
+   # 4 chunk_index=152 score=0.6941162736977285 type=clause pages=[57] chunk_id=485c4989-c300-45c8-ac06-79a59492bb5c-c0152-d3eb78134e
+   # 5 chunk_index=231 score=0.6737028153296929 type=clause pages=[85] chunk_id=485c4989-c300-45c8-ac06-79a59492bb5c-c0231-c2c0877b53
+   # 6 chunk_index=127 score=0.6632482014150511 type=clause pages=[46] chunk_id=485c4989-c300-45c8-ac06-79a59492bb5c-c0127-f692bde454
+   # 7 chunk_index=244 score=0.6576255167945924 type=clause pages=[90] chunk_id=485c4989-c300-45c8-ac06-79a59492bb5c-c0244-51c99b8239
+   # 8 chunk_index=37 score=0.6571489981235268 type=definition pages=[14] chunk_id=485c4989-c300-45c8-ac06-79a59492bb5c-c0037-80d9ee8daf
+   # 9 chunk_index=175 score=0.6532692130483135 type=clause pages=[66] chunk_id=485c4989-c300-45c8-ac06-79a59492bb5c-c0175-9774b5ede3
+   #10 chunk_index=154 score=0.6464489138515758 type=clause pages=[58] chunk_id=485c4989-c300-45c8-ac06-79a59492bb5c-c0154-efe91f5828
+
+[hybrid] status=ok elapsed=0.26s
+first_relevant_rank=2 | RR=0.5000 | Hit@1=0 | Hit@3=1 | Hit@5=1 | Hit@10=1 | Recall@1=0.000 | Recall@3=1.000 | Recall@5=1.000 | Recall@10=1.000 | Complete@1=0 | Complete@3=1 | Complete@5=1 | Complete@10=1
+   # 1 chunk_index=149 score=0.03252247488101534 type=clause pages=[56] chunk_id=485c4989-c300-45c8-ac06-79a59492bb5c-c0149-324f72fd13
+ * # 2 chunk_index=147 score=0.032266458495966696 type=clause pages=[55, 56] chunk_id=485c4989-c300-45c8-ac06-79a59492bb5c-c0147-4ce9ccc098
+   # 3 chunk_index=151 score=0.03128054740957967 type=list_item pages=[57] chunk_id=485c4989-c300-45c8-ac06-79a59492bb5c-c0151-26ad315899
+   # 4 chunk_index=231 score=0.031009615384615385 type=clause pages=[85] chunk_id=485c4989-c300-45c8-ac06-79a59492bb5c-c0231-c2c0877b53
+   # 5 chunk_index=152 score=0.029910714285714284 type=clause pages=[57] chunk_id=485c4989-c300-45c8-ac06-79a59492bb5c-c0152-d3eb78134e
+   # 6 chunk_index=244 score=0.029631255487269532 type=clause pages=[90] chunk_id=485c4989-c300-45c8-ac06-79a59492bb5c-c0244-51c99b8239
+   # 7 chunk_index=154 score=0.029211087420042643 type=clause pages=[58] chunk_id=485c4989-c300-45c8-ac06-79a59492bb5c-c0154-efe91f5828
+   # 8 chunk_index=127 score=0.028850145288501453 type=clause pages=[46] chunk_id=485c4989-c300-45c8-ac06-79a59492bb5c-c0127-f692bde454
+   # 9 chunk_index=37 score=0.028594771241830064 type=definition pages=[14] chunk_id=485c4989-c300-45c8-ac06-79a59492bb5c-c0037-80d9ee8daf
+   #10 chunk_index=175 score=0.027650648360030512 type=clause pages=[66] chunk_id=485c4989-c300-45c8-ac06-79a59492bb5c-c0175-9774b5ede3
+
+[hybrid_rerank] status=ok elapsed=0.96s
+first_relevant_rank=1 | RR=1.0000 | Hit@1=1 | Hit@3=1 | Hit@5=1 | Hit@10=1 | Recall@1=1.000 | Recall@3=1.000 | Recall@5=1.000 | Recall@10=1.000 | Complete@1=1 | Complete@3=1 | Complete@5=1 | Complete@10=1
+ContextRecall@1=1.000 | ContextComplete@1=1 | ContextChunks@1=1 | ContextRecall@3=1.000 | ContextComplete@3=1 | ContextChunks@3=3 | ContextRecall@5=1.000 | ContextComplete@5=1 | ContextChunks@5=5 | ContextRecall@10=1.000 | ContextComplete@10=1 | ContextChunks@10=11
+ * # 1 chunk_index=147 score=0.9898123145103455 type=clause pages=[55, 56] chunk_id=485c4989-c300-45c8-ac06-79a59492bb5c-c0147-4ce9ccc098
+   # 2 chunk_index=149 score=0.9830778241157532 type=clause pages=[56] chunk_id=485c4989-c300-45c8-ac06-79a59492bb5c-c0149-324f72fd13
+   # 3 chunk_index=151 score=0.868144154548645 type=list_item pages=[57] chunk_id=485c4989-c300-45c8-ac06-79a59492bb5c-c0151-26ad315899
+   # 4 chunk_index=215 score=0.865636944770813 type=clause pages=[80] chunk_id=485c4989-c300-45c8-ac06-79a59492bb5c-c0215-2461243dc4
+   # 5 chunk_index=231 score=0.8053918480873108 type=clause pages=[85] chunk_id=485c4989-c300-45c8-ac06-79a59492bb5c-c0231-c2c0877b53
+   # 6 chunk_index=244 score=0.7628146409988403 type=clause pages=[90] chunk_id=485c4989-c300-45c8-ac06-79a59492bb5c-c0244-51c99b8239
+   # 7 chunk_index=175 score=0.6993590593338013 type=clause pages=[66] chunk_id=485c4989-c300-45c8-ac06-79a59492bb5c-c0175-9774b5ede3
+   # 8 chunk_index=152 score=0.6829779148101807 type=clause pages=[57] chunk_id=485c4989-c300-45c8-ac06-79a59492bb5c-c0152-d3eb78134e
+   # 9 chunk_index=37 score=0.6755707263946533 type=definition pages=[14] chunk_id=485c4989-c300-45c8-ac06-79a59492bb5c-c0037-80d9ee8daf
+   #10 chunk_index=127 score=0.5616868734359741 type=clause pages=[46] chunk_id=485c4989-c300-45c8-ac06-79a59492bb5c-c0127-f692bde454
+  Context assembly (separate from ranking):
+     context#7 chunk_index=245 source_rank=6 seed_rank=None reasons=['following_table'] pages=[90] chunk_id=485c4989-c300-45c8-ac06-79a59492bb5c-c0245-2a27d3f444
+
+====================================================================================================
+RET-023 | table_form | medium | split=heldout
+====================================================================================================
+Question: By which methods may a Suspicious Transaction Report be lodged with FIED, and what destination or contact details are provided for those methods?
+Primary gold chunk(s): ['485c4989-c300-45c8-ac06-79a59492bb5c-c0232-30a6623279', '485c4989-c300-45c8-ac06-79a59492bb5c-c0233-78b2f006e8']
+Supporting chunk(s)  : ['485c4989-c300-45c8-ac06-79a59492bb5c-c0231-c2c0877b53']
+
+[dense] status=ok elapsed=0.04s
+first_relevant_rank=8 | RR=0.1250 | Hit@1=0 | Hit@3=0 | Hit@5=0 | Hit@10=1 | Recall@1=0.000 | Recall@3=0.000 | Recall@5=0.000 | Recall@10=0.500 | Complete@1=0 | Complete@3=0 | Complete@5=0 | Complete@10=0
+   # 1 chunk_index=147 score=0.7004219084852393 type=clause pages=[55, 56] chunk_id=485c4989-c300-45c8-ac06-79a59492bb5c-c0147-4ce9ccc098
+   # 2 chunk_index=151 score=0.6964475331573208 type=list_item pages=[57] chunk_id=485c4989-c300-45c8-ac06-79a59492bb5c-c0151-26ad315899
+   # 3 chunk_index=149 score=0.6958517043546353 type=clause pages=[56] chunk_id=485c4989-c300-45c8-ac06-79a59492bb5c-c0149-324f72fd13
+   # 4 chunk_index=244 score=0.6806271279045086 type=clause pages=[90] chunk_id=485c4989-c300-45c8-ac06-79a59492bb5c-c0244-51c99b8239
+   # 5 chunk_index=231 score=0.6699018874793709 type=clause pages=[85] chunk_id=485c4989-c300-45c8-ac06-79a59492bb5c-c0231-c2c0877b53
+   # 6 chunk_index=215 score=0.6426965189783731 type=clause pages=[80] chunk_id=485c4989-c300-45c8-ac06-79a59492bb5c-c0215-2461243dc4
+   # 7 chunk_index=152 score=0.6332099815136183 type=clause pages=[57] chunk_id=485c4989-c300-45c8-ac06-79a59492bb5c-c0152-d3eb78134e
+ * # 8 chunk_index=233 score=0.6297233292377991 type=table pages=[85] chunk_id=485c4989-c300-45c8-ac06-79a59492bb5c-c0233-78b2f006e8
+   # 9 chunk_index=154 score=0.6105020096449315 type=clause pages=[58] chunk_id=485c4989-c300-45c8-ac06-79a59492bb5c-c0154-efe91f5828
+   #10 chunk_index=54 score=0.6063651261816906 type=clause pages=[19] chunk_id=485c4989-c300-45c8-ac06-79a59492bb5c-c0054-cf7b9dcb54
+
+[hybrid] status=ok elapsed=0.30s
+first_relevant_rank=None | RR=0.0000 | Hit@1=0 | Hit@3=0 | Hit@5=0 | Hit@10=0 | Recall@1=0.000 | Recall@3=0.000 | Recall@5=0.000 | Recall@10=0.000 | Complete@1=0 | Complete@3=0 | Complete@5=0 | Complete@10=0
+   # 1 chunk_index=147 score=0.03278688524590164 type=clause pages=[55, 56] chunk_id=485c4989-c300-45c8-ac06-79a59492bb5c-c0147-4ce9ccc098
+   # 2 chunk_index=149 score=0.03200204813108039 type=clause pages=[56] chunk_id=485c4989-c300-45c8-ac06-79a59492bb5c-c0149-324f72fd13
+   # 3 chunk_index=151 score=0.03200204813108039 type=list_item pages=[57] chunk_id=485c4989-c300-45c8-ac06-79a59492bb5c-c0151-26ad315899
+   # 4 chunk_index=244 score=0.03125 type=clause pages=[90] chunk_id=485c4989-c300-45c8-ac06-79a59492bb5c-c0244-51c99b8239
+   # 5 chunk_index=231 score=0.030309988518943745 type=clause pages=[85] chunk_id=485c4989-c300-45c8-ac06-79a59492bb5c-c0231-c2c0877b53
+   # 6 chunk_index=215 score=0.028665028665028666 type=clause pages=[80] chunk_id=485c4989-c300-45c8-ac06-79a59492bb5c-c0215-2461243dc4
+   # 7 chunk_index=283 score=0.028665028665028666 type=paragraph pages=[108] chunk_id=485c4989-c300-45c8-ac06-79a59492bb5c-c0283-3f62c4db8f
+   # 8 chunk_index=154 score=0.028577260665441927 type=clause pages=[58] chunk_id=485c4989-c300-45c8-ac06-79a59492bb5c-c0154-efe91f5828
+   # 9 chunk_index=152 score=0.028083267871170464 type=clause pages=[57] chunk_id=485c4989-c300-45c8-ac06-79a59492bb5c-c0152-d3eb78134e
+   #10 chunk_index=153 score=0.026856524873828405 type=paragraph pages=[57] chunk_id=485c4989-c300-45c8-ac06-79a59492bb5c-c0153-e23ed77b81
+
+[hybrid_rerank] status=ok elapsed=1.11s
+first_relevant_rank=5 | RR=0.2000 | Hit@1=0 | Hit@3=0 | Hit@5=1 | Hit@10=1 | Recall@1=0.000 | Recall@3=0.000 | Recall@5=0.500 | Recall@10=1.000 | Complete@1=0 | Complete@3=0 | Complete@5=0 | Complete@10=1
+ContextRecall@1=0.000 | ContextComplete@1=0 | ContextChunks@1=1 | ContextRecall@3=0.000 | ContextComplete@3=0 | ContextChunks@3=3 | ContextRecall@5=1.000 | ContextComplete@5=1 | ContextChunks@5=6 | ContextRecall@10=1.000 | ContextComplete@10=1 | ContextChunks@10=11
+   # 1 chunk_index=147 score=0.9368038177490234 type=clause pages=[55, 56] chunk_id=485c4989-c300-45c8-ac06-79a59492bb5c-c0147-4ce9ccc098
+   # 2 chunk_index=231 score=0.9228491187095642 type=clause pages=[85] chunk_id=485c4989-c300-45c8-ac06-79a59492bb5c-c0231-c2c0877b53
+   # 3 chunk_index=149 score=0.8181278705596924 type=clause pages=[56] chunk_id=485c4989-c300-45c8-ac06-79a59492bb5c-c0149-324f72fd13
+   # 4 chunk_index=151 score=0.7677034139633179 type=list_item pages=[57] chunk_id=485c4989-c300-45c8-ac06-79a59492bb5c-c0151-26ad315899
+ * # 5 chunk_index=232 score=0.5507221221923828 type=clause pages=[85] chunk_id=485c4989-c300-45c8-ac06-79a59492bb5c-c0232-30a6623279
+   # 6 chunk_index=215 score=0.5283650159835815 type=clause pages=[80] chunk_id=485c4989-c300-45c8-ac06-79a59492bb5c-c0215-2461243dc4
+   # 7 chunk_index=244 score=0.4844043254852295 type=clause pages=[90] chunk_id=485c4989-c300-45c8-ac06-79a59492bb5c-c0244-51c99b8239
+ * # 8 chunk_index=233 score=0.4520072937011719 type=table pages=[85] chunk_id=485c4989-c300-45c8-ac06-79a59492bb5c-c0233-78b2f006e8
+   # 9 chunk_index=175 score=0.43473300337791443 type=clause pages=[66] chunk_id=485c4989-c300-45c8-ac06-79a59492bb5c-c0175-9774b5ede3
+   #10 chunk_index=127 score=0.42444995045661926 type=clause pages=[46] chunk_id=485c4989-c300-45c8-ac06-79a59492bb5c-c0127-f692bde454
+  Context assembly (separate from ranking):
+   * context#5 chunk_index=232 source_rank=5 seed_rank=5 reasons=['ranked_seed', 'preceding_intro'] pages=[85] chunk_id=485c4989-c300-45c8-ac06-79a59492bb5c-c0232-30a6623279
+   * context#6 chunk_index=233 source_rank=5 seed_rank=8 reasons=['ranked_seed', 'following_table'] pages=[85] chunk_id=485c4989-c300-45c8-ac06-79a59492bb5c-c0233-78b2f006e8
+     context#9 chunk_index=245 source_rank=7 seed_rank=None reasons=['following_table'] pages=[90] chunk_id=485c4989-c300-45c8-ac06-79a59492bb5c-c0245-2a27d3f444
+
+====================================================================================================
+RET-025 | table_form | medium | split=heldout
+====================================================================================================
+Question: What periodic reporting dates apply to the UNSCR List and Domestic List under Appendix D?
+Primary gold chunk(s): ['485c4989-c300-45c8-ac06-79a59492bb5c-c0245-2a27d3f444']
+Supporting chunk(s)  : ['485c4989-c300-45c8-ac06-79a59492bb5c-c0244-51c99b8239']
+
+[dense] status=ok elapsed=0.03s
+first_relevant_rank=1 | RR=1.0000 | Hit@1=1 | Hit@3=1 | Hit@5=1 | Hit@10=1 | Recall@1=1.000 | Recall@3=1.000 | Recall@5=1.000 | Recall@10=1.000 | Complete@1=1 | Complete@3=1 | Complete@5=1 | Complete@10=1
+ * # 1 chunk_index=245 score=0.6793494022086468 type=table pages=[90] chunk_id=485c4989-c300-45c8-ac06-79a59492bb5c-c0245-2a27d3f444
+   # 2 chunk_index=238 score=0.5942425373648096 type=clause pages=[87, 88] chunk_id=485c4989-c300-45c8-ac06-79a59492bb5c-c0238-d6ba6b2474
+   # 3 chunk_index=237 score=0.5699961441757603 type=clause pages=[87, 88] chunk_id=485c4989-c300-45c8-ac06-79a59492bb5c-c0237-06eb0908af
+   # 4 chunk_index=276 score=0.5543387797868989 type=clause pages=[106] chunk_id=485c4989-c300-45c8-ac06-79a59492bb5c-c0276-b02b6aba4d
+   # 5 chunk_index=281 score=0.5386472023339757 type=paragraph pages=[108] chunk_id=485c4989-c300-45c8-ac06-79a59492bb5c-c0281-58246ab1a4
+   # 6 chunk_index=244 score=0.53751691952247 type=clause pages=[90] chunk_id=485c4989-c300-45c8-ac06-79a59492bb5c-c0244-51c99b8239
+   # 7 chunk_index=279 score=0.5353577413941786 type=table pages=[107] chunk_id=485c4989-c300-45c8-ac06-79a59492bb5c-c0279-a5f6ecd15c
+   # 8 chunk_index=277 score=0.5304767732959804 type=paragraph pages=[107] chunk_id=485c4989-c300-45c8-ac06-79a59492bb5c-c0277-5ef5af3381
+   # 9 chunk_index=282 score=0.523060707863528 type=table pages=[108] chunk_id=485c4989-c300-45c8-ac06-79a59492bb5c-c0282-c9062a52a1
+   #10 chunk_index=236 score=0.5127281837029357 type=table pages=[86, 87] chunk_id=485c4989-c300-45c8-ac06-79a59492bb5c-c0236-63f196d79f
+
+[hybrid] status=ok elapsed=0.28s
+first_relevant_rank=2 | RR=0.5000 | Hit@1=0 | Hit@3=1 | Hit@5=1 | Hit@10=1 | Recall@1=0.000 | Recall@3=1.000 | Recall@5=1.000 | Recall@10=1.000 | Complete@1=0 | Complete@3=1 | Complete@5=1 | Complete@10=1
+   # 1 chunk_index=237 score=0.032266458495966696 type=clause pages=[87, 88] chunk_id=485c4989-c300-45c8-ac06-79a59492bb5c-c0237-06eb0908af
+ * # 2 chunk_index=245 score=0.032018442622950824 type=table pages=[90] chunk_id=485c4989-c300-45c8-ac06-79a59492bb5c-c0245-2a27d3f444
+   # 3 chunk_index=236 score=0.0304147465437788 type=table pages=[86, 87] chunk_id=485c4989-c300-45c8-ac06-79a59492bb5c-c0236-63f196d79f
+   # 4 chunk_index=238 score=0.0304147465437788 type=clause pages=[87, 88] chunk_id=485c4989-c300-45c8-ac06-79a59492bb5c-c0238-d6ba6b2474
+   # 5 chunk_index=282 score=0.029877369007803793 type=table pages=[108] chunk_id=485c4989-c300-45c8-ac06-79a59492bb5c-c0282-c9062a52a1
+   # 6 chunk_index=277 score=0.029857397504456328 type=paragraph pages=[107] chunk_id=485c4989-c300-45c8-ac06-79a59492bb5c-c0277-5ef5af3381
+   # 7 chunk_index=244 score=0.02964426877470356 type=clause pages=[90] chunk_id=485c4989-c300-45c8-ac06-79a59492bb5c-c0244-51c99b8239
+   # 8 chunk_index=279 score=0.02900988017658188 type=table pages=[107] chunk_id=485c4989-c300-45c8-ac06-79a59492bb5c-c0279-a5f6ecd15c
+   # 9 chunk_index=239 score=0.02886002886002886 type=clause pages=[88, 89] chunk_id=485c4989-c300-45c8-ac06-79a59492bb5c-c0239-331bc589b4
+   #10 chunk_index=276 score=0.028283227848101264 type=clause pages=[106] chunk_id=485c4989-c300-45c8-ac06-79a59492bb5c-c0276-b02b6aba4d
+
+[hybrid_rerank] status=ok elapsed=1.30s
+first_relevant_rank=1 | RR=1.0000 | Hit@1=1 | Hit@3=1 | Hit@5=1 | Hit@10=1 | Recall@1=1.000 | Recall@3=1.000 | Recall@5=1.000 | Recall@10=1.000 | Complete@1=1 | Complete@3=1 | Complete@5=1 | Complete@10=1
+ContextRecall@1=1.000 | ContextComplete@1=1 | ContextChunks@1=1 | ContextRecall@3=1.000 | ContextComplete@3=1 | ContextChunks@3=4 | ContextRecall@5=1.000 | ContextComplete@5=1 | ContextChunks@5=6 | ContextRecall@10=1.000 | ContextComplete@10=1 | ContextChunks@10=11
+ * # 1 chunk_index=245 score=0.9931243062019348 type=table pages=[90] chunk_id=485c4989-c300-45c8-ac06-79a59492bb5c-c0245-2a27d3f444
+   # 2 chunk_index=238 score=0.8474006652832031 type=clause pages=[87, 88] chunk_id=485c4989-c300-45c8-ac06-79a59492bb5c-c0238-d6ba6b2474
+   # 3 chunk_index=236 score=0.6130475401878357 type=table pages=[86, 87] chunk_id=485c4989-c300-45c8-ac06-79a59492bb5c-c0236-63f196d79f
+   # 4 chunk_index=237 score=0.5321056842803955 type=clause pages=[87, 88] chunk_id=485c4989-c300-45c8-ac06-79a59492bb5c-c0237-06eb0908af
+   # 5 chunk_index=244 score=0.42829036712646484 type=clause pages=[90] chunk_id=485c4989-c300-45c8-ac06-79a59492bb5c-c0244-51c99b8239
+   # 6 chunk_index=239 score=0.12536780536174774 type=clause pages=[88, 89] chunk_id=485c4989-c300-45c8-ac06-79a59492bb5c-c0239-331bc589b4
+   # 7 chunk_index=282 score=0.10619295388460159 type=table pages=[108] chunk_id=485c4989-c300-45c8-ac06-79a59492bb5c-c0282-c9062a52a1
+   # 8 chunk_index=276 score=0.057810183614492416 type=clause pages=[106] chunk_id=485c4989-c300-45c8-ac06-79a59492bb5c-c0276-b02b6aba4d
+   # 9 chunk_index=279 score=0.0484987311065197 type=table pages=[107] chunk_id=485c4989-c300-45c8-ac06-79a59492bb5c-c0279-a5f6ecd15c
+   #10 chunk_index=241 score=0.04733487591147423 type=clause pages=[89] chunk_id=485c4989-c300-45c8-ac06-79a59492bb5c-c0241-57faa0c1ac
+  Context assembly (separate from ranking):
+   * context#1 chunk_index=245 source_rank=1 seed_rank=1 reasons=['ranked_seed', 'following_table'] pages=[90] chunk_id=485c4989-c300-45c8-ac06-79a59492bb5c-c0245-2a27d3f444
+     context#3 chunk_index=235 source_rank=3 seed_rank=None reasons=['preceding_intro'] pages=[86] chunk_id=485c4989-c300-45c8-ac06-79a59492bb5c-c0235-8ccfd3b8c3
+
+====================================================================================================
+RET-028 | appendix | medium | split=heldout
+====================================================================================================
+Question: Under Appendix A1, when may a reporting institution accept an arrangement for third-party deposits?
+Primary gold chunk(s): ['485c4989-c300-45c8-ac06-79a59492bb5c-c0210-21bcd6cf1c']
+Supporting chunk(s)  : []
+
+[dense] status=ok elapsed=0.03s
+first_relevant_rank=1 | RR=1.0000 | Hit@1=1 | Hit@3=1 | Hit@5=1 | Hit@10=1 | Recall@1=1.000 | Recall@3=1.000 | Recall@5=1.000 | Recall@10=1.000 | Complete@1=1 | Complete@3=1 | Complete@5=1 | Complete@10=1
+ * # 1 chunk_index=210 score=0.8054539197142278 type=clause pages=[79] chunk_id=485c4989-c300-45c8-ac06-79a59492bb5c-c0210-21bcd6cf1c
+   # 2 chunk_index=209 score=0.7514955997467041 type=clause pages=[79] chunk_id=485c4989-c300-45c8-ac06-79a59492bb5c-c0209-3f532e58cb
+   # 3 chunk_index=208 score=0.747796356678009 type=clause pages=[79] chunk_id=485c4989-c300-45c8-ac06-79a59492bb5c-c0208-9e5f3f0038
+   # 4 chunk_index=207 score=0.745199978351593 type=clause pages=[79] chunk_id=485c4989-c300-45c8-ac06-79a59492bb5c-c0207-2adb54d356
+   # 5 chunk_index=214 score=0.7195603847503662 type=clause pages=[80] chunk_id=485c4989-c300-45c8-ac06-79a59492bb5c-c0214-9797969218
+   # 6 chunk_index=213 score=0.7188877798452691 type=clause pages=[80] chunk_id=485c4989-c300-45c8-ac06-79a59492bb5c-c0213-79d797bb84
+   # 7 chunk_index=216 score=0.716617226600647 type=clause pages=[80, 81] chunk_id=485c4989-c300-45c8-ac06-79a59492bb5c-c0216-091e0d5d3a
+   # 8 chunk_index=211 score=0.7045024633407593 type=clause pages=[80] chunk_id=485c4989-c300-45c8-ac06-79a59492bb5c-c0211-c0c55369ef
+   # 9 chunk_index=206 score=0.6913113778047945 type=paragraph pages=[79] chunk_id=485c4989-c300-45c8-ac06-79a59492bb5c-c0206-0bf27a8fb3
+   #10 chunk_index=80 score=0.6762503385543823 type=clause pages=[30] chunk_id=485c4989-c300-45c8-ac06-79a59492bb5c-c0080-4341282f62
+
+[hybrid] status=ok elapsed=0.31s
+first_relevant_rank=1 | RR=1.0000 | Hit@1=1 | Hit@3=1 | Hit@5=1 | Hit@10=1 | Recall@1=1.000 | Recall@3=1.000 | Recall@5=1.000 | Recall@10=1.000 | Complete@1=1 | Complete@3=1 | Complete@5=1 | Complete@10=1
+ * # 1 chunk_index=210 score=0.03278688524590164 type=clause pages=[79] chunk_id=485c4989-c300-45c8-ac06-79a59492bb5c-c0210-21bcd6cf1c
+   # 2 chunk_index=209 score=0.031754032258064516 type=clause pages=[79] chunk_id=485c4989-c300-45c8-ac06-79a59492bb5c-c0209-3f532e58cb
+   # 3 chunk_index=207 score=0.03149801587301587 type=clause pages=[79] chunk_id=485c4989-c300-45c8-ac06-79a59492bb5c-c0207-2adb54d356
+   # 4 chunk_index=208 score=0.031024531024531024 type=clause pages=[79] chunk_id=485c4989-c300-45c8-ac06-79a59492bb5c-c0208-9e5f3f0038
+   # 5 chunk_index=80 score=0.0304147465437788 type=clause pages=[30] chunk_id=485c4989-c300-45c8-ac06-79a59492bb5c-c0080-4341282f62
+   # 6 chunk_index=216 score=0.030309988518943745 type=clause pages=[80, 81] chunk_id=485c4989-c300-45c8-ac06-79a59492bb5c-c0216-091e0d5d3a
+   # 7 chunk_index=213 score=0.029857397504456328 type=clause pages=[80] chunk_id=485c4989-c300-45c8-ac06-79a59492bb5c-c0213-79d797bb84
+   # 8 chunk_index=214 score=0.02946912242686891 type=clause pages=[80] chunk_id=485c4989-c300-45c8-ac06-79a59492bb5c-c0214-9797969218
+   # 9 chunk_index=211 score=0.028991596638655463 type=clause pages=[80] chunk_id=485c4989-c300-45c8-ac06-79a59492bb5c-c0211-c0c55369ef
+   #10 chunk_index=212 score=0.028814262023217248 type=clause pages=[80] chunk_id=485c4989-c300-45c8-ac06-79a59492bb5c-c0212-f40ff47418
+
+[hybrid_rerank] status=ok elapsed=0.93s
+first_relevant_rank=1 | RR=1.0000 | Hit@1=1 | Hit@3=1 | Hit@5=1 | Hit@10=1 | Recall@1=1.000 | Recall@3=1.000 | Recall@5=1.000 | Recall@10=1.000 | Complete@1=1 | Complete@3=1 | Complete@5=1 | Complete@10=1
+ContextRecall@1=1.000 | ContextComplete@1=1 | ContextChunks@1=1 | ContextRecall@3=1.000 | ContextComplete@3=1 | ContextChunks@3=3 | ContextRecall@5=1.000 | ContextComplete@5=1 | ContextChunks@5=5 | ContextRecall@10=1.000 | ContextComplete@10=1 | ContextChunks@10=10
+ * # 1 chunk_index=210 score=0.9978898167610168 type=clause pages=[79] chunk_id=485c4989-c300-45c8-ac06-79a59492bb5c-c0210-21bcd6cf1c
+   # 2 chunk_index=207 score=0.9930092096328735 type=clause pages=[79] chunk_id=485c4989-c300-45c8-ac06-79a59492bb5c-c0207-2adb54d356
+   # 3 chunk_index=80 score=0.972087562084198 type=clause pages=[30] chunk_id=485c4989-c300-45c8-ac06-79a59492bb5c-c0080-4341282f62
+   # 4 chunk_index=208 score=0.963542640209198 type=clause pages=[79] chunk_id=485c4989-c300-45c8-ac06-79a59492bb5c-c0208-9e5f3f0038
+   # 5 chunk_index=211 score=0.9609058499336243 type=clause pages=[80] chunk_id=485c4989-c300-45c8-ac06-79a59492bb5c-c0211-c0c55369ef
+   # 6 chunk_index=209 score=0.9549642205238342 type=clause pages=[79] chunk_id=485c4989-c300-45c8-ac06-79a59492bb5c-c0209-3f532e58cb
+   # 7 chunk_index=213 score=0.936445951461792 type=clause pages=[80] chunk_id=485c4989-c300-45c8-ac06-79a59492bb5c-c0213-79d797bb84
+   # 8 chunk_index=215 score=0.9256234765052795 type=clause pages=[80] chunk_id=485c4989-c300-45c8-ac06-79a59492bb5c-c0215-2461243dc4
+   # 9 chunk_index=214 score=0.9112375974655151 type=clause pages=[80] chunk_id=485c4989-c300-45c8-ac06-79a59492bb5c-c0214-9797969218
+   #10 chunk_index=212 score=0.889743447303772 type=clause pages=[80] chunk_id=485c4989-c300-45c8-ac06-79a59492bb5c-c0212-f40ff47418
+  Context assembly (separate from ranking):
+
+====================================================================================================
+RET-030 | appendix | hard | split=heldout
+====================================================================================================
+Question: What are the three phases for identifying and conducting due diligence on a counterparty VASP in Appendix F?
+Primary gold chunk(s): ['485c4989-c300-45c8-ac06-79a59492bb5c-c0272-76a1d56662']
+Supporting chunk(s)  : ['485c4989-c300-45c8-ac06-79a59492bb5c-c0273-a0f89ccd1b']
+
+[dense] status=ok elapsed=0.03s
+first_relevant_rank=1 | RR=1.0000 | Hit@1=1 | Hit@3=1 | Hit@5=1 | Hit@10=1 | Recall@1=1.000 | Recall@3=1.000 | Recall@5=1.000 | Recall@10=1.000 | Complete@1=1 | Complete@3=1 | Complete@5=1 | Complete@10=1
+ * # 1 chunk_index=272 score=0.8004526734487023 type=clause pages=[103, 104] chunk_id=485c4989-c300-45c8-ac06-79a59492bb5c-c0272-76a1d56662
+   # 2 chunk_index=271 score=0.7334526340095632 type=clause pages=[103] chunk_id=485c4989-c300-45c8-ac06-79a59492bb5c-c0271-236dca87b6
+   # 3 chunk_index=141 score=0.719614701294024 type=clause pages=[51] chunk_id=485c4989-c300-45c8-ac06-79a59492bb5c-c0141-ca25e4a05b
+   # 4 chunk_index=142 score=0.6793739795684814 type=list_item pages=[51] chunk_id=485c4989-c300-45c8-ac06-79a59492bb5c-c0142-87f1b197d7
+   # 5 chunk_index=143 score=0.6533076373751391 type=clause pages=[51, 52] chunk_id=485c4989-c300-45c8-ac06-79a59492bb5c-c0143-b3079bbd42
+   # 6 chunk_index=273 score=0.542795685363074 type=list_item pages=[104] chunk_id=485c4989-c300-45c8-ac06-79a59492bb5c-c0273-a0f89ccd1b
+   # 7 chunk_index=212 score=0.5326704978942871 type=clause pages=[80] chunk_id=485c4989-c300-45c8-ac06-79a59492bb5c-c0212-f40ff47418
+   # 8 chunk_index=213 score=0.5207809781097237 type=clause pages=[80] chunk_id=485c4989-c300-45c8-ac06-79a59492bb5c-c0213-79d797bb84
+   # 9 chunk_index=208 score=0.5048090219497681 type=clause pages=[79] chunk_id=485c4989-c300-45c8-ac06-79a59492bb5c-c0208-9e5f3f0038
+   #10 chunk_index=215 score=0.49822112917900085 type=clause pages=[80] chunk_id=485c4989-c300-45c8-ac06-79a59492bb5c-c0215-2461243dc4
+
+[hybrid] status=ok elapsed=0.26s
+first_relevant_rank=1 | RR=1.0000 | Hit@1=1 | Hit@3=1 | Hit@5=1 | Hit@10=1 | Recall@1=1.000 | Recall@3=1.000 | Recall@5=1.000 | Recall@10=1.000 | Complete@1=1 | Complete@3=1 | Complete@5=1 | Complete@10=1
+ * # 1 chunk_index=272 score=0.03278688524590164 type=clause pages=[103, 104] chunk_id=485c4989-c300-45c8-ac06-79a59492bb5c-c0272-76a1d56662
+   # 2 chunk_index=141 score=0.03200204813108039 type=clause pages=[51] chunk_id=485c4989-c300-45c8-ac06-79a59492bb5c-c0141-ca25e4a05b
+   # 3 chunk_index=271 score=0.03200204813108039 type=clause pages=[103] chunk_id=485c4989-c300-45c8-ac06-79a59492bb5c-c0271-236dca87b6
+   # 4 chunk_index=142 score=0.031009615384615385 type=list_item pages=[51] chunk_id=485c4989-c300-45c8-ac06-79a59492bb5c-c0142-87f1b197d7
+   # 5 chunk_index=143 score=0.031009615384615385 type=clause pages=[51, 52] chunk_id=485c4989-c300-45c8-ac06-79a59492bb5c-c0143-b3079bbd42
+   # 6 chunk_index=212 score=0.03007688828584351 type=clause pages=[80] chunk_id=485c4989-c300-45c8-ac06-79a59492bb5c-c0212-f40ff47418
+   # 7 chunk_index=273 score=0.029857397504456328 type=list_item pages=[104] chunk_id=485c4989-c300-45c8-ac06-79a59492bb5c-c0273-a0f89ccd1b
+   # 8 chunk_index=213 score=0.029631255487269532 type=clause pages=[80] chunk_id=485c4989-c300-45c8-ac06-79a59492bb5c-c0213-79d797bb84
+   # 9 chunk_index=117 score=0.027212143650499815 type=clause pages=[44] chunk_id=485c4989-c300-45c8-ac06-79a59492bb5c-c0117-340b2169f0
+   #10 chunk_index=108 score=0.014492753623188406 type=list_item pages=[40, 41] chunk_id=485c4989-c300-45c8-ac06-79a59492bb5c-c0108-746e0d9d19
+
+[hybrid_rerank] status=ok elapsed=1.15s
+first_relevant_rank=1 | RR=1.0000 | Hit@1=1 | Hit@3=1 | Hit@5=1 | Hit@10=1 | Recall@1=1.000 | Recall@3=1.000 | Recall@5=1.000 | Recall@10=1.000 | Complete@1=1 | Complete@3=1 | Complete@5=1 | Complete@10=1
+ContextRecall@1=1.000 | ContextComplete@1=1 | ContextChunks@1=1 | ContextRecall@3=1.000 | ContextComplete@3=1 | ContextChunks@3=3 | ContextRecall@5=1.000 | ContextComplete@5=1 | ContextChunks@5=5 | ContextRecall@10=1.000 | ContextComplete@10=1 | ContextChunks@10=10
+ * # 1 chunk_index=272 score=0.9996509552001953 type=clause pages=[103, 104] chunk_id=485c4989-c300-45c8-ac06-79a59492bb5c-c0272-76a1d56662
+   # 2 chunk_index=141 score=0.9605602025985718 type=clause pages=[51] chunk_id=485c4989-c300-45c8-ac06-79a59492bb5c-c0141-ca25e4a05b
+   # 3 chunk_index=271 score=0.7997123003005981 type=clause pages=[103] chunk_id=485c4989-c300-45c8-ac06-79a59492bb5c-c0271-236dca87b6
+   # 4 chunk_index=142 score=0.7349463701248169 type=list_item pages=[51] chunk_id=485c4989-c300-45c8-ac06-79a59492bb5c-c0142-87f1b197d7
+   # 5 chunk_index=273 score=0.5712318420410156 type=list_item pages=[104] chunk_id=485c4989-c300-45c8-ac06-79a59492bb5c-c0273-a0f89ccd1b
+   # 6 chunk_index=143 score=0.5479975342750549 type=clause pages=[51, 52] chunk_id=485c4989-c300-45c8-ac06-79a59492bb5c-c0143-b3079bbd42
+   # 7 chunk_index=212 score=0.2401428371667862 type=clause pages=[80] chunk_id=485c4989-c300-45c8-ac06-79a59492bb5c-c0212-f40ff47418
+   # 8 chunk_index=213 score=0.06957078725099564 type=clause pages=[80] chunk_id=485c4989-c300-45c8-ac06-79a59492bb5c-c0213-79d797bb84
+   # 9 chunk_index=117 score=0.05908496305346489 type=clause pages=[44] chunk_id=485c4989-c300-45c8-ac06-79a59492bb5c-c0117-340b2169f0
+   #10 chunk_index=216 score=0.043210744857788086 type=clause pages=[80, 81] chunk_id=485c4989-c300-45c8-ac06-79a59492bb5c-c0216-091e0d5d3a
+  Context assembly (separate from ranking):
+
+====================================================================================================
+RET-031 | cross_page | hard | split=heldout
+====================================================================================================
+Question: What originator and beneficiary information must accompany a cross-border or domestic digital-asset wire transfer sent by an ordering institution?
+Primary gold chunk(s): ['485c4989-c300-45c8-ac06-79a59492bb5c-c0132-3c175526c2', '485c4989-c300-45c8-ac06-79a59492bb5c-c0133-f431375115']
+Supporting chunk(s)  : ['485c4989-c300-45c8-ac06-79a59492bb5c-c0134-f2c5066a48', '485c4989-c300-45c8-ac06-79a59492bb5c-c0135-c7a41d1edf', '485c4989-c300-45c8-ac06-79a59492bb5c-c0136-225386c91b', '485c4989-c300-45c8-ac06-79a59492bb5c-c0137-98ec24b9b2']
+
+[dense] status=ok elapsed=0.03s
+first_relevant_rank=1 | RR=1.0000 | Hit@1=1 | Hit@3=1 | Hit@5=1 | Hit@10=1 | Recall@1=0.500 | Recall@3=0.500 | Recall@5=0.500 | Recall@10=1.000 | Complete@1=0 | Complete@3=0 | Complete@5=0 | Complete@10=1
+ * # 1 chunk_index=132 score=0.8301753008156656 type=clause pages=[48, 49] chunk_id=485c4989-c300-45c8-ac06-79a59492bb5c-c0132-3c175526c2
+   # 2 chunk_index=138 score=0.7440850887247881 type=clause pages=[50] chunk_id=485c4989-c300-45c8-ac06-79a59492bb5c-c0138-fc3eaa0c1a
+   # 3 chunk_index=130 score=0.7035230751606136 type=clause pages=[48] chunk_id=485c4989-c300-45c8-ac06-79a59492bb5c-c0130-68d2d5136f
+   # 4 chunk_index=136 score=0.6770544033549315 type=clause pages=[49] chunk_id=485c4989-c300-45c8-ac06-79a59492bb5c-c0136-225386c91b
+   # 5 chunk_index=131 score=0.663754045963292 type=paragraph pages=[48] chunk_id=485c4989-c300-45c8-ac06-79a59492bb5c-c0131-50377c9927
+   # 6 chunk_index=31 score=0.6614039742109803 type=definition pages=[13] chunk_id=485c4989-c300-45c8-ac06-79a59492bb5c-c0031-0ba3acd474
+ * # 7 chunk_index=133 score=0.6479117307820813 type=list_item pages=[49] chunk_id=485c4989-c300-45c8-ac06-79a59492bb5c-c0133-f431375115
+   # 8 chunk_index=139 score=0.6355002739727346 type=clause pages=[50] chunk_id=485c4989-c300-45c8-ac06-79a59492bb5c-c0139-f108162213
+   # 9 chunk_index=137 score=0.6338844357935615 type=list_item pages=[49] chunk_id=485c4989-c300-45c8-ac06-79a59492bb5c-c0137-98ec24b9b2
+   #10 chunk_index=135 score=0.6264541594440747 type=list_item pages=[49] chunk_id=485c4989-c300-45c8-ac06-79a59492bb5c-c0135-c7a41d1edf
+
+[hybrid] status=ok elapsed=0.37s
+first_relevant_rank=1 | RR=1.0000 | Hit@1=1 | Hit@3=1 | Hit@5=1 | Hit@10=1 | Recall@1=0.500 | Recall@3=0.500 | Recall@5=0.500 | Recall@10=0.500 | Complete@1=0 | Complete@3=0 | Complete@5=0 | Complete@10=0
+ * # 1 chunk_index=132 score=0.03278688524590164 type=clause pages=[48, 49] chunk_id=485c4989-c300-45c8-ac06-79a59492bb5c-c0132-3c175526c2
+   # 2 chunk_index=138 score=0.03225806451612903 type=clause pages=[50] chunk_id=485c4989-c300-45c8-ac06-79a59492bb5c-c0138-fc3eaa0c1a
+   # 3 chunk_index=130 score=0.031746031746031744 type=clause pages=[48] chunk_id=485c4989-c300-45c8-ac06-79a59492bb5c-c0130-68d2d5136f
+   # 4 chunk_index=131 score=0.031009615384615385 type=paragraph pages=[48] chunk_id=485c4989-c300-45c8-ac06-79a59492bb5c-c0131-50377c9927
+   # 5 chunk_index=136 score=0.030776515151515152 type=clause pages=[49] chunk_id=485c4989-c300-45c8-ac06-79a59492bb5c-c0136-225386c91b
+   # 6 chunk_index=139 score=0.030090497737556562 type=clause pages=[50] chunk_id=485c4989-c300-45c8-ac06-79a59492bb5c-c0139-f108162213
+   # 7 chunk_index=31 score=0.029236022193768675 type=definition pages=[13] chunk_id=485c4989-c300-45c8-ac06-79a59492bb5c-c0031-0ba3acd474
+   # 8 chunk_index=137 score=0.028985507246376812 type=list_item pages=[49] chunk_id=485c4989-c300-45c8-ac06-79a59492bb5c-c0137-98ec24b9b2
+   # 9 chunk_index=134 score=0.028438886647841874 type=list_item pages=[49] chunk_id=485c4989-c300-45c8-ac06-79a59492bb5c-c0134-f2c5066a48
+   #10 chunk_index=13 score=0.02817460317460317 type=definition pages=[10] chunk_id=485c4989-c300-45c8-ac06-79a59492bb5c-c0013-a4ff83921b
+
+[hybrid_rerank] status=ok elapsed=0.97s
+first_relevant_rank=1 | RR=1.0000 | Hit@1=1 | Hit@3=1 | Hit@5=1 | Hit@10=1 | Recall@1=0.500 | Recall@3=0.500 | Recall@5=0.500 | Recall@10=0.500 | Complete@1=0 | Complete@3=0 | Complete@5=0 | Complete@10=0
+ContextRecall@1=0.500 | ContextComplete@1=0 | ContextChunks@1=1 | ContextRecall@3=0.500 | ContextComplete@3=0 | ContextChunks@3=3 | ContextRecall@5=0.500 | ContextComplete@5=0 | ContextChunks@5=5 | ContextRecall@10=0.500 | ContextComplete@10=0 | ContextChunks@10=10
+ * # 1 chunk_index=132 score=0.9991673231124878 type=clause pages=[48, 49] chunk_id=485c4989-c300-45c8-ac06-79a59492bb5c-c0132-3c175526c2
+   # 2 chunk_index=138 score=0.9913630485534668 type=clause pages=[50] chunk_id=485c4989-c300-45c8-ac06-79a59492bb5c-c0138-fc3eaa0c1a
+   # 3 chunk_index=130 score=0.9254750609397888 type=clause pages=[48] chunk_id=485c4989-c300-45c8-ac06-79a59492bb5c-c0130-68d2d5136f
+   # 4 chunk_index=32 score=0.8881244659423828 type=definition pages=[13] chunk_id=485c4989-c300-45c8-ac06-79a59492bb5c-c0032-ca9991723f
+   # 5 chunk_index=139 score=0.8523708581924438 type=clause pages=[50] chunk_id=485c4989-c300-45c8-ac06-79a59492bb5c-c0139-f108162213
+   # 6 chunk_index=141 score=0.8373669385910034 type=clause pages=[51] chunk_id=485c4989-c300-45c8-ac06-79a59492bb5c-c0141-ca25e4a05b
+   # 7 chunk_index=134 score=0.8206004500389099 type=list_item pages=[49] chunk_id=485c4989-c300-45c8-ac06-79a59492bb5c-c0134-f2c5066a48
+   # 8 chunk_index=136 score=0.7784633040428162 type=clause pages=[49] chunk_id=485c4989-c300-45c8-ac06-79a59492bb5c-c0136-225386c91b
+   # 9 chunk_index=31 score=0.7481041550636292 type=definition pages=[13] chunk_id=485c4989-c300-45c8-ac06-79a59492bb5c-c0031-0ba3acd474
+   #10 chunk_index=13 score=0.6550447344779968 type=definition pages=[10] chunk_id=485c4989-c300-45c8-ac06-79a59492bb5c-c0013-a4ff83921b
+  Context assembly (separate from ranking):
+
+====================================================================================================
+RET-035 | exception_condition | medium | split=heldout
+====================================================================================================
+Question: What additional conditions apply when the third-party institution relied upon for CDD is part of the same financial group?
+Primary gold chunk(s): ['485c4989-c300-45c8-ac06-79a59492bb5c-c0121-4863ecbe4f']
+Supporting chunk(s)  : ['485c4989-c300-45c8-ac06-79a59492bb5c-c0118-f54ab82946', '485c4989-c300-45c8-ac06-79a59492bb5c-c0122-db2b4be2b1']
+
+[dense] status=ok elapsed=0.03s
+first_relevant_rank=1 | RR=1.0000 | Hit@1=1 | Hit@3=1 | Hit@5=1 | Hit@10=1 | Recall@1=1.000 | Recall@3=1.000 | Recall@5=1.000 | Recall@10=1.000 | Complete@1=1 | Complete@3=1 | Complete@5=1 | Complete@10=1
+ * # 1 chunk_index=121 score=0.7490205987996045 type=clause pages=[45] chunk_id=485c4989-c300-45c8-ac06-79a59492bb5c-c0121-4863ecbe4f
+   # 2 chunk_index=117 score=0.6702930727513735 type=clause pages=[44] chunk_id=485c4989-c300-45c8-ac06-79a59492bb5c-c0117-340b2169f0
+   # 3 chunk_index=98 score=0.6696376007579327 type=clause pages=[36] chunk_id=485c4989-c300-45c8-ac06-79a59492bb5c-c0098-03d8b3aa54
+   # 4 chunk_index=118 score=0.6470875722546198 type=clause pages=[44] chunk_id=485c4989-c300-45c8-ac06-79a59492bb5c-c0118-f54ab82946
+   # 5 chunk_index=111 score=0.6442445708586151 type=clause pages=[41] chunk_id=485c4989-c300-45c8-ac06-79a59492bb5c-c0111-026b10a78d
+   # 6 chunk_index=119 score=0.6419103336903556 type=paragraph pages=[45] chunk_id=485c4989-c300-45c8-ac06-79a59492bb5c-c0119-081d7cfeb3
+   # 7 chunk_index=112 score=0.6379509974136677 type=clause pages=[42] chunk_id=485c4989-c300-45c8-ac06-79a59492bb5c-c0112-8c652d9f62
+   # 8 chunk_index=84 score=0.6366497467949914 type=clause pages=[32] chunk_id=485c4989-c300-45c8-ac06-79a59492bb5c-c0084-fb93596733
+   # 9 chunk_index=120 score=0.6353743265680771 type=clause pages=[45] chunk_id=485c4989-c300-45c8-ac06-79a59492bb5c-c0120-781c9e318c
+   #10 chunk_index=89 score=0.6345522214605768 type=list_item pages=[34] chunk_id=485c4989-c300-45c8-ac06-79a59492bb5c-c0089-f1b88e8baa
+
+[hybrid] status=ok elapsed=0.43s
+first_relevant_rank=1 | RR=1.0000 | Hit@1=1 | Hit@3=1 | Hit@5=1 | Hit@10=1 | Recall@1=1.000 | Recall@3=1.000 | Recall@5=1.000 | Recall@10=1.000 | Complete@1=1 | Complete@3=1 | Complete@5=1 | Complete@10=1
+ * # 1 chunk_index=121 score=0.03278688524590164 type=clause pages=[45] chunk_id=485c4989-c300-45c8-ac06-79a59492bb5c-c0121-4863ecbe4f
+   # 2 chunk_index=117 score=0.03200204813108039 type=clause pages=[44] chunk_id=485c4989-c300-45c8-ac06-79a59492bb5c-c0117-340b2169f0
+   # 3 chunk_index=118 score=0.03125 type=clause pages=[44] chunk_id=485c4989-c300-45c8-ac06-79a59492bb5c-c0118-f54ab82946
+   # 4 chunk_index=98 score=0.03057889822595705 type=clause pages=[36] chunk_id=485c4989-c300-45c8-ac06-79a59492bb5c-c0098-03d8b3aa54
+   # 5 chunk_index=119 score=0.029437229437229435 type=paragraph pages=[45] chunk_id=485c4989-c300-45c8-ac06-79a59492bb5c-c0119-081d7cfeb3
+   # 6 chunk_index=122 score=0.028814262023217248 type=clause pages=[45] chunk_id=485c4989-c300-45c8-ac06-79a59492bb5c-c0122-db2b4be2b1
+   # 7 chunk_index=100 score=0.028371628371628373 type=clause pages=[36, 37] chunk_id=485c4989-c300-45c8-ac06-79a59492bb5c-c0100-d1377a7b3c
+   # 8 chunk_index=112 score=0.028083267871170464 type=clause pages=[42] chunk_id=485c4989-c300-45c8-ac06-79a59492bb5c-c0112-8c652d9f62
+   # 9 chunk_index=115 score=0.027651515151515153 type=clause pages=[43] chunk_id=485c4989-c300-45c8-ac06-79a59492bb5c-c0115-ea57db8635
+   #10 chunk_index=120 score=0.027479766610201392 type=clause pages=[45] chunk_id=485c4989-c300-45c8-ac06-79a59492bb5c-c0120-781c9e318c
+
+[hybrid_rerank] status=ok elapsed=1.35s
+first_relevant_rank=1 | RR=1.0000 | Hit@1=1 | Hit@3=1 | Hit@5=1 | Hit@10=1 | Recall@1=1.000 | Recall@3=1.000 | Recall@5=1.000 | Recall@10=1.000 | Complete@1=1 | Complete@3=1 | Complete@5=1 | Complete@10=1
+ContextRecall@1=1.000 | ContextComplete@1=1 | ContextChunks@1=1 | ContextRecall@3=1.000 | ContextComplete@3=1 | ContextChunks@3=3 | ContextRecall@5=1.000 | ContextComplete@5=1 | ContextChunks@5=5 | ContextRecall@10=1.000 | ContextComplete@10=1 | ContextChunks@10=10
+ * # 1 chunk_index=121 score=0.9986196756362915 type=clause pages=[45] chunk_id=485c4989-c300-45c8-ac06-79a59492bb5c-c0121-4863ecbe4f
+   # 2 chunk_index=118 score=0.8985307812690735 type=clause pages=[44] chunk_id=485c4989-c300-45c8-ac06-79a59492bb5c-c0118-f54ab82946
+   # 3 chunk_index=39 score=0.8804110884666443 type=definition pages=[14, 15] chunk_id=485c4989-c300-45c8-ac06-79a59492bb5c-c0039-8eac7375e8
+   # 4 chunk_index=117 score=0.880161702632904 type=clause pages=[44] chunk_id=485c4989-c300-45c8-ac06-79a59492bb5c-c0117-340b2169f0
+   # 5 chunk_index=122 score=0.799547016620636 type=clause pages=[45] chunk_id=485c4989-c300-45c8-ac06-79a59492bb5c-c0122-db2b4be2b1
+   # 6 chunk_index=120 score=0.6999216675758362 type=clause pages=[45] chunk_id=485c4989-c300-45c8-ac06-79a59492bb5c-c0120-781c9e318c
+   # 7 chunk_index=119 score=0.6679917573928833 type=paragraph pages=[45] chunk_id=485c4989-c300-45c8-ac06-79a59492bb5c-c0119-081d7cfeb3
+   # 8 chunk_index=98 score=0.6167886257171631 type=clause pages=[36] chunk_id=485c4989-c300-45c8-ac06-79a59492bb5c-c0098-03d8b3aa54
+   # 9 chunk_index=115 score=0.37877392768859863 type=clause pages=[43] chunk_id=485c4989-c300-45c8-ac06-79a59492bb5c-c0115-ea57db8635
+   #10 chunk_index=100 score=0.16537992656230927 type=clause pages=[36, 37] chunk_id=485c4989-c300-45c8-ac06-79a59492bb5c-c0100-d1377a7b3c
+  Context assembly (separate from ranking):
+
+====================================================================================================
+RET-039 | cross_reference | easy | split=heldout
+====================================================================================================
+Question: Which appendix provides the detailed obligations for implementing targeted financial sanctions relating to terrorism financing?
+Primary gold chunk(s): ['485c4989-c300-45c8-ac06-79a59492bb5c-c0160-41189942a4']
+Supporting chunk(s)  : []
+
+[dense] status=ok elapsed=0.05s
+first_relevant_rank=9 | RR=0.1111 | Hit@1=0 | Hit@3=0 | Hit@5=0 | Hit@10=1 | Recall@1=0.000 | Recall@3=0.000 | Recall@5=0.000 | Recall@10=1.000 | Complete@1=0 | Complete@3=0 | Complete@5=0 | Complete@10=1
+   # 1 chunk_index=234 score=0.666989266872406 type=clause pages=[86] chunk_id=485c4989-c300-45c8-ac06-79a59492bb5c-c0234-35c92911bb
+   # 2 chunk_index=236 score=0.663587212562561 type=table pages=[86, 87] chunk_id=485c4989-c300-45c8-ac06-79a59492bb5c-c0236-63f196d79f
+   # 3 chunk_index=6 score=0.6409723376648236 type=clause pages=[6] chunk_id=485c4989-c300-45c8-ac06-79a59492bb5c-c0006-7370ea1972
+   # 4 chunk_index=243 score=0.6405435800552368 type=table pages=[90] chunk_id=485c4989-c300-45c8-ac06-79a59492bb5c-c0243-50a6e75db4
+   # 5 chunk_index=0 score=0.6283913629288305 type=title pages=[1] chunk_id=485c4989-c300-45c8-ac06-79a59492bb5c-c0000-deae3315c3
+   # 6 chunk_index=7 score=0.6237528920173645 type=clause pages=[6, 7] chunk_id=485c4989-c300-45c8-ac06-79a59492bb5c-c0007-22ed76c058
+   # 7 chunk_index=235 score=0.6161260604858398 type=clause pages=[86] chunk_id=485c4989-c300-45c8-ac06-79a59492bb5c-c0235-8ccfd3b8c3
+   # 8 chunk_index=53 score=0.6076366901397705 type=clause pages=[18, 19] chunk_id=485c4989-c300-45c8-ac06-79a59492bb5c-c0053-46174d100c
+ * # 9 chunk_index=160 score=0.6016268730163574 type=clause pages=[61] chunk_id=485c4989-c300-45c8-ac06-79a59492bb5c-c0160-41189942a4
+   #10 chunk_index=247 score=0.5893877989418637 type=paragraph pages=[91] chunk_id=485c4989-c300-45c8-ac06-79a59492bb5c-c0247-4fb1eeef28
+
+[hybrid] status=ok elapsed=0.29s
+first_relevant_rank=3 | RR=0.3333 | Hit@1=0 | Hit@3=1 | Hit@5=1 | Hit@10=1 | Recall@1=0.000 | Recall@3=1.000 | Recall@5=1.000 | Recall@10=1.000 | Complete@1=0 | Complete@3=1 | Complete@5=1 | Complete@10=1
+   # 1 chunk_index=234 score=0.03177805800756621 type=clause pages=[86] chunk_id=485c4989-c300-45c8-ac06-79a59492bb5c-c0234-35c92911bb
+   # 2 chunk_index=7 score=0.03128054740957967 type=clause pages=[6, 7] chunk_id=485c4989-c300-45c8-ac06-79a59492bb5c-c0007-22ed76c058
+ * # 3 chunk_index=160 score=0.030886196246139225 type=clause pages=[61] chunk_id=485c4989-c300-45c8-ac06-79a59492bb5c-c0160-41189942a4
+   # 4 chunk_index=236 score=0.029827662395050816 type=table pages=[86, 87] chunk_id=485c4989-c300-45c8-ac06-79a59492bb5c-c0236-63f196d79f
+   # 5 chunk_index=6 score=0.02976190476190476 type=clause pages=[6] chunk_id=485c4989-c300-45c8-ac06-79a59492bb5c-c0006-7370ea1972
+   # 6 chunk_index=243 score=0.029709507042253523 type=table pages=[90] chunk_id=485c4989-c300-45c8-ac06-79a59492bb5c-c0243-50a6e75db4
+   # 7 chunk_index=235 score=0.028258706467661692 type=clause pages=[86] chunk_id=485c4989-c300-45c8-ac06-79a59492bb5c-c0235-8ccfd3b8c3
+   # 8 chunk_index=247 score=0.027799227799227798 type=paragraph pages=[91] chunk_id=485c4989-c300-45c8-ac06-79a59492bb5c-c0247-4fb1eeef28
+   # 9 chunk_index=53 score=0.027526395173453996 type=clause pages=[18, 19] chunk_id=485c4989-c300-45c8-ac06-79a59492bb5c-c0053-46174d100c
+   #10 chunk_index=245 score=0.027242401779095628 type=table pages=[90] chunk_id=485c4989-c300-45c8-ac06-79a59492bb5c-c0245-2a27d3f444
+
+[hybrid_rerank] status=ok elapsed=1.31s
+first_relevant_rank=1 | RR=1.0000 | Hit@1=1 | Hit@3=1 | Hit@5=1 | Hit@10=1 | Recall@1=1.000 | Recall@3=1.000 | Recall@5=1.000 | Recall@10=1.000 | Complete@1=1 | Complete@3=1 | Complete@5=1 | Complete@10=1
+ContextRecall@1=1.000 | ContextComplete@1=1 | ContextChunks@1=1 | ContextRecall@3=1.000 | ContextComplete@3=1 | ContextChunks@3=3 | ContextRecall@5=1.000 | ContextComplete@5=1 | ContextChunks@5=5 | ContextRecall@10=1.000 | ContextComplete@10=1 | ContextChunks@10=11
+ * # 1 chunk_index=160 score=0.9994233846664429 type=clause pages=[61] chunk_id=485c4989-c300-45c8-ac06-79a59492bb5c-c0160-41189942a4
+   # 2 chunk_index=234 score=0.9861806035041809 type=clause pages=[86] chunk_id=485c4989-c300-45c8-ac06-79a59492bb5c-c0234-35c92911bb
+   # 3 chunk_index=245 score=0.9813360571861267 type=table pages=[90] chunk_id=485c4989-c300-45c8-ac06-79a59492bb5c-c0245-2a27d3f444
+   # 4 chunk_index=247 score=0.9775950312614441 type=paragraph pages=[91] chunk_id=485c4989-c300-45c8-ac06-79a59492bb5c-c0247-4fb1eeef28
+   # 5 chunk_index=7 score=0.9758573174476624 type=clause pages=[6, 7] chunk_id=485c4989-c300-45c8-ac06-79a59492bb5c-c0007-22ed76c058
+   # 6 chunk_index=243 score=0.9747271537780762 type=table pages=[90] chunk_id=485c4989-c300-45c8-ac06-79a59492bb5c-c0243-50a6e75db4
+   # 7 chunk_index=240 score=0.9608502388000488 type=clause pages=[88] chunk_id=485c4989-c300-45c8-ac06-79a59492bb5c-c0240-790411c67b
+   # 8 chunk_index=235 score=0.9592044949531555 type=clause pages=[86] chunk_id=485c4989-c300-45c8-ac06-79a59492bb5c-c0235-8ccfd3b8c3
+   # 9 chunk_index=236 score=0.9588747024536133 type=table pages=[86, 87] chunk_id=485c4989-c300-45c8-ac06-79a59492bb5c-c0236-63f196d79f
+   #10 chunk_index=241 score=0.9562820792198181 type=clause pages=[89] chunk_id=485c4989-c300-45c8-ac06-79a59492bb5c-c0241-57faa0c1ac
+  Context assembly (separate from ranking):
+     context#6 chunk_index=242 source_rank=6 seed_rank=None reasons=['preceding_intro'] pages=[89] chunk_id=485c4989-c300-45c8-ac06-79a59492bb5c-c0242-6008df2d99
+     context#9 chunk_index=235 source_rank=8 seed_rank=8 reasons=['ranked_seed', 'preceding_intro'] pages=[86] chunk_id=485c4989-c300-45c8-ac06-79a59492bb5c-c0235-8ccfd3b8c3
+     context#10 chunk_index=236 source_rank=8 seed_rank=9 reasons=['ranked_seed', 'following_table'] pages=[86, 87] chunk_id=485c4989-c300-45c8-ac06-79a59492bb5c-c0236-63f196d79f

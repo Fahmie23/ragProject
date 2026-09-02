@@ -1,0 +1,254 @@
+{
+  "document_id": "485c4989-c300-45c8-ac06-79a59492bb5c",
+  "query": "How do the Guidelines define a beneficial owner in the context of a legal person?",
+  "embedding_model": "BAAI/bge-m3",
+  "requested_device": "auto",
+  "resolved_device": "cuda",
+  "top_k": 10,
+  "embedded_chunk_count": 284,
+  "total_chunk_count": 284,
+  "hits": [
+    {
+      "rank": 1,
+      "chunk_id": "485c4989-c300-45c8-ac06-79a59492bb5c-c0011-01b2d194b2",
+      "chunk_index": 11,
+      "semantic_type": "definition",
+      "score": 0.7140809297561646,
+      "distance": 0.28591907024383545,
+      "text": "Section: PART I: INTRODUCTION AND APPLICABILITY > 3. DEFINITIONS\nDefinition: beneficial owner\n\nbeneficial owner\n\nin the context of legal person, means any natural person who ultimately owns or controls a customer and/or the natural person on whose behalf a transaction is being conducted. It also includes the natural person who exercises ultimate effective control over a legal person.\nReference to “ultimately owns or controls” and “ultimate effective control” refer to situations in which ownership or control is exercised through a chain of ownership or by means of control other than direct control.\nin the context of legal arrangements, beneficial owner includes: (a) the settlor(s); (b) the trustee(s); (c) the protector(s) (if any); (d) each beneficiary, or where applicable, the class of beneficiaries and objects of a power; and (e) any other natural person(s) exercising ultimate effective control over the legal arrangement. In the case of a legal arrangement similar to an express trust, beneficial owner refers to the natural person(s) holding an equivalent position to those referred above. When the trustee and any other party to the legal arrangement is a legal person, the beneficial owner of that legal person should be identified.\nReference to “ultimate effective control” over trusts or similar legal arrangements includes situations in which ownership or control is exercised through a chain of ownership or control.",
+      "content_text": "beneficial owner\n\nin the context of legal person, means any natural person who ultimately owns or controls a customer and/or the natural person on whose behalf a transaction is being conducted. It also includes the natural person who exercises ultimate effective control over a legal person.\nReference to “ultimately owns or controls” and “ultimate effective control” refer to situations in which ownership or control is exercised through a chain of ownership or by means of control other than direct control.\nin the context of legal arrangements, beneficial owner includes: (a) the settlor(s); (b) the trustee(s); (c) the protector(s) (if any); (d) each beneficiary, or where applicable, the class of beneficiaries and objects of a power; and (e) any other natural person(s) exercising ultimate effective control over the legal arrangement. In the case of a legal arrangement similar to an express trust, beneficial owner refers to the natural person(s) holding an equivalent position to those referred above. When the trustee and any other party to the legal arrangement is a legal person, the beneficial owner of that legal person should be identified.\nReference to “ultimate effective control” over trusts or similar legal arrangements includes situations in which ownership or control is exercised through a chain of ownership or control.",
+      "token_count": 277,
+      "pages": [
+        9
+      ],
+      "section_path": [
+        "PART I: INTRODUCTION AND APPLICABILITY",
+        "3. DEFINITIONS"
+      ],
+      "source_element_ids": [
+        "p9-e5",
+        "p9-e6",
+        "p9-e7",
+        "p9-e8",
+        "p9-e9"
+      ]
+    },
+    {
+      "rank": 2,
+      "chunk_id": "485c4989-c300-45c8-ac06-79a59492bb5c-c0252-9a962e9453",
+      "chunk_index": 252,
+      "semantic_type": "clause",
+      "score": 0.7042053518172902,
+      "distance": 0.29579464818270984,
+      "text": "Section: APPENDIX E > Identification\n\n1.3 Beneficial owner is defined as a natural person:\n\n(a)who ultimately owns a customer;\n\n(b)who ultimately controls a customer;\n\n(c)on whose behalf a transaction is being conducted; and/or\n\n(d)who exercises ultimate effective control over a legal person or arrangement.\n\n1.4 To determine the identity of beneficial owners of a customer, reporting institutions\nshould seek to understand the complexities of the customer’s ownership structure,\ngovernance and/or arrangement at each layer. An entity may have several beneficial\nowners, depending on its size and the complexity of its structure and governance.\n\n1.5 There may be more than one beneficial owner associated with a customer. Reporting\ninstitutions’ regulatory obligations relating to beneficial ownership are applicable on all\nthe beneficial owners.",
+      "content_text": "1.3 Beneficial owner is defined as a natural person:\n\n(a)who ultimately owns a customer;\n\n(b)who ultimately controls a customer;\n\n(c)on whose behalf a transaction is being conducted; and/or\n\n(d)who exercises ultimate effective control over a legal person or arrangement.\n\n1.4 To determine the identity of beneficial owners of a customer, reporting institutions\nshould seek to understand the complexities of the customer’s ownership structure,\ngovernance and/or arrangement at each layer. An entity may have several beneficial\nowners, depending on its size and the complexity of its structure and governance.\n\n1.5 There may be more than one beneficial owner associated with a customer. Reporting\ninstitutions’ regulatory obligations relating to beneficial ownership are applicable on all\nthe beneficial owners.",
+      "token_count": 159,
+      "pages": [
+        92,
+        93
+      ],
+      "section_path": [
+        "APPENDIX E",
+        "Identification"
+      ],
+      "source_element_ids": [
+        "p92-e11",
+        "p92-e12",
+        "p92-e13",
+        "p92-e14",
+        "p92-e15",
+        "p92-e16",
+        "p93-e1"
+      ]
+    },
+    {
+      "rank": 3,
+      "chunk_id": "485c4989-c300-45c8-ac06-79a59492bb5c-c0259-61724dcafa",
+      "chunk_index": 259,
+      "semantic_type": "list_item",
+      "score": 0.6595332432349678,
+      "distance": 0.34046675676503224,
+      "text": "Section: APPENDIX E > Identification\nGroup: Steps to identify beneficial owner > Legal person\n\n(i) Reflecting dominant influence to appoint or remove directors/ senior\nmanagement;\n\n(ii) Having the power of attorney over the entity;\n\n(iii)Owning stocks or rights over outstanding debts that are convertible into\nvoting equity;\n\n(iv)Participating in the financing of the enterprise; or\n\n(v)Having control through trusts, agreements, arrangements, understandings,\npolicies or practices, close and intimate family relationships or if a company\ndefaults on certain payments.",
+      "content_text": "(i) Reflecting dominant influence to appoint or remove directors/ senior\nmanagement;\n\n(ii) Having the power of attorney over the entity;\n\n(iii)Owning stocks or rights over outstanding debts that are convertible into\nvoting equity;\n\n(iv)Participating in the financing of the enterprise; or\n\n(v)Having control through trusts, agreements, arrangements, understandings,\npolicies or practices, close and intimate family relationships or if a company\ndefaults on certain payments.",
+      "token_count": 104,
+      "pages": [
+        95
+      ],
+      "section_path": [
+        "APPENDIX E",
+        "Identification"
+      ],
+      "source_element_ids": [
+        "p95-e1",
+        "p95-e2",
+        "p95-e3",
+        "p95-e4",
+        "p95-e5"
+      ]
+    },
+    {
+      "rank": 4,
+      "chunk_id": "485c4989-c300-45c8-ac06-79a59492bb5c-c0249-158df30f90",
+      "chunk_index": 249,
+      "semantic_type": "paragraph",
+      "score": 0.6528727010748598,
+      "distance": 0.34712729892514016,
+      "text": "Section: APPENDIX E\n\nGuidance on Beneficial Ownership for Legal Persons and Legal Arrangement\n(in relation to paragraphs 8.1.8 to 8.1.17 of these Guidelines)",
+      "content_text": "Guidance on Beneficial Ownership for Legal Persons and Legal Arrangement\n(in relation to paragraphs 8.1.8 to 8.1.17 of these Guidelines)",
+      "token_count": 34,
+      "pages": [
+        92
+      ],
+      "section_path": [
+        "APPENDIX E"
+      ],
+      "source_element_ids": [
+        "p92-e2"
+      ]
+    },
+    {
+      "rank": 5,
+      "chunk_id": "485c4989-c300-45c8-ac06-79a59492bb5c-c0250-f52650db4c",
+      "chunk_index": 250,
+      "semantic_type": "clause",
+      "score": 0.6465540528297424,
+      "distance": 0.35344594717025757,
+      "text": "Section: APPENDIX E > Introduction\nClause: 1.1\n\n1.1 The obligations of a reporting institution on beneficial ownership requirements are:\n\n(a)identifying a natural person who is the beneficial owner of the customer and\nobtaining information that describes the ownership, control and structure of the\nlegal persons/ legal arrangements relating to the beneficial owner;\n\n(b)taking reasonable measures to verify the accuracy of the information obtained\nand keeping records of all relevant documents;\n\n(c)conducting customer risk profiling to identify the risk category of the beneficial\nowner; and\n\n(d)performing further regulatory obligations based on the risk category of the\nbeneficial owner such as CDD, sanction screening and high-risk jurisdiction.",
+      "content_text": "1.1 The obligations of a reporting institution on beneficial ownership requirements are:\n\n(a)identifying a natural person who is the beneficial owner of the customer and\nobtaining information that describes the ownership, control and structure of the\nlegal persons/ legal arrangements relating to the beneficial owner;\n\n(b)taking reasonable measures to verify the accuracy of the information obtained\nand keeping records of all relevant documents;\n\n(c)conducting customer risk profiling to identify the risk category of the beneficial\nowner; and\n\n(d)performing further regulatory obligations based on the risk category of the\nbeneficial owner such as CDD, sanction screening and high-risk jurisdiction.",
+      "token_count": 133,
+      "pages": [
+        92
+      ],
+      "section_path": [
+        "APPENDIX E",
+        "Introduction"
+      ],
+      "source_element_ids": [
+        "p92-e4",
+        "p92-e5",
+        "p92-e6",
+        "p92-e7",
+        "p92-e8"
+      ]
+    },
+    {
+      "rank": 6,
+      "chunk_id": "485c4989-c300-45c8-ac06-79a59492bb5c-c0257-818930868d",
+      "chunk_index": 257,
+      "semantic_type": "clause",
+      "score": 0.6442434787750244,
+      "distance": 0.3557565212249756,
+      "text": "Section: APPENDIX E > Identification\nClause: 1.8\nGroup: Steps to identify beneficial owner > Legal person\n\n1.8 Step 1: Identify the natural person(s), if any, who ultimately have\ncontrolling ownership interest in the legal person\n\n(a) Having ultimate controlling ownership interest over an entity includes having more\nthan 25% ownership or equity interest in an entity which may be observed, among\nothers, through share capital, capital contribution or voting rights. The ownership\nmay either be direct ownership (through ownership of shares within the entity\nitself) or indirect ownership (through chain of corporate vehicles). In the case of\na limited liability partnership - partners with capital contribution and/or voting\nrights of more than 25%.\n\n(b) Having a golden share within an entity is similar to having ultimate ownership of\nthe entity, as it refers to 51% ownership.\n\n(c) Shareholders may exercise control alone or together with other shareholders,\nincluding through any contract, understanding, relationship, intermediary or tiered\nentity. In most circumstances, ownership over an entity implies control over the\nentity, as ownership may come with the power and authority to take actions\nand make decisions for the entity. Such a situation can be observed, among\nothers, where:\n\n(i)The natural person has majority voting power within the entity to make\ndecisions; or\n\n(ii)The natural person exercises his right to appoint or remove directors\nor senior management, as a major shareholder.\n\n(d) In implementing Step 1, a natural person identified as fulfilling the criteria in (a)\nshall be identified as the beneficial owner. However, where there is doubt that\nthe person identified under Step 1 is not the beneficial owner; or where no natural\nperson has ultimate controlling ownership interest over the legal person, the\nreporting institution shall carry out Step 2.",
+      "content_text": "1.8 Step 1: Identify the natural person(s), if any, who ultimately have\ncontrolling ownership interest in the legal person\n\n(a) Having ultimate controlling ownership interest over an entity includes having more\nthan 25% ownership or equity interest in an entity which may be observed, among\nothers, through share capital, capital contribution or voting rights. The ownership\nmay either be direct ownership (through ownership of shares within the entity\nitself) or indirect ownership (through chain of corporate vehicles). In the case of\na limited liability partnership - partners with capital contribution and/or voting\nrights of more than 25%.\n\n(b) Having a golden share within an entity is similar to having ultimate ownership of\nthe entity, as it refers to 51% ownership.\n\n(c) Shareholders may exercise control alone or together with other shareholders,\nincluding through any contract, understanding, relationship, intermediary or tiered\nentity. In most circumstances, ownership over an entity implies control over the\nentity, as ownership may come with the power and authority to take actions\nand make decisions for the entity. Such a situation can be observed, among\nothers, where:\n\n(i)The natural person has majority voting power within the entity to make\ndecisions; or\n\n(ii)The natural person exercises his right to appoint or remove directors\nor senior management, as a major shareholder.\n\n(d) In implementing Step 1, a natural person identified as fulfilling the criteria in (a)\nshall be identified as the beneficial owner. However, where there is doubt that\nthe person identified under Step 1 is not the beneficial owner; or where no natural\nperson has ultimate controlling ownership interest over the legal person, the\nreporting institution shall carry out Step 2.",
+      "token_count": 355,
+      "pages": [
+        94
+      ],
+      "section_path": [
+        "APPENDIX E",
+        "Identification"
+      ],
+      "source_element_ids": [
+        "p94-e1",
+        "p94-e2",
+        "p94-e3",
+        "p94-e4",
+        "p94-e6",
+        "p94-e7",
+        "p94-e8"
+      ]
+    },
+    {
+      "rank": 7,
+      "chunk_id": "485c4989-c300-45c8-ac06-79a59492bb5c-c0097-1867d471cc",
+      "chunk_index": 97,
+      "semantic_type": "paragraph",
+      "score": 0.640283963663343,
+      "distance": 0.35971603633665705,
+      "text": "Section: PART III: CUSTOMER DUE DILIGENCE > 8. CUSTOMER DUE DILIGENCE (CDD) > 8.1 CDD at the point of establishing business relationship\nGroup: Guidance for paragraphs 8.1.8 to 8.1.17\n\nAppendix E of these Guidelines sets out guidance and recommended best practices\nto guide reporting institutions in complying with the relevant requirements in relation\nto identification of beneficial owners of legal persons and legal arrangement.",
+      "content_text": "Appendix E of these Guidelines sets out guidance and recommended best practices\nto guide reporting institutions in complying with the relevant requirements in relation\nto identification of beneficial owners of legal persons and legal arrangement.",
+      "token_count": 81,
+      "pages": [
+        36
+      ],
+      "section_path": [
+        "PART III: CUSTOMER DUE DILIGENCE",
+        "8. CUSTOMER DUE DILIGENCE (CDD)",
+        "8.1 CDD at the point of establishing business relationship"
+      ],
+      "source_element_ids": [
+        "p36-e2"
+      ]
+    },
+    {
+      "rank": 8,
+      "chunk_id": "485c4989-c300-45c8-ac06-79a59492bb5c-c0263-ab9dde7c79",
+      "chunk_index": 263,
+      "semantic_type": "clause",
+      "score": 0.6388562917709351,
+      "distance": 0.36114370822906494,
+      "text": "Section: APPENDIX E > Identification\nClause: 1.12\nGroup: Methods to identify beneficial owners\n\n1.12 Depending on the type of legal person or legal arrangement, identity of beneficial\nowners may be determined based on the following relationships.",
+      "content_text": "1.12 Depending on the type of legal person or legal arrangement, identity of beneficial\nowners may be determined based on the following relationships.",
+      "token_count": 45,
+      "pages": [
+        97
+      ],
+      "section_path": [
+        "APPENDIX E",
+        "Identification"
+      ],
+      "source_element_ids": [
+        "p97-e2"
+      ]
+    },
+    {
+      "rank": 9,
+      "chunk_id": "485c4989-c300-45c8-ac06-79a59492bb5c-c0265-726c76e8c2",
+      "chunk_index": 265,
+      "semantic_type": "table",
+      "score": 0.6284221036182591,
+      "distance": 0.3715778963817409,
+      "text": "Section: APPENDIX E > Identification\nGroup: Methods to identify beneficial owners\n\nType of legal person/legal arrangement | Relationships to be determined, if any\n | • Other member with effective control over the club/societies/charities/foundations/ cooperatives\nTrust arrangement | • Settlor • Trustee • Protector • Beneficiaries or class of beneficiaries • Other natural persons with effective control over the trust",
+      "content_text": "Type of legal person/legal arrangement | Relationships to be determined, if any\n | • Other member with effective control over the club/societies/charities/foundations/ cooperatives\nTrust arrangement | • Settlor • Trustee • Protector • Beneficiaries or class of beneficiaries • Other natural persons with effective control over the trust",
+      "token_count": 71,
+      "pages": [
+        98
+      ],
+      "section_path": [
+        "APPENDIX E",
+        "Identification"
+      ],
+      "source_element_ids": [
+        "p98-e2"
+      ]
+    },
+    {
+      "rank": 10,
+      "chunk_id": "485c4989-c300-45c8-ac06-79a59492bb5c-c0258-cd8455196d",
+      "chunk_index": 258,
+      "semantic_type": "clause",
+      "score": 0.6264486908912659,
+      "distance": 0.37355130910873413,
+      "text": "Section: APPENDIX E > Identification\nClause: 1.9\nGroup: Steps to identify beneficial owner > Legal person\n\n1.9 Step 2: Identify the natural person, if any, exercising control of the\nlegal person, through other means\n\n(a) A natural person may also exercise effective control over an entity if he has the\npowers and authority to take actions and make decisions for the entity, including\non matters relating to its financial affairs, financial relationships, operations or\nother matters that may fundamentally affect the business or direction of the\nentity, without having ownership interest over the entity.\n\n(b) Such powers and authority may be attained through other means, such as:\n\n(c) A natural person demonstrating control may be, among others, the entity’s senior\nmanagement, directors, authorised signatory, controller and etc.\n\nWhere, in the course of identifying beneficial owners, reporting institutions\nidentified natural persons who exert control over an entity but have no direct\nownership or apparent control over the entity, this assessment along with\nthe person suspected of being a beneficial owner, should be recorded. Such a\nsituation may be observed through:\n\n(i)personal connections to persons in positions of power within the entity or\npersons who possess ownership over an entity (close or intimate family\nrelationships and historical or contractual associations)\n\n(ii)participation in financing of enterprises which may allow enjoyment or\nbenefits from assets of the legal person",
+      "content_text": "1.9 Step 2: Identify the natural person, if any, exercising control of the\nlegal person, through other means\n\n(a) A natural person may also exercise effective control over an entity if he has the\npowers and authority to take actions and make decisions for the entity, including\non matters relating to its financial affairs, financial relationships, operations or\nother matters that may fundamentally affect the business or direction of the\nentity, without having ownership interest over the entity.\n\n(b) Such powers and authority may be attained through other means, such as:\n\n(c) A natural person demonstrating control may be, among others, the entity’s senior\nmanagement, directors, authorised signatory, controller and etc.\n\nWhere, in the course of identifying beneficial owners, reporting institutions\nidentified natural persons who exert control over an entity but have no direct\nownership or apparent control over the entity, this assessment along with\nthe person suspected of being a beneficial owner, should be recorded. Such a\nsituation may be observed through:\n\n(i)personal connections to persons in positions of power within the entity or\npersons who possess ownership over an entity (close or intimate family\nrelationships and historical or contractual associations)\n\n(ii)participation in financing of enterprises which may allow enjoyment or\nbenefits from assets of the legal person",
+      "token_count": 271,
+      "pages": [
+        94,
+        95
+      ],
+      "section_path": [
+        "APPENDIX E",
+        "Identification"
+      ],
+      "source_element_ids": [
+        "p94-e9",
+        "p94-e10",
+        "p94-e11",
+        "p95-e6",
+        "p95-e7",
+        "p95-e8",
+        "p95-e9"
+      ]
+    }
+  ]
+}

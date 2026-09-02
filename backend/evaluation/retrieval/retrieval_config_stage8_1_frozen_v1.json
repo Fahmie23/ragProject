@@ -1,0 +1,26 @@
+{
+  "schema_version": "1.0",
+  "config_id": "retrieval_stage8_1_frozen_v1",
+  "status": "frozen",
+  "description": "Historical Stage 8.1 ranking configuration, preserved unchanged for reproducibility before Stage 8.2 context assembly.",
+  "evaluation": {
+    "ks": [1, 3, 5, 10],
+    "top_k": 10,
+    "timeout_seconds": 900
+  },
+  "embedding": {
+    "model": "BAAI/bge-m3",
+    "device": "auto"
+  },
+  "hybrid": {
+    "candidate_k": 20,
+    "rrf_k": 60,
+    "dense_weight": 1.0,
+    "lexical_weight": 1.0
+  },
+  "reranker": {
+    "model": "BAAI/bge-reranker-v2-m3",
+    "device": "auto",
+    "batch_size": 2
+  }
+}

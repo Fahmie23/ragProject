@@ -1,0 +1,255 @@
+{
+  "document_id": "485c4989-c300-45c8-ac06-79a59492bb5c",
+  "query": "After a terrorism-financing sanctions name match is confirmed, what immediate actions are required, and what additional rules apply to attempted transactions and false-positive checks?",
+  "embedding_model": "BAAI/bge-m3",
+  "requested_device": "auto",
+  "resolved_device": "cuda",
+  "top_k": 10,
+  "embedded_chunk_count": 284,
+  "total_chunk_count": 284,
+  "hits": [
+    {
+      "rank": 1,
+      "chunk_id": "485c4989-c300-45c8-ac06-79a59492bb5c-c0160-41189942a4",
+      "chunk_index": 160,
+      "semantic_type": "clause",
+      "score": 0.6880730390548706,
+      "distance": 0.3119269609451294,
+      "text": "Section: PART VII: COMBATING TERRORISM FINANCING > 14 IDENTIFICATION AND DESIGNATION\n\n14.5 A reporting institution is required to submit a STR when there is an attempted\ntransaction by any of the listed persons.\n\n14.6 A reporting institution must ascertain potential matches with the UN Consolidated List\nto confirm whether they are true matches to eliminate any “false positives”. The\nreporting institution must make further enquiries from the customer or counterparty\n(where relevant) to assist in determining whether it is a true match.\n\n14.8 Appendix D provides the detailed obligations of a reporting institution for the\nimplementation of the targeted financial sanctions in relation to terrorism financing.",
+      "content_text": "14.5 A reporting institution is required to submit a STR when there is an attempted\ntransaction by any of the listed persons.\n\n14.6 A reporting institution must ascertain potential matches with the UN Consolidated List\nto confirm whether they are true matches to eliminate any “false positives”. The\nreporting institution must make further enquiries from the customer or counterparty\n(where relevant) to assist in determining whether it is a true match.\n\n14.8 Appendix D provides the detailed obligations of a reporting institution for the\nimplementation of the targeted financial sanctions in relation to terrorism financing.",
+      "token_count": 122,
+      "pages": [
+        61
+      ],
+      "section_path": [
+        "PART VII: COMBATING TERRORISM FINANCING",
+        "14 IDENTIFICATION AND DESIGNATION"
+      ],
+      "source_element_ids": [
+        "p61-e4",
+        "p61-e5",
+        "p61-e9"
+      ]
+    },
+    {
+      "rank": 2,
+      "chunk_id": "485c4989-c300-45c8-ac06-79a59492bb5c-c0246-81b5268a66",
+      "chunk_index": 246,
+      "semantic_type": "clause",
+      "score": 0.6684613027022763,
+      "distance": 0.3315386972977237,
+      "text": "Section: APPENDIX D > False positives\nGroup: Guidance on the Implementation of Targeted Financial Sanction in\nRelation to Terrorism Financing\n\n6.1 A reporting institution may forward queries to the Ministry of Home Affairs to ascertain\nwhether or not the customer is a listed individual or entity in cases of similar name\nmatch with any listed entities.\n\n6.2 A reporting institution should direct its customers to the Ministry of Home Affairs to\nverify the false positive match in the event their accounts have been mistakenly frozen\nor transactions have been mistakenly rejected or blocked.",
+      "content_text": "6.1 A reporting institution may forward queries to the Ministry of Home Affairs to ascertain\nwhether or not the customer is a listed individual or entity in cases of similar name\nmatch with any listed entities.\n\n6.2 A reporting institution should direct its customers to the Ministry of Home Affairs to\nverify the false positive match in the event their accounts have been mistakenly frozen\nor transactions have been mistakenly rejected or blocked.",
+      "token_count": 101,
+      "pages": [
+        90
+      ],
+      "section_path": [
+        "APPENDIX D",
+        "False positives"
+      ],
+      "source_element_ids": [
+        "p90-e8",
+        "p90-e9"
+      ]
+    },
+    {
+      "rank": 3,
+      "chunk_id": "485c4989-c300-45c8-ac06-79a59492bb5c-c0161-20f0fa1973",
+      "chunk_index": 161,
+      "semantic_type": "clause",
+      "score": 0.6613462365476046,
+      "distance": 0.3386537634523954,
+      "text": "Section: PART VII: COMBATING TERRORISM FINANCING > 14 IDENTIFICATION AND DESIGNATION\nClause: 14.7\n\n14.7 In addition to relying on the consolidated list, a reporting institution is also required\nto closely monitor news or developments concerning terrorist activities or terrorism\nfinancing. Where names of individuals or entities involved in such terrorist activities\nor terrorism financing are identified, the reporting institution must check these names\nagainst its existing customer database. Where there is a name match, the reporting\ninstitution must–\n\n(a)lodge a STR with the FIED; and\n\n(b)notify the SC.",
+      "content_text": "14.7 In addition to relying on the consolidated list, a reporting institution is also required\nto closely monitor news or developments concerning terrorist activities or terrorism\nfinancing. Where names of individuals or entities involved in such terrorist activities\nor terrorism financing are identified, the reporting institution must check these names\nagainst its existing customer database. Where there is a name match, the reporting\ninstitution must–\n\n(a)lodge a STR with the FIED; and\n\n(b)notify the SC.",
+      "token_count": 109,
+      "pages": [
+        61
+      ],
+      "section_path": [
+        "PART VII: COMBATING TERRORISM FINANCING",
+        "14 IDENTIFICATION AND DESIGNATION"
+      ],
+      "source_element_ids": [
+        "p61-e6",
+        "p61-e7",
+        "p61-e8"
+      ]
+    },
+    {
+      "rank": 4,
+      "chunk_id": "485c4989-c300-45c8-ac06-79a59492bb5c-c0165-8354c916df",
+      "chunk_index": 165,
+      "semantic_type": "clause",
+      "score": 0.6353300213813782,
+      "distance": 0.3646699786186218,
+      "text": "Section: PART VIII: COMBATING PROLIFERATION FINANCING > 17. CONDUCT SANCTIONS SCREENING ON CUSTOMERS\n\n17.1 A reporting institution must conduct sanctions screening on its existing, new and\npotential customers, to check for any positive name matched with any designated\nperson.\n\n17.2 A reporting institution must screen its entire customer database without delay when\nnew names are listed in the UNSCR.\n\n17.4 If there is a positive name match, a reporting institution must take reasonable and\nappropriate measures to verify and confirm the identity of its customer against the\ndesignated person.",
+      "content_text": "17.1 A reporting institution must conduct sanctions screening on its existing, new and\npotential customers, to check for any positive name matched with any designated\nperson.\n\n17.2 A reporting institution must screen its entire customer database without delay when\nnew names are listed in the UNSCR.\n\n17.4 If there is a positive name match, a reporting institution must take reasonable and\nappropriate measures to verify and confirm the identity of its customer against the\ndesignated person.",
+      "token_count": 104,
+      "pages": [
+        62,
+        63
+      ],
+      "section_path": [
+        "PART VIII: COMBATING PROLIFERATION FINANCING",
+        "17. CONDUCT SANCTIONS SCREENING ON CUSTOMERS"
+      ],
+      "source_element_ids": [
+        "p62-e10",
+        "p62-e11",
+        "p63-e3"
+      ]
+    },
+    {
+      "rank": 5,
+      "chunk_id": "485c4989-c300-45c8-ac06-79a59492bb5c-c0159-7448ed6ef9",
+      "chunk_index": 159,
+      "semantic_type": "clause",
+      "score": 0.6302537885535195,
+      "distance": 0.36974621144648046,
+      "text": "Section: PART VII: COMBATING TERRORISM FINANCING > 14 IDENTIFICATION AND DESIGNATION\nClause: 14.4\n\n14.4 For the purpose of implementing the obligations under section 66B and section 66C\nof the AMLA, a reporting institution must conduct checks on the names of potential\nand new customers, as well as regular checks on the names of existing customers,\nagainst the names in the database. If there is any name match, the reporting\ninstitution must take reasonable and appropriate measures to verify and confirm the\nidentity of its customer. Upon such confirmation, the reporting institution must\nimmediately–\n\n(a)freeze without delay the customer’s fund or block the transaction, if it is an\nexisting customer;\n\n(b)reject the customer, if the transaction has not commenced;\n\n(c)lodge a STR with the FIED; and\n\n(d)notify the SC.",
+      "content_text": "14.4 For the purpose of implementing the obligations under section 66B and section 66C\nof the AMLA, a reporting institution must conduct checks on the names of potential\nand new customers, as well as regular checks on the names of existing customers,\nagainst the names in the database. If there is any name match, the reporting\ninstitution must take reasonable and appropriate measures to verify and confirm the\nidentity of its customer. Upon such confirmation, the reporting institution must\nimmediately–\n\n(a)freeze without delay the customer’s fund or block the transaction, if it is an\nexisting customer;\n\n(b)reject the customer, if the transaction has not commenced;\n\n(c)lodge a STR with the FIED; and\n\n(d)notify the SC.",
+      "token_count": 163,
+      "pages": [
+        60,
+        61
+      ],
+      "section_path": [
+        "PART VII: COMBATING TERRORISM FINANCING",
+        "14 IDENTIFICATION AND DESIGNATION"
+      ],
+      "source_element_ids": [
+        "p60-e10",
+        "p60-e11",
+        "p61-e1",
+        "p61-e2",
+        "p61-e3"
+      ]
+    },
+    {
+      "rank": 6,
+      "chunk_id": "485c4989-c300-45c8-ac06-79a59492bb5c-c0007-22ed76c058",
+      "chunk_index": 7,
+      "semantic_type": "clause",
+      "score": 0.5991148948669434,
+      "distance": 0.40088510513305664,
+      "text": "Section: PART I: INTRODUCTION AND APPLICABILITY > 1.0 INTRODUCTION\n\n1.2 These Guidelines are drawn up in accordance with the AMLA and the Financial Action Task\nForce (FATF) 40 Recommendations.\n\n1Regulation 3 of Strategic Trade (United Nations Security Council Resolutions) Regulations 2010 (P.U. (A) 481/2010) is set out in\nAppendix G of these Guidelines.\n\n1.3 These Guidelines provide:\n\n(a)requirements and obligations imposed on reporting institutions in preventing and\ncombating money laundering, terrorism financing, proliferation financing and\ntargeted financial sanctions; and\n\n(b)guidance for reporting institutions to comply with the obligations imposed under the\nAMLA and TFS-PF.\n\n1.4 These Guidelines supersede and replace the Guidelines on Implementation of Targeted\nFinancial Sanctions Relating to Proliferation Financing for Capital Markets.\n\n1.5 These Guidelines are made in addition to and not in derogation of any other guidelines\nissued by the Securities Commission Malaysia (SC) or any requirements as provided under\nthe securities laws and the AMLA. Therefore, a reporting institution must comply with\nother relevant guidelines and requirements.\n\n1.6 A reporting institution that is jointly regulated by Bank Negara Malaysia (BNM) and the\nSC, is required to comply with these Guidelines and the Anti-Money Laundering,\nCountering Financing of Terrorism, Countering Proliferation Financing and Targeted\nFinancial Sanctions for Financial Institutions (AML/CFT and TFS for FIs) issued by BNM.\nWhere there are differing requirements between the said guidelines, the more stringent\nrequirements shall apply.\n\n1.7 Non-compliance with any of the provisions in these Guidelines will subject the reporting\ninstitution to actions under the AMLA, Capital Markets and Services Act 2007 (CMSA) or\nany other relevant provisions under the laws of which these Guidelines are subject to.\nEnforcement actions can be taken against the reporting institutions including its directors,\nofficers, representatives, employees for any non-compliance with any requirements in these\nGuidelines.",
+      "content_text": "1.2 These Guidelines are drawn up in accordance with the AMLA and the Financial Action Task\nForce (FATF) 40 Recommendations.\n\n1Regulation 3 of Strategic Trade (United Nations Security Council Resolutions) Regulations 2010 (P.U. (A) 481/2010) is set out in\nAppendix G of these Guidelines.\n\n1.3 These Guidelines provide:\n\n(a)requirements and obligations imposed on reporting institutions in preventing and\ncombating money laundering, terrorism financing, proliferation financing and\ntargeted financial sanctions; and\n\n(b)guidance for reporting institutions to comply with the obligations imposed under the\nAMLA and TFS-PF.\n\n1.4 These Guidelines supersede and replace the Guidelines on Implementation of Targeted\nFinancial Sanctions Relating to Proliferation Financing for Capital Markets.\n\n1.5 These Guidelines are made in addition to and not in derogation of any other guidelines\nissued by the Securities Commission Malaysia (SC) or any requirements as provided under\nthe securities laws and the AMLA. Therefore, a reporting institution must comply with\nother relevant guidelines and requirements.\n\n1.6 A reporting institution that is jointly regulated by Bank Negara Malaysia (BNM) and the\nSC, is required to comply with these Guidelines and the Anti-Money Laundering,\nCountering Financing of Terrorism, Countering Proliferation Financing and Targeted\nFinancial Sanctions for Financial Institutions (AML/CFT and TFS for FIs) issued by BNM.\nWhere there are differing requirements between the said guidelines, the more stringent\nrequirements shall apply.\n\n1.7 Non-compliance with any of the provisions in these Guidelines will subject the reporting\ninstitution to actions under the AMLA, Capital Markets and Services Act 2007 (CMSA) or\nany other relevant provisions under the laws of which these Guidelines are subject to.\nEnforcement actions can be taken against the reporting institutions including its directors,\nofficers, representatives, employees for any non-compliance with any requirements in these\nGuidelines.",
+      "token_count": 368,
+      "pages": [
+        6,
+        7
+      ],
+      "section_path": [
+        "PART I: INTRODUCTION AND APPLICABILITY",
+        "1.0 INTRODUCTION"
+      ],
+      "source_element_ids": [
+        "p6-e11",
+        "p6-e12",
+        "p7-e1",
+        "p7-e2",
+        "p7-e3",
+        "p7-e4",
+        "p7-e5",
+        "p7-e6",
+        "p7-e7"
+      ]
+    },
+    {
+      "rank": 7,
+      "chunk_id": "485c4989-c300-45c8-ac06-79a59492bb5c-c0170-bca06805f2",
+      "chunk_index": 170,
+      "semantic_type": "list_item",
+      "score": 0.5987871885299683,
+      "distance": 0.40121281147003174,
+      "text": "Section: PART VIII: COMBATING PROLIFERATION FINANCING > 18. REQUIREMENT TO FREEZE, BLOCK AND REJECT\nGroup: Guidance for False Positive under paragraph 18.2(b)\n\n(a)A reporting institution may forward queries to the SC to determine whether\nthe customer is a designated person in the case of similar or common names.\n\n(b)Any query submitted to the SC must include any additional information,\ncopies of identification documents and relevant analysis conducted by the\nreporting institution.\n\n(c)A reporting institution should advice any customers who complain about\ntheir accounts being inadvertently frozen or transactions being erroneously\nrejected or blocked to contact the Strategic Trade Controller under the STA\nto verify the false positive match.",
+      "content_text": "(a)A reporting institution may forward queries to the SC to determine whether\nthe customer is a designated person in the case of similar or common names.\n\n(b)Any query submitted to the SC must include any additional information,\ncopies of identification documents and relevant analysis conducted by the\nreporting institution.\n\n(c)A reporting institution should advice any customers who complain about\ntheir accounts being inadvertently frozen or transactions being erroneously\nrejected or blocked to contact the Strategic Trade Controller under the STA\nto verify the false positive match.",
+      "token_count": 131,
+      "pages": [
+        64
+      ],
+      "section_path": [
+        "PART VIII: COMBATING PROLIFERATION FINANCING",
+        "18. REQUIREMENT TO FREEZE, BLOCK AND REJECT"
+      ],
+      "source_element_ids": [
+        "p64-e7",
+        "p64-e8",
+        "p64-e9"
+      ]
+    },
+    {
+      "rank": 8,
+      "chunk_id": "485c4989-c300-45c8-ac06-79a59492bb5c-c0247-4fb1eeef28",
+      "chunk_index": 247,
+      "semantic_type": "paragraph",
+      "score": 0.5987522841243585,
+      "distance": 0.40124771587564145,
+      "text": "Section: APPENDIX D > False positives\nGroup: Guidance on the Implementation of Targeted Financial Sanction in\nRelation to Terrorism Financing\n\nThe contact point for the Ministry of Home Affairs in relation to targeted financial sanctions on\nterrorism financing is:",
+      "content_text": "The contact point for the Ministry of Home Affairs in relation to targeted financial sanctions on\nterrorism financing is:",
+      "token_count": 42,
+      "pages": [
+        91
+      ],
+      "section_path": [
+        "APPENDIX D",
+        "False positives"
+      ],
+      "source_element_ids": [
+        "p91-e1"
+      ]
+    },
+    {
+      "rank": 9,
+      "chunk_id": "485c4989-c300-45c8-ac06-79a59492bb5c-c0157-ef9eeb86f5",
+      "chunk_index": 157,
+      "semantic_type": "clause",
+      "score": 0.5963397026062012,
+      "distance": 0.40366029739379883,
+      "text": "Section: PART VII: COMBATING TERRORISM FINANCING > 14 IDENTIFICATION AND DESIGNATION\nClause: 14.2\n\n14.2 A reporting institution is required to keep itself updated with–\n\n(a)the various resolutions passed by the United Nations Security Council (UNSC)\non counter terrorism measures, in particular, the UNSC Resolutions 1267\n(1999), 1373 (2001), 1988 (2011), 1989 (2011), 2253 (2015) and other\nsubsequent resolutions which require sanctions against individuals and entities\nassociated to al-Qaida, Taliban, and the Islamic State in Iraq (Da’esh)\norganisations; and\n\n(b) orders as may be issued under sections 66B and 66C of the AMLA by the\nMinister of Home Affairs.",
+      "content_text": "14.2 A reporting institution is required to keep itself updated with–\n\n(a)the various resolutions passed by the United Nations Security Council (UNSC)\non counter terrorism measures, in particular, the UNSC Resolutions 1267\n(1999), 1373 (2001), 1988 (2011), 1989 (2011), 2253 (2015) and other\nsubsequent resolutions which require sanctions against individuals and entities\nassociated to al-Qaida, Taliban, and the Islamic State in Iraq (Da’esh)\norganisations; and\n\n(b) orders as may be issued under sections 66B and 66C of the AMLA by the\nMinister of Home Affairs.",
+      "token_count": 139,
+      "pages": [
+        60
+      ],
+      "section_path": [
+        "PART VII: COMBATING TERRORISM FINANCING",
+        "14 IDENTIFICATION AND DESIGNATION"
+      ],
+      "source_element_ids": [
+        "p60-e4",
+        "p60-e5",
+        "p60-e6"
+      ]
+    },
+    {
+      "rank": 10,
+      "chunk_id": "485c4989-c300-45c8-ac06-79a59492bb5c-c0006-7370ea1972",
+      "chunk_index": 6,
+      "semantic_type": "clause",
+      "score": 0.58085795755041,
+      "distance": 0.41914204244958997,
+      "text": "Section: PART I: INTRODUCTION AND APPLICABILITY > 1.0 INTRODUCTION\nClause: 1.1\n\n1.1 The Guidelines on Prevention of Money Laundering, Countering Financing of Terrorism,\nCountering Proliferation Financing and Targeted Financial Sanctions for Reporting\nInstitutions in the Capital Market (Guidelines) are issued pursuant to the following:\n\n(a) in relation to anti-money laundering and countering financing of terrorism including\nTargeted Financial Sanctions relating to Terrorism Financing (TFS-TF), section\n158(1) and section 160A of the Securities Commission Malaysia Act 1993 (SCMA)\nread together with section 66B, section 66E and section 83 of the Anti-Money\nLaundering, Anti-Terrorism Financing and Proceeds of Unlawful Activities Act 2001\n(AMLA);\n\n(b) in relation to countering proliferation financing including Targeted Financial\nSanctions relating to Proliferation Financing (TFS-PF), section 158(1) and section\n160A of the SCMA read together with the following legislations (collectively referred\nto as “TFS-PF related legislations”) which provides the legal basis for domestic\nimplementation of TFS-PF in relation to United Nations Security Council Resolutions\n(UNSCR) imposed on the designated countries and persons:\n\n(i) Strategic Trade Act 2010 (Act 708) (STA);\n\n(ii) Strategic Trade (United Nations Security Council Resolutions)\nRegulations 2010 (P.U. (A) 481/2010) 1;\n\n(iii) Strategic Trade (Restricted End-Users and Prohibited End-Users) Order\n2010 (P.U. (A) 484/2010);\n\n(iv) Strategic Trade (Delisting of Prohibited End-Users) Regulations 2014\n(P.U. (A) 289/2014); and\n\n(v) Strategic Trade (Unfreezing of Property in relation to Prohibited End-\nUsers) Regulations 2014 (P.U. (A) 290/2014).",
+      "content_text": "1.1 The Guidelines on Prevention of Money Laundering, Countering Financing of Terrorism,\nCountering Proliferation Financing and Targeted Financial Sanctions for Reporting\nInstitutions in the Capital Market (Guidelines) are issued pursuant to the following:\n\n(a) in relation to anti-money laundering and countering financing of terrorism including\nTargeted Financial Sanctions relating to Terrorism Financing (TFS-TF), section\n158(1) and section 160A of the Securities Commission Malaysia Act 1993 (SCMA)\nread together with section 66B, section 66E and section 83 of the Anti-Money\nLaundering, Anti-Terrorism Financing and Proceeds of Unlawful Activities Act 2001\n(AMLA);\n\n(b) in relation to countering proliferation financing including Targeted Financial\nSanctions relating to Proliferation Financing (TFS-PF), section 158(1) and section\n160A of the SCMA read together with the following legislations (collectively referred\nto as “TFS-PF related legislations”) which provides the legal basis for domestic\nimplementation of TFS-PF in relation to United Nations Security Council Resolutions\n(UNSCR) imposed on the designated countries and persons:\n\n(i) Strategic Trade Act 2010 (Act 708) (STA);\n\n(ii) Strategic Trade (United Nations Security Council Resolutions)\nRegulations 2010 (P.U. (A) 481/2010) 1;\n\n(iii) Strategic Trade (Restricted End-Users and Prohibited End-Users) Order\n2010 (P.U. (A) 484/2010);\n\n(iv) Strategic Trade (Delisting of Prohibited End-Users) Regulations 2014\n(P.U. (A) 289/2014); and\n\n(v) Strategic Trade (Unfreezing of Property in relation to Prohibited End-\nUsers) Regulations 2014 (P.U. (A) 290/2014).",
+      "token_count": 357,
+      "pages": [
+        6
+      ],
+      "section_path": [
+        "PART I: INTRODUCTION AND APPLICABILITY",
+        "1.0 INTRODUCTION"
+      ],
+      "source_element_ids": [
+        "p6-e3",
+        "p6-e4",
+        "p6-e5",
+        "p6-e6",
+        "p6-e7",
+        "p6-e8",
+        "p6-e9",
+        "p6-e10"
+      ]
+    }
+  ]
+}

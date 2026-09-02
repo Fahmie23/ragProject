@@ -1,7 +1,7 @@
 {
-  "spec_version": "1.3",
+  "spec_version": "1.6",
   "benchmark_id": "sc-aml-cft-stage4-primary-v1",
-  "description": "Primary Stage 4 golden structure benchmark for the 109-page Securities Commission Malaysia AML/CFT/CPF guideline used by the portfolio project. v1.1 extends coverage to same-unit semantic continuity, dependent-list ownership, and parent-clause tail reconstruction.",
+  "description": "Primary Stage 4 golden structure benchmark for the 109-page Securities Commission Malaysia AML/CFT/CPF guideline used by the portfolio project. v1.4 expands regression coverage for TOC suppression, numbered hierarchy, callout scope, fragmentation repair, cross-page continuation, appendix hierarchy, figure/text deduplication, and nested enumeration ownership. Version 1.5 adds document-wide parallel-enumeration family and ownership regressions discovered from a fresh end-to-end Stage 4 run. Version 1.6 corrects the semantic contract for nested independent conditional obligations: sentence-complete modal children remain subclauses with parent_of ownership, while dependent phrase/gerund enumerations remain list_items with introduces ownership, independent of page breaks.",
   "source": {
     "filename": "sc_aml_cft.pdf",
     "sha256": "e1d138edd3c55b3fa3dd36b3236876a1a8dd634c4d972cec74157e6bf816bc15",
@@ -183,6 +183,101 @@
         "parent_clause_tail",
         "style_split_sentence",
         "appendix_title_scope"
+      ]
+    },
+    {
+      "pages": [
+        10,
+        24,
+        28,
+        34,
+        35
+      ],
+      "archetypes": [
+        "footnote_recovery",
+        "enumeration_fragment_repair",
+        "normative_list",
+        "marker_fragment_merge",
+        "local_heading_scope"
+      ]
+    },
+    {
+      "pages": [
+        41,
+        42,
+        57,
+        60
+      ],
+      "archetypes": [
+        "bottom_page_heading_recovery",
+        "section_membership",
+        "note_callout",
+        "callout_section_guard"
+      ]
+    },
+    {
+      "pages": [
+        63,
+        64,
+        65
+      ],
+      "archetypes": [
+        "guidance_callout",
+        "guidance_ownership",
+        "fresh_clause_boundary"
+      ]
+    },
+    {
+      "pages": [
+        80,
+        82,
+        83,
+        84
+      ],
+      "archetypes": [
+        "enumeration_split",
+        "appendix_hierarchy",
+        "appendix_topic_siblings"
+      ]
+    },
+    {
+      "pages": [
+        86,
+        89,
+        90,
+        91
+      ],
+      "archetypes": [
+        "appendix_topic_boundary",
+        "contact_block",
+        "false_cross_page_continuation",
+        "fragment_merge"
+      ]
+    },
+    {
+      "pages": [
+        103,
+        104
+      ],
+      "archetypes": [
+        "nested_phase_enumeration",
+        "cross_page_nested_list",
+        "true_cross_page_continuation"
+      ]
+    },
+    {
+      "pages": [
+        6,
+        28,
+        29,
+        37
+      ],
+      "archetypes": [
+        "parallel_enumeration_family",
+        "numbered_clause_intro_order",
+        "nested_dependent_list",
+        "nested_list_parent_restoration",
+        "nested_independent_subclause"
       ]
     }
   ],
@@ -1024,6 +1119,1028 @@
       "expect": {
         "type": "list_item"
       }
+    },
+    {
+      "id": "toc-part-iiia-nav",
+      "page": 4,
+      "match": {
+        "exact": "PART IIIA: WIRE TRANSFER"
+      },
+      "expect": {
+        "type": "unknown",
+        "section_record": false
+      }
+    },
+    {
+      "id": "toc-part-vi-nav",
+      "page": 4,
+      "match": {
+        "exact": "PART VI: ENFORCEMENT ORDERS"
+      },
+      "expect": {
+        "type": "unknown",
+        "section_record": false
+      }
+    },
+    {
+      "id": "toc-part-viii-nav",
+      "page": 4,
+      "match": {
+        "exact": "PART VIII: COMBATING PROLIFERATION FINANCING"
+      },
+      "expect": {
+        "type": "unknown",
+        "section_record": false
+      }
+    },
+    {
+      "id": "page10-customer-footnote",
+      "page": 10,
+      "match": {
+        "starts_with": "2 Refers to those customers who are customers prior to CDD obligations"
+      },
+      "expect": {
+        "type": "footnote"
+      }
+    },
+    {
+      "id": "page24-compliance-item-e",
+      "page": 24,
+      "match": {
+        "starts_with": "(e) All employees are aware of the reporting institution"
+      },
+      "expect": {
+        "type": "list_item"
+      }
+    },
+    {
+      "id": "section-7-root",
+      "page": 26,
+      "match": {
+        "starts_with": "7. RISK-BASED APPROACH APPLICATION"
+      },
+      "expect": {
+        "type": "section_header",
+        "section_record": true,
+        "section_level": 2
+      }
+    },
+    {
+      "id": "section-7-1",
+      "page": 26,
+      "match": {
+        "starts_with": "7.1 ML/TF Risk assessment"
+      },
+      "expect": {
+        "type": "section_header",
+        "section_record": true,
+        "section_level": 3
+      }
+    },
+    {
+      "id": "clause-7-1-4",
+      "page": 26,
+      "match": {
+        "starts_with": "7.1.4 A reporting institution must be guided by the results of the NRA"
+      },
+      "expect": {
+        "type": "clause",
+        "clause_number": "7.1.4"
+      }
+    },
+    {
+      "id": "guidance-7-1",
+      "page": 27,
+      "match": {
+        "starts_with": "Guidance for paragraphs 7.1.1, 7.1.2, 7.1.3 and 7.1.4"
+      },
+      "expect": {
+        "type": "group_header",
+        "section_record": false
+      }
+    },
+    {
+      "id": "section-7-3",
+      "page": 27,
+      "match": {
+        "starts_with": "7.3 PF Risk assessment"
+      },
+      "expect": {
+        "type": "section_header",
+        "section_record": true,
+        "section_level": 3
+      }
+    },
+    {
+      "id": "clause-7-3-3",
+      "page": 28,
+      "match": {
+        "starts_with": "7.3.3 The risk assessment processes must incorporate the following"
+      },
+      "expect": {
+        "type": "clause",
+        "clause_number": "7.3.3"
+      }
+    },
+    {
+      "id": "pf-risk-item-a",
+      "page": 28,
+      "match": {
+        "starts_with": "(a) Documenting the reporting institution’s PF risk assessments"
+      },
+      "expect": {
+        "type": "subclause"
+      }
+    },
+    {
+      "id": "section-7-4",
+      "page": 29,
+      "match": {
+        "starts_with": "7.4 PF Risk management and mitigation"
+      },
+      "expect": {
+        "type": "section_header",
+        "section_record": true,
+        "section_level": 3
+      }
+    },
+    {
+      "id": "section-7-5",
+      "page": 29,
+      "match": {
+        "starts_with": "7.5 Risk profiling of customers"
+      },
+      "expect": {
+        "type": "section_header",
+        "section_record": true,
+        "section_level": 3
+      }
+    },
+    {
+      "id": "page34-marker-ii-merged",
+      "page": 34,
+      "match": {
+        "starts_with": "(ii) Not listed in jurisdictions identified in the FATF Public Statements"
+      },
+      "expect": {
+        "type": "list_item"
+      }
+    },
+    {
+      "id": "legal-arrangements-local-group",
+      "page": 35,
+      "match": {
+        "exact": "CDD requirements for legal arrangements"
+      },
+      "expect": {
+        "type": "group_header",
+        "section_record": false
+      }
+    },
+    {
+      "id": "guidance-8-1-8-to-17",
+      "page": 36,
+      "match": {
+        "starts_with": "Guidance for paragraphs 8.1.8 to 8.1.17"
+      },
+      "expect": {
+        "type": "group_header",
+        "section_record": false
+      }
+    },
+    {
+      "id": "non-face-subclause-d",
+      "page": 37,
+      "match": {
+        "starts_with": "(d) Where the reporting institution is unable to identify and verify the customer’s identity"
+      },
+      "expect": {
+        "type": "subclause"
+      }
+    },
+    {
+      "id": "non-face-subclause-e",
+      "page": 37,
+      "match": {
+        "starts_with": "(e) Sub-paragraphs (a) to (d) above are not applicable to"
+      },
+      "expect": {
+        "type": "subclause"
+      }
+    },
+    {
+      "id": "note-risk-websites",
+      "page": 41,
+      "match": {
+        "exact": "Note:"
+      },
+      "expect": {
+        "type": "group_header",
+        "section_record": false
+      }
+    },
+    {
+      "id": "section-8-4-pep",
+      "page": 41,
+      "match": {
+        "starts_with": "8.4 Politically exposed persons (PEPs)"
+      },
+      "expect": {
+        "type": "section_header",
+        "section_record": true,
+        "section_level": 3
+      }
+    },
+    {
+      "id": "clause-8-4-1",
+      "page": 42,
+      "match": {
+        "starts_with": "8.4.1 The requirements set out in paragraph 8.4 herein"
+      },
+      "expect": {
+        "type": "clause",
+        "clause_number": "8.4.1"
+      }
+    },
+    {
+      "id": "section-9-root",
+      "page": 48,
+      "match": {
+        "starts_with": "9. WIRE TRANSFER OF DIGITAL ASSETS"
+      },
+      "expect": {
+        "type": "section_header",
+        "section_record": true,
+        "section_level": 2
+      }
+    },
+    {
+      "id": "section-9-1",
+      "page": 48,
+      "match": {
+        "exact": "9.1 General"
+      },
+      "expect": {
+        "type": "section_header",
+        "section_record": true,
+        "section_level": 3
+      }
+    },
+    {
+      "id": "section-9-2",
+      "page": 48,
+      "match": {
+        "starts_with": "9.2 Ordering institutions"
+      },
+      "expect": {
+        "type": "section_header",
+        "section_record": true,
+        "section_level": 3
+      }
+    },
+    {
+      "id": "guidance-9-2-1-a",
+      "page": 49,
+      "match": {
+        "starts_with": "Guidance for paragraph 9.2.1 (a)"
+      },
+      "expect": {
+        "type": "group_header",
+        "section_record": false
+      }
+    },
+    {
+      "id": "guidance-point-1",
+      "page": 49,
+      "match": {
+        "starts_with": "1. Accurate in the context of paragraph 9.2.1(a)"
+      },
+      "expect": {
+        "type": "list_item"
+      }
+    },
+    {
+      "id": "guidance-9-2-1-b",
+      "page": 49,
+      "match": {
+        "starts_with": "Guidance for paragraph 9.2.1 (b)"
+      },
+      "expect": {
+        "type": "group_header",
+        "section_record": false
+      }
+    },
+    {
+      "id": "guidance-point-2",
+      "page": 49,
+      "match": {
+        "starts_with": "2. The name of the beneficiary is not required to be verified"
+      },
+      "expect": {
+        "type": "list_item"
+      }
+    },
+    {
+      "id": "section-9-3",
+      "page": 50,
+      "match": {
+        "exact": "9.3 Beneficiary Institutions"
+      },
+      "expect": {
+        "type": "section_header",
+        "section_record": true,
+        "section_level": 3
+      }
+    },
+    {
+      "id": "section-9-4",
+      "page": 50,
+      "match": {
+        "starts_with": "9.4 Sanctions Screening"
+      },
+      "expect": {
+        "type": "section_header",
+        "section_record": true,
+        "section_level": 3
+      }
+    },
+    {
+      "id": "section-9-5",
+      "page": 51,
+      "match": {
+        "starts_with": "9.5 Identification and Due Diligence on Counterparty VASP"
+      },
+      "expect": {
+        "type": "section_header",
+        "section_record": true,
+        "section_level": 3
+      }
+    },
+    {
+      "id": "guidance-9-5-1",
+      "page": 51,
+      "match": {
+        "starts_with": "Guidance for paragraph 9.5.1"
+      },
+      "expect": {
+        "type": "group_header",
+        "section_record": false
+      }
+    },
+    {
+      "id": "guidance-9-5-1-bullet-1",
+      "page": 51,
+      "match": {
+        "starts_with": "• As a guide, a reporting institution needs to conduct due diligence"
+      },
+      "expect": {
+        "type": "list_item"
+      }
+    },
+    {
+      "id": "guidance-9-5-1-bullet-2",
+      "page": 51,
+      "match": {
+        "starts_with": "• Additionally, a reporting institution should use this due diligence"
+      },
+      "expect": {
+        "type": "list_item"
+      }
+    },
+    {
+      "id": "clause-9-5-2",
+      "page": 51,
+      "match": {
+        "starts_with": "9.5.2 A reporting institution does not need to undertake due diligence process"
+      },
+      "expect": {
+        "type": "clause",
+        "clause_number": "9.5.2"
+      }
+    },
+    {
+      "id": "page57-note",
+      "page": 57,
+      "match": {
+        "exact": "Note:"
+      },
+      "expect": {
+        "type": "group_header",
+        "section_record": false
+      }
+    },
+    {
+      "id": "section-14-root",
+      "page": 60,
+      "match": {
+        "exact": "14 IDENTIFICATION AND DESIGNATION"
+      },
+      "expect": {
+        "type": "section_header",
+        "section_record": true
+      }
+    },
+    {
+      "id": "page60-note",
+      "page": 60,
+      "match": {
+        "exact": "Note:"
+      },
+      "expect": {
+        "type": "group_header",
+        "section_record": false
+      }
+    },
+    {
+      "id": "clause-14-4",
+      "page": 60,
+      "match": {
+        "starts_with": "14.4 For the purpose of implementing the obligations under section 66B and section 66C"
+      },
+      "expect": {
+        "type": "clause",
+        "clause_number": "14.4"
+      }
+    },
+    {
+      "id": "guidance-paragraph-17",
+      "page": 63,
+      "match": {
+        "exact": "Guidance for paragraph 17"
+      },
+      "expect": {
+        "type": "group_header",
+        "section_record": false
+      }
+    },
+    {
+      "id": "guidance-17-item-a",
+      "page": 63,
+      "match": {
+        "starts_with": "(a) According to the standards prescribed by the FATF"
+      },
+      "expect": {
+        "type": "list_item"
+      }
+    },
+    {
+      "id": "guidance-false-positive-18-2b",
+      "page": 64,
+      "match": {
+        "starts_with": "Guidance for False Positive under paragraph 18.2(b)"
+      },
+      "expect": {
+        "type": "group_header",
+        "section_record": false
+      }
+    },
+    {
+      "id": "guidance-false-positive-item-a",
+      "page": 64,
+      "match": {
+        "starts_with": "(a) A reporting institution may forward queries to the SC"
+      },
+      "expect": {
+        "type": "list_item"
+      }
+    },
+    {
+      "id": "clause-18-4",
+      "page": 64,
+      "match": {
+        "starts_with": "18.4 Where the screening assessment results in a match"
+      },
+      "expect": {
+        "type": "clause",
+        "clause_number": "18.4"
+      }
+    },
+    {
+      "id": "guidance-paragraph-18",
+      "page": 65,
+      "match": {
+        "exact": "Guidance for paragraph 18"
+      },
+      "expect": {
+        "type": "group_header",
+        "section_record": false
+      }
+    },
+    {
+      "id": "guidance-18-item-a",
+      "page": 65,
+      "match": {
+        "starts_with": "(a) Funds, properties or accounts that are owned or controlled indirectly"
+      },
+      "expect": {
+        "type": "list_item"
+      }
+    },
+    {
+      "id": "page69-open-item-iii",
+      "page": 69,
+      "match": {
+        "contains": "Apply customer risk management and mitigation control measures"
+      },
+      "expect": {
+        "type": "list_item"
+      }
+    },
+    {
+      "id": "page70-rba-illustration-intro",
+      "page": 70,
+      "match": {
+        "starts_with": "The RBA steps above are illustrated"
+      },
+      "expect": {
+        "type": "paragraph"
+      }
+    },
+    {
+      "id": "appendix-a1-clause-2-6",
+      "page": 80,
+      "match": {
+        "starts_with": "2.6 On a risk-based approach, a reporting institution must conduct a due-diligence"
+      },
+      "expect": {
+        "type": "clause",
+        "clause_number": "2.6"
+      }
+    },
+    {
+      "id": "appendix-a1-2-6-item-b",
+      "page": 80,
+      "match": {
+        "starts_with": "(b) The relationship between the customer and the third-party payor"
+      },
+      "expect": {
+        "type": "subclause"
+      }
+    },
+    {
+      "id": "appendix-b-root",
+      "page": 82,
+      "match": {
+        "exact": "APPENDIX B"
+      },
+      "expect": {
+        "type": "section_header",
+        "section_record": true,
+        "section_level": 1
+      }
+    },
+    {
+      "id": "appendix-b-family-members",
+      "page": 82,
+      "match": {
+        "exact": "Family Members of a PEP"
+      },
+      "expect": {
+        "type": "section_header",
+        "section_record": true,
+        "section_level": 2
+      }
+    },
+    {
+      "id": "appendix-b-close-associates",
+      "page": 82,
+      "match": {
+        "exact": "Close Associates of a PEP"
+      },
+      "expect": {
+        "type": "section_header",
+        "section_record": true,
+        "section_level": 2
+      }
+    },
+    {
+      "id": "appendix-b-cdd-measures",
+      "page": 83,
+      "match": {
+        "exact": "Applicable CDD or Enhanced CDD Measures"
+      },
+      "expect": {
+        "type": "section_header",
+        "section_record": true,
+        "section_level": 2
+      }
+    },
+    {
+      "id": "appendix-b-domestic-pep",
+      "page": 83,
+      "match": {
+        "starts_with": "Family member or Close Associate of a Domestic PEP"
+      },
+      "expect": {
+        "type": "section_header",
+        "section_record": true,
+        "section_level": 2
+      }
+    },
+    {
+      "id": "appendix-b-source-info",
+      "page": 83,
+      "match": {
+        "exact": "Source of Information of Family Members and Close Associates of a PEP"
+      },
+      "expect": {
+        "type": "section_header",
+        "section_record": true,
+        "section_level": 2
+      }
+    },
+    {
+      "id": "appendix-b-extent",
+      "page": 84,
+      "match": {
+        "exact": "Extent of Application of Family Member or Close Associate of a PEP"
+      },
+      "expect": {
+        "type": "section_header",
+        "section_record": true,
+        "section_level": 2
+      }
+    },
+    {
+      "id": "appendix-d-root",
+      "page": 86,
+      "match": {
+        "exact": "APPENDIX D"
+      },
+      "expect": {
+        "type": "section_header",
+        "section_record": true,
+        "section_level": 1
+      }
+    },
+    {
+      "id": "appendix-d-reporting-requirements",
+      "page": 89,
+      "match": {
+        "exact": "Reporting requirements"
+      },
+      "expect": {
+        "type": "section_header",
+        "section_record": true,
+        "section_level": 2
+      }
+    },
+    {
+      "id": "appendix-d-clause-5-1",
+      "page": 89,
+      "match": {
+        "starts_with": "5.1 Once a reporting institution determines that it is in the possession"
+      },
+      "expect": {
+        "type": "clause",
+        "clause_number": "5.1"
+      }
+    },
+    {
+      "id": "appendix-d-false-positives",
+      "page": 90,
+      "match": {
+        "exact": "False positives"
+      },
+      "expect": {
+        "type": "section_header",
+        "section_record": true,
+        "section_level": 2
+      }
+    },
+    {
+      "id": "appendix-d-clause-6-1",
+      "page": 90,
+      "match": {
+        "starts_with": "6.1 A reporting institution may forward queries to the Ministry of Home Affairs"
+      },
+      "expect": {
+        "type": "clause",
+        "clause_number": "6.1"
+      }
+    },
+    {
+      "id": "appendix-d-clause-6-2",
+      "page": 90,
+      "match": {
+        "starts_with": "6.2 A reporting institution should direct its customers to the Ministry of Home Affairs"
+      },
+      "expect": {
+        "type": "clause",
+        "clause_number": "6.2"
+      }
+    },
+    {
+      "id": "appendix-d-contact-intro",
+      "page": 91,
+      "match": {
+        "starts_with": "The contact point for the Ministry of Home Affairs"
+      },
+      "expect": {
+        "type": "paragraph"
+      }
+    },
+    {
+      "id": "appendix-d-contact-label",
+      "page": 91,
+      "match": {
+        "exact": "Secretary General Ministry of Home Affairs"
+      },
+      "expect": {
+        "type": "group_header",
+        "section_record": false
+      }
+    },
+    {
+      "id": "page99-beneficial-owner-a-single",
+      "page": 99,
+      "match": {
+        "exact": "Mr. W has 40% ownership of Company A and is a beneficial owner (10% direct ownership + 30% indirect ownership through Company R and Company)"
+      },
+      "expect": {},
+      "expect_count": 0
+    },
+    {
+      "id": "appendix-f-clause-1-2",
+      "page": 103,
+      "match": {
+        "starts_with": "1.2 There are three phases in conducting identification and due diligence"
+      },
+      "expect": {
+        "type": "clause",
+        "clause_number": "1.2"
+      }
+    },
+    {
+      "id": "appendix-f-phase-1",
+      "page": 103,
+      "match": {
+        "exact": "(a) Phase 1"
+      },
+      "expect": {
+        "type": "list_item"
+      }
+    },
+    {
+      "id": "appendix-f-phase-1-i",
+      "page": 103,
+      "match": {
+        "starts_with": "(i) A reporting institution should determine whether it will be transacting"
+      },
+      "expect": {
+        "type": "list_item"
+      }
+    },
+    {
+      "id": "appendix-f-phase-2",
+      "page": 103,
+      "match": {
+        "exact": "(b) Phase 2"
+      },
+      "expect": {
+        "type": "list_item"
+      }
+    },
+    {
+      "id": "appendix-f-phase-2-i",
+      "page": 103,
+      "match": {
+        "starts_with": "(i) A reporting institution should identify the counterparty VASP"
+      },
+      "expect": {
+        "type": "list_item"
+      }
+    },
+    {
+      "id": "appendix-f-phase-2-ii",
+      "page": 103,
+      "match": {
+        "starts_with": "(ii) A reporting institution may identify a counterparty VASP by itself"
+      },
+      "expect": {
+        "type": "list_item"
+      }
+    },
+    {
+      "id": "appendix-f-phase-3",
+      "page": 103,
+      "match": {
+        "exact": "(c) Phase 3"
+      },
+      "expect": {
+        "type": "list_item"
+      }
+    },
+    {
+      "id": "appendix-f-phase-3-i",
+      "page": 103,
+      "match": {
+        "starts_with": "(i) A reporting institution should assess whether the counterparty VASP"
+      },
+      "expect": {
+        "type": "list_item"
+      }
+    },
+    {
+      "id": "appendix-f-phase-3-ii",
+      "page": 103,
+      "match": {
+        "starts_with": "(ii) A reporting institution should be able to demonstrate its risk-based analysis"
+      },
+      "expect": {
+        "type": "list_item"
+      }
+    },
+    {
+      "id": "appendix-f-phase-3-iii",
+      "page": 103,
+      "match": {
+        "starts_with": "(iii) The due diligence results on the counterparty VASPs must be reviewed"
+      },
+      "expect": {
+        "type": "list_item"
+      }
+    },
+    {
+      "id": "appendix-f-periodically",
+      "page": 104,
+      "match": {
+        "exact": "periodically."
+      },
+      "expect": {
+        "type": "paragraph"
+      }
+    },
+    {
+      "id": "appendix-f-phase-3-iv",
+      "page": 104,
+      "match": {
+        "starts_with": "(iv) Where a regulated originating institution decide to have a business relationship"
+      },
+      "expect": {
+        "type": "list_item"
+      }
+    },
+    {
+      "id": "page6-main-item-a",
+      "page": 6,
+      "match": {
+        "starts_with": "(a) in relation to anti-money laundering and countering financing of terrorism"
+      },
+      "expect": {
+        "type": "list_item"
+      }
+    },
+    {
+      "id": "page6-main-item-b",
+      "page": 6,
+      "match": {
+        "starts_with": "(b) in relation to countering proliferation financing including Targeted Financial"
+      },
+      "expect": {
+        "type": "list_item"
+      }
+    },
+    {
+      "id": "clause-7-3-5",
+      "page": 28,
+      "match": {
+        "starts_with": "7.3.5 A reporting institution is required to"
+      },
+      "expect": {
+        "type": "clause",
+        "clause_number": "7.3.5"
+      }
+    },
+    {
+      "id": "pf-7-3-5-item-a",
+      "page": 28,
+      "match": {
+        "starts_with": "(a) have policies, procedures and controls, which are approved by the board"
+      },
+      "expect": {
+        "type": "subclause"
+      }
+    },
+    {
+      "id": "pf-7-3-5-item-b",
+      "page": 28,
+      "match": {
+        "starts_with": "(b) monitor the implementation of those policies, procedures and controls"
+      },
+      "expect": {
+        "type": "subclause"
+      }
+    },
+    {
+      "id": "pf-7-3-5-item-c",
+      "page": 28,
+      "match": {
+        "starts_with": "(c) take commensurate measures to manage and mitigate the risks"
+      },
+      "expect": {
+        "type": "subclause"
+      }
+    },
+    {
+      "id": "pf-7-3-5-nested-i",
+      "page": 28,
+      "match": {
+        "starts_with": "(i) where higher PF risks are identified"
+      },
+      "expect": {
+        "type": "subclause"
+      }
+    },
+    {
+      "id": "pf-7-3-5-nested-ii",
+      "page": 29,
+      "match": {
+        "starts_with": "(ii) where lower PF risks are identified"
+      },
+      "expect": {
+        "type": "subclause"
+      }
+    },
+    {
+      "id": "non-face-measure-i",
+      "page": 37,
+      "match": {
+        "starts_with": "(i) Requesting for additional identification documents or information"
+      },
+      "expect": {
+        "type": "list_item"
+      }
+    },
+    {
+      "id": "non-face-measure-ii",
+      "page": 37,
+      "match": {
+        "starts_with": "(ii) Substantiating the customer’s information with any independent source"
+      },
+      "expect": {
+        "type": "list_item"
+      }
+    },
+    {
+      "id": "non-face-measure-iii",
+      "page": 37,
+      "match": {
+        "starts_with": "(iii) Contacting the customer through any digital communication channel"
+      },
+      "expect": {
+        "type": "list_item"
+      }
+    },
+    {
+      "id": "non-face-measure-iv",
+      "page": 37,
+      "match": {
+        "starts_with": "(iv) Requesting the customer to make a nominal payment from his own"
+      },
+      "expect": {
+        "type": "list_item"
+      }
+    },
+    {
+      "id": "non-face-measure-v",
+      "page": 37,
+      "match": {
+        "starts_with": "(v) Using new technology solutions including, but not limited to, biometric"
+      },
+      "expect": {
+        "type": "list_item"
+      }
+    },
+    {
+      "id": "non-face-e-exclusion-i",
+      "page": 37,
+      "match": {
+        "starts_with": "(i)Customers that are identified as foreign PEP"
+      },
+      "expect": {
+        "type": "list_item"
+      }
+    },
+    {
+      "id": "non-face-e-exclusion-ii",
+      "page": 37,
+      "match": {
+        "starts_with": "(ii)Customers from higher-risk and non co-operative jurisdictions"
+      },
+      "expect": {
+        "type": "list_item"
+      }
+    },
+    {
+      "id": "non-face-e-exclusion-iii",
+      "page": 37,
+      "match": {
+        "starts_with": "(iii)Listed persons or entities subjected to targeted financial sanctions"
+      },
+      "expect": {
+        "type": "list_item"
+      }
     }
   ],
   "relation_assertions": [
@@ -1179,6 +2296,225 @@
       "source": "page99-breakdown-intro",
       "type": "introduces",
       "target": "page99-beneficial-owner-c"
+    },
+    {
+      "id": "no-continue-7-1-4-to-guidance",
+      "source": "clause-7-1-4",
+      "type": "continues",
+      "target": "guidance-7-1",
+      "present": false
+    },
+    {
+      "id": "guidance-9-5-1-owns-bullet-1",
+      "source": "guidance-9-5-1",
+      "type": "introduces",
+      "target": "guidance-9-5-1-bullet-1",
+      "present": true
+    },
+    {
+      "id": "guidance-9-5-1-owns-bullet-2",
+      "source": "guidance-9-5-1",
+      "type": "introduces",
+      "target": "guidance-9-5-1-bullet-2",
+      "present": true
+    },
+    {
+      "id": "guidance-9-5-1-does-not-own-9-5-2",
+      "source": "guidance-9-5-1",
+      "type": "introduces",
+      "target": "clause-9-5-2",
+      "present": false
+    },
+    {
+      "id": "guidance-17-owns-a",
+      "source": "guidance-paragraph-17",
+      "type": "introduces",
+      "target": "guidance-17-item-a",
+      "present": true
+    },
+    {
+      "id": "guidance-false-positive-owns-a",
+      "source": "guidance-false-positive-18-2b",
+      "type": "introduces",
+      "target": "guidance-false-positive-item-a",
+      "present": true
+    },
+    {
+      "id": "guidance-18-owns-a",
+      "source": "guidance-paragraph-18",
+      "type": "introduces",
+      "target": "guidance-18-item-a",
+      "present": true
+    },
+    {
+      "id": "18-4-does-not-parent-guidance-a",
+      "source": "clause-18-4",
+      "type": "parent_of",
+      "target": "guidance-18-item-a",
+      "present": false
+    },
+    {
+      "id": "no-continue-69-to-70",
+      "source": "page69-open-item-iii",
+      "type": "continues",
+      "target": "page70-rba-illustration-intro",
+      "present": false
+    },
+    {
+      "id": "no-continue-90-to-91",
+      "source": "appendix-d-clause-6-2",
+      "type": "continues",
+      "target": "appendix-d-contact-intro",
+      "present": false
+    },
+    {
+      "id": "appendix-f-1-2-introduces-phase1",
+      "source": "appendix-f-clause-1-2",
+      "type": "introduces",
+      "target": "appendix-f-phase-1",
+      "present": true
+    },
+    {
+      "id": "appendix-f-1-2-introduces-phase2",
+      "source": "appendix-f-clause-1-2",
+      "type": "introduces",
+      "target": "appendix-f-phase-2",
+      "present": true
+    },
+    {
+      "id": "appendix-f-1-2-introduces-phase3",
+      "source": "appendix-f-clause-1-2",
+      "type": "introduces",
+      "target": "appendix-f-phase-3",
+      "present": true
+    },
+    {
+      "id": "appendix-f-phase1-introduces-i",
+      "source": "appendix-f-phase-1",
+      "type": "introduces",
+      "target": "appendix-f-phase-1-i",
+      "present": true
+    },
+    {
+      "id": "appendix-f-phase2-introduces-i",
+      "source": "appendix-f-phase-2",
+      "type": "introduces",
+      "target": "appendix-f-phase-2-i",
+      "present": true
+    },
+    {
+      "id": "appendix-f-phase2-introduces-ii",
+      "source": "appendix-f-phase-2",
+      "type": "introduces",
+      "target": "appendix-f-phase-2-ii",
+      "present": true
+    },
+    {
+      "id": "appendix-f-phase3-introduces-i",
+      "source": "appendix-f-phase-3",
+      "type": "introduces",
+      "target": "appendix-f-phase-3-i",
+      "present": true
+    },
+    {
+      "id": "appendix-f-phase3-introduces-ii",
+      "source": "appendix-f-phase-3",
+      "type": "introduces",
+      "target": "appendix-f-phase-3-ii",
+      "present": true
+    },
+    {
+      "id": "appendix-f-phase3-introduces-iii",
+      "source": "appendix-f-phase-3",
+      "type": "introduces",
+      "target": "appendix-f-phase-3-iii",
+      "present": true
+    },
+    {
+      "id": "appendix-f-phase3-introduces-iv",
+      "source": "appendix-f-phase-3",
+      "type": "introduces",
+      "target": "appendix-f-phase-3-iv",
+      "present": true
+    },
+    {
+      "id": "appendix-f-iii-continues-periodically",
+      "source": "appendix-f-phase-3-iii",
+      "type": "continues",
+      "target": "appendix-f-periodically",
+      "present": true
+    },
+    {
+      "id": "rel-clause-1-1-introduces-a",
+      "source": "clause-1-1-main",
+      "type": "introduces",
+      "target": "page6-main-item-a"
+    },
+    {
+      "id": "rel-clause-1-1-introduces-b",
+      "source": "clause-1-1-main",
+      "type": "introduces",
+      "target": "page6-main-item-b"
+    },
+    {
+      "id": "rel-page6-b-introduces-i",
+      "source": "page6-main-item-b",
+      "type": "introduces",
+      "target": "page6-legislation-item-i"
+    },
+    {
+      "id": "rel-7-3-5-parent-a",
+      "source": "clause-7-3-5",
+      "type": "parent_of",
+      "target": "pf-7-3-5-item-a"
+    },
+    {
+      "id": "rel-7-3-5-parent-b",
+      "source": "clause-7-3-5",
+      "type": "parent_of",
+      "target": "pf-7-3-5-item-b"
+    },
+    {
+      "id": "rel-7-3-5-parent-c",
+      "source": "clause-7-3-5",
+      "type": "parent_of",
+      "target": "pf-7-3-5-item-c"
+    },
+    {
+      "id": "rel-7-3-5-c-parent-i",
+      "source": "pf-7-3-5-item-c",
+      "type": "parent_of",
+      "target": "pf-7-3-5-nested-i"
+    },
+    {
+      "id": "rel-7-3-5-c-parent-ii",
+      "source": "pf-7-3-5-item-c",
+      "type": "parent_of",
+      "target": "pf-7-3-5-nested-ii"
+    },
+    {
+      "id": "rel-non-face-c-introduces-i",
+      "source": "non-face-subclause-c",
+      "type": "introduces",
+      "target": "non-face-measure-i"
+    },
+    {
+      "id": "rel-non-face-c-introduces-v",
+      "source": "non-face-subclause-c",
+      "type": "introduces",
+      "target": "non-face-measure-v"
+    },
+    {
+      "id": "rel-non-face-e-introduces-i",
+      "source": "non-face-subclause-e",
+      "type": "introduces",
+      "target": "non-face-e-exclusion-i"
+    },
+    {
+      "id": "rel-non-face-e-introduces-iii",
+      "source": "non-face-subclause-e",
+      "type": "introduces",
+      "target": "non-face-e-exclusion-iii"
     }
   ],
   "definition_assertions": [
@@ -1345,6 +2681,176 @@
         102
       ],
       "question": "Determine whether illustration labels should remain group_header/caption or gain an illustration subtype only if it improves provenance/retrieval."
+    }
+  ],
+  "hierarchy_assertions": [
+    {
+      "id": "h-7-1-under-7",
+      "kind": "section_parent",
+      "child": "section-7-1",
+      "parent": "section-7-root"
+    },
+    {
+      "id": "h-7-3-under-7",
+      "kind": "section_parent",
+      "child": "section-7-3",
+      "parent": "section-7-root"
+    },
+    {
+      "id": "h-7-4-under-7",
+      "kind": "section_parent",
+      "child": "section-7-4",
+      "parent": "section-7-root"
+    },
+    {
+      "id": "h-7-5-under-7",
+      "kind": "section_parent",
+      "child": "section-7-5",
+      "parent": "section-7-root"
+    },
+    {
+      "id": "h-pf-item-a-parent-7-3-3",
+      "kind": "clause_parent",
+      "child": "pf-risk-item-a",
+      "parent": "clause-7-3-3"
+    },
+    {
+      "id": "h-8-4-1-in-8-4",
+      "kind": "section_membership",
+      "element": "clause-8-4-1",
+      "section": "section-8-4-pep"
+    },
+    {
+      "id": "h-9-1-under-9",
+      "kind": "section_parent",
+      "child": "section-9-1",
+      "parent": "section-9-root"
+    },
+    {
+      "id": "h-9-2-under-9",
+      "kind": "section_parent",
+      "child": "section-9-2",
+      "parent": "section-9-root"
+    },
+    {
+      "id": "h-9-3-under-9",
+      "kind": "section_parent",
+      "child": "section-9-3",
+      "parent": "section-9-root"
+    },
+    {
+      "id": "h-9-4-under-9",
+      "kind": "section_parent",
+      "child": "section-9-4",
+      "parent": "section-9-root"
+    },
+    {
+      "id": "h-9-5-under-9",
+      "kind": "section_parent",
+      "child": "section-9-5",
+      "parent": "section-9-root"
+    },
+    {
+      "id": "h-14-4-in-14",
+      "kind": "section_membership",
+      "element": "clause-14-4",
+      "section": "section-14-root"
+    },
+    {
+      "id": "h-a1-2-6-b-parent",
+      "kind": "clause_parent",
+      "child": "appendix-a1-2-6-item-b",
+      "parent": "appendix-a1-clause-2-6"
+    },
+    {
+      "id": "h-app-b-family-under-root",
+      "kind": "section_parent",
+      "child": "appendix-b-family-members",
+      "parent": "appendix-b-root"
+    },
+    {
+      "id": "h-app-b-close-under-root",
+      "kind": "section_parent",
+      "child": "appendix-b-close-associates",
+      "parent": "appendix-b-root"
+    },
+    {
+      "id": "h-app-b-cdd-under-root",
+      "kind": "section_parent",
+      "child": "appendix-b-cdd-measures",
+      "parent": "appendix-b-root"
+    },
+    {
+      "id": "h-app-b-domestic-under-root",
+      "kind": "section_parent",
+      "child": "appendix-b-domestic-pep",
+      "parent": "appendix-b-root"
+    },
+    {
+      "id": "h-app-b-source-under-root",
+      "kind": "section_parent",
+      "child": "appendix-b-source-info",
+      "parent": "appendix-b-root"
+    },
+    {
+      "id": "h-app-b-extent-under-root",
+      "kind": "section_parent",
+      "child": "appendix-b-extent",
+      "parent": "appendix-b-root"
+    },
+    {
+      "id": "h-app-d-reporting-under-root",
+      "kind": "section_parent",
+      "child": "appendix-d-reporting-requirements",
+      "parent": "appendix-d-root"
+    },
+    {
+      "id": "h-app-d-false-under-root",
+      "kind": "section_parent",
+      "child": "appendix-d-false-positives",
+      "parent": "appendix-d-root"
+    },
+    {
+      "id": "h-app-d-5-1-in-reporting",
+      "kind": "section_membership",
+      "element": "appendix-d-clause-5-1",
+      "section": "appendix-d-reporting-requirements"
+    },
+    {
+      "id": "h-app-d-6-1-in-false",
+      "kind": "section_membership",
+      "element": "appendix-d-clause-6-1",
+      "section": "appendix-d-false-positives"
+    },
+    {
+      "id": "h-7-3-5-item-a-parent",
+      "kind": "clause_parent",
+      "child": "pf-7-3-5-item-a",
+      "parent": "clause-7-3-5"
+    },
+    {
+      "id": "h-7-3-5-item-b-parent",
+      "kind": "clause_parent",
+      "child": "pf-7-3-5-item-b",
+      "parent": "clause-7-3-5"
+    },
+    {
+      "id": "h-7-3-5-item-c-parent",
+      "kind": "clause_parent",
+      "child": "pf-7-3-5-item-c",
+      "parent": "clause-7-3-5"
+    },
+    {
+      "id": "h-7-3-5-nested-i-parent",
+      "kind": "clause_parent",
+      "child": "pf-7-3-5-nested-i",
+      "parent": "pf-7-3-5-item-c"
+    },
+    {
+      "id": "h-7-3-5-nested-ii-parent",
+      "kind": "clause_parent",
+      "child": "pf-7-3-5-nested-ii",
+      "parent": "pf-7-3-5-item-c"
     }
   ]
 }

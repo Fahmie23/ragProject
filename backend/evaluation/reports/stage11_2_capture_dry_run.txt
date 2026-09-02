@@ -1,0 +1,24 @@
+Dataset: answer_citation_eval_dev_v1 (20 selected DEV questions)
+Frozen retrieval profile: retrieval_v1_stage8_2_top5
+Citation version: deterministic_citations_v1_2
+- ACIT-001 [definition/medium] In the Guidelines, how does the meaning of 'beneficiary' differ between trust law and a wire transfer?
+- ACIT-002 [direct_requirement/medium] What must a reporting institution do when AML/CFT/CPF measures in the host country of a foreign operation are less stringent than Malaysian standards?
+- ACIT-003 [exception_condition/hard] If a host country does not permit proper implementation of Malaysian-standard AML/CFT/CPF measures, what must the reporting institution do, and what may it consider if adequate mitigation still cannot be put in place?
+- ACIT-004 [multi_clause/hard] For a reporting institution that is part of a financial group, what must its group-wide AML/CFT/CPF programme include?
+- ACIT-005 [exception_condition/easy] Does a lower institutional proliferation-financing risk level reduce the obligation to implement targeted financial sanctions on PF?
+- ACIT-006 [multi_clause/hard] When a beneficiary institution encounters a wire transfer lacking required originator or beneficiary information, what monitoring and risk-based decision rules must it have?
+- ACIT-007 [multi_clause/hard] For digital-asset wire transfers, whom must ordering and beneficiary institutions screen for sanctions, and what must happen if a screened person is identified as a designated person?
+- ACIT-008 [exception_condition/medium] What confidentiality rule applies to suspicion or STR reporting, and when does a disclosure not constitute the offence described by the Guidelines?
+- ACIT-009 [multi_clause/hard] What controls and documentation are required when a reporting institution considers disclosures of a report or related information under section 14A(3) of the AMLA?
+- ACIT-010 [multi_clause/medium] How must a reporting institution respond to an AMLA enforcement order requesting information or documents, and what internal capability must it maintain?
+- ACIT-011 [direct_requirement/medium] Under Part VIII, what must a reporting institution do to keep its proliferation-financing sanctions information current?
+- ACIT-012 [cross_page/hard] What customer and related-party screening is required under Part VIII, including the response when new UNSCR names are listed?
+- ACIT-013 [exception_condition/medium] When can freezing under Part VIII end because of a false positive, and what route is available to the customer to have the affected funds, properties or accounts unfrozen?
+- ACIT-014 [appendix/medium] According to Appendix B, which family members are expressly included for a PEP?
+- ACIT-015 [appendix/easy] Under Appendix D, does the death of a listed entity end the obligation to keep its funds, properties or accounts frozen?
+- ACIT-016 [appendix/hard] Under Appendix A, how often should the institution reassess its ML/TF/PF risks, and what documentation should support its RBA process?
+- ACIT-017 [table_form/easy] According to the List of Revisions, what were the revision date, effective date, and series number for the third revision?
+- ACIT-018 [out_of_scope/easy] What is today's USD to MYR exchange rate?
+- ACIT-019 [out_of_scope/easy] What will the weather be in Kuala Lumpur tomorrow?
+- ACIT-020 [out_of_scope/easy] Who is the current CEO of NVIDIA?
+DRY RUN PASS: dataset, source locators, and frozen baseline are valid; no API calls made.

@@ -1,4 +1,5 @@
 from datetime import datetime, timezone
+import hashlib
 from pathlib import Path
 from uuid import uuid4
 
@@ -12,6 +13,10 @@ from app.schemas import (
     ApproveRelationshipsResponse,
     ChunkingArtifact,
     GenerateChunksRequest,
+    GenerateEmbeddingsRequest,
+    GenerateEmbeddingsResponse,
+    EmbeddingCompatibilityResponse,
+    EmbeddingStatusResponse,
     CorrectionArtifact,
     DocumentExtraction,
     DocumentRecord,
@@ -464,6 +469,211 @@ def get_chunks(document_id: str) -> ChunkingArtifact:
         delete_chunking_artifact(document_id)
         raise HTTPException(status_code=409, detail="Stage 5 artifact is stale because the resolved structure changed. Regenerate chunks.")
     return artifact
+
+
+
+def _validated_stage5_artifact(document_id: str) -> tuple[DocumentRecord, ChunkingArtifact]:
+    record = read_metadata(document_id)
+    if not record:
+        raise HTTPException(status_code=404, detail="Document not found.")
+    artifact = read_chunking_artifact(document_id)
+    if not artifact:
+        raise HTTPException(status_code=409, detail="Generate Stage 5 semantic chunks before creating embeddings.")
+    resolved = read_resolved_structure(document_id)
+    if not resolved:
+        delete_chunking_artifact(document_id)
+        raise HTTPException(status_code=409, detail="Stage 5 artifact is stale because the resolved structure no longer exists.")
+    if artifact.source_resolved_at != resolved.resolved_at or artifact.source_sha256 != resolved.source_sha256:
+        delete_chunking_artifact(document_id)
+        raise HTTPException(status_code=409, detail="Stage 5 artifact is stale. Regenerate chunks before creating embeddings.")
+    return record, artifact
+
+
+def _ensure_stage5_database_sync(record: DocumentRecord, artifact: ChunkingArtifact) -> None:
+    if not settings.database_url:
+        raise HTTPException(status_code=503, detail="Stage 6 requires PostgreSQL + pgvector. Configure DATABASE_URL.")
+    from app.db.repository import document_chunk_ids, replace_chunks
+
+    expected = {chunk.chunk_id for chunk in artifact.chunks}
+    if document_chunk_ids(artifact.document_id) != expected:
+        replace_chunks(record, artifact)
+
+
+@router.post("/{document_id}/embeddings/validate", response_model=EmbeddingCompatibilityResponse)
+def validate_embedding_compatibility(
+    document_id: str, request: GenerateEmbeddingsRequest
+) -> EmbeddingCompatibilityResponse:
+    _, artifact = _validated_stage5_artifact(document_id)
+
+    from app.services.embeddings import EmbeddingDeviceError, EmbeddingEncoder
+
+    model_name = request.embedding_model or settings.embedding_model
+    try:
+        encoder = EmbeddingEncoder(
+            model_name,
+            device=request.embedding_device,
+            batch_size=request.batch_size,
+        )
+    except EmbeddingDeviceError as exc:
+        raise HTTPException(
+            status_code=409,
+            detail={
+                "code": "embedding_device_unavailable",
+                "message": str(exc),
+                "requested_device": exc.requested_device,
+            },
+        ) from exc
+
+    texts = [chunk.text for chunk in artifact.chunks]
+    inspection = encoder.inspect_documents(texts)
+    token_counts = [int(value) for value in inspection["token_counts"]]
+    max_seq_length = inspection["max_seq_length"]
+    raw_violations = list(inspection["violations"])
+
+    violations = []
+    for item in raw_violations[:20]:
+        index = int(item["index"])
+        chunk = artifact.chunks[index]
+        violations.append({
+            "chunk_id": chunk.chunk_id,
+            "chunk_index": chunk.chunk_index,
+            "model_token_count": int(item["token_count"]),
+            "model_max_seq_length": int(item["max_seq_length"]),
+        })
+
+    longest_index = max(range(len(token_counts)), key=token_counts.__getitem__) if token_counts else None
+    longest_chunk = artifact.chunks[longest_index] if longest_index is not None else None
+    violation_count = len(raw_violations)
+    return EmbeddingCompatibilityResponse(
+        document_id=document_id,
+        embedding_model=model_name,
+        requested_device=encoder.requested_device,
+        resolved_device=encoder.device,
+        chunk_count=len(artifact.chunks),
+        compatible_chunk_count=max(0, len(artifact.chunks) - violation_count),
+        compatible=violation_count == 0,
+        violation_count=violation_count,
+        model_max_seq_length=int(max_seq_length) if max_seq_length is not None else None,
+        max_model_token_count=token_counts[longest_index] if longest_index is not None else None,
+        longest_chunk_id=longest_chunk.chunk_id if longest_chunk is not None else None,
+        longest_chunk_index=longest_chunk.chunk_index if longest_chunk is not None else None,
+        violations=violations,
+    )
+
+
+@router.post("/{document_id}/embeddings", response_model=GenerateEmbeddingsResponse)
+def generate_embeddings(document_id: str, request: GenerateEmbeddingsRequest) -> GenerateEmbeddingsResponse:
+    record, artifact = _validated_stage5_artifact(document_id)
+    _ensure_stage5_database_sync(record, artifact)
+
+    from app.db.repository import chunks_for_embedding, delete_embeddings, embedding_status, store_embeddings
+    from app.services.embeddings import EmbeddingCompatibilityError, EmbeddingDeviceError, EmbeddingEncoder
+
+    model_name = request.embedding_model or settings.embedding_model
+    try:
+        encoder = EmbeddingEncoder(
+            model_name,
+            device=request.embedding_device,
+            batch_size=request.batch_size,
+        )
+    except EmbeddingDeviceError as exc:
+        raise HTTPException(
+            status_code=409,
+            detail={
+                "code": "embedding_device_unavailable",
+                "message": str(exc),
+                "requested_device": exc.requested_device,
+            },
+        ) from exc
+    if request.force:
+        delete_embeddings(document_id, model_name)
+    pending = chunks_for_embedding(document_id, model_name)
+    before = embedding_status(document_id, model_name)
+    if not pending:
+        return GenerateEmbeddingsResponse(
+            **before,
+            generated_count=0,
+            reused_count=int(before["embedded_chunk_count"]),
+            requested_device=encoder.requested_device,
+            resolved_device=encoder.device,
+        )
+
+    texts = [str(chunk["text"]) for chunk in pending]
+    try:
+        vectors = encoder.encode_documents(texts)
+    except EmbeddingCompatibilityError as exc:
+        violations = []
+        for item in exc.violations[:20]:
+            index = int(item["index"])
+            chunk = pending[index]
+            violations.append({
+                "chunk_id": str(chunk["chunk_id"]),
+                "chunk_index": int(chunk["chunk_index"]),
+                "model_token_count": int(item["token_count"]),
+                "model_max_seq_length": int(item["max_seq_length"]),
+            })
+        raise HTTPException(
+            status_code=409,
+            detail={
+                "code": "embedding_input_too_long",
+                "message": (
+                    "One or more Stage 5 chunks exceed the embedding model sequence limit. "
+                    "Regenerate Stage 5 with a safer token budget instead of silently truncating retrieval content."
+                ),
+                "embedding_model": model_name,
+                "violation_count": len(exc.violations),
+                "violations": violations,
+            },
+        ) from exc
+    if len(vectors) != len(pending):
+        raise HTTPException(status_code=500, detail="Embedding model returned a different number of vectors than chunks.")
+
+    payload: list[tuple[str, list[float], dict[str, object]]] = []
+    for chunk, vector in zip(pending, vectors, strict=True):
+        text = str(chunk["text"])
+        payload.append(
+            (
+                str(chunk["chunk_id"]),
+                vector,
+                {
+                    "normalized": True,
+                    "source": "stage5_chunk_text",
+                    "source_text_sha256": hashlib.sha256(text.encode("utf-8")).hexdigest(),
+                    "embedding_device": encoder.device,
+                },
+            )
+        )
+    generated = store_embeddings(embedding_model=model_name, chunk_vectors=payload)
+    after = embedding_status(document_id, model_name)
+    return GenerateEmbeddingsResponse(
+        **after,
+        generated_count=generated,
+        reused_count=max(0, int(before["embedded_chunk_count"])),
+        requested_device=encoder.requested_device,
+        resolved_device=encoder.device,
+    )
+
+
+@router.get("/{document_id}/embeddings", response_model=EmbeddingStatusResponse)
+def get_embedding_status(document_id: str, embedding_model: str | None = Query(default=None)) -> EmbeddingStatusResponse:
+    record, artifact = _validated_stage5_artifact(document_id)
+    _ensure_stage5_database_sync(record, artifact)
+    from app.db.repository import embedding_status
+
+    model_name = embedding_model or settings.embedding_model
+    return EmbeddingStatusResponse(**embedding_status(document_id, model_name))
+
+
+@router.delete("/{document_id}/embeddings", status_code=204)
+def reset_embeddings(document_id: str, embedding_model: str | None = Query(default=None)):
+    if not read_metadata(document_id):
+        raise HTTPException(status_code=404, detail="Document not found.")
+    if not settings.database_url:
+        raise HTTPException(status_code=503, detail="PostgreSQL is not configured.")
+    from app.db.repository import delete_embeddings
+
+    delete_embeddings(document_id, embedding_model or settings.embedding_model)
+    return Response(status_code=204)
 
 
 @router.delete("/{document_id}/chunks", status_code=204)

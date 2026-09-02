@@ -1,0 +1,2510 @@
+STAGE 8 HYBRID + RERANKER SMOKE-TEST REPORT
+============================================
+
+Started  : 2026-09-02T09:51:42.219302+08:00
+Finished : 2026-09-02T09:57:54.408802+08:00
+
+Backend           : http://localhost:8000
+Document ID       : 485c4989-c300-45c8-ac06-79a59492bb5c
+Embedding model   : BAAI/bge-m3
+Embedding device  : auto
+Reranker model    : BAAI/bge-reranker-v2-m3
+Reranker device   : auto
+Top K             : 5
+Candidate K       : 20 per retriever
+RRF K             : 60
+Dense weight      : 1.0
+Lexical weight    : 1.0
+Number of tests   : 5
+
+==============================================================================
+RETRIEVAL BEHAVIOUR: Definition retrieval
+==============================================================================
+Test ID                    : 01_definition_pep
+Query                      : What is a politically exposed person?
+Purpose                    : Tests whether reranking preserves the exact PEP definition at rank 1.
+Document ID                : 485c4989-c300-45c8-ac06-79a59492bb5c
+Embedding model            : BAAI/bge-m3
+Embedding requested device : auto
+Embedding resolved device  : cuda
+Reranker model             : BAAI/bge-reranker-v2-m3
+Reranker requested device  : auto
+Reranker resolved device   : cuda
+Reranker batch size        : 2
+Reranker max length        : 1024
+Top K                      : 5
+Candidate K per retriever  : 20
+Candidate union count      : 23
+Candidate strategy         : dense_lexical_union
+Ranking method             : cross_encoder
+RRF K                      : 60
+Dense weight               : 1.0
+Lexical weight             : 1.0
+Lexical ranking            : postgresql_fts_term_coverage_then_ts_rank_cd
+Lexical query mode         : or_content_terms_v1
+Lexical terms              : ['politically', 'exposed', 'person']
+Lexical tsquery            : politically | exposed | person
+Embedded chunks            : 284
+Total chunks               : 284
+Retrieved hits             : 5
+
+------------------------------------------------------------
+RANK 1
+------------------------------------------------------------
+Chunk index          : 33
+Chunk ID             : 485c4989-c300-45c8-ac06-79a59492bb5c-c0033-d2663cbf5c
+Semantic type        : definition
+Reranker raw score   : 0.999166
+Reranker normalized : 0.7309
+Hybrid candidate rank: 1
+Fusion score         : 0.032787
+Dense rank           : 1
+Dense score          : 0.696264
+Dense distance       : 0.303736
+Dense RRF            : 0.016393
+Lexical rank         : 1
+Lexical score        : 0.900000
+Lexical terms hit    : 3
+Lexical coverage     : 1.0000
+Lexical RRF          : 0.016393
+Token count          : 207
+Pages                : [13]
+Section path         : PART I: INTRODUCTION AND APPLICABILITY > 3. DEFINITIONS
+Source element IDs   : ['p13-e3', 'p13-e6', 'p13-e7', 'p13-e8', 'p13-e9', 'p13-e10']
+
+TEXT
+------------------------------------------------------------
+Section: PART I: INTRODUCTION AND APPLICABILITY > 3. DEFINITIONS
+Definition: politically exposed person (PEP)
+
+politically exposed person (PEP)
+
+means―
+(a)foreign PEP i.e. individual who is or who has been entrusted with prominent public functions by a foreign country, for example, Head of State or of government, senior politician, senior government, judicial or military official, senior executive of state-owned corporation, important political party official;
+(b)domestic PEP i.e. individual who is or has been entrusted domestically with prominent public functions, for example Head of State or of government, senior politician, senior government, judicial or military official, senior executive of state- owned corporation, important political party official; or
+(c)person who is or has been entrusted with a prominent function by an international organisation which refers to member of senior management, i.e. director, deputy director and member of the board or equivalent functions.
+The definition of PEP is not intended to cover middle ranking or more junior individual in the foregoing categories.
+
+------------------------------------------------------------
+RANK 2
+------------------------------------------------------------
+Chunk index          : 112
+Chunk ID             : 485c4989-c300-45c8-ac06-79a59492bb5c-c0112-8c652d9f62
+Semantic type        : clause
+Reranker raw score   : 0.832062
+Reranker normalized : 0.6968
+Hybrid candidate rank: 2
+Fusion score         : 0.031754
+Dense rank           : 4
+Dense score          : 0.507025
+Dense distance       : 0.492975
+Dense RRF            : 0.015625
+Lexical rank         : 2
+Lexical score        : 0.700000
+Lexical terms hit    : 3
+Lexical coverage     : 1.0000
+Lexical RRF          : 0.016129
+Token count          : 368
+Pages                : [42]
+Section path         : PART III: CUSTOMER DUE DILIGENCE > 8. CUSTOMER DUE DILIGENCE (CDD) > 8.4 Politically exposed persons (PEPs)
+Source element IDs   : ['p42-e1', 'p42-e2', 'p42-e3', 'p42-e4', 'p42-e5', 'p42-e6', 'p42-e7']
+
+TEXT
+------------------------------------------------------------
+Section: PART III: CUSTOMER DUE DILIGENCE > 8. CUSTOMER DUE DILIGENCE (CDD) > 8.4 Politically exposed persons (PEPs)
+
+8.4.1 The requirements set out in paragraph 8.4 herein are also applicable to family
+members or close associates of PEPs. Appendix B of these Guidelines provides
+measures to be adopted by a reporting institution in dealing with the family members
+or close associates of PEPs.
+
+8.4.2 A reporting institution is required to have in place a risk management system to
+determine whether a customer or a beneficial owner is a foreign PEP.
+
+8.4.3 Upon determining that a customer or a beneficial owner is a foreign PEP, the
+requirement to conduct enhanced CDD measures under paragraph 8.3 is applicable
+and the reporting institution is also required to conduct enhanced ongoing due
+diligence.
+
+8.4.4 A reporting institution is required to have in place reasonable measures to determine
+whether a customer or the beneficial owner is a domestic PEP or person entrusted
+with a prominent function by an international organisation.
+
+8.4.5 The reporting institution is required to assess the level of ML/TF/PF risks posed by
+the business relationship with the domestic PEP or person entrusted with a prominent
+function by an international organisation based on sufficient and appropriate
+information gathered through publicly available information or other reasonable
+means. The assessment of the ML/TF/PF risks also must take into account the profile
+of the customer under paragraph 7.5.3 of these Guidelines.
+
+8.4.6 For a higher-risk domestic PEP or higher-risk person entrusted with a prominent
+function by an international organisation, the requirements of enhanced CDD
+measures are as set out in paragraph 8.3.
+
+8.4.7 For a domestic PEP or person entrusted with a prominent function by an international
+organisation that is assessed as low risk, the reporting institution may apply the standard
+CDD measures.
+
+------------------------------------------------------------
+RANK 3
+------------------------------------------------------------
+Chunk index          : 220
+Chunk ID             : 485c4989-c300-45c8-ac06-79a59492bb5c-c0220-2bf2d573f8
+Semantic type        : paragraph
+Reranker raw score   : 0.794402
+Reranker normalized : 0.6888
+Hybrid candidate rank: 14
+Fusion score         : 0.027444
+Dense rank           : 16
+Dense score          : 0.461463
+Dense distance       : 0.538537
+Dense RRF            : 0.013158
+Lexical rank         : 10
+Lexical score        : 0.300000
+Lexical terms hit    : 3
+Lexical coverage     : 1.0000
+Lexical RRF          : 0.014286
+Token count          : 38
+Pages                : [83]
+Section path         : APPENDIX B > Applicable CDD or Enhanced CDD Measures
+Source element IDs   : ['p83-e2']
+
+TEXT
+------------------------------------------------------------
+Section: APPENDIX B > Applicable CDD or Enhanced CDD Measures
+Group: Guidance on Politically Exposed Person (PEP) – Family Members
+and Close Associates of PEP
+
+Family Member or Close Associate of a Foreign PEP
+
+------------------------------------------------------------
+RANK 4
+------------------------------------------------------------
+Chunk index          : 224
+Chunk ID             : 485c4989-c300-45c8-ac06-79a59492bb5c-c0224-3608f8ce4a
+Semantic type        : clause
+Reranker raw score   : 0.792093
+Reranker normalized : 0.6883
+Hybrid candidate rank: 7
+Fusion score         : 0.029469
+Dense rank           : 11
+Dense score          : 0.471926
+Dense distance       : 0.528074
+Dense RRF            : 0.014085
+Lexical rank         : 5
+Lexical score        : 0.400000
+Lexical terms hit    : 3
+Lexical coverage     : 1.0000
+Lexical RRF          : 0.015385
+Token count          : 108
+Pages                : [83]
+Section path         : APPENDIX B > Family member or Close Associate of a Domestic PEP or person entrusted with prominent
+public  function by an international organisation (PEPFIO)
+Source element IDs   : ['p83-e11']
+
+TEXT
+------------------------------------------------------------
+Section: APPENDIX B > Family member or Close Associate of a Domestic PEP or person entrusted with prominent
+public  function by an international organisation (PEPFIO)
+Clause: 1.11
+Group: Guidance on Politically Exposed Person (PEP) – Family Members
+and Close Associates of PEP
+
+1.11 For family members or close associates of a domestic PEP or PEPFIO that is assessed
+as low risk pursuant to the rating assigned to the domestic PEP or PEPFIO, the
+reporting institution must apply the standard CDD measures and where he is assessed
+as higher risk, enhanced CDD measures are applicable.
+
+------------------------------------------------------------
+RANK 5
+------------------------------------------------------------
+Chunk index          : 219
+Chunk ID             : 485c4989-c300-45c8-ac06-79a59492bb5c-c0219-45a98d0a5f
+Semantic type        : clause
+Reranker raw score   : 0.782384
+Reranker normalized : 0.6862
+Hybrid candidate rank: 5
+Fusion score         : 0.030366
+Dense rank           : 3
+Dense score          : 0.509744
+Dense distance       : 0.490256
+Dense RRF            : 0.015873
+Lexical rank         : 9
+Lexical score        : 0.300000
+Lexical terms hit    : 3
+Lexical coverage     : 1.0000
+Lexical RRF          : 0.014493
+Token count          : 120
+Pages                : [82]
+Section path         : APPENDIX B > Close Associates of a PEP
+Source element IDs   : ['p82-e15', 'p82-e16', 'p82-e17']
+
+TEXT
+------------------------------------------------------------
+Section: APPENDIX B > Close Associates of a PEP
+Group: Guidance on Politically Exposed Person (PEP) – Family Members
+and Close Associates of PEP
+
+1.5 A close associate is an individual reasonably known to the reporting institution to be
+closely connected to a PEP, either socially or professionally.
+
+1.6 An individual who is closely connected to a PEP may include the PEP’s business
+partners or associates, extended family members, close friends and financially
+dependent individuals.
+
+1.7 Reporting institutions must determine the extent to which the close associate is directly
+engaged or involved in the activity of the PEP on best effort basis.
+
+
+==============================================================================
+RAW JSON RESPONSE
+==============================================================================
+{
+  "document_id": "485c4989-c300-45c8-ac06-79a59492bb5c",
+  "query": "What is a politically exposed person?",
+  "embedding_model": "BAAI/bge-m3",
+  "embedding_requested_device": "auto",
+  "embedding_resolved_device": "cuda",
+  "reranker_model": "BAAI/bge-reranker-v2-m3",
+  "reranker_requested_device": "auto",
+  "reranker_resolved_device": "cuda",
+  "reranker_batch_size": 2,
+  "reranker_max_length": 1024,
+  "top_k": 5,
+  "candidate_k": 20,
+  "candidate_union_count": 23,
+  "embedded_chunk_count": 284,
+  "total_chunk_count": 284,
+  "candidate_strategy": "dense_lexical_union",
+  "ranking_method": "cross_encoder",
+  "fusion_method": "reciprocal_rank_fusion_trace",
+  "rrf_k": 60,
+  "dense_weight": 1.0,
+  "lexical_weight": 1.0,
+  "lexical_ranking_method": "postgresql_fts_term_coverage_then_ts_rank_cd",
+  "lexical_query_mode": "or_content_terms_v1",
+  "lexical_terms": [
+    "politically",
+    "exposed",
+    "person"
+  ],
+  "lexical_tsquery": "politically | exposed | person",
+  "hits": [
+    {
+      "rank": 1,
+      "chunk_id": "485c4989-c300-45c8-ac06-79a59492bb5c-c0033-d2663cbf5c",
+      "chunk_index": 33,
+      "semantic_type": "definition",
+      "reranker_score": 0.9991656541824341,
+      "reranker_normalized_score": 0.7308945046647077,
+      "hybrid_candidate_rank": 1,
+      "fusion_score": 0.03278688524590164,
+      "dense_rank": 1,
+      "dense_score": 0.696263748630063,
+      "dense_distance": 0.303736251369937,
+      "dense_rrf_score": 0.01639344262295082,
+      "lexical_rank": 1,
+      "lexical_score": 0.90000004,
+      "lexical_matched_term_count": 3,
+      "lexical_term_coverage": 1.0,
+      "lexical_rrf_score": 0.01639344262295082,
+      "text": "Section: PART I: INTRODUCTION AND APPLICABILITY > 3. DEFINITIONS\nDefinition: politically exposed person (PEP)\n\npolitically exposed person (PEP)\n\nmeans―\n(a)foreign PEP i.e. individual who is or who has been entrusted with prominent public functions by a foreign country, for example, Head of State or of government, senior politician, senior government, judicial or military official, senior executive of state-owned corporation, important political party official;\n(b)domestic PEP i.e. individual who is or has been entrusted domestically with prominent public functions, for example Head of State or of government, senior politician, senior government, judicial or military official, senior executive of state- owned corporation, important political party official; or\n(c)person who is or has been entrusted with a prominent function by an international organisation which refers to member of senior management, i.e. director, deputy director and member of the board or equivalent functions.\nThe definition of PEP is not intended to cover middle ranking or more junior individual in the foregoing categories.",
+      "content_text": "politically exposed person (PEP)\n\nmeans―\n(a)foreign PEP i.e. individual who is or who has been entrusted with prominent public functions by a foreign country, for example, Head of State or of government, senior politician, senior government, judicial or military official, senior executive of state-owned corporation, important political party official;\n(b)domestic PEP i.e. individual who is or has been entrusted domestically with prominent public functions, for example Head of State or of government, senior politician, senior government, judicial or military official, senior executive of state- owned corporation, important political party official; or\n(c)person who is or has been entrusted with a prominent function by an international organisation which refers to member of senior management, i.e. director, deputy director and member of the board or equivalent functions.\nThe definition of PEP is not intended to cover middle ranking or more junior individual in the foregoing categories.",
+      "token_count": 207,
+      "pages": [
+        13
+      ],
+      "section_path": [
+        "PART I: INTRODUCTION AND APPLICABILITY",
+        "3. DEFINITIONS"
+      ],
+      "source_element_ids": [
+        "p13-e3",
+        "p13-e6",
+        "p13-e7",
+        "p13-e8",
+        "p13-e9",
+        "p13-e10"
+      ]
+    },
+    {
+      "rank": 2,
+      "chunk_id": "485c4989-c300-45c8-ac06-79a59492bb5c-c0112-8c652d9f62",
+      "chunk_index": 112,
+      "semantic_type": "clause",
+      "reranker_score": 0.8320615291595459,
+      "reranker_normalized_score": 0.6967906527929073,
+      "hybrid_candidate_rank": 2,
+      "fusion_score": 0.031754032258064516,
+      "dense_rank": 4,
+      "dense_score": 0.5070252712353911,
+      "dense_distance": 0.4929747287646089,
+      "dense_rrf_score": 0.015625,
+      "lexical_rank": 2,
+      "lexical_score": 0.7,
+      "lexical_matched_term_count": 3,
+      "lexical_term_coverage": 1.0,
+      "lexical_rrf_score": 0.016129032258064516,
+      "text": "Section: PART III: CUSTOMER DUE DILIGENCE > 8. CUSTOMER DUE DILIGENCE (CDD) > 8.4 Politically exposed persons (PEPs)\n\n8.4.1 The requirements set out in paragraph 8.4 herein are also applicable to family\nmembers or close associates of PEPs. Appendix B of these Guidelines provides\nmeasures to be adopted by a reporting institution in dealing with the family members\nor close associates of PEPs.\n\n8.4.2 A reporting institution is required to have in place a risk management system to\ndetermine whether a customer or a beneficial owner is a foreign PEP.\n\n8.4.3 Upon determining that a customer or a beneficial owner is a foreign PEP, the\nrequirement to conduct enhanced CDD measures under paragraph 8.3 is applicable\nand the reporting institution is also required to conduct enhanced ongoing due\ndiligence.\n\n8.4.4 A reporting institution is required to have in place reasonable measures to determine\nwhether a customer or the beneficial owner is a domestic PEP or person entrusted\nwith a prominent function by an international organisation.\n\n8.4.5 The reporting institution is required to assess the level of ML/TF/PF risks posed by\nthe business relationship with the domestic PEP or person entrusted with a prominent\nfunction by an international organisation based on sufficient and appropriate\ninformation gathered through publicly available information or other reasonable\nmeans. The assessment of the ML/TF/PF risks also must take into account the profile\nof the customer under paragraph 7.5.3 of these Guidelines.\n\n8.4.6 For a higher-risk domestic PEP or higher-risk person entrusted with a prominent\nfunction by an international organisation, the requirements of enhanced CDD\nmeasures are as set out in paragraph 8.3.\n\n8.4.7 For a domestic PEP or person entrusted with a prominent function by an international\norganisation that is assessed as low risk, the reporting institution may apply the standard\nCDD measures.",
+      "content_text": "8.4.1 The requirements set out in paragraph 8.4 herein are also applicable to family\nmembers or close associates of PEPs. Appendix B of these Guidelines provides\nmeasures to be adopted by a reporting institution in dealing with the family members\nor close associates of PEPs.\n\n8.4.2 A reporting institution is required to have in place a risk management system to\ndetermine whether a customer or a beneficial owner is a foreign PEP.\n\n8.4.3 Upon determining that a customer or a beneficial owner is a foreign PEP, the\nrequirement to conduct enhanced CDD measures under paragraph 8.3 is applicable\nand the reporting institution is also required to conduct enhanced ongoing due\ndiligence.\n\n8.4.4 A reporting institution is required to have in place reasonable measures to determine\nwhether a customer or the beneficial owner is a domestic PEP or person entrusted\nwith a prominent function by an international organisation.\n\n8.4.5 The reporting institution is required to assess the level of ML/TF/PF risks posed by\nthe business relationship with the domestic PEP or person entrusted with a prominent\nfunction by an international organisation based on sufficient and appropriate\ninformation gathered through publicly available information or other reasonable\nmeans. The assessment of the ML/TF/PF risks also must take into account the profile\nof the customer under paragraph 7.5.3 of these Guidelines.\n\n8.4.6 For a higher-risk domestic PEP or higher-risk person entrusted with a prominent\nfunction by an international organisation, the requirements of enhanced CDD\nmeasures are as set out in paragraph 8.3.\n\n8.4.7 For a domestic PEP or person entrusted with a prominent function by an international\norganisation that is assessed as low risk, the reporting institution may apply the standard\nCDD measures.",
+      "token_count": 368,
+      "pages": [
+        42
+      ],
+      "section_path": [
+        "PART III: CUSTOMER DUE DILIGENCE",
+        "8. CUSTOMER DUE DILIGENCE (CDD)",
+        "8.4 Politically exposed persons (PEPs)"
+      ],
+      "source_element_ids": [
+        "p42-e1",
+        "p42-e2",
+        "p42-e3",
+        "p42-e4",
+        "p42-e5",
+        "p42-e6",
+        "p42-e7"
+      ]
+    },
+    {
+      "rank": 3,
+      "chunk_id": "485c4989-c300-45c8-ac06-79a59492bb5c-c0220-2bf2d573f8",
+      "chunk_index": 220,
+      "semantic_type": "paragraph",
+      "reranker_score": 0.7944021821022034,
+      "reranker_normalized_score": 0.6887757819824004,
+      "hybrid_candidate_rank": 14,
+      "fusion_score": 0.027443609022556388,
+      "dense_rank": 16,
+      "dense_score": 0.461462571068483,
+      "dense_distance": 0.538537428931517,
+      "dense_rrf_score": 0.013157894736842105,
+      "lexical_rank": 10,
+      "lexical_score": 0.3,
+      "lexical_matched_term_count": 3,
+      "lexical_term_coverage": 1.0,
+      "lexical_rrf_score": 0.014285714285714285,
+      "text": "Section: APPENDIX B > Applicable CDD or Enhanced CDD Measures\nGroup: Guidance on Politically Exposed Person (PEP) – Family Members\nand Close Associates of PEP\n\nFamily Member or Close Associate of a Foreign PEP",
+      "content_text": "Family Member or Close Associate of a Foreign PEP",
+      "token_count": 38,
+      "pages": [
+        83
+      ],
+      "section_path": [
+        "APPENDIX B",
+        "Applicable CDD or Enhanced CDD Measures"
+      ],
+      "source_element_ids": [
+        "p83-e2"
+      ]
+    },
+    {
+      "rank": 4,
+      "chunk_id": "485c4989-c300-45c8-ac06-79a59492bb5c-c0224-3608f8ce4a",
+      "chunk_index": 224,
+      "semantic_type": "clause",
+      "reranker_score": 0.7920931577682495,
+      "reranker_normalized_score": 0.6882805953473933,
+      "hybrid_candidate_rank": 7,
+      "fusion_score": 0.02946912242686891,
+      "dense_rank": 11,
+      "dense_score": 0.47192589854973277,
+      "dense_distance": 0.5280741014502672,
+      "dense_rrf_score": 0.014084507042253521,
+      "lexical_rank": 5,
+      "lexical_score": 0.4,
+      "lexical_matched_term_count": 3,
+      "lexical_term_coverage": 1.0,
+      "lexical_rrf_score": 0.015384615384615385,
+      "text": "Section: APPENDIX B > Family member or Close Associate of a Domestic PEP or person entrusted with prominent\npublic  function by an international organisation (PEPFIO)\nClause: 1.11\nGroup: Guidance on Politically Exposed Person (PEP) – Family Members\nand Close Associates of PEP\n\n1.11 For family members or close associates of a domestic PEP or PEPFIO that is assessed\nas low risk pursuant to the rating assigned to the domestic PEP or PEPFIO, the\nreporting institution must apply the standard CDD measures and where he is assessed\nas higher risk, enhanced CDD measures are applicable.",
+      "content_text": "1.11 For family members or close associates of a domestic PEP or PEPFIO that is assessed\nas low risk pursuant to the rating assigned to the domestic PEP or PEPFIO, the\nreporting institution must apply the standard CDD measures and where he is assessed\nas higher risk, enhanced CDD measures are applicable.",
+      "token_count": 108,
+      "pages": [
+        83
+      ],
+      "section_path": [
+        "APPENDIX B",
+        "Family member or Close Associate of a Domestic PEP or person entrusted with prominent\npublic  function by an international organisation (PEPFIO)"
+      ],
+      "source_element_ids": [
+        "p83-e11"
+      ]
+    },
+    {
+      "rank": 5,
+      "chunk_id": "485c4989-c300-45c8-ac06-79a59492bb5c-c0219-45a98d0a5f",
+      "chunk_index": 219,
+      "semantic_type": "clause",
+      "reranker_score": 0.7823843955993652,
+      "reranker_normalized_score": 0.6861937781209445,
+      "hybrid_candidate_rank": 5,
+      "fusion_score": 0.03036576949620428,
+      "dense_rank": 3,
+      "dense_score": 0.5097436308860779,
+      "dense_distance": 0.4902563691139221,
+      "dense_rrf_score": 0.015873015873015872,
+      "lexical_rank": 9,
+      "lexical_score": 0.3,
+      "lexical_matched_term_count": 3,
+      "lexical_term_coverage": 1.0,
+      "lexical_rrf_score": 0.014492753623188406,
+      "text": "Section: APPENDIX B > Close Associates of a PEP\nGroup: Guidance on Politically Exposed Person (PEP) – Family Members\nand Close Associates of PEP\n\n1.5 A close associate is an individual reasonably known to the reporting institution to be\nclosely connected to a PEP, either socially or professionally.\n\n1.6 An individual who is closely connected to a PEP may include the PEP’s business\npartners or associates, extended family members, close friends and financially\ndependent individuals.\n\n1.7 Reporting institutions must determine the extent to which the close associate is directly\nengaged or involved in the activity of the PEP on best effort basis.",
+      "content_text": "1.5 A close associate is an individual reasonably known to the reporting institution to be\nclosely connected to a PEP, either socially or professionally.\n\n1.6 An individual who is closely connected to a PEP may include the PEP’s business\npartners or associates, extended family members, close friends and financially\ndependent individuals.\n\n1.7 Reporting institutions must determine the extent to which the close associate is directly\nengaged or involved in the activity of the PEP on best effort basis.",
+      "token_count": 120,
+      "pages": [
+        82
+      ],
+      "section_path": [
+        "APPENDIX B",
+        "Close Associates of a PEP"
+      ],
+      "source_element_ids": [
+        "p82-e15",
+        "p82-e16",
+        "p82-e17"
+      ]
+    }
+  ]
+}
+
+
+==============================================================================
+RETRIEVAL BEHAVIOUR: Exact regulatory requirement
+==============================================================================
+Test ID                    : 02_delayed_verification
+Query                      : What are the requirements for delayed verification?
+Purpose                    : Tests whether reranking preserves the strong delayed-verification result.
+Document ID                : 485c4989-c300-45c8-ac06-79a59492bb5c
+Embedding model            : BAAI/bge-m3
+Embedding requested device : auto
+Embedding resolved device  : cuda
+Reranker model             : BAAI/bge-reranker-v2-m3
+Reranker requested device  : auto
+Reranker resolved device   : cuda
+Reranker batch size        : 2
+Reranker max length        : 1024
+Top K                      : 5
+Candidate K per retriever  : 20
+Candidate union count      : 31
+Candidate strategy         : dense_lexical_union
+Ranking method             : cross_encoder
+RRF K                      : 60
+Dense weight               : 1.0
+Lexical weight             : 1.0
+Lexical ranking            : postgresql_fts_term_coverage_then_ts_rank_cd
+Lexical query mode         : or_content_terms_v1
+Lexical terms              : ['requirements', 'delayed', 'verification']
+Lexical tsquery            : requirements | delayed | verification
+Embedded chunks            : 284
+Total chunks               : 284
+Retrieved hits             : 5
+
+------------------------------------------------------------
+RANK 1
+------------------------------------------------------------
+Chunk index          : 102
+Chunk ID             : 485c4989-c300-45c8-ac06-79a59492bb5c-c0102-6667285dd5
+Semantic type        : clause
+Reranker raw score   : 0.991625
+Reranker normalized : 0.7294
+Hybrid candidate rank: 1
+Fusion score         : 0.032787
+Dense rank           : 1
+Dense score          : 0.771393
+Dense distance       : 0.228607
+Dense RRF            : 0.016393
+Lexical rank         : 1
+Lexical score        : 0.900000
+Lexical terms hit    : 2
+Lexical coverage     : 0.6667
+Lexical RRF          : 0.016393
+Token count          : 148
+Pages                : [38]
+Section path         : PART III: CUSTOMER DUE DILIGENCE > 8. CUSTOMER DUE DILIGENCE (CDD) > 8.1 CDD at the point of establishing business relationship
+Source element IDs   : ['p38-e3', 'p38-e4', 'p38-e5', 'p38-e6', 'p38-e7']
+
+TEXT
+------------------------------------------------------------
+Section: PART III: CUSTOMER DUE DILIGENCE > 8. CUSTOMER DUE DILIGENCE (CDD) > 8.1 CDD at the point of establishing business relationship
+Clause: 8.1.25
+Group: Delayed verification
+
+8.1.25 Where delayed verification applies, the following conditions must be satisfied:
+
+(a) Before the reporting institution adopts a delayed verification, the reporting
+institution must have in place appropriate risk management policies and
+procedures which can effectively manage any ML/TF/PF risk arising from delayed
+verification;
+
+(b) The delay is essential so as not to interrupt the reporting institutions’ normal
+conduct of business;
+
+(c) The ML/TF/PF risks are effectively managed; and
+
+(d) There is no suspicion of ML/TF/PF.
+
+------------------------------------------------------------
+RANK 2
+------------------------------------------------------------
+Chunk index          : 103
+Chunk ID             : 485c4989-c300-45c8-ac06-79a59492bb5c-c0103-96fa91f378
+Semantic type        : clause
+Reranker raw score   : 0.973977
+Reranker normalized : 0.7259
+Hybrid candidate rank: 2
+Fusion score         : 0.032258
+Dense rank           : 2
+Dense score          : 0.727080
+Dense distance       : 0.272920
+Dense RRF            : 0.016129
+Lexical rank         : 2
+Lexical score        : 0.900000
+Lexical terms hit    : 2
+Lexical coverage     : 0.6667
+Lexical RRF          : 0.016129
+Token count          : 184
+Pages                : [38]
+Section path         : PART III: CUSTOMER DUE DILIGENCE > 8. CUSTOMER DUE DILIGENCE (CDD) > 8.1 CDD at the point of establishing business relationship
+Source element IDs   : ['p38-e8', 'p38-e9', 'p38-e10', 'p38-e11', 'p38-e12']
+
+TEXT
+------------------------------------------------------------
+Section: PART III: CUSTOMER DUE DILIGENCE > 8. CUSTOMER DUE DILIGENCE (CDD) > 8.1 CDD at the point of establishing business relationship
+Clause: 8.1.26
+Group: Delayed verification
+
+8.1.26 The policies and procedures must include:
+
+(a) Establishing a reasonable timeframe for the completion of the identity verification
+measures to ensure that delayed verification occurs as reasonably practicable.
+The reasonable timeframe shall not exceed 10 working days or any other period
+as may be specified by the SC;
+
+(b) Measures that a reporting institution may take to manage risks of delayed
+verification including conditions under which the customer may utilize the
+business relationship prior to verification and placing appropriate limits on the
+number, types and/or amount of transactions that can be performed;
+
+(c) Monitoring of large and complex transactions being carried out outside the
+expected norms pending completion of verification; and
+
+(d) Keeping senior management periodically informed of any cases pending identity.
+
+------------------------------------------------------------
+RANK 3
+------------------------------------------------------------
+Chunk index          : 101
+Chunk ID             : 485c4989-c300-45c8-ac06-79a59492bb5c-c0101-c09791e527
+Semantic type        : clause
+Reranker raw score   : 0.940643
+Reranker normalized : 0.7192
+Hybrid candidate rank: 3
+Fusion score         : 0.031746
+Dense rank           : 3
+Dense score          : 0.698822
+Dense distance       : 0.301178
+Dense RRF            : 0.015873
+Lexical rank         : 3
+Lexical score        : 0.800000
+Lexical terms hit    : 2
+Lexical coverage     : 0.6667
+Lexical RRF          : 0.015873
+Token count          : 177
+Pages                : [38, 39]
+Section path         : PART III: CUSTOMER DUE DILIGENCE > 8. CUSTOMER DUE DILIGENCE (CDD) > 8.1 CDD at the point of establishing business relationship
+Source element IDs   : ['p38-e2', 'p38-e13', 'p39-e1']
+
+TEXT
+------------------------------------------------------------
+Section: PART III: CUSTOMER DUE DILIGENCE > 8. CUSTOMER DUE DILIGENCE (CDD) > 8.1 CDD at the point of establishing business relationship
+Group: Delayed verification
+
+8.1.24 A reporting institution may complete the verification after the establishment of the
+business relationship (“delayed verification”) to allow some flexibility for its customer
+and beneficial owner to furnish the relevant documents in circumstances where
+verification is not possible at the point of establishing business relationship.
+
+8.1.27 If verification cannot be completed within the reasonable timeframe, the reporting
+institution should terminate the business relationship as soon as reasonably practicable
+and refrain from carrying out further transactions. However, following the termination
+of business relationship, the reporting institution may return funds or other assets to
+the customers.
+
+8.1.28 The reporting institution must assess whether the failure to complete verification within
+the reasonable timeframe provides sufficient grounds for making a STR to the FIED.
+
+------------------------------------------------------------
+RANK 4
+------------------------------------------------------------
+Chunk index          : 84
+Chunk ID             : 485c4989-c300-45c8-ac06-79a59492bb5c-c0084-fb93596733
+Semantic type        : clause
+Reranker raw score   : 0.025991
+Reranker normalized : 0.5065
+Hybrid candidate rank: 4
+Fusion score         : 0.030310
+Dense rank           : 5
+Dense score          : 0.550303
+Dense distance       : 0.449697
+Dense RRF            : 0.015385
+Lexical rank         : 7
+Lexical score        : 0.300000
+Lexical terms hit    : 2
+Lexical coverage     : 0.6667
+Lexical RRF          : 0.014925
+Token count          : 90
+Pages                : [32]
+Section path         : PART III: CUSTOMER DUE DILIGENCE > 8. CUSTOMER DUE DILIGENCE (CDD) > 8.1 CDD at the point of establishing business relationship
+Source element IDs   : ['p32-e15']
+
+TEXT
+------------------------------------------------------------
+Section: PART III: CUSTOMER DUE DILIGENCE > 8. CUSTOMER DUE DILIGENCE (CDD) > 8.1 CDD at the point of establishing business relationship
+Clause: 8.1.7
+Group: CDD requirements for individual customer and beneficial owner > Identification and Verification
+
+8.1.7 Where the above information is not sufficient for the reporting institution to complete its
+identification and verification process, the reporting institution must seek further relevant
+information from the individual customer or beneficial owner.
+
+------------------------------------------------------------
+RANK 5
+------------------------------------------------------------
+Chunk index          : 83
+Chunk ID             : 485c4989-c300-45c8-ac06-79a59492bb5c-c0083-747260288c
+Semantic type        : clause
+Reranker raw score   : 0.020865
+Reranker normalized : 0.5052
+Hybrid candidate rank: 5
+Fusion score         : 0.028139
+Dense rank           : 17
+Dense score          : 0.524251
+Dense distance       : 0.475749
+Dense RRF            : 0.012987
+Lexical rank         : 6
+Lexical score        : 0.300000
+Lexical terms hit    : 2
+Lexical coverage     : 0.6667
+Lexical RRF          : 0.015152
+Token count          : 196
+Pages                : [32]
+Section path         : PART III: CUSTOMER DUE DILIGENCE > 8. CUSTOMER DUE DILIGENCE (CDD) > 8.1 CDD at the point of establishing business relationship
+Source element IDs   : ['p32-e3', 'p32-e4', 'p32-e5', 'p32-e6', 'p32-e7', 'p32-e8', 'p32-e9', 'p32-e10', 'p32-e11', 'p32-e12', 'p32-e13', 'p32-e14']
+
+TEXT
+------------------------------------------------------------
+Section: PART III: CUSTOMER DUE DILIGENCE > 8. CUSTOMER DUE DILIGENCE (CDD) > 8.1 CDD at the point of establishing business relationship
+Clause: 8.1.6
+Group: CDD requirements for individual customer and beneficial owner > Identification and Verification
+
+8.1.6 In conducting CDD, a reporting institution is required to identify an individual customer
+or beneficial owner, by obtainingat least the following information:
+
+(a)Full name;
+
+(b)National Registration Identity Card (NRIC) number or passport number or
+reference number of any other official documents of the individual customer or
+beneficial owner;
+
+(c)Residential and mailing address;
+
+(d)Date of birth;
+
+(e)Nationality;
+
+(f)Occupation type;
+
+(g)Name of employer or nature of self-employment or nature of business/sector;
+
+(h)Income or range of income;
+
+(i)Contact number (home, office or mobile);
+
+(j)Email; and
+
+(k)Purpose of transaction.
+
+
+==============================================================================
+RAW JSON RESPONSE
+==============================================================================
+{
+  "document_id": "485c4989-c300-45c8-ac06-79a59492bb5c",
+  "query": "What are the requirements for delayed verification?",
+  "embedding_model": "BAAI/bge-m3",
+  "embedding_requested_device": "auto",
+  "embedding_resolved_device": "cuda",
+  "reranker_model": "BAAI/bge-reranker-v2-m3",
+  "reranker_requested_device": "auto",
+  "reranker_resolved_device": "cuda",
+  "reranker_batch_size": 2,
+  "reranker_max_length": 1024,
+  "top_k": 5,
+  "candidate_k": 20,
+  "candidate_union_count": 31,
+  "embedded_chunk_count": 284,
+  "total_chunk_count": 284,
+  "candidate_strategy": "dense_lexical_union",
+  "ranking_method": "cross_encoder",
+  "fusion_method": "reciprocal_rank_fusion_trace",
+  "rrf_k": 60,
+  "dense_weight": 1.0,
+  "lexical_weight": 1.0,
+  "lexical_ranking_method": "postgresql_fts_term_coverage_then_ts_rank_cd",
+  "lexical_query_mode": "or_content_terms_v1",
+  "lexical_terms": [
+    "requirements",
+    "delayed",
+    "verification"
+  ],
+  "lexical_tsquery": "requirements | delayed | verification",
+  "hits": [
+    {
+      "rank": 1,
+      "chunk_id": "485c4989-c300-45c8-ac06-79a59492bb5c-c0102-6667285dd5",
+      "chunk_index": 102,
+      "semantic_type": "clause",
+      "reranker_score": 0.9916253685951233,
+      "reranker_normalized_score": 0.7294088435135849,
+      "hybrid_candidate_rank": 1,
+      "fusion_score": 0.03278688524590164,
+      "dense_rank": 1,
+      "dense_score": 0.7713929414749146,
+      "dense_distance": 0.22860705852508545,
+      "dense_rrf_score": 0.01639344262295082,
+      "lexical_rank": 1,
+      "lexical_score": 0.90000004,
+      "lexical_matched_term_count": 2,
+      "lexical_term_coverage": 0.6666666666666666,
+      "lexical_rrf_score": 0.01639344262295082,
+      "text": "Section: PART III: CUSTOMER DUE DILIGENCE > 8. CUSTOMER DUE DILIGENCE (CDD) > 8.1 CDD at the point of establishing business relationship\nClause: 8.1.25\nGroup: Delayed verification\n\n8.1.25 Where delayed verification applies, the following conditions must be satisfied:\n\n(a) Before the reporting institution adopts a delayed verification, the reporting\ninstitution must have in place appropriate risk management policies and\nprocedures which can effectively manage any ML/TF/PF risk arising from delayed\nverification;\n\n(b) The delay is essential so as not to interrupt the reporting institutions’ normal\nconduct of business;\n\n(c) The ML/TF/PF risks are effectively managed; and\n\n(d) There is no suspicion of ML/TF/PF.",
+      "content_text": "8.1.25 Where delayed verification applies, the following conditions must be satisfied:\n\n(a) Before the reporting institution adopts a delayed verification, the reporting\ninstitution must have in place appropriate risk management policies and\nprocedures which can effectively manage any ML/TF/PF risk arising from delayed\nverification;\n\n(b) The delay is essential so as not to interrupt the reporting institutions’ normal\nconduct of business;\n\n(c) The ML/TF/PF risks are effectively managed; and\n\n(d) There is no suspicion of ML/TF/PF.",
+      "token_count": 148,
+      "pages": [
+        38
+      ],
+      "section_path": [
+        "PART III: CUSTOMER DUE DILIGENCE",
+        "8. CUSTOMER DUE DILIGENCE (CDD)",
+        "8.1 CDD at the point of establishing business relationship"
+      ],
+      "source_element_ids": [
+        "p38-e3",
+        "p38-e4",
+        "p38-e5",
+        "p38-e6",
+        "p38-e7"
+      ]
+    },
+    {
+      "rank": 2,
+      "chunk_id": "485c4989-c300-45c8-ac06-79a59492bb5c-c0103-96fa91f378",
+      "chunk_index": 103,
+      "semantic_type": "clause",
+      "reranker_score": 0.9739769101142883,
+      "reranker_normalized_score": 0.7259114702517652,
+      "hybrid_candidate_rank": 2,
+      "fusion_score": 0.03225806451612903,
+      "dense_rank": 2,
+      "dense_score": 0.7270801826071643,
+      "dense_distance": 0.27291981739283566,
+      "dense_rrf_score": 0.016129032258064516,
+      "lexical_rank": 2,
+      "lexical_score": 0.90000004,
+      "lexical_matched_term_count": 2,
+      "lexical_term_coverage": 0.6666666666666666,
+      "lexical_rrf_score": 0.016129032258064516,
+      "text": "Section: PART III: CUSTOMER DUE DILIGENCE > 8. CUSTOMER DUE DILIGENCE (CDD) > 8.1 CDD at the point of establishing business relationship\nClause: 8.1.26\nGroup: Delayed verification\n\n8.1.26 The policies and procedures must include:\n\n(a) Establishing a reasonable timeframe for the completion of the identity verification\nmeasures to ensure that delayed verification occurs as reasonably practicable.\nThe reasonable timeframe shall not exceed 10 working days or any other period\nas may be specified by the SC;\n\n(b) Measures that a reporting institution may take to manage risks of delayed\nverification including conditions under which the customer may utilize the\nbusiness relationship prior to verification and placing appropriate limits on the\nnumber, types and/or amount of transactions that can be performed;\n\n(c) Monitoring of large and complex transactions being carried out outside the\nexpected norms pending completion of verification; and\n\n(d) Keeping senior management periodically informed of any cases pending identity.",
+      "content_text": "8.1.26 The policies and procedures must include:\n\n(a) Establishing a reasonable timeframe for the completion of the identity verification\nmeasures to ensure that delayed verification occurs as reasonably practicable.\nThe reasonable timeframe shall not exceed 10 working days or any other period\nas may be specified by the SC;\n\n(b) Measures that a reporting institution may take to manage risks of delayed\nverification including conditions under which the customer may utilize the\nbusiness relationship prior to verification and placing appropriate limits on the\nnumber, types and/or amount of transactions that can be performed;\n\n(c) Monitoring of large and complex transactions being carried out outside the\nexpected norms pending completion of verification; and\n\n(d) Keeping senior management periodically informed of any cases pending identity.",
+      "token_count": 184,
+      "pages": [
+        38
+      ],
+      "section_path": [
+        "PART III: CUSTOMER DUE DILIGENCE",
+        "8. CUSTOMER DUE DILIGENCE (CDD)",
+        "8.1 CDD at the point of establishing business relationship"
+      ],
+      "source_element_ids": [
+        "p38-e8",
+        "p38-e9",
+        "p38-e10",
+        "p38-e11",
+        "p38-e12"
+      ]
+    },
+    {
+      "rank": 3,
+      "chunk_id": "485c4989-c300-45c8-ac06-79a59492bb5c-c0101-c09791e527",
+      "chunk_index": 101,
+      "semantic_type": "clause",
+      "reranker_score": 0.9406434893608093,
+      "reranker_normalized_score": 0.7192296209408634,
+      "hybrid_candidate_rank": 3,
+      "fusion_score": 0.031746031746031744,
+      "dense_rank": 3,
+      "dense_score": 0.6988224983215332,
+      "dense_distance": 0.3011775016784668,
+      "dense_rrf_score": 0.015873015873015872,
+      "lexical_rank": 3,
+      "lexical_score": 0.8,
+      "lexical_matched_term_count": 2,
+      "lexical_term_coverage": 0.6666666666666666,
+      "lexical_rrf_score": 0.015873015873015872,
+      "text": "Section: PART III: CUSTOMER DUE DILIGENCE > 8. CUSTOMER DUE DILIGENCE (CDD) > 8.1 CDD at the point of establishing business relationship\nGroup: Delayed verification\n\n8.1.24 A reporting institution may complete the verification after the establishment of the\nbusiness relationship (“delayed verification”) to allow some flexibility for its customer\nand beneficial owner to furnish the relevant documents in circumstances where\nverification is not possible at the point of establishing business relationship.\n\n8.1.27 If verification cannot be completed within the reasonable timeframe, the reporting\ninstitution should terminate the business relationship as soon as reasonably practicable\nand refrain from carrying out further transactions. However, following the termination\nof business relationship, the reporting institution may return funds or other assets to\nthe customers.\n\n8.1.28 The reporting institution must assess whether the failure to complete verification within\nthe reasonable timeframe provides sufficient grounds for making a STR to the FIED.",
+      "content_text": "8.1.24 A reporting institution may complete the verification after the establishment of the\nbusiness relationship (“delayed verification”) to allow some flexibility for its customer\nand beneficial owner to furnish the relevant documents in circumstances where\nverification is not possible at the point of establishing business relationship.\n\n8.1.27 If verification cannot be completed within the reasonable timeframe, the reporting\ninstitution should terminate the business relationship as soon as reasonably practicable\nand refrain from carrying out further transactions. However, following the termination\nof business relationship, the reporting institution may return funds or other assets to\nthe customers.\n\n8.1.28 The reporting institution must assess whether the failure to complete verification within\nthe reasonable timeframe provides sufficient grounds for making a STR to the FIED.",
+      "token_count": 177,
+      "pages": [
+        38,
+        39
+      ],
+      "section_path": [
+        "PART III: CUSTOMER DUE DILIGENCE",
+        "8. CUSTOMER DUE DILIGENCE (CDD)",
+        "8.1 CDD at the point of establishing business relationship"
+      ],
+      "source_element_ids": [
+        "p38-e2",
+        "p38-e13",
+        "p39-e1"
+      ]
+    },
+    {
+      "rank": 4,
+      "chunk_id": "485c4989-c300-45c8-ac06-79a59492bb5c-c0084-fb93596733",
+      "chunk_index": 84,
+      "semantic_type": "clause",
+      "reranker_score": 0.025991231203079224,
+      "reranker_normalized_score": 0.5064974420291694,
+      "hybrid_candidate_rank": 4,
+      "fusion_score": 0.030309988518943745,
+      "dense_rank": 5,
+      "dense_score": 0.5503032207489014,
+      "dense_distance": 0.44969677925109863,
+      "dense_rrf_score": 0.015384615384615385,
+      "lexical_rank": 7,
+      "lexical_score": 0.3,
+      "lexical_matched_term_count": 2,
+      "lexical_term_coverage": 0.6666666666666666,
+      "lexical_rrf_score": 0.014925373134328358,
+      "text": "Section: PART III: CUSTOMER DUE DILIGENCE > 8. CUSTOMER DUE DILIGENCE (CDD) > 8.1 CDD at the point of establishing business relationship\nClause: 8.1.7\nGroup: CDD requirements for individual customer and beneficial owner > Identification and Verification\n\n8.1.7 Where the above information is not sufficient for the reporting institution to complete its\nidentification and verification process, the reporting institution must seek further relevant\ninformation from the individual customer or beneficial owner.",
+      "content_text": "8.1.7 Where the above information is not sufficient for the reporting institution to complete its\nidentification and verification process, the reporting institution must seek further relevant\ninformation from the individual customer or beneficial owner.",
+      "token_count": 90,
+      "pages": [
+        32
+      ],
+      "section_path": [
+        "PART III: CUSTOMER DUE DILIGENCE",
+        "8. CUSTOMER DUE DILIGENCE (CDD)",
+        "8.1 CDD at the point of establishing business relationship"
+      ],
+      "source_element_ids": [
+        "p32-e15"
+      ]
+    },
+    {
+      "rank": 5,
+      "chunk_id": "485c4989-c300-45c8-ac06-79a59492bb5c-c0083-747260288c",
+      "chunk_index": 83,
+      "semantic_type": "clause",
+      "reranker_score": 0.02086482010781765,
+      "reranker_normalized_score": 0.5052160157996554,
+      "hybrid_candidate_rank": 5,
+      "fusion_score": 0.02813852813852814,
+      "dense_rank": 17,
+      "dense_score": 0.5242511630058289,
+      "dense_distance": 0.47574883699417114,
+      "dense_rrf_score": 0.012987012987012988,
+      "lexical_rank": 6,
+      "lexical_score": 0.3,
+      "lexical_matched_term_count": 2,
+      "lexical_term_coverage": 0.6666666666666666,
+      "lexical_rrf_score": 0.015151515151515152,
+      "text": "Section: PART III: CUSTOMER DUE DILIGENCE > 8. CUSTOMER DUE DILIGENCE (CDD) > 8.1 CDD at the point of establishing business relationship\nClause: 8.1.6\nGroup: CDD requirements for individual customer and beneficial owner > Identification and Verification\n\n8.1.6 In conducting CDD, a reporting institution is required to identify an individual customer\nor beneficial owner, by obtainingat least the following information:\n\n(a)Full name;\n\n(b)National Registration Identity Card (NRIC) number or passport number or\nreference number of any other official documents of the individual customer or\nbeneficial owner;\n\n(c)Residential and mailing address;\n\n(d)Date of birth;\n\n(e)Nationality;\n\n(f)Occupation type;\n\n(g)Name of employer or nature of self-employment or nature of business/sector;\n\n(h)Income or range of income;\n\n(i)Contact number (home, office or mobile);\n\n(j)Email; and\n\n(k)Purpose of transaction.",
+      "content_text": "8.1.6 In conducting CDD, a reporting institution is required to identify an individual customer\nor beneficial owner, by obtainingat least the following information:\n\n(a)Full name;\n\n(b)National Registration Identity Card (NRIC) number or passport number or\nreference number of any other official documents of the individual customer or\nbeneficial owner;\n\n(c)Residential and mailing address;\n\n(d)Date of birth;\n\n(e)Nationality;\n\n(f)Occupation type;\n\n(g)Name of employer or nature of self-employment or nature of business/sector;\n\n(h)Income or range of income;\n\n(i)Contact number (home, office or mobile);\n\n(j)Email; and\n\n(k)Purpose of transaction.",
+      "token_count": 196,
+      "pages": [
+        32
+      ],
+      "section_path": [
+        "PART III: CUSTOMER DUE DILIGENCE",
+        "8. CUSTOMER DUE DILIGENCE (CDD)",
+        "8.1 CDD at the point of establishing business relationship"
+      ],
+      "source_element_ids": [
+        "p32-e3",
+        "p32-e4",
+        "p32-e5",
+        "p32-e6",
+        "p32-e7",
+        "p32-e8",
+        "p32-e9",
+        "p32-e10",
+        "p32-e11",
+        "p32-e12",
+        "p32-e13",
+        "p32-e14"
+      ]
+    }
+  ]
+}
+
+
+==============================================================================
+RETRIEVAL BEHAVIOUR: Long structured clause
+==============================================================================
+Test ID                    : 03_non_face_to_face
+Query                      : What measures are required when establishing a non-face-to-face business relationship?
+Purpose                    : Tests whether reranking preserves intact clause 8.1.23 as the best evidence.
+Document ID                : 485c4989-c300-45c8-ac06-79a59492bb5c
+Embedding model            : BAAI/bge-m3
+Embedding requested device : auto
+Embedding resolved device  : cuda
+Reranker model             : BAAI/bge-reranker-v2-m3
+Reranker requested device  : auto
+Reranker resolved device   : cuda
+Reranker batch size        : 2
+Reranker max length        : 1024
+Top K                      : 5
+Candidate K per retriever  : 20
+Candidate union count      : 29
+Candidate strategy         : dense_lexical_union
+Ranking method             : cross_encoder
+RRF K                      : 60
+Dense weight               : 1.0
+Lexical weight             : 1.0
+Lexical ranking            : postgresql_fts_term_coverage_then_ts_rank_cd
+Lexical query mode         : or_content_terms_v1
+Lexical terms              : ['measures', 'required', 'establishing', 'non', 'face', 'business', 'relationship']
+Lexical tsquery            : measures | required | establishing | non | face | business | relationship
+Embedded chunks            : 284
+Total chunks               : 284
+Retrieved hits             : 5
+
+------------------------------------------------------------
+RANK 1
+------------------------------------------------------------
+Chunk index          : 100
+Chunk ID             : 485c4989-c300-45c8-ac06-79a59492bb5c-c0100-d1377a7b3c
+Semantic type        : clause
+Reranker raw score   : 0.997689
+Reranker normalized : 0.7306
+Hybrid candidate rank: 1
+Fusion score         : 0.032787
+Dense rank           : 1
+Dense score          : 0.683692
+Dense distance       : 0.316308
+Dense RRF            : 0.016393
+Lexical rank         : 1
+Lexical score        : 5.100000
+Lexical terms hit    : 7
+Lexical coverage     : 1.0000
+Lexical RRF          : 0.016393
+Token count          : 550
+Pages                : [36, 37]
+Section path         : PART III: CUSTOMER DUE DILIGENCE > 8. CUSTOMER DUE DILIGENCE (CDD) > 8.1 CDD at the point of establishing business relationship
+Source element IDs   : ['p36-e10', 'p36-e11', 'p36-e12', 'p37-e1', 'p37-e2', 'p37-e3', 'p37-e4', 'p37-e5', 'p37-e6', 'p37-e7', 'p37-e8', 'p37-e9', 'p37-e10', 'p37-e11', 'p37-e12']
+
+TEXT
+------------------------------------------------------------
+Section: PART III: CUSTOMER DUE DILIGENCE > 8. CUSTOMER DUE DILIGENCE (CDD) > 8.1 CDD at the point of establishing business relationship
+Clause: 8.1.23
+Group: CDD requirements for establishing non face-to-face business relationship
+
+8.1.23 This section applies when a reporting institution chooses to establish non-face-to-
+face business relationship.
+
+(a) A reporting institution must develop and implement policies and procedures to
+address and mitigate specific ML/TF/PF risks associated with establishing non
+face-to-face business relationship, as well as operational and information
+technology risk.
+
+(b) A reporting institution must establish appropriate measures for identification
+and verification of a customer’s identity before establishing non face-to-face
+business relationship.
+
+(c) For the purpose of identification and verification of the identity of a customer in
+a non face-to-face business relationship, a reporting institution must undertake
+one or more of the following measures:
+
+(i) Requesting for additional identification documents or information e.g.
+bank statements, utility bills;
+
+(ii) Substantiating the customer’s information with any independent source
+e.g. contacting the customer’s employer and verification through database
+maintained by any relevant authorities;
+
+(iii) Contacting the customer through any digital communication channel to
+visually identify and verify the customer’s identity;
+
+(iv) Requesting the customer to make a nominal payment from his own
+account with a licensed bank under the Financial Services Act 2013 or
+licensed Islamic bank under the Islamic Financial Services Act 2013 to
+enable the reporting institution to satisfy itself of the customer’s true
+identity; or
+
+(v) Using new technology solutions including, but not limited to, biometric
+technologies (e.g. fingerprint or iris scans, facial recognition), which
+should be linked incontrovertibly to the customer.
+
+(d) Where the reporting institution is unable to identify and verify the customer’s
+identity by adopting the measures provided under paragraph (c) above, the
+reporting institution must initiate face-to-face business relationship.
+
+(e) Sub-paragraphs (a) to (d) above are not applicable to:
+
+(i)Customers that are identified as foreign PEP;
+
+(ii)Customers from higher-risk and non co-operative jurisdictions as identified
+by the FATF; or
+
+(iii)Listed persons or entities subjected to targeted financial sanctions for
+terrorism financing and financing of proliferation of weapons of mass
+destruction pursuant to the UNSCR.
+
+(f) A reporting institution must ensure and be able to demonstrate on a continuing
+basis that appropriate measures for identification and verification of a customer’s
+identity when establishing non-face-to-face business relationship are as effective
+as that for face-to-face customer and implement monitoring and reporting
+mechanism to identify potential ML/TF/PF activities.
+
+------------------------------------------------------------
+RANK 2
+------------------------------------------------------------
+Chunk index          : 111
+Chunk ID             : 485c4989-c300-45c8-ac06-79a59492bb5c-c0111-026b10a78d
+Semantic type        : clause
+Reranker raw score   : 0.969361
+Reranker normalized : 0.7250
+Hybrid candidate rank: 2
+Fusion score         : 0.032002
+Dense rank           : 3
+Dense score          : 0.552667
+Dense distance       : 0.447333
+Dense RRF            : 0.015873
+Lexical rank         : 2
+Lexical score        : 1.300000
+Lexical terms hit    : 6
+Lexical coverage     : 0.8571
+Lexical RRF          : 0.016129
+Token count          : 207
+Pages                : [41]
+Section path         : PART III: CUSTOMER DUE DILIGENCE > 8. CUSTOMER DUE DILIGENCE (CDD) > 8.3 Enhanced CDD measures
+Source element IDs   : ['p41-e7', 'p41-e8', 'p41-e9', 'p41-e10', 'p41-e11', 'p41-e12', 'p41-e13']
+
+TEXT
+------------------------------------------------------------
+Section: PART III: CUSTOMER DUE DILIGENCE > 8. CUSTOMER DUE DILIGENCE (CDD) > 8.3 Enhanced CDD measures
+Clause: 8.3.1
+
+8.3.1 Where the ML/TF/PF risks are assessed as higher risk, a reporting institution must
+undertake enhanced CDD measures on the customer and, where applicable, the
+beneficial owner. These measures must include:
+
+(a)Obtaining additional information for identification and verification on the
+customer and beneficial owner, particularly for non face-to-face transactions (e.g.
+volume of assets and other information from public database);
+
+(b)Obtaining additional information on the intended level and nature of the
+business relationship;
+
+(c)Enquiring on the source of wealth and source of funds;
+
+(d)Updating on a more regular basis, the identification data of the customer
+and the beneficial owner;
+
+(e)Obtaining approval from the senior management before establishing (or
+continuing for existing customer) such business relationship with the customer;
+and
+
+(f)Conducting enhanced ongoing monitoring on the business relationship.
+
+------------------------------------------------------------
+RANK 3
+------------------------------------------------------------
+Chunk index          : 81
+Chunk ID             : 485c4989-c300-45c8-ac06-79a59492bb5c-c0081-b1e4e8f0b7
+Semantic type        : clause
+Reranker raw score   : 0.526622
+Reranker normalized : 0.6287
+Hybrid candidate rank: 3
+Fusion score         : 0.031498
+Dense rank           : 4
+Dense score          : 0.550062
+Dense distance       : 0.449938
+Dense RRF            : 0.015625
+Lexical rank         : 3
+Lexical score        : 1.300000
+Lexical terms hit    : 5
+Lexical coverage     : 0.7143
+Lexical RRF          : 0.015873
+Token count          : 221
+Pages                : [31]
+Section path         : PART III: CUSTOMER DUE DILIGENCE > 8. CUSTOMER DUE DILIGENCE (CDD) > 8.1 CDD at the point of establishing business relationship
+Source element IDs   : ['p31-e4', 'p31-e5', 'p31-e11', 'p31-e12', 'p31-e13', 'p31-e14']
+
+TEXT
+------------------------------------------------------------
+Section: PART III: CUSTOMER DUE DILIGENCE > 8. CUSTOMER DUE DILIGENCE (CDD) > 8.1 CDD at the point of establishing business relationship
+
+8.1.1 Section 16 of the AMLA among others clearly sets out customer identification
+requirements for reporting institutions. A reporting institution must conduct CDD on
+customer and obtain satisfactory evidence of the identity and legal existence of the
+customer and beneficial owner at the point of establishing the business relationship.
+
+8.1.2 A reporting institution must not keep anonymous accounts or accounts in fictitious
+names.
+
+8.1.4 A customer who fails to provide evidence of his identity must not be allowed to engage
+in business relations with the reporting institution. Additional measures must be
+undertaken to determine whether to proceed with the business relationship, where
+initial checks failed to identify the customer or give rise to suspicions that the
+information provided is false.
+
+8.1.5 Where applicable, in conducting CDD, a reporting institution is required to comply with
+requirements on targeted financial sanctions in relation to:
+
+(a) terrorism financing under Part VII of these Guidelines; and
+
+(b) proliferation financing under Part VIII of these Guidelines.
+
+------------------------------------------------------------
+RANK 4
+------------------------------------------------------------
+Chunk index          : 108
+Chunk ID             : 485c4989-c300-45c8-ac06-79a59492bb5c-c0108-746e0d9d19
+Semantic type        : list_item
+Reranker raw score   : 0.342456
+Reranker normalized : 0.5848
+Hybrid candidate rank: 13
+Fusion score         : 0.015152
+Dense rank           : —
+Dense score          : —
+Dense distance       : —
+Dense RRF            : 0.000000
+Lexical rank         : 6
+Lexical score        : 0.800000
+Lexical terms hit    : 5
+Lexical coverage     : 0.7143
+Lexical RRF          : 0.015152
+Token count          : 364
+Pages                : [40, 41]
+Section path         : PART III: CUSTOMER DUE DILIGENCE > 8. CUSTOMER DUE DILIGENCE (CDD) > 8.2 Conducting CDD
+Source element IDs   : ['p40-e1', 'p40-e2', 'p40-e3', 'p40-e4', 'p40-e5', 'p40-e6', 'p40-e7', 'p40-e8', 'p40-e9', 'p40-e10', 'p40-e11', 'p40-e12', 'p40-e13', 'p40-e14', 'p40-e15', 'p40-e16', 'p40-e17', 'p41-e1', 'p41-e2']
+
+TEXT
+------------------------------------------------------------
+Section: PART III: CUSTOMER DUE DILIGENCE > 8. CUSTOMER DUE DILIGENCE (CDD) > 8.2 Conducting CDD
+
+(v)The ownership structure of a company appears unusual or excessively
+complex given the nature of the company’s business.
+
+(vi)High-net-worth individuals and entities.
+
+(vii)Persons from jurisdictions known for their high crime rates (e.g. drug
+producing, trafficking, smuggling).
+
+(viii)Businesses/activities identified by the FATF as having higher risk for
+ML/TF/PF.
+
+(ix)Domestic PEPs.
+
+(x)Persons entrusted with prominent public function by international
+organisations (PEPFIO).
+
+(xi)Legal arrangements that are complex.
+
+(xii)Any persons who match the ‘red flag’ criteria of the reporting institution.
+
+(b)Country or geographic risk factors:
+
+(i)Countries identified by credible sources, such as mutual evaluation or
+published follow-up reports, as having inadequate AML/CFT/CPF systems.
+
+(ii)Countries subject to sanctions, embargos or similar measures issued by
+international organisations such as the United Nations.
+
+(iii)Countries with significant levels of corruption or other criminal activities.
+
+(iv)Countries or geographic areas identified as providing funding or support
+for terrorist activities, or that have designated terrorist organisations
+operating within their country.
+
+(v)Countries identified by the FATF, other FATF-style regional bodies or other
+international bodies as having higher ML/TF/PF risk.
+
+(c)Transaction or distribution channel risk factors:
+
+(i)Anonymous transactions (which may include cash transactions).
+
+(ii)Non-face-to-face business relationships or transactions.
+
+(iii)Payment received from multiple persons and/or countries that do not fit
+into the customer’s nature of business and risk profile.
+
+(iv)Payment received from unknown or unassociated third parties.
+
+------------------------------------------------------------
+RANK 5
+------------------------------------------------------------
+Chunk index          : 82
+Chunk ID             : 485c4989-c300-45c8-ac06-79a59492bb5c-c0082-60739c961b
+Semantic type        : clause
+Reranker raw score   : 0.329708
+Reranker normalized : 0.5817
+Hybrid candidate rank: 4
+Fusion score         : 0.029851
+Dense rank           : 7
+Dense score          : 0.531337
+Dense distance       : 0.468663
+Dense RRF            : 0.014925
+Lexical rank         : 7
+Lexical score        : 0.700000
+Lexical terms hit    : 5
+Lexical coverage     : 0.7143
+Lexical RRF          : 0.014925
+Token count          : 188
+Pages                : [31]
+Section path         : PART III: CUSTOMER DUE DILIGENCE > 8. CUSTOMER DUE DILIGENCE (CDD) > 8.1 CDD at the point of establishing business relationship
+Source element IDs   : ['p31-e6', 'p31-e7', 'p31-e8', 'p31-e9', 'p31-e10']
+
+TEXT
+------------------------------------------------------------
+Section: PART III: CUSTOMER DUE DILIGENCE > 8. CUSTOMER DUE DILIGENCE (CDD) > 8.1 CDD at the point of establishing business relationship
+Clause: 8.1.3
+
+8.1.3 For the purpose of conducting CDD, a reporting institution is required to–
+
+(a)identify the customer (including foreign body corporate) and verify such
+customer’s identity using reliable, independent source of documents, data or
+information;
+
+(b)verify that any person purporting to act on behalf of the customer is authorised,
+and identify and verify the identity of that person;
+
+(c)identify the beneficial owner and take reasonable measures to verify the identity
+of the beneficial owner, using relevant information or data obtained from
+reliable sources, such that the reporting institution is satisfied that it knows who
+the beneficial owner is; and
+
+(d)understand, and where relevant, obtain information on the purpose of opening
+an account and the intended nature of the business relationship.
+
+
+==============================================================================
+RAW JSON RESPONSE
+==============================================================================
+{
+  "document_id": "485c4989-c300-45c8-ac06-79a59492bb5c",
+  "query": "What measures are required when establishing a non-face-to-face business relationship?",
+  "embedding_model": "BAAI/bge-m3",
+  "embedding_requested_device": "auto",
+  "embedding_resolved_device": "cuda",
+  "reranker_model": "BAAI/bge-reranker-v2-m3",
+  "reranker_requested_device": "auto",
+  "reranker_resolved_device": "cuda",
+  "reranker_batch_size": 2,
+  "reranker_max_length": 1024,
+  "top_k": 5,
+  "candidate_k": 20,
+  "candidate_union_count": 29,
+  "embedded_chunk_count": 284,
+  "total_chunk_count": 284,
+  "candidate_strategy": "dense_lexical_union",
+  "ranking_method": "cross_encoder",
+  "fusion_method": "reciprocal_rank_fusion_trace",
+  "rrf_k": 60,
+  "dense_weight": 1.0,
+  "lexical_weight": 1.0,
+  "lexical_ranking_method": "postgresql_fts_term_coverage_then_ts_rank_cd",
+  "lexical_query_mode": "or_content_terms_v1",
+  "lexical_terms": [
+    "measures",
+    "required",
+    "establishing",
+    "non",
+    "face",
+    "business",
+    "relationship"
+  ],
+  "lexical_tsquery": "measures | required | establishing | non | face | business | relationship",
+  "hits": [
+    {
+      "rank": 1,
+      "chunk_id": "485c4989-c300-45c8-ac06-79a59492bb5c-c0100-d1377a7b3c",
+      "chunk_index": 100,
+      "semantic_type": "clause",
+      "reranker_score": 0.9976885318756104,
+      "reranker_normalized_score": 0.7306038737650572,
+      "hybrid_candidate_rank": 1,
+      "fusion_score": 0.03278688524590164,
+      "dense_rank": 1,
+      "dense_score": 0.6836918999965144,
+      "dense_distance": 0.31630810000348564,
+      "dense_rrf_score": 0.01639344262295082,
+      "lexical_rank": 1,
+      "lexical_score": 5.1,
+      "lexical_matched_term_count": 7,
+      "lexical_term_coverage": 1.0,
+      "lexical_rrf_score": 0.01639344262295082,
+      "text": "Section: PART III: CUSTOMER DUE DILIGENCE > 8. CUSTOMER DUE DILIGENCE (CDD) > 8.1 CDD at the point of establishing business relationship\nClause: 8.1.23\nGroup: CDD requirements for establishing non face-to-face business relationship\n\n8.1.23 This section applies when a reporting institution chooses to establish non-face-to-\nface business relationship.\n\n(a) A reporting institution must develop and implement policies and procedures to\naddress and mitigate specific ML/TF/PF risks associated with establishing non\nface-to-face business relationship, as well as operational and information\ntechnology risk.\n\n(b) A reporting institution must establish appropriate measures for identification\nand verification of a customer’s identity before establishing non face-to-face\nbusiness relationship.\n\n(c) For the purpose of identification and verification of the identity of a customer in\na non face-to-face business relationship, a reporting institution must undertake\none or more of the following measures:\n\n(i) Requesting for additional identification documents or information e.g.\nbank statements, utility bills;\n\n(ii) Substantiating the customer’s information with any independent source\ne.g. contacting the customer’s employer and verification through database\nmaintained by any relevant authorities;\n\n(iii) Contacting the customer through any digital communication channel to\nvisually identify and verify the customer’s identity;\n\n(iv) Requesting the customer to make a nominal payment from his own\naccount with a licensed bank under the Financial Services Act 2013 or\nlicensed Islamic bank under the Islamic Financial Services Act 2013 to\nenable the reporting institution to satisfy itself of the customer’s true\nidentity; or\n\n(v) Using new technology solutions including, but not limited to, biometric\ntechnologies (e.g. fingerprint or iris scans, facial recognition), which\nshould be linked incontrovertibly to the customer.\n\n(d) Where the reporting institution is unable to identify and verify the customer’s\nidentity by adopting the measures provided under paragraph (c) above, the\nreporting institution must initiate face-to-face business relationship.\n\n(e) Sub-paragraphs (a) to (d) above are not applicable to:\n\n(i)Customers that are identified as foreign PEP;\n\n(ii)Customers from higher-risk and non co-operative jurisdictions as identified\nby the FATF; or\n\n(iii)Listed persons or entities subjected to targeted financial sanctions for\nterrorism financing and financing of proliferation of weapons of mass\ndestruction pursuant to the UNSCR.\n\n(f) A reporting institution must ensure and be able to demonstrate on a continuing\nbasis that appropriate measures for identification and verification of a customer’s\nidentity when establishing non-face-to-face business relationship are as effective\nas that for face-to-face customer and implement monitoring and reporting\nmechanism to identify potential ML/TF/PF activities.",
+      "content_text": "8.1.23 This section applies when a reporting institution chooses to establish non-face-to-\nface business relationship.\n\n(a) A reporting institution must develop and implement policies and procedures to\naddress and mitigate specific ML/TF/PF risks associated with establishing non\nface-to-face business relationship, as well as operational and information\ntechnology risk.\n\n(b) A reporting institution must establish appropriate measures for identification\nand verification of a customer’s identity before establishing non face-to-face\nbusiness relationship.\n\n(c) For the purpose of identification and verification of the identity of a customer in\na non face-to-face business relationship, a reporting institution must undertake\none or more of the following measures:\n\n(i) Requesting for additional identification documents or information e.g.\nbank statements, utility bills;\n\n(ii) Substantiating the customer’s information with any independent source\ne.g. contacting the customer’s employer and verification through database\nmaintained by any relevant authorities;\n\n(iii) Contacting the customer through any digital communication channel to\nvisually identify and verify the customer’s identity;\n\n(iv) Requesting the customer to make a nominal payment from his own\naccount with a licensed bank under the Financial Services Act 2013 or\nlicensed Islamic bank under the Islamic Financial Services Act 2013 to\nenable the reporting institution to satisfy itself of the customer’s true\nidentity; or\n\n(v) Using new technology solutions including, but not limited to, biometric\ntechnologies (e.g. fingerprint or iris scans, facial recognition), which\nshould be linked incontrovertibly to the customer.\n\n(d) Where the reporting institution is unable to identify and verify the customer’s\nidentity by adopting the measures provided under paragraph (c) above, the\nreporting institution must initiate face-to-face business relationship.\n\n(e) Sub-paragraphs (a) to (d) above are not applicable to:\n\n(i)Customers that are identified as foreign PEP;\n\n(ii)Customers from higher-risk and non co-operative jurisdictions as identified\nby the FATF; or\n\n(iii)Listed persons or entities subjected to targeted financial sanctions for\nterrorism financing and financing of proliferation of weapons of mass\ndestruction pursuant to the UNSCR.\n\n(f) A reporting institution must ensure and be able to demonstrate on a continuing\nbasis that appropriate measures for identification and verification of a customer’s\nidentity when establishing non-face-to-face business relationship are as effective\nas that for face-to-face customer and implement monitoring and reporting\nmechanism to identify potential ML/TF/PF activities.",
+      "token_count": 550,
+      "pages": [
+        36,
+        37
+      ],
+      "section_path": [
+        "PART III: CUSTOMER DUE DILIGENCE",
+        "8. CUSTOMER DUE DILIGENCE (CDD)",
+        "8.1 CDD at the point of establishing business relationship"
+      ],
+      "source_element_ids": [
+        "p36-e10",
+        "p36-e11",
+        "p36-e12",
+        "p37-e1",
+        "p37-e2",
+        "p37-e3",
+        "p37-e4",
+        "p37-e5",
+        "p37-e6",
+        "p37-e7",
+        "p37-e8",
+        "p37-e9",
+        "p37-e10",
+        "p37-e11",
+        "p37-e12"
+      ]
+    },
+    {
+      "rank": 2,
+      "chunk_id": "485c4989-c300-45c8-ac06-79a59492bb5c-c0111-026b10a78d",
+      "chunk_index": 111,
+      "semantic_type": "clause",
+      "reranker_score": 0.9693605899810791,
+      "reranker_normalized_score": 0.7249920314664425,
+      "hybrid_candidate_rank": 2,
+      "fusion_score": 0.03200204813108039,
+      "dense_rank": 3,
+      "dense_score": 0.5526670217514038,
+      "dense_distance": 0.4473329782485962,
+      "dense_rrf_score": 0.015873015873015872,
+      "lexical_rank": 2,
+      "lexical_score": 1.3000001,
+      "lexical_matched_term_count": 6,
+      "lexical_term_coverage": 0.8571428571428571,
+      "lexical_rrf_score": 0.016129032258064516,
+      "text": "Section: PART III: CUSTOMER DUE DILIGENCE > 8. CUSTOMER DUE DILIGENCE (CDD) > 8.3 Enhanced CDD measures\nClause: 8.3.1\n\n8.3.1 Where the ML/TF/PF risks are assessed as higher risk, a reporting institution must\nundertake enhanced CDD measures on the customer and, where applicable, the\nbeneficial owner. These measures must include:\n\n(a)Obtaining additional information for identification and verification on the\ncustomer and beneficial owner, particularly for non face-to-face transactions (e.g.\nvolume of assets and other information from public database);\n\n(b)Obtaining additional information on the intended level and nature of the\nbusiness relationship;\n\n(c)Enquiring on the source of wealth and source of funds;\n\n(d)Updating on a more regular basis, the identification data of the customer\nand the beneficial owner;\n\n(e)Obtaining approval from the senior management before establishing (or\ncontinuing for existing customer) such business relationship with the customer;\nand\n\n(f)Conducting enhanced ongoing monitoring on the business relationship.",
+      "content_text": "8.3.1 Where the ML/TF/PF risks are assessed as higher risk, a reporting institution must\nundertake enhanced CDD measures on the customer and, where applicable, the\nbeneficial owner. These measures must include:\n\n(a)Obtaining additional information for identification and verification on the\ncustomer and beneficial owner, particularly for non face-to-face transactions (e.g.\nvolume of assets and other information from public database);\n\n(b)Obtaining additional information on the intended level and nature of the\nbusiness relationship;\n\n(c)Enquiring on the source of wealth and source of funds;\n\n(d)Updating on a more regular basis, the identification data of the customer\nand the beneficial owner;\n\n(e)Obtaining approval from the senior management before establishing (or\ncontinuing for existing customer) such business relationship with the customer;\nand\n\n(f)Conducting enhanced ongoing monitoring on the business relationship.",
+      "token_count": 207,
+      "pages": [
+        41
+      ],
+      "section_path": [
+        "PART III: CUSTOMER DUE DILIGENCE",
+        "8. CUSTOMER DUE DILIGENCE (CDD)",
+        "8.3 Enhanced CDD measures"
+      ],
+      "source_element_ids": [
+        "p41-e7",
+        "p41-e8",
+        "p41-e9",
+        "p41-e10",
+        "p41-e11",
+        "p41-e12",
+        "p41-e13"
+      ]
+    },
+    {
+      "rank": 3,
+      "chunk_id": "485c4989-c300-45c8-ac06-79a59492bb5c-c0081-b1e4e8f0b7",
+      "chunk_index": 81,
+      "semantic_type": "clause",
+      "reranker_score": 0.5266222357749939,
+      "reranker_normalized_score": 0.6286949581279538,
+      "hybrid_candidate_rank": 3,
+      "fusion_score": 0.03149801587301587,
+      "dense_rank": 4,
+      "dense_score": 0.5500623747725005,
+      "dense_distance": 0.44993762522749947,
+      "dense_rrf_score": 0.015625,
+      "lexical_rank": 3,
+      "lexical_score": 1.3000001,
+      "lexical_matched_term_count": 5,
+      "lexical_term_coverage": 0.7142857142857143,
+      "lexical_rrf_score": 0.015873015873015872,
+      "text": "Section: PART III: CUSTOMER DUE DILIGENCE > 8. CUSTOMER DUE DILIGENCE (CDD) > 8.1 CDD at the point of establishing business relationship\n\n8.1.1 Section 16 of the AMLA among others clearly sets out customer identification\nrequirements for reporting institutions. A reporting institution must conduct CDD on\ncustomer and obtain satisfactory evidence of the identity and legal existence of the\ncustomer and beneficial owner at the point of establishing the business relationship.\n\n8.1.2 A reporting institution must not keep anonymous accounts or accounts in fictitious\nnames.\n\n8.1.4 A customer who fails to provide evidence of his identity must not be allowed to engage\nin business relations with the reporting institution. Additional measures must be\nundertaken to determine whether to proceed with the business relationship, where\ninitial checks failed to identify the customer or give rise to suspicions that the\ninformation provided is false.\n\n8.1.5 Where applicable, in conducting CDD, a reporting institution is required to comply with\nrequirements on targeted financial sanctions in relation to:\n\n(a) terrorism financing under Part VII of these Guidelines; and\n\n(b) proliferation financing under Part VIII of these Guidelines.",
+      "content_text": "8.1.1 Section 16 of the AMLA among others clearly sets out customer identification\nrequirements for reporting institutions. A reporting institution must conduct CDD on\ncustomer and obtain satisfactory evidence of the identity and legal existence of the\ncustomer and beneficial owner at the point of establishing the business relationship.\n\n8.1.2 A reporting institution must not keep anonymous accounts or accounts in fictitious\nnames.\n\n8.1.4 A customer who fails to provide evidence of his identity must not be allowed to engage\nin business relations with the reporting institution. Additional measures must be\nundertaken to determine whether to proceed with the business relationship, where\ninitial checks failed to identify the customer or give rise to suspicions that the\ninformation provided is false.\n\n8.1.5 Where applicable, in conducting CDD, a reporting institution is required to comply with\nrequirements on targeted financial sanctions in relation to:\n\n(a) terrorism financing under Part VII of these Guidelines; and\n\n(b) proliferation financing under Part VIII of these Guidelines.",
+      "token_count": 221,
+      "pages": [
+        31
+      ],
+      "section_path": [
+        "PART III: CUSTOMER DUE DILIGENCE",
+        "8. CUSTOMER DUE DILIGENCE (CDD)",
+        "8.1 CDD at the point of establishing business relationship"
+      ],
+      "source_element_ids": [
+        "p31-e4",
+        "p31-e5",
+        "p31-e11",
+        "p31-e12",
+        "p31-e13",
+        "p31-e14"
+      ]
+    },
+    {
+      "rank": 4,
+      "chunk_id": "485c4989-c300-45c8-ac06-79a59492bb5c-c0108-746e0d9d19",
+      "chunk_index": 108,
+      "semantic_type": "list_item",
+      "reranker_score": 0.3424556255340576,
+      "reranker_normalized_score": 0.58478690014177,
+      "hybrid_candidate_rank": 13,
+      "fusion_score": 0.015151515151515152,
+      "dense_rank": null,
+      "dense_score": null,
+      "dense_distance": null,
+      "dense_rrf_score": 0.0,
+      "lexical_rank": 6,
+      "lexical_score": 0.8,
+      "lexical_matched_term_count": 5,
+      "lexical_term_coverage": 0.7142857142857143,
+      "lexical_rrf_score": 0.015151515151515152,
+      "text": "Section: PART III: CUSTOMER DUE DILIGENCE > 8. CUSTOMER DUE DILIGENCE (CDD) > 8.2 Conducting CDD\n\n(v)The ownership structure of a company appears unusual or excessively\ncomplex given the nature of the company’s business.\n\n(vi)High-net-worth individuals and entities.\n\n(vii)Persons from jurisdictions known for their high crime rates (e.g. drug\nproducing, trafficking, smuggling).\n\n(viii)Businesses/activities identified by the FATF as having higher risk for\nML/TF/PF.\n\n(ix)Domestic PEPs.\n\n(x)Persons entrusted with prominent public function by international\norganisations (PEPFIO).\n\n(xi)Legal arrangements that are complex.\n\n(xii)Any persons who match the ‘red flag’ criteria of the reporting institution.\n\n(b)Country or geographic risk factors:\n\n(i)Countries identified by credible sources, such as mutual evaluation or\npublished follow-up reports, as having inadequate AML/CFT/CPF systems.\n\n(ii)Countries subject to sanctions, embargos or similar measures issued by\ninternational organisations such as the United Nations.\n\n(iii)Countries with significant levels of corruption or other criminal activities.\n\n(iv)Countries or geographic areas identified as providing funding or support\nfor terrorist activities, or that have designated terrorist organisations\noperating within their country.\n\n(v)Countries identified by the FATF, other FATF-style regional bodies or other\ninternational bodies as having higher ML/TF/PF risk.\n\n(c)Transaction or distribution channel risk factors:\n\n(i)Anonymous transactions (which may include cash transactions).\n\n(ii)Non-face-to-face business relationships or transactions.\n\n(iii)Payment received from multiple persons and/or countries that do not fit\ninto the customer’s nature of business and risk profile.\n\n(iv)Payment received from unknown or unassociated third parties.",
+      "content_text": "(v)The ownership structure of a company appears unusual or excessively\ncomplex given the nature of the company’s business.\n\n(vi)High-net-worth individuals and entities.\n\n(vii)Persons from jurisdictions known for their high crime rates (e.g. drug\nproducing, trafficking, smuggling).\n\n(viii)Businesses/activities identified by the FATF as having higher risk for\nML/TF/PF.\n\n(ix)Domestic PEPs.\n\n(x)Persons entrusted with prominent public function by international\norganisations (PEPFIO).\n\n(xi)Legal arrangements that are complex.\n\n(xii)Any persons who match the ‘red flag’ criteria of the reporting institution.\n\n(b)Country or geographic risk factors:\n\n(i)Countries identified by credible sources, such as mutual evaluation or\npublished follow-up reports, as having inadequate AML/CFT/CPF systems.\n\n(ii)Countries subject to sanctions, embargos or similar measures issued by\ninternational organisations such as the United Nations.\n\n(iii)Countries with significant levels of corruption or other criminal activities.\n\n(iv)Countries or geographic areas identified as providing funding or support\nfor terrorist activities, or that have designated terrorist organisations\noperating within their country.\n\n(v)Countries identified by the FATF, other FATF-style regional bodies or other\ninternational bodies as having higher ML/TF/PF risk.\n\n(c)Transaction or distribution channel risk factors:\n\n(i)Anonymous transactions (which may include cash transactions).\n\n(ii)Non-face-to-face business relationships or transactions.\n\n(iii)Payment received from multiple persons and/or countries that do not fit\ninto the customer’s nature of business and risk profile.\n\n(iv)Payment received from unknown or unassociated third parties.",
+      "token_count": 364,
+      "pages": [
+        40,
+        41
+      ],
+      "section_path": [
+        "PART III: CUSTOMER DUE DILIGENCE",
+        "8. CUSTOMER DUE DILIGENCE (CDD)",
+        "8.2 Conducting CDD"
+      ],
+      "source_element_ids": [
+        "p40-e1",
+        "p40-e2",
+        "p40-e3",
+        "p40-e4",
+        "p40-e5",
+        "p40-e6",
+        "p40-e7",
+        "p40-e8",
+        "p40-e9",
+        "p40-e10",
+        "p40-e11",
+        "p40-e12",
+        "p40-e13",
+        "p40-e14",
+        "p40-e15",
+        "p40-e16",
+        "p40-e17",
+        "p41-e1",
+        "p41-e2"
+      ]
+    },
+    {
+      "rank": 5,
+      "chunk_id": "485c4989-c300-45c8-ac06-79a59492bb5c-c0082-60739c961b",
+      "chunk_index": 82,
+      "semantic_type": "clause",
+      "reranker_score": 0.3297075629234314,
+      "reranker_normalized_score": 0.5816882206955202,
+      "hybrid_candidate_rank": 4,
+      "fusion_score": 0.029850746268656716,
+      "dense_rank": 7,
+      "dense_score": 0.5313371699251441,
+      "dense_distance": 0.4686628300748559,
+      "dense_rrf_score": 0.014925373134328358,
+      "lexical_rank": 7,
+      "lexical_score": 0.7,
+      "lexical_matched_term_count": 5,
+      "lexical_term_coverage": 0.7142857142857143,
+      "lexical_rrf_score": 0.014925373134328358,
+      "text": "Section: PART III: CUSTOMER DUE DILIGENCE > 8. CUSTOMER DUE DILIGENCE (CDD) > 8.1 CDD at the point of establishing business relationship\nClause: 8.1.3\n\n8.1.3 For the purpose of conducting CDD, a reporting institution is required to–\n\n(a)identify the customer (including foreign body corporate) and verify such\ncustomer’s identity using reliable, independent source of documents, data or\ninformation;\n\n(b)verify that any person purporting to act on behalf of the customer is authorised,\nand identify and verify the identity of that person;\n\n(c)identify the beneficial owner and take reasonable measures to verify the identity\nof the beneficial owner, using relevant information or data obtained from\nreliable sources, such that the reporting institution is satisfied that it knows who\nthe beneficial owner is; and\n\n(d)understand, and where relevant, obtain information on the purpose of opening\nan account and the intended nature of the business relationship.",
+      "content_text": "8.1.3 For the purpose of conducting CDD, a reporting institution is required to–\n\n(a)identify the customer (including foreign body corporate) and verify such\ncustomer’s identity using reliable, independent source of documents, data or\ninformation;\n\n(b)verify that any person purporting to act on behalf of the customer is authorised,\nand identify and verify the identity of that person;\n\n(c)identify the beneficial owner and take reasonable measures to verify the identity\nof the beneficial owner, using relevant information or data obtained from\nreliable sources, such that the reporting institution is satisfied that it knows who\nthe beneficial owner is; and\n\n(d)understand, and where relevant, obtain information on the purpose of opening\nan account and the intended nature of the business relationship.",
+      "token_count": 188,
+      "pages": [
+        31
+      ],
+      "section_path": [
+        "PART III: CUSTOMER DUE DILIGENCE",
+        "8. CUSTOMER DUE DILIGENCE (CDD)",
+        "8.1 CDD at the point of establishing business relationship"
+      ],
+      "source_element_ids": [
+        "p31-e6",
+        "p31-e7",
+        "p31-e8",
+        "p31-e9",
+        "p31-e10"
+      ]
+    }
+  ]
+}
+
+
+==============================================================================
+RETRIEVAL BEHAVIOUR: Conceptual / paraphrased query
+==============================================================================
+Test ID                    : 04_verification_timeout
+Query                      : What should an institution do when a customer cannot complete identity verification in time?
+Purpose                    : Tests whether reranking preserves Stage 7.1's improvement for the paraphrased timeout query.
+Document ID                : 485c4989-c300-45c8-ac06-79a59492bb5c
+Embedding model            : BAAI/bge-m3
+Embedding requested device : auto
+Embedding resolved device  : cuda
+Reranker model             : BAAI/bge-reranker-v2-m3
+Reranker requested device  : auto
+Reranker resolved device   : cuda
+Reranker batch size        : 2
+Reranker max length        : 1024
+Top K                      : 5
+Candidate K per retriever  : 20
+Candidate union count      : 27
+Candidate strategy         : dense_lexical_union
+Ranking method             : cross_encoder
+RRF K                      : 60
+Dense weight               : 1.0
+Lexical weight             : 1.0
+Lexical ranking            : postgresql_fts_term_coverage_then_ts_rank_cd
+Lexical query mode         : or_content_terms_v1
+Lexical terms              : ['institution', 'customer', 'cannot', 'complete', 'identity', 'verification', 'time']
+Lexical tsquery            : institution | customer | cannot | complete | identity | verification | time
+Embedded chunks            : 284
+Total chunks               : 284
+Retrieved hits             : 5
+
+------------------------------------------------------------
+RANK 1
+------------------------------------------------------------
+Chunk index          : 101
+Chunk ID             : 485c4989-c300-45c8-ac06-79a59492bb5c-c0101-c09791e527
+Semantic type        : clause
+Reranker raw score   : 0.962971
+Reranker normalized : 0.7237
+Hybrid candidate rank: 1
+Fusion score         : 0.032266
+Dense rank           : 3
+Dense score          : 0.677664
+Dense distance       : 0.322336
+Dense RRF            : 0.015873
+Lexical rank         : 1
+Lexical score        : 1.800000
+Lexical terms hit    : 5
+Lexical coverage     : 0.7143
+Lexical RRF          : 0.016393
+Token count          : 177
+Pages                : [38, 39]
+Section path         : PART III: CUSTOMER DUE DILIGENCE > 8. CUSTOMER DUE DILIGENCE (CDD) > 8.1 CDD at the point of establishing business relationship
+Source element IDs   : ['p38-e2', 'p38-e13', 'p39-e1']
+
+TEXT
+------------------------------------------------------------
+Section: PART III: CUSTOMER DUE DILIGENCE > 8. CUSTOMER DUE DILIGENCE (CDD) > 8.1 CDD at the point of establishing business relationship
+Group: Delayed verification
+
+8.1.24 A reporting institution may complete the verification after the establishment of the
+business relationship (“delayed verification”) to allow some flexibility for its customer
+and beneficial owner to furnish the relevant documents in circumstances where
+verification is not possible at the point of establishing business relationship.
+
+8.1.27 If verification cannot be completed within the reasonable timeframe, the reporting
+institution should terminate the business relationship as soon as reasonably practicable
+and refrain from carrying out further transactions. However, following the termination
+of business relationship, the reporting institution may return funds or other assets to
+the customers.
+
+8.1.28 The reporting institution must assess whether the failure to complete verification within
+the reasonable timeframe provides sufficient grounds for making a STR to the FIED.
+
+------------------------------------------------------------
+RANK 2
+------------------------------------------------------------
+Chunk index          : 103
+Chunk ID             : 485c4989-c300-45c8-ac06-79a59492bb5c-c0103-96fa91f378
+Semantic type        : clause
+Reranker raw score   : 0.738628
+Reranker normalized : 0.6767
+Hybrid candidate rank: 2
+Fusion score         : 0.032258
+Dense rank           : 2
+Dense score          : 0.683181
+Dense distance       : 0.316819
+Dense RRF            : 0.016129
+Lexical rank         : 2
+Lexical score        : 1.400000
+Lexical terms hit    : 5
+Lexical coverage     : 0.7143
+Lexical RRF          : 0.016129
+Token count          : 184
+Pages                : [38]
+Section path         : PART III: CUSTOMER DUE DILIGENCE > 8. CUSTOMER DUE DILIGENCE (CDD) > 8.1 CDD at the point of establishing business relationship
+Source element IDs   : ['p38-e8', 'p38-e9', 'p38-e10', 'p38-e11', 'p38-e12']
+
+TEXT
+------------------------------------------------------------
+Section: PART III: CUSTOMER DUE DILIGENCE > 8. CUSTOMER DUE DILIGENCE (CDD) > 8.1 CDD at the point of establishing business relationship
+Clause: 8.1.26
+Group: Delayed verification
+
+8.1.26 The policies and procedures must include:
+
+(a) Establishing a reasonable timeframe for the completion of the identity verification
+measures to ensure that delayed verification occurs as reasonably practicable.
+The reasonable timeframe shall not exceed 10 working days or any other period
+as may be specified by the SC;
+
+(b) Measures that a reporting institution may take to manage risks of delayed
+verification including conditions under which the customer may utilize the
+business relationship prior to verification and placing appropriate limits on the
+number, types and/or amount of transactions that can be performed;
+
+(c) Monitoring of large and complex transactions being carried out outside the
+expected norms pending completion of verification; and
+
+(d) Keeping senior management periodically informed of any cases pending identity.
+
+------------------------------------------------------------
+RANK 3
+------------------------------------------------------------
+Chunk index          : 84
+Chunk ID             : 485c4989-c300-45c8-ac06-79a59492bb5c-c0084-fb93596733
+Semantic type        : clause
+Reranker raw score   : 0.694479
+Reranker normalized : 0.6670
+Hybrid candidate rank: 8
+Fusion score         : 0.029083
+Dense rank           : 13
+Dense score          : 0.618683
+Dense distance       : 0.381317
+Dense RRF            : 0.013699
+Lexical rank         : 5
+Lexical score        : 0.900000
+Lexical terms hit    : 4
+Lexical coverage     : 0.5714
+Lexical RRF          : 0.015385
+Token count          : 90
+Pages                : [32]
+Section path         : PART III: CUSTOMER DUE DILIGENCE > 8. CUSTOMER DUE DILIGENCE (CDD) > 8.1 CDD at the point of establishing business relationship
+Source element IDs   : ['p32-e15']
+
+TEXT
+------------------------------------------------------------
+Section: PART III: CUSTOMER DUE DILIGENCE > 8. CUSTOMER DUE DILIGENCE (CDD) > 8.1 CDD at the point of establishing business relationship
+Clause: 8.1.7
+Group: CDD requirements for individual customer and beneficial owner > Identification and Verification
+
+8.1.7 Where the above information is not sufficient for the reporting institution to complete its
+identification and verification process, the reporting institution must seek further relevant
+information from the individual customer or beneficial owner.
+
+------------------------------------------------------------
+RANK 4
+------------------------------------------------------------
+Chunk index          : 100
+Chunk ID             : 485c4989-c300-45c8-ac06-79a59492bb5c-c0100-d1377a7b3c
+Semantic type        : clause
+Reranker raw score   : 0.610804
+Reranker normalized : 0.6481
+Hybrid candidate rank: 3
+Fusion score         : 0.030798
+Dense rank           : 7
+Dense score          : 0.626749
+Dense distance       : 0.373251
+Dense RRF            : 0.014925
+Lexical rank         : 3
+Lexical score        : 3.400000
+Lexical terms hit    : 4
+Lexical coverage     : 0.5714
+Lexical RRF          : 0.015873
+Token count          : 550
+Pages                : [36, 37]
+Section path         : PART III: CUSTOMER DUE DILIGENCE > 8. CUSTOMER DUE DILIGENCE (CDD) > 8.1 CDD at the point of establishing business relationship
+Source element IDs   : ['p36-e10', 'p36-e11', 'p36-e12', 'p37-e1', 'p37-e2', 'p37-e3', 'p37-e4', 'p37-e5', 'p37-e6', 'p37-e7', 'p37-e8', 'p37-e9', 'p37-e10', 'p37-e11', 'p37-e12']
+
+TEXT
+------------------------------------------------------------
+Section: PART III: CUSTOMER DUE DILIGENCE > 8. CUSTOMER DUE DILIGENCE (CDD) > 8.1 CDD at the point of establishing business relationship
+Clause: 8.1.23
+Group: CDD requirements for establishing non face-to-face business relationship
+
+8.1.23 This section applies when a reporting institution chooses to establish non-face-to-
+face business relationship.
+
+(a) A reporting institution must develop and implement policies and procedures to
+address and mitigate specific ML/TF/PF risks associated with establishing non
+face-to-face business relationship, as well as operational and information
+technology risk.
+
+(b) A reporting institution must establish appropriate measures for identification
+and verification of a customer’s identity before establishing non face-to-face
+business relationship.
+
+(c) For the purpose of identification and verification of the identity of a customer in
+a non face-to-face business relationship, a reporting institution must undertake
+one or more of the following measures:
+
+(i) Requesting for additional identification documents or information e.g.
+bank statements, utility bills;
+
+(ii) Substantiating the customer’s information with any independent source
+e.g. contacting the customer’s employer and verification through database
+maintained by any relevant authorities;
+
+(iii) Contacting the customer through any digital communication channel to
+visually identify and verify the customer’s identity;
+
+(iv) Requesting the customer to make a nominal payment from his own
+account with a licensed bank under the Financial Services Act 2013 or
+licensed Islamic bank under the Islamic Financial Services Act 2013 to
+enable the reporting institution to satisfy itself of the customer’s true
+identity; or
+
+(v) Using new technology solutions including, but not limited to, biometric
+technologies (e.g. fingerprint or iris scans, facial recognition), which
+should be linked incontrovertibly to the customer.
+
+(d) Where the reporting institution is unable to identify and verify the customer’s
+identity by adopting the measures provided under paragraph (c) above, the
+reporting institution must initiate face-to-face business relationship.
+
+(e) Sub-paragraphs (a) to (d) above are not applicable to:
+
+(i)Customers that are identified as foreign PEP;
+
+(ii)Customers from higher-risk and non co-operative jurisdictions as identified
+by the FATF; or
+
+(iii)Listed persons or entities subjected to targeted financial sanctions for
+terrorism financing and financing of proliferation of weapons of mass
+destruction pursuant to the UNSCR.
+
+(f) A reporting institution must ensure and be able to demonstrate on a continuing
+basis that appropriate measures for identification and verification of a customer’s
+identity when establishing non-face-to-face business relationship are as effective
+as that for face-to-face customer and implement monitoring and reporting
+mechanism to identify potential ML/TF/PF activities.
+
+------------------------------------------------------------
+RANK 5
+------------------------------------------------------------
+Chunk index          : 159
+Chunk ID             : 485c4989-c300-45c8-ac06-79a59492bb5c-c0159-7448ed6ef9
+Semantic type        : clause
+Reranker raw score   : 0.443013
+Reranker normalized : 0.6090
+Hybrid candidate rank: 4
+Fusion score         : 0.030282
+Dense rank           : 1
+Dense score          : 0.687502
+Dense distance       : 0.312498
+Dense RRF            : 0.016393
+Lexical rank         : 12
+Lexical score        : 1.000000
+Lexical terms hit    : 3
+Lexical coverage     : 0.4286
+Lexical RRF          : 0.013889
+Token count          : 163
+Pages                : [60, 61]
+Section path         : PART VII: COMBATING TERRORISM FINANCING > 14 IDENTIFICATION AND DESIGNATION
+Source element IDs   : ['p60-e10', 'p60-e11', 'p61-e1', 'p61-e2', 'p61-e3']
+
+TEXT
+------------------------------------------------------------
+Section: PART VII: COMBATING TERRORISM FINANCING > 14 IDENTIFICATION AND DESIGNATION
+Clause: 14.4
+
+14.4 For the purpose of implementing the obligations under section 66B and section 66C
+of the AMLA, a reporting institution must conduct checks on the names of potential
+and new customers, as well as regular checks on the names of existing customers,
+against the names in the database. If there is any name match, the reporting
+institution must take reasonable and appropriate measures to verify and confirm the
+identity of its customer. Upon such confirmation, the reporting institution must
+immediately–
+
+(a)freeze without delay the customer’s fund or block the transaction, if it is an
+existing customer;
+
+(b)reject the customer, if the transaction has not commenced;
+
+(c)lodge a STR with the FIED; and
+
+(d)notify the SC.
+
+
+==============================================================================
+RAW JSON RESPONSE
+==============================================================================
+{
+  "document_id": "485c4989-c300-45c8-ac06-79a59492bb5c",
+  "query": "What should an institution do when a customer cannot complete identity verification in time?",
+  "embedding_model": "BAAI/bge-m3",
+  "embedding_requested_device": "auto",
+  "embedding_resolved_device": "cuda",
+  "reranker_model": "BAAI/bge-reranker-v2-m3",
+  "reranker_requested_device": "auto",
+  "reranker_resolved_device": "cuda",
+  "reranker_batch_size": 2,
+  "reranker_max_length": 1024,
+  "top_k": 5,
+  "candidate_k": 20,
+  "candidate_union_count": 27,
+  "embedded_chunk_count": 284,
+  "total_chunk_count": 284,
+  "candidate_strategy": "dense_lexical_union",
+  "ranking_method": "cross_encoder",
+  "fusion_method": "reciprocal_rank_fusion_trace",
+  "rrf_k": 60,
+  "dense_weight": 1.0,
+  "lexical_weight": 1.0,
+  "lexical_ranking_method": "postgresql_fts_term_coverage_then_ts_rank_cd",
+  "lexical_query_mode": "or_content_terms_v1",
+  "lexical_terms": [
+    "institution",
+    "customer",
+    "cannot",
+    "complete",
+    "identity",
+    "verification",
+    "time"
+  ],
+  "lexical_tsquery": "institution | customer | cannot | complete | identity | verification | time",
+  "hits": [
+    {
+      "rank": 1,
+      "chunk_id": "485c4989-c300-45c8-ac06-79a59492bb5c-c0101-c09791e527",
+      "chunk_index": 101,
+      "semantic_type": "clause",
+      "reranker_score": 0.9629710912704468,
+      "reranker_normalized_score": 0.7237162725765083,
+      "hybrid_candidate_rank": 1,
+      "fusion_score": 0.032266458495966696,
+      "dense_rank": 3,
+      "dense_score": 0.6776641607284546,
+      "dense_distance": 0.3223358392715454,
+      "dense_rrf_score": 0.015873015873015872,
+      "lexical_rank": 1,
+      "lexical_score": 1.8000001,
+      "lexical_matched_term_count": 5,
+      "lexical_term_coverage": 0.7142857142857143,
+      "lexical_rrf_score": 0.01639344262295082,
+      "text": "Section: PART III: CUSTOMER DUE DILIGENCE > 8. CUSTOMER DUE DILIGENCE (CDD) > 8.1 CDD at the point of establishing business relationship\nGroup: Delayed verification\n\n8.1.24 A reporting institution may complete the verification after the establishment of the\nbusiness relationship (“delayed verification”) to allow some flexibility for its customer\nand beneficial owner to furnish the relevant documents in circumstances where\nverification is not possible at the point of establishing business relationship.\n\n8.1.27 If verification cannot be completed within the reasonable timeframe, the reporting\ninstitution should terminate the business relationship as soon as reasonably practicable\nand refrain from carrying out further transactions. However, following the termination\nof business relationship, the reporting institution may return funds or other assets to\nthe customers.\n\n8.1.28 The reporting institution must assess whether the failure to complete verification within\nthe reasonable timeframe provides sufficient grounds for making a STR to the FIED.",
+      "content_text": "8.1.24 A reporting institution may complete the verification after the establishment of the\nbusiness relationship (“delayed verification”) to allow some flexibility for its customer\nand beneficial owner to furnish the relevant documents in circumstances where\nverification is not possible at the point of establishing business relationship.\n\n8.1.27 If verification cannot be completed within the reasonable timeframe, the reporting\ninstitution should terminate the business relationship as soon as reasonably practicable\nand refrain from carrying out further transactions. However, following the termination\nof business relationship, the reporting institution may return funds or other assets to\nthe customers.\n\n8.1.28 The reporting institution must assess whether the failure to complete verification within\nthe reasonable timeframe provides sufficient grounds for making a STR to the FIED.",
+      "token_count": 177,
+      "pages": [
+        38,
+        39
+      ],
+      "section_path": [
+        "PART III: CUSTOMER DUE DILIGENCE",
+        "8. CUSTOMER DUE DILIGENCE (CDD)",
+        "8.1 CDD at the point of establishing business relationship"
+      ],
+      "source_element_ids": [
+        "p38-e2",
+        "p38-e13",
+        "p39-e1"
+      ]
+    },
+    {
+      "rank": 2,
+      "chunk_id": "485c4989-c300-45c8-ac06-79a59492bb5c-c0103-96fa91f378",
+      "chunk_index": 103,
+      "semantic_type": "clause",
+      "reranker_score": 0.7386283874511719,
+      "reranker_normalized_score": 0.6766958495533647,
+      "hybrid_candidate_rank": 2,
+      "fusion_score": 0.03225806451612903,
+      "dense_rank": 2,
+      "dense_score": 0.6831808875095328,
+      "dense_distance": 0.31681911249046724,
+      "dense_rrf_score": 0.016129032258064516,
+      "lexical_rank": 2,
+      "lexical_score": 1.4,
+      "lexical_matched_term_count": 5,
+      "lexical_term_coverage": 0.7142857142857143,
+      "lexical_rrf_score": 0.016129032258064516,
+      "text": "Section: PART III: CUSTOMER DUE DILIGENCE > 8. CUSTOMER DUE DILIGENCE (CDD) > 8.1 CDD at the point of establishing business relationship\nClause: 8.1.26\nGroup: Delayed verification\n\n8.1.26 The policies and procedures must include:\n\n(a) Establishing a reasonable timeframe for the completion of the identity verification\nmeasures to ensure that delayed verification occurs as reasonably practicable.\nThe reasonable timeframe shall not exceed 10 working days or any other period\nas may be specified by the SC;\n\n(b) Measures that a reporting institution may take to manage risks of delayed\nverification including conditions under which the customer may utilize the\nbusiness relationship prior to verification and placing appropriate limits on the\nnumber, types and/or amount of transactions that can be performed;\n\n(c) Monitoring of large and complex transactions being carried out outside the\nexpected norms pending completion of verification; and\n\n(d) Keeping senior management periodically informed of any cases pending identity.",
+      "content_text": "8.1.26 The policies and procedures must include:\n\n(a) Establishing a reasonable timeframe for the completion of the identity verification\nmeasures to ensure that delayed verification occurs as reasonably practicable.\nThe reasonable timeframe shall not exceed 10 working days or any other period\nas may be specified by the SC;\n\n(b) Measures that a reporting institution may take to manage risks of delayed\nverification including conditions under which the customer may utilize the\nbusiness relationship prior to verification and placing appropriate limits on the\nnumber, types and/or amount of transactions that can be performed;\n\n(c) Monitoring of large and complex transactions being carried out outside the\nexpected norms pending completion of verification; and\n\n(d) Keeping senior management periodically informed of any cases pending identity.",
+      "token_count": 184,
+      "pages": [
+        38
+      ],
+      "section_path": [
+        "PART III: CUSTOMER DUE DILIGENCE",
+        "8. CUSTOMER DUE DILIGENCE (CDD)",
+        "8.1 CDD at the point of establishing business relationship"
+      ],
+      "source_element_ids": [
+        "p38-e8",
+        "p38-e9",
+        "p38-e10",
+        "p38-e11",
+        "p38-e12"
+      ]
+    },
+    {
+      "rank": 3,
+      "chunk_id": "485c4989-c300-45c8-ac06-79a59492bb5c-c0084-fb93596733",
+      "chunk_index": 84,
+      "semantic_type": "clause",
+      "reranker_score": 0.6944794654846191,
+      "reranker_normalized_score": 0.6669626642139667,
+      "hybrid_candidate_rank": 8,
+      "fusion_score": 0.029083245521601686,
+      "dense_rank": 13,
+      "dense_score": 0.6186826229095459,
+      "dense_distance": 0.3813173770904541,
+      "dense_rrf_score": 0.0136986301369863,
+      "lexical_rank": 5,
+      "lexical_score": 0.90000004,
+      "lexical_matched_term_count": 4,
+      "lexical_term_coverage": 0.5714285714285714,
+      "lexical_rrf_score": 0.015384615384615385,
+      "text": "Section: PART III: CUSTOMER DUE DILIGENCE > 8. CUSTOMER DUE DILIGENCE (CDD) > 8.1 CDD at the point of establishing business relationship\nClause: 8.1.7\nGroup: CDD requirements for individual customer and beneficial owner > Identification and Verification\n\n8.1.7 Where the above information is not sufficient for the reporting institution to complete its\nidentification and verification process, the reporting institution must seek further relevant\ninformation from the individual customer or beneficial owner.",
+      "content_text": "8.1.7 Where the above information is not sufficient for the reporting institution to complete its\nidentification and verification process, the reporting institution must seek further relevant\ninformation from the individual customer or beneficial owner.",
+      "token_count": 90,
+      "pages": [
+        32
+      ],
+      "section_path": [
+        "PART III: CUSTOMER DUE DILIGENCE",
+        "8. CUSTOMER DUE DILIGENCE (CDD)",
+        "8.1 CDD at the point of establishing business relationship"
+      ],
+      "source_element_ids": [
+        "p32-e15"
+      ]
+    },
+    {
+      "rank": 4,
+      "chunk_id": "485c4989-c300-45c8-ac06-79a59492bb5c-c0100-d1377a7b3c",
+      "chunk_index": 100,
+      "semantic_type": "clause",
+      "reranker_score": 0.6108037233352661,
+      "reranker_normalized_score": 0.6481241204319671,
+      "hybrid_candidate_rank": 3,
+      "fusion_score": 0.030798389007344232,
+      "dense_rank": 7,
+      "dense_score": 0.6267494336813362,
+      "dense_distance": 0.3732505663186638,
+      "dense_rrf_score": 0.014925373134328358,
+      "lexical_rank": 3,
+      "lexical_score": 3.4,
+      "lexical_matched_term_count": 4,
+      "lexical_term_coverage": 0.5714285714285714,
+      "lexical_rrf_score": 0.015873015873015872,
+      "text": "Section: PART III: CUSTOMER DUE DILIGENCE > 8. CUSTOMER DUE DILIGENCE (CDD) > 8.1 CDD at the point of establishing business relationship\nClause: 8.1.23\nGroup: CDD requirements for establishing non face-to-face business relationship\n\n8.1.23 This section applies when a reporting institution chooses to establish non-face-to-\nface business relationship.\n\n(a) A reporting institution must develop and implement policies and procedures to\naddress and mitigate specific ML/TF/PF risks associated with establishing non\nface-to-face business relationship, as well as operational and information\ntechnology risk.\n\n(b) A reporting institution must establish appropriate measures for identification\nand verification of a customer’s identity before establishing non face-to-face\nbusiness relationship.\n\n(c) For the purpose of identification and verification of the identity of a customer in\na non face-to-face business relationship, a reporting institution must undertake\none or more of the following measures:\n\n(i) Requesting for additional identification documents or information e.g.\nbank statements, utility bills;\n\n(ii) Substantiating the customer’s information with any independent source\ne.g. contacting the customer’s employer and verification through database\nmaintained by any relevant authorities;\n\n(iii) Contacting the customer through any digital communication channel to\nvisually identify and verify the customer’s identity;\n\n(iv) Requesting the customer to make a nominal payment from his own\naccount with a licensed bank under the Financial Services Act 2013 or\nlicensed Islamic bank under the Islamic Financial Services Act 2013 to\nenable the reporting institution to satisfy itself of the customer’s true\nidentity; or\n\n(v) Using new technology solutions including, but not limited to, biometric\ntechnologies (e.g. fingerprint or iris scans, facial recognition), which\nshould be linked incontrovertibly to the customer.\n\n(d) Where the reporting institution is unable to identify and verify the customer’s\nidentity by adopting the measures provided under paragraph (c) above, the\nreporting institution must initiate face-to-face business relationship.\n\n(e) Sub-paragraphs (a) to (d) above are not applicable to:\n\n(i)Customers that are identified as foreign PEP;\n\n(ii)Customers from higher-risk and non co-operative jurisdictions as identified\nby the FATF; or\n\n(iii)Listed persons or entities subjected to targeted financial sanctions for\nterrorism financing and financing of proliferation of weapons of mass\ndestruction pursuant to the UNSCR.\n\n(f) A reporting institution must ensure and be able to demonstrate on a continuing\nbasis that appropriate measures for identification and verification of a customer’s\nidentity when establishing non-face-to-face business relationship are as effective\nas that for face-to-face customer and implement monitoring and reporting\nmechanism to identify potential ML/TF/PF activities.",
+      "content_text": "8.1.23 This section applies when a reporting institution chooses to establish non-face-to-\nface business relationship.\n\n(a) A reporting institution must develop and implement policies and procedures to\naddress and mitigate specific ML/TF/PF risks associated with establishing non\nface-to-face business relationship, as well as operational and information\ntechnology risk.\n\n(b) A reporting institution must establish appropriate measures for identification\nand verification of a customer’s identity before establishing non face-to-face\nbusiness relationship.\n\n(c) For the purpose of identification and verification of the identity of a customer in\na non face-to-face business relationship, a reporting institution must undertake\none or more of the following measures:\n\n(i) Requesting for additional identification documents or information e.g.\nbank statements, utility bills;\n\n(ii) Substantiating the customer’s information with any independent source\ne.g. contacting the customer’s employer and verification through database\nmaintained by any relevant authorities;\n\n(iii) Contacting the customer through any digital communication channel to\nvisually identify and verify the customer’s identity;\n\n(iv) Requesting the customer to make a nominal payment from his own\naccount with a licensed bank under the Financial Services Act 2013 or\nlicensed Islamic bank under the Islamic Financial Services Act 2013 to\nenable the reporting institution to satisfy itself of the customer’s true\nidentity; or\n\n(v) Using new technology solutions including, but not limited to, biometric\ntechnologies (e.g. fingerprint or iris scans, facial recognition), which\nshould be linked incontrovertibly to the customer.\n\n(d) Where the reporting institution is unable to identify and verify the customer’s\nidentity by adopting the measures provided under paragraph (c) above, the\nreporting institution must initiate face-to-face business relationship.\n\n(e) Sub-paragraphs (a) to (d) above are not applicable to:\n\n(i)Customers that are identified as foreign PEP;\n\n(ii)Customers from higher-risk and non co-operative jurisdictions as identified\nby the FATF; or\n\n(iii)Listed persons or entities subjected to targeted financial sanctions for\nterrorism financing and financing of proliferation of weapons of mass\ndestruction pursuant to the UNSCR.\n\n(f) A reporting institution must ensure and be able to demonstrate on a continuing\nbasis that appropriate measures for identification and verification of a customer’s\nidentity when establishing non-face-to-face business relationship are as effective\nas that for face-to-face customer and implement monitoring and reporting\nmechanism to identify potential ML/TF/PF activities.",
+      "token_count": 550,
+      "pages": [
+        36,
+        37
+      ],
+      "section_path": [
+        "PART III: CUSTOMER DUE DILIGENCE",
+        "8. CUSTOMER DUE DILIGENCE (CDD)",
+        "8.1 CDD at the point of establishing business relationship"
+      ],
+      "source_element_ids": [
+        "p36-e10",
+        "p36-e11",
+        "p36-e12",
+        "p37-e1",
+        "p37-e2",
+        "p37-e3",
+        "p37-e4",
+        "p37-e5",
+        "p37-e6",
+        "p37-e7",
+        "p37-e8",
+        "p37-e9",
+        "p37-e10",
+        "p37-e11",
+        "p37-e12"
+      ]
+    },
+    {
+      "rank": 5,
+      "chunk_id": "485c4989-c300-45c8-ac06-79a59492bb5c-c0159-7448ed6ef9",
+      "chunk_index": 159,
+      "semantic_type": "clause",
+      "reranker_score": 0.4430130124092102,
+      "reranker_normalized_score": 0.608976736641503,
+      "hybrid_candidate_rank": 4,
+      "fusion_score": 0.03028233151183971,
+      "dense_rank": 1,
+      "dense_score": 0.6875019688161015,
+      "dense_distance": 0.3124980311838985,
+      "dense_rrf_score": 0.01639344262295082,
+      "lexical_rank": 12,
+      "lexical_score": 1.0,
+      "lexical_matched_term_count": 3,
+      "lexical_term_coverage": 0.42857142857142855,
+      "lexical_rrf_score": 0.013888888888888888,
+      "text": "Section: PART VII: COMBATING TERRORISM FINANCING > 14 IDENTIFICATION AND DESIGNATION\nClause: 14.4\n\n14.4 For the purpose of implementing the obligations under section 66B and section 66C\nof the AMLA, a reporting institution must conduct checks on the names of potential\nand new customers, as well as regular checks on the names of existing customers,\nagainst the names in the database. If there is any name match, the reporting\ninstitution must take reasonable and appropriate measures to verify and confirm the\nidentity of its customer. Upon such confirmation, the reporting institution must\nimmediately–\n\n(a)freeze without delay the customer’s fund or block the transaction, if it is an\nexisting customer;\n\n(b)reject the customer, if the transaction has not commenced;\n\n(c)lodge a STR with the FIED; and\n\n(d)notify the SC.",
+      "content_text": "14.4 For the purpose of implementing the obligations under section 66B and section 66C\nof the AMLA, a reporting institution must conduct checks on the names of potential\nand new customers, as well as regular checks on the names of existing customers,\nagainst the names in the database. If there is any name match, the reporting\ninstitution must take reasonable and appropriate measures to verify and confirm the\nidentity of its customer. Upon such confirmation, the reporting institution must\nimmediately–\n\n(a)freeze without delay the customer’s fund or block the transaction, if it is an\nexisting customer;\n\n(b)reject the customer, if the transaction has not commenced;\n\n(c)lodge a STR with the FIED; and\n\n(d)notify the SC.",
+      "token_count": 163,
+      "pages": [
+        60,
+        61
+      ],
+      "section_path": [
+        "PART VII: COMBATING TERRORISM FINANCING",
+        "14 IDENTIFICATION AND DESIGNATION"
+      ],
+      "source_element_ids": [
+        "p60-e10",
+        "p60-e11",
+        "p61-e1",
+        "p61-e2",
+        "p61-e3"
+      ]
+    }
+  ]
+}
+
+
+==============================================================================
+RETRIEVAL BEHAVIOUR: Appendix / form retrieval
+==============================================================================
+Test ID                    : 05_positive_designated_person_match
+Query                      : What information must be reported when there is a positive match with a designated person?
+Purpose                    : Tests whether reranking recovers the Appendix I answer-bearing reporting table from the candidate union.
+Document ID                : 485c4989-c300-45c8-ac06-79a59492bb5c
+Embedding model            : BAAI/bge-m3
+Embedding requested device : auto
+Embedding resolved device  : cuda
+Reranker model             : BAAI/bge-reranker-v2-m3
+Reranker requested device  : auto
+Reranker resolved device   : cuda
+Reranker batch size        : 2
+Reranker max length        : 1024
+Top K                      : 5
+Candidate K per retriever  : 20
+Candidate union count      : 28
+Candidate strategy         : dense_lexical_union
+Ranking method             : cross_encoder
+RRF K                      : 60
+Dense weight               : 1.0
+Lexical weight             : 1.0
+Lexical ranking            : postgresql_fts_term_coverage_then_ts_rank_cd
+Lexical query mode         : or_content_terms_v1
+Lexical terms              : ['information', 'reported', 'positive', 'match', 'designated', 'person']
+Lexical tsquery            : information | reported | positive | match | designated | person
+Embedded chunks            : 284
+Total chunks               : 284
+Retrieved hits             : 5
+
+------------------------------------------------------------
+RANK 1
+------------------------------------------------------------
+Chunk index          : 165
+Chunk ID             : 485c4989-c300-45c8-ac06-79a59492bb5c-c0165-8354c916df
+Semantic type        : clause
+Reranker raw score   : 0.974893
+Reranker normalized : 0.7261
+Hybrid candidate rank: 5
+Fusion score         : 0.030118
+Dense rank           : 9
+Dense score          : 0.593127
+Dense distance       : 0.406873
+Dense RRF            : 0.014493
+Lexical rank         : 4
+Lexical score        : 1.100000
+Lexical terms hit    : 5
+Lexical coverage     : 0.8333
+Lexical RRF          : 0.015625
+Token count          : 104
+Pages                : [62, 63]
+Section path         : PART VIII: COMBATING PROLIFERATION FINANCING > 17. CONDUCT SANCTIONS SCREENING ON CUSTOMERS
+Source element IDs   : ['p62-e10', 'p62-e11', 'p63-e3']
+
+TEXT
+------------------------------------------------------------
+Section: PART VIII: COMBATING PROLIFERATION FINANCING > 17. CONDUCT SANCTIONS SCREENING ON CUSTOMERS
+
+17.1 A reporting institution must conduct sanctions screening on its existing, new and
+potential customers, to check for any positive name matched with any designated
+person.
+
+17.2 A reporting institution must screen its entire customer database without delay when
+new names are listed in the UNSCR.
+
+17.4 If there is a positive name match, a reporting institution must take reasonable and
+appropriate measures to verify and confirm the identity of its customer against the
+designated person.
+
+------------------------------------------------------------
+RANK 2
+------------------------------------------------------------
+Chunk index          : 175
+Chunk ID             : 485c4989-c300-45c8-ac06-79a59492bb5c-c0175-9774b5ede3
+Semantic type        : clause
+Reranker raw score   : 0.962335
+Reranker normalized : 0.7236
+Hybrid candidate rank: 2
+Fusion score         : 0.031025
+Dense rank           : 6
+Dense score          : 0.598853
+Dense distance       : 0.401147
+Dense RRF            : 0.015152
+Lexical rank         : 3
+Lexical score        : 1.200000
+Lexical terms hit    : 5
+Lexical coverage     : 0.8333
+Lexical RRF          : 0.015873
+Token count          : 122
+Pages                : [66]
+Section path         : PART VIII: COMBATING PROLIFERATION FINANCING > 19. REPORTING REQUIREMENTS
+Source element IDs   : ['p66-e7', 'p66-e8', 'p66-e9', 'p66-e10', 'p66-e11']
+
+TEXT
+------------------------------------------------------------
+Section: PART VIII: COMBATING PROLIFERATION FINANCING > 19. REPORTING REQUIREMENTS
+
+19.4 The form for periodic reporting to the SC is set out in Appendix J.
+
+19.5 A reporting institution must submit a STR to the FIED in the following circumstances:
+
+(a) In the event of positive name matches arising from ongoing screening of their
+customer database involving designated person or person identified as related
+party related to the designated person; and
+
+(b) Where there is an attempted transaction by any of the designated person or its
+related party.
+
+19.6 The details on the lodgement of STR with FIED are set out in Appendix C.
+
+------------------------------------------------------------
+RANK 3
+------------------------------------------------------------
+Chunk index          : 173
+Chunk ID             : 485c4989-c300-45c8-ac06-79a59492bb5c-c0173-729312a3d9
+Semantic type        : clause
+Reranker raw score   : 0.940560
+Reranker normalized : 0.7192
+Hybrid candidate rank: 13
+Fusion score         : 0.016129
+Dense rank           : —
+Dense score          : —
+Dense distance       : —
+Dense RRF            : 0.000000
+Lexical rank         : 2
+Lexical score        : 1.400000
+Lexical terms hit    : 5
+Lexical coverage     : 0.8333
+Lexical RRF          : 0.016129
+Token count          : 132
+Pages                : [66]
+Section path         : PART VIII: COMBATING PROLIFERATION FINANCING > 19. REPORTING REQUIREMENTS
+Source element IDs   : ['p66-e2', 'p66-e3', 'p66-e4']
+
+TEXT
+------------------------------------------------------------
+Section: PART VIII: COMBATING PROLIFERATION FINANCING > 19. REPORTING REQUIREMENTS
+
+19.1 A reporting institution must immediately report to the SC on any freezing, blocking or
+rejection actions undertaken in accordance with paragraph 18 towards the identified
+funds, properties or accounts.
+
+19.2 The form for reporting to the SC upon determination of a name match and actions
+taken by the reporting institution is attached as Appendix I.
+
+19.3 A reporting institution who has reported positive name matches and has control of
+frozen funds, properties or accounts of a designated person must report to the SC on
+any change to such frozen funds, properties or accounts by 31 January in the next
+calendar year (periodic reporting).
+
+------------------------------------------------------------
+RANK 4
+------------------------------------------------------------
+Chunk index          : 170
+Chunk ID             : 485c4989-c300-45c8-ac06-79a59492bb5c-c0170-bca06805f2
+Semantic type        : list_item
+Reranker raw score   : 0.904740
+Reranker normalized : 0.7119
+Hybrid candidate rank: 1
+Fusion score         : 0.032266
+Dense rank           : 3
+Dense score          : 0.622320
+Dense distance       : 0.377680
+Dense RRF            : 0.015873
+Lexical rank         : 1
+Lexical score        : 0.900000
+Lexical terms hit    : 6
+Lexical coverage     : 1.0000
+Lexical RRF          : 0.016393
+Token count          : 131
+Pages                : [64]
+Section path         : PART VIII: COMBATING PROLIFERATION FINANCING > 18. REQUIREMENT TO FREEZE, BLOCK AND REJECT
+Source element IDs   : ['p64-e7', 'p64-e8', 'p64-e9']
+
+TEXT
+------------------------------------------------------------
+Section: PART VIII: COMBATING PROLIFERATION FINANCING > 18. REQUIREMENT TO FREEZE, BLOCK AND REJECT
+Group: Guidance for False Positive under paragraph 18.2(b)
+
+(a)A reporting institution may forward queries to the SC to determine whether
+the customer is a designated person in the case of similar or common names.
+
+(b)Any query submitted to the SC must include any additional information,
+copies of identification documents and relevant analysis conducted by the
+reporting institution.
+
+(c)A reporting institution should advice any customers who complain about
+their accounts being inadvertently frozen or transactions being erroneously
+rejected or blocked to contact the Strategic Trade Controller under the STA
+to verify the false positive match.
+
+------------------------------------------------------------
+RANK 5
+------------------------------------------------------------
+Chunk index          : 279
+Chunk ID             : 485c4989-c300-45c8-ac06-79a59492bb5c-c0279-a5f6ecd15c
+Semantic type        : table
+Reranker raw score   : 0.612003
+Reranker normalized : 0.6484
+Hybrid candidate rank: 6
+Fusion score         : 0.029911
+Dense rank           : 4
+Dense score          : 0.619744
+Dense distance       : 0.380256
+Dense RRF            : 0.015625
+Lexical rank         : 10
+Lexical score        : 0.500000
+Lexical terms hit    : 4
+Lexical coverage     : 0.6667
+Lexical RRF          : 0.014286
+Token count          : 180
+Pages                : [107]
+Section path         : APPENDIX I > REPORTING UPON DETERMINATION
+Source element IDs   : ['p107-e7']
+
+TEXT
+------------------------------------------------------------
+Section: APPENDIX I > REPORTING UPON DETERMINATION
+Group: Match with Designated Person(s) (YES / NO) :
+
+No | UNSCR Permanent Ref No | Customer Name | Address | NRIC / Passport No. | Intermediary Name - if reporting done on group basis | Branch maintaining the account/ facility Account No. | Account Facility/ Type | Date services given (DD/MM /YYYY) | Account/ Facility Status (on date of freezing) | Date account frozen (DD/MM /YYYY) | Account Balance as at: ________ | Related Parties | Remarks
+1 |  |  |  |  |  |  |  |  |  |  |  |  | 
+2 |  |  |  |  |  |  |  |  |  |  |  |  | 
+3 |  |  |  |  |  |  |  |  |  |  |  |  | 
+4 |  |  |  |  |  |  |  |  |  |  |  |  | 
+5 |  |  |  |  |  |  |  |  |  |  |  |  |
+
+
+==============================================================================
+RAW JSON RESPONSE
+==============================================================================
+{
+  "document_id": "485c4989-c300-45c8-ac06-79a59492bb5c",
+  "query": "What information must be reported when there is a positive match with a designated person?",
+  "embedding_model": "BAAI/bge-m3",
+  "embedding_requested_device": "auto",
+  "embedding_resolved_device": "cuda",
+  "reranker_model": "BAAI/bge-reranker-v2-m3",
+  "reranker_requested_device": "auto",
+  "reranker_resolved_device": "cuda",
+  "reranker_batch_size": 2,
+  "reranker_max_length": 1024,
+  "top_k": 5,
+  "candidate_k": 20,
+  "candidate_union_count": 28,
+  "embedded_chunk_count": 284,
+  "total_chunk_count": 284,
+  "candidate_strategy": "dense_lexical_union",
+  "ranking_method": "cross_encoder",
+  "fusion_method": "reciprocal_rank_fusion_trace",
+  "rrf_k": 60,
+  "dense_weight": 1.0,
+  "lexical_weight": 1.0,
+  "lexical_ranking_method": "postgresql_fts_term_coverage_then_ts_rank_cd",
+  "lexical_query_mode": "or_content_terms_v1",
+  "lexical_terms": [
+    "information",
+    "reported",
+    "positive",
+    "match",
+    "designated",
+    "person"
+  ],
+  "lexical_tsquery": "information | reported | positive | match | designated | person",
+  "hits": [
+    {
+      "rank": 1,
+      "chunk_id": "485c4989-c300-45c8-ac06-79a59492bb5c-c0165-8354c916df",
+      "chunk_index": 165,
+      "semantic_type": "clause",
+      "reranker_score": 0.9748932123184204,
+      "reranker_normalized_score": 0.7260937436665506,
+      "hybrid_candidate_rank": 5,
+      "fusion_score": 0.030117753623188408,
+      "dense_rank": 9,
+      "dense_score": 0.5931268334388733,
+      "dense_distance": 0.4068731665611267,
+      "dense_rrf_score": 0.014492753623188406,
+      "lexical_rank": 4,
+      "lexical_score": 1.1,
+      "lexical_matched_term_count": 5,
+      "lexical_term_coverage": 0.8333333333333334,
+      "lexical_rrf_score": 0.015625,
+      "text": "Section: PART VIII: COMBATING PROLIFERATION FINANCING > 17. CONDUCT SANCTIONS SCREENING ON CUSTOMERS\n\n17.1 A reporting institution must conduct sanctions screening on its existing, new and\npotential customers, to check for any positive name matched with any designated\nperson.\n\n17.2 A reporting institution must screen its entire customer database without delay when\nnew names are listed in the UNSCR.\n\n17.4 If there is a positive name match, a reporting institution must take reasonable and\nappropriate measures to verify and confirm the identity of its customer against the\ndesignated person.",
+      "content_text": "17.1 A reporting institution must conduct sanctions screening on its existing, new and\npotential customers, to check for any positive name matched with any designated\nperson.\n\n17.2 A reporting institution must screen its entire customer database without delay when\nnew names are listed in the UNSCR.\n\n17.4 If there is a positive name match, a reporting institution must take reasonable and\nappropriate measures to verify and confirm the identity of its customer against the\ndesignated person.",
+      "token_count": 104,
+      "pages": [
+        62,
+        63
+      ],
+      "section_path": [
+        "PART VIII: COMBATING PROLIFERATION FINANCING",
+        "17. CONDUCT SANCTIONS SCREENING ON CUSTOMERS"
+      ],
+      "source_element_ids": [
+        "p62-e10",
+        "p62-e11",
+        "p63-e3"
+      ]
+    },
+    {
+      "rank": 2,
+      "chunk_id": "485c4989-c300-45c8-ac06-79a59492bb5c-c0175-9774b5ede3",
+      "chunk_index": 175,
+      "semantic_type": "clause",
+      "reranker_score": 0.962334930896759,
+      "reranker_normalized_score": 0.7235890535534878,
+      "hybrid_candidate_rank": 2,
+      "fusion_score": 0.031024531024531024,
+      "dense_rank": 6,
+      "dense_score": 0.5988531351773073,
+      "dense_distance": 0.4011468648226927,
+      "dense_rrf_score": 0.015151515151515152,
+      "lexical_rank": 3,
+      "lexical_score": 1.2,
+      "lexical_matched_term_count": 5,
+      "lexical_term_coverage": 0.8333333333333334,
+      "lexical_rrf_score": 0.015873015873015872,
+      "text": "Section: PART VIII: COMBATING PROLIFERATION FINANCING > 19. REPORTING REQUIREMENTS\n\n19.4 The form for periodic reporting to the SC is set out in Appendix J.\n\n19.5 A reporting institution must submit a STR to the FIED in the following circumstances:\n\n(a) In the event of positive name matches arising from ongoing screening of their\ncustomer database involving designated person or person identified as related\nparty related to the designated person; and\n\n(b) Where there is an attempted transaction by any of the designated person or its\nrelated party.\n\n19.6 The details on the lodgement of STR with FIED are set out in Appendix C.",
+      "content_text": "19.4 The form for periodic reporting to the SC is set out in Appendix J.\n\n19.5 A reporting institution must submit a STR to the FIED in the following circumstances:\n\n(a) In the event of positive name matches arising from ongoing screening of their\ncustomer database involving designated person or person identified as related\nparty related to the designated person; and\n\n(b) Where there is an attempted transaction by any of the designated person or its\nrelated party.\n\n19.6 The details on the lodgement of STR with FIED are set out in Appendix C.",
+      "token_count": 122,
+      "pages": [
+        66
+      ],
+      "section_path": [
+        "PART VIII: COMBATING PROLIFERATION FINANCING",
+        "19. REPORTING REQUIREMENTS"
+      ],
+      "source_element_ids": [
+        "p66-e7",
+        "p66-e8",
+        "p66-e9",
+        "p66-e10",
+        "p66-e11"
+      ]
+    },
+    {
+      "rank": 3,
+      "chunk_id": "485c4989-c300-45c8-ac06-79a59492bb5c-c0173-729312a3d9",
+      "chunk_index": 173,
+      "semantic_type": "clause",
+      "reranker_score": 0.940559983253479,
+      "reranker_normalized_score": 0.7192127575446797,
+      "hybrid_candidate_rank": 13,
+      "fusion_score": 0.016129032258064516,
+      "dense_rank": null,
+      "dense_score": null,
+      "dense_distance": null,
+      "dense_rrf_score": 0.0,
+      "lexical_rank": 2,
+      "lexical_score": 1.4,
+      "lexical_matched_term_count": 5,
+      "lexical_term_coverage": 0.8333333333333334,
+      "lexical_rrf_score": 0.016129032258064516,
+      "text": "Section: PART VIII: COMBATING PROLIFERATION FINANCING > 19. REPORTING REQUIREMENTS\n\n19.1 A reporting institution must immediately report to the SC on any freezing, blocking or\nrejection actions undertaken in accordance with paragraph 18 towards the identified\nfunds, properties or accounts.\n\n19.2 The form for reporting to the SC upon determination of a name match and actions\ntaken by the reporting institution is attached as Appendix I.\n\n19.3 A reporting institution who has reported positive name matches and has control of\nfrozen funds, properties or accounts of a designated person must report to the SC on\nany change to such frozen funds, properties or accounts by 31 January in the next\ncalendar year (periodic reporting).",
+      "content_text": "19.1 A reporting institution must immediately report to the SC on any freezing, blocking or\nrejection actions undertaken in accordance with paragraph 18 towards the identified\nfunds, properties or accounts.\n\n19.2 The form for reporting to the SC upon determination of a name match and actions\ntaken by the reporting institution is attached as Appendix I.\n\n19.3 A reporting institution who has reported positive name matches and has control of\nfrozen funds, properties or accounts of a designated person must report to the SC on\nany change to such frozen funds, properties or accounts by 31 January in the next\ncalendar year (periodic reporting).",
+      "token_count": 132,
+      "pages": [
+        66
+      ],
+      "section_path": [
+        "PART VIII: COMBATING PROLIFERATION FINANCING",
+        "19. REPORTING REQUIREMENTS"
+      ],
+      "source_element_ids": [
+        "p66-e2",
+        "p66-e3",
+        "p66-e4"
+      ]
+    },
+    {
+      "rank": 4,
+      "chunk_id": "485c4989-c300-45c8-ac06-79a59492bb5c-c0170-bca06805f2",
+      "chunk_index": 170,
+      "semantic_type": "list_item",
+      "reranker_score": 0.9047404527664185,
+      "reranker_normalized_score": 0.7119226921172457,
+      "hybrid_candidate_rank": 1,
+      "fusion_score": 0.032266458495966696,
+      "dense_rank": 3,
+      "dense_score": 0.6223200559616089,
+      "dense_distance": 0.3776799440383911,
+      "dense_rrf_score": 0.015873015873015872,
+      "lexical_rank": 1,
+      "lexical_score": 0.90000004,
+      "lexical_matched_term_count": 6,
+      "lexical_term_coverage": 1.0,
+      "lexical_rrf_score": 0.01639344262295082,
+      "text": "Section: PART VIII: COMBATING PROLIFERATION FINANCING > 18. REQUIREMENT TO FREEZE, BLOCK AND REJECT\nGroup: Guidance for False Positive under paragraph 18.2(b)\n\n(a)A reporting institution may forward queries to the SC to determine whether\nthe customer is a designated person in the case of similar or common names.\n\n(b)Any query submitted to the SC must include any additional information,\ncopies of identification documents and relevant analysis conducted by the\nreporting institution.\n\n(c)A reporting institution should advice any customers who complain about\ntheir accounts being inadvertently frozen or transactions being erroneously\nrejected or blocked to contact the Strategic Trade Controller under the STA\nto verify the false positive match.",
+      "content_text": "(a)A reporting institution may forward queries to the SC to determine whether\nthe customer is a designated person in the case of similar or common names.\n\n(b)Any query submitted to the SC must include any additional information,\ncopies of identification documents and relevant analysis conducted by the\nreporting institution.\n\n(c)A reporting institution should advice any customers who complain about\ntheir accounts being inadvertently frozen or transactions being erroneously\nrejected or blocked to contact the Strategic Trade Controller under the STA\nto verify the false positive match.",
+      "token_count": 131,
+      "pages": [
+        64
+      ],
+      "section_path": [
+        "PART VIII: COMBATING PROLIFERATION FINANCING",
+        "18. REQUIREMENT TO FREEZE, BLOCK AND REJECT"
+      ],
+      "source_element_ids": [
+        "p64-e7",
+        "p64-e8",
+        "p64-e9"
+      ]
+    },
+    {
+      "rank": 5,
+      "chunk_id": "485c4989-c300-45c8-ac06-79a59492bb5c-c0279-a5f6ecd15c",
+      "chunk_index": 279,
+      "semantic_type": "table",
+      "reranker_score": 0.6120033264160156,
+      "reranker_normalized_score": 0.6483976523680648,
+      "hybrid_candidate_rank": 6,
+      "fusion_score": 0.029910714285714284,
+      "dense_rank": 4,
+      "dense_score": 0.6197442412376404,
+      "dense_distance": 0.3802557587623596,
+      "dense_rrf_score": 0.015625,
+      "lexical_rank": 10,
+      "lexical_score": 0.5,
+      "lexical_matched_term_count": 4,
+      "lexical_term_coverage": 0.6666666666666666,
+      "lexical_rrf_score": 0.014285714285714285,
+      "text": "Section: APPENDIX I > REPORTING UPON DETERMINATION\nGroup: Match with Designated Person(s) (YES / NO) :\n\nNo | UNSCR Permanent Ref No | Customer Name | Address | NRIC / Passport No. | Intermediary Name - if reporting done on group basis | Branch maintaining the account/ facility Account No. | Account Facility/ Type | Date services given (DD/MM /YYYY) | Account/ Facility Status (on date of freezing) | Date account frozen (DD/MM /YYYY) | Account Balance as at: ________ | Related Parties | Remarks\n1 |  |  |  |  |  |  |  |  |  |  |  |  | \n2 |  |  |  |  |  |  |  |  |  |  |  |  | \n3 |  |  |  |  |  |  |  |  |  |  |  |  | \n4 |  |  |  |  |  |  |  |  |  |  |  |  | \n5 |  |  |  |  |  |  |  |  |  |  |  |  |",
+      "content_text": "No | UNSCR Permanent Ref No | Customer Name | Address | NRIC / Passport No. | Intermediary Name - if reporting done on group basis | Branch maintaining the account/ facility Account No. | Account Facility/ Type | Date services given (DD/MM /YYYY) | Account/ Facility Status (on date of freezing) | Date account frozen (DD/MM /YYYY) | Account Balance as at: ________ | Related Parties | Remarks\n1 |  |  |  |  |  |  |  |  |  |  |  |  | \n2 |  |  |  |  |  |  |  |  |  |  |  |  | \n3 |  |  |  |  |  |  |  |  |  |  |  |  | \n4 |  |  |  |  |  |  |  |  |  |  |  |  | \n5 |  |  |  |  |  |  |  |  |  |  |  |  |",
+      "token_count": 180,
+      "pages": [
+        107
+      ],
+      "section_path": [
+        "APPENDIX I",
+        "REPORTING UPON DETERMINATION"
+      ],
+      "source_element_ids": [
+        "p107-e7"
+      ]
+    }
+  ]
+}

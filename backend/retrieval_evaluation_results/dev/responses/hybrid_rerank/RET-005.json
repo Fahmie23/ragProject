@@ -1,0 +1,394 @@
+{
+  "document_id": "485c4989-c300-45c8-ac06-79a59492bb5c",
+  "query": "Which activities or operations cause a natural or legal person to fall within the Guidelines' definition of a Virtual Asset Service Provider (VASP)?",
+  "embedding_model": "BAAI/bge-m3",
+  "embedding_requested_device": "auto",
+  "embedding_resolved_device": "cuda",
+  "reranker_model": "BAAI/bge-reranker-v2-m3",
+  "reranker_requested_device": "auto",
+  "reranker_resolved_device": "cuda",
+  "reranker_batch_size": 2,
+  "reranker_max_length": 1024,
+  "top_k": 10,
+  "candidate_k": 20,
+  "candidate_union_count": 34,
+  "embedded_chunk_count": 284,
+  "total_chunk_count": 284,
+  "candidate_strategy": "dense_lexical_union",
+  "ranking_method": "cross_encoder",
+  "fusion_method": "reciprocal_rank_fusion_trace",
+  "rrf_k": 60,
+  "dense_weight": 1.0,
+  "lexical_weight": 1.0,
+  "lexical_ranking_method": "postgresql_fts_term_coverage_then_ts_rank_cd",
+  "lexical_query_mode": "or_content_terms_v1",
+  "lexical_terms": [
+    "activities",
+    "operations",
+    "cause",
+    "natural",
+    "legal",
+    "person",
+    "fall",
+    "within",
+    "guidelines",
+    "definition",
+    "virtual",
+    "asset",
+    "service",
+    "provider",
+    "vasp"
+  ],
+  "lexical_tsquery": "activities | operations | cause | natural | legal | person | fall | within | guidelines | definition | virtual | asset | service | provider | vasp",
+  "hits": [
+    {
+      "rank": 1,
+      "chunk_id": "485c4989-c300-45c8-ac06-79a59492bb5c-c0047-9980cdd046",
+      "chunk_index": 47,
+      "semantic_type": "definition",
+      "reranker_score": 0.9947309494018555,
+      "hybrid_candidate_rank": 1,
+      "fusion_score": 0.03278688524590164,
+      "dense_rank": 1,
+      "dense_score": 0.759625091575082,
+      "dense_distance": 0.24037490842491804,
+      "dense_rrf_score": 0.01639344262295082,
+      "lexical_rank": 1,
+      "lexical_score": 3.3,
+      "lexical_matched_term_count": 11,
+      "lexical_term_coverage": 0.7333333333333333,
+      "lexical_rrf_score": 0.01639344262295082,
+      "text": "Section: PART I: INTRODUCTION AND APPLICABILITY > 3. DEFINITIONS\nDefinition: Virtual Asset Service Providers (VASP)\n\nVirtual Asset Service Providers (VASP)\n\nmeans any natural or legal person who is not covered elsewhere under the FATF Recommendations, and as a business conducts one or more of the following activities or operations for on behalf of another natural or legal person:\n(a)exchange between virtual assets and fiat currencies;\n(b)exchange between one or more forms of virtual assets;\n(c)transfer of virtual assets;\n(d)safekeeping and/or administration of virtual assets or instruments enabling\ncontrol over virtual assets; and\n(e)participation in and provision of financial services related to an issuer’s offer and/or sale of a virtual asset.",
+      "content_text": "Virtual Asset Service Providers (VASP)\n\nmeans any natural or legal person who is not covered elsewhere under the FATF Recommendations, and as a business conducts one or more of the following activities or operations for on behalf of another natural or legal person:\n(a)exchange between virtual assets and fiat currencies;\n(b)exchange between one or more forms of virtual assets;\n(c)transfer of virtual assets;\n(d)safekeeping and/or administration of virtual assets or instruments enabling\ncontrol over virtual assets; and\n(e)participation in and provision of financial services related to an issuer’s offer and/or sale of a virtual asset.",
+      "token_count": 146,
+      "pages": [
+        15,
+        16
+      ],
+      "section_path": [
+        "PART I: INTRODUCTION AND APPLICABILITY",
+        "3. DEFINITIONS"
+      ],
+      "source_element_ids": [
+        "p15-e5-r2-term",
+        "p15-e5-r2-definition",
+        "p15-e6",
+        "p15-e7",
+        "p15-e8",
+        "p15-e9",
+        "p16-e1",
+        "p16-e2"
+      ]
+    },
+    {
+      "rank": 2,
+      "chunk_id": "485c4989-c300-45c8-ac06-79a59492bb5c-c0272-76a1d56662",
+      "chunk_index": 272,
+      "semantic_type": "clause",
+      "reranker_score": 0.4088415801525116,
+      "hybrid_candidate_rank": 2,
+      "fusion_score": 0.03125,
+      "dense_rank": 4,
+      "dense_score": 0.5882153931791987,
+      "dense_distance": 0.4117846068208013,
+      "dense_rrf_score": 0.015625,
+      "lexical_rank": 4,
+      "lexical_score": 1.7,
+      "lexical_matched_term_count": 6,
+      "lexical_term_coverage": 0.4,
+      "lexical_rrf_score": 0.015625,
+      "text": "Section: APPENDIX F > 1.0 Introduction\nClause: 1.2\nGroup: Guidance on Identification and Due Diligence on Counterparty Virtual Asset\nService Provider (VASP) (in relation to Paragraph 9.5 of the Guidelines)\n\n1.2 There are three phases in conducting identification and due diligence on counterparty\nVASP:\n\n(a) Phase 1\n\n(i) A reporting institution should determine whether it will be transacting with\nanother counterparty VASP.\n\n(b) Phase 2\n\n(i) A reporting institution should identify the counterparty VASP. In this context,\nit is possible that the reporting institution only knows the “name” of the\ncounterparty VASP following its previous transaction with the counterparty\nVASP.\n\n(ii) A reporting institution may identify a counterparty VASP by itself using a\nreliable database (for example the website of the supervisory authority of\nthe counterparty VASPs), in line with any guidelines from a country on when\nto rely on such data; and\n\n(c) Phase 3\n\n(i) A reporting institution should assess whether the counterparty VASP is an\neligible counterparty for it to send customer data to and to have a business\nrelationship.\n\n(ii) A reporting institution should be able to demonstrate its risk-based analysis\nfrom an AML/CFT/CPF perspectives, as well as considering other compliance\nissues, including data storage and security, and the profitability of the business\nrelationship, which forms the basis of its decision to transact with the\ncounterparty VASP.\n\n(iii) The due diligence results on the counterparty VASPs must be reviewed\n\nperiodically.",
+      "content_text": "1.2 There are three phases in conducting identification and due diligence on counterparty\nVASP:\n\n(a) Phase 1\n\n(i) A reporting institution should determine whether it will be transacting with\nanother counterparty VASP.\n\n(b) Phase 2\n\n(i) A reporting institution should identify the counterparty VASP. In this context,\nit is possible that the reporting institution only knows the “name” of the\ncounterparty VASP following its previous transaction with the counterparty\nVASP.\n\n(ii) A reporting institution may identify a counterparty VASP by itself using a\nreliable database (for example the website of the supervisory authority of\nthe counterparty VASPs), in line with any guidelines from a country on when\nto rely on such data; and\n\n(c) Phase 3\n\n(i) A reporting institution should assess whether the counterparty VASP is an\neligible counterparty for it to send customer data to and to have a business\nrelationship.\n\n(ii) A reporting institution should be able to demonstrate its risk-based analysis\nfrom an AML/CFT/CPF perspectives, as well as considering other compliance\nissues, including data storage and security, and the profitability of the business\nrelationship, which forms the basis of its decision to transact with the\ncounterparty VASP.\n\n(iii) The due diligence results on the counterparty VASPs must be reviewed\n\nperiodically.",
+      "token_count": 291,
+      "pages": [
+        103,
+        104
+      ],
+      "section_path": [
+        "APPENDIX F",
+        "1.0 Introduction"
+      ],
+      "source_element_ids": [
+        "p103-e5",
+        "p103-e6",
+        "p103-e7",
+        "p103-e8",
+        "p103-e9",
+        "p103-e10",
+        "p103-e11",
+        "p103-e12",
+        "p103-e13",
+        "p103-e14",
+        "p104-e1"
+      ]
+    },
+    {
+      "rank": 3,
+      "chunk_id": "485c4989-c300-45c8-ac06-79a59492bb5c-c0273-a0f89ccd1b",
+      "chunk_index": 273,
+      "semantic_type": "list_item",
+      "reranker_score": 0.4025559425354004,
+      "hybrid_candidate_rank": 4,
+      "fusion_score": 0.03057889822595705,
+      "dense_rank": 3,
+      "dense_score": 0.6080623140260799,
+      "dense_distance": 0.3919376859739201,
+      "dense_rrf_score": 0.015873015873015872,
+      "lexical_rank": 8,
+      "lexical_score": 0.6,
+      "lexical_matched_term_count": 6,
+      "lexical_term_coverage": 0.4,
+      "lexical_rrf_score": 0.014705882352941176,
+      "text": "Section: APPENDIX F > 1.0 Introduction\nGroup: Guidance on Identification and Due Diligence on Counterparty Virtual Asset\nService Provider (VASP) (in relation to Paragraph 9.5 of the Guidelines)\n\n(iv)Where a regulated originating institution decide to have a business relationship\nwith an unregulated beneficiary institution, the regulated originating institution\nmay require travel rule compliance from the unregulated beneficiary institutions\nby way of a contract.",
+      "content_text": "(iv)Where a regulated originating institution decide to have a business relationship\nwith an unregulated beneficiary institution, the regulated originating institution\nmay require travel rule compliance from the unregulated beneficiary institutions\nby way of a contract.",
+      "token_count": 78,
+      "pages": [
+        104
+      ],
+      "section_path": [
+        "APPENDIX F",
+        "1.0 Introduction"
+      ],
+      "source_element_ids": [
+        "p104-e2"
+      ]
+    },
+    {
+      "rank": 4,
+      "chunk_id": "485c4989-c300-45c8-ac06-79a59492bb5c-c0271-236dca87b6",
+      "chunk_index": 271,
+      "semantic_type": "clause",
+      "reranker_score": 0.25049036741256714,
+      "hybrid_candidate_rank": 3,
+      "fusion_score": 0.031054405392392875,
+      "dense_rank": 2,
+      "dense_score": 0.6139613850162763,
+      "dense_distance": 0.3860386149837237,
+      "dense_rrf_score": 0.016129032258064516,
+      "lexical_rank": 7,
+      "lexical_score": 0.7,
+      "lexical_matched_term_count": 6,
+      "lexical_term_coverage": 0.4,
+      "lexical_rrf_score": 0.014925373134328358,
+      "text": "Section: APPENDIX F > 1.0 Introduction\nClause: 1.1\nGroup: Guidance on Identification and Due Diligence on Counterparty Virtual Asset\nService Provider (VASP) (in relation to Paragraph 9.5 of the Guidelines)\n\n1.1 This Guidance seeks to outline the recommended process involved in conducting\nidentification and counterparty due diligenceon counterparty VASP. In the event a\nreporting institution has developed and adopted its own process, the adopted process\nmust be able to achieve the outcomes intended under this Guidance.",
+      "content_text": "1.1 This Guidance seeks to outline the recommended process involved in conducting\nidentification and counterparty due diligenceon counterparty VASP. In the event a\nreporting institution has developed and adopted its own process, the adopted process\nmust be able to achieve the outcomes intended under this Guidance.",
+      "token_count": 94,
+      "pages": [
+        103
+      ],
+      "section_path": [
+        "APPENDIX F",
+        "1.0 Introduction"
+      ],
+      "source_element_ids": [
+        "p103-e4"
+      ]
+    },
+    {
+      "rank": 5,
+      "chunk_id": "485c4989-c300-45c8-ac06-79a59492bb5c-c0142-87f1b197d7",
+      "chunk_index": 142,
+      "semantic_type": "list_item",
+      "reranker_score": 0.020655347034335136,
+      "hybrid_candidate_rank": 8,
+      "fusion_score": 0.015384615384615385,
+      "dense_rank": 5,
+      "dense_score": 0.4961169960429084,
+      "dense_distance": 0.5038830039570916,
+      "dense_rrf_score": 0.015384615384615385,
+      "lexical_rank": null,
+      "lexical_score": null,
+      "lexical_matched_term_count": 0,
+      "lexical_term_coverage": 0.0,
+      "lexical_rrf_score": 0.0,
+      "text": "Section: PART IIIA: WIRE TRANSFER > 9. WIRE TRANSFER OF DIGITAL ASSETS > 9.5 Identification and Due Diligence on Counterparty VASP\nGroup: Guidance for paragraph 9.5.1:\n\n•\nAs a guide, a reporting institution needs to conduct due diligence\non their counterparty VASP before the reporting institution\ntransmits the required information to avoid dealing with illicit actors\nor sanctioned actors unknowingly.\n\n•\nAdditionally, a reporting institution should use this due diligence\nprocess to determine whether a counterparty VASP can reasonably\nbe expected to protect the confidentiality of information shared\nwith it.",
+      "content_text": "•\nAs a guide, a reporting institution needs to conduct due diligence\non their counterparty VASP before the reporting institution\ntransmits the required information to avoid dealing with illicit actors\nor sanctioned actors unknowingly.\n\n•\nAdditionally, a reporting institution should use this due diligence\nprocess to determine whether a counterparty VASP can reasonably\nbe expected to protect the confidentiality of information shared\nwith it.",
+      "token_count": 105,
+      "pages": [
+        51
+      ],
+      "section_path": [
+        "PART IIIA: WIRE TRANSFER",
+        "9. WIRE TRANSFER OF DIGITAL ASSETS",
+        "9.5 Identification and Due Diligence on Counterparty VASP"
+      ],
+      "source_element_ids": [
+        "p51-e9",
+        "p51-e10"
+      ]
+    },
+    {
+      "rank": 6,
+      "chunk_id": "485c4989-c300-45c8-ac06-79a59492bb5c-c0025-3e57cbf249",
+      "chunk_index": 25,
+      "semantic_type": "definition",
+      "reranker_score": 0.017906533554196358,
+      "hybrid_candidate_rank": 22,
+      "fusion_score": 0.013513513513513514,
+      "dense_rank": 14,
+      "dense_score": 0.4573113100568106,
+      "dense_distance": 0.5426886899431894,
+      "dense_rrf_score": 0.013513513513513514,
+      "lexical_rank": null,
+      "lexical_score": null,
+      "lexical_matched_term_count": 0,
+      "lexical_term_coverage": 0.0,
+      "lexical_rrf_score": 0.0,
+      "text": "Section: PART I: INTRODUCTION AND APPLICABILITY > 3. DEFINITIONS\nDefinition: legal person\n\nlegal person\n\nmeans any entity other than a natural person that can establish a permanent customer relationship with a reporting institution or otherwise own property. This can include companies, bodies corporate, foundations,\npartnerships, or associations and other relevantly similar entity.",
+      "content_text": "legal person\n\nmeans any entity other than a natural person that can establish a permanent customer relationship with a reporting institution or otherwise own property. This can include companies, bodies corporate, foundations,\npartnerships, or associations and other relevantly similar entity.",
+      "token_count": 62,
+      "pages": [
+        11
+      ],
+      "section_path": [
+        "PART I: INTRODUCTION AND APPLICABILITY",
+        "3. DEFINITIONS"
+      ],
+      "source_element_ids": [
+        "p11-e1-table-r9-term",
+        "p11-e1-table-r9-definition",
+        "p11-e1-table-r10-continuation"
+      ]
+    },
+    {
+      "rank": 7,
+      "chunk_id": "485c4989-c300-45c8-ac06-79a59492bb5c-c0258-cd8455196d",
+      "chunk_index": 258,
+      "semantic_type": "clause",
+      "reranker_score": 0.01684759184718132,
+      "hybrid_candidate_rank": 5,
+      "fusion_score": 0.029571646010002173,
+      "dense_rank": 13,
+      "dense_score": 0.45908138399831233,
+      "dense_distance": 0.5409186160016877,
+      "dense_rrf_score": 0.0136986301369863,
+      "lexical_rank": 3,
+      "lexical_score": 2.1000001,
+      "lexical_matched_term_count": 6,
+      "lexical_term_coverage": 0.4,
+      "lexical_rrf_score": 0.015873015873015872,
+      "text": "Section: APPENDIX E > Identification\nClause: 1.9\nGroup: Steps to identify beneficial owner > Legal person\n\n1.9 Step 2: Identify the natural person, if any, exercising control of the\nlegal person, through other means\n\n(a) A natural person may also exercise effective control over an entity if he has the\npowers and authority to take actions and make decisions for the entity, including\non matters relating to its financial affairs, financial relationships, operations or\nother matters that may fundamentally affect the business or direction of the\nentity, without having ownership interest over the entity.\n\n(b) Such powers and authority may be attained through other means, such as:\n\n(c) A natural person demonstrating control may be, among others, the entity’s senior\nmanagement, directors, authorised signatory, controller and etc.\n\nWhere, in the course of identifying beneficial owners, reporting institutions\nidentified natural persons who exert control over an entity but have no direct\nownership or apparent control over the entity, this assessment along with\nthe person suspected of being a beneficial owner, should be recorded. Such a\nsituation may be observed through:\n\n(i)personal connections to persons in positions of power within the entity or\npersons who possess ownership over an entity (close or intimate family\nrelationships and historical or contractual associations)\n\n(ii)participation in financing of enterprises which may allow enjoyment or\nbenefits from assets of the legal person",
+      "content_text": "1.9 Step 2: Identify the natural person, if any, exercising control of the\nlegal person, through other means\n\n(a) A natural person may also exercise effective control over an entity if he has the\npowers and authority to take actions and make decisions for the entity, including\non matters relating to its financial affairs, financial relationships, operations or\nother matters that may fundamentally affect the business or direction of the\nentity, without having ownership interest over the entity.\n\n(b) Such powers and authority may be attained through other means, such as:\n\n(c) A natural person demonstrating control may be, among others, the entity’s senior\nmanagement, directors, authorised signatory, controller and etc.\n\nWhere, in the course of identifying beneficial owners, reporting institutions\nidentified natural persons who exert control over an entity but have no direct\nownership or apparent control over the entity, this assessment along with\nthe person suspected of being a beneficial owner, should be recorded. Such a\nsituation may be observed through:\n\n(i)personal connections to persons in positions of power within the entity or\npersons who possess ownership over an entity (close or intimate family\nrelationships and historical or contractual associations)\n\n(ii)participation in financing of enterprises which may allow enjoyment or\nbenefits from assets of the legal person",
+      "token_count": 271,
+      "pages": [
+        94,
+        95
+      ],
+      "section_path": [
+        "APPENDIX E",
+        "Identification"
+      ],
+      "source_element_ids": [
+        "p94-e9",
+        "p94-e10",
+        "p94-e11",
+        "p95-e6",
+        "p95-e7",
+        "p95-e8",
+        "p95-e9"
+      ]
+    },
+    {
+      "rank": 8,
+      "chunk_id": "485c4989-c300-45c8-ac06-79a59492bb5c-c0012-255abb45a1",
+      "chunk_index": 12,
+      "semantic_type": "definition",
+      "reranker_score": 0.013832144439220428,
+      "hybrid_candidate_rank": 31,
+      "fusion_score": 0.012658227848101266,
+      "dense_rank": null,
+      "dense_score": null,
+      "dense_distance": null,
+      "dense_rrf_score": 0.0,
+      "lexical_rank": 19,
+      "lexical_score": 1.2,
+      "lexical_matched_term_count": 4,
+      "lexical_term_coverage": 0.26666666666666666,
+      "lexical_rrf_score": 0.012658227848101266,
+      "text": "Section: PART I: INTRODUCTION AND APPLICABILITY > 3. DEFINITIONS\nDefinition: beneficiary\n\nbeneficiary\n\nthe meaning of the term beneficiary depends on\nthe context.\nin trust law, a beneficiary refers to the person or persons who are entitled to the benefit of any trust arrangement. A beneficiary can be a natural or legal person or arrangement. All trusts (other than charitable or statutory permitted non- charitable trusts) are required to have ascertainable beneficiaries. While trusts must always have some ultimately ascertainable beneficiary, trusts may have no defined existing beneficiaries but only objects of a power until some person becomes entitled as beneficiary to income or capital on the expiry of a defined period, known as the accumulation period or following exercise of trustee discretion in the case of a discretionary trust.\nIn wire transfer, refers to the natural or legal person or legal arrangement identified by the originator as the receiver of the requested wire transfer.",
+      "content_text": "beneficiary\n\nthe meaning of the term beneficiary depends on\nthe context.\nin trust law, a beneficiary refers to the person or persons who are entitled to the benefit of any trust arrangement. A beneficiary can be a natural or legal person or arrangement. All trusts (other than charitable or statutory permitted non- charitable trusts) are required to have ascertainable beneficiaries. While trusts must always have some ultimately ascertainable beneficiary, trusts may have no defined existing beneficiaries but only objects of a power until some person becomes entitled as beneficiary to income or capital on the expiry of a defined period, known as the accumulation period or following exercise of trustee discretion in the case of a discretionary trust.\nIn wire transfer, refers to the natural or legal person or legal arrangement identified by the originator as the receiver of the requested wire transfer.",
+      "token_count": 171,
+      "pages": [
+        9,
+        10
+      ],
+      "section_path": [
+        "PART I: INTRODUCTION AND APPLICABILITY",
+        "3. DEFINITIONS"
+      ],
+      "source_element_ids": [
+        "p9-e11",
+        "p9-e10",
+        "p10-e1",
+        "p10-e2",
+        "p10-e3"
+      ]
+    },
+    {
+      "rank": 9,
+      "chunk_id": "485c4989-c300-45c8-ac06-79a59492bb5c-c0143-b3079bbd42",
+      "chunk_index": 143,
+      "semantic_type": "clause",
+      "reranker_score": 0.013779873959720135,
+      "hybrid_candidate_rank": 17,
+      "fusion_score": 0.014084507042253521,
+      "dense_rank": 11,
+      "dense_score": 0.4611369119719372,
+      "dense_distance": 0.5388630880280628,
+      "dense_rrf_score": 0.014084507042253521,
+      "lexical_rank": null,
+      "lexical_score": null,
+      "lexical_matched_term_count": 0,
+      "lexical_term_coverage": 0.0,
+      "lexical_rrf_score": 0.0,
+      "text": "Section: PART IIIA: WIRE TRANSFER > 9. WIRE TRANSFER OF DIGITAL ASSETS > 9.5 Identification and Due Diligence on Counterparty VASP\n\n9.5.2 A reporting institution does not need to undertake due diligence process on the\ncounterparty VASP for every individual wire transfer when dealing with a counterparty\nVASP for which it has previously conducted counterparty due diligence, unless there is\na suspicious transaction history or other information (for example published adverse\nmedia information, published regulatory or criminal action involving the counterparty\nVASP) indicating that it should refresh the due diligence process.\n\n9.5.3 A reporting institution must update its counterparty VASP due diligence information\nperiodically or when risk emerges from the relationship in line with a reporting\ninstitution’s defined risk-based assessment control structure.",
+      "content_text": "9.5.2 A reporting institution does not need to undertake due diligence process on the\ncounterparty VASP for every individual wire transfer when dealing with a counterparty\nVASP for which it has previously conducted counterparty due diligence, unless there is\na suspicious transaction history or other information (for example published adverse\nmedia information, published regulatory or criminal action involving the counterparty\nVASP) indicating that it should refresh the due diligence process.\n\n9.5.3 A reporting institution must update its counterparty VASP due diligence information\nperiodically or when risk emerges from the relationship in line with a reporting\ninstitution’s defined risk-based assessment control structure.",
+      "token_count": 145,
+      "pages": [
+        51,
+        52
+      ],
+      "section_path": [
+        "PART IIIA: WIRE TRANSFER",
+        "9. WIRE TRANSFER OF DIGITAL ASSETS",
+        "9.5 Identification and Due Diligence on Counterparty VASP"
+      ],
+      "source_element_ids": [
+        "p51-e11",
+        "p52-e1"
+      ]
+    },
+    {
+      "rank": 10,
+      "chunk_id": "485c4989-c300-45c8-ac06-79a59492bb5c-c0032-ca9991723f",
+      "chunk_index": 32,
+      "semantic_type": "definition",
+      "reranker_score": 0.006955069489777088,
+      "hybrid_candidate_rank": 19,
+      "fusion_score": 0.013888888888888888,
+      "dense_rank": null,
+      "dense_score": null,
+      "dense_distance": null,
+      "dense_rrf_score": 0.0,
+      "lexical_rank": 12,
+      "lexical_score": 0.7,
+      "lexical_matched_term_count": 5,
+      "lexical_term_coverage": 0.3333333333333333,
+      "lexical_rrf_score": 0.013888888888888888,
+      "text": "Section: PART I: INTRODUCTION AND APPLICABILITY > 3. DEFINITIONS\nDefinition: originator\n\noriginator\n\nrefers to the account holder or customer who allows the wire transfer of digital asset from his account, or where there is no account the natural or legal person that places the order with the ordering institution to perform the wire transfer of digital asset.",
+      "content_text": "originator\n\nrefers to the account holder or customer who allows the wire transfer of digital asset from his account, or where there is no account the natural or legal person that places the order with the ordering institution to perform the wire transfer of digital asset.",
+      "token_count": 63,
+      "pages": [
+        13
+      ],
+      "section_path": [
+        "PART I: INTRODUCTION AND APPLICABILITY",
+        "3. DEFINITIONS"
+      ],
+      "source_element_ids": [
+        "p13-e2",
+        "p13-e5"
+      ]
+    }
+  ]
+}

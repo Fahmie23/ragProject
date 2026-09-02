@@ -189,6 +189,7 @@ def evaluate_stage4_golden(
     elements = _all_elements(structure)
     element_by_id = {element.element_id: element for element in elements}
     sections_by_element = {section.element_id: section for section in structure.sections}
+    clauses_by_element = {clause.element_id: clause for clause in structure.clauses}
     source = spec.get("source", {})
     source_match = True
     if source.get("sha256") and structure.source_sha256 != source["sha256"]:
@@ -239,11 +240,20 @@ def evaluate_stage4_golden(
         element = matches[0]
         anchors[check_id] = element
         failures = _check_expectations(element, assertion.get("expect", {}))
-        section_expectation = assertion.get("expect", {}).get("section_record")
-        if section_expectation is True and element.element_id not in sections_by_element:
+        expect = assertion.get("expect", {})
+        section_expectation = expect.get("section_record")
+        section_record = sections_by_element.get(element.element_id)
+        if section_expectation is True and section_record is None:
             failures.append("expected a SectionRecord for this element")
-        elif section_expectation is False and element.element_id in sections_by_element:
+        elif section_expectation is False and section_record is not None:
             failures.append("element must not create a SectionRecord")
+        if "section_level" in expect:
+            if section_record is None:
+                failures.append("section_level expectation requires a SectionRecord")
+            elif section_record.level != expect["section_level"]:
+                failures.append(
+                    f"section_level={section_record.level!r}, expected {expect['section_level']!r}"
+                )
         _add_check(
             checks,
             check_id=check_id,
@@ -290,6 +300,88 @@ def evaluate_stage4_golden(
                 else f"relation {relation_type} present={found}, expected present={expected_present}"
             ),
             matched_element_ids=[source_anchor.element_id, target_anchor.element_id],
+        )
+
+    for assertion in spec.get("hierarchy_assertions", []):
+        check_id = assertion["id"]
+        strength = assertion.get("strength", "required")
+        kind = assertion.get("kind")
+        failures: list[str] = []
+        matched_ids: list[str] = []
+
+        if kind == "section_parent":
+            child_anchor = anchors.get(assertion.get("child"))
+            parent_anchor = anchors.get(assertion.get("parent"))
+            if child_anchor is None or parent_anchor is None:
+                failures.append("child or parent anchor did not resolve")
+            else:
+                matched_ids = [child_anchor.element_id, parent_anchor.element_id]
+                child_section = sections_by_element.get(child_anchor.element_id)
+                parent_section = sections_by_element.get(parent_anchor.element_id)
+                if child_section is None or parent_section is None:
+                    failures.append("child or parent anchor does not create a SectionRecord")
+                elif child_section.parent_section_id != parent_section.section_id:
+                    failures.append(
+                        f"section parent={child_section.parent_section_id!r}, expected {parent_section.section_id!r}"
+                    )
+
+        elif kind == "section_membership":
+            element_anchor = anchors.get(assertion.get("element"))
+            section_anchor = anchors.get(assertion.get("section"))
+            if element_anchor is None or section_anchor is None:
+                failures.append("element or section anchor did not resolve")
+            else:
+                matched_ids = [element_anchor.element_id, section_anchor.element_id]
+                section = sections_by_element.get(section_anchor.element_id)
+                if section is None:
+                    failures.append("section anchor does not create a SectionRecord")
+                elif assertion.get("allow_descendant", False):
+                    section_by_id = {item.section_id: item for item in structure.sections}
+                    current = element_anchor.section_id
+                    seen: set[str] = set()
+                    found = False
+                    while current and current not in seen:
+                        if current == section.section_id:
+                            found = True
+                            break
+                        seen.add(current)
+                        record = section_by_id.get(current)
+                        current = record.parent_section_id if record is not None else None
+                    if not found:
+                        failures.append(
+                            f"element section={element_anchor.section_id!r} is not {section.section_id!r} or its descendant"
+                        )
+                elif element_anchor.section_id != section.section_id:
+                    failures.append(
+                        f"element section={element_anchor.section_id!r}, expected {section.section_id!r}"
+                    )
+
+        elif kind == "clause_parent":
+            child_anchor = anchors.get(assertion.get("child"))
+            parent_anchor = anchors.get(assertion.get("parent"))
+            if child_anchor is None or parent_anchor is None:
+                failures.append("child or parent anchor did not resolve")
+            else:
+                matched_ids = [child_anchor.element_id, parent_anchor.element_id]
+                child_clause = clauses_by_element.get(child_anchor.element_id)
+                parent_clause = clauses_by_element.get(parent_anchor.element_id)
+                if child_clause is None or parent_clause is None:
+                    failures.append("child or parent anchor does not create a ClauseRecord")
+                elif child_clause.parent_clause_id != parent_clause.clause_id:
+                    failures.append(
+                        f"clause parent={child_clause.parent_clause_id!r}, expected {parent_clause.clause_id!r}"
+                    )
+        else:
+            failures.append(f"unsupported hierarchy assertion kind {kind!r}")
+
+        _add_check(
+            checks,
+            check_id=check_id,
+            category="hierarchy",
+            strength=strength,
+            passed=not failures,
+            message="ok" if not failures else "; ".join(failures),
+            matched_element_ids=matched_ids,
         )
 
     definitions_by_term = {normalize_text(item.term).casefold(): item for item in structure.definitions}
@@ -451,6 +543,7 @@ def validate_golden_spec(spec: dict[str, Any]) -> list[str]:
     categories = (
         "element_assertions",
         "relation_assertions",
+        "hierarchy_assertions",
         "definition_assertions",
         "appendix_assertions",
         "logical_table_assertions",
@@ -478,6 +571,20 @@ def validate_golden_spec(spec: dict[str, Any]) -> list[str]:
             issues.append(f"relation {relation.get('id')} references unknown source anchor {relation.get('source')!r}")
         if relation.get("target") not in anchor_ids:
             issues.append(f"relation {relation.get('id')} references unknown target anchor {relation.get('target')!r}")
+
+    supported_hierarchy_kinds = {"section_parent", "section_membership", "clause_parent"}
+    for assertion in spec.get("hierarchy_assertions", []):
+        kind = assertion.get("kind")
+        if kind not in supported_hierarchy_kinds:
+            issues.append(f"hierarchy assertion {assertion.get('id')} has unsupported kind {kind!r}")
+            continue
+        refs = ("child", "parent") if kind in {"section_parent", "clause_parent"} else ("element", "section")
+        for ref_name in refs:
+            anchor = assertion.get(ref_name)
+            if anchor not in anchor_ids:
+                issues.append(
+                    f"hierarchy assertion {assertion.get('id')} references unknown {ref_name} anchor {anchor!r}"
+                )
 
     page_count = spec.get("source", {}).get("page_count")
     if page_count:

@@ -1,0 +1,379 @@
+{
+  "document_id": "485c4989-c300-45c8-ac06-79a59492bb5c",
+  "query": "Which factors must be considered when determining a customer's ML/TF/PF risk profile?",
+  "embedding_model": "BAAI/bge-m3",
+  "requested_device": "auto",
+  "resolved_device": "cuda",
+  "top_k": 10,
+  "candidate_k": 20,
+  "embedded_chunk_count": 284,
+  "total_chunk_count": 284,
+  "fusion_method": "reciprocal_rank_fusion",
+  "rrf_k": 60,
+  "dense_weight": 1.0,
+  "lexical_weight": 1.0,
+  "lexical_ranking_method": "postgresql_fts_term_coverage_then_ts_rank_cd",
+  "lexical_query_mode": "or_content_terms_v1",
+  "lexical_terms": [
+    "factors",
+    "considered",
+    "determining",
+    "customer",
+    "ml",
+    "tf",
+    "pf",
+    "risk",
+    "profile"
+  ],
+  "lexical_tsquery": "factors | considered | determining | customer | ml | tf | pf | risk | profile",
+  "hits": [
+    {
+      "rank": 1,
+      "chunk_id": "485c4989-c300-45c8-ac06-79a59492bb5c-c0196-08986b7945",
+      "chunk_index": 196,
+      "semantic_type": "clause",
+      "fusion_score": 0.031746031746031744,
+      "dense_rank": 3,
+      "dense_score": 0.7039581537246704,
+      "dense_distance": 0.2960418462753296,
+      "dense_rrf_score": 0.015873015873015872,
+      "lexical_rank": 3,
+      "lexical_score": 1.7,
+      "lexical_matched_term_count": 6,
+      "lexical_term_coverage": 0.6666666666666666,
+      "lexical_rrf_score": 0.015873015873015872,
+      "text": "Section: APPENDIX A > 5.0 A: Determine the risk parameters for customer profiling\nClause: 5.1\nGroup: Relationship-based Risk Assessment (RbRA)\n\n5.1 A reporting institution should determine the appropriate risk parameters when\nconsidering the risk factors such as customer, country or geographic, product\nor service and transaction or distribution channel. These risk parameters will assist the\nreporting institution in identifying the ML/TF/PF risk factors for customers for the\npurpose of risk profiling. Refer to Example 2 below for illustration purposes:",
+      "content_text": "5.1 A reporting institution should determine the appropriate risk parameters when\nconsidering the risk factors such as customer, country or geographic, product\nor service and transaction or distribution channel. These risk parameters will assist the\nreporting institution in identifying the ML/TF/PF risk factors for customers for the\npurpose of risk profiling. Refer to Example 2 below for illustration purposes:",
+      "token_count": 102,
+      "pages": [
+        75
+      ],
+      "section_path": [
+        "APPENDIX A",
+        "5.0 A: Determine the risk parameters for customer profiling"
+      ],
+      "source_element_ids": [
+        "p75-e18"
+      ]
+    },
+    {
+      "rank": 2,
+      "chunk_id": "485c4989-c300-45c8-ac06-79a59492bb5c-c0182-ec484a2599",
+      "chunk_index": 182,
+      "semantic_type": "mixed",
+      "fusion_score": 0.031544957774465976,
+      "dense_rank": 6,
+      "dense_score": 0.6785884286655917,
+      "dense_distance": 0.32141157133440834,
+      "dense_rrf_score": 0.015151515151515152,
+      "lexical_rank": 1,
+      "lexical_score": 3.0,
+      "lexical_matched_term_count": 6,
+      "lexical_term_coverage": 0.6666666666666666,
+      "lexical_rrf_score": 0.01639344262295082,
+      "text": "Section: APPENDIX A > 2.0 RBA Steps\nGroup: Relationship-based Risk Assessment (RbRA)\n\nIn a RbRA, a reporting institution must consider types of products, services,\ndistribution channels, etc. that the customers are using and mitigate the risks\nidentified.\n\nI.Determine the risk parameters for customer profiling ― A reporting institution\nmust identify specific risk factors and parameters for customers’ profiling.\nWhere relevant, the reporting institution may adopt similar parameters that\nhave been used for the assessment of the ML/TF/PF risk factors considered\nunder the BbRA.\n\nII.Conduct risk profiling on customers – Based on the CDD information or ongoing\nCDD information, as the case maybe, a reporting institution must determine the\nrisk profiling of each customer e.g. high, medium or low, to determine the CDD\nmeasures (standard or enhanced) applicable in respect of each customer.\n\nIII.Apply customer risk management and mitigation control measures – A reporting\ninstitution must apply the necessary risk management and mitigation\nprocedures, systems and controls, that commensurate with the risk profile of\neach customer, to effectively manage and mitigate the ML/TF/PF risks.",
+      "content_text": "In a RbRA, a reporting institution must consider types of products, services,\ndistribution channels, etc. that the customers are using and mitigate the risks\nidentified.\n\nI.Determine the risk parameters for customer profiling ― A reporting institution\nmust identify specific risk factors and parameters for customers’ profiling.\nWhere relevant, the reporting institution may adopt similar parameters that\nhave been used for the assessment of the ML/TF/PF risk factors considered\nunder the BbRA.\n\nII.Conduct risk profiling on customers – Based on the CDD information or ongoing\nCDD information, as the case maybe, a reporting institution must determine the\nrisk profiling of each customer e.g. high, medium or low, to determine the CDD\nmeasures (standard or enhanced) applicable in respect of each customer.\n\nIII.Apply customer risk management and mitigation control measures – A reporting\ninstitution must apply the necessary risk management and mitigation\nprocedures, systems and controls, that commensurate with the risk profile of\neach customer, to effectively manage and mitigate the ML/TF/PF risks.",
+      "token_count": 219,
+      "pages": [
+        69
+      ],
+      "section_path": [
+        "APPENDIX A",
+        "2.0 RBA Steps"
+      ],
+      "source_element_ids": [
+        "p69-e8",
+        "p69-e9",
+        "p69-e10",
+        "p69-e11"
+      ]
+    },
+    {
+      "rank": 3,
+      "chunk_id": "485c4989-c300-45c8-ac06-79a59492bb5c-c0198-03ed594e25",
+      "chunk_index": 198,
+      "semantic_type": "clause",
+      "fusion_score": 0.0315136476426799,
+      "dense_rank": 5,
+      "dense_score": 0.6896744555428961,
+      "dense_distance": 0.3103255444571039,
+      "dense_rrf_score": 0.015384615384615385,
+      "lexical_rank": 2,
+      "lexical_score": 2.7,
+      "lexical_matched_term_count": 6,
+      "lexical_term_coverage": 0.6666666666666666,
+      "lexical_rrf_score": 0.016129032258064516,
+      "text": "Section: APPENDIX A > 5.0 A: Determine the risk parameters for customer profiling\nGroup: Relationship-based Risk Assessment (RbRA)\n\n5.2 Where relevant, a reporting institution may adopt similar risk parameters that have\nbeen used for the assessment of the ML/TF/PF risks considered under the BbRA.\n\n5.3 The different parameters considered within the customer, country or geographic,\nproduct or service and transaction or distribution channel risk factors, may either\nindividually or in combination impact the level of risk posed by each customer.\n\n5.4 Identifying one high-risk indicator for a customer does not necessarily mean that the\ncustomer is high risk, except for circumstances where a high-risk indicator is identified\npursuant to high-risk customer relationships prescribed by FATF standards1. The RbRA\nultimately requires the reporting institution to draw together all risk factors,\nparameters considered, including patterns of transaction and activity to determine\nhow best to assess the risk of such customer on an ongoing basis.\n\n5.5 Therefore, a reporting institution must ensure that the onboarding and ongoing CDD\ninformation obtained is accurate and up to date.",
+      "content_text": "5.2 Where relevant, a reporting institution may adopt similar risk parameters that have\nbeen used for the assessment of the ML/TF/PF risks considered under the BbRA.\n\n5.3 The different parameters considered within the customer, country or geographic,\nproduct or service and transaction or distribution channel risk factors, may either\nindividually or in combination impact the level of risk posed by each customer.\n\n5.4 Identifying one high-risk indicator for a customer does not necessarily mean that the\ncustomer is high risk, except for circumstances where a high-risk indicator is identified\npursuant to high-risk customer relationships prescribed by FATF standards1. The RbRA\nultimately requires the reporting institution to draw together all risk factors,\nparameters considered, including patterns of transaction and activity to determine\nhow best to assess the risk of such customer on an ongoing basis.\n\n5.5 Therefore, a reporting institution must ensure that the onboarding and ongoing CDD\ninformation obtained is accurate and up to date.",
+      "token_count": 213,
+      "pages": [
+        76
+      ],
+      "section_path": [
+        "APPENDIX A",
+        "5.0 A: Determine the risk parameters for customer profiling"
+      ],
+      "source_element_ids": [
+        "p76-e3",
+        "p76-e4",
+        "p76-e5",
+        "p76-e6"
+      ]
+    },
+    {
+      "rank": 4,
+      "chunk_id": "485c4989-c300-45c8-ac06-79a59492bb5c-c0187-222788f826",
+      "chunk_index": 187,
+      "semantic_type": "clause",
+      "fusion_score": 0.030621785881252923,
+      "dense_rank": 2,
+      "dense_score": 0.7165336608886719,
+      "dense_distance": 0.2834663391113281,
+      "dense_rrf_score": 0.016129032258064516,
+      "lexical_rank": 9,
+      "lexical_score": 1.8000001,
+      "lexical_matched_term_count": 4,
+      "lexical_term_coverage": 0.4444444444444444,
+      "lexical_rrf_score": 0.014492753623188406,
+      "text": "Section: APPENDIX A > 3.0 A: Perform Risk Assessment\nClause: 3.4\nGroup: Business-based Risk Assessment (BbRA)\n\n3.4 To assist a reporting institution in assessing the extent of its ML/TF/PF risks, the\nreporting institution may consider the following examples under the risk factors\nmentioned below for guidance:\n\n(a)Customers – in conducting business transactions, the reporting institution is\nexposed to various types of customers that may pose ML/TF/PF risks. In\nanalysing its customers’ risk, a reporting institution may consider the non-\nexhaustive examples below:\n\n(b)Countries or geographic – a reporting institution should take into account factors\nincluding the location of the reporting institution’s branches and subsidiaries and\nwhether its holding company is located within a jurisdiction with full\nAML/CFT/CPF compliance as identified by a credible source. Further non-\nexhaustive examples are as below:\n\n•\nLocation of its branches and subsidiaries in tourist hotspots, crime hotspots,\ncountry’s border and entry-points; and\n\n•\nLocation of its branches and subsidiaries in high-risk jurisdictions e.g.\ncountries identified by FATF and the Government of Malaysia, countries\nsubjected to sanctions by UN, etc.\n\n(c)Transactions and distribution channels – a reporting institution has various\nmodes of transaction and distribution of its products and services. Some of the\nmodes of transaction and distribution channels may be more susceptible to\nML/TF/PF risks. In this regard, a reporting institution must consider the\nappropriate ML/TF/PF risks attributed to these modes including the following\nexamples:\n\n•\nMode of distribution primarily via agents;\n\n•\nOnline or technology based transaction;\n\n•\nNon face-to face business relationship; and\n\n•Cash-based transactions.\n\n(d)Products and services – given the variety of financial products in the market, a\nreporting institution must identify the appropriate level of ML/TF/PF risks\nattached to the types of products and services offered. Some of the non-\n\n(e)exhaustive examples that the reporting institution may take into account are as\nfollows:\n\n•\nNature of the products i.e. transferability/liquidity of the products;\n\n•\nLevel of complexity of the products and services;\n\n•\nBearer instruments; and\n\n•\nNew technologies.",
+      "content_text": "3.4 To assist a reporting institution in assessing the extent of its ML/TF/PF risks, the\nreporting institution may consider the following examples under the risk factors\nmentioned below for guidance:\n\n(a)Customers – in conducting business transactions, the reporting institution is\nexposed to various types of customers that may pose ML/TF/PF risks. In\nanalysing its customers’ risk, a reporting institution may consider the non-\nexhaustive examples below:\n\n(b)Countries or geographic – a reporting institution should take into account factors\nincluding the location of the reporting institution’s branches and subsidiaries and\nwhether its holding company is located within a jurisdiction with full\nAML/CFT/CPF compliance as identified by a credible source. Further non-\nexhaustive examples are as below:\n\n•\nLocation of its branches and subsidiaries in tourist hotspots, crime hotspots,\ncountry’s border and entry-points; and\n\n•\nLocation of its branches and subsidiaries in high-risk jurisdictions e.g.\ncountries identified by FATF and the Government of Malaysia, countries\nsubjected to sanctions by UN, etc.\n\n(c)Transactions and distribution channels – a reporting institution has various\nmodes of transaction and distribution of its products and services. Some of the\nmodes of transaction and distribution channels may be more susceptible to\nML/TF/PF risks. In this regard, a reporting institution must consider the\nappropriate ML/TF/PF risks attributed to these modes including the following\nexamples:\n\n•\nMode of distribution primarily via agents;\n\n•\nOnline or technology based transaction;\n\n•\nNon face-to face business relationship; and\n\n•Cash-based transactions.\n\n(d)Products and services – given the variety of financial products in the market, a\nreporting institution must identify the appropriate level of ML/TF/PF risks\nattached to the types of products and services offered. Some of the non-\n\n(e)exhaustive examples that the reporting institution may take into account are as\nfollows:\n\n•\nNature of the products i.e. transferability/liquidity of the products;\n\n•\nLevel of complexity of the products and services;\n\n•\nBearer instruments; and\n\n•\nNew technologies.",
+      "token_count": 436,
+      "pages": [
+        71,
+        72,
+        73
+      ],
+      "section_path": [
+        "APPENDIX A",
+        "3.0 A: Perform Risk Assessment"
+      ],
+      "source_element_ids": [
+        "p71-e13",
+        "p71-e14",
+        "p72-e10",
+        "p72-e11",
+        "p72-e12",
+        "p72-e13",
+        "p72-e14",
+        "p72-e15",
+        "p72-e16",
+        "p72-e17",
+        "p72-e18",
+        "p73-e1",
+        "p73-e2",
+        "p73-e3",
+        "p73-e4",
+        "p73-e5"
+      ]
+    },
+    {
+      "rank": 5,
+      "chunk_id": "485c4989-c300-45c8-ac06-79a59492bb5c-c0078-f2b180259e",
+      "chunk_index": 78,
+      "semantic_type": "clause",
+      "fusion_score": 0.03055037313432836,
+      "dense_rank": 7,
+      "dense_score": 0.6752504706382751,
+      "dense_distance": 0.32474952936172485,
+      "dense_rrf_score": 0.014925373134328358,
+      "lexical_rank": 4,
+      "lexical_score": 1.5,
+      "lexical_matched_term_count": 5,
+      "lexical_term_coverage": 0.5555555555555556,
+      "lexical_rrf_score": 0.015625,
+      "text": "Section: PART II: RISK-BASED APPROACH APPLICATION > 7. RISK-BASED APPROACH APPLICATION > 7.5 Risk profiling of customers\nClause: 7.5.3\n\n7.5.3 In determining the risk profile of a particular customer, the reporting institution must\ntake into account, among others the following factors:\n\n(a) Customer risks e.g. residents or non-residents, occasional or one-off, natural or\nlegal person, types of PEP, types of occupation;\n\n(b) Geographical location of business or country of origin of customers;\n\n(c) Products or services;\n\n(d) Transactions or distribution channel e.g. cash-based, face-to-face or non face-to-\nface or cross-border; and\n\n(e) Any other information suggesting that the customer is of higher risks.",
+      "content_text": "7.5.3 In determining the risk profile of a particular customer, the reporting institution must\ntake into account, among others the following factors:\n\n(a) Customer risks e.g. residents or non-residents, occasional or one-off, natural or\nlegal person, types of PEP, types of occupation;\n\n(b) Geographical location of business or country of origin of customers;\n\n(c) Products or services;\n\n(d) Transactions or distribution channel e.g. cash-based, face-to-face or non face-to-\nface or cross-border; and\n\n(e) Any other information suggesting that the customer is of higher risks.",
+      "token_count": 165,
+      "pages": [
+        29
+      ],
+      "section_path": [
+        "PART II: RISK-BASED APPROACH APPLICATION",
+        "7. RISK-BASED APPROACH APPLICATION",
+        "7.5 Risk profiling of customers"
+      ],
+      "source_element_ids": [
+        "p29-e7",
+        "p29-e8",
+        "p29-e9",
+        "p29-e10",
+        "p29-e11",
+        "p29-e12"
+      ]
+    },
+    {
+      "rank": 6,
+      "chunk_id": "485c4989-c300-45c8-ac06-79a59492bb5c-c0185-cc49cfc122",
+      "chunk_index": 185,
+      "semantic_type": "clause",
+      "fusion_score": 0.029513888888888888,
+      "dense_rank": 4,
+      "dense_score": 0.6962528047712341,
+      "dense_distance": 0.3037471952287659,
+      "dense_rrf_score": 0.015625,
+      "lexical_rank": 12,
+      "lexical_score": 1.4,
+      "lexical_matched_term_count": 4,
+      "lexical_term_coverage": 0.4444444444444444,
+      "lexical_rrf_score": 0.013888888888888888,
+      "text": "Section: APPENDIX A > 3.0 A: Perform Risk Assessment\nClause: 3.2\nGroup: Business-based Risk Assessment (BbRA)\n\n3.2 The reporting institution should evaluate the extent of its ML/TF/PF risks at a macro\nlevel. When assessing the ML/TF/PF risks, a reporting institution should consider all\nrelevant risk factors that affect their business and operations:\n\n(a)Reporting institution’s customers;\n\n(b)Geographic location of the reporting institution;\n\n(c)Transactions and distribution channels offered by the reporting institution;\n\n(d)Products and services offered by the reporting institution;\n\n(e)Structure of the reporting institution;\n\n(f)Findings of the National Risk Assessment (NRA) or any other risk assessment issued by\nrelevant authorities; and\n\n(g)Other specific risk factors that the reporting institution may consider for the\npurpose of identifying its ML/TF/PF risks.",
+      "content_text": "3.2 The reporting institution should evaluate the extent of its ML/TF/PF risks at a macro\nlevel. When assessing the ML/TF/PF risks, a reporting institution should consider all\nrelevant risk factors that affect their business and operations:\n\n(a)Reporting institution’s customers;\n\n(b)Geographic location of the reporting institution;\n\n(c)Transactions and distribution channels offered by the reporting institution;\n\n(d)Products and services offered by the reporting institution;\n\n(e)Structure of the reporting institution;\n\n(f)Findings of the National Risk Assessment (NRA) or any other risk assessment issued by\nrelevant authorities; and\n\n(g)Other specific risk factors that the reporting institution may consider for the\npurpose of identifying its ML/TF/PF risks.",
+      "token_count": 179,
+      "pages": [
+        71
+      ],
+      "section_path": [
+        "APPENDIX A",
+        "3.0 A: Perform Risk Assessment"
+      ],
+      "source_element_ids": [
+        "p71-e4",
+        "p71-e5",
+        "p71-e6",
+        "p71-e7",
+        "p71-e8",
+        "p71-e9",
+        "p71-e10",
+        "p71-e11"
+      ]
+    },
+    {
+      "rank": 7,
+      "chunk_id": "485c4989-c300-45c8-ac06-79a59492bb5c-c0189-da8ccc8fc0",
+      "chunk_index": 189,
+      "semantic_type": "subclause",
+      "fusion_score": 0.02919863597612958,
+      "dense_rank": 9,
+      "dense_score": 0.6704193353652954,
+      "dense_distance": 0.3295806646347046,
+      "dense_rrf_score": 0.014492753623188406,
+      "lexical_rank": 8,
+      "lexical_score": 1.9,
+      "lexical_matched_term_count": 4,
+      "lexical_term_coverage": 0.4444444444444444,
+      "lexical_rrf_score": 0.014705882352941176,
+      "text": "Section: APPENDIX A > 3.0 A: Perform Risk Assessment\nGroup: Business-based Risk Assessment (BbRA)\nParent context:\n3.4 To assist a reporting institution in assessing the extent of its ML/TF/PF risks, the\nreporting institution may consider the following examples under the risk factors\nmentioned below for guidance:\n\n(f)Reporting institution’s structure – the ML/TF/PF risk of a reporting institution\nmay differ according to its size, structure and nature of business. Appropriate\nassessment of its business model and structure may assist a reporting institution\nto identify the level of ML/TF/PF risks that it is exposed to. In this regard, a\nreporting institution may take into account the following non- exhaustive\nexamples:\n\n•\nNumber of branches and subsidiaries;\n\n•\nSize of the reporting institution;\n\n•\nNumber of employees;\n\n•\nDegree of dependency on technology; and\n\n•\nSize against industry.\n\n(g)Findings of the NRA or any other risk assessments issued by relevant authorities\n–\nin identifying, assessing and understanding the ML/TF/PF risks, a reporting\ninstitution must fully consider the outcome of the NRA or any other equivalent\nrisk assessments by relevant authorities:\n\nUnder the NRA, a reporting institution should take into account the following:\n\n•\nSectors identified as highly vulnerable to ML/TF risks;\n\n•\nCrimes identified as high risk or susceptible to money laundering; and\n\n•\nTerrorism Financing and/or Proliferation Financing risks.\n\n(h)Other factors – a reporting institution may also take into account other factors in\ndetermining its risk assessment such as:\n\n•\nTrends and typologies for a particular sector;\n\n•\nThe internal audit and regulatory findings;\n\n•\nThe number of suspicious transaction reports it has filed with the FIED;\nand\n\n•\nWhether the reporting institution has been subjected to service any freeze or\nseize order by any law enforcement agencies pursuant to the AMLA,\nDangerous Drugs (Forfeiture of Property) Act 1988, Malaysian Anti-Corruption\nCommission Act 2009, etc.",
+      "content_text": "(f)Reporting institution’s structure – the ML/TF/PF risk of a reporting institution\nmay differ according to its size, structure and nature of business. Appropriate\nassessment of its business model and structure may assist a reporting institution\nto identify the level of ML/TF/PF risks that it is exposed to. In this regard, a\nreporting institution may take into account the following non- exhaustive\nexamples:\n\n•\nNumber of branches and subsidiaries;\n\n•\nSize of the reporting institution;\n\n•\nNumber of employees;\n\n•\nDegree of dependency on technology; and\n\n•\nSize against industry.\n\n(g)Findings of the NRA or any other risk assessments issued by relevant authorities\n–\nin identifying, assessing and understanding the ML/TF/PF risks, a reporting\ninstitution must fully consider the outcome of the NRA or any other equivalent\nrisk assessments by relevant authorities:\n\nUnder the NRA, a reporting institution should take into account the following:\n\n•\nSectors identified as highly vulnerable to ML/TF risks;\n\n•\nCrimes identified as high risk or susceptible to money laundering; and\n\n•\nTerrorism Financing and/or Proliferation Financing risks.\n\n(h)Other factors – a reporting institution may also take into account other factors in\ndetermining its risk assessment such as:\n\n•\nTrends and typologies for a particular sector;\n\n•\nThe internal audit and regulatory findings;\n\n•\nThe number of suspicious transaction reports it has filed with the FIED;\nand\n\n•\nWhether the reporting institution has been subjected to service any freeze or\nseize order by any law enforcement agencies pursuant to the AMLA,\nDangerous Drugs (Forfeiture of Property) Act 1988, Malaysian Anti-Corruption\nCommission Act 2009, etc.",
+      "token_count": 379,
+      "pages": [
+        73
+      ],
+      "section_path": [
+        "APPENDIX A",
+        "3.0 A: Perform Risk Assessment"
+      ],
+      "source_element_ids": [
+        "p73-e6",
+        "p73-e7",
+        "p73-e8",
+        "p73-e9",
+        "p73-e10",
+        "p73-e11",
+        "p73-e12",
+        "p73-e13",
+        "p73-e14",
+        "p73-e15",
+        "p73-e16",
+        "p73-e17",
+        "p73-e18",
+        "p73-e19",
+        "p73-e20",
+        "p73-e21"
+      ]
+    },
+    {
+      "rank": 8,
+      "chunk_id": "485c4989-c300-45c8-ac06-79a59492bb5c-c0181-272be0f4ef",
+      "chunk_index": 181,
+      "semantic_type": "mixed",
+      "fusion_score": 0.028370221327967807,
+      "dense_rank": 10,
+      "dense_score": 0.6679358880481665,
+      "dense_distance": 0.3320641119518335,
+      "dense_rrf_score": 0.014285714285714285,
+      "lexical_rank": 11,
+      "lexical_score": 1.6,
+      "lexical_matched_term_count": 4,
+      "lexical_term_coverage": 0.4444444444444444,
+      "lexical_rrf_score": 0.014084507042253521,
+      "text": "Section: APPENDIX A > 2.0 RBA Steps\nGroup: Business-based Risk Assessment (BbRA)\n\nIn a BbRA, a reporting institution must identify ML/TF/PF risk factors that affect its\nbusiness and address the impact on the reporting institution’s overall ML/TF/PF risks.\n\nI.Perform risk assessment ― A reporting institution shall perform an assessment\non the degree of ML/TF/PF risks that the reporting institution's business is\nexposed to and determine its risk appetite level. To this end, a reporting\ninstitution should formulate specific parameters of the ML/TF/PF risk factors\nconsidered.\n\nII.Formulate and implement business risk management and mitigation control\nmeasures ― A reporting institution must formulate procedures, systems and\ncontrols designed to manage and mitigate the identified ML/TF/PF risks. These\nrisk control measures should manage and mitigate the ML/TF/PF risks identified\nas well as be proportionate to the risks recognised.",
+      "content_text": "In a BbRA, a reporting institution must identify ML/TF/PF risk factors that affect its\nbusiness and address the impact on the reporting institution’s overall ML/TF/PF risks.\n\nI.Perform risk assessment ― A reporting institution shall perform an assessment\non the degree of ML/TF/PF risks that the reporting institution's business is\nexposed to and determine its risk appetite level. To this end, a reporting\ninstitution should formulate specific parameters of the ML/TF/PF risk factors\nconsidered.\n\nII.Formulate and implement business risk management and mitigation control\nmeasures ― A reporting institution must formulate procedures, systems and\ncontrols designed to manage and mitigate the identified ML/TF/PF risks. These\nrisk control measures should manage and mitigate the ML/TF/PF risks identified\nas well as be proportionate to the risks recognised.",
+      "token_count": 183,
+      "pages": [
+        69
+      ],
+      "section_path": [
+        "APPENDIX A",
+        "2.0 RBA Steps"
+      ],
+      "source_element_ids": [
+        "p69-e4",
+        "p69-e5",
+        "p69-e6"
+      ]
+    },
+    {
+      "rank": 9,
+      "chunk_id": "485c4989-c300-45c8-ac06-79a59492bb5c-c0199-e83e41447b",
+      "chunk_index": 199,
+      "semantic_type": "clause",
+      "fusion_score": 0.027745885954841176,
+      "dense_rank": 18,
+      "dense_score": 0.6399090480777341,
+      "dense_distance": 0.3600909519222659,
+      "dense_rrf_score": 0.01282051282051282,
+      "lexical_rank": 7,
+      "lexical_score": 3.5,
+      "lexical_matched_term_count": 4,
+      "lexical_term_coverage": 0.4444444444444444,
+      "lexical_rrf_score": 0.014925373134328358,
+      "text": "Section: APPENDIX A > 6.0 B: Conduct risk profiling on customers\nGroup: Relationship-based Risk Assessment (RbRA)\n\n6.1 Based on the processes under paragraph 5 above, a reporting institution must\nformulate its own risk scoring mechanism for the purpose of risk profiling its\ncustomers, e.g. high, medium or low. This will assist the reporting institution to\ndetermine whether to apply standard or enhanced CDD measures in respect of each\ncustomer.\n\n1 The high-risk customer relationships that have already been prescribed by FATF standards are for example\nForeign PEP, customers from high-risk jurisdiction identified by FATF.\n\n6.2 A reporting institution is expected to document the reason and basis for each risk\nprofiling and risk scoring assigned to its customers.\n\n6.3 Accurate risk profiling of its customers is crucial for the purpose of applying effective\ncontrol measures. Customers who are profiled as high risk should be subjected to\nmore stringent control measures including frequent monitoring compared to\ncustomers rated as low risk.\n\n6.4 While CDD measures and risk profiling of customers are performed at the inception\nof the business relationship, the risk profile of a customer may change once the\ncustomer has commenced transactions. Ongoing monitoring determines whether the\ntransactions are consistent with the customer’s last known information.",
+      "content_text": "6.1 Based on the processes under paragraph 5 above, a reporting institution must\nformulate its own risk scoring mechanism for the purpose of risk profiling its\ncustomers, e.g. high, medium or low. This will assist the reporting institution to\ndetermine whether to apply standard or enhanced CDD measures in respect of each\ncustomer.\n\n1 The high-risk customer relationships that have already been prescribed by FATF standards are for example\nForeign PEP, customers from high-risk jurisdiction identified by FATF.\n\n6.2 A reporting institution is expected to document the reason and basis for each risk\nprofiling and risk scoring assigned to its customers.\n\n6.3 Accurate risk profiling of its customers is crucial for the purpose of applying effective\ncontrol measures. Customers who are profiled as high risk should be subjected to\nmore stringent control measures including frequent monitoring compared to\ncustomers rated as low risk.\n\n6.4 While CDD measures and risk profiling of customers are performed at the inception\nof the business relationship, the risk profile of a customer may change once the\ncustomer has commenced transactions. Ongoing monitoring determines whether the\ntransactions are consistent with the customer’s last known information.",
+      "token_count": 244,
+      "pages": [
+        76,
+        77
+      ],
+      "section_path": [
+        "APPENDIX A",
+        "6.0 B: Conduct risk profiling on customers"
+      ],
+      "source_element_ids": [
+        "p76-e8",
+        "p76-e9",
+        "p77-e1",
+        "p77-e2",
+        "p77-e3"
+      ]
+    },
+    {
+      "rank": 10,
+      "chunk_id": "485c4989-c300-45c8-ac06-79a59492bb5c-c0200-7c4abccddb",
+      "chunk_index": 200,
+      "semantic_type": "clause",
+      "fusion_score": 0.026709401709401708,
+      "dense_rank": 12,
+      "dense_score": 0.6636559963226318,
+      "dense_distance": 0.33634400367736816,
+      "dense_rrf_score": 0.013888888888888888,
+      "lexical_rank": 18,
+      "lexical_score": 1.1,
+      "lexical_matched_term_count": 4,
+      "lexical_term_coverage": 0.4444444444444444,
+      "lexical_rrf_score": 0.01282051282051282,
+      "text": "Section: APPENDIX A > 7.0 C: Apply customer risk management and mitigation control measures\nClause: 7.1\nGroup: Relationship-based Risk Assessment (RbRA)\n\n7.1 Based on the risk profiling conducted on customers, a reporting institution must apply\nthe risk management and mitigation procedures, systems and control measures\nproportionate to the customers’ profiles to effectively manage and mitigate such\nML/TF/ PF risks.",
+      "content_text": "7.1 Based on the risk profiling conducted on customers, a reporting institution must apply\nthe risk management and mitigation procedures, systems and control measures\nproportionate to the customers’ profiles to effectively manage and mitigate such\nML/TF/ PF risks.",
+      "token_count": 80,
+      "pages": [
+        77
+      ],
+      "section_path": [
+        "APPENDIX A",
+        "7.0 C: Apply customer risk management and mitigation control measures"
+      ],
+      "source_element_ids": [
+        "p77-e5"
+      ]
+    }
+  ]
+}

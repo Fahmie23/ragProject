@@ -1,0 +1,439 @@
+==============================================================================
+RETRIEVAL BEHAVIOUR: Appendix / form retrieval
+==============================================================================
+Test ID                    : 05_positive_designated_person_match
+Query                      : What information must be reported when there is a positive match with a designated person?
+Purpose                    : Tests whether reranking recovers the Appendix I answer-bearing reporting table from the candidate union.
+Document ID                : 485c4989-c300-45c8-ac06-79a59492bb5c
+Embedding model            : BAAI/bge-m3
+Embedding requested device : auto
+Embedding resolved device  : cuda
+Reranker model             : BAAI/bge-reranker-v2-m3
+Reranker requested device  : auto
+Reranker resolved device   : cuda
+Reranker batch size        : 2
+Reranker max length        : 1024
+Top K                      : 5
+Candidate K per retriever  : 20
+Candidate union count      : 28
+Candidate strategy         : dense_lexical_union
+Ranking method             : cross_encoder
+RRF K                      : 60
+Dense weight               : 1.0
+Lexical weight             : 1.0
+Lexical ranking            : postgresql_fts_term_coverage_then_ts_rank_cd
+Lexical query mode         : or_content_terms_v1
+Lexical terms              : ['information', 'reported', 'positive', 'match', 'designated', 'person']
+Lexical tsquery            : information | reported | positive | match | designated | person
+Embedded chunks            : 284
+Total chunks               : 284
+Retrieved hits             : 5
+
+------------------------------------------------------------
+RANK 1
+------------------------------------------------------------
+Chunk index          : 165
+Chunk ID             : 485c4989-c300-45c8-ac06-79a59492bb5c-c0165-8354c916df
+Semantic type        : clause
+Reranker raw score   : 0.974893
+Reranker normalized : 0.7261
+Hybrid candidate rank: 5
+Fusion score         : 0.030118
+Dense rank           : 9
+Dense score          : 0.593127
+Dense distance       : 0.406873
+Dense RRF            : 0.014493
+Lexical rank         : 4
+Lexical score        : 1.100000
+Lexical terms hit    : 5
+Lexical coverage     : 0.8333
+Lexical RRF          : 0.015625
+Token count          : 104
+Pages                : [62, 63]
+Section path         : PART VIII: COMBATING PROLIFERATION FINANCING > 17. CONDUCT SANCTIONS SCREENING ON CUSTOMERS
+Source element IDs   : ['p62-e10', 'p62-e11', 'p63-e3']
+
+TEXT
+------------------------------------------------------------
+Section: PART VIII: COMBATING PROLIFERATION FINANCING > 17. CONDUCT SANCTIONS SCREENING ON CUSTOMERS
+
+17.1 A reporting institution must conduct sanctions screening on its existing, new and
+potential customers, to check for any positive name matched with any designated
+person.
+
+17.2 A reporting institution must screen its entire customer database without delay when
+new names are listed in the UNSCR.
+
+17.4 If there is a positive name match, a reporting institution must take reasonable and
+appropriate measures to verify and confirm the identity of its customer against the
+designated person.
+
+------------------------------------------------------------
+RANK 2
+------------------------------------------------------------
+Chunk index          : 175
+Chunk ID             : 485c4989-c300-45c8-ac06-79a59492bb5c-c0175-9774b5ede3
+Semantic type        : clause
+Reranker raw score   : 0.962335
+Reranker normalized : 0.7236
+Hybrid candidate rank: 2
+Fusion score         : 0.031025
+Dense rank           : 6
+Dense score          : 0.598853
+Dense distance       : 0.401147
+Dense RRF            : 0.015152
+Lexical rank         : 3
+Lexical score        : 1.200000
+Lexical terms hit    : 5
+Lexical coverage     : 0.8333
+Lexical RRF          : 0.015873
+Token count          : 122
+Pages                : [66]
+Section path         : PART VIII: COMBATING PROLIFERATION FINANCING > 19. REPORTING REQUIREMENTS
+Source element IDs   : ['p66-e7', 'p66-e8', 'p66-e9', 'p66-e10', 'p66-e11']
+
+TEXT
+------------------------------------------------------------
+Section: PART VIII: COMBATING PROLIFERATION FINANCING > 19. REPORTING REQUIREMENTS
+
+19.4 The form for periodic reporting to the SC is set out in Appendix J.
+
+19.5 A reporting institution must submit a STR to the FIED in the following circumstances:
+
+(a) In the event of positive name matches arising from ongoing screening of their
+customer database involving designated person or person identified as related
+party related to the designated person; and
+
+(b) Where there is an attempted transaction by any of the designated person or its
+related party.
+
+19.6 The details on the lodgement of STR with FIED are set out in Appendix C.
+
+------------------------------------------------------------
+RANK 3
+------------------------------------------------------------
+Chunk index          : 173
+Chunk ID             : 485c4989-c300-45c8-ac06-79a59492bb5c-c0173-729312a3d9
+Semantic type        : clause
+Reranker raw score   : 0.940560
+Reranker normalized : 0.7192
+Hybrid candidate rank: 13
+Fusion score         : 0.016129
+Dense rank           : —
+Dense score          : —
+Dense distance       : —
+Dense RRF            : 0.000000
+Lexical rank         : 2
+Lexical score        : 1.400000
+Lexical terms hit    : 5
+Lexical coverage     : 0.8333
+Lexical RRF          : 0.016129
+Token count          : 132
+Pages                : [66]
+Section path         : PART VIII: COMBATING PROLIFERATION FINANCING > 19. REPORTING REQUIREMENTS
+Source element IDs   : ['p66-e2', 'p66-e3', 'p66-e4']
+
+TEXT
+------------------------------------------------------------
+Section: PART VIII: COMBATING PROLIFERATION FINANCING > 19. REPORTING REQUIREMENTS
+
+19.1 A reporting institution must immediately report to the SC on any freezing, blocking or
+rejection actions undertaken in accordance with paragraph 18 towards the identified
+funds, properties or accounts.
+
+19.2 The form for reporting to the SC upon determination of a name match and actions
+taken by the reporting institution is attached as Appendix I.
+
+19.3 A reporting institution who has reported positive name matches and has control of
+frozen funds, properties or accounts of a designated person must report to the SC on
+any change to such frozen funds, properties or accounts by 31 January in the next
+calendar year (periodic reporting).
+
+------------------------------------------------------------
+RANK 4
+------------------------------------------------------------
+Chunk index          : 170
+Chunk ID             : 485c4989-c300-45c8-ac06-79a59492bb5c-c0170-bca06805f2
+Semantic type        : list_item
+Reranker raw score   : 0.904740
+Reranker normalized : 0.7119
+Hybrid candidate rank: 1
+Fusion score         : 0.032266
+Dense rank           : 3
+Dense score          : 0.622320
+Dense distance       : 0.377680
+Dense RRF            : 0.015873
+Lexical rank         : 1
+Lexical score        : 0.900000
+Lexical terms hit    : 6
+Lexical coverage     : 1.0000
+Lexical RRF          : 0.016393
+Token count          : 131
+Pages                : [64]
+Section path         : PART VIII: COMBATING PROLIFERATION FINANCING > 18. REQUIREMENT TO FREEZE, BLOCK AND REJECT
+Source element IDs   : ['p64-e7', 'p64-e8', 'p64-e9']
+
+TEXT
+------------------------------------------------------------
+Section: PART VIII: COMBATING PROLIFERATION FINANCING > 18. REQUIREMENT TO FREEZE, BLOCK AND REJECT
+Group: Guidance for False Positive under paragraph 18.2(b)
+
+(a)A reporting institution may forward queries to the SC to determine whether
+the customer is a designated person in the case of similar or common names.
+
+(b)Any query submitted to the SC must include any additional information,
+copies of identification documents and relevant analysis conducted by the
+reporting institution.
+
+(c)A reporting institution should advice any customers who complain about
+their accounts being inadvertently frozen or transactions being erroneously
+rejected or blocked to contact the Strategic Trade Controller under the STA
+to verify the false positive match.
+
+------------------------------------------------------------
+RANK 5
+------------------------------------------------------------
+Chunk index          : 279
+Chunk ID             : 485c4989-c300-45c8-ac06-79a59492bb5c-c0279-a5f6ecd15c
+Semantic type        : table
+Reranker raw score   : 0.612003
+Reranker normalized : 0.6484
+Hybrid candidate rank: 6
+Fusion score         : 0.029911
+Dense rank           : 4
+Dense score          : 0.619744
+Dense distance       : 0.380256
+Dense RRF            : 0.015625
+Lexical rank         : 10
+Lexical score        : 0.500000
+Lexical terms hit    : 4
+Lexical coverage     : 0.6667
+Lexical RRF          : 0.014286
+Token count          : 180
+Pages                : [107]
+Section path         : APPENDIX I > REPORTING UPON DETERMINATION
+Source element IDs   : ['p107-e7']
+
+TEXT
+------------------------------------------------------------
+Section: APPENDIX I > REPORTING UPON DETERMINATION
+Group: Match with Designated Person(s) (YES / NO) :
+
+No | UNSCR Permanent Ref No | Customer Name | Address | NRIC / Passport No. | Intermediary Name - if reporting done on group basis | Branch maintaining the account/ facility Account No. | Account Facility/ Type | Date services given (DD/MM /YYYY) | Account/ Facility Status (on date of freezing) | Date account frozen (DD/MM /YYYY) | Account Balance as at: ________ | Related Parties | Remarks
+1 |  |  |  |  |  |  |  |  |  |  |  |  | 
+2 |  |  |  |  |  |  |  |  |  |  |  |  | 
+3 |  |  |  |  |  |  |  |  |  |  |  |  | 
+4 |  |  |  |  |  |  |  |  |  |  |  |  | 
+5 |  |  |  |  |  |  |  |  |  |  |  |  |
+
+
+==============================================================================
+RAW JSON RESPONSE
+==============================================================================
+{
+  "document_id": "485c4989-c300-45c8-ac06-79a59492bb5c",
+  "query": "What information must be reported when there is a positive match with a designated person?",
+  "embedding_model": "BAAI/bge-m3",
+  "embedding_requested_device": "auto",
+  "embedding_resolved_device": "cuda",
+  "reranker_model": "BAAI/bge-reranker-v2-m3",
+  "reranker_requested_device": "auto",
+  "reranker_resolved_device": "cuda",
+  "reranker_batch_size": 2,
+  "reranker_max_length": 1024,
+  "top_k": 5,
+  "candidate_k": 20,
+  "candidate_union_count": 28,
+  "embedded_chunk_count": 284,
+  "total_chunk_count": 284,
+  "candidate_strategy": "dense_lexical_union",
+  "ranking_method": "cross_encoder",
+  "fusion_method": "reciprocal_rank_fusion_trace",
+  "rrf_k": 60,
+  "dense_weight": 1.0,
+  "lexical_weight": 1.0,
+  "lexical_ranking_method": "postgresql_fts_term_coverage_then_ts_rank_cd",
+  "lexical_query_mode": "or_content_terms_v1",
+  "lexical_terms": [
+    "information",
+    "reported",
+    "positive",
+    "match",
+    "designated",
+    "person"
+  ],
+  "lexical_tsquery": "information | reported | positive | match | designated | person",
+  "hits": [
+    {
+      "rank": 1,
+      "chunk_id": "485c4989-c300-45c8-ac06-79a59492bb5c-c0165-8354c916df",
+      "chunk_index": 165,
+      "semantic_type": "clause",
+      "reranker_score": 0.9748932123184204,
+      "reranker_normalized_score": 0.7260937436665506,
+      "hybrid_candidate_rank": 5,
+      "fusion_score": 0.030117753623188408,
+      "dense_rank": 9,
+      "dense_score": 0.5931268334388733,
+      "dense_distance": 0.4068731665611267,
+      "dense_rrf_score": 0.014492753623188406,
+      "lexical_rank": 4,
+      "lexical_score": 1.1,
+      "lexical_matched_term_count": 5,
+      "lexical_term_coverage": 0.8333333333333334,
+      "lexical_rrf_score": 0.015625,
+      "text": "Section: PART VIII: COMBATING PROLIFERATION FINANCING > 17. CONDUCT SANCTIONS SCREENING ON CUSTOMERS\n\n17.1 A reporting institution must conduct sanctions screening on its existing, new and\npotential customers, to check for any positive name matched with any designated\nperson.\n\n17.2 A reporting institution must screen its entire customer database without delay when\nnew names are listed in the UNSCR.\n\n17.4 If there is a positive name match, a reporting institution must take reasonable and\nappropriate measures to verify and confirm the identity of its customer against the\ndesignated person.",
+      "content_text": "17.1 A reporting institution must conduct sanctions screening on its existing, new and\npotential customers, to check for any positive name matched with any designated\nperson.\n\n17.2 A reporting institution must screen its entire customer database without delay when\nnew names are listed in the UNSCR.\n\n17.4 If there is a positive name match, a reporting institution must take reasonable and\nappropriate measures to verify and confirm the identity of its customer against the\ndesignated person.",
+      "token_count": 104,
+      "pages": [
+        62,
+        63
+      ],
+      "section_path": [
+        "PART VIII: COMBATING PROLIFERATION FINANCING",
+        "17. CONDUCT SANCTIONS SCREENING ON CUSTOMERS"
+      ],
+      "source_element_ids": [
+        "p62-e10",
+        "p62-e11",
+        "p63-e3"
+      ]
+    },
+    {
+      "rank": 2,
+      "chunk_id": "485c4989-c300-45c8-ac06-79a59492bb5c-c0175-9774b5ede3",
+      "chunk_index": 175,
+      "semantic_type": "clause",
+      "reranker_score": 0.962334930896759,
+      "reranker_normalized_score": 0.7235890535534878,
+      "hybrid_candidate_rank": 2,
+      "fusion_score": 0.031024531024531024,
+      "dense_rank": 6,
+      "dense_score": 0.5988531351773073,
+      "dense_distance": 0.4011468648226927,
+      "dense_rrf_score": 0.015151515151515152,
+      "lexical_rank": 3,
+      "lexical_score": 1.2,
+      "lexical_matched_term_count": 5,
+      "lexical_term_coverage": 0.8333333333333334,
+      "lexical_rrf_score": 0.015873015873015872,
+      "text": "Section: PART VIII: COMBATING PROLIFERATION FINANCING > 19. REPORTING REQUIREMENTS\n\n19.4 The form for periodic reporting to the SC is set out in Appendix J.\n\n19.5 A reporting institution must submit a STR to the FIED in the following circumstances:\n\n(a) In the event of positive name matches arising from ongoing screening of their\ncustomer database involving designated person or person identified as related\nparty related to the designated person; and\n\n(b) Where there is an attempted transaction by any of the designated person or its\nrelated party.\n\n19.6 The details on the lodgement of STR with FIED are set out in Appendix C.",
+      "content_text": "19.4 The form for periodic reporting to the SC is set out in Appendix J.\n\n19.5 A reporting institution must submit a STR to the FIED in the following circumstances:\n\n(a) In the event of positive name matches arising from ongoing screening of their\ncustomer database involving designated person or person identified as related\nparty related to the designated person; and\n\n(b) Where there is an attempted transaction by any of the designated person or its\nrelated party.\n\n19.6 The details on the lodgement of STR with FIED are set out in Appendix C.",
+      "token_count": 122,
+      "pages": [
+        66
+      ],
+      "section_path": [
+        "PART VIII: COMBATING PROLIFERATION FINANCING",
+        "19. REPORTING REQUIREMENTS"
+      ],
+      "source_element_ids": [
+        "p66-e7",
+        "p66-e8",
+        "p66-e9",
+        "p66-e10",
+        "p66-e11"
+      ]
+    },
+    {
+      "rank": 3,
+      "chunk_id": "485c4989-c300-45c8-ac06-79a59492bb5c-c0173-729312a3d9",
+      "chunk_index": 173,
+      "semantic_type": "clause",
+      "reranker_score": 0.940559983253479,
+      "reranker_normalized_score": 0.7192127575446797,
+      "hybrid_candidate_rank": 13,
+      "fusion_score": 0.016129032258064516,
+      "dense_rank": null,
+      "dense_score": null,
+      "dense_distance": null,
+      "dense_rrf_score": 0.0,
+      "lexical_rank": 2,
+      "lexical_score": 1.4,
+      "lexical_matched_term_count": 5,
+      "lexical_term_coverage": 0.8333333333333334,
+      "lexical_rrf_score": 0.016129032258064516,
+      "text": "Section: PART VIII: COMBATING PROLIFERATION FINANCING > 19. REPORTING REQUIREMENTS\n\n19.1 A reporting institution must immediately report to the SC on any freezing, blocking or\nrejection actions undertaken in accordance with paragraph 18 towards the identified\nfunds, properties or accounts.\n\n19.2 The form for reporting to the SC upon determination of a name match and actions\ntaken by the reporting institution is attached as Appendix I.\n\n19.3 A reporting institution who has reported positive name matches and has control of\nfrozen funds, properties or accounts of a designated person must report to the SC on\nany change to such frozen funds, properties or accounts by 31 January in the next\ncalendar year (periodic reporting).",
+      "content_text": "19.1 A reporting institution must immediately report to the SC on any freezing, blocking or\nrejection actions undertaken in accordance with paragraph 18 towards the identified\nfunds, properties or accounts.\n\n19.2 The form for reporting to the SC upon determination of a name match and actions\ntaken by the reporting institution is attached as Appendix I.\n\n19.3 A reporting institution who has reported positive name matches and has control of\nfrozen funds, properties or accounts of a designated person must report to the SC on\nany change to such frozen funds, properties or accounts by 31 January in the next\ncalendar year (periodic reporting).",
+      "token_count": 132,
+      "pages": [
+        66
+      ],
+      "section_path": [
+        "PART VIII: COMBATING PROLIFERATION FINANCING",
+        "19. REPORTING REQUIREMENTS"
+      ],
+      "source_element_ids": [
+        "p66-e2",
+        "p66-e3",
+        "p66-e4"
+      ]
+    },
+    {
+      "rank": 4,
+      "chunk_id": "485c4989-c300-45c8-ac06-79a59492bb5c-c0170-bca06805f2",
+      "chunk_index": 170,
+      "semantic_type": "list_item",
+      "reranker_score": 0.9047404527664185,
+      "reranker_normalized_score": 0.7119226921172457,
+      "hybrid_candidate_rank": 1,
+      "fusion_score": 0.032266458495966696,
+      "dense_rank": 3,
+      "dense_score": 0.6223200559616089,
+      "dense_distance": 0.3776799440383911,
+      "dense_rrf_score": 0.015873015873015872,
+      "lexical_rank": 1,
+      "lexical_score": 0.90000004,
+      "lexical_matched_term_count": 6,
+      "lexical_term_coverage": 1.0,
+      "lexical_rrf_score": 0.01639344262295082,
+      "text": "Section: PART VIII: COMBATING PROLIFERATION FINANCING > 18. REQUIREMENT TO FREEZE, BLOCK AND REJECT\nGroup: Guidance for False Positive under paragraph 18.2(b)\n\n(a)A reporting institution may forward queries to the SC to determine whether\nthe customer is a designated person in the case of similar or common names.\n\n(b)Any query submitted to the SC must include any additional information,\ncopies of identification documents and relevant analysis conducted by the\nreporting institution.\n\n(c)A reporting institution should advice any customers who complain about\ntheir accounts being inadvertently frozen or transactions being erroneously\nrejected or blocked to contact the Strategic Trade Controller under the STA\nto verify the false positive match.",
+      "content_text": "(a)A reporting institution may forward queries to the SC to determine whether\nthe customer is a designated person in the case of similar or common names.\n\n(b)Any query submitted to the SC must include any additional information,\ncopies of identification documents and relevant analysis conducted by the\nreporting institution.\n\n(c)A reporting institution should advice any customers who complain about\ntheir accounts being inadvertently frozen or transactions being erroneously\nrejected or blocked to contact the Strategic Trade Controller under the STA\nto verify the false positive match.",
+      "token_count": 131,
+      "pages": [
+        64
+      ],
+      "section_path": [
+        "PART VIII: COMBATING PROLIFERATION FINANCING",
+        "18. REQUIREMENT TO FREEZE, BLOCK AND REJECT"
+      ],
+      "source_element_ids": [
+        "p64-e7",
+        "p64-e8",
+        "p64-e9"
+      ]
+    },
+    {
+      "rank": 5,
+      "chunk_id": "485c4989-c300-45c8-ac06-79a59492bb5c-c0279-a5f6ecd15c",
+      "chunk_index": 279,
+      "semantic_type": "table",
+      "reranker_score": 0.6120033264160156,
+      "reranker_normalized_score": 0.6483976523680648,
+      "hybrid_candidate_rank": 6,
+      "fusion_score": 0.029910714285714284,
+      "dense_rank": 4,
+      "dense_score": 0.6197442412376404,
+      "dense_distance": 0.3802557587623596,
+      "dense_rrf_score": 0.015625,
+      "lexical_rank": 10,
+      "lexical_score": 0.5,
+      "lexical_matched_term_count": 4,
+      "lexical_term_coverage": 0.6666666666666666,
+      "lexical_rrf_score": 0.014285714285714285,
+      "text": "Section: APPENDIX I > REPORTING UPON DETERMINATION\nGroup: Match with Designated Person(s) (YES / NO) :\n\nNo | UNSCR Permanent Ref No | Customer Name | Address | NRIC / Passport No. | Intermediary Name - if reporting done on group basis | Branch maintaining the account/ facility Account No. | Account Facility/ Type | Date services given (DD/MM /YYYY) | Account/ Facility Status (on date of freezing) | Date account frozen (DD/MM /YYYY) | Account Balance as at: ________ | Related Parties | Remarks\n1 |  |  |  |  |  |  |  |  |  |  |  |  | \n2 |  |  |  |  |  |  |  |  |  |  |  |  | \n3 |  |  |  |  |  |  |  |  |  |  |  |  | \n4 |  |  |  |  |  |  |  |  |  |  |  |  | \n5 |  |  |  |  |  |  |  |  |  |  |  |  |",
+      "content_text": "No | UNSCR Permanent Ref No | Customer Name | Address | NRIC / Passport No. | Intermediary Name - if reporting done on group basis | Branch maintaining the account/ facility Account No. | Account Facility/ Type | Date services given (DD/MM /YYYY) | Account/ Facility Status (on date of freezing) | Date account frozen (DD/MM /YYYY) | Account Balance as at: ________ | Related Parties | Remarks\n1 |  |  |  |  |  |  |  |  |  |  |  |  | \n2 |  |  |  |  |  |  |  |  |  |  |  |  | \n3 |  |  |  |  |  |  |  |  |  |  |  |  | \n4 |  |  |  |  |  |  |  |  |  |  |  |  | \n5 |  |  |  |  |  |  |  |  |  |  |  |  |",
+      "token_count": 180,
+      "pages": [
+        107
+      ],
+      "section_path": [
+        "APPENDIX I",
+        "REPORTING UPON DETERMINATION"
+      ],
+      "source_element_ids": [
+        "p107-e7"
+      ]
+    }
+  ]
+}

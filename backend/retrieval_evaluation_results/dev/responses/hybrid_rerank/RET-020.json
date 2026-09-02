@@ -1,0 +1,387 @@
+{
+  "document_id": "485c4989-c300-45c8-ac06-79a59492bb5c",
+  "query": "What does ongoing due diligence require, and how should the frequency and intensity of monitoring be determined?",
+  "embedding_model": "BAAI/bge-m3",
+  "embedding_requested_device": "auto",
+  "embedding_resolved_device": "cuda",
+  "reranker_model": "BAAI/bge-reranker-v2-m3",
+  "reranker_requested_device": "auto",
+  "reranker_resolved_device": "cuda",
+  "reranker_batch_size": 2,
+  "reranker_max_length": 1024,
+  "top_k": 10,
+  "candidate_k": 20,
+  "candidate_union_count": 30,
+  "embedded_chunk_count": 284,
+  "total_chunk_count": 284,
+  "candidate_strategy": "dense_lexical_union",
+  "ranking_method": "cross_encoder",
+  "fusion_method": "reciprocal_rank_fusion_trace",
+  "rrf_k": 60,
+  "dense_weight": 1.0,
+  "lexical_weight": 1.0,
+  "lexical_ranking_method": "postgresql_fts_term_coverage_then_ts_rank_cd",
+  "lexical_query_mode": "or_content_terms_v1",
+  "lexical_terms": [
+    "ongoing",
+    "due",
+    "diligence",
+    "require",
+    "frequency",
+    "intensity",
+    "monitoring",
+    "determined"
+  ],
+  "lexical_tsquery": "ongoing | due | diligence | require | frequency | intensity | monitoring | determined",
+  "hits": [
+    {
+      "rank": 1,
+      "chunk_id": "485c4989-c300-45c8-ac06-79a59492bb5c-c0125-e68fb9b60c",
+      "chunk_index": 125,
+      "semantic_type": "clause",
+      "reranker_score": 0.9349740743637085,
+      "hybrid_candidate_rank": 1,
+      "fusion_score": 0.03225806451612903,
+      "dense_rank": 2,
+      "dense_score": 0.6654676793933847,
+      "dense_distance": 0.3345323206066153,
+      "dense_rrf_score": 0.016129032258064516,
+      "lexical_rank": 2,
+      "lexical_score": 1.5,
+      "lexical_matched_term_count": 5,
+      "lexical_term_coverage": 0.625,
+      "lexical_rrf_score": 0.016129032258064516,
+      "text": "Section: PART III: CUSTOMER DUE DILIGENCE > 8. CUSTOMER DUE DILIGENCE (CDD) > 8.8 Ongoing Due Diligence\n\n8.8.2 The frequency in implementing paragraph 8.8.1(a) under on-going due diligence or\nenhanced due diligence must commensurate with the level of ML/TF/PF risks posed\nby the customer based on the risk profiles and nature of transactions.\n\n8.8.3 When conducting enhanced due diligence, reporting institutions must, amongst\nothers, enhance the control measures, increase of the number of monitoring of the\nrelevant customers’ accounts, and timing of controls applied.",
+      "content_text": "8.8.2 The frequency in implementing paragraph 8.8.1(a) under on-going due diligence or\nenhanced due diligence must commensurate with the level of ML/TF/PF risks posed\nby the customer based on the risk profiles and nature of transactions.\n\n8.8.3 When conducting enhanced due diligence, reporting institutions must, amongst\nothers, enhance the control measures, increase of the number of monitoring of the\nrelevant customers’ accounts, and timing of controls applied.",
+      "token_count": 120,
+      "pages": [
+        46
+      ],
+      "section_path": [
+        "PART III: CUSTOMER DUE DILIGENCE",
+        "8. CUSTOMER DUE DILIGENCE (CDD)",
+        "8.8 Ongoing Due Diligence"
+      ],
+      "source_element_ids": [
+        "p46-e5",
+        "p46-e6"
+      ]
+    },
+    {
+      "rank": 2,
+      "chunk_id": "485c4989-c300-45c8-ac06-79a59492bb5c-c0124-0f8256155c",
+      "chunk_index": 124,
+      "semantic_type": "clause",
+      "reranker_score": 0.7868938446044922,
+      "hybrid_candidate_rank": 2,
+      "fusion_score": 0.032018442622950824,
+      "dense_rank": 1,
+      "dense_score": 0.7146930907575296,
+      "dense_distance": 0.2853069092424704,
+      "dense_rrf_score": 0.01639344262295082,
+      "lexical_rank": 4,
+      "lexical_score": 1.1,
+      "lexical_matched_term_count": 4,
+      "lexical_term_coverage": 0.5,
+      "lexical_rrf_score": 0.015625,
+      "text": "Section: PART III: CUSTOMER DUE DILIGENCE > 8. CUSTOMER DUE DILIGENCE (CDD) > 8.8 Ongoing Due Diligence\nClause: 8.8.1\n\n8.8.1 A reporting institution must conduct ongoing due diligence and scrutiny of the business\nrelationship with its customers throughout the course of the business relationship.\nSuch measures shall include–\n\n(a)monitoring, detecting and scrutinizing transactions undertaken throughout the\ncourse of that business relationship to ensure that the transactions being\nconducted are consistent with the reporting institution’s knowledge of the\ncustomer, its business and risk profile, including where necessary, the source\nof funds; and\n\n(b)ensuring that documents, data or information collected under the CDD process\nis kept up-to-date and are relevant, by undertaking periodic reviews of existing\nrecords, particularly for higher-risk categories of customer.",
+      "content_text": "8.8.1 A reporting institution must conduct ongoing due diligence and scrutiny of the business\nrelationship with its customers throughout the course of the business relationship.\nSuch measures shall include–\n\n(a)monitoring, detecting and scrutinizing transactions undertaken throughout the\ncourse of that business relationship to ensure that the transactions being\nconducted are consistent with the reporting institution’s knowledge of the\ncustomer, its business and risk profile, including where necessary, the source\nof funds; and\n\n(b)ensuring that documents, data or information collected under the CDD process\nis kept up-to-date and are relevant, by undertaking periodic reviews of existing\nrecords, particularly for higher-risk categories of customer.",
+      "token_count": 162,
+      "pages": [
+        46
+      ],
+      "section_path": [
+        "PART III: CUSTOMER DUE DILIGENCE",
+        "8. CUSTOMER DUE DILIGENCE (CDD)",
+        "8.8 Ongoing Due Diligence"
+      ],
+      "source_element_ids": [
+        "p46-e2",
+        "p46-e3",
+        "p46-e4"
+      ]
+    },
+    {
+      "rank": 3,
+      "chunk_id": "485c4989-c300-45c8-ac06-79a59492bb5c-c0128-8984f4d356",
+      "chunk_index": 128,
+      "semantic_type": "clause",
+      "reranker_score": 0.47885486483573914,
+      "hybrid_candidate_rank": 4,
+      "fusion_score": 0.03057889822595705,
+      "dense_rank": 3,
+      "dense_score": 0.6322258522443357,
+      "dense_distance": 0.3677741477556643,
+      "dense_rrf_score": 0.015873015873015872,
+      "lexical_rank": 8,
+      "lexical_score": 0.8,
+      "lexical_matched_term_count": 4,
+      "lexical_term_coverage": 0.5,
+      "lexical_rrf_score": 0.014705882352941176,
+      "text": "Section: PART III: CUSTOMER DUE DILIGENCE > 8. CUSTOMER DUE DILIGENCE (CDD) > 8.8 Ongoing Due Diligence\nClause: 8.8.6\nGroup: Monitoring of accounts\n\n8.8.6 While extra care should be exercised in such cases, the reporting institution\nmust weigh all the circumstances of the particular situation and assess whether\nthere is a higher than normal risk of ML/TF/PF and consider whether to refuse to\ndo any business with such customers.",
+      "content_text": "8.8.6 While extra care should be exercised in such cases, the reporting institution\nmust weigh all the circumstances of the particular situation and assess whether\nthere is a higher than normal risk of ML/TF/PF and consider whether to refuse to\ndo any business with such customers.",
+      "token_count": 92,
+      "pages": [
+        47
+      ],
+      "section_path": [
+        "PART III: CUSTOMER DUE DILIGENCE",
+        "8. CUSTOMER DUE DILIGENCE (CDD)",
+        "8.8 Ongoing Due Diligence"
+      ],
+      "source_element_ids": [
+        "p47-e1"
+      ]
+    },
+    {
+      "rank": 4,
+      "chunk_id": "485c4989-c300-45c8-ac06-79a59492bb5c-c0126-37d5229a5d",
+      "chunk_index": 126,
+      "semantic_type": "clause",
+      "reranker_score": 0.4518130123615265,
+      "hybrid_candidate_rank": 3,
+      "fusion_score": 0.031009615384615385,
+      "dense_rank": 4,
+      "dense_score": 0.6079570236193315,
+      "dense_distance": 0.39204297638066854,
+      "dense_rrf_score": 0.015625,
+      "lexical_rank": 5,
+      "lexical_score": 1.0,
+      "lexical_matched_term_count": 4,
+      "lexical_term_coverage": 0.5,
+      "lexical_rrf_score": 0.015384615384615385,
+      "text": "Section: PART III: CUSTOMER DUE DILIGENCE > 8. CUSTOMER DUE DILIGENCE (CDD) > 8.8 Ongoing Due Diligence\nClause: 8.8.4\nGroup: Monitoring of accounts\n\n8.8.4 A reporting institution must monitor the customers’ accounts on a regular basis for\nsuspicious transactions. One method is to 'flag' accounts with suspicious transactions\nfor monitoring purpose.",
+      "content_text": "8.8.4 A reporting institution must monitor the customers’ accounts on a regular basis for\nsuspicious transactions. One method is to 'flag' accounts with suspicious transactions\nfor monitoring purpose.",
+      "token_count": 73,
+      "pages": [
+        46
+      ],
+      "section_path": [
+        "PART III: CUSTOMER DUE DILIGENCE",
+        "8. CUSTOMER DUE DILIGENCE (CDD)",
+        "8.8 Ongoing Due Diligence"
+      ],
+      "source_element_ids": [
+        "p46-e8"
+      ]
+    },
+    {
+      "rank": 5,
+      "chunk_id": "485c4989-c300-45c8-ac06-79a59492bb5c-c0129-2767b9c481",
+      "chunk_index": 129,
+      "semantic_type": "clause",
+      "reranker_score": 0.448040246963501,
+      "hybrid_candidate_rank": 5,
+      "fusion_score": 0.029418126757516764,
+      "dense_rank": 7,
+      "dense_score": 0.5870131779026869,
+      "dense_distance": 0.4129868220973131,
+      "dense_rrf_score": 0.014925373134328358,
+      "lexical_rank": 9,
+      "lexical_score": 0.8,
+      "lexical_matched_term_count": 4,
+      "lexical_term_coverage": 0.5,
+      "lexical_rrf_score": 0.014492753623188406,
+      "text": "Section: PART III: CUSTOMER DUE DILIGENCE > 8. CUSTOMER DUE DILIGENCE (CDD) > 8.8 Ongoing Due Diligence\nClause: 8.8.7\nGroup: Renewed CDD\n\n8.8.7 A reporting institution is required to undertake a renewed CDD when:\n\n(a)The customer’s account has been dormant or inactive and the customer is\nseeking to reactivate its account or resume its activities;\n\n(b)There is a change in circumstances relating to a customer which give rise\nto a suspicion of ML/TF/PF risks; or\n\n(c)There is a doubt about the veracity or adequacy of previously obtained\nidentification data.",
+      "content_text": "8.8.7 A reporting institution is required to undertake a renewed CDD when:\n\n(a)The customer’s account has been dormant or inactive and the customer is\nseeking to reactivate its account or resume its activities;\n\n(b)There is a change in circumstances relating to a customer which give rise\nto a suspicion of ML/TF/PF risks; or\n\n(c)There is a doubt about the veracity or adequacy of previously obtained\nidentification data.",
+      "token_count": 125,
+      "pages": [
+        47
+      ],
+      "section_path": [
+        "PART III: CUSTOMER DUE DILIGENCE",
+        "8. CUSTOMER DUE DILIGENCE (CDD)",
+        "8.8 Ongoing Due Diligence"
+      ],
+      "source_element_ids": [
+        "p47-e3",
+        "p47-e4",
+        "p47-e5",
+        "p47-e6"
+      ]
+    },
+    {
+      "rank": 6,
+      "chunk_id": "485c4989-c300-45c8-ac06-79a59492bb5c-c0112-8c652d9f62",
+      "chunk_index": 112,
+      "semantic_type": "clause",
+      "reranker_score": 0.4253150522708893,
+      "hybrid_candidate_rank": 6,
+      "fusion_score": 0.02889344262295082,
+      "dense_rank": 20,
+      "dense_score": 0.5398866695131919,
+      "dense_distance": 0.46011333048680814,
+      "dense_rrf_score": 0.0125,
+      "lexical_rank": 1,
+      "lexical_score": 1.7,
+      "lexical_matched_term_count": 5,
+      "lexical_term_coverage": 0.625,
+      "lexical_rrf_score": 0.01639344262295082,
+      "text": "Section: PART III: CUSTOMER DUE DILIGENCE > 8. CUSTOMER DUE DILIGENCE (CDD) > 8.4 Politically exposed persons (PEPs)\n\n8.4.1 The requirements set out in paragraph 8.4 herein are also applicable to family\nmembers or close associates of PEPs. Appendix B of these Guidelines provides\nmeasures to be adopted by a reporting institution in dealing with the family members\nor close associates of PEPs.\n\n8.4.2 A reporting institution is required to have in place a risk management system to\ndetermine whether a customer or a beneficial owner is a foreign PEP.\n\n8.4.3 Upon determining that a customer or a beneficial owner is a foreign PEP, the\nrequirement to conduct enhanced CDD measures under paragraph 8.3 is applicable\nand the reporting institution is also required to conduct enhanced ongoing due\ndiligence.\n\n8.4.4 A reporting institution is required to have in place reasonable measures to determine\nwhether a customer or the beneficial owner is a domestic PEP or person entrusted\nwith a prominent function by an international organisation.\n\n8.4.5 The reporting institution is required to assess the level of ML/TF/PF risks posed by\nthe business relationship with the domestic PEP or person entrusted with a prominent\nfunction by an international organisation based on sufficient and appropriate\ninformation gathered through publicly available information or other reasonable\nmeans. The assessment of the ML/TF/PF risks also must take into account the profile\nof the customer under paragraph 7.5.3 of these Guidelines.\n\n8.4.6 For a higher-risk domestic PEP or higher-risk person entrusted with a prominent\nfunction by an international organisation, the requirements of enhanced CDD\nmeasures are as set out in paragraph 8.3.\n\n8.4.7 For a domestic PEP or person entrusted with a prominent function by an international\norganisation that is assessed as low risk, the reporting institution may apply the standard\nCDD measures.",
+      "content_text": "8.4.1 The requirements set out in paragraph 8.4 herein are also applicable to family\nmembers or close associates of PEPs. Appendix B of these Guidelines provides\nmeasures to be adopted by a reporting institution in dealing with the family members\nor close associates of PEPs.\n\n8.4.2 A reporting institution is required to have in place a risk management system to\ndetermine whether a customer or a beneficial owner is a foreign PEP.\n\n8.4.3 Upon determining that a customer or a beneficial owner is a foreign PEP, the\nrequirement to conduct enhanced CDD measures under paragraph 8.3 is applicable\nand the reporting institution is also required to conduct enhanced ongoing due\ndiligence.\n\n8.4.4 A reporting institution is required to have in place reasonable measures to determine\nwhether a customer or the beneficial owner is a domestic PEP or person entrusted\nwith a prominent function by an international organisation.\n\n8.4.5 The reporting institution is required to assess the level of ML/TF/PF risks posed by\nthe business relationship with the domestic PEP or person entrusted with a prominent\nfunction by an international organisation based on sufficient and appropriate\ninformation gathered through publicly available information or other reasonable\nmeans. The assessment of the ML/TF/PF risks also must take into account the profile\nof the customer under paragraph 7.5.3 of these Guidelines.\n\n8.4.6 For a higher-risk domestic PEP or higher-risk person entrusted with a prominent\nfunction by an international organisation, the requirements of enhanced CDD\nmeasures are as set out in paragraph 8.3.\n\n8.4.7 For a domestic PEP or person entrusted with a prominent function by an international\norganisation that is assessed as low risk, the reporting institution may apply the standard\nCDD measures.",
+      "token_count": 368,
+      "pages": [
+        42
+      ],
+      "section_path": [
+        "PART III: CUSTOMER DUE DILIGENCE",
+        "8. CUSTOMER DUE DILIGENCE (CDD)",
+        "8.4 Politically exposed persons (PEPs)"
+      ],
+      "source_element_ids": [
+        "p42-e1",
+        "p42-e2",
+        "p42-e3",
+        "p42-e4",
+        "p42-e5",
+        "p42-e6",
+        "p42-e7"
+      ]
+    },
+    {
+      "rank": 7,
+      "chunk_id": "485c4989-c300-45c8-ac06-79a59492bb5c-c0115-ea57db8635",
+      "chunk_index": 115,
+      "semantic_type": "clause",
+      "reranker_score": 0.38895606994628906,
+      "hybrid_candidate_rank": 11,
+      "fusion_score": 0.015873015873015872,
+      "dense_rank": null,
+      "dense_score": null,
+      "dense_distance": null,
+      "dense_rrf_score": 0.0,
+      "lexical_rank": 3,
+      "lexical_score": 0.8,
+      "lexical_matched_term_count": 5,
+      "lexical_term_coverage": 0.625,
+      "lexical_rrf_score": 0.015873015873015872,
+      "text": "Section: PART III: CUSTOMER DUE DILIGENCE > 8. CUSTOMER DUE DILIGENCE (CDD) > 8.5 Higher-Risk Countries\nClause: 8.5.2\n\n8.5.2 In addition to the enhanced CDD measures required under paragraph 8.5.1 above,\nthe reporting institution is required to apply appropriate counter-measures,\nproportionate to the risk, for higher-risk countries as follows:\n\n(a)Limiting business relationships or financial transactions with identified countries or\npersons located in the country concerned;\n\n(b)Where relevant, to conduct enhanced external audit, by increasing the intensity\nand frequency, for branches and subsidiaries of the reporting institution or\nfinancial group, located in the country concerned; and\n\n(c)Conduct any other measures as may be specified by the SC.",
+      "content_text": "8.5.2 In addition to the enhanced CDD measures required under paragraph 8.5.1 above,\nthe reporting institution is required to apply appropriate counter-measures,\nproportionate to the risk, for higher-risk countries as follows:\n\n(a)Limiting business relationships or financial transactions with identified countries or\npersons located in the country concerned;\n\n(b)Where relevant, to conduct enhanced external audit, by increasing the intensity\nand frequency, for branches and subsidiaries of the reporting institution or\nfinancial group, located in the country concerned; and\n\n(c)Conduct any other measures as may be specified by the SC.",
+      "token_count": 152,
+      "pages": [
+        43
+      ],
+      "section_path": [
+        "PART III: CUSTOMER DUE DILIGENCE",
+        "8. CUSTOMER DUE DILIGENCE (CDD)",
+        "8.5 Higher-Risk Countries"
+      ],
+      "source_element_ids": [
+        "p43-e5",
+        "p43-e6",
+        "p43-e7",
+        "p43-e8"
+      ]
+    },
+    {
+      "rank": 8,
+      "chunk_id": "485c4989-c300-45c8-ac06-79a59492bb5c-c0127-f692bde454",
+      "chunk_index": 127,
+      "semantic_type": "clause",
+      "reranker_score": 0.28840526938438416,
+      "hybrid_candidate_rank": 7,
+      "fusion_score": 0.02862400327131466,
+      "dense_rank": 13,
+      "dense_score": 0.5593579315565189,
+      "dense_distance": 0.4406420684434811,
+      "dense_rrf_score": 0.0136986301369863,
+      "lexical_rank": 7,
+      "lexical_score": 0.8,
+      "lexical_matched_term_count": 4,
+      "lexical_term_coverage": 0.5,
+      "lexical_rrf_score": 0.014925373134328358,
+      "text": "Section: PART III: CUSTOMER DUE DILIGENCE > 8. CUSTOMER DUE DILIGENCE (CDD) > 8.8 Ongoing Due Diligence\nClause: 8.8.5\nGroup: Monitoring of accounts\n\n8.8.5 A reporting institution should consider reclassifying a customer as higher risk and\nconsider lodging a STR with the FIED under the following circumstances:\n\n(a)Following initial acceptance of the customer, the pattern of account activity\nof the customer is inconsistent and does not fit in with the reporting\ninstitution’s profile knowledge of the customer;\n\n(b)The transaction appears unusual and not in line with the customer’s normal\ntrading pattern; or\n\n(c)There is a material change in the way the account is operated.",
+      "content_text": "8.8.5 A reporting institution should consider reclassifying a customer as higher risk and\nconsider lodging a STR with the FIED under the following circumstances:\n\n(a)Following initial acceptance of the customer, the pattern of account activity\nof the customer is inconsistent and does not fit in with the reporting\ninstitution’s profile knowledge of the customer;\n\n(b)The transaction appears unusual and not in line with the customer’s normal\ntrading pattern; or\n\n(c)There is a material change in the way the account is operated.",
+      "token_count": 139,
+      "pages": [
+        46
+      ],
+      "section_path": [
+        "PART III: CUSTOMER DUE DILIGENCE",
+        "8. CUSTOMER DUE DILIGENCE (CDD)",
+        "8.8 Ongoing Due Diligence"
+      ],
+      "source_element_ids": [
+        "p46-e9",
+        "p46-e10",
+        "p46-e11",
+        "p46-e12"
+      ]
+    },
+    {
+      "rank": 9,
+      "chunk_id": "485c4989-c300-45c8-ac06-79a59492bb5c-c0107-7ce4e910a0",
+      "chunk_index": 107,
+      "semantic_type": "clause",
+      "reranker_score": 0.26893559098243713,
+      "hybrid_candidate_rank": 22,
+      "fusion_score": 0.013513513513513514,
+      "dense_rank": null,
+      "dense_score": null,
+      "dense_distance": null,
+      "dense_rrf_score": 0.0,
+      "lexical_rank": 14,
+      "lexical_score": 0.6,
+      "lexical_matched_term_count": 4,
+      "lexical_term_coverage": 0.5,
+      "lexical_rrf_score": 0.013513513513513514,
+      "text": "Section: PART III: CUSTOMER DUE DILIGENCE > 8. CUSTOMER DUE DILIGENCE (CDD) > 8.2 Conducting CDD\nClause: 8.2.2\n\n8.2.2 When conducting CDD for the purpose of opening an account or when conducting\nongoing CDD, reporting institution may take into account, amongst others, the\nfollowing risk factors and risk parameters when determining circumstances of higher\nrisk:\n\n(a)Customer risk factors:\n\n(i)The business relationship is conducted in unusual circumstances.\n\n(ii)Non-resident customer.\n\n(iii)Legal persons or arrangements that are personal asset-holding vehicles.\n\n(iv)Companies that have nominee shareholders or shares in bearer form.",
+      "content_text": "8.2.2 When conducting CDD for the purpose of opening an account or when conducting\nongoing CDD, reporting institution may take into account, amongst others, the\nfollowing risk factors and risk parameters when determining circumstances of higher\nrisk:\n\n(a)Customer risk factors:\n\n(i)The business relationship is conducted in unusual circumstances.\n\n(ii)Non-resident customer.\n\n(iii)Legal persons or arrangements that are personal asset-holding vehicles.\n\n(iv)Companies that have nominee shareholders or shares in bearer form.",
+      "token_count": 131,
+      "pages": [
+        39
+      ],
+      "section_path": [
+        "PART III: CUSTOMER DUE DILIGENCE",
+        "8. CUSTOMER DUE DILIGENCE (CDD)",
+        "8.2 Conducting CDD"
+      ],
+      "source_element_ids": [
+        "p39-e11",
+        "p39-e12",
+        "p39-e13",
+        "p39-e14",
+        "p39-e15",
+        "p39-e16"
+      ]
+    },
+    {
+      "rank": 10,
+      "chunk_id": "485c4989-c300-45c8-ac06-79a59492bb5c-c0111-026b10a78d",
+      "chunk_index": 111,
+      "semantic_type": "clause",
+      "reranker_score": 0.2552342414855957,
+      "hybrid_candidate_rank": 10,
+      "fusion_score": 0.02684684684684685,
+      "dense_rank": 14,
+      "dense_score": 0.5591655277459817,
+      "dense_distance": 0.4408344722540183,
+      "dense_rrf_score": 0.013513513513513514,
+      "lexical_rank": 15,
+      "lexical_score": 0.6,
+      "lexical_matched_term_count": 4,
+      "lexical_term_coverage": 0.5,
+      "lexical_rrf_score": 0.013333333333333334,
+      "text": "Section: PART III: CUSTOMER DUE DILIGENCE > 8. CUSTOMER DUE DILIGENCE (CDD) > 8.3 Enhanced CDD measures\nClause: 8.3.1\n\n8.3.1 Where the ML/TF/PF risks are assessed as higher risk, a reporting institution must\nundertake enhanced CDD measures on the customer and, where applicable, the\nbeneficial owner. These measures must include:\n\n(a)Obtaining additional information for identification and verification on the\ncustomer and beneficial owner, particularly for non face-to-face transactions (e.g.\nvolume of assets and other information from public database);\n\n(b)Obtaining additional information on the intended level and nature of the\nbusiness relationship;\n\n(c)Enquiring on the source of wealth and source of funds;\n\n(d)Updating on a more regular basis, the identification data of the customer\nand the beneficial owner;\n\n(e)Obtaining approval from the senior management before establishing (or\ncontinuing for existing customer) such business relationship with the customer;\nand\n\n(f)Conducting enhanced ongoing monitoring on the business relationship.",
+      "content_text": "8.3.1 Where the ML/TF/PF risks are assessed as higher risk, a reporting institution must\nundertake enhanced CDD measures on the customer and, where applicable, the\nbeneficial owner. These measures must include:\n\n(a)Obtaining additional information for identification and verification on the\ncustomer and beneficial owner, particularly for non face-to-face transactions (e.g.\nvolume of assets and other information from public database);\n\n(b)Obtaining additional information on the intended level and nature of the\nbusiness relationship;\n\n(c)Enquiring on the source of wealth and source of funds;\n\n(d)Updating on a more regular basis, the identification data of the customer\nand the beneficial owner;\n\n(e)Obtaining approval from the senior management before establishing (or\ncontinuing for existing customer) such business relationship with the customer;\nand\n\n(f)Conducting enhanced ongoing monitoring on the business relationship.",
+      "token_count": 207,
+      "pages": [
+        41
+      ],
+      "section_path": [
+        "PART III: CUSTOMER DUE DILIGENCE",
+        "8. CUSTOMER DUE DILIGENCE (CDD)",
+        "8.3 Enhanced CDD measures"
+      ],
+      "source_element_ids": [
+        "p41-e7",
+        "p41-e8",
+        "p41-e9",
+        "p41-e10",
+        "p41-e11",
+        "p41-e12",
+        "p41-e13"
+      ]
+    }
+  ]
+}

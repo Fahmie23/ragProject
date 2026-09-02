@@ -1,0 +1,240 @@
+{
+  "document_id": "485c4989-c300-45c8-ac06-79a59492bb5c",
+  "query": "Which authorities must receive reports when a reporting institution possesses funds, properties or accounts of a listed entity, and what source of obligation is given for each authority?",
+  "embedding_model": "BAAI/bge-m3",
+  "requested_device": "auto",
+  "resolved_device": "cuda",
+  "top_k": 10,
+  "embedded_chunk_count": 284,
+  "total_chunk_count": 284,
+  "hits": [
+    {
+      "rank": 1,
+      "chunk_id": "485c4989-c300-45c8-ac06-79a59492bb5c-c0242-6008df2d99",
+      "chunk_index": 242,
+      "semantic_type": "clause",
+      "score": 0.7010748564556339,
+      "distance": 0.29892514354436606,
+      "text": "Section: APPENDIX D > Reporting requirements\nClause: 5.1\nGroup: Guidance on the Implementation of Targeted Financial Sanction in\nRelation to Terrorism Financing\n\n5.1 Once a reporting institution determines that it is in the possession of funds, properties\nor accounts that are owned or controlled by or on behalf of the listed entity, the\nreporting institution is required to report to the following authorities. This obligation\nalso extends to any attempted transactions undertaken by listed entities or related\nparties:\n\n2According to FATF, without delay is defined to be ideally within a matter of hours of designation by the United\nNations Security Council.",
+      "content_text": "5.1 Once a reporting institution determines that it is in the possession of funds, properties\nor accounts that are owned or controlled by or on behalf of the listed entity, the\nreporting institution is required to report to the following authorities. This obligation\nalso extends to any attempted transactions undertaken by listed entities or related\nparties:\n\n2According to FATF, without delay is defined to be ideally within a matter of hours of designation by the United\nNations Security Council.",
+      "token_count": 114,
+      "pages": [
+        89
+      ],
+      "section_path": [
+        "APPENDIX D",
+        "Reporting requirements"
+      ],
+      "source_element_ids": [
+        "p89-e10",
+        "p89-e11"
+      ]
+    },
+    {
+      "rank": 2,
+      "chunk_id": "485c4989-c300-45c8-ac06-79a59492bb5c-c0241-57faa0c1ac",
+      "chunk_index": 241,
+      "semantic_type": "clause",
+      "score": 0.6775588989257812,
+      "distance": 0.32244110107421875,
+      "text": "Section: APPENDIX D > Obligation to freeze funds, properties or accounts\nGroup: Guidance on the Implementation of Targeted Financial Sanction in\nRelation to Terrorism Financing\n\n4.1 A reporting institution is required to freeze funds, properties or accounts that are\nowned or controlled directly and indirectly by the listed entities without delay2.\n\n4.2 Funds, properties or accounts that are owned or controlled indirectly by the listed\nentities includes situation where the listed entity is a director of a customer. In such\ninstance, once the reporting institution is satisfied that the director owns or controls\ndirectly or indirectly the funds, properties or accounts of the customer, the reporting\ninstitution is required to freeze the same without delay.\n\n4.3 The obligation to freeze funds, properties or accounts of a listed entity continues until\nthe person is delisted from the sanction lists. Even death of the listed entity is not a\nbasis for a reporting institution not to continue its freezing obligation.\n\n4.4 If an asset is owned or controlled by a listed entity and the interest owned or\ncontrolled by the listed party cannot be segregated, then the entire asset should be\nsubjected to freezing.\n\n4.5 Notwithstanding the funds, properties or accounts are frozen, a reporting institution\nmay continue receiving dividends, interests, or other benefits, but such benefits shall\nstill remain frozen, so long as the individuals or entities continue to be listed.\n\n4.6 However no outgoing payment should be made out from the frozen funds, properties\nor accounts, including payment of any fees or service charges for maintaining the\nfrozen funds without the approval of Minister of Home Affairs.",
+      "content_text": "4.1 A reporting institution is required to freeze funds, properties or accounts that are\nowned or controlled directly and indirectly by the listed entities without delay2.\n\n4.2 Funds, properties or accounts that are owned or controlled indirectly by the listed\nentities includes situation where the listed entity is a director of a customer. In such\ninstance, once the reporting institution is satisfied that the director owns or controls\ndirectly or indirectly the funds, properties or accounts of the customer, the reporting\ninstitution is required to freeze the same without delay.\n\n4.3 The obligation to freeze funds, properties or accounts of a listed entity continues until\nthe person is delisted from the sanction lists. Even death of the listed entity is not a\nbasis for a reporting institution not to continue its freezing obligation.\n\n4.4 If an asset is owned or controlled by a listed entity and the interest owned or\ncontrolled by the listed party cannot be segregated, then the entire asset should be\nsubjected to freezing.\n\n4.5 Notwithstanding the funds, properties or accounts are frozen, a reporting institution\nmay continue receiving dividends, interests, or other benefits, but such benefits shall\nstill remain frozen, so long as the individuals or entities continue to be listed.\n\n4.6 However no outgoing payment should be made out from the frozen funds, properties\nor accounts, including payment of any fees or service charges for maintaining the\nfrozen funds without the approval of Minister of Home Affairs.",
+      "token_count": 305,
+      "pages": [
+        89
+      ],
+      "section_path": [
+        "APPENDIX D",
+        "Obligation to freeze funds, properties or accounts"
+      ],
+      "source_element_ids": [
+        "p89-e3",
+        "p89-e4",
+        "p89-e5",
+        "p89-e6",
+        "p89-e7",
+        "p89-e8"
+      ]
+    },
+    {
+      "rank": 3,
+      "chunk_id": "485c4989-c300-45c8-ac06-79a59492bb5c-c0250-f52650db4c",
+      "chunk_index": 250,
+      "semantic_type": "clause",
+      "score": 0.6452109217643738,
+      "distance": 0.3547890782356262,
+      "text": "Section: APPENDIX E > Introduction\nClause: 1.1\n\n1.1 The obligations of a reporting institution on beneficial ownership requirements are:\n\n(a)identifying a natural person who is the beneficial owner of the customer and\nobtaining information that describes the ownership, control and structure of the\nlegal persons/ legal arrangements relating to the beneficial owner;\n\n(b)taking reasonable measures to verify the accuracy of the information obtained\nand keeping records of all relevant documents;\n\n(c)conducting customer risk profiling to identify the risk category of the beneficial\nowner; and\n\n(d)performing further regulatory obligations based on the risk category of the\nbeneficial owner such as CDD, sanction screening and high-risk jurisdiction.",
+      "content_text": "1.1 The obligations of a reporting institution on beneficial ownership requirements are:\n\n(a)identifying a natural person who is the beneficial owner of the customer and\nobtaining information that describes the ownership, control and structure of the\nlegal persons/ legal arrangements relating to the beneficial owner;\n\n(b)taking reasonable measures to verify the accuracy of the information obtained\nand keeping records of all relevant documents;\n\n(c)conducting customer risk profiling to identify the risk category of the beneficial\nowner; and\n\n(d)performing further regulatory obligations based on the risk category of the\nbeneficial owner such as CDD, sanction screening and high-risk jurisdiction.",
+      "token_count": 133,
+      "pages": [
+        92
+      ],
+      "section_path": [
+        "APPENDIX E",
+        "Introduction"
+      ],
+      "source_element_ids": [
+        "p92-e4",
+        "p92-e5",
+        "p92-e6",
+        "p92-e7",
+        "p92-e8"
+      ]
+    },
+    {
+      "rank": 4,
+      "chunk_id": "485c4989-c300-45c8-ac06-79a59492bb5c-c0173-729312a3d9",
+      "chunk_index": 173,
+      "semantic_type": "clause",
+      "score": 0.6378200244253884,
+      "distance": 0.36217997557461157,
+      "text": "Section: PART VIII: COMBATING PROLIFERATION FINANCING > 19. REPORTING REQUIREMENTS\n\n19.1 A reporting institution must immediately report to the SC on any freezing, blocking or\nrejection actions undertaken in accordance with paragraph 18 towards the identified\nfunds, properties or accounts.\n\n19.2 The form for reporting to the SC upon determination of a name match and actions\ntaken by the reporting institution is attached as Appendix I.\n\n19.3 A reporting institution who has reported positive name matches and has control of\nfrozen funds, properties or accounts of a designated person must report to the SC on\nany change to such frozen funds, properties or accounts by 31 January in the next\ncalendar year (periodic reporting).",
+      "content_text": "19.1 A reporting institution must immediately report to the SC on any freezing, blocking or\nrejection actions undertaken in accordance with paragraph 18 towards the identified\nfunds, properties or accounts.\n\n19.2 The form for reporting to the SC upon determination of a name match and actions\ntaken by the reporting institution is attached as Appendix I.\n\n19.3 A reporting institution who has reported positive name matches and has control of\nfrozen funds, properties or accounts of a designated person must report to the SC on\nany change to such frozen funds, properties or accounts by 31 January in the next\ncalendar year (periodic reporting).",
+      "token_count": 132,
+      "pages": [
+        66
+      ],
+      "section_path": [
+        "PART VIII: COMBATING PROLIFERATION FINANCING",
+        "19. REPORTING REQUIREMENTS"
+      ],
+      "source_element_ids": [
+        "p66-e2",
+        "p66-e3",
+        "p66-e4"
+      ]
+    },
+    {
+      "rank": 5,
+      "chunk_id": "485c4989-c300-45c8-ac06-79a59492bb5c-c0136-225386c91b",
+      "chunk_index": 136,
+      "semantic_type": "clause",
+      "score": 0.6320810160540368,
+      "distance": 0.36791898394596323,
+      "text": "Section: PART IIIA: WIRE TRANSFER > 9. WIRE TRANSFER OF DIGITAL ASSETS > 9.2 Ordering institutions\nClause: 9.2.2\n\n9.2.2 A reporting institution which is an ordering institution must submit the information\nset out in paragraph 9.2.1 to the beneficiary institution immediately and securely.",
+      "content_text": "9.2.2 A reporting institution which is an ordering institution must submit the information\nset out in paragraph 9.2.1 to the beneficiary institution immediately and securely.",
+      "token_count": 62,
+      "pages": [
+        49
+      ],
+      "section_path": [
+        "PART IIIA: WIRE TRANSFER",
+        "9. WIRE TRANSFER OF DIGITAL ASSETS",
+        "9.2 Ordering institutions"
+      ],
+      "source_element_ids": [
+        "p49-e9"
+      ]
+    },
+    {
+      "rank": 6,
+      "chunk_id": "485c4989-c300-45c8-ac06-79a59492bb5c-c0261-faf61438c6",
+      "chunk_index": 261,
+      "semantic_type": "clause",
+      "score": 0.6313272714614868,
+      "distance": 0.3686727285385132,
+      "text": "Section: APPENDIX E > Identification\nClause: 1.11\nGroup: Methods to identify beneficial owners\n\n1.11 A reporting institution may seek to review the beneficial ownership information relating\nto an entity, based on the following recommended source documents to determine the\nownership structure and governance of an entity. The following list is non-exhaustive\nand reporting institutions are encouraged to explore other possible sources of\ndocuments to review such information.",
+      "content_text": "1.11 A reporting institution may seek to review the beneficial ownership information relating\nto an entity, based on the following recommended source documents to determine the\nownership structure and governance of an entity. The following list is non-exhaustive\nand reporting institutions are encouraged to explore other possible sources of\ndocuments to review such information.",
+      "token_count": 79,
+      "pages": [
+        95
+      ],
+      "section_path": [
+        "APPENDIX E",
+        "Identification"
+      ],
+      "source_element_ids": [
+        "p95-e13"
+      ]
+    },
+    {
+      "rank": 7,
+      "chunk_id": "485c4989-c300-45c8-ac06-79a59492bb5c-c0156-1ec1ec242b",
+      "chunk_index": 156,
+      "semantic_type": "clause",
+      "score": 0.6253839358458568,
+      "distance": 0.37461606415414317,
+      "text": "Section: PART VII: COMBATING TERRORISM FINANCING > 14 IDENTIFICATION AND DESIGNATION\n\n14.1 For the purposes of this part, a reporting institution refers to reporting institution as\ndefined in the Definition section under Part I of these Guidelines and includes a\nregistered person under section 76 of the CMSA that is registered under the Guidelines\non the Registration of Venture Capital and Private Equity Corporations and\nManagement Corporation.\n\n14.3 In ensuring efficient detection of suspected financing of terrorism, a reporting\ninstitution should maintain a database of names and particulars of listed persons in\nthe UN Consolidated List and such orders as may be issued under sections 66B and\n66C of the AMLA by the Minister of Home Affairs (collectively referred to as “listed\npersons” or “listed entities” as the case may be).",
+      "content_text": "14.1 For the purposes of this part, a reporting institution refers to reporting institution as\ndefined in the Definition section under Part I of these Guidelines and includes a\nregistered person under section 76 of the CMSA that is registered under the Guidelines\non the Registration of Venture Capital and Private Equity Corporations and\nManagement Corporation.\n\n14.3 In ensuring efficient detection of suspected financing of terrorism, a reporting\ninstitution should maintain a database of names and particulars of listed persons in\nthe UN Consolidated List and such orders as may be issued under sections 66B and\n66C of the AMLA by the Minister of Home Affairs (collectively referred to as “listed\npersons” or “listed entities” as the case may be).",
+      "token_count": 147,
+      "pages": [
+        60
+      ],
+      "section_path": [
+        "PART VII: COMBATING TERRORISM FINANCING",
+        "14 IDENTIFICATION AND DESIGNATION"
+      ],
+      "source_element_ids": [
+        "p60-e3",
+        "p60-e7"
+      ]
+    },
+    {
+      "rank": 8,
+      "chunk_id": "485c4989-c300-45c8-ac06-79a59492bb5c-c0092-c25594629e",
+      "chunk_index": 92,
+      "semantic_type": "clause",
+      "score": 0.6221973299980164,
+      "distance": 0.37780267000198364,
+      "text": "Section: PART III: CUSTOMER DUE DILIGENCE > 8. CUSTOMER DUE DILIGENCE (CDD) > 8.1 CDD at the point of establishing business relationship\nClause: 8.1.13\nGroup: CDD requirements for legal persons\n\n8.1.13 Notwithstanding the above, reporting institutions are required to identify and maintain\nthe information relating to the identity of the directors and shareholders or partners of\nlegal persons referred to in paragraph 8.1.12 (a) to (g), through a public register, other\nreliable sources or based on information provided by the customer.",
+      "content_text": "8.1.13 Notwithstanding the above, reporting institutions are required to identify and maintain\nthe information relating to the identity of the directors and shareholders or partners of\nlegal persons referred to in paragraph 8.1.12 (a) to (g), through a public register, other\nreliable sources or based on information provided by the customer.",
+      "token_count": 110,
+      "pages": [
+        35
+      ],
+      "section_path": [
+        "PART III: CUSTOMER DUE DILIGENCE",
+        "8. CUSTOMER DUE DILIGENCE (CDD)",
+        "8.1 CDD at the point of establishing business relationship"
+      ],
+      "source_element_ids": [
+        "p35-e2"
+      ]
+    },
+    {
+      "rank": 9,
+      "chunk_id": "485c4989-c300-45c8-ac06-79a59492bb5c-c0266-392b4532b7",
+      "chunk_index": 266,
+      "semantic_type": "clause",
+      "score": 0.6205551624298096,
+      "distance": 0.37944483757019043,
+      "text": "Section: APPENDIX E > Identification\nClause: 1.13\nGroup: Record-keeping of beneficial ownership\n\n1.13 A reporting institution shall obtain and retain records of beneficial owner information\nin accordance with the requirements of the Guidelines.",
+      "content_text": "1.13 A reporting institution shall obtain and retain records of beneficial owner information\nin accordance with the requirements of the Guidelines.",
+      "token_count": 43,
+      "pages": [
+        98
+      ],
+      "section_path": [
+        "APPENDIX E",
+        "Identification"
+      ],
+      "source_element_ids": [
+        "p98-e4"
+      ]
+    },
+    {
+      "rank": 10,
+      "chunk_id": "485c4989-c300-45c8-ac06-79a59492bb5c-c0240-790411c67b",
+      "chunk_index": 240,
+      "semantic_type": "clause",
+      "score": 0.6197256034530881,
+      "distance": 0.38027439654691186,
+      "text": "Section: APPENDIX D > Obligation to conduct screening on customers\nClause: 3.3\nGroup: Guidance on the Implementation of Targeted Financial Sanction in\nRelation to Terrorism Financing\n\n3.3 The obligation to conduct screening on customers also includes fund derived from\nproperty owned or controlled directly or indirectly by the listed entities or by persons\nacting on their behalf or at their discretion (related parties). Therefore, a reporting\ninstitution must also conduct checks on–\n\n(a) relationship and transactions connected with the listed entities;\n\n(b) properties or accounts that are jointly owned and/or indirectly controlled by\nthe listed entities; and\n\n(c) parties related to the frozen accounts including beneficial owners, signatories,\npower of attorney relationships, guarantors, nominees, trustees, assignees and\npayors.",
+      "content_text": "3.3 The obligation to conduct screening on customers also includes fund derived from\nproperty owned or controlled directly or indirectly by the listed entities or by persons\nacting on their behalf or at their discretion (related parties). Therefore, a reporting\ninstitution must also conduct checks on–\n\n(a) relationship and transactions connected with the listed entities;\n\n(b) properties or accounts that are jointly owned and/or indirectly controlled by\nthe listed entities; and\n\n(c) parties related to the frozen accounts including beneficial owners, signatories,\npower of attorney relationships, guarantors, nominees, trustees, assignees and\npayors.",
+      "token_count": 147,
+      "pages": [
+        88
+      ],
+      "section_path": [
+        "APPENDIX D",
+        "Obligation to conduct screening on customers"
+      ],
+      "source_element_ids": [
+        "p88-e10",
+        "p88-e11",
+        "p88-e12",
+        "p88-e13"
+      ]
+    }
+  ]
+}

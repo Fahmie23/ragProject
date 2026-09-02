@@ -1,0 +1,958 @@
+{
+  "schema_version": "1.0",
+  "dataset_id": "answer_citation_eval_dev_v1",
+  "benchmark_status": "draft",
+  "document": {
+    "document_id": "485c4989-c300-45c8-ac06-79a59492bb5c",
+    "source_sha256": "e1d138edd3c55b3fa3dd36b3236876a1a8dd634c4d972cec74157e6bf816bc15",
+    "pdf_page_count": 109
+  },
+  "policy": {
+    "retrieval_profile": "retrieval_v1_stage8_2_top5",
+    "retrieval_v1_frozen": true,
+    "stage4_frozen": true,
+    "stage5_frozen": true,
+    "stage10_frozen": true,
+    "citation_version": "deterministic_citations_v1_2",
+    "heldout_tuning_forbidden": true
+  },
+  "counts": {
+    "questions": 20,
+    "dev": 20,
+    "heldout": 0,
+    "answered": 17,
+    "insufficient_evidence": 3
+  },
+  "questions": [
+    {
+      "question_id": "ACIT-001",
+      "split": "dev",
+      "category": "definition",
+      "difficulty": "medium",
+      "question": "In the Guidelines, how does the meaning of 'beneficiary' differ between trust law and a wire transfer?",
+      "expected_status": "answered",
+      "gold": {
+        "required_claims": [
+          {
+            "claim_id": "GC1",
+            "requirement": "Explain that in trust law a beneficiary is a person or persons entitled to the benefit of a trust arrangement."
+          },
+          {
+            "claim_id": "GC2",
+            "requirement": "Explain that a trust beneficiary can be a natural person, legal person, or legal arrangement."
+          },
+          {
+            "claim_id": "GC3",
+            "requirement": "Explain that for a wire transfer, beneficiary means the natural or legal person or legal arrangement identified by the originator as the receiver of the requested wire transfer."
+          }
+        ],
+        "required_source_groups": [
+          {
+            "group_id": "G1",
+            "description": "Use the cross-page definition of beneficiary.",
+            "any_of": [
+              {
+                "kind": "definition",
+                "label": "Definition “beneficiary”",
+                "pages": [
+                  9,
+                  10
+                ]
+              }
+            ]
+          }
+        ],
+        "answer_notes": "The definition spans PDF pages 9–10 and expressly distinguishes trust-law usage from wire-transfer usage."
+      },
+      "notes": "New Stage 11 DEV question; not a retrieval benchmark question."
+    },
+    {
+      "question_id": "ACIT-002",
+      "split": "dev",
+      "category": "direct_requirement",
+      "difficulty": "medium",
+      "question": "What must a reporting institution do when AML/CFT/CPF measures in the host country of a foreign operation are less stringent than Malaysian standards?",
+      "expected_status": "answered",
+      "gold": {
+        "required_claims": [
+          {
+            "claim_id": "GC1",
+            "requirement": "State that foreign branches and majority-owned subsidiaries must apply AML/CFT/CPF measures consistent with Malaysian standards."
+          },
+          {
+            "claim_id": "GC2",
+            "requirement": "State that this applies to the extent permitted by the host country laws and regulations."
+          }
+        ],
+        "required_source_groups": [
+          {
+            "group_id": "G1",
+            "description": "Host-country standards requirement.",
+            "any_of": [
+              {
+                "kind": "clause",
+                "label": "Clause 2.2",
+                "pages": [
+                  7
+                ]
+              }
+            ]
+          }
+        ],
+        "answer_notes": "Paragraph 2.2 governs foreign operations where host-country measures are less stringent."
+      }
+    },
+    {
+      "question_id": "ACIT-003",
+      "split": "dev",
+      "category": "exception_condition",
+      "difficulty": "hard",
+      "question": "If a host country does not permit proper implementation of Malaysian-standard AML/CFT/CPF measures, what must the reporting institution do, and what may it consider if adequate mitigation still cannot be put in place?",
+      "expected_status": "answered",
+      "gold": {
+        "required_claims": [
+          {
+            "claim_id": "GC1",
+            "requirement": "State that appropriate additional measures must be applied to mitigate the ML/TF/PF risks."
+          },
+          {
+            "claim_id": "GC2",
+            "requirement": "State that the reporting institution must inform the SC of the AML/CFT/CPF gaps and the additional measures implemented."
+          },
+          {
+            "claim_id": "GC3",
+            "requirement": "State that if the necessary mitigating measures cannot be put in place, the reporting institution may consider ceasing the operations of the branch or subsidiary."
+          }
+        ],
+        "required_source_groups": [
+          {
+            "group_id": "G1",
+            "description": "Additional measures and SC notification.",
+            "any_of": [
+              {
+                "kind": "clause",
+                "label": "Clause 2.3",
+                "pages": [
+                  8
+                ]
+              }
+            ]
+          },
+          {
+            "group_id": "G2",
+            "description": "Escalation when mitigation cannot be implemented.",
+            "any_of": [
+              {
+                "kind": "clause",
+                "label": "Clause 2.4",
+                "pages": [
+                  8
+                ]
+              }
+            ]
+          }
+        ],
+        "answer_notes": "Paragraphs 2.3 and 2.4 form a conditional sequence; do not collapse “may consider ceasing” into a mandatory closure requirement.",
+        "forbidden_claims": [
+          "State that the branch or subsidiary must automatically cease operations whenever the host country has weaker requirements."
+        ]
+      }
+    },
+    {
+      "question_id": "ACIT-004",
+      "split": "dev",
+      "category": "multi_clause",
+      "difficulty": "hard",
+      "question": "For a reporting institution that is part of a financial group, what must its group-wide AML/CFT/CPF programme include?",
+      "expected_status": "answered",
+      "gold": {
+        "required_claims": [
+          {
+            "claim_id": "GC2",
+            "requirement": "Include policies and procedures for sharing information required for CDD and ML/TF/PF risk management."
+          },
+          {
+            "claim_id": "GC3",
+            "requirement": "Include provision at group-level compliance, audit and/or AML/CFT/CPF functions of customer, account and transaction information from branches and subsidiaries when necessary for AML/CFT/CPF purposes."
+          },
+          {
+            "claim_id": "GC4",
+            "requirement": "Include adequate safeguards on the confidentiality and use of information exchanged."
+          }
+        ],
+        "required_source_groups": [
+          {
+            "group_id": "G2",
+            "description": "Group-wide programme requirements.",
+            "any_of": [
+              {
+                "kind": "clause",
+                "label": "Clause 6E.2",
+                "pages": [
+                  25
+                ]
+              }
+            ]
+          }
+        ],
+        "answer_notes": "The question already supplies financial-group applicability as a premise; score the requested programme contents from paragraph 6E.2 without requiring the answer to restate paragraph 6E.1."
+      }
+    },
+    {
+      "question_id": "ACIT-005",
+      "split": "dev",
+      "category": "exception_condition",
+      "difficulty": "easy",
+      "question": "Does a lower institutional proliferation-financing risk level reduce the obligation to implement targeted financial sanctions on PF?",
+      "expected_status": "answered",
+      "gold": {
+        "required_claims": [
+          {
+            "claim_id": "GC1",
+            "requirement": "State that full implementation of targeted financial sanctions on PF is required irrespective of the institutional PF risk level."
+          }
+        ],
+        "required_source_groups": [
+          {
+            "group_id": "G1",
+            "description": "PF sanctions requirement irrespective of risk level.",
+            "any_of": [
+              {
+                "kind": "clause",
+                "label": "Clause 7.4.1",
+                "pages": [
+                  29
+                ]
+              }
+            ]
+          }
+        ],
+        "answer_notes": "Paragraph 7.4.1 makes the obligation independent of the institutional PF risk level.",
+        "forbidden_claims": [
+          "State that lower PF risk permits reduced, delayed, or optional implementation of targeted financial sanctions on PF."
+        ]
+      }
+    },
+    {
+      "question_id": "ACIT-006",
+      "split": "dev",
+      "category": "multi_clause",
+      "difficulty": "hard",
+      "question": "When a beneficiary institution encounters a wire transfer lacking required originator or beneficiary information, what monitoring and risk-based decision rules must it have?",
+      "expected_status": "answered",
+      "gold": {
+        "required_claims": [
+          {
+            "claim_id": "GC1",
+            "requirement": "State that reasonable measures, including post-event or real-time monitoring where feasible, must identify cross-border or domestic wire transfers lacking required originator or beneficiary information."
+          },
+          {
+            "claim_id": "GC2",
+            "requirement": "State that effective risk-based policies and procedures must determine when to execute, reject, or suspend such a wire transfer."
+          },
+          {
+            "claim_id": "GC3",
+            "requirement": "State that the policies and procedures must determine the appropriate follow-up action."
+          }
+        ],
+        "required_source_groups": [
+          {
+            "group_id": "G1",
+            "description": "Monitoring for missing information.",
+            "any_of": [
+              {
+                "kind": "clause",
+                "label": "Clause 9.3.1",
+                "pages": [
+                  50
+                ]
+              }
+            ]
+          },
+          {
+            "group_id": "G2",
+            "description": "Risk-based execute/reject/suspend and follow-up decisions.",
+            "any_of": [
+              {
+                "kind": "clause",
+                "label": "Clause 9.3.2",
+                "pages": [
+                  50
+                ]
+              }
+            ]
+          }
+        ],
+        "answer_notes": "Use paragraphs 9.3.1 and 9.3.2; the question is about beneficiary-institution controls, not the ordering institution’s required transfer fields."
+      }
+    },
+    {
+      "question_id": "ACIT-007",
+      "split": "dev",
+      "category": "multi_clause",
+      "difficulty": "hard",
+      "question": "For digital-asset wire transfers, whom must ordering and beneficiary institutions screen for sanctions, and what must happen if a screened person is identified as a designated person?",
+      "expected_status": "answered",
+      "gold": {
+        "required_claims": [
+          {
+            "claim_id": "GC1",
+            "requirement": "State that an ordering institution screens its customer at onboarding and ongoing due diligence, and screens the beneficiary when a wire transfer is conducted."
+          },
+          {
+            "claim_id": "GC2",
+            "requirement": "State that a beneficiary institution screens its beneficiary at onboarding and ongoing due diligence, and screens the originator when a wire transfer is conducted."
+          },
+          {
+            "claim_id": "GC3",
+            "requirement": "State that once a screened person is identified as a designated person, the ordering or beneficiary institution must take freezing actions and prohibit transactions."
+          }
+        ],
+        "required_source_groups": [
+          {
+            "group_id": "G1",
+            "description": "Ordering-institution screening.",
+            "any_of": [
+              {
+                "kind": "clause",
+                "label": "Clause 9.4.1",
+                "pages": [
+                  50
+                ]
+              }
+            ]
+          },
+          {
+            "group_id": "G2",
+            "description": "Beneficiary-institution screening.",
+            "any_of": [
+              {
+                "kind": "clause",
+                "label": "Clause 9.4.2",
+                "pages": [
+                  50
+                ]
+              }
+            ]
+          },
+          {
+            "group_id": "G3",
+            "description": "Action on designated person.",
+            "any_of": [
+              {
+                "kind": "clause",
+                "label": "Clause 9.4.3",
+                "pages": [
+                  50
+                ]
+              }
+            ]
+          }
+        ],
+        "answer_notes": "This evaluates the role-specific sanctions-screening requirements in section 9.4."
+      }
+    },
+    {
+      "question_id": "ACIT-008",
+      "split": "dev",
+      "category": "exception_condition",
+      "difficulty": "medium",
+      "question": "What confidentiality rule applies to suspicion or STR reporting, and when does a disclosure not constitute the offence described by the Guidelines?",
+      "expected_status": "answered",
+      "gold": {
+        "required_claims": [
+          {
+            "claim_id": "GC1",
+            "requirement": "State that disclosing that a suspicion has been formed, or that information or an STR has been communicated to FIED and the SC, or allowing such matters to be inferred, is an offence."
+          },
+          {
+            "claim_id": "GC2",
+            "requirement": "State that a disclosure made pursuant to the provisions of the AMLA does not constitute the offence under paragraph 12.1."
+          }
+        ],
+        "required_source_groups": [
+          {
+            "group_id": "G1",
+            "description": "Confidentiality offence.",
+            "any_of": [
+              {
+                "kind": "clause",
+                "label": "Clause 12.1",
+                "pages": [
+                  58
+                ]
+              }
+            ]
+          },
+          {
+            "group_id": "G2",
+            "description": "AMLA disclosure exception.",
+            "any_of": [
+              {
+                "kind": "clause",
+                "label": "Clause 12.2",
+                "pages": [
+                  58
+                ]
+              }
+            ]
+          }
+        ],
+        "answer_notes": "Keep the exception tied to disclosures made pursuant to the AMLA.",
+        "forbidden_claims": [
+          "State that STR-related information may generally be disclosed whenever the institution considers disclosure useful."
+        ]
+      }
+    },
+    {
+      "question_id": "ACIT-009",
+      "split": "dev",
+      "category": "multi_clause",
+      "difficulty": "hard",
+      "question": "What controls and documentation are required when a reporting institution considers disclosures of a report or related information under section 14A(3) of the AMLA?",
+      "expected_status": "answered",
+      "gold": {
+        "required_claims": [
+          {
+            "claim_id": "GC1",
+            "requirement": "State that proper policies and procedures must ensure effective controls when considering such disclosures."
+          },
+          {
+            "claim_id": "GC2",
+            "requirement": "State that parameters must cover the circumstances requiring disclosure, the types of report or related information that may be disclosed, and to whom disclosure may be made."
+          },
+          {
+            "claim_id": "GC3",
+            "requirement": "State that disclosures under those parameters must be properly documented with reasonable justification."
+          },
+          {
+            "claim_id": "GC4",
+            "requirement": "State that the compliance officer must ensure transmission occurs in a controlled environment and confidentiality is safeguarded against leakage to an unauthorised third party."
+          }
+        ],
+        "required_source_groups": [
+          {
+            "group_id": "G1",
+            "description": "Policies and procedures for disclosure controls.",
+            "any_of": [
+              {
+                "kind": "clause",
+                "label": "Clause 12.3",
+                "pages": [
+                  58
+                ]
+              }
+            ]
+          },
+          {
+            "group_id": "G2",
+            "description": "Disclosure parameters and documentation.",
+            "any_of": [
+              {
+                "kind": "clause",
+                "label": "Clause 12.4",
+                "pages": [
+                  58
+                ]
+              }
+            ]
+          },
+          {
+            "group_id": "G3",
+            "description": "Controlled transmission and confidentiality safeguard.",
+            "any_of": [
+              {
+                "kind": "clause",
+                "label": "Clause 12.5",
+                "pages": [
+                  58
+                ]
+              }
+            ]
+          }
+        ],
+        "answer_notes": "Evaluate the distinct requirements in paragraphs 12.3–12.5."
+      }
+    },
+    {
+      "question_id": "ACIT-010",
+      "split": "dev",
+      "category": "multi_clause",
+      "difficulty": "medium",
+      "question": "How must a reporting institution respond to an AMLA enforcement order requesting information or documents, and what internal capability must it maintain?",
+      "expected_status": "answered",
+      "gold": {
+        "required_claims": [
+          {
+            "claim_id": "GC1",
+            "requirement": "State that requested information or documents must be produced within a reasonable timeframe agreed between the investigating officer and the reporting institution."
+          },
+          {
+            "claim_id": "GC2",
+            "requirement": "State that policies, procedures and systems must be established to ensure there is no undue delay in responding to enforcement orders."
+          }
+        ],
+        "required_source_groups": [
+          {
+            "group_id": "G1",
+            "description": "Agreed reasonable response timeframe.",
+            "any_of": [
+              {
+                "kind": "clause",
+                "label": "Clause 13.1",
+                "pages": [
+                  59
+                ]
+              }
+            ]
+          },
+          {
+            "group_id": "G2",
+            "description": "No-undue-delay policies, procedures and systems.",
+            "any_of": [
+              {
+                "kind": "clause",
+                "label": "Clause 13.2",
+                "pages": [
+                  59
+                ]
+              }
+            ]
+          }
+        ],
+        "answer_notes": "Paragraphs 13.1 and 13.2 together define the operational response requirement."
+      }
+    },
+    {
+      "question_id": "ACIT-011",
+      "split": "dev",
+      "category": "direct_requirement",
+      "difficulty": "medium",
+      "question": "Under Part VIII, what must a reporting institution do to keep its proliferation-financing sanctions information current?",
+      "expected_status": "answered",
+      "gold": {
+        "required_claims": [
+          {
+            "claim_id": "GC1",
+            "requirement": "State that policies and procedures must keep the institution updated with relevant UNSC resolutions on TFS-PF, including countries and persons designated under relevant UNSCRs as new or subsequent decisions occur."
+          },
+          {
+            "claim_id": "GC2",
+            "requirement": "State that the institution must maintain an updated and current database of names and particulars of designated persons in the UN Consolidated List to detect suspected proliferators."
+          }
+        ],
+        "required_source_groups": [
+          {
+            "group_id": "G1",
+            "description": "Maintenance of PF sanctions information.",
+            "any_of": [
+              {
+                "kind": "clause",
+                "label": "Clause 16.1",
+                "pages": [
+                  62
+                ]
+              }
+            ]
+          }
+        ],
+        "answer_notes": "Use paragraph 16.1. Do not substitute the separate Appendix H explanatory-notes cross-reference."
+      }
+    },
+    {
+      "question_id": "ACIT-012",
+      "split": "dev",
+      "category": "cross_page",
+      "difficulty": "hard",
+      "question": "What customer and related-party screening is required under Part VIII, including the response when new UNSCR names are listed?",
+      "expected_status": "answered",
+      "gold": {
+        "required_claims": [
+          {
+            "claim_id": "GC1",
+            "requirement": "State that sanctions screening applies to existing, new and potential customers for positive name matches with designated persons."
+          },
+          {
+            "claim_id": "GC2",
+            "requirement": "State that the entire customer database must be screened without delay when new names are listed in the UNSCR."
+          },
+          {
+            "claim_id": "GC3",
+            "requirement": "State that screening extends to funds derived from property owned or controlled directly or indirectly by a designated person or related party."
+          },
+          {
+            "claim_id": "GC4",
+            "requirement": "Include checks on relationships and transactions connected with the designated person, jointly owned or indirectly controlled properties/accounts, and parties related to frozen accounts such as beneficial owners, signatories, power of attorney relationships, guarantors, nominees, trustees, assignees and payors."
+          }
+        ],
+        "required_source_groups": [
+          {
+            "group_id": "G1",
+            "description": "Existing/new/potential customer screening.",
+            "any_of": [
+              {
+                "kind": "clause",
+                "label": "Clause 17.1",
+                "pages": [
+                  62
+                ]
+              }
+            ]
+          },
+          {
+            "group_id": "G2",
+            "description": "Full-database screening on new UNSCR names.",
+            "any_of": [
+              {
+                "kind": "clause",
+                "label": "Clause 17.2",
+                "pages": [
+                  62
+                ]
+              }
+            ]
+          },
+          {
+            "group_id": "G3",
+            "description": "Related-party/property screening scope.",
+            "any_of": [
+              {
+                "kind": "clause",
+                "label": "Clause 17.3",
+                "pages": [
+                  62
+                ]
+              }
+            ]
+          }
+        ],
+        "answer_notes": "Paragraph 17.3 begins on page 62 and its enumerated detail continues on page 63."
+      }
+    },
+    {
+      "question_id": "ACIT-013",
+      "split": "dev",
+      "category": "exception_condition",
+      "difficulty": "medium",
+      "question": "When can freezing under Part VIII end because of a false positive, and what route is available to the customer to have the affected funds, properties or accounts unfrozen?",
+      "expected_status": "answered",
+      "gold": {
+        "required_claims": [
+          {
+            "claim_id": "GC1",
+            "requirement": "State that freezing remains in effect until the designated person is delisted by the UNSC or it is confirmed that the customer was inadvertently affected because of the same or a similar name with a designated person."
+          },
+          {
+            "claim_id": "GC2",
+            "requirement": "State that in the false-positive circumstance the customer may apply to the Strategic Trade Controller under the cited Strategic Trade unfreezing regulations for unfreezing."
+          }
+        ],
+        "required_source_groups": [
+          {
+            "group_id": "G1",
+            "description": "Conditions for ending freezing.",
+            "any_of": [
+              {
+                "kind": "clause",
+                "label": "Clause 18.2",
+                "pages": [
+                  64
+                ]
+              }
+            ]
+          },
+          {
+            "group_id": "G2",
+            "description": "False-positive unfreezing application.",
+            "any_of": [
+              {
+                "kind": "clause",
+                "label": "Clause 18.3",
+                "pages": [
+                  64
+                ]
+              }
+            ]
+          }
+        ],
+        "answer_notes": "The Guidelines do not say a name similarity automatically unfreezes assets; confirmation and the stated route matter.",
+        "forbidden_claims": [
+          "State that a similar name alone automatically ends the freezing action."
+        ]
+      }
+    },
+    {
+      "question_id": "ACIT-014",
+      "split": "dev",
+      "category": "appendix",
+      "difficulty": "medium",
+      "question": "According to Appendix B, which family members are expressly included for a PEP?",
+      "expected_status": "answered",
+      "gold": {
+        "required_claims": [
+          {
+            "claim_id": "GC1",
+            "requirement": "List the PEP’s parents, siblings, spouse, child, and spouse’s parents."
+          },
+          {
+            "claim_id": "GC2",
+            "requirement": "Note that the starred family relationships in Appendix B cover both biological and non-biological relationships."
+          }
+        ],
+        "required_source_groups": [
+          {
+            "group_id": "G1",
+            "description": "Appendix B provenance.",
+            "any_of": [
+              {
+                "kind": "appendix",
+                "label": "APPENDIX B",
+                "pages": [
+                  82
+                ]
+              }
+            ]
+          },
+          {
+            "group_id": "G2",
+            "description": "Family-member list.",
+            "any_of": [
+              {
+                "kind": "clause",
+                "label": "Clause 1.4",
+                "pages": [
+                  82
+                ]
+              }
+            ]
+          }
+        ],
+        "answer_notes": "Appendix B paragraph 1.4 contains the list; the footnote explains the starred relationships."
+      }
+    },
+    {
+      "question_id": "ACIT-015",
+      "split": "dev",
+      "category": "appendix",
+      "difficulty": "easy",
+      "question": "Under Appendix D, does the death of a listed entity end the obligation to keep its funds, properties or accounts frozen?",
+      "expected_status": "answered",
+      "gold": {
+        "required_claims": [
+          {
+            "claim_id": "GC1",
+            "requirement": "State that the freezing obligation continues until the person is delisted from the sanctions lists."
+          },
+          {
+            "claim_id": "GC2",
+            "requirement": "State that death of the listed entity is not a basis to discontinue the freezing obligation."
+          }
+        ],
+        "required_source_groups": [
+          {
+            "group_id": "G1",
+            "description": "Appendix D provenance.",
+            "any_of": [
+              {
+                "kind": "appendix",
+                "label": "APPENDIX D",
+                "pages": [
+                  89
+                ]
+              }
+            ]
+          },
+          {
+            "group_id": "G2",
+            "description": "Continuing freeze obligation.",
+            "any_of": [
+              {
+                "kind": "clause",
+                "label": "Clause 4.3",
+                "pages": [
+                  89
+                ]
+              }
+            ]
+          }
+        ],
+        "answer_notes": "Appendix D paragraph 4.3 explicitly addresses death.",
+        "forbidden_claims": [
+          "State that death automatically terminates the freezing obligation."
+        ]
+      }
+    },
+    {
+      "question_id": "ACIT-016",
+      "split": "dev",
+      "category": "appendix",
+      "difficulty": "hard",
+      "question": "Under Appendix A, how often should the institution reassess its ML/TF/PF risks, and what documentation should support its RBA process?",
+      "expected_status": "answered",
+      "gold": {
+        "required_claims": [
+          {
+            "claim_id": "GC1",
+            "requirement": "State that periodic ML/TF/PF risk assessment should occur at least every two years or sooner if the business model changes."
+          },
+          {
+            "claim_id": "GC2",
+            "requirement": "State that the periodic assessment should take into account business growth, new products or services, and latest sector trends and typologies."
+          },
+          {
+            "claim_id": "GC3",
+            "requirement": "State that the RBA process must be properly documented, including risk-assessment process/procedures, consideration of higher-risk indicators and rationale where discarded, risk analysis/conclusions, and measures for higher-risk indicators."
+          },
+          {
+            "claim_id": "GC4",
+            "requirement": "State that on a case-by-case basis the institution should document the rationale for additional due diligence measures undertaken or waived compared with standard CDD."
+          }
+        ],
+        "required_source_groups": [
+          {
+            "group_id": "G1",
+            "description": "Appendix A provenance.",
+            "any_of": [
+              {
+                "kind": "appendix",
+                "label": "APPENDIX A",
+                "pages": [
+                  78
+                ]
+              }
+            ]
+          },
+          {
+            "group_id": "G2",
+            "description": "Periodic risk-assessment timing.",
+            "any_of": [
+              {
+                "kind": "clause",
+                "label": "Clause 8.2",
+                "pages": [
+                  78
+                ]
+              }
+            ]
+          },
+          {
+            "group_id": "G3",
+            "description": "RBA documentation requirement.",
+            "any_of": [
+              {
+                "kind": "clause",
+                "label": "Clause 9.1",
+                "pages": [
+                  78
+                ]
+              },
+              {
+                "kind": "clause",
+                "label": "Clause 9.2",
+                "pages": [
+                  78
+                ]
+              }
+            ]
+          },
+          {
+            "group_id": "G4",
+            "description": "Case-by-case due-diligence rationale.",
+            "any_of": [
+              {
+                "kind": "clause",
+                "label": "Clause 9.3",
+                "pages": [
+                  78
+                ]
+              }
+            ]
+          }
+        ],
+        "answer_notes": "This is intentionally a hard DEV question combining the continuous-RBA and RBA-documentation sections on page 78."
+      }
+    },
+    {
+      "question_id": "ACIT-017",
+      "split": "dev",
+      "category": "table_form",
+      "difficulty": "easy",
+      "question": "According to the List of Revisions, what were the revision date, effective date, and series number for the third revision?",
+      "expected_status": "answered",
+      "gold": {
+        "required_claims": [
+          {
+            "claim_id": "GC1",
+            "requirement": "State that the third revision date was 13 June 2024."
+          },
+          {
+            "claim_id": "GC2",
+            "requirement": "State that the effective date of the third revision was 13 June 2024."
+          },
+          {
+            "claim_id": "GC3",
+            "requirement": "State that the series number was SC-GL/AML-2014 (R3-2024)."
+          }
+        ],
+        "required_source_groups": [
+          {
+            "group_id": "G1",
+            "description": "List of Revisions table section.",
+            "any_of": [
+              {
+                "kind": "section",
+                "label": "List of Revisions",
+                "pages": [
+                  2
+                ]
+              }
+            ]
+          }
+        ],
+        "answer_notes": "The page-2 revision table records 13.6.2024 for both revision and effective date and series SC-GL/AML-2014 (R3-2024)."
+      }
+    },
+    {
+      "question_id": "ACIT-018",
+      "split": "dev",
+      "category": "out_of_scope",
+      "difficulty": "easy",
+      "question": "What is today's USD to MYR exchange rate?",
+      "expected_status": "insufficient_evidence",
+      "gold": {
+        "required_claims": [],
+        "required_source_groups": [],
+        "answer_notes": "This requires current external information that is not contained in the frozen SC AML/CFT/CPF document."
+      },
+      "notes": "Abstention control. The answer/citation system must not use unrelated retrieved evidence to answer."
+    },
+    {
+      "question_id": "ACIT-019",
+      "split": "dev",
+      "category": "out_of_scope",
+      "difficulty": "easy",
+      "question": "What will the weather be in Kuala Lumpur tomorrow?",
+      "expected_status": "insufficient_evidence",
+      "gold": {
+        "required_claims": [],
+        "required_source_groups": [],
+        "answer_notes": "This requires current external information that is not contained in the frozen SC AML/CFT/CPF document."
+      },
+      "notes": "Abstention control. The answer/citation system must not use unrelated retrieved evidence to answer."
+    },
+    {
+      "question_id": "ACIT-020",
+      "split": "dev",
+      "category": "out_of_scope",
+      "difficulty": "easy",
+      "question": "Who is the current CEO of NVIDIA?",
+      "expected_status": "insufficient_evidence",
+      "gold": {
+        "required_claims": [],
+        "required_source_groups": [],
+        "answer_notes": "This requires current external information that is not contained in the frozen SC AML/CFT/CPF document."
+      },
+      "notes": "Abstention control. The answer/citation system must not use unrelated retrieved evidence to answer."
+    }
+  ]
+}

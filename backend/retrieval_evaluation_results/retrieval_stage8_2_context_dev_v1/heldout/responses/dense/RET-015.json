@@ -1,0 +1,263 @@
+{
+  "document_id": "485c4989-c300-45c8-ac06-79a59492bb5c",
+  "query": "How must a reporting institution deal with a business relationship or transaction involving a person from a higher-risk country?",
+  "embedding_model": "BAAI/bge-m3",
+  "requested_device": "auto",
+  "resolved_device": "cuda",
+  "top_k": 10,
+  "embedded_chunk_count": 284,
+  "total_chunk_count": 284,
+  "hits": [
+    {
+      "rank": 1,
+      "chunk_id": "485c4989-c300-45c8-ac06-79a59492bb5c-c0114-88e54fa045",
+      "chunk_index": 114,
+      "semantic_type": "clause",
+      "score": 0.6764415888259901,
+      "distance": 0.32355841117400985,
+      "text": "Section: PART III: CUSTOMER DUE DILIGENCE > 8. CUSTOMER DUE DILIGENCE (CDD) > 8.5 Higher-Risk Countries\nClause: 8.5.1\n\n8.5.1 A reporting institution is required to conduct enhanced CDD for any business\nrelationship and transaction with any person from countries identified by–\n\n(a)the FATF as issued under the “FATF Public Statement” – on jurisdictions\nsubject to a FATF call on its members and other jurisdictions to apply counter-\nmeasures to protect the international financial system from the ongoing and\nsubstantial ML/TF/PF risks emanating from such jurisdictions; or\n\n(b)the Government of Malaysia as having ongoing or substantial ML/TF/PF risks.",
+      "content_text": "8.5.1 A reporting institution is required to conduct enhanced CDD for any business\nrelationship and transaction with any person from countries identified by–\n\n(a)the FATF as issued under the “FATF Public Statement” – on jurisdictions\nsubject to a FATF call on its members and other jurisdictions to apply counter-\nmeasures to protect the international financial system from the ongoing and\nsubstantial ML/TF/PF risks emanating from such jurisdictions; or\n\n(b)the Government of Malaysia as having ongoing or substantial ML/TF/PF risks.",
+      "token_count": 135,
+      "pages": [
+        43
+      ],
+      "section_path": [
+        "PART III: CUSTOMER DUE DILIGENCE",
+        "8. CUSTOMER DUE DILIGENCE (CDD)",
+        "8.5 Higher-Risk Countries"
+      ],
+      "source_element_ids": [
+        "p43-e2",
+        "p43-e3",
+        "p43-e4"
+      ]
+    },
+    {
+      "rank": 2,
+      "chunk_id": "485c4989-c300-45c8-ac06-79a59492bb5c-c0115-ea57db8635",
+      "chunk_index": 115,
+      "semantic_type": "clause",
+      "score": 0.6707668696919835,
+      "distance": 0.3292331303080165,
+      "text": "Section: PART III: CUSTOMER DUE DILIGENCE > 8. CUSTOMER DUE DILIGENCE (CDD) > 8.5 Higher-Risk Countries\nClause: 8.5.2\n\n8.5.2 In addition to the enhanced CDD measures required under paragraph 8.5.1 above,\nthe reporting institution is required to apply appropriate counter-measures,\nproportionate to the risk, for higher-risk countries as follows:\n\n(a)Limiting business relationships or financial transactions with identified countries or\npersons located in the country concerned;\n\n(b)Where relevant, to conduct enhanced external audit, by increasing the intensity\nand frequency, for branches and subsidiaries of the reporting institution or\nfinancial group, located in the country concerned; and\n\n(c)Conduct any other measures as may be specified by the SC.",
+      "content_text": "8.5.2 In addition to the enhanced CDD measures required under paragraph 8.5.1 above,\nthe reporting institution is required to apply appropriate counter-measures,\nproportionate to the risk, for higher-risk countries as follows:\n\n(a)Limiting business relationships or financial transactions with identified countries or\npersons located in the country concerned;\n\n(b)Where relevant, to conduct enhanced external audit, by increasing the intensity\nand frequency, for branches and subsidiaries of the reporting institution or\nfinancial group, located in the country concerned; and\n\n(c)Conduct any other measures as may be specified by the SC.",
+      "token_count": 152,
+      "pages": [
+        43
+      ],
+      "section_path": [
+        "PART III: CUSTOMER DUE DILIGENCE",
+        "8. CUSTOMER DUE DILIGENCE (CDD)",
+        "8.5 Higher-Risk Countries"
+      ],
+      "source_element_ids": [
+        "p43-e5",
+        "p43-e6",
+        "p43-e7",
+        "p43-e8"
+      ]
+    },
+    {
+      "rank": 3,
+      "chunk_id": "485c4989-c300-45c8-ac06-79a59492bb5c-c0116-b6adec1458",
+      "chunk_index": 116,
+      "semantic_type": "clause",
+      "score": 0.6542212183211782,
+      "distance": 0.3457787816788218,
+      "text": "Section: PART III: CUSTOMER DUE DILIGENCE > 8. CUSTOMER DUE DILIGENCE (CDD) > 8.5 Higher-Risk Countries\nClause: 8.5.3\n\n8.5.3 For business relationship and transaction with any person from countries identified\nby–\n\n(a)the FATF as issued under the “FATF Public Statement”- on jurisdictions with\nstrategic AML/CFT/CPF deficiencies that have not made sufficient progress in\naddressing the deficiencies or have not committed to an action plan developed\nwith the FATF to address the deficiencies; or\n\n(b)the Government of Malaysia as having strategic AML/CFT/CPF deficiencies and\nhave not made sufficient progress in addressing the deficiencies;\n\na reporting institution is required to assess the risk and where the risk is identified\nas higher risk, the reporting institution is required to conduct enhanced CDD as set\nout in paragraph 8.3 above.",
+      "content_text": "8.5.3 For business relationship and transaction with any person from countries identified\nby–\n\n(a)the FATF as issued under the “FATF Public Statement”- on jurisdictions with\nstrategic AML/CFT/CPF deficiencies that have not made sufficient progress in\naddressing the deficiencies or have not committed to an action plan developed\nwith the FATF to address the deficiencies; or\n\n(b)the Government of Malaysia as having strategic AML/CFT/CPF deficiencies and\nhave not made sufficient progress in addressing the deficiencies;\n\na reporting institution is required to assess the risk and where the risk is identified\nas higher risk, the reporting institution is required to conduct enhanced CDD as set\nout in paragraph 8.3 above.",
+      "token_count": 168,
+      "pages": [
+        43
+      ],
+      "section_path": [
+        "PART III: CUSTOMER DUE DILIGENCE",
+        "8. CUSTOMER DUE DILIGENCE (CDD)",
+        "8.5 Higher-Risk Countries"
+      ],
+      "source_element_ids": [
+        "p43-e9",
+        "p43-e10",
+        "p43-e11",
+        "p43-e12"
+      ]
+    },
+    {
+      "rank": 4,
+      "chunk_id": "485c4989-c300-45c8-ac06-79a59492bb5c-c0077-d9ccfb4d42",
+      "chunk_index": 77,
+      "semantic_type": "clause",
+      "score": 0.6404891442669458,
+      "distance": 0.3595108557330542,
+      "text": "Section: PART II: RISK-BASED APPROACH APPLICATION > 7. RISK-BASED APPROACH APPLICATION > 7.5 Risk profiling of customers\n\n7.5.1 A reporting institution must implement and maintain appropriate policies and procedures\nto conduct risk profiling of its customer.\n\n7.5.2 A reporting institution must conduct risk profiling on its customers during the\nestablishment of the business relationship and assign a ML/TF/PF risk rating that\ncommensurate with the customer’s risk profile.\n\n7.5.4 In assessing the level of risk of a customer from a particular country, a reporting\ninstitution shall assess the standards of prevention of ML/TF/PF in that country based on\nthe reporting institution’s knowledge, experience and other reliable sources of that\ncountry. The higher the risk, the greater the due diligence measures that should be\napplied when undertaking business with the customer from that country.\n\n7.5.5 After the initial acceptance of the customer, reporting institutions are required to regularly\nupdate the customer’s risk profile based on their level of ML/TF/PF risks.",
+      "content_text": "7.5.1 A reporting institution must implement and maintain appropriate policies and procedures\nto conduct risk profiling of its customer.\n\n7.5.2 A reporting institution must conduct risk profiling on its customers during the\nestablishment of the business relationship and assign a ML/TF/PF risk rating that\ncommensurate with the customer’s risk profile.\n\n7.5.4 In assessing the level of risk of a customer from a particular country, a reporting\ninstitution shall assess the standards of prevention of ML/TF/PF in that country based on\nthe reporting institution’s knowledge, experience and other reliable sources of that\ncountry. The higher the risk, the greater the due diligence measures that should be\napplied when undertaking business with the customer from that country.\n\n7.5.5 After the initial acceptance of the customer, reporting institutions are required to regularly\nupdate the customer’s risk profile based on their level of ML/TF/PF risks.",
+      "token_count": 210,
+      "pages": [
+        29
+      ],
+      "section_path": [
+        "PART II: RISK-BASED APPROACH APPLICATION",
+        "7. RISK-BASED APPROACH APPLICATION",
+        "7.5 Risk profiling of customers"
+      ],
+      "source_element_ids": [
+        "p29-e5",
+        "p29-e6",
+        "p29-e13",
+        "p29-e14"
+      ]
+    },
+    {
+      "rank": 5,
+      "chunk_id": "485c4989-c300-45c8-ac06-79a59492bb5c-c0269-e1860cf2dd",
+      "chunk_index": 269,
+      "semantic_type": "figure",
+      "score": 0.6383106328063838,
+      "distance": 0.3616893671936162,
+      "text": "Section: APPENDIX E > Identification\nGroup: Examples of Identification of Beneficial Owners\n\nIllustration 3\n\nBased on the shareholding, Ms. P is the beneficial owner of Company A, through her ownership of\nCompany XX. The reporting institution having a banking relationship with Company A has\nendeavoured to obtain all necessary identification documents from Company A relating to Company\nXX and Ms. P. In verifying those information, the reporting institution has explored all online and\noffline platforms with publicly available information on Ms. P such as news outlet and websites with\ncompany profiles such as Reuters, Asian Nikkei Review etc., reflecting that verification has been\nconducted on a best efforts basis.\n\nAs Ms. P is a foreign beneficial owner, the reporting institution should also determine whether she is\na citizen from high risk jurisdiction or whether she falls within the sanctions list. If Ms. P falls under\nthe category of high risk customers requiring enhanced CDD, the reporting institution should also\ndetermine, among others, the sources of funds and wealth of Ms. P.\n\nThe reporting institution has the option to choose not to establish or continue business relationship\nwith the customer if it is deemed that Ms. P is not within the reporting institution’s risk appetite or if\nthe reporting institution believe it does not have the capacity to appropriately manage the increased\nrisk in relation to the customer/ Ms. P, in accordance with the institution’s business decision.",
+      "content_text": "Illustration 3\n\nBased on the shareholding, Ms. P is the beneficial owner of Company A, through her ownership of\nCompany XX. The reporting institution having a banking relationship with Company A has\nendeavoured to obtain all necessary identification documents from Company A relating to Company\nXX and Ms. P. In verifying those information, the reporting institution has explored all online and\noffline platforms with publicly available information on Ms. P such as news outlet and websites with\ncompany profiles such as Reuters, Asian Nikkei Review etc., reflecting that verification has been\nconducted on a best efforts basis.\n\nAs Ms. P is a foreign beneficial owner, the reporting institution should also determine whether she is\na citizen from high risk jurisdiction or whether she falls within the sanctions list. If Ms. P falls under\nthe category of high risk customers requiring enhanced CDD, the reporting institution should also\ndetermine, among others, the sources of funds and wealth of Ms. P.\n\nThe reporting institution has the option to choose not to establish or continue business relationship\nwith the customer if it is deemed that Ms. P is not within the reporting institution’s risk appetite or if\nthe reporting institution believe it does not have the capacity to appropriately manage the increased\nrisk in relation to the customer/ Ms. P, in accordance with the institution’s business decision.",
+      "token_count": 268,
+      "pages": [
+        101
+      ],
+      "section_path": [
+        "APPENDIX E",
+        "Identification"
+      ],
+      "source_element_ids": [
+        "p101-e1",
+        "p101-e3",
+        "p101-e4",
+        "p101-e5"
+      ]
+    },
+    {
+      "rank": 6,
+      "chunk_id": "485c4989-c300-45c8-ac06-79a59492bb5c-c0117-340b2169f0",
+      "chunk_index": 117,
+      "semantic_type": "clause",
+      "score": 0.6344688374437287,
+      "distance": 0.36553116255627127,
+      "text": "Section: PART III: CUSTOMER DUE DILIGENCE > 8. CUSTOMER DUE DILIGENCE (CDD) > 8.6 Reliance on third-party institutions to conduct CDD\n\n8.6.1 A reporting institution may rely on a third-party institution to conduct CDD at the point\nof establishing a business relationship to identify and verify a customer or a beneficial\nowner. The reporting institution must immediately obtain the necessary information\nconcerning the identification and verification of the customer or the beneficial owner\nfrom the third-party institution.\n\n8.6.2 A reporting institution must have in place internal policies and procedures to mitigate\nthe risks when relying on a third-party institution, including those from foreign\njurisdictions. However, the reporting institution must ensure that the third-party\ninstitution adequately applies the FATF Recommendations in determining the extent\nto which reliance could be placed on such third-party institution.\n\n8.6.3 A reporting institution is prohibited from relying on a third-party institution located\nin higher- risk countries that have been identified as having ongoing or substantial\nML/TF/PF risks.",
+      "content_text": "8.6.1 A reporting institution may rely on a third-party institution to conduct CDD at the point\nof establishing a business relationship to identify and verify a customer or a beneficial\nowner. The reporting institution must immediately obtain the necessary information\nconcerning the identification and verification of the customer or the beneficial owner\nfrom the third-party institution.\n\n8.6.2 A reporting institution must have in place internal policies and procedures to mitigate\nthe risks when relying on a third-party institution, including those from foreign\njurisdictions. However, the reporting institution must ensure that the third-party\ninstitution adequately applies the FATF Recommendations in determining the extent\nto which reliance could be placed on such third-party institution.\n\n8.6.3 A reporting institution is prohibited from relying on a third-party institution located\nin higher- risk countries that have been identified as having ongoing or substantial\nML/TF/PF risks.",
+      "token_count": 206,
+      "pages": [
+        44
+      ],
+      "section_path": [
+        "PART III: CUSTOMER DUE DILIGENCE",
+        "8. CUSTOMER DUE DILIGENCE (CDD)",
+        "8.6 Reliance on third-party institutions to conduct CDD"
+      ],
+      "source_element_ids": [
+        "p44-e2",
+        "p44-e3",
+        "p44-e4"
+      ]
+    },
+    {
+      "rank": 7,
+      "chunk_id": "485c4989-c300-45c8-ac06-79a59492bb5c-c0147-4ce9ccc098",
+      "chunk_index": 147,
+      "semantic_type": "clause",
+      "score": 0.623922988900782,
+      "distance": 0.376077011099218,
+      "text": "Section: PART V: SUSPICIOUS TRANSACTIONS > 11 REPORTING OF SUSPICIOUS TRANSACTIONS\n\n11.1 A reporting institution must establish in place strong mechanisms for reporting\nsuspicious transactions, including having an appointed AML/CFT/CPF compliance\nofficer, and where appropriate, having a unit primarily responsible for complying with\nthe AML/CFT/CPF requirements on reporting of suspicious transactions.\n\n11.2 A reporting institution must also ensure that the suspicious transaction reporting\nmechanism is operated in a secured environment to maintain the confidentiality and\npreservation of secrecy.\n\n11.3 A reporting institution must clarify the economic background and purpose of any\ntransaction or business relationship if it appears unusual in relation to the reporting\ninstitution’s knowledge of the customer, or if the economic purpose or legality of the\ntransaction is not immediately clear. Special attention should also be paid to all\ncomplex and unusual patterns of transaction.\n\n11.4 A reporting institution must also consider whether the transactions involve a number\nof factors which when taken together may raise a suspicion that the transactions may\nbe connected with certain unlawful activities.\n\n11.6 If in bringing together all relevant factors, a reporting institution has reasonable\ngrounds to suspect that the transaction or the funds utilised involve proceeds of an\nunlawful activity or is related to terrorism financing and proliferation financing, such\ntransaction should be reported immediately to the FIED through lodgement of a STR.\n\n11.6A A reporting institution is required to have in place policies on the duration upon which\ninternal suspicious transaction reports must be reviewed by the reporting institution,\nincluding the circumstances when the timeframe can be exceeded, where necessary.\n\n11.7 Where the reporting institution decides that there are no reasonable grounds for\nsuspicion to warrant a lodgement of a STR, the reporting institution must establish the\ngrounds for such decision. In this regard, the compliance officer must ensure that the\nreporting institution’s decision together with all supporting documentary evidence is\nrecorded and maintained.\n\n11.8 A reporting institution is required to report all suspicious transactions, including\nattempted transactions, regardless of the amount of the transaction. A reporting\ninstitution should be aware that in some cases, suspicion may be formed after a\nconsiderable time from the date of the transaction, in view of subsequent additional\ninformation.\n\n11.9 STRs must be lodged to the FIED in accordance with the method as provided in\nAppendix C herein.",
+      "content_text": "11.1 A reporting institution must establish in place strong mechanisms for reporting\nsuspicious transactions, including having an appointed AML/CFT/CPF compliance\nofficer, and where appropriate, having a unit primarily responsible for complying with\nthe AML/CFT/CPF requirements on reporting of suspicious transactions.\n\n11.2 A reporting institution must also ensure that the suspicious transaction reporting\nmechanism is operated in a secured environment to maintain the confidentiality and\npreservation of secrecy.\n\n11.3 A reporting institution must clarify the economic background and purpose of any\ntransaction or business relationship if it appears unusual in relation to the reporting\ninstitution’s knowledge of the customer, or if the economic purpose or legality of the\ntransaction is not immediately clear. Special attention should also be paid to all\ncomplex and unusual patterns of transaction.\n\n11.4 A reporting institution must also consider whether the transactions involve a number\nof factors which when taken together may raise a suspicion that the transactions may\nbe connected with certain unlawful activities.\n\n11.6 If in bringing together all relevant factors, a reporting institution has reasonable\ngrounds to suspect that the transaction or the funds utilised involve proceeds of an\nunlawful activity or is related to terrorism financing and proliferation financing, such\ntransaction should be reported immediately to the FIED through lodgement of a STR.\n\n11.6A A reporting institution is required to have in place policies on the duration upon which\ninternal suspicious transaction reports must be reviewed by the reporting institution,\nincluding the circumstances when the timeframe can be exceeded, where necessary.\n\n11.7 Where the reporting institution decides that there are no reasonable grounds for\nsuspicion to warrant a lodgement of a STR, the reporting institution must establish the\ngrounds for such decision. In this regard, the compliance officer must ensure that the\nreporting institution’s decision together with all supporting documentary evidence is\nrecorded and maintained.\n\n11.8 A reporting institution is required to report all suspicious transactions, including\nattempted transactions, regardless of the amount of the transaction. A reporting\ninstitution should be aware that in some cases, suspicion may be formed after a\nconsiderable time from the date of the transaction, in view of subsequent additional\ninformation.\n\n11.9 STRs must be lodged to the FIED in accordance with the method as provided in\nAppendix C herein.",
+      "token_count": 442,
+      "pages": [
+        55,
+        56
+      ],
+      "section_path": [
+        "PART V: SUSPICIOUS TRANSACTIONS",
+        "11 REPORTING OF SUSPICIOUS TRANSACTIONS"
+      ],
+      "source_element_ids": [
+        "p55-e3",
+        "p55-e4",
+        "p55-e5",
+        "p55-e6",
+        "p55-e13",
+        "p56-e1",
+        "p56-e2",
+        "p56-e3",
+        "p56-e4"
+      ]
+    },
+    {
+      "rank": 8,
+      "chunk_id": "485c4989-c300-45c8-ac06-79a59492bb5c-c0066-84f6cf0cfe",
+      "chunk_index": 66,
+      "semantic_type": "clause",
+      "score": 0.6227256138219343,
+      "distance": 0.37727438617806575,
+      "text": "Section: PART II: RISK-BASED APPROACH APPLICATION > 7. RISK-BASED APPROACH APPLICATION > 7.1 ML/TF Risk assessment\n\n7.1.1 A reporting institution must take appropriate steps to identify, assess and understand\nits ML/TF risks, in relation to its customers, countries or geographical areas and\nproducts, services, transactions or delivery channels, and other relevant risk factors.\nAppendix A of these Guidelines provides for the measures to be adopted in\nimplementing a risk-based approach.\n\n7.1.3 A reporting institution must conduct additional assessment as and when required by\nthe SC.\n\n7.1.4 A reporting institution must be guided by the results of the NRA issued by the National\nCoordination Committee to Counter Money Laundering (NCC) in conducting its own\nrisk assessments. A reporting institution must take enhanced measures to manage\nand mitigate the risks identified in the NRA.",
+      "content_text": "7.1.1 A reporting institution must take appropriate steps to identify, assess and understand\nits ML/TF risks, in relation to its customers, countries or geographical areas and\nproducts, services, transactions or delivery channels, and other relevant risk factors.\nAppendix A of these Guidelines provides for the measures to be adopted in\nimplementing a risk-based approach.\n\n7.1.3 A reporting institution must conduct additional assessment as and when required by\nthe SC.\n\n7.1.4 A reporting institution must be guided by the results of the NRA issued by the National\nCoordination Committee to Counter Money Laundering (NCC) in conducting its own\nrisk assessments. A reporting institution must take enhanced measures to manage\nand mitigate the risks identified in the NRA.",
+      "token_count": 172,
+      "pages": [
+        26
+      ],
+      "section_path": [
+        "PART II: RISK-BASED APPROACH APPLICATION",
+        "7. RISK-BASED APPROACH APPLICATION",
+        "7.1 ML/TF Risk assessment"
+      ],
+      "source_element_ids": [
+        "p26-e4",
+        "p26-e11",
+        "p26-e12"
+      ]
+    },
+    {
+      "rank": 9,
+      "chunk_id": "485c4989-c300-45c8-ac06-79a59492bb5c-c0185-cc49cfc122",
+      "chunk_index": 185,
+      "semantic_type": "clause",
+      "score": 0.6217930316925093,
+      "distance": 0.3782069683074907,
+      "text": "Section: APPENDIX A > 3.0 A: Perform Risk Assessment\nClause: 3.2\nGroup: Business-based Risk Assessment (BbRA)\n\n3.2 The reporting institution should evaluate the extent of its ML/TF/PF risks at a macro\nlevel. When assessing the ML/TF/PF risks, a reporting institution should consider all\nrelevant risk factors that affect their business and operations:\n\n(a)Reporting institution’s customers;\n\n(b)Geographic location of the reporting institution;\n\n(c)Transactions and distribution channels offered by the reporting institution;\n\n(d)Products and services offered by the reporting institution;\n\n(e)Structure of the reporting institution;\n\n(f)Findings of the National Risk Assessment (NRA) or any other risk assessment issued by\nrelevant authorities; and\n\n(g)Other specific risk factors that the reporting institution may consider for the\npurpose of identifying its ML/TF/PF risks.",
+      "content_text": "3.2 The reporting institution should evaluate the extent of its ML/TF/PF risks at a macro\nlevel. When assessing the ML/TF/PF risks, a reporting institution should consider all\nrelevant risk factors that affect their business and operations:\n\n(a)Reporting institution’s customers;\n\n(b)Geographic location of the reporting institution;\n\n(c)Transactions and distribution channels offered by the reporting institution;\n\n(d)Products and services offered by the reporting institution;\n\n(e)Structure of the reporting institution;\n\n(f)Findings of the National Risk Assessment (NRA) or any other risk assessment issued by\nrelevant authorities; and\n\n(g)Other specific risk factors that the reporting institution may consider for the\npurpose of identifying its ML/TF/PF risks.",
+      "token_count": 179,
+      "pages": [
+        71
+      ],
+      "section_path": [
+        "APPENDIX A",
+        "3.0 A: Perform Risk Assessment"
+      ],
+      "source_element_ids": [
+        "p71-e4",
+        "p71-e5",
+        "p71-e6",
+        "p71-e7",
+        "p71-e8",
+        "p71-e9",
+        "p71-e10",
+        "p71-e11"
+      ]
+    },
+    {
+      "rank": 10,
+      "chunk_id": "485c4989-c300-45c8-ac06-79a59492bb5c-c0109-a770399a63",
+      "chunk_index": 109,
+      "semantic_type": "clause",
+      "score": 0.6214720832424125,
+      "distance": 0.37852791675758746,
+      "text": "Section: PART III: CUSTOMER DUE DILIGENCE > 8. CUSTOMER DUE DILIGENCE (CDD) > 8.2 Conducting CDD\nClause: 8.2.3\n\n8.2.3 Subject to paragraph 8.5 below, a reporting institution in identifying country and\ngeographic risk factors, must refer to credible sources such as mutual evaluation\nreports, detailed assessment reports, follow up reports and other relevant reports\npublished by international organisations such as the FATF, Asia Pacific Group on\nMoney Laundering, United Nations, World Bank and International Monetary Fund.",
+      "content_text": "8.2.3 Subject to paragraph 8.5 below, a reporting institution in identifying country and\ngeographic risk factors, must refer to credible sources such as mutual evaluation\nreports, detailed assessment reports, follow up reports and other relevant reports\npublished by international organisations such as the FATF, Asia Pacific Group on\nMoney Laundering, United Nations, World Bank and International Monetary Fund.",
+      "token_count": 102,
+      "pages": [
+        41
+      ],
+      "section_path": [
+        "PART III: CUSTOMER DUE DILIGENCE",
+        "8. CUSTOMER DUE DILIGENCE (CDD)",
+        "8.2 Conducting CDD"
+      ],
+      "source_element_ids": [
+        "p41-e3"
+      ]
+    }
+  ]
+}

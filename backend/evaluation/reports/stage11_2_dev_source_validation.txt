@@ -1,0 +1,5 @@
+PASS: evaluation/generation/answer_citation_eval_dev_v1.json
+Canonical source: /mnt/data/stage11_2_work/rag_document_pipeline_stage11_1_evaluation_contract_v1/backend/evaluation/reports/sc_aml_cft_diagnostic_replay_stage4.json
+Questions: 20
+Required source groups: 34
+Gold locators checked: 35

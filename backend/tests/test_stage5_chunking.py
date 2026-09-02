@@ -374,7 +374,7 @@ def _resolved_generic_manual_hierarchy(*, long_children: bool = False) -> Resolv
 def test_semantic_v2_is_default_and_groups_generic_parent_with_children():
     artifact = build_chunking_artifact(resolved=_resolved_generic_manual_hierarchy())
     assert artifact.config.strategy == "semantic_v2"
-    assert artifact.strategy_version == "semantic-v2"
+    assert artifact.strategy_version == "semantic-v2.1"
     grouped = [chunk for chunk in artifact.chunks if "dependency_group" in chunk.refinement_tags]
     assert grouped
     chunk = grouped[0]
@@ -561,14 +561,755 @@ def test_semantic_v2_groups_local_group_header_with_dependent_list_items():
     structure.sections[0].content_element_ids.extend([clause.element_id, group.element_id, item_a.element_id, item_b.element_id])
 
     artifact = build_chunking_artifact(resolved=resolved, config=ChunkingConfig(strategy="semantic_v2"))
-    matching = [chunk for chunk in artifact.chunks if group.element_id in chunk.source_element_ids]
+    matching = [chunk for chunk in artifact.chunks if group.element_id in chunk.context_element_ids]
     assert len(matching) == 1
     chunk = matching[0]
-    assert clause.element_id in chunk.source_element_ids
+    assert group.element_id not in chunk.source_element_ids
     assert item_a.element_id in chunk.source_element_ids
     assert item_b.element_id in chunk.source_element_ids
-    assert "Equipment" in chunk.content_text
+    assert "Group: Equipment" in chunk.context_text
+    assert "Equipment" not in chunk.content_text
     assert "Pumps" in chunk.content_text
     assert "Valves" in chunk.content_text
-    assert "dependency_group" in chunk.refinement_tags
+    assert "group_header_context" in chunk.refinement_tags
     assert artifact.quality.orphan_child_count == 0
+
+
+def test_semantic_v2_excludes_toc_navigation_from_stage4_zone_signals_and_continuation_tables():
+    from app.schemas import CanonicalTable, LogicalTable, SemanticClassification
+
+    resolved = _resolved()
+    structure = resolved.structure
+    front_section = structure.sections[0].section_id
+    next_order = max(element.document_order for page in structure.pages for element in page.elements) + 1
+
+    toc_label = _element("p2-nav-label", "unknown", "CONTENTS", next_order, page=2)
+    toc_label.role_source = "toc_navigation_suppression"
+    toc_label.classification = SemanticClassification(
+        selected_type="unknown",
+        confidence=0.99,
+        source="document_zone_resolver",
+        evidence=["element occurs on a page identified as table-of-contents navigation"],
+    )
+    toc_table = _element("p2-nav-table", "table", "", next_order + 1, page=2, section_id=front_section)
+    toc_table.table = CanonicalTable(
+        row_count=3,
+        col_count=3,
+        cells=[["PART", "I: INTRODUCTION", "Page"], ["1.", "Introduction", "5"], ["2.", "Applicability", "6"]],
+    )
+    continuation = _element("p3-nav-table", "table", "", next_order + 2, page=3, section_id=front_section)
+    continuation.table = CanonicalTable(
+        row_count=3,
+        col_count=3,
+        cells=[["APPENDICES", "", "Page"], ["Appendix A:", "Guidance", "68"], ["Appendix B:", "Reference", "81"]],
+    )
+    structure.pages[1].elements.extend([toc_label, toc_table])
+    structure.pages[2].elements.append(continuation)
+    structure.tables.extend([
+        LogicalTable(
+            logical_table_id="toc-zone-table-1",
+            fragment_element_ids=[toc_table.element_id],
+            start_page=2,
+            end_page=2,
+            spans_multiple_pages=False,
+            row_count=toc_table.table.row_count,
+            col_count=toc_table.table.col_count,
+            cells=toc_table.table.cells,
+            section_id=front_section,
+        ),
+        LogicalTable(
+            logical_table_id="toc-zone-table-2",
+            fragment_element_ids=[continuation.element_id],
+            start_page=3,
+            end_page=3,
+            spans_multiple_pages=False,
+            row_count=continuation.table.row_count,
+            col_count=continuation.table.col_count,
+            cells=continuation.table.cells,
+            section_id=front_section,
+        ),
+    ])
+
+    artifact = build_chunking_artifact(resolved=resolved)
+    decisions = {decision.element_id: decision for decision in artifact.cleaning.decisions}
+    for element_id in [toc_label.element_id, toc_table.element_id, continuation.element_id]:
+        assert decisions[element_id].action == "exclude"
+        assert decisions[element_id].reason == "navigation_only"
+        assert not any(element_id in chunk.source_element_ids for chunk in artifact.chunks)
+    assert artifact.quality.navigation_chunk_count == 0
+    assert artifact.quality.status == "pass"
+
+
+def test_navigation_quality_gate_independently_detects_toc_leakage_when_cleaning_is_disabled():
+    from app.schemas import CanonicalTable, LogicalTable
+
+    resolved = _resolved()
+    structure = resolved.structure
+    section_id = structure.sections[0].section_id
+    order = max(element.document_order for page in structure.pages for element in page.elements) + 1
+    toc = _element("p2-quality-toc", "table", "", order, page=2, section_id=section_id)
+    toc.table = CanonicalTable(
+        row_count=4,
+        col_count=3,
+        cells=[["PART", "I: INTRODUCTION", "Page"], ["1.", "Introduction", "5"], ["2.", "Applicability", "6"], ["3.", "Definitions", "8"]],
+    )
+    structure.pages[1].elements.append(toc)
+    structure.tables.append(LogicalTable(
+        logical_table_id="quality-toc",
+        fragment_element_ids=[toc.element_id],
+        start_page=2,
+        end_page=2,
+        spans_multiple_pages=False,
+        row_count=toc.table.row_count,
+        col_count=toc.table.col_count,
+        cells=toc.table.cells,
+        section_id=section_id,
+    ))
+
+    artifact = build_chunking_artifact(
+        resolved=resolved,
+        config=ChunkingConfig(exclude_navigation_sections=False),
+    )
+    assert any(toc.element_id in chunk.source_element_ids for chunk in artifact.chunks)
+    assert artifact.quality.navigation_chunk_count >= 1
+    assert artifact.quality.status == "review"
+    assert any(signal.code == "navigation_content" for signal in artifact.quality.signals)
+
+
+def test_table_caption_is_owned_by_table_and_not_absorbed_by_previous_clause():
+    from app.schemas import CanonicalTable, ClauseRecord, LogicalTable
+
+    resolved = _resolved()
+    structure = resolved.structure
+    section_id = structure.sections[0].section_id
+    order = max(element.document_order for page in structure.pages for element in page.elements) + 1
+
+    clause = _element(
+        "p1-caption-clause",
+        "clause",
+        "3.5 Consider the following example.",
+        order,
+        section_id=section_id,
+    )
+    clause.clause_number = "3.5"
+    clause.clause_id = "caption-clause"
+    caption = _element("p1-table-caption", "caption", "Example 1:", order + 1, section_id=section_id)
+    table = _element("p1-caption-table", "table", "", order + 2, section_id=section_id)
+    table.table = CanonicalTable(
+        row_count=2,
+        col_count=2,
+        cells=[["Risk Factor", "Parameter"], ["Customer", "Risk rating"]],
+    )
+    structure.pages[0].elements.extend([clause, caption, table])
+    structure.clauses.append(ClauseRecord(
+        clause_id=clause.clause_id,
+        number=clause.clause_number,
+        kind="clause",
+        element_id=clause.element_id,
+        page_number=1,
+        section_id=section_id,
+    ))
+    structure.tables.append(LogicalTable(
+        logical_table_id="caption-table",
+        fragment_element_ids=[table.element_id],
+        start_page=1,
+        end_page=1,
+        spans_multiple_pages=False,
+        row_count=table.table.row_count,
+        col_count=table.table.col_count,
+        cells=table.table.cells,
+        section_id=section_id,
+    ))
+
+    artifact = build_chunking_artifact(resolved=resolved)
+    clause_chunk = next(chunk for chunk in artifact.chunks if clause.element_id in chunk.source_element_ids)
+    table_chunk = next(chunk for chunk in artifact.chunks if table.element_id in chunk.source_element_ids)
+
+    assert caption.element_id not in clause_chunk.source_element_ids
+    assert "Example 1:" not in clause_chunk.content_text
+    assert table_chunk.semantic_type == "table"
+    assert table_chunk.source_element_ids == [caption.element_id, table.element_id]
+    assert table_chunk.content_text.startswith("Example 1:\n\nRisk Factor | Parameter")
+    assert "caption_attachment" in table_chunk.refinement_tags
+    assert not any(
+        chunk.semantic_type == "caption" and caption.element_id in chunk.source_element_ids
+        for chunk in artifact.chunks
+    )
+
+
+def test_semantic_v2_attaches_consecutive_group_headers_as_context_without_topk_only_header_chunks():
+    from app.schemas import ClauseRecord
+
+    resolved = _resolved()
+    structure = resolved.structure
+    section_id = structure.sections[0].section_id
+    order = max(element.document_order for page in structure.pages for element in page.elements) + 1
+
+    group_outer = _element(
+        "p1-local-group-outer",
+        "group_header",
+        "CDD requirements for individual customer and beneficial owner",
+        order,
+        section_id=section_id,
+    )
+    group_inner = _element(
+        "p1-local-group-inner",
+        "group_header",
+        "Identification and Verification",
+        order + 1,
+        section_id=section_id,
+    )
+    clause_a = _element(
+        "p1-local-clause-a",
+        "clause",
+        "8.1.1 A reporting institution must identify and verify the customer before establishing the relationship.",
+        order + 2,
+        section_id=section_id,
+    )
+    clause_a.clause_id = "local-clause-a"
+    clause_a.clause_number = "8.1.1"
+
+    next_group = _element(
+        "p1-local-group-next",
+        "group_header",
+        "Delayed verification",
+        order + 3,
+        section_id=section_id,
+    )
+    clause_b = _element(
+        "p1-local-clause-b",
+        "clause",
+        "8.1.2 A reporting institution may complete verification later only where the stated safeguards are satisfied.",
+        order + 4,
+        section_id=section_id,
+    )
+    clause_b.clause_id = "local-clause-b"
+    clause_b.clause_number = "8.1.2"
+
+    structure.pages[0].elements.extend([group_outer, group_inner, clause_a, next_group, clause_b])
+    structure.sections[0].content_element_ids.extend(
+        [group_outer.element_id, group_inner.element_id, clause_a.element_id, next_group.element_id, clause_b.element_id]
+    )
+    structure.clauses.extend([
+        ClauseRecord(
+            clause_id=clause_a.clause_id,
+            number=clause_a.clause_number,
+            kind="clause",
+            element_id=clause_a.element_id,
+            page_number=1,
+            section_id=section_id,
+        ),
+        ClauseRecord(
+            clause_id=clause_b.clause_id,
+            number=clause_b.clause_number,
+            kind="clause",
+            element_id=clause_b.element_id,
+            page_number=1,
+            section_id=section_id,
+        ),
+    ])
+
+    artifact = build_chunking_artifact(resolved=resolved)
+    first_chunk = next(chunk for chunk in artifact.chunks if clause_a.element_id in chunk.source_element_ids)
+    second_chunk = next(chunk for chunk in artifact.chunks if clause_b.element_id in chunk.source_element_ids)
+
+    assert group_outer.element_id not in first_chunk.source_element_ids
+    assert group_inner.element_id not in first_chunk.source_element_ids
+    assert first_chunk.context_element_ids == [group_outer.element_id, group_inner.element_id]
+    assert (
+        "Group: CDD requirements for individual customer and beneficial owner > Identification and Verification"
+        in first_chunk.context_text
+    )
+    assert "group_header_context" in first_chunk.refinement_tags
+
+    assert second_chunk.context_element_ids == [next_group.element_id]
+    assert "Group: Delayed verification" in second_chunk.context_text
+    assert group_outer.element_id not in second_chunk.context_element_ids
+    assert group_inner.element_id not in second_chunk.context_element_ids
+
+    header_ids = {group_outer.element_id, group_inner.element_id, next_group.element_id}
+    assert not any(header_ids & set(chunk.source_element_ids) for chunk in artifact.chunks)
+    assert artifact.quality.group_header_context_chunk_count >= 2
+    assert artifact.quality.standalone_group_header_chunk_count == 0
+
+
+def test_semantic_v2_suppresses_intro_only_figure_but_keeps_explained_figure():
+    from app.schemas import FigureRecord
+
+    resolved = _resolved()
+    structure = resolved.structure
+    section_id = structure.sections[0].section_id
+    order = max(element.document_order for page in structure.pages for element in page.elements) + 1
+
+    intro = _element(
+        "p1-figure-intro-only",
+        "paragraph",
+        "The workflow above is illustrated in the diagram below:",
+        order,
+        section_id=section_id,
+    )
+    empty_figure = _element(
+        "p1-figure-empty",
+        "figure",
+        "",
+        order + 1,
+        section_id=section_id,
+    )
+    caption = _element(
+        "p1-figure-caption",
+        "caption",
+        "Illustration 2",
+        order + 2,
+        section_id=section_id,
+    )
+    explained_figure = _element(
+        "p1-figure-explained",
+        "figure",
+        "",
+        order + 3,
+        section_id=section_id,
+    )
+    explanation = _element(
+        "p1-figure-explanation",
+        "paragraph",
+        "The diagram shows that the senior manager is treated as the beneficial owner when no other person has effective control.",
+        order + 4,
+        section_id=section_id,
+    )
+
+    structure.pages[0].elements.extend([intro, empty_figure, caption, explained_figure, explanation])
+    structure.sections[0].content_element_ids.extend(
+        [intro.element_id, empty_figure.element_id, caption.element_id, explained_figure.element_id, explanation.element_id]
+    )
+    structure.figures.extend([
+        FigureRecord(
+            figure_id="figure-intro-only",
+            element_id=empty_figure.element_id,
+            page_number=1,
+            section_id=section_id,
+            intro_element_ids=[intro.element_id],
+        ),
+        FigureRecord(
+            figure_id="figure-explained",
+            element_id=explained_figure.element_id,
+            page_number=1,
+            section_id=section_id,
+            caption_element_ids=[caption.element_id],
+            explanation_element_ids=[explanation.element_id],
+        ),
+    ])
+
+    artifact = build_chunking_artifact(resolved=resolved)
+    decisions = {decision.element_id: decision for decision in artifact.cleaning.decisions}
+
+    assert decisions[intro.element_id].action == "context"
+    assert decisions[intro.element_id].reason == "figure_intro_context_only"
+    assert not any(intro.element_id in chunk.source_element_ids for chunk in artifact.chunks)
+    assert not any(
+        chunk.semantic_type == "figure" and intro.element_id in chunk.source_element_ids
+        for chunk in artifact.chunks
+    )
+
+    useful = next(
+        chunk for chunk in artifact.chunks
+        if chunk.semantic_type == "figure" and caption.element_id in chunk.source_element_ids
+    )
+    assert "Illustration 2" in useful.content_text
+    assert "senior manager is treated as the beneficial owner" in useful.content_text
+    assert explanation.element_id in useful.source_element_ids
+    assert artifact.quality.intro_only_figure_chunk_count == 0
+    assert artifact.quality.status == "pass"
+
+
+def test_semantic_v2_group_header_context_crosses_descendant_section_but_not_document_root():
+    from app.schemas import ClauseRecord, StructuralRelation
+
+    resolved = _resolved()
+    structure = resolved.structure
+    root_id = structure.sections[0].section_id
+    order = max(element.document_order for page in structure.pages for element in page.elements) + 1
+
+    group = _element(
+        "p1-root-group",
+        "group_header",
+        "Appendix implementation guidance",
+        order,
+        section_id=root_id,
+    )
+    child_header = _element(
+        "p1-child-header",
+        "section_header",
+        "1.0 Introduction",
+        order + 1,
+        section_id="sec-child",
+    )
+    child_clause = _element(
+        "p1-child-clause",
+        "clause",
+        "1.1 This child section contains the guidance body.",
+        order + 2,
+        section_id="sec-child",
+    )
+    child_clause.clause_id = "child-clause"
+    child_clause.clause_number = "1.1"
+
+    root2_header = _element(
+        "p1-root2-header",
+        "section_header",
+        "APPENDIX B",
+        order + 3,
+        section_id="sec-root-2",
+    )
+    root2_clause = _element(
+        "p1-root2-clause",
+        "clause",
+        "1.1 This belongs to a different document root.",
+        order + 4,
+        section_id="sec-root-2",
+    )
+    root2_clause.clause_id = "root2-clause"
+    root2_clause.clause_number = "1.1"
+
+    structure.pages[0].elements.extend([group, child_header, child_clause, root2_header, root2_clause])
+    structure.sections.extend([
+        SectionRecord(
+            section_id="sec-child",
+            title="1.0 Introduction",
+            level=2,
+            page_number=1,
+            element_id=child_header.element_id,
+            parent_section_id=root_id,
+            content_element_ids=[child_clause.element_id],
+        ),
+        SectionRecord(
+            section_id="sec-root-2",
+            title="APPENDIX B",
+            level=1,
+            page_number=1,
+            element_id=root2_header.element_id,
+            content_element_ids=[root2_clause.element_id],
+        ),
+    ])
+    structure.relationships.append(StructuralRelation(
+        relation_id="rel-group-child-section",
+        type="introduces",
+        source_element_id=group.element_id,
+        target_element_id=child_header.element_id,
+        evidence="group explicitly scopes the following outline section",
+    ))
+    structure.clauses.extend([
+        ClauseRecord(
+            clause_id=child_clause.clause_id,
+            number=child_clause.clause_number,
+            kind="clause",
+            element_id=child_clause.element_id,
+            page_number=1,
+            section_id="sec-child",
+        ),
+        ClauseRecord(
+            clause_id=root2_clause.clause_id,
+            number=root2_clause.clause_number,
+            kind="clause",
+            element_id=root2_clause.element_id,
+            page_number=1,
+            section_id="sec-root-2",
+        ),
+    ])
+
+    artifact = build_chunking_artifact(resolved=resolved)
+    child_chunk = next(chunk for chunk in artifact.chunks if child_clause.element_id in chunk.source_element_ids)
+    root2_chunk = next(chunk for chunk in artifact.chunks if root2_clause.element_id in chunk.source_element_ids)
+
+    assert group.element_id in child_chunk.context_element_ids
+    assert "Group: Appendix implementation guidance" in child_chunk.context_text
+    assert group.element_id not in root2_chunk.context_element_ids
+    assert "Appendix implementation guidance" not in root2_chunk.context_text
+
+
+def test_semantic_v2_group_header_context_uses_section_tree_fallback_when_resolved_introduces_edge_missing():
+    """Resolved Stage 4.5 may retain hierarchy while omitting a redundant local edge."""
+
+    resolved = _resolved()
+    structure = resolved.structure
+    root_id = structure.sections[0].section_id
+    order = max(element.document_order for page in structure.pages for element in page.elements) + 1
+
+    group = _element(
+        "p1-appendix-form-title",
+        "group_header",
+        "MEASURES PURSUANT TO THE STRATEGIC TRADE REGULATIONS",
+        order,
+        section_id=root_id,
+    )
+    child_header = _element(
+        "p1-reporting-header",
+        "section_header",
+        "REPORTING UPON DETERMINATION",
+        order + 1,
+        section_id="sec-reporting",
+    )
+    child_body = _element(
+        "p1-reporting-body",
+        "paragraph",
+        "UNSCR Number (If Available): Date of UN Listing:",
+        order + 2,
+        section_id="sec-reporting",
+    )
+
+    structure.pages[0].elements.extend([group, child_header, child_body])
+    structure.sections.extend([
+        SectionRecord(
+            section_id="sec-reporting",
+            title="REPORTING UPON DETERMINATION",
+            level=2,
+            page_number=1,
+            element_id=child_header.element_id,
+            parent_section_id=root_id,
+            content_element_ids=[child_body.element_id],
+        )
+    ])
+    structure.sections[0].content_element_ids.append(group.element_id)
+
+    # Intentionally do NOT add group -> section ``introduces``. This reproduces
+    # resolved artifacts where the hierarchy survives but the redundant edge does not.
+    artifact = build_chunking_artifact(resolved=resolved)
+
+    body_chunk = next(chunk for chunk in artifact.chunks if child_body.element_id in chunk.source_element_ids)
+    assert group.element_id in body_chunk.context_element_ids
+    assert "Group: MEASURES PURSUANT TO THE STRATEGIC TRADE REGULATIONS" in body_chunk.context_text
+    assert not any(
+        chunk.semantic_type == "group_header" and group.element_id in chunk.source_element_ids
+        for chunk in artifact.chunks
+    )
+    assert artifact.quality.standalone_group_header_chunk_count == 0
+
+
+def test_semantic_v2_suppresses_non_explanatory_figure_shell_but_keeps_informative_intro():
+    from app.schemas import FigureRecord
+
+    resolved = _resolved()
+    structure = resolved.structure
+    section_id = structure.sections[0].section_id
+    order = max(element.document_order for page in structure.pages for element in page.elements) + 1
+
+    shell_intro = _element(
+        "p1-shell-intro",
+        "paragraph",
+        "An overview of the due diligence process is set out in Illustration 1 below.",
+        order,
+        section_id=section_id,
+    )
+    shell_figure = _element("p1-shell-figure", "figure", "", order + 1, section_id=section_id)
+    shell_caption = _element("p1-shell-caption", "caption", "Illustration 1:", order + 2, section_id=section_id)
+    shell_source = _element(
+        "p1-shell-source",
+        "paragraph",
+        "For full FATF Guidance and Source for Illustration 1: Updated Guidance for Risk-Based Approach - Virtual Assets and Virtual Asset Service Providers.",
+        order + 3,
+        section_id=section_id,
+    )
+
+    informative_intro = _element(
+        "p1-informative-intro",
+        "paragraph",
+        "The diagram establishes that all high-risk customers require enhanced due diligence and senior management approval.",
+        order + 4,
+        section_id=section_id,
+    )
+    informative_figure = _element("p1-informative-figure", "figure", "", order + 5, section_id=section_id)
+    informative_caption = _element("p1-informative-caption", "caption", "Illustration 2", order + 6, section_id=section_id)
+    informative_source = _element(
+        "p1-informative-source",
+        "paragraph",
+        "Source: FATF Guidance.",
+        order + 7,
+        section_id=section_id,
+    )
+
+    new_elements = [
+        shell_intro,
+        shell_figure,
+        shell_caption,
+        shell_source,
+        informative_intro,
+        informative_figure,
+        informative_caption,
+        informative_source,
+    ]
+    structure.pages[0].elements.extend(new_elements)
+    structure.sections[0].content_element_ids.extend(element.element_id for element in new_elements)
+    structure.figures.extend([
+        FigureRecord(
+            figure_id="figure-shell",
+            element_id=shell_figure.element_id,
+            page_number=1,
+            section_id=section_id,
+            intro_element_ids=[shell_intro.element_id],
+            caption_element_ids=[shell_caption.element_id],
+            source_element_ids=[shell_source.element_id],
+        ),
+        FigureRecord(
+            figure_id="figure-informative-intro",
+            element_id=informative_figure.element_id,
+            page_number=1,
+            section_id=section_id,
+            intro_element_ids=[informative_intro.element_id],
+            caption_element_ids=[informative_caption.element_id],
+            source_element_ids=[informative_source.element_id],
+        ),
+    ])
+
+    artifact = build_chunking_artifact(resolved=resolved)
+    decisions = {decision.element_id: decision for decision in artifact.cleaning.decisions}
+
+    for element_id in [shell_intro.element_id, shell_caption.element_id, shell_source.element_id]:
+        assert decisions[element_id].action == "context"
+        assert decisions[element_id].reason == "figure_non_explanatory_context_only"
+        assert not any(element_id in chunk.source_element_ids for chunk in artifact.chunks)
+
+    assert not any(
+        chunk.semantic_type == "figure"
+        and shell_caption.element_id in chunk.source_element_ids
+        for chunk in artifact.chunks
+    )
+
+    informative_chunk = next(
+        chunk
+        for chunk in artifact.chunks
+        if chunk.semantic_type == "figure"
+        and informative_caption.element_id in chunk.source_element_ids
+    )
+    assert "all high-risk customers require enhanced due diligence" in informative_chunk.content_text
+    assert informative_intro.element_id in informative_chunk.source_element_ids
+    assert informative_source.element_id in informative_chunk.source_element_ids
+
+    assert artifact.quality.non_explanatory_figure_chunk_count == 0
+    assert artifact.quality.status == "pass"
+
+
+def test_semantic_v2_local_group_context_stops_before_unrelated_numbered_clause_and_packing_respects_group_boundaries():
+    from app.schemas import ClauseRecord, StructuralRelation
+
+    resolved = _resolved()
+    structure = resolved.structure
+    section_id = structure.sections[0].section_id
+    order = max(element.document_order for page in structure.pages for element in page.elements) + 1
+
+    intro_clause = _element(
+        "p1-rba-intro",
+        "clause",
+        "2.1 The assessment has two local components:",
+        order,
+        section_id=section_id,
+    )
+    intro_clause.clause_id = "rba-intro"
+    intro_clause.clause_number = "2.1"
+
+    bb_group = _element("p1-bbra-group", "group_header", "Business-based Risk Assessment (BbRA)", order + 1, section_id=section_id)
+    bb_body = _element(
+        "p1-bbra-body",
+        "paragraph",
+        "In a BbRA, a reporting institution identifies business-level ML/TF/PF risks.",
+        order + 2,
+        section_id=section_id,
+    )
+    bb_item = _element(
+        "p1-bbra-item",
+        "list_item",
+        "I. Perform the business risk assessment.",
+        order + 3,
+        section_id=section_id,
+    )
+
+    rb_group = _element("p1-rbra-group", "group_header", "Relationship-based Risk Assessment (RbRA)", order + 4, section_id=section_id)
+    rb_body = _element(
+        "p1-rbra-body",
+        "paragraph",
+        "In a RbRA, a reporting institution considers customer-level risk factors.",
+        order + 5,
+        section_id=section_id,
+    )
+    rb_item = _element(
+        "p1-rbra-item",
+        "list_item",
+        "I. Determine customer risk parameters.",
+        order + 6,
+        section_id=section_id,
+    )
+
+    next_clause = _element(
+        "p1-next-rba-clause",
+        "clause",
+        "2.2 The RBA must be tailored to the institution's business, size and activities.",
+        order + 7,
+        section_id=section_id,
+    )
+    next_clause.clause_id = "rba-next"
+    next_clause.clause_number = "2.2"
+
+    new_elements = [intro_clause, bb_group, bb_body, bb_item, rb_group, rb_body, rb_item, next_clause]
+    structure.pages[0].elements.extend(new_elements)
+    structure.sections[0].content_element_ids.extend(element.element_id for element in new_elements)
+    structure.clauses.extend([
+        ClauseRecord(
+            clause_id=intro_clause.clause_id,
+            number=intro_clause.clause_number,
+            kind="clause",
+            element_id=intro_clause.element_id,
+            page_number=1,
+            section_id=section_id,
+        ),
+        ClauseRecord(
+            clause_id=next_clause.clause_id,
+            number=next_clause.clause_number,
+            kind="clause",
+            element_id=next_clause.element_id,
+            page_number=1,
+            section_id=section_id,
+        ),
+    ])
+    structure.relationships.extend([
+        StructuralRelation(
+            relation_id="rel-bbra-body",
+            type="introduces",
+            source_element_id=bb_group.element_id,
+            target_element_id=bb_body.element_id,
+            evidence="local group body",
+        ),
+        StructuralRelation(
+            relation_id="rel-rbra-body",
+            type="introduces",
+            source_element_id=rb_group.element_id,
+            target_element_id=rb_body.element_id,
+            evidence="local group body",
+        ),
+    ])
+
+    artifact = build_chunking_artifact(resolved=resolved)
+
+    bb_chunk = next(chunk for chunk in artifact.chunks if bb_body.element_id in chunk.source_element_ids)
+    rb_chunk = next(chunk for chunk in artifact.chunks if rb_body.element_id in chunk.source_element_ids)
+    next_chunk = next(chunk for chunk in artifact.chunks if next_clause.element_id in chunk.source_element_ids)
+
+    assert bb_group.element_id in bb_chunk.context_element_ids
+    assert rb_group.element_id not in bb_chunk.context_element_ids
+    assert "Group: Business-based Risk Assessment (BbRA)" in bb_chunk.context_text
+    assert "Relationship-based Risk Assessment" not in bb_chunk.context_text
+
+    assert rb_group.element_id in rb_chunk.context_element_ids
+    assert bb_group.element_id not in rb_chunk.context_element_ids
+    assert "Group: Relationship-based Risk Assessment (RbRA)" in rb_chunk.context_text
+    assert "Business-based Risk Assessment" not in rb_chunk.context_text
+
+    # The next independent numbered clause is outside both local groups.
+    assert bb_group.element_id not in next_chunk.context_element_ids
+    assert rb_group.element_id not in next_chunk.context_element_ids
+    assert "Business-based Risk Assessment" not in next_chunk.context_text
+    assert "Relationship-based Risk Assessment" not in next_chunk.context_text
+
+    # Generic packing must not merge units carrying different group contexts.
+    assert bb_chunk.chunk_id != rb_chunk.chunk_id
+    assert not any(
+        bb_group.element_id in chunk.context_element_ids and rb_group.element_id in chunk.context_element_ids
+        for chunk in artifact.chunks
+    )

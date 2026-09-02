@@ -1,0 +1,170 @@
+{
+  "dataset_id": "answer_citation_eval_dev_v1",
+  "retrieval_dataset": "/mnt/data/stage11_2_work/rag_document_pipeline_stage11_1_evaluation_contract_v1/backend/evaluation/retrieval/retrieval_eval_v1.csv",
+  "question_count": 20,
+  "exact_duplicate_count": 0,
+  "similarity_warning_threshold": 0.7,
+  "similarity_warning_count": 0,
+  "rows": [
+    {
+      "question_id": "ACIT-001",
+      "question": "In the Guidelines, how does the meaning of 'beneficiary' differ between trust law and a wire transfer?",
+      "exact_duplicate": false,
+      "max_token_jaccard": 0.2609,
+      "nearest_retrieval_question": "How do the Guidelines define a beneficial owner in the context of a legal person?",
+      "similarity_warning": false
+    },
+    {
+      "question_id": "ACIT-002",
+      "question": "What must a reporting institution do when AML/CFT/CPF measures in the host country of a foreign operation are less stringent than Malaysian standards?",
+      "exact_duplicate": false,
+      "max_token_jaccard": 0.2286,
+      "nearest_retrieval_question": "What internal AML/CFT/CPF programmes, policies, procedures and controls must a reporting institution include under paragraph 6A.1?",
+      "similarity_warning": false
+    },
+    {
+      "question_id": "ACIT-003",
+      "question": "If a host country does not permit proper implementation of Malaysian-standard AML/CFT/CPF measures, what must the reporting institution do, and what may it consider if adequate mitigation still cannot be put in place?",
+      "exact_duplicate": false,
+      "max_token_jaccard": 0.2391,
+      "nearest_retrieval_question": "What should a reporting institution do if it cannot adequately control the ML/TF/PF and associated risks of accepting third-party deposits?",
+      "similarity_warning": false
+    },
+    {
+      "question_id": "ACIT-004",
+      "question": "For a reporting institution that is part of a financial group, what must its group-wide AML/CFT/CPF programme include?",
+      "exact_duplicate": false,
+      "max_token_jaccard": 0.3103,
+      "nearest_retrieval_question": "What internal AML/CFT/CPF programmes, policies, procedures and controls must a reporting institution include under paragraph 6A.1?",
+      "similarity_warning": false
+    },
+    {
+      "question_id": "ACIT-005",
+      "question": "Does a lower institutional proliferation-financing risk level reduce the obligation to implement targeted financial sanctions on PF?",
+      "exact_duplicate": false,
+      "max_token_jaccard": 0.2222,
+      "nearest_retrieval_question": "Which appendix provides the detailed obligations for implementing targeted financial sanctions relating to terrorism financing?",
+      "similarity_warning": false
+    },
+    {
+      "question_id": "ACIT-006",
+      "question": "When a beneficiary institution encounters a wire transfer lacking required originator or beneficiary information, what monitoring and risk-based decision rules must it have?",
+      "exact_duplicate": false,
+      "max_token_jaccard": 0.3438,
+      "nearest_retrieval_question": "What originator and beneficiary information must accompany a cross-border or domestic digital-asset wire transfer sent by an ordering institution?",
+      "similarity_warning": false
+    },
+    {
+      "question_id": "ACIT-007",
+      "question": "For digital-asset wire transfers, whom must ordering and beneficiary institutions screen for sanctions, and what must happen if a screened person is identified as a designated person?",
+      "exact_duplicate": false,
+      "max_token_jaccard": 0.2571,
+      "nearest_retrieval_question": "What originator and beneficiary information must accompany a cross-border or domestic digital-asset wire transfer sent by an ordering institution?",
+      "similarity_warning": false
+    },
+    {
+      "question_id": "ACIT-008",
+      "question": "What confidentiality rule applies to suspicion or STR reporting, and when does a disclosure not constitute the offence described by the Guidelines?",
+      "exact_duplicate": false,
+      "max_token_jaccard": 0.2432,
+      "nearest_retrieval_question": "When does a reporting institution not need to repeat counterparty-VASP due diligence for every individual wire transfer, and what circumstances require the due diligence to be refreshed?",
+      "similarity_warning": false
+    },
+    {
+      "question_id": "ACIT-009",
+      "question": "What controls and documentation are required when a reporting institution considers disclosures of a report or related information under section 14A(3) of the AMLA?",
+      "exact_duplicate": false,
+      "max_token_jaccard": 0.2333,
+      "nearest_retrieval_question": "What actions are required when a reporting institution cannot satisfactorily complete CDD for a customer?",
+      "similarity_warning": false
+    },
+    {
+      "question_id": "ACIT-010",
+      "question": "How must a reporting institution respond to an AMLA enforcement order requesting information or documents, and what internal capability must it maintain?",
+      "exact_duplicate": false,
+      "max_token_jaccard": 0.2353,
+      "nearest_retrieval_question": "What originator and beneficiary information must accompany a cross-border or domestic digital-asset wire transfer sent by an ordering institution?",
+      "similarity_warning": false
+    },
+    {
+      "question_id": "ACIT-011",
+      "question": "Under Part VIII, what must a reporting institution do to keep its proliferation-financing sanctions information current?",
+      "exact_duplicate": false,
+      "max_token_jaccard": 0.2143,
+      "nearest_retrieval_question": "What sources of information may a reporting institution use to identify family members or close associates of a PEP?",
+      "similarity_warning": false
+    },
+    {
+      "question_id": "ACIT-012",
+      "question": "What customer and related-party screening is required under Part VIII, including the response when new UNSCR names are listed?",
+      "exact_duplicate": false,
+      "max_token_jaccard": 0.1875,
+      "nearest_retrieval_question": "What additional due-diligence measures are required when a customer is assessed as higher ML/TF/PF risk?",
+      "similarity_warning": false
+    },
+    {
+      "question_id": "ACIT-013",
+      "question": "When can freezing under Part VIII end because of a false positive, and what route is available to the customer to have the affected funds, properties or accounts unfrozen?",
+      "exact_duplicate": false,
+      "max_token_jaccard": 0.2326,
+      "nearest_retrieval_question": "Which authorities must receive reports when a reporting institution possesses funds, properties or accounts of a listed entity, and what source of obligation is given for each authority?",
+      "similarity_warning": false
+    },
+    {
+      "question_id": "ACIT-014",
+      "question": "According to Appendix B, which family members are expressly included for a PEP?",
+      "exact_duplicate": false,
+      "max_token_jaccard": 0.2,
+      "nearest_retrieval_question": "What sources of information may a reporting institution use to identify family members or close associates of a PEP?",
+      "similarity_warning": false
+    },
+    {
+      "question_id": "ACIT-015",
+      "question": "Under Appendix D, does the death of a listed entity end the obligation to keep its funds, properties or accounts frozen?",
+      "exact_duplicate": false,
+      "max_token_jaccard": 0.2432,
+      "nearest_retrieval_question": "Which authorities must receive reports when a reporting institution possesses funds, properties or accounts of a listed entity, and what source of obligation is given for each authority?",
+      "similarity_warning": false
+    },
+    {
+      "question_id": "ACIT-016",
+      "question": "Under Appendix A, how often should the institution reassess its ML/TF/PF risks, and what documentation should support its RBA process?",
+      "exact_duplicate": false,
+      "max_token_jaccard": 0.303,
+      "nearest_retrieval_question": "What should a reporting institution do if it cannot adequately control the ML/TF/PF and associated risks of accepting third-party deposits?",
+      "similarity_warning": false
+    },
+    {
+      "question_id": "ACIT-017",
+      "question": "According to the List of Revisions, what were the revision date, effective date, and series number for the third revision?",
+      "exact_duplicate": false,
+      "max_token_jaccard": 0.2,
+      "nearest_retrieval_question": "What safeguards apply when relying on a third-party institution to conduct CDD, and who remains ultimately responsible for the CDD?",
+      "similarity_warning": false
+    },
+    {
+      "question_id": "ACIT-018",
+      "question": "What is today's USD to MYR exchange rate?",
+      "exact_duplicate": false,
+      "max_token_jaccard": 0.12,
+      "nearest_retrieval_question": "If the information initially collected is not enough to finish customer identification and verification, what should the reporting institution do?",
+      "similarity_warning": false
+    },
+    {
+      "question_id": "ACIT-019",
+      "question": "What will the weather be in Kuala Lumpur tomorrow?",
+      "exact_duplicate": false,
+      "max_token_jaccard": 0.1739,
+      "nearest_retrieval_question": "How long must CDD and transaction records be retained, and in what circumstances must records be kept beyond the normal retention period?",
+      "similarity_warning": false
+    },
+    {
+      "question_id": "ACIT-020",
+      "question": "Who is the current CEO of NVIDIA?",
+      "exact_duplicate": false,
+      "max_token_jaccard": 0.1429,
+      "nearest_retrieval_question": "Who qualifies as a designated person under the Guidelines?",
+      "similarity_warning": false
+    }
+  ]
+}

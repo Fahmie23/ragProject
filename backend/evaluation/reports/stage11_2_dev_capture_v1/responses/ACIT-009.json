@@ -1,0 +1,292 @@
+{
+  "document_id": "485c4989-c300-45c8-ac06-79a59492bb5c",
+  "question": "What controls and documentation are required when a reporting institution considers disclosures of a report or related information under section 14A(3) of the AMLA?",
+  "status": "answered",
+  "answer": "A reporting institution must establish proper policies and procedures to ensure effective controls when considering disclosures of a report or related information under section 14A(3) of the AMLA. The institution must establish parameters specifying the circumstances, the types of report or related information that may be disclosed, and the recipients of such disclosures under section 14A(3). All disclosures made pursuant to these parameters must be properly documented with reasonable justification. The compliance officer must ensure that transmission of the report or related information is conducted in a controlled environment and that its confidentiality is safeguarded to avoid leakage to an unauthorized third party.",
+  "cited_answer": "A reporting institution must establish proper policies and procedures to ensure effective controls when considering disclosures of a report or related information under section 14A(3) of the AMLA. [1] The institution must establish parameters specifying the circumstances, the types of report or related information that may be disclosed, and the recipients of such disclosures under section 14A(3). [1] All disclosures made pursuant to these parameters must be properly documented with reasonable justification. [1] The compliance officer must ensure that transmission of the report or related information is conducted in a controlled environment and that its confidentiality is safeguarded to avoid leakage to an unauthorized third party. [1]",
+  "claims": [
+    {
+      "claim_id": "C1",
+      "text": "A reporting institution must establish proper policies and procedures to ensure effective controls when considering disclosures of a report or related information under section 14A(3) of the AMLA.",
+      "evidence_ids": [
+        "E1"
+      ],
+      "citation_ids": [
+        "CIT-E1"
+      ]
+    },
+    {
+      "claim_id": "C2",
+      "text": "The institution must establish parameters specifying the circumstances, the types of report or related information that may be disclosed, and the recipients of such disclosures under section 14A(3).",
+      "evidence_ids": [
+        "E1"
+      ],
+      "citation_ids": [
+        "CIT-E1"
+      ]
+    },
+    {
+      "claim_id": "C3",
+      "text": "All disclosures made pursuant to these parameters must be properly documented with reasonable justification.",
+      "evidence_ids": [
+        "E1"
+      ],
+      "citation_ids": [
+        "CIT-E1"
+      ]
+    },
+    {
+      "claim_id": "C4",
+      "text": "The compliance officer must ensure that transmission of the report or related information is conducted in a controlled environment and that its confidentiality is safeguarded to avoid leakage to an unauthorized third party.",
+      "evidence_ids": [
+        "E1"
+      ],
+      "citation_ids": [
+        "CIT-E1"
+      ]
+    }
+  ],
+  "used_evidence_ids": [
+    "E1"
+  ],
+  "missing_information": [],
+  "evidence": [
+    {
+      "evidence_id": "E1",
+      "chunk_id": "485c4989-c300-45c8-ac06-79a59492bb5c-c0154-efe91f5828",
+      "chunk_index": 154,
+      "semantic_type": "clause",
+      "source_rank": 1,
+      "ranked_seed_rank": 1,
+      "reasons": [
+        "ranked_seed"
+      ],
+      "pages": [
+        58
+      ],
+      "section_path": [
+        "PART V: SUSPICIOUS TRANSACTIONS",
+        "12 CONFIDENTIALITY OF REPORTING"
+      ],
+      "source_element_ids": [
+        "p58-e2",
+        "p58-e3",
+        "p58-e4",
+        "p58-e5",
+        "p58-e6"
+      ],
+      "content_text": "12.1 It shall be an offence to disclose to anyone any information that a suspicion has been\nformed or that information or a STR has been communicated to the FIED and the SC\nor to infer that any of these have occurred.\n\n12.2 A person does not commit an offence under paragraph 12.1 above, where such a\ndisclosure is made pursuant to the provisions of the AMLA.\n\n12.3 A reporting institution is required to establish proper policies and procedures to\nensure effective controls when considering disclosures of report or related information\nunder section 14A(3) of the AMLA.\n\n12.4 The reporting institution must establish parameters on the circumstances where\ndisclosure is required, types of report or related information that may be disclosed\nand to whom it may be disclosed under section 14A(3) of the AMLA. All disclosures\nmade pursuant to these parameters must be properly documented with reasonable\njustification.\n\n12.5 The compliance officer must ensure that the transmission of the report or related\ninformation must be conducted in a controlled environment and that confidentiality\nof the report or related information is safeguarded to avoid any leakage to an\nunauthorised third part."
+    },
+    {
+      "evidence_id": "E2",
+      "chunk_id": "485c4989-c300-45c8-ac06-79a59492bb5c-c0055-88bd4ccfdd",
+      "chunk_index": 55,
+      "semantic_type": "clause",
+      "source_rank": 2,
+      "ranked_seed_rank": 2,
+      "reasons": [
+        "ranked_seed"
+      ],
+      "pages": [
+        19,
+        20
+      ],
+      "section_path": [
+        "PART I: INTRODUCTION AND APPLICABILITY",
+        "6. GENERAL PRINCIPLES AND POLICIES TO COMBAT MONEY\nLAUNDERING, TERRORISM FINANCING AND PROLIFERATION\nFINANCING"
+      ],
+      "source_element_ids": [
+        "p19-e8",
+        "p19-e9",
+        "p19-e10",
+        "p19-e11",
+        "p19-e12",
+        "p20-e1",
+        "p20-e2"
+      ],
+      "content_text": "6.2 In combating ML/TF/PF, a reporting institution must ensure the following:\n\n(a)Compliance with laws: A reporting institution must ensure that laws and\nregulations are adhered to, that business is conducted in conformity with high\nethical standards, and that service is not provided where there is good reason\nto suppose that transactions are associated with ML/TF/PF activities.\n\n(b)Co-operation with law enforcement agencies: A reporting institution\nmust co-operate fully with relevant law enforcement agencies. This includes\ntaking appropriate measures such as timely disclosure of information by the\nreporting institution to the FIED and the relevant law enforcement agencies.\n\n(c)Establishing internal controls: A reporting institution must issue and adopt\npolicies and procedures which are consistent with the principles set out under\nthe AMLA, TFS-PF related legislations and these Guidelines. A reporting\ninstitution must also ensure ongoing training programmes are conducted to\nkeep its board of directors, senior management and employees abreast on\nmatters under the AMLA and these Guidelines.\n\n(d)Risk-based approach: A reporting institution must ensure that the depth\nand breadth of its policies and procedures to identify, assess, monitor, manage\n\nand mitigate ML/TF/PF risks commensurate with the nature, scale and\ncomplexity of its activities.\n\n(e)Customer Due Diligence: A reporting institution must have an effective\nprocedure to identify its customers and to obtain satisfactory evidence to\nverify its customers’ identity."
+    },
+    {
+      "evidence_id": "E3",
+      "chunk_id": "485c4989-c300-45c8-ac06-79a59492bb5c-c0156-1ec1ec242b",
+      "chunk_index": 156,
+      "semantic_type": "clause",
+      "source_rank": 3,
+      "ranked_seed_rank": 3,
+      "reasons": [
+        "ranked_seed"
+      ],
+      "pages": [
+        60
+      ],
+      "section_path": [
+        "PART VII: COMBATING TERRORISM FINANCING",
+        "14 IDENTIFICATION AND DESIGNATION"
+      ],
+      "source_element_ids": [
+        "p60-e3",
+        "p60-e7"
+      ],
+      "content_text": "14.1 For the purposes of this part, a reporting institution refers to reporting institution as\ndefined in the Definition section under Part I of these Guidelines and includes a\nregistered person under section 76 of the CMSA that is registered under the Guidelines\non the Registration of Venture Capital and Private Equity Corporations and\nManagement Corporation.\n\n14.3 In ensuring efficient detection of suspected financing of terrorism, a reporting\ninstitution should maintain a database of names and particulars of listed persons in\nthe UN Consolidated List and such orders as may be issued under sections 66B and\n66C of the AMLA by the Minister of Home Affairs (collectively referred to as “listed\npersons” or “listed entities” as the case may be)."
+    },
+    {
+      "evidence_id": "E4",
+      "chunk_id": "485c4989-c300-45c8-ac06-79a59492bb5c-c0155-79c20a622f",
+      "chunk_index": 155,
+      "semantic_type": "clause",
+      "source_rank": 4,
+      "ranked_seed_rank": 4,
+      "reasons": [
+        "ranked_seed"
+      ],
+      "pages": [
+        59
+      ],
+      "section_path": [
+        "PART VI: ENFORCEMENT ORDERS",
+        "13 COMPLIANCE WITH ENFORCEMENT ORDERS"
+      ],
+      "source_element_ids": [
+        "p59-e3",
+        "p59-e4"
+      ],
+      "content_text": "13.1 A reporting institution must produce information or document requested by a relevant\nlaw enforcement agency, pursuant to any investigation order under the AMLA served\non the reporting institution (“enforcement orders”), within a reasonable time frame that\nhas been agreed upon between the investigating officer of the law enforcement agency\nand the reporting institution.\n\n13.2 A reporting institution must establish policies and procedures and systems to ensure no\nundue delay in responding to the enforcement orders."
+    },
+    {
+      "evidence_id": "E5",
+      "chunk_id": "485c4989-c300-45c8-ac06-79a59492bb5c-c0147-4ce9ccc098",
+      "chunk_index": 147,
+      "semantic_type": "clause",
+      "source_rank": 5,
+      "ranked_seed_rank": 5,
+      "reasons": [
+        "ranked_seed"
+      ],
+      "pages": [
+        55,
+        56
+      ],
+      "section_path": [
+        "PART V: SUSPICIOUS TRANSACTIONS",
+        "11 REPORTING OF SUSPICIOUS TRANSACTIONS"
+      ],
+      "source_element_ids": [
+        "p55-e3",
+        "p55-e4",
+        "p55-e5",
+        "p55-e6",
+        "p55-e13",
+        "p56-e1",
+        "p56-e2",
+        "p56-e3",
+        "p56-e4"
+      ],
+      "content_text": "11.1 A reporting institution must establish in place strong mechanisms for reporting\nsuspicious transactions, including having an appointed AML/CFT/CPF compliance\nofficer, and where appropriate, having a unit primarily responsible for complying with\nthe AML/CFT/CPF requirements on reporting of suspicious transactions.\n\n11.2 A reporting institution must also ensure that the suspicious transaction reporting\nmechanism is operated in a secured environment to maintain the confidentiality and\npreservation of secrecy.\n\n11.3 A reporting institution must clarify the economic background and purpose of any\ntransaction or business relationship if it appears unusual in relation to the reporting\ninstitution’s knowledge of the customer, or if the economic purpose or legality of the\ntransaction is not immediately clear. Special attention should also be paid to all\ncomplex and unusual patterns of transaction.\n\n11.4 A reporting institution must also consider whether the transactions involve a number\nof factors which when taken together may raise a suspicion that the transactions may\nbe connected with certain unlawful activities.\n\n11.6 If in bringing together all relevant factors, a reporting institution has reasonable\ngrounds to suspect that the transaction or the funds utilised involve proceeds of an\nunlawful activity or is related to terrorism financing and proliferation financing, such\ntransaction should be reported immediately to the FIED through lodgement of a STR.\n\n11.6A A reporting institution is required to have in place policies on the duration upon which\ninternal suspicious transaction reports must be reviewed by the reporting institution,\nincluding the circumstances when the timeframe can be exceeded, where necessary.\n\n11.7 Where the reporting institution decides that there are no reasonable grounds for\nsuspicion to warrant a lodgement of a STR, the reporting institution must establish the\ngrounds for such decision. In this regard, the compliance officer must ensure that the\nreporting institution’s decision together with all supporting documentary evidence is\nrecorded and maintained.\n\n11.8 A reporting institution is required to report all suspicious transactions, including\nattempted transactions, regardless of the amount of the transaction. A reporting\ninstitution should be aware that in some cases, suspicion may be formed after a\nconsiderable time from the date of the transaction, in view of subsequent additional\ninformation.\n\n11.9 STRs must be lodged to the FIED in accordance with the method as provided in\nAppendix C herein."
+    }
+  ],
+  "citations": [
+    {
+      "citation_id": "CIT-E1",
+      "marker": "[1]",
+      "evidence_id": "E1",
+      "chunk_id": "485c4989-c300-45c8-ac06-79a59492bb5c-c0154-efe91f5828",
+      "chunk_index": 154,
+      "source_filename": "sc_aml_cft.pdf",
+      "display": "Clause 12.1 · Clause 12.2 · Clause 12.3 · Clause 12.4 · Clause 12.5 · PDF p. 58",
+      "pages": [
+        58
+      ],
+      "section_path": [
+        "PART V: SUSPICIOUS TRANSACTIONS",
+        "12 CONFIDENTIALITY OF REPORTING"
+      ],
+      "source_element_ids": [
+        "p58-e2",
+        "p58-e3",
+        "p58-e4",
+        "p58-e5",
+        "p58-e6"
+      ],
+      "locators": [
+        {
+          "kind": "clause",
+          "label": "Clause 12.1",
+          "pages": [
+            58
+          ],
+          "source_element_ids": [
+            "p58-e2"
+          ]
+        },
+        {
+          "kind": "clause",
+          "label": "Clause 12.2",
+          "pages": [
+            58
+          ],
+          "source_element_ids": [
+            "p58-e3"
+          ]
+        },
+        {
+          "kind": "clause",
+          "label": "Clause 12.3",
+          "pages": [
+            58
+          ],
+          "source_element_ids": [
+            "p58-e4"
+          ]
+        },
+        {
+          "kind": "clause",
+          "label": "Clause 12.4",
+          "pages": [
+            58
+          ],
+          "source_element_ids": [
+            "p58-e5"
+          ]
+        },
+        {
+          "kind": "clause",
+          "label": "Clause 12.5",
+          "pages": [
+            58
+          ],
+          "source_element_ids": [
+            "p58-e6"
+          ]
+        }
+      ],
+      "validation_status": "valid"
+    }
+  ],
+  "citation_version": "deterministic_citations_v1_2",
+  "citation_validation": {
+    "status": "valid",
+    "citation_count": 1,
+    "valid_citation_count": 1,
+    "errors": []
+  },
+  "generation_provider": "groq",
+  "generation_model": "openai/gpt-oss-120b",
+  "prompt_version": "grounded_claims_v1",
+  "generation_temperature": 0.0,
+  "generation_max_tokens": 1200,
+  "generation_json_mode": true,
+  "usage": {
+    "prompt_tokens": 2142,
+    "completion_tokens": 566,
+    "total_tokens": 2708
+  },
+  "retrieval_profile": "retrieval_v1_stage8_2_top5",
+  "retrieval_top_k": 5,
+  "retrieval_candidate_k": 20,
+  "retrieval_rrf_k": 60,
+  "retrieval_dense_weight": 1.0,
+  "retrieval_lexical_weight": 1.0,
+  "context_strategy": "structural_one_hop_v1",
+  "context_chunk_count": 5,
+  "expanded_chunk_count": 0
+}

@@ -1,0 +1,6 @@
+PASS: frozen Stage 11 semantic calibration
+Rubric: stage11_semantic_rubric_v1
+Calibration: answer_citation_eval_dev_calibration_v1_frozen
+Questions: 9
+Semantic manifest: stage11_semantic_evaluation_v1 (3 files)
+Response binding checked: True

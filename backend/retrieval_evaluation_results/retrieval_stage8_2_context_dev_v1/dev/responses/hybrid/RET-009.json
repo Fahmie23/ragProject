@@ -1,0 +1,361 @@
+{
+  "document_id": "485c4989-c300-45c8-ac06-79a59492bb5c",
+  "query": "What elements must the ML/TF risk assessment process incorporate under paragraph 7.1.2?",
+  "embedding_model": "BAAI/bge-m3",
+  "requested_device": "auto",
+  "resolved_device": "cuda",
+  "top_k": 10,
+  "candidate_k": 20,
+  "embedded_chunk_count": 284,
+  "total_chunk_count": 284,
+  "fusion_method": "reciprocal_rank_fusion",
+  "rrf_k": 60,
+  "dense_weight": 1.0,
+  "lexical_weight": 1.0,
+  "lexical_ranking_method": "postgresql_fts_term_coverage_then_ts_rank_cd",
+  "lexical_query_mode": "or_content_terms_v1",
+  "lexical_terms": [
+    "elements",
+    "ml",
+    "tf",
+    "risk",
+    "assessment",
+    "process",
+    "incorporate",
+    "under",
+    "paragraph",
+    "7",
+    "1",
+    "2"
+  ],
+  "lexical_tsquery": "elements | ml | tf | risk | assessment | process | incorporate | under | paragraph | 7 | 1 | 2",
+  "hits": [
+    {
+      "rank": 1,
+      "chunk_id": "485c4989-c300-45c8-ac06-79a59492bb5c-c0067-954a8827d0",
+      "chunk_index": 67,
+      "semantic_type": "clause",
+      "fusion_score": 0.03278688524590164,
+      "dense_rank": 1,
+      "dense_score": 0.7475085854530334,
+      "dense_distance": 0.25249141454696655,
+      "dense_rrf_score": 0.01639344262295082,
+      "lexical_rank": 1,
+      "lexical_score": 1.8000001,
+      "lexical_matched_term_count": 5,
+      "lexical_term_coverage": 0.4166666666666667,
+      "lexical_rrf_score": 0.01639344262295082,
+      "text": "Section: PART II: RISK-BASED APPROACH APPLICATION > 7. RISK-BASED APPROACH APPLICATION > 7.1 ML/TF Risk assessment\nClause: 7.1.2\n\n7.1.2 The risk assessment processes must incorporate the following:\n\n(a)Documenting the reporting institution’s risk assessments and findings;\n\n(b)Considering all the relevant risk factors before determining the level of overall\nrisk and the appropriate level and type of mitigation to be applied;\n\n(c)Keeping the reporting institution’s risk assessment up-to-date taking into account\nchanges in surrounding circumstances affecting the reporting institution;\n\n(d)Having a scheduled periodic assessment or as and when specified by the\nSC; and\n\n(e)Having appropriate mechanisms to provide risk assessment information to the\nSC.",
+      "content_text": "7.1.2 The risk assessment processes must incorporate the following:\n\n(a)Documenting the reporting institution’s risk assessments and findings;\n\n(b)Considering all the relevant risk factors before determining the level of overall\nrisk and the appropriate level and type of mitigation to be applied;\n\n(c)Keeping the reporting institution’s risk assessment up-to-date taking into account\nchanges in surrounding circumstances affecting the reporting institution;\n\n(d)Having a scheduled periodic assessment or as and when specified by the\nSC; and\n\n(e)Having appropriate mechanisms to provide risk assessment information to the\nSC.",
+      "token_count": 151,
+      "pages": [
+        26
+      ],
+      "section_path": [
+        "PART II: RISK-BASED APPROACH APPLICATION",
+        "7. RISK-BASED APPROACH APPLICATION",
+        "7.1 ML/TF Risk assessment"
+      ],
+      "source_element_ids": [
+        "p26-e5",
+        "p26-e6",
+        "p26-e7",
+        "p26-e8",
+        "p26-e9",
+        "p26-e10"
+      ]
+    },
+    {
+      "rank": 2,
+      "chunk_id": "485c4989-c300-45c8-ac06-79a59492bb5c-c0068-9e14accdb9",
+      "chunk_index": 68,
+      "semantic_type": "mixed",
+      "fusion_score": 0.03128054740957967,
+      "dense_rank": 2,
+      "dense_score": 0.7376734018325806,
+      "dense_distance": 0.26232659816741943,
+      "dense_rrf_score": 0.016129032258064516,
+      "lexical_rank": 6,
+      "lexical_score": 1.0,
+      "lexical_matched_term_count": 4,
+      "lexical_term_coverage": 0.3333333333333333,
+      "lexical_rrf_score": 0.015151515151515152,
+      "text": "Section: PART II: RISK-BASED APPROACH APPLICATION > 7. RISK-BASED APPROACH APPLICATION > 7.1 ML/TF Risk assessment\nGroup: Guidance for paragraphs 7.1.1, 7.1.2, 7.1.3 and 7.1.4 :\n\nIn conducting the ML/TF risk assessment, reporting institutions may consider whether:\n\n(a) they are susceptible to the key and emerging crimes as well as higher-risk sectors\nidentified in the NRA; and\n\n(b) enhancements to their AML/CFT compliance programme are warranted to ensure\nany areas of higher ML/TF risks are appropriately mitigated.",
+      "content_text": "In conducting the ML/TF risk assessment, reporting institutions may consider whether:\n\n(a) they are susceptible to the key and emerging crimes as well as higher-risk sectors\nidentified in the NRA; and\n\n(b) enhancements to their AML/CFT compliance programme are warranted to ensure\nany areas of higher ML/TF risks are appropriately mitigated.",
+      "token_count": 123,
+      "pages": [
+        27
+      ],
+      "section_path": [
+        "PART II: RISK-BASED APPROACH APPLICATION",
+        "7. RISK-BASED APPROACH APPLICATION",
+        "7.1 ML/TF Risk assessment"
+      ],
+      "source_element_ids": [
+        "p27-e2",
+        "p27-e3",
+        "p27-e4"
+      ]
+    },
+    {
+      "rank": 3,
+      "chunk_id": "485c4989-c300-45c8-ac06-79a59492bb5c-c0074-dc49c8483f",
+      "chunk_index": 74,
+      "semantic_type": "clause",
+      "fusion_score": 0.031054405392392875,
+      "dense_rank": 7,
+      "dense_score": 0.6905175447463989,
+      "dense_distance": 0.3094824552536011,
+      "dense_rrf_score": 0.014925373134328358,
+      "lexical_rank": 2,
+      "lexical_score": 1.8000001,
+      "lexical_matched_term_count": 5,
+      "lexical_term_coverage": 0.4166666666666667,
+      "lexical_rrf_score": 0.016129032258064516,
+      "text": "Section: PART II: RISK-BASED APPROACH APPLICATION > 7. RISK-BASED APPROACH APPLICATION > 7.3    PF Risk assessment\nClause: 7.3.3\n\n7.3.3 The risk assessment processes must incorporate the following:\n\n(a) Documenting the reporting institution’s PF risk assessments and findings;\n\n(b) Considering all the relevant risk factors before determining the level of overall risk\nand the appropriate level and type of mitigation to be applied;\n\n(c) Keeping the reporting institution’s risk assessment up-to-date taking into account\nchanges in surrounding circumstances affecting the reporting institution;\n\n(d) Having a scheduled periodic assessment or as and when specified by the SC; and\n\n(e) Having appropriate mechanisms to provide risk assessment information to the SC.",
+      "content_text": "7.3.3 The risk assessment processes must incorporate the following:\n\n(a) Documenting the reporting institution’s PF risk assessments and findings;\n\n(b) Considering all the relevant risk factors before determining the level of overall risk\nand the appropriate level and type of mitigation to be applied;\n\n(c) Keeping the reporting institution’s risk assessment up-to-date taking into account\nchanges in surrounding circumstances affecting the reporting institution;\n\n(d) Having a scheduled periodic assessment or as and when specified by the SC; and\n\n(e) Having appropriate mechanisms to provide risk assessment information to the SC.",
+      "token_count": 150,
+      "pages": [
+        28
+      ],
+      "section_path": [
+        "PART II: RISK-BASED APPROACH APPLICATION",
+        "7. RISK-BASED APPROACH APPLICATION",
+        "7.3    PF Risk assessment"
+      ],
+      "source_element_ids": [
+        "p28-e2",
+        "p28-e3",
+        "p28-e4",
+        "p28-e5",
+        "p28-e6",
+        "p28-e7"
+      ]
+    },
+    {
+      "rank": 4,
+      "chunk_id": "485c4989-c300-45c8-ac06-79a59492bb5c-c0073-937810db87",
+      "chunk_index": 73,
+      "semantic_type": "clause",
+      "fusion_score": 0.030536130536130537,
+      "dense_rank": 6,
+      "dense_score": 0.6937428712844849,
+      "dense_distance": 0.30625712871551514,
+      "dense_rrf_score": 0.015151515151515152,
+      "lexical_rank": 5,
+      "lexical_score": 1.6,
+      "lexical_matched_term_count": 4,
+      "lexical_term_coverage": 0.3333333333333333,
+      "lexical_rrf_score": 0.015384615384615385,
+      "text": "Section: PART II: RISK-BASED APPROACH APPLICATION > 7. RISK-BASED APPROACH APPLICATION > 7.3    PF Risk assessment\n\n7.3.2 In conducting the risk assessment, a reporting institution may consider if the existing\nML/TF risk assessments methodologies are adequate to incorporate PF risks and may not\nnecessarily require a stand-alone or an entirely new methodology.\n\n7.3.4 A reporting institution is also required to identify and assess the PF risks that may arise\nin relation to the development of new products and new business practices, including\nnew delivery mechanisms, and the use of new or developing technologies for both new\nand pre-existing products. The reporting institution must undertake risk assessments\nprior to the launch or use of such products, practices and technologies and take\nappropriate measures to manage and mitigate such risks.",
+      "content_text": "7.3.2 In conducting the risk assessment, a reporting institution may consider if the existing\nML/TF risk assessments methodologies are adequate to incorporate PF risks and may not\nnecessarily require a stand-alone or an entirely new methodology.\n\n7.3.4 A reporting institution is also required to identify and assess the PF risks that may arise\nin relation to the development of new products and new business practices, including\nnew delivery mechanisms, and the use of new or developing technologies for both new\nand pre-existing products. The reporting institution must undertake risk assessments\nprior to the launch or use of such products, practices and technologies and take\nappropriate measures to manage and mitigate such risks.",
+      "token_count": 158,
+      "pages": [
+        28
+      ],
+      "section_path": [
+        "PART II: RISK-BASED APPROACH APPLICATION",
+        "7. RISK-BASED APPROACH APPLICATION",
+        "7.3    PF Risk assessment"
+      ],
+      "source_element_ids": [
+        "p28-e1",
+        "p28-e8"
+      ]
+    },
+    {
+      "rank": 5,
+      "chunk_id": "485c4989-c300-45c8-ac06-79a59492bb5c-c0066-84f6cf0cfe",
+      "chunk_index": 66,
+      "semantic_type": "clause",
+      "fusion_score": 0.029709507042253523,
+      "dense_rank": 4,
+      "dense_score": 0.7081020226357007,
+      "dense_distance": 0.29189797736429934,
+      "dense_rrf_score": 0.015625,
+      "lexical_rank": 11,
+      "lexical_score": 1.3000001,
+      "lexical_matched_term_count": 3,
+      "lexical_term_coverage": 0.25,
+      "lexical_rrf_score": 0.014084507042253521,
+      "text": "Section: PART II: RISK-BASED APPROACH APPLICATION > 7. RISK-BASED APPROACH APPLICATION > 7.1 ML/TF Risk assessment\n\n7.1.1 A reporting institution must take appropriate steps to identify, assess and understand\nits ML/TF risks, in relation to its customers, countries or geographical areas and\nproducts, services, transactions or delivery channels, and other relevant risk factors.\nAppendix A of these Guidelines provides for the measures to be adopted in\nimplementing a risk-based approach.\n\n7.1.3 A reporting institution must conduct additional assessment as and when required by\nthe SC.\n\n7.1.4 A reporting institution must be guided by the results of the NRA issued by the National\nCoordination Committee to Counter Money Laundering (NCC) in conducting its own\nrisk assessments. A reporting institution must take enhanced measures to manage\nand mitigate the risks identified in the NRA.",
+      "content_text": "7.1.1 A reporting institution must take appropriate steps to identify, assess and understand\nits ML/TF risks, in relation to its customers, countries or geographical areas and\nproducts, services, transactions or delivery channels, and other relevant risk factors.\nAppendix A of these Guidelines provides for the measures to be adopted in\nimplementing a risk-based approach.\n\n7.1.3 A reporting institution must conduct additional assessment as and when required by\nthe SC.\n\n7.1.4 A reporting institution must be guided by the results of the NRA issued by the National\nCoordination Committee to Counter Money Laundering (NCC) in conducting its own\nrisk assessments. A reporting institution must take enhanced measures to manage\nand mitigate the risks identified in the NRA.",
+      "token_count": 172,
+      "pages": [
+        26
+      ],
+      "section_path": [
+        "PART II: RISK-BASED APPROACH APPLICATION",
+        "7. RISK-BASED APPROACH APPLICATION",
+        "7.1 ML/TF Risk assessment"
+      ],
+      "source_element_ids": [
+        "p26-e4",
+        "p26-e11",
+        "p26-e12"
+      ]
+    },
+    {
+      "rank": 6,
+      "chunk_id": "485c4989-c300-45c8-ac06-79a59492bb5c-c0077-d9ccfb4d42",
+      "chunk_index": 77,
+      "semantic_type": "clause",
+      "fusion_score": 0.028985507246376812,
+      "dense_rank": 9,
+      "dense_score": 0.6577541436103509,
+      "dense_distance": 0.3422458563896491,
+      "dense_rrf_score": 0.014492753623188406,
+      "lexical_rank": 9,
+      "lexical_score": 1.4,
+      "lexical_matched_term_count": 3,
+      "lexical_term_coverage": 0.25,
+      "lexical_rrf_score": 0.014492753623188406,
+      "text": "Section: PART II: RISK-BASED APPROACH APPLICATION > 7. RISK-BASED APPROACH APPLICATION > 7.5 Risk profiling of customers\n\n7.5.1 A reporting institution must implement and maintain appropriate policies and procedures\nto conduct risk profiling of its customer.\n\n7.5.2 A reporting institution must conduct risk profiling on its customers during the\nestablishment of the business relationship and assign a ML/TF/PF risk rating that\ncommensurate with the customer’s risk profile.\n\n7.5.4 In assessing the level of risk of a customer from a particular country, a reporting\ninstitution shall assess the standards of prevention of ML/TF/PF in that country based on\nthe reporting institution’s knowledge, experience and other reliable sources of that\ncountry. The higher the risk, the greater the due diligence measures that should be\napplied when undertaking business with the customer from that country.\n\n7.5.5 After the initial acceptance of the customer, reporting institutions are required to regularly\nupdate the customer’s risk profile based on their level of ML/TF/PF risks.",
+      "content_text": "7.5.1 A reporting institution must implement and maintain appropriate policies and procedures\nto conduct risk profiling of its customer.\n\n7.5.2 A reporting institution must conduct risk profiling on its customers during the\nestablishment of the business relationship and assign a ML/TF/PF risk rating that\ncommensurate with the customer’s risk profile.\n\n7.5.4 In assessing the level of risk of a customer from a particular country, a reporting\ninstitution shall assess the standards of prevention of ML/TF/PF in that country based on\nthe reporting institution’s knowledge, experience and other reliable sources of that\ncountry. The higher the risk, the greater the due diligence measures that should be\napplied when undertaking business with the customer from that country.\n\n7.5.5 After the initial acceptance of the customer, reporting institutions are required to regularly\nupdate the customer’s risk profile based on their level of ML/TF/PF risks.",
+      "token_count": 210,
+      "pages": [
+        29
+      ],
+      "section_path": [
+        "PART II: RISK-BASED APPROACH APPLICATION",
+        "7. RISK-BASED APPROACH APPLICATION",
+        "7.5 Risk profiling of customers"
+      ],
+      "source_element_ids": [
+        "p29-e5",
+        "p29-e6",
+        "p29-e13",
+        "p29-e14"
+      ]
+    },
+    {
+      "rank": 7,
+      "chunk_id": "485c4989-c300-45c8-ac06-79a59492bb5c-c0192-a02b79c891",
+      "chunk_index": 192,
+      "semantic_type": "clause",
+      "fusion_score": 0.028594771241830064,
+      "dense_rank": 12,
+      "dense_score": 0.6399341440240071,
+      "dense_distance": 0.36006585597599294,
+      "dense_rrf_score": 0.013888888888888888,
+      "lexical_rank": 8,
+      "lexical_score": 2.7,
+      "lexical_matched_term_count": 3,
+      "lexical_term_coverage": 0.25,
+      "lexical_rrf_score": 0.014705882352941176,
+      "text": "Section: APPENDIX A > 3.0 A: Perform Risk Assessment\nGroup: Business-based Risk Assessment (BbRA)\n\n3.6 By applying all the risk factors and parameters in performing its risk assessment, the\nreporting institution would be able to determine the extent of ML/TF/PF risks that it\nis exposed to, on a quantitative and/or qualitative basis.\n\n3.7 The outcome of the risk assessment will determine the level of risk the reporting\ninstitution is willing to accept i.e. the reporting institution’s risk appetite and its\nappropriate risk rating. The risk appetite and risk rating will have a direct impact\non the proposed risk management and mitigation procedures, systems and controls\nadopted by the reporting institution.\n\n3.8 Apart from ensuring that the risk assessment is reflected in the policies and\nprocedures, a reporting institution must also be able to justify the outcome of the risk\nassessment conducted.\n\n3.9 Once the reporting institution has identified and assessed the ML/TF/PF risks it faces\nupon performing its risk assessment under paragraph 3 above, a reporting institution\nmust ensure that appropriate risk control measures are formulated and implemented\nin order to manage and mitigate these risks.",
+      "content_text": "3.6 By applying all the risk factors and parameters in performing its risk assessment, the\nreporting institution would be able to determine the extent of ML/TF/PF risks that it\nis exposed to, on a quantitative and/or qualitative basis.\n\n3.7 The outcome of the risk assessment will determine the level of risk the reporting\ninstitution is willing to accept i.e. the reporting institution’s risk appetite and its\nappropriate risk rating. The risk appetite and risk rating will have a direct impact\non the proposed risk management and mitigation procedures, systems and controls\nadopted by the reporting institution.\n\n3.8 Apart from ensuring that the risk assessment is reflected in the policies and\nprocedures, a reporting institution must also be able to justify the outcome of the risk\nassessment conducted.\n\n3.9 Once the reporting institution has identified and assessed the ML/TF/PF risks it faces\nupon performing its risk assessment under paragraph 3 above, a reporting institution\nmust ensure that appropriate risk control measures are formulated and implemented\nin order to manage and mitigate these risks.",
+      "token_count": 228,
+      "pages": [
+        74
+      ],
+      "section_path": [
+        "APPENDIX A",
+        "3.0 A: Perform Risk Assessment"
+      ],
+      "source_element_ids": [
+        "p74-e3",
+        "p74-e4",
+        "p74-e5",
+        "p74-e6"
+      ]
+    },
+    {
+      "rank": 8,
+      "chunk_id": "485c4989-c300-45c8-ac06-79a59492bb5c-c0080-4341282f62",
+      "chunk_index": 80,
+      "semantic_type": "clause",
+      "fusion_score": 0.02857142857142857,
+      "dense_rank": 10,
+      "dense_score": 0.6511247158050537,
+      "dense_distance": 0.3488752841949463,
+      "dense_rrf_score": 0.014285714285714285,
+      "lexical_rank": 10,
+      "lexical_score": 1.4,
+      "lexical_matched_term_count": 3,
+      "lexical_term_coverage": 0.25,
+      "lexical_rrf_score": 0.014285714285714285,
+      "text": "Section: PART II: RISK-BASED APPROACH APPLICATION > 7. RISK-BASED APPROACH APPLICATION > 7.6 Risk management and mitigation in third-party deposits and payments\n\n7.6.1 There are ML/TF/PF risks as well as other risks associated with third-party deposits made\ninto accounts maintained by customers of a reporting institution.\n\n7.6.2 In view of the risks associated with third-party deposits, reporting institutions must in\nconducting its risk assessment consider and assess the risk arising from third-party\ndeposits and ensure that appropriate control measures are implemented to mitigate the\nrisk and/or prevent ML/TF/PF activities.\n\n7.6.3 A reporting institution which accepts third-party deposit must at minimum, comply with\nthe requirements on control measures in accepting third-party deposits set out in\nAppendix A1 of these Guidelines.\n\n7.6.4 A reporting institution which is unable to exercise appropriate control measures to\nmitigate the inherent ML/TF/PF risk and other associated risks and meet the relevant\ncompliance requirements must not accept any third-party deposits.\n\n7.6.5 Generally, a reporting institution must not accept any request from customers for\npayments to be made from the customers’ account into a third-party account except in\nexceptional circumstances where permitted in relevant guidelines.",
+      "content_text": "7.6.1 There are ML/TF/PF risks as well as other risks associated with third-party deposits made\ninto accounts maintained by customers of a reporting institution.\n\n7.6.2 In view of the risks associated with third-party deposits, reporting institutions must in\nconducting its risk assessment consider and assess the risk arising from third-party\ndeposits and ensure that appropriate control measures are implemented to mitigate the\nrisk and/or prevent ML/TF/PF activities.\n\n7.6.3 A reporting institution which accepts third-party deposit must at minimum, comply with\nthe requirements on control measures in accepting third-party deposits set out in\nAppendix A1 of these Guidelines.\n\n7.6.4 A reporting institution which is unable to exercise appropriate control measures to\nmitigate the inherent ML/TF/PF risk and other associated risks and meet the relevant\ncompliance requirements must not accept any third-party deposits.\n\n7.6.5 Generally, a reporting institution must not accept any request from customers for\npayments to be made from the customers’ account into a third-party account except in\nexceptional circumstances where permitted in relevant guidelines.",
+      "token_count": 255,
+      "pages": [
+        30
+      ],
+      "section_path": [
+        "PART II: RISK-BASED APPROACH APPLICATION",
+        "7. RISK-BASED APPROACH APPLICATION",
+        "7.6 Risk management and mitigation in third-party deposits and payments"
+      ],
+      "source_element_ids": [
+        "p30-e4",
+        "p30-e5",
+        "p30-e6",
+        "p30-e7",
+        "p30-e8"
+      ]
+    },
+    {
+      "rank": 9,
+      "chunk_id": "485c4989-c300-45c8-ac06-79a59492bb5c-c0069-fc0dcb44a4",
+      "chunk_index": 69,
+      "semantic_type": "clause",
+      "fusion_score": 0.02854251012145749,
+      "dense_rank": 5,
+      "dense_score": 0.6990019858478329,
+      "dense_distance": 0.3009980141521671,
+      "dense_rrf_score": 0.015384615384615385,
+      "lexical_rank": 16,
+      "lexical_score": 1.0,
+      "lexical_matched_term_count": 3,
+      "lexical_term_coverage": 0.25,
+      "lexical_rrf_score": 0.013157894736842105,
+      "text": "Section: PART II: RISK-BASED APPROACH APPLICATION > 7. RISK-BASED APPROACH APPLICATION > 7.1 ML/TF Risk assessment\nClause: 7.1.5\n\n7.1.5 A reporting institution is also required to identify and assess the ML/TF risks that may\narise in relation to the development of new products and new business practices,\nincluding new delivery mechanisms, and the use of new or developing technologies for\nboth new and pre-existing products. The reporting institution must undertake risk\nassessments prior to the launch or use of such products, practices and technologies\nand take appropriate measures to manage and mitigate such risks.",
+      "content_text": "7.1.5 A reporting institution is also required to identify and assess the ML/TF risks that may\narise in relation to the development of new products and new business practices,\nincluding new delivery mechanisms, and the use of new or developing technologies for\nboth new and pre-existing products. The reporting institution must undertake risk\nassessments prior to the launch or use of such products, practices and technologies\nand take appropriate measures to manage and mitigate such risks.",
+      "token_count": 123,
+      "pages": [
+        27
+      ],
+      "section_path": [
+        "PART II: RISK-BASED APPROACH APPLICATION",
+        "7. RISK-BASED APPROACH APPLICATION",
+        "7.1 ML/TF Risk assessment"
+      ],
+      "source_element_ids": [
+        "p27-e5"
+      ]
+    },
+    {
+      "rank": 10,
+      "chunk_id": "485c4989-c300-45c8-ac06-79a59492bb5c-c0070-bfadb14a87",
+      "chunk_index": 70,
+      "semantic_type": "clause",
+      "fusion_score": 0.028531243721117136,
+      "dense_rank": 3,
+      "dense_score": 0.7223042249679565,
+      "dense_distance": 0.27769577503204346,
+      "dense_rrf_score": 0.015873015873015872,
+      "lexical_rank": 19,
+      "lexical_score": 0.8,
+      "lexical_matched_term_count": 3,
+      "lexical_term_coverage": 0.25,
+      "lexical_rrf_score": 0.012658227848101266,
+      "text": "Section: PART II: RISK-BASED APPROACH APPLICATION > 7. RISK-BASED APPROACH APPLICATION > 7.2 ML/TF Risk management and mitigation\nClause: 7.2.1\n\n7.2.1 A reporting institution is required to–\n\n(a)have policies, procedures and controls, which are approved by the board of\ndirectors, to enable it to manage and mitigate effectively the ML/TF risks that\nhave been identified and assessed;\n\n(b)monitor the implementation of those policies, procedures and controls and\nto enhance them if necessary; and\n\n(c)take enhanced measures to manage and mitigate the risks where higher\nrisks are identified.",
+      "content_text": "7.2.1 A reporting institution is required to–\n\n(a)have policies, procedures and controls, which are approved by the board of\ndirectors, to enable it to manage and mitigate effectively the ML/TF risks that\nhave been identified and assessed;\n\n(b)monitor the implementation of those policies, procedures and controls and\nto enhance them if necessary; and\n\n(c)take enhanced measures to manage and mitigate the risks where higher\nrisks are identified.",
+      "token_count": 126,
+      "pages": [
+        27
+      ],
+      "section_path": [
+        "PART II: RISK-BASED APPROACH APPLICATION",
+        "7. RISK-BASED APPROACH APPLICATION",
+        "7.2 ML/TF Risk management and mitigation"
+      ],
+      "source_element_ids": [
+        "p27-e7",
+        "p27-e8",
+        "p27-e9",
+        "p27-e10"
+      ]
+    }
+  ]
+}

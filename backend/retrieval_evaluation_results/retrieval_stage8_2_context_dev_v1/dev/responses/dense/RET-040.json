@@ -1,0 +1,250 @@
+{
+  "document_id": "485c4989-c300-45c8-ac06-79a59492bb5c",
+  "query": "Where are the explanatory notes for maintaining the proliferation-financing sanctions list provided?",
+  "embedding_model": "BAAI/bge-m3",
+  "requested_device": "auto",
+  "resolved_device": "cuda",
+  "top_k": 10,
+  "embedded_chunk_count": 284,
+  "total_chunk_count": 284,
+  "hits": [
+    {
+      "rank": 1,
+      "chunk_id": "485c4989-c300-45c8-ac06-79a59492bb5c-c0164-45aead3b04",
+      "chunk_index": 164,
+      "semantic_type": "clause",
+      "score": 0.6966428341482492,
+      "distance": 0.30335716585175077,
+      "text": "Section: PART VIII: COMBATING PROLIFERATION FINANCING > 16. MAINTENANCE OF SANCTIONS LIST\nClause: 16.2\n\n16.2 Explanatory notes in relation to maintenance of sanctions list are set out in Appendix\nH.",
+      "content_text": "16.2 Explanatory notes in relation to maintenance of sanctions list are set out in Appendix\nH.",
+      "token_count": 39,
+      "pages": [
+        62
+      ],
+      "section_path": [
+        "PART VIII: COMBATING PROLIFERATION FINANCING",
+        "16. MAINTENANCE OF SANCTIONS LIST"
+      ],
+      "source_element_ids": [
+        "p62-e8"
+      ]
+    },
+    {
+      "rank": 2,
+      "chunk_id": "485c4989-c300-45c8-ac06-79a59492bb5c-c0163-0d80ab7fa7",
+      "chunk_index": 163,
+      "semantic_type": "clause",
+      "score": 0.6239916534433823,
+      "distance": 0.37600834655661775,
+      "text": "Section: PART VIII: COMBATING PROLIFERATION FINANCING > 16. MAINTENANCE OF SANCTIONS LIST\nClause: 16.1\n\n16.1 A reporting institution must put in place and implement policies and procedures to:\n\n(a) keep itself updated with the various resolutions passed by the United Nations\nSecurity Council on TFS-PF, in particular the list of countries and persons\ndesignated under the relevant UNSCR published on the UN website as and when\nthere are new or subsequent decisions by the relevant UNSC Sanctions\nCommittee; and\n\n(b) maintain an updated and current database of names and particulars of\ndesignated persons in the UN Consolidated List to enable it to detect suspected\nproliferators.",
+      "content_text": "16.1 A reporting institution must put in place and implement policies and procedures to:\n\n(a) keep itself updated with the various resolutions passed by the United Nations\nSecurity Council on TFS-PF, in particular the list of countries and persons\ndesignated under the relevant UNSCR published on the UN website as and when\nthere are new or subsequent decisions by the relevant UNSC Sanctions\nCommittee; and\n\n(b) maintain an updated and current database of names and particulars of\ndesignated persons in the UN Consolidated List to enable it to detect suspected\nproliferators.",
+      "token_count": 123,
+      "pages": [
+        62
+      ],
+      "section_path": [
+        "PART VIII: COMBATING PROLIFERATION FINANCING",
+        "16. MAINTENANCE OF SANCTIONS LIST"
+      ],
+      "source_element_ids": [
+        "p62-e5",
+        "p62-e6",
+        "p62-e7"
+      ]
+    },
+    {
+      "rank": 3,
+      "chunk_id": "485c4989-c300-45c8-ac06-79a59492bb5c-c0276-b02b6aba4d",
+      "chunk_index": 276,
+      "semantic_type": "clause",
+      "score": 0.6101963984732196,
+      "distance": 0.3898036015267804,
+      "text": "Section: APPENDIX H\nGroup: EXPLANATORY NOTES IN RELATION TO MAINTENANCE OF SANCTIONS LIST\n(in relation to Paragraph 16.2 of the Guidelines)\n\n1. The sanction lists are available in the respective UNSCR sanctions webpage (e.g. 1718\nfor DPRK), under the heading of ‘Sanction List Materials’ including:\n\n(a) DPRK: United Nations Security Council Committee established pursuant to\nResolution 1718 (2006); and\n\n(b) Any other UNSCR as specified by the SC in these Guidelines.\n\n2. The updated UN Consolidated List can be obtained at http://www.un.org/ or\nhttps://www.un.org/sc/suborg/en/sanctions/un-sc-consolidated-list\n\n3. A capital market intermediary must take note that Strategic Trade (Restricted End-\nUsers and Prohibited End-Users) Order 2010 (P.U. (A) 484/2010) provides for an\nautomatic application of the UNSCR lists by making reference to the updated list in\nthe UN website. Therefore, for the UNSCR lists, a capital market intermediary is\nadvised to update its database regularly, without delay.\n\n4. A capital market intermediary may consider subscribing to electronic subscription\nservices to maintain the updated UNSCRs.\n\n5. The delisting of any designated country or designated person under UNSCRs shall\nautomatically take effect when the designated country or person is removed by the\nrelevant UNSC Sanctions Committee.",
+      "content_text": "1. The sanction lists are available in the respective UNSCR sanctions webpage (e.g. 1718\nfor DPRK), under the heading of ‘Sanction List Materials’ including:\n\n(a) DPRK: United Nations Security Council Committee established pursuant to\nResolution 1718 (2006); and\n\n(b) Any other UNSCR as specified by the SC in these Guidelines.\n\n2. The updated UN Consolidated List can be obtained at http://www.un.org/ or\nhttps://www.un.org/sc/suborg/en/sanctions/un-sc-consolidated-list\n\n3. A capital market intermediary must take note that Strategic Trade (Restricted End-\nUsers and Prohibited End-Users) Order 2010 (P.U. (A) 484/2010) provides for an\nautomatic application of the UNSCR lists by making reference to the updated list in\nthe UN website. Therefore, for the UNSCR lists, a capital market intermediary is\nadvised to update its database regularly, without delay.\n\n4. A capital market intermediary may consider subscribing to electronic subscription\nservices to maintain the updated UNSCRs.\n\n5. The delisting of any designated country or designated person under UNSCRs shall\nautomatically take effect when the designated country or person is removed by the\nrelevant UNSC Sanctions Committee.",
+      "token_count": 274,
+      "pages": [
+        106
+      ],
+      "section_path": [
+        "APPENDIX H"
+      ],
+      "source_element_ids": [
+        "p106-e3",
+        "p106-e4",
+        "p106-e5",
+        "p106-e6",
+        "p106-e7",
+        "p106-e8",
+        "p106-e9"
+      ]
+    },
+    {
+      "rank": 4,
+      "chunk_id": "485c4989-c300-45c8-ac06-79a59492bb5c-c0238-d6ba6b2474",
+      "chunk_index": 238,
+      "semantic_type": "clause",
+      "score": 0.5772818830869378,
+      "distance": 0.42271811691306216,
+      "text": "Section: APPENDIX D > Obligation to maintain the sanctions list\nClause: 2.2\nGroup: Guidance on the Implementation of Targeted Financial Sanction in\nRelation to Terrorism Financing\n\n2.2 A reporting institution must take note that Amendment Order 2014 (P.U. (A)\n225/2014) provides for an automatic application of the UNSCR lists by making\nreference to the updated list in the UN website. Therefore, for the UNSCR lists, a\n\nreporting institution is advised to update its database regularly, not more than two\nweeks interval.",
+      "content_text": "2.2 A reporting institution must take note that Amendment Order 2014 (P.U. (A)\n225/2014) provides for an automatic application of the UNSCR lists by making\nreference to the updated list in the UN website. Therefore, for the UNSCR lists, a\n\nreporting institution is advised to update its database regularly, not more than two\nweeks interval.",
+      "token_count": 102,
+      "pages": [
+        87,
+        88
+      ],
+      "section_path": [
+        "APPENDIX D",
+        "Obligation to maintain the sanctions list"
+      ],
+      "source_element_ids": [
+        "p87-e4",
+        "p88-e1"
+      ]
+    },
+    {
+      "rank": 5,
+      "chunk_id": "485c4989-c300-45c8-ac06-79a59492bb5c-c0053-46174d100c",
+      "chunk_index": 53,
+      "semantic_type": "clause",
+      "score": 0.5728763851074754,
+      "distance": 0.4271236148925246,
+      "text": "Section: PART I: INTRODUCTION AND APPLICABILITY > 5 A. GENERAL DESCRIPTION OF PROLIFERATION FINANCING\n\n5 A.1 In response to growing concerns over the proliferation of nuclear, biological and\nchemical weapons and their means of delivery which continue to pose a significant\nthreat to international peace and security, the United Nations Security Council (UNSC)\nhas intensified efforts to strengthen its global sanctions regime in order to prevent,\nsuppress and disrupt proliferation of weapons of mass destruction and its financing.\n\n5 A.2 As is the case with other UNSC sanctions programmes, targeted financial sanctions on\ncountries and specifically identified individuals and entities (i.e. designated persons)\nis the primary aspect of its overall sanctions regime to effectively disrupt financial\nflows across known proliferation networks.\n\n5 A.3 Recommendation 7 of the Financial Action Task Force (FATF) Standards requires\ncountries to implement TFS-PF made under UNSCRs. Under this standard, countries\nare required to implement targeted financial sanctions without delay to comply with\nUNSCRs relating to the prevention, suppression and disruption of the proliferation of\nweapons of mass destruction and its financing.\n\n5 A.4 Proliferation financing refers to the act of raising, moving, or making available funds,\nother assets or other economic resources, or financing, in whole or in part, to persons\nor entities for purposes of weapons of mass destruction (WMD) proliferation, including\nthe proliferation of their means of delivery or related materials (including both dual-\nuse technologies and dual-use goods for non-legitimate purposes).\n\n5 A.5 TFS-PF are applicable to persons designated by the UNSC or the relevant committees\nset up by the UNSC. Designation or listing criteria are:\n\n(a) Person engaging in or providing support for, including through illicit means,\nproliferation-sensitive activities and programmes;\n\n(b) Acting on behalf of or at the direction of designated person;\n\n(c) Owned or controlled by designated person; and\n\n(d) Person assisting designated person in evading sanctions, or violating UNSCR\nprovisions.",
+      "content_text": "5 A.1 In response to growing concerns over the proliferation of nuclear, biological and\nchemical weapons and their means of delivery which continue to pose a significant\nthreat to international peace and security, the United Nations Security Council (UNSC)\nhas intensified efforts to strengthen its global sanctions regime in order to prevent,\nsuppress and disrupt proliferation of weapons of mass destruction and its financing.\n\n5 A.2 As is the case with other UNSC sanctions programmes, targeted financial sanctions on\ncountries and specifically identified individuals and entities (i.e. designated persons)\nis the primary aspect of its overall sanctions regime to effectively disrupt financial\nflows across known proliferation networks.\n\n5 A.3 Recommendation 7 of the Financial Action Task Force (FATF) Standards requires\ncountries to implement TFS-PF made under UNSCRs. Under this standard, countries\nare required to implement targeted financial sanctions without delay to comply with\nUNSCRs relating to the prevention, suppression and disruption of the proliferation of\nweapons of mass destruction and its financing.\n\n5 A.4 Proliferation financing refers to the act of raising, moving, or making available funds,\nother assets or other economic resources, or financing, in whole or in part, to persons\nor entities for purposes of weapons of mass destruction (WMD) proliferation, including\nthe proliferation of their means of delivery or related materials (including both dual-\nuse technologies and dual-use goods for non-legitimate purposes).\n\n5 A.5 TFS-PF are applicable to persons designated by the UNSC or the relevant committees\nset up by the UNSC. Designation or listing criteria are:\n\n(a) Person engaging in or providing support for, including through illicit means,\nproliferation-sensitive activities and programmes;\n\n(b) Acting on behalf of or at the direction of designated person;\n\n(c) Owned or controlled by designated person; and\n\n(d) Person assisting designated person in evading sanctions, or violating UNSCR\nprovisions.",
+      "token_count": 384,
+      "pages": [
+        18,
+        19
+      ],
+      "section_path": [
+        "PART I: INTRODUCTION AND APPLICABILITY",
+        "5 A. GENERAL DESCRIPTION OF PROLIFERATION FINANCING"
+      ],
+      "source_element_ids": [
+        "p18-e9",
+        "p18-e10",
+        "p18-e11",
+        "p18-e12",
+        "p19-e1",
+        "p19-e2",
+        "p19-e3",
+        "p19-e4",
+        "p19-e5"
+      ]
+    },
+    {
+      "rank": 6,
+      "chunk_id": "485c4989-c300-45c8-ac06-79a59492bb5c-c0000-deae3315c3",
+      "chunk_index": 0,
+      "semantic_type": "title",
+      "score": 0.5652675291736496,
+      "distance": 0.43473247082635036,
+      "text": "GUIDELINES ON PREVENTION\nOF MONEY LAUNDERING,\nCOUNTERING FINANCING OF\nTERRORISM, COUNTERING\nPROLIFERATION FINANCING\nAND TARGETED FINANCIAL\nSANCTIONS FOR REPORTING\nINSTITUTIONS IN THE\nCAPITAL MARKET",
+      "content_text": "GUIDELINES ON PREVENTION\nOF MONEY LAUNDERING,\nCOUNTERING FINANCING OF\nTERRORISM, COUNTERING\nPROLIFERATION FINANCING\nAND TARGETED FINANCIAL\nSANCTIONS FOR REPORTING\nINSTITUTIONS IN THE\nCAPITAL MARKET",
+      "token_count": 26,
+      "pages": [
+        1
+      ],
+      "section_path": [],
+      "source_element_ids": [
+        "p1-e3"
+      ]
+    },
+    {
+      "rank": 7,
+      "chunk_id": "485c4989-c300-45c8-ac06-79a59492bb5c-c0237-06eb0908af",
+      "chunk_index": 237,
+      "semantic_type": "clause",
+      "score": 0.5479654016536034,
+      "distance": 0.4520345983463966,
+      "text": "Section: APPENDIX D > Obligation to maintain the sanctions list\nGroup: Guidance on the Implementation of Targeted Financial Sanction in\nRelation to Terrorism Financing\n\n2.1 In implementing the requirements in paragraphs 14.1 and 14.2 of the Guidelines, a\nreporting institution should have policies and procedures to ensure compliance with\nthe obligation to maintain the lists of listed entities in respect the UNSCR and domestic\nlists.\n\n2.3 For the domestic lists, a reporting institution should keep the lists updated as soon as\nthe subsidiary legislation via Orders are published in the gazette by the Ministry of\nHome Affairs.\n\n2.4 Reporting institution must observe the following for the purpose of delisting any listed\nentities:\n\n(a)For any listed entities under UNSCR list, delisting shall take effect automatically\nas soonest as the listed entities are removed from the UNSCR lists; and\n\n(b)For any listed entities under the domestic list, delisting shall take effect\nupon the publication of the subsidiary legislation via Orders by the Ministry of\nHome Affairs on removal of such listed entities.\n\n2.5 A reporting institution may consider subscribing electronic subscription services to\nmaintain the updated UNSCR and domestic lists. However, the ultimate responsibility\nto ensure that the lists are up to date remains with the reporting institution.",
+      "content_text": "2.1 In implementing the requirements in paragraphs 14.1 and 14.2 of the Guidelines, a\nreporting institution should have policies and procedures to ensure compliance with\nthe obligation to maintain the lists of listed entities in respect the UNSCR and domestic\nlists.\n\n2.3 For the domestic lists, a reporting institution should keep the lists updated as soon as\nthe subsidiary legislation via Orders are published in the gazette by the Ministry of\nHome Affairs.\n\n2.4 Reporting institution must observe the following for the purpose of delisting any listed\nentities:\n\n(a)For any listed entities under UNSCR list, delisting shall take effect automatically\nas soonest as the listed entities are removed from the UNSCR lists; and\n\n(b)For any listed entities under the domestic list, delisting shall take effect\nupon the publication of the subsidiary legislation via Orders by the Ministry of\nHome Affairs on removal of such listed entities.\n\n2.5 A reporting institution may consider subscribing electronic subscription services to\nmaintain the updated UNSCR and domestic lists. However, the ultimate responsibility\nto ensure that the lists are up to date remains with the reporting institution.",
+      "token_count": 238,
+      "pages": [
+        87,
+        88
+      ],
+      "section_path": [
+        "APPENDIX D",
+        "Obligation to maintain the sanctions list"
+      ],
+      "source_element_ids": [
+        "p87-e3",
+        "p88-e2",
+        "p88-e3",
+        "p88-e4",
+        "p88-e5",
+        "p88-e6"
+      ]
+    },
+    {
+      "rank": 8,
+      "chunk_id": "485c4989-c300-45c8-ac06-79a59492bb5c-c0245-2a27d3f444",
+      "chunk_index": 245,
+      "semantic_type": "table",
+      "score": 0.5453150380866256,
+      "distance": 0.4546849619133744,
+      "text": "Section: APPENDIX D > Reporting requirements\nGroup: Guidance on the Implementation of Targeted Financial Sanction in\nRelation to Terrorism Financing\n\nList | UNSCR List | Domestic List\nReporting intervals | Every 31 January | Every 31 May and\n | and 31 July | 30 November",
+      "content_text": "List | UNSCR List | Domestic List\nReporting intervals | Every 31 January | Every 31 May and\n | and 31 July | 30 November",
+      "token_count": 47,
+      "pages": [
+        90
+      ],
+      "section_path": [
+        "APPENDIX D",
+        "Reporting requirements"
+      ],
+      "source_element_ids": [
+        "p90-e6"
+      ]
+    },
+    {
+      "rank": 9,
+      "chunk_id": "485c4989-c300-45c8-ac06-79a59492bb5c-c0158-745b591a48",
+      "chunk_index": 158,
+      "semantic_type": "paragraph",
+      "score": 0.5238440008349455,
+      "distance": 0.47615599916505447,
+      "text": "Section: PART VII: COMBATING TERRORISM FINANCING > 14 IDENTIFICATION AND DESIGNATION\nGroup: Note:\n\nThe updated UN Consolidated List can be obtained at http://www.un.org/.",
+      "content_text": "The updated UN Consolidated List can be obtained at http://www.un.org/.",
+      "token_count": 37,
+      "pages": [
+        60
+      ],
+      "section_path": [
+        "PART VII: COMBATING TERRORISM FINANCING",
+        "14 IDENTIFICATION AND DESIGNATION"
+      ],
+      "source_element_ids": [
+        "p60-e9"
+      ]
+    },
+    {
+      "rank": 10,
+      "chunk_id": "485c4989-c300-45c8-ac06-79a59492bb5c-c0006-7370ea1972",
+      "chunk_index": 6,
+      "semantic_type": "clause",
+      "score": 0.5175615219661861,
+      "distance": 0.4824384780338139,
+      "text": "Section: PART I: INTRODUCTION AND APPLICABILITY > 1.0 INTRODUCTION\nClause: 1.1\n\n1.1 The Guidelines on Prevention of Money Laundering, Countering Financing of Terrorism,\nCountering Proliferation Financing and Targeted Financial Sanctions for Reporting\nInstitutions in the Capital Market (Guidelines) are issued pursuant to the following:\n\n(a) in relation to anti-money laundering and countering financing of terrorism including\nTargeted Financial Sanctions relating to Terrorism Financing (TFS-TF), section\n158(1) and section 160A of the Securities Commission Malaysia Act 1993 (SCMA)\nread together with section 66B, section 66E and section 83 of the Anti-Money\nLaundering, Anti-Terrorism Financing and Proceeds of Unlawful Activities Act 2001\n(AMLA);\n\n(b) in relation to countering proliferation financing including Targeted Financial\nSanctions relating to Proliferation Financing (TFS-PF), section 158(1) and section\n160A of the SCMA read together with the following legislations (collectively referred\nto as “TFS-PF related legislations”) which provides the legal basis for domestic\nimplementation of TFS-PF in relation to United Nations Security Council Resolutions\n(UNSCR) imposed on the designated countries and persons:\n\n(i) Strategic Trade Act 2010 (Act 708) (STA);\n\n(ii) Strategic Trade (United Nations Security Council Resolutions)\nRegulations 2010 (P.U. (A) 481/2010) 1;\n\n(iii) Strategic Trade (Restricted End-Users and Prohibited End-Users) Order\n2010 (P.U. (A) 484/2010);\n\n(iv) Strategic Trade (Delisting of Prohibited End-Users) Regulations 2014\n(P.U. (A) 289/2014); and\n\n(v) Strategic Trade (Unfreezing of Property in relation to Prohibited End-\nUsers) Regulations 2014 (P.U. (A) 290/2014).",
+      "content_text": "1.1 The Guidelines on Prevention of Money Laundering, Countering Financing of Terrorism,\nCountering Proliferation Financing and Targeted Financial Sanctions for Reporting\nInstitutions in the Capital Market (Guidelines) are issued pursuant to the following:\n\n(a) in relation to anti-money laundering and countering financing of terrorism including\nTargeted Financial Sanctions relating to Terrorism Financing (TFS-TF), section\n158(1) and section 160A of the Securities Commission Malaysia Act 1993 (SCMA)\nread together with section 66B, section 66E and section 83 of the Anti-Money\nLaundering, Anti-Terrorism Financing and Proceeds of Unlawful Activities Act 2001\n(AMLA);\n\n(b) in relation to countering proliferation financing including Targeted Financial\nSanctions relating to Proliferation Financing (TFS-PF), section 158(1) and section\n160A of the SCMA read together with the following legislations (collectively referred\nto as “TFS-PF related legislations”) which provides the legal basis for domestic\nimplementation of TFS-PF in relation to United Nations Security Council Resolutions\n(UNSCR) imposed on the designated countries and persons:\n\n(i) Strategic Trade Act 2010 (Act 708) (STA);\n\n(ii) Strategic Trade (United Nations Security Council Resolutions)\nRegulations 2010 (P.U. (A) 481/2010) 1;\n\n(iii) Strategic Trade (Restricted End-Users and Prohibited End-Users) Order\n2010 (P.U. (A) 484/2010);\n\n(iv) Strategic Trade (Delisting of Prohibited End-Users) Regulations 2014\n(P.U. (A) 289/2014); and\n\n(v) Strategic Trade (Unfreezing of Property in relation to Prohibited End-\nUsers) Regulations 2014 (P.U. (A) 290/2014).",
+      "token_count": 357,
+      "pages": [
+        6
+      ],
+      "section_path": [
+        "PART I: INTRODUCTION AND APPLICABILITY",
+        "1.0 INTRODUCTION"
+      ],
+      "source_element_ids": [
+        "p6-e3",
+        "p6-e4",
+        "p6-e5",
+        "p6-e6",
+        "p6-e7",
+        "p6-e8",
+        "p6-e9",
+        "p6-e10"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,15 @@
+Dataset: /mnt/data/_retrieval_eval_build/retrieval_eval_v1.json
+Stage 5: /mnt/data/eval_build/stage5_semantic_v2_1.txt
+Questions: 40
+Splits: {'dev': 25, 'heldout': 15}
+Categories: {'definition': 5, 'direct_requirement': 6, 'paraphrase': 6, 'multi_clause': 5, 'table_form': 4, 'appendix': 4, 'cross_page': 3, 'exception_condition': 4, 'cross_reference': 3}
+Stage 5 chunks: 284
+
+PASS: retrieval evaluation dataset is internally consistent with the Stage 5 corpus.
+Spreadsheet runtime warmup failed during python startup
+Traceback (most recent call last):
+  File "/tmp/tmp.L2TH2Y5coc/artifact_tool_v2-2.8.22/artifact_tool/patches/warm_spreadsheet_runtime_on_startup.py", line 26, in warm_spreadsheet_runtime_on_startup
+  File "/tmp/tmp.L2TH2Y5coc/artifact_tool_v2-2.8.22/artifact_tool/spreadsheet_warmup.py", line 772, in warm_spreadsheet_runtime
+  File "/tmp/tmp.L2TH2Y5coc/artifact_tool_v2-2.8.22/artifact_tool/rpc/connection.py", line 37, in get_or_create_client
+  File "/tmp/tmp.L2TH2Y5coc/artifact_tool_v2-2.8.22/artifact_tool/rpc/daemon.py", line 124, in start_daemon
+TimeoutError: Timed out waiting for artifact tool daemon socket. Set ARTIFACT_TOOL_RPC_DAEMON_STARTUP_TIMEOUT_S=<seconds> to increase the limit.

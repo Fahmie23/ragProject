@@ -1,0 +1,78 @@
+{
+  "schema_version": "1.0",
+  "rubric_id": "stage11_semantic_rubric_v1",
+  "status": "frozen",
+  "frozen_on": "2026-09-02",
+  "basis": "Human-confirmed review of the 9-question Stage 11 DEV semantic calibration subset. No automated semantic judge was used to define these labels.",
+  "claim_support": {
+    "labels": [
+      "supported",
+      "partially_supported",
+      "unsupported",
+      "contradicted"
+    ],
+    "definitions": {
+      "supported": "The cited evidence, considered together for the claim, fully supports every material assertion, scope, condition, and modality in the claim.",
+      "partially_supported": "The core claim is supported, but a material qualification, scope, condition, modality, or detail is omitted, broadened, strengthened, weakened, or slightly distorted.",
+      "unsupported": "The cited evidence does not establish a material part of the claim, and the gap is not merely a qualification or minor detail.",
+      "contradicted": "The cited evidence materially conflicts with the claim."
+    }
+  },
+  "citation_entailment": {
+    "labels": [
+      "entails",
+      "partial",
+      "does_not_entail"
+    ],
+    "definitions": {
+      "entails": "This individual citation by itself fully supports the complete material claim.",
+      "partial": "This individual citation supports only part of a compound claim or supports the core proposition with a material qualification mismatch. Multiple partial citations may jointly make the claim fully supported.",
+      "does_not_entail": "This individual citation does not support the material claim."
+    }
+  },
+  "gold_claim_coverage": {
+    "labels": [
+      "covered",
+      "partially_covered",
+      "missing"
+    ],
+    "definitions": {
+      "covered": "The answer contains the required semantic content with the material scope, conditions, and modality preserved.",
+      "partially_covered": "The answer contains the core required idea but omits or distorts a material qualification, scope, condition, modality, or detail.",
+      "missing": "The required semantic content is absent from the answer."
+    }
+  },
+  "answer_relevance": {
+    "labels": [0, 1, 2],
+    "definitions": {
+      "0": "Poor: the answer is materially off-topic, unresponsive, or uses the wrong answer/abstention behavior.",
+      "1": "Acceptable but materially incomplete: the answer is directly relevant but misses important required content or includes a material semantic weakness.",
+      "2": "Strong: the answer directly addresses the question and is substantially complete for the requested scope; a narrow qualification issue may still be captured separately by claim/coverage labels."
+    }
+  },
+  "aggregation": {
+    "unit_policy": "Micro-average claim, citation-relation, and gold-claim labels across the labelled evaluation subset. Macro-average answer relevance across labelled questions.",
+    "claim_support_rate": "supported / generated_claim_count",
+    "partial_support_rate": "partially_supported / generated_claim_count",
+    "unsupported_claim_rate": "unsupported / generated_claim_count",
+    "contradiction_rate": "contradicted / generated_claim_count",
+    "citation_entailment_rate": "entails / claim_citation_relation_count",
+    "citation_partial_rate": "partial / claim_citation_relation_count",
+    "citation_non_entailment_rate": "does_not_entail / claim_citation_relation_count",
+    "gold_claim_coverage": "covered / required_gold_claim_count",
+    "partial_gold_claim_coverage": "partially_covered / required_gold_claim_count",
+    "missing_gold_claim_rate": "missing / required_gold_claim_count",
+    "answer_completeness": "(covered + 0.5 * partially_covered) / required_gold_claim_count",
+    "answer_relevance_mean": "mean 0-2 relevance score across labelled questions",
+    "answer_relevance_normalized": "answer_relevance_mean / 2",
+    "empty_denominator_policy": "Return null for a dimension with no applicable units; correct abstention questions therefore do not add synthetic claim, citation, or gold-claim units."
+  },
+  "policy": {
+    "human_labels_are_authoritative_for_v1": true,
+    "automated_judge_authorized": false,
+    "production_pipeline_tuning_authorized": false,
+    "heldout_tuning_forbidden": true,
+    "retrieval_v1_remains_frozen": true,
+    "citation_version": "deterministic_citations_v1_2"
+  }
+}

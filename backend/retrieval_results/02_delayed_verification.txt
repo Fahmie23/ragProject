@@ -1,0 +1,315 @@
+==============================================================================
+RETRIEVAL BEHAVIOUR: Exact regulatory requirement
+==============================================================================
+Test ID          : 02_delayed_verification
+Query            : What are the requirements for delayed verification?
+Purpose          : Tests retrieval of a specific regulatory requirement and its related clauses.
+Document ID      : 485c4989-c300-45c8-ac06-79a59492bb5c
+Embedding model  : BAAI/bge-m3
+Requested device : auto
+Resolved device  : cuda
+Top K            : 5
+Embedded chunks  : 284
+Total chunks     : 284
+Retrieved hits   : 5
+
+------------------------------------------------------------
+RANK 1
+------------------------------------------------------------
+Chunk index       : 102
+Chunk ID          : 485c4989-c300-45c8-ac06-79a59492bb5c-c0102-6667285dd5
+Semantic type     : clause
+Score             : 0.771393
+Cosine distance   : 0.228607
+Token count       : 148
+Pages             : [38]
+Section path      : PART III: CUSTOMER DUE DILIGENCE > 8. CUSTOMER DUE DILIGENCE (CDD) > 8.1 CDD at the point of establishing business relationship
+Source element IDs: ['p38-e3', 'p38-e4', 'p38-e5', 'p38-e6', 'p38-e7']
+
+TEXT
+------------------------------------------------------------
+Section: PART III: CUSTOMER DUE DILIGENCE > 8. CUSTOMER DUE DILIGENCE (CDD) > 8.1 CDD at the point of establishing business relationship
+Clause: 8.1.25
+Group: Delayed verification
+
+8.1.25 Where delayed verification applies, the following conditions must be satisfied:
+
+(a) Before the reporting institution adopts a delayed verification, the reporting
+institution must have in place appropriate risk management policies and
+procedures which can effectively manage any ML/TF/PF risk arising from delayed
+verification;
+
+(b) The delay is essential so as not to interrupt the reporting institutions’ normal
+conduct of business;
+
+(c) The ML/TF/PF risks are effectively managed; and
+
+(d) There is no suspicion of ML/TF/PF.
+
+------------------------------------------------------------
+RANK 2
+------------------------------------------------------------
+Chunk index       : 103
+Chunk ID          : 485c4989-c300-45c8-ac06-79a59492bb5c-c0103-96fa91f378
+Semantic type     : clause
+Score             : 0.727080
+Cosine distance   : 0.272920
+Token count       : 184
+Pages             : [38]
+Section path      : PART III: CUSTOMER DUE DILIGENCE > 8. CUSTOMER DUE DILIGENCE (CDD) > 8.1 CDD at the point of establishing business relationship
+Source element IDs: ['p38-e8', 'p38-e9', 'p38-e10', 'p38-e11', 'p38-e12']
+
+TEXT
+------------------------------------------------------------
+Section: PART III: CUSTOMER DUE DILIGENCE > 8. CUSTOMER DUE DILIGENCE (CDD) > 8.1 CDD at the point of establishing business relationship
+Clause: 8.1.26
+Group: Delayed verification
+
+8.1.26 The policies and procedures must include:
+
+(a) Establishing a reasonable timeframe for the completion of the identity verification
+measures to ensure that delayed verification occurs as reasonably practicable.
+The reasonable timeframe shall not exceed 10 working days or any other period
+as may be specified by the SC;
+
+(b) Measures that a reporting institution may take to manage risks of delayed
+verification including conditions under which the customer may utilize the
+business relationship prior to verification and placing appropriate limits on the
+number, types and/or amount of transactions that can be performed;
+
+(c) Monitoring of large and complex transactions being carried out outside the
+expected norms pending completion of verification; and
+
+(d) Keeping senior management periodically informed of any cases pending identity.
+
+------------------------------------------------------------
+RANK 3
+------------------------------------------------------------
+Chunk index       : 101
+Chunk ID          : 485c4989-c300-45c8-ac06-79a59492bb5c-c0101-c09791e527
+Semantic type     : clause
+Score             : 0.698822
+Cosine distance   : 0.301178
+Token count       : 177
+Pages             : [38, 39]
+Section path      : PART III: CUSTOMER DUE DILIGENCE > 8. CUSTOMER DUE DILIGENCE (CDD) > 8.1 CDD at the point of establishing business relationship
+Source element IDs: ['p38-e2', 'p38-e13', 'p39-e1']
+
+TEXT
+------------------------------------------------------------
+Section: PART III: CUSTOMER DUE DILIGENCE > 8. CUSTOMER DUE DILIGENCE (CDD) > 8.1 CDD at the point of establishing business relationship
+Group: Delayed verification
+
+8.1.24 A reporting institution may complete the verification after the establishment of the
+business relationship (“delayed verification”) to allow some flexibility for its customer
+and beneficial owner to furnish the relevant documents in circumstances where
+verification is not possible at the point of establishing business relationship.
+
+8.1.27 If verification cannot be completed within the reasonable timeframe, the reporting
+institution should terminate the business relationship as soon as reasonably practicable
+and refrain from carrying out further transactions. However, following the termination
+of business relationship, the reporting institution may return funds or other assets to
+the customers.
+
+8.1.28 The reporting institution must assess whether the failure to complete verification within
+the reasonable timeframe provides sufficient grounds for making a STR to the FIED.
+
+------------------------------------------------------------
+RANK 4
+------------------------------------------------------------
+Chunk index       : 167
+Chunk ID          : 485c4989-c300-45c8-ac06-79a59492bb5c-c0167-5fb13811a7
+Semantic type     : list_item
+Score             : 0.585450
+Cosine distance   : 0.414550
+Token count       : 197
+Pages             : [63]
+Section path      : PART VIII: COMBATING PROLIFERATION FINANCING > 17. CONDUCT SANCTIONS SCREENING ON CUSTOMERS
+Source element IDs: ['p63-e5', 'p63-e6', 'p63-e7', 'p63-e8']
+
+TEXT
+------------------------------------------------------------
+Section: PART VIII: COMBATING PROLIFERATION FINANCING > 17. CONDUCT SANCTIONS SCREENING ON CUSTOMERS
+Group: Guidance for paragraph 17
+
+(a)According to the standards prescribed by the FATF, “without delay” means,
+ideally within a matter of hours of a designation by the UNSC or its relevant
+Sanctions Committee. The phrase “without delay” should be interpreted in
+the context of the need to prevent the flight or dissipation of funds or other
+assets which are linked to the financing of proliferation of weapons of mass
+destruction.
+
+(b)A reporting institution is also advised to search, examine and analyse past
+financial activities of the designated person or related party, where relevant.
+
+(c)A reporting institution must always be wary of the possible use of among
+others, false identities, dual nationalities, multiple names and identities
+when performing name searches for each designated person to prevent
+unintended omissions.
+
+(d)The screening obligations under these Guidelines extend to the delisting of
+affected customers from the list of countries and persons designated under
+the relevant UNSCRs.
+
+------------------------------------------------------------
+RANK 5
+------------------------------------------------------------
+Chunk index       : 84
+Chunk ID          : 485c4989-c300-45c8-ac06-79a59492bb5c-c0084-fb93596733
+Semantic type     : clause
+Score             : 0.550303
+Cosine distance   : 0.449697
+Token count       : 90
+Pages             : [32]
+Section path      : PART III: CUSTOMER DUE DILIGENCE > 8. CUSTOMER DUE DILIGENCE (CDD) > 8.1 CDD at the point of establishing business relationship
+Source element IDs: ['p32-e15']
+
+TEXT
+------------------------------------------------------------
+Section: PART III: CUSTOMER DUE DILIGENCE > 8. CUSTOMER DUE DILIGENCE (CDD) > 8.1 CDD at the point of establishing business relationship
+Clause: 8.1.7
+Group: CDD requirements for individual customer and beneficial owner > Identification and Verification
+
+8.1.7 Where the above information is not sufficient for the reporting institution to complete its
+identification and verification process, the reporting institution must seek further relevant
+information from the individual customer or beneficial owner.
+
+
+==============================================================================
+RAW JSON RESPONSE
+==============================================================================
+{
+  "document_id": "485c4989-c300-45c8-ac06-79a59492bb5c",
+  "query": "What are the requirements for delayed verification?",
+  "embedding_model": "BAAI/bge-m3",
+  "requested_device": "auto",
+  "resolved_device": "cuda",
+  "top_k": 5,
+  "embedded_chunk_count": 284,
+  "total_chunk_count": 284,
+  "hits": [
+    {
+      "rank": 1,
+      "chunk_id": "485c4989-c300-45c8-ac06-79a59492bb5c-c0102-6667285dd5",
+      "chunk_index": 102,
+      "semantic_type": "clause",
+      "score": 0.7713929414749146,
+      "distance": 0.22860705852508545,
+      "text": "Section: PART III: CUSTOMER DUE DILIGENCE > 8. CUSTOMER DUE DILIGENCE (CDD) > 8.1 CDD at the point of establishing business relationship\nClause: 8.1.25\nGroup: Delayed verification\n\n8.1.25 Where delayed verification applies, the following conditions must be satisfied:\n\n(a) Before the reporting institution adopts a delayed verification, the reporting\ninstitution must have in place appropriate risk management policies and\nprocedures which can effectively manage any ML/TF/PF risk arising from delayed\nverification;\n\n(b) The delay is essential so as not to interrupt the reporting institutions’ normal\nconduct of business;\n\n(c) The ML/TF/PF risks are effectively managed; and\n\n(d) There is no suspicion of ML/TF/PF.",
+      "content_text": "8.1.25 Where delayed verification applies, the following conditions must be satisfied:\n\n(a) Before the reporting institution adopts a delayed verification, the reporting\ninstitution must have in place appropriate risk management policies and\nprocedures which can effectively manage any ML/TF/PF risk arising from delayed\nverification;\n\n(b) The delay is essential so as not to interrupt the reporting institutions’ normal\nconduct of business;\n\n(c) The ML/TF/PF risks are effectively managed; and\n\n(d) There is no suspicion of ML/TF/PF.",
+      "token_count": 148,
+      "pages": [
+        38
+      ],
+      "section_path": [
+        "PART III: CUSTOMER DUE DILIGENCE",
+        "8. CUSTOMER DUE DILIGENCE (CDD)",
+        "8.1 CDD at the point of establishing business relationship"
+      ],
+      "source_element_ids": [
+        "p38-e3",
+        "p38-e4",
+        "p38-e5",
+        "p38-e6",
+        "p38-e7"
+      ]
+    },
+    {
+      "rank": 2,
+      "chunk_id": "485c4989-c300-45c8-ac06-79a59492bb5c-c0103-96fa91f378",
+      "chunk_index": 103,
+      "semantic_type": "clause",
+      "score": 0.7270801826071643,
+      "distance": 0.27291981739283566,
+      "text": "Section: PART III: CUSTOMER DUE DILIGENCE > 8. CUSTOMER DUE DILIGENCE (CDD) > 8.1 CDD at the point of establishing business relationship\nClause: 8.1.26\nGroup: Delayed verification\n\n8.1.26 The policies and procedures must include:\n\n(a) Establishing a reasonable timeframe for the completion of the identity verification\nmeasures to ensure that delayed verification occurs as reasonably practicable.\nThe reasonable timeframe shall not exceed 10 working days or any other period\nas may be specified by the SC;\n\n(b) Measures that a reporting institution may take to manage risks of delayed\nverification including conditions under which the customer may utilize the\nbusiness relationship prior to verification and placing appropriate limits on the\nnumber, types and/or amount of transactions that can be performed;\n\n(c) Monitoring of large and complex transactions being carried out outside the\nexpected norms pending completion of verification; and\n\n(d) Keeping senior management periodically informed of any cases pending identity.",
+      "content_text": "8.1.26 The policies and procedures must include:\n\n(a) Establishing a reasonable timeframe for the completion of the identity verification\nmeasures to ensure that delayed verification occurs as reasonably practicable.\nThe reasonable timeframe shall not exceed 10 working days or any other period\nas may be specified by the SC;\n\n(b) Measures that a reporting institution may take to manage risks of delayed\nverification including conditions under which the customer may utilize the\nbusiness relationship prior to verification and placing appropriate limits on the\nnumber, types and/or amount of transactions that can be performed;\n\n(c) Monitoring of large and complex transactions being carried out outside the\nexpected norms pending completion of verification; and\n\n(d) Keeping senior management periodically informed of any cases pending identity.",
+      "token_count": 184,
+      "pages": [
+        38
+      ],
+      "section_path": [
+        "PART III: CUSTOMER DUE DILIGENCE",
+        "8. CUSTOMER DUE DILIGENCE (CDD)",
+        "8.1 CDD at the point of establishing business relationship"
+      ],
+      "source_element_ids": [
+        "p38-e8",
+        "p38-e9",
+        "p38-e10",
+        "p38-e11",
+        "p38-e12"
+      ]
+    },
+    {
+      "rank": 3,
+      "chunk_id": "485c4989-c300-45c8-ac06-79a59492bb5c-c0101-c09791e527",
+      "chunk_index": 101,
+      "semantic_type": "clause",
+      "score": 0.6988224983215332,
+      "distance": 0.3011775016784668,
+      "text": "Section: PART III: CUSTOMER DUE DILIGENCE > 8. CUSTOMER DUE DILIGENCE (CDD) > 8.1 CDD at the point of establishing business relationship\nGroup: Delayed verification\n\n8.1.24 A reporting institution may complete the verification after the establishment of the\nbusiness relationship (“delayed verification”) to allow some flexibility for its customer\nand beneficial owner to furnish the relevant documents in circumstances where\nverification is not possible at the point of establishing business relationship.\n\n8.1.27 If verification cannot be completed within the reasonable timeframe, the reporting\ninstitution should terminate the business relationship as soon as reasonably practicable\nand refrain from carrying out further transactions. However, following the termination\nof business relationship, the reporting institution may return funds or other assets to\nthe customers.\n\n8.1.28 The reporting institution must assess whether the failure to complete verification within\nthe reasonable timeframe provides sufficient grounds for making a STR to the FIED.",
+      "content_text": "8.1.24 A reporting institution may complete the verification after the establishment of the\nbusiness relationship (“delayed verification”) to allow some flexibility for its customer\nand beneficial owner to furnish the relevant documents in circumstances where\nverification is not possible at the point of establishing business relationship.\n\n8.1.27 If verification cannot be completed within the reasonable timeframe, the reporting\ninstitution should terminate the business relationship as soon as reasonably practicable\nand refrain from carrying out further transactions. However, following the termination\nof business relationship, the reporting institution may return funds or other assets to\nthe customers.\n\n8.1.28 The reporting institution must assess whether the failure to complete verification within\nthe reasonable timeframe provides sufficient grounds for making a STR to the FIED.",
+      "token_count": 177,
+      "pages": [
+        38,
+        39
+      ],
+      "section_path": [
+        "PART III: CUSTOMER DUE DILIGENCE",
+        "8. CUSTOMER DUE DILIGENCE (CDD)",
+        "8.1 CDD at the point of establishing business relationship"
+      ],
+      "source_element_ids": [
+        "p38-e2",
+        "p38-e13",
+        "p39-e1"
+      ]
+    },
+    {
+      "rank": 4,
+      "chunk_id": "485c4989-c300-45c8-ac06-79a59492bb5c-c0167-5fb13811a7",
+      "chunk_index": 167,
+      "semantic_type": "list_item",
+      "score": 0.5854502218425051,
+      "distance": 0.41454977815749494,
+      "text": "Section: PART VIII: COMBATING PROLIFERATION FINANCING > 17. CONDUCT SANCTIONS SCREENING ON CUSTOMERS\nGroup: Guidance for paragraph 17\n\n(a)According to the standards prescribed by the FATF, “without delay” means,\nideally within a matter of hours of a designation by the UNSC or its relevant\nSanctions Committee. The phrase “without delay” should be interpreted in\nthe context of the need to prevent the flight or dissipation of funds or other\nassets which are linked to the financing of proliferation of weapons of mass\ndestruction.\n\n(b)A reporting institution is also advised to search, examine and analyse past\nfinancial activities of the designated person or related party, where relevant.\n\n(c)A reporting institution must always be wary of the possible use of among\nothers, false identities, dual nationalities, multiple names and identities\nwhen performing name searches for each designated person to prevent\nunintended omissions.\n\n(d)The screening obligations under these Guidelines extend to the delisting of\naffected customers from the list of countries and persons designated under\nthe relevant UNSCRs.",
+      "content_text": "(a)According to the standards prescribed by the FATF, “without delay” means,\nideally within a matter of hours of a designation by the UNSC or its relevant\nSanctions Committee. The phrase “without delay” should be interpreted in\nthe context of the need to prevent the flight or dissipation of funds or other\nassets which are linked to the financing of proliferation of weapons of mass\ndestruction.\n\n(b)A reporting institution is also advised to search, examine and analyse past\nfinancial activities of the designated person or related party, where relevant.\n\n(c)A reporting institution must always be wary of the possible use of among\nothers, false identities, dual nationalities, multiple names and identities\nwhen performing name searches for each designated person to prevent\nunintended omissions.\n\n(d)The screening obligations under these Guidelines extend to the delisting of\naffected customers from the list of countries and persons designated under\nthe relevant UNSCRs.",
+      "token_count": 197,
+      "pages": [
+        63
+      ],
+      "section_path": [
+        "PART VIII: COMBATING PROLIFERATION FINANCING",
+        "17. CONDUCT SANCTIONS SCREENING ON CUSTOMERS"
+      ],
+      "source_element_ids": [
+        "p63-e5",
+        "p63-e6",
+        "p63-e7",
+        "p63-e8"
+      ]
+    },
+    {
+      "rank": 5,
+      "chunk_id": "485c4989-c300-45c8-ac06-79a59492bb5c-c0084-fb93596733",
+      "chunk_index": 84,
+      "semantic_type": "clause",
+      "score": 0.5503032207489014,
+      "distance": 0.44969677925109863,
+      "text": "Section: PART III: CUSTOMER DUE DILIGENCE > 8. CUSTOMER DUE DILIGENCE (CDD) > 8.1 CDD at the point of establishing business relationship\nClause: 8.1.7\nGroup: CDD requirements for individual customer and beneficial owner > Identification and Verification\n\n8.1.7 Where the above information is not sufficient for the reporting institution to complete its\nidentification and verification process, the reporting institution must seek further relevant\ninformation from the individual customer or beneficial owner.",
+      "content_text": "8.1.7 Where the above information is not sufficient for the reporting institution to complete its\nidentification and verification process, the reporting institution must seek further relevant\ninformation from the individual customer or beneficial owner.",
+      "token_count": 90,
+      "pages": [
+        32
+      ],
+      "section_path": [
+        "PART III: CUSTOMER DUE DILIGENCE",
+        "8. CUSTOMER DUE DILIGENCE (CDD)",
+        "8.1 CDD at the point of establishing business relationship"
+      ],
+      "source_element_ids": [
+        "p32-e15"
+      ]
+    }
+  ]
+}

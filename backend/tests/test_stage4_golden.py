@@ -207,3 +207,81 @@ def test_golden_evaluator_supports_zero_match_assertions_for_merged_fragments():
     report = evaluate_stage4_golden(structure, spec)
     assert report.required_passed == 1
     assert report.required_total == 1
+
+
+def test_golden_evaluator_supports_explicit_section_and_clause_hierarchy_assertions():
+    structure = _structure()
+    subheading = _element(
+        "e-subheading", 1, "Customer identification", "section_header",
+        section_id="s2", reading_order=2, document_order=2,
+    )
+    clause = next(item for item in structure.pages[0].elements if item.element_id == "e-clause")
+    clause.section_id = "s2"
+    clause.document_order = 3
+    clause.reading_order = 3
+    child = _element(
+        "e-subclause", 1, "(a) Identify the customer;", "subclause",
+        section_id="s2", clause_id="c2", parent_clause_id="c1",
+        subclause_marker="(a)", reading_order=4, document_order=4,
+    )
+    structure.pages[0].elements.insert(2, subheading)
+    structure.pages[0].elements.append(child)
+    structure.sections.append(
+        SectionRecord(
+            section_id="s2", title="Customer identification", level=2,
+            page_number=1, element_id="e-subheading", parent_section_id="s1",
+            content_element_ids=["e-clause", "e-subclause"],
+        )
+    )
+    structure.clauses[0].section_id = "s2"
+    structure.clauses.append(
+        ClauseRecord(
+            clause_id="c2", number="(a)", kind="subclause",
+            element_id="e-subclause", page_number=1, section_id="s2",
+            parent_clause_id="c1",
+        )
+    )
+    spec = {
+        "spec_version": "test",
+        "benchmark_id": "hierarchy",
+        "source": {"sha256": "abc", "page_count": 1},
+        "element_assertions": [
+            {"id": "root", "page": 1, "match": {"exact": "1. TEST SECTION"}, "expect": {"type": "section_header", "section_record": True}},
+            {"id": "sub", "page": 1, "match": {"exact": "Customer identification"}, "expect": {"type": "section_header", "section_record": True}},
+            {"id": "clause", "page": 1, "match": {"starts_with": "1.1 The system"}, "expect": {"type": "clause"}},
+            {"id": "child", "page": 1, "match": {"starts_with": "(a) Identify"}, "expect": {"type": "subclause"}},
+        ],
+        "hierarchy_assertions": [
+            {"id": "h-parent", "kind": "section_parent", "child": "sub", "parent": "root"},
+            {"id": "h-member", "kind": "section_membership", "element": "clause", "section": "root", "allow_descendant": True},
+            {"id": "h-clause", "kind": "clause_parent", "child": "child", "parent": "clause"},
+        ],
+    }
+    assert validate_golden_spec(spec) == []
+    report = evaluate_stage4_golden(structure, spec)
+    assert report.required_passed == report.required_total
+    assert {check.category for check in report.checks if check.check_id.startswith("h-")} == {"hierarchy"}
+
+
+def test_golden_evaluator_can_assert_canonical_section_level_separately_from_element_heading_evidence():
+    structure = _structure()
+    heading = structure.pages[0].elements[0]
+    heading.heading_level = 5
+    heading.heading_level_source = "pdf_toc"
+    structure.sections[0].level = 2
+    spec = {
+        "spec_version": "test",
+        "benchmark_id": "section-level",
+        "source": {"sha256": "abc", "page_count": 1},
+        "element_assertions": [
+            {
+                "id": "root",
+                "page": 1,
+                "match": {"exact": "1. TEST SECTION"},
+                "expect": {"type": "section_header", "section_record": True, "section_level": 2},
+            }
+        ],
+    }
+    report = evaluate_stage4_golden(structure, spec)
+    assert report.required_passed == 1
+    assert report.required_total == 1

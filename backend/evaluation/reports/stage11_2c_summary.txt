@@ -1,0 +1,83 @@
+Stage 11.2C — Frozen Human Semantic Rubric + Metric Implementation
+=================================================================
+
+Status: PASS
+Date: 2026-09-02
+
+Freeze decision
+---------------
+Rubric: stage11_semantic_rubric_v1
+Rubric status: FROZEN
+Calibration: answer_citation_eval_dev_calibration_v1_frozen
+Calibration questions: 9
+Human confirmed: YES
+Automated semantic judge: NOT ENABLED / NOT AUTHORIZED by rubric v1
+
+Frozen-path guards
+------------------
+Production baseline: PASS (7/7 files)
+Semantic evaluation manifest: PASS (3/3 files)
+Frozen production path changed: NO
+
+DEV deterministic results (20 questions)
+----------------------------------------
+Responses: 20/20
+Missing: 0
+AnswerStatusAccuracy: 1.0
+ClaimCitationCoverage: 1.0
+DeterministicCitationValidity: 1.0
+RequiredSourceCoverage: 0.9852941176470589
+AbstentionPrecision: 1.0
+AbstentionRecall: 1.0
+AbstentionF1: 1.0
+
+Human semantic calibration results (9-question subset only)
+-----------------------------------------------------------
+Generated claims: 20
+Supported: 17
+Partially supported: 3
+Unsupported: 0
+Contradicted: 0
+ClaimSupportRate: 0.85
+PartialSupportRate: 0.15
+UnsupportedClaimRate: 0.0
+ContradictionRate: 0.0
+
+Claim-citation relations: 22
+Entails: 16
+Partial: 6
+Does not entail: 0
+CitationEntailmentRate: 0.7272727272727273
+CitationPartialRate: 0.2727272727272727
+CitationNonEntailmentRate: 0.0
+
+Required gold claims: 24
+Covered: 20
+Partially covered: 2
+Missing: 2
+GoldClaimCoverage: 0.8333333333333334
+PartialGoldClaimCoverage: 0.08333333333333333
+MissingGoldClaimRate: 0.08333333333333333
+AnswerCompleteness: 0.875
+AnswerRelevanceMean: 1.8888888888888888 / 2
+AnswerRelevanceNormalized: 0.9444444444444444
+
+Interpretation notes
+--------------------
+- CitationEntailmentRate is strict per individual claim-citation relation.
+- ACIT-012 contains compound claims where two individually partial citations jointly fully support a claim.
+- CitationNonEntailmentRate is 0.0 in the frozen calibration.
+- ACIT-016 remains a deliberate baseline diagnostic: one generation-completeness miss and one retrieval/context-coverage miss are retained rather than tuned away.
+- These semantic numbers describe the 9-question human-labelled calibration subset; they are not a full 20-question semantic DEV estimate and not a held-out result.
+
+Validation
+----------
+Targeted Stage 11 semantic/offline tests: PASS
+Full backend regression: 329 passed
+Python compileall: PASS
+Exact response hash binding: PASS
+
+Next gate
+---------
+No Stage 11 held-out set has been created or run.
+Before held-out semantic scoring, either use human review under this frozen rubric or calibrate and freeze an automated judge against this human-labelled subset.

@@ -8,7 +8,7 @@ from app.schemas import CanonicalElement, StructuredPage
 
 
 _WORD_RE = re.compile(r"[A-Za-z0-9][A-Za-z0-9'’/-]*")
-_CLAUSE_PREFIX_RE = re.compile(r"^\s*(?:(\d+(?:\s*[A-Z])?\.\d+(?:\.\d+){0,4})(?=\s|[A-Za-z])|(\d+)[.)](?=\s|[A-Za-z]))\s*", re.IGNORECASE)
+_CLAUSE_PREFIX_RE = re.compile(r"^\s*(?:(\d+(?:\s*[A-Z])?\.\d+(?:\.\d+){0,4}(?:[A-Z](?=\s))?)(?=\s|[A-Za-z])|(\d+)[.)](?=\s|[A-Za-z]))\s*", re.IGNORECASE)
 _SUBCLAUSE_PREFIX_RE = re.compile(r"^\s*\(([a-z]|[ivxlcdm]+)\)\s*", re.IGNORECASE)
 _MODAL_OR_FINITE_RE = re.compile(
     r"\b(?:shall|must|may|should|will|would|can|could|is|are|was|were|has|have|had|means?|includes?|"
@@ -69,8 +69,24 @@ def _normalized(text: str) -> str:
     return " ".join((text or "").split()).strip()
 
 
+def _normalize_ambiguous_article_a(text: str) -> str:
+    """Do not mistake a glued prose article ``A`` for a clause suffix.
+
+    Layout extraction can yield ``11.8A reporting...`` for source text
+    ``11.8 A reporting...``. A genuine suffix such as ``11.6A A reporting``
+    is intentionally left unchanged.
+    """
+    return re.sub(
+        r"^(\s*\d+(?:\.\d+){1,5})A(?=\s+[a-z])",
+        r"\1 A",
+        text or "",
+        count=1,
+    )
+
+
 def extract_clause_number(text: str) -> str | None:
-    match = _CLAUSE_PREFIX_RE.match(text or "")
+    text = _normalize_ambiguous_article_a(text or "")
+    match = _CLAUSE_PREFIX_RE.match(text)
     if not match:
         return None
     value = match.group(1) or match.group(2)
@@ -90,7 +106,8 @@ def strip_marker(text: str) -> str:
 
 
 def strip_clause_prefix(text: str) -> str:
-    return _CLAUSE_PREFIX_RE.sub("", text or "", count=1).strip()
+    text = _normalize_ambiguous_article_a(text or "")
+    return _CLAUSE_PREFIX_RE.sub("", text, count=1).strip()
 
 
 def build_feature_map(

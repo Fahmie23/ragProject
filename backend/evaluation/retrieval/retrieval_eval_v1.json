@@ -1,0 +1,1793 @@
+{
+  "schema_version": "1.0",
+  "dataset_id": "sc_aml_cft_retrieval_eval_v1",
+  "dataset_purpose": "Formal retrieval evaluation for Dense vs Hybrid vs Hybrid+Reranker.",
+  "document": {
+    "document_id": "485c4989-c300-45c8-ac06-79a59492bb5c",
+    "title": "Guidelines on Prevention of Money Laundering, Countering Financing of Terrorism, Countering Proliferation Financing and Targeted Financial Sanctions for Reporting Institutions in the Capital Market",
+    "source_pdf": "sc_aml_cft.pdf",
+    "source_sha256": "e1d138edd3c55b3fa3dd36b3236876a1a8dd634c4d972cec74157e6bf816bc15",
+    "pdf_page_count": 109
+  },
+  "chunk_corpus": {
+    "stage5_strategy_version": "semantic-v2.1",
+    "chunk_count": 284,
+    "stage5_schema_version": "1.0",
+    "source_resolved_schema_version": "1.5"
+  },
+  "split_policy": {
+    "development": {
+      "count": 25,
+      "purpose": "May be inspected when diagnosing retrieval failures and tuning retrieval configuration."
+    },
+    "heldout": {
+      "count": 15,
+      "purpose": "Reserved for final retrieval comparisons. Do not tune Dense/Hybrid/Reranker behavior using held-out results."
+    },
+    "regression_smoke_questions_are_separate": true
+  },
+  "relevance_policy": {
+    "primary_chunk_ids": "Directly answer-bearing evidence used for core retrieval metrics.",
+    "supporting_chunk_ids": "Useful related context; not counted as a primary hit in core metrics.",
+    "required_evidence_groups": "Each inner group represents one required evidence need. v1 uses singleton groups; schema supports alternatives later."
+  },
+  "recommended_metrics": {
+    "Hit@K": "1 if at least one primary_chunk_id appears in top K; otherwise 0.",
+    "Recall@K": "Number of primary_chunk_ids retrieved in top K divided by number of primary_chunk_ids.",
+    "MRR": "Reciprocal rank of the first primary_chunk_id.",
+    "CompleteEvidence@K": "1 if every required_evidence_group is represented in top K; otherwise 0.",
+    "macro_aggregation": "Average metrics across questions; report dev and held-out separately.",
+    "recommended_K": [
+      1,
+      3,
+      5,
+      10
+    ]
+  },
+  "counts": {
+    "questions": 40,
+    "by_split": {
+      "dev": 25,
+      "heldout": 15
+    },
+    "by_category": {
+      "definition": 5,
+      "direct_requirement": 6,
+      "paraphrase": 6,
+      "multi_clause": 5,
+      "table_form": 4,
+      "appendix": 4,
+      "cross_page": 3,
+      "exception_condition": 4,
+      "cross_reference": 3
+    },
+    "by_difficulty": {
+      "easy": 5,
+      "medium": 24,
+      "hard": 11
+    }
+  },
+  "questions": [
+    {
+      "question_id": "RET-001",
+      "split": "dev",
+      "category": "definition",
+      "difficulty": "easy",
+      "question": "How do the Guidelines define a beneficial owner in the context of a legal person?",
+      "answerable": true,
+      "evaluation_target": "single_evidence",
+      "source": {
+        "paragraph_or_appendix_ref": "Definition: beneficial owner",
+        "pdf_pages": [
+          9
+        ]
+      },
+      "gold": {
+        "primary_chunk_indices": [
+          11
+        ],
+        "primary_chunk_ids": [
+          "485c4989-c300-45c8-ac06-79a59492bb5c-c0011-01b2d194b2"
+        ],
+        "supporting_chunk_indices": [],
+        "supporting_chunk_ids": [],
+        "required_evidence_groups": [
+          [
+            "485c4989-c300-45c8-ac06-79a59492bb5c-c0011-01b2d194b2"
+          ]
+        ],
+        "primary_source_element_ids": [
+          "p9-e5",
+          "p9-e6",
+          "p9-e7",
+          "p9-e8",
+          "p9-e9"
+        ]
+      },
+      "rationale": "Exact-definition retrieval."
+    },
+    {
+      "question_id": "RET-002",
+      "split": "heldout",
+      "category": "definition",
+      "difficulty": "easy",
+      "question": "Who qualifies as a designated person under the Guidelines?",
+      "answerable": true,
+      "evaluation_target": "single_evidence",
+      "source": {
+        "paragraph_or_appendix_ref": "Definition: designated person",
+        "pdf_pages": [
+          11
+        ]
+      },
+      "gold": {
+        "primary_chunk_indices": [
+          21
+        ],
+        "primary_chunk_ids": [
+          "485c4989-c300-45c8-ac06-79a59492bb5c-c0021-56e4d3ded6"
+        ],
+        "supporting_chunk_indices": [],
+        "supporting_chunk_ids": [],
+        "required_evidence_groups": [
+          [
+            "485c4989-c300-45c8-ac06-79a59492bb5c-c0021-56e4d3ded6"
+          ]
+        ],
+        "primary_source_element_ids": [
+          "p11-e1-table-r5-term",
+          "p11-e1-table-r5-definition"
+        ]
+      },
+      "rationale": "Exact-definition retrieval using a statutory designation."
+    },
+    {
+      "question_id": "RET-003",
+      "split": "dev",
+      "category": "definition",
+      "difficulty": "medium",
+      "question": "What is a nominee director, and does holding that role make the nominee director the beneficial owner of a legal person?",
+      "answerable": true,
+      "evaluation_target": "single_evidence",
+      "source": {
+        "paragraph_or_appendix_ref": "Definition: nominee director",
+        "pdf_pages": [
+          12
+        ]
+      },
+      "gold": {
+        "primary_chunk_indices": [
+          29
+        ],
+        "primary_chunk_ids": [
+          "485c4989-c300-45c8-ac06-79a59492bb5c-c0029-974710badf"
+        ],
+        "supporting_chunk_indices": [],
+        "supporting_chunk_ids": [],
+        "required_evidence_groups": [
+          [
+            "485c4989-c300-45c8-ac06-79a59492bb5c-c0029-974710badf"
+          ]
+        ],
+        "primary_source_element_ids": [
+          "p12-e6-r1-term",
+          "p12-e6-r1-definition"
+        ]
+      },
+      "rationale": "Definition plus an explicit exclusion."
+    },
+    {
+      "question_id": "RET-004",
+      "split": "heldout",
+      "category": "definition",
+      "difficulty": "medium",
+      "question": "What do the Guidelines mean by a third-party institution for CDD reliance purposes?",
+      "answerable": true,
+      "evaluation_target": "single_evidence",
+      "source": {
+        "paragraph_or_appendix_ref": "Definition: third-party institution",
+        "pdf_pages": [
+          14,
+          15
+        ]
+      },
+      "gold": {
+        "primary_chunk_indices": [
+          39
+        ],
+        "primary_chunk_ids": [
+          "485c4989-c300-45c8-ac06-79a59492bb5c-c0039-8eac7375e8"
+        ],
+        "supporting_chunk_indices": [],
+        "supporting_chunk_ids": [],
+        "required_evidence_groups": [
+          [
+            "485c4989-c300-45c8-ac06-79a59492bb5c-c0039-8eac7375e8"
+          ]
+        ],
+        "primary_source_element_ids": [
+          "p14-e4-r5-term",
+          "p14-e4-r5-definition",
+          "p14-e5",
+          "p15-e1"
+        ]
+      },
+      "rationale": "Definition spans PDF pages 14-15."
+    },
+    {
+      "question_id": "RET-005",
+      "split": "dev",
+      "category": "definition",
+      "difficulty": "medium",
+      "question": "Which activities or operations cause a natural or legal person to fall within the Guidelines' definition of a Virtual Asset Service Provider (VASP)?",
+      "answerable": true,
+      "evaluation_target": "single_evidence",
+      "source": {
+        "paragraph_or_appendix_ref": "Definition: Virtual Asset Service Providers (VASP)",
+        "pdf_pages": [
+          15,
+          16
+        ]
+      },
+      "gold": {
+        "primary_chunk_indices": [
+          47
+        ],
+        "primary_chunk_ids": [
+          "485c4989-c300-45c8-ac06-79a59492bb5c-c0047-9980cdd046"
+        ],
+        "supporting_chunk_indices": [],
+        "supporting_chunk_ids": [],
+        "required_evidence_groups": [
+          [
+            "485c4989-c300-45c8-ac06-79a59492bb5c-c0047-9980cdd046"
+          ]
+        ],
+        "primary_source_element_ids": [
+          "p15-e5-r2-term",
+          "p15-e5-r2-definition",
+          "p15-e6",
+          "p15-e7",
+          "p15-e8",
+          "p15-e9",
+          "p16-e1",
+          "p16-e2"
+        ]
+      },
+      "rationale": "Definition with enumerated activities across pages 15-16."
+    },
+    {
+      "question_id": "RET-006",
+      "split": "dev",
+      "category": "direct_requirement",
+      "difficulty": "medium",
+      "question": "What internal AML/CFT/CPF programmes, policies, procedures and controls must a reporting institution include under paragraph 6A.1?",
+      "answerable": true,
+      "evaluation_target": "single_evidence",
+      "source": {
+        "paragraph_or_appendix_ref": "6A.1",
+        "pdf_pages": [
+          21
+        ]
+      },
+      "gold": {
+        "primary_chunk_indices": [
+          56
+        ],
+        "primary_chunk_ids": [
+          "485c4989-c300-45c8-ac06-79a59492bb5c-c0056-b117631798"
+        ],
+        "supporting_chunk_indices": [],
+        "supporting_chunk_ids": [],
+        "required_evidence_groups": [
+          [
+            "485c4989-c300-45c8-ac06-79a59492bb5c-c0056-b117631798"
+          ]
+        ],
+        "primary_source_element_ids": [
+          "p21-e3",
+          "p21-e4",
+          "p21-e5",
+          "p21-e6",
+          "p21-e7"
+        ]
+      },
+      "rationale": "Enumerated internal-programme requirements."
+    },
+    {
+      "question_id": "RET-007",
+      "split": "heldout",
+      "category": "direct_requirement",
+      "difficulty": "medium",
+      "question": "What responsibilities does the board of directors have for AML/CFT/CPF oversight and governance?",
+      "answerable": true,
+      "evaluation_target": "multi_evidence",
+      "source": {
+        "paragraph_or_appendix_ref": "6B.1-6B.2",
+        "pdf_pages": [
+          21,
+          22
+        ]
+      },
+      "gold": {
+        "primary_chunk_indices": [
+          57,
+          58
+        ],
+        "primary_chunk_ids": [
+          "485c4989-c300-45c8-ac06-79a59492bb5c-c0057-fb625c5113",
+          "485c4989-c300-45c8-ac06-79a59492bb5c-c0058-cd24b0151c"
+        ],
+        "supporting_chunk_indices": [
+          59,
+          60
+        ],
+        "supporting_chunk_ids": [
+          "485c4989-c300-45c8-ac06-79a59492bb5c-c0059-bb2e3b039b",
+          "485c4989-c300-45c8-ac06-79a59492bb5c-c0060-b979658811"
+        ],
+        "required_evidence_groups": [
+          [
+            "485c4989-c300-45c8-ac06-79a59492bb5c-c0057-fb625c5113"
+          ],
+          [
+            "485c4989-c300-45c8-ac06-79a59492bb5c-c0058-cd24b0151c"
+          ]
+        ],
+        "primary_source_element_ids": [
+          "p21-e9",
+          "p21-e10",
+          "p21-e11",
+          "p22-e1",
+          "p22-e2",
+          "p22-e3",
+          "p22-e4",
+          "p22-e5",
+          "p22-e6",
+          "p22-e7"
+        ]
+      },
+      "rationale": "Board responsibilities are split across two chunks/pages; guidance is supporting only."
+    },
+    {
+      "question_id": "RET-008",
+      "split": "dev",
+      "category": "direct_requirement",
+      "difficulty": "medium",
+      "question": "What responsibilities must the compliance officer perform under paragraph 6D.4?",
+      "answerable": true,
+      "evaluation_target": "single_evidence",
+      "source": {
+        "paragraph_or_appendix_ref": "6D.4",
+        "pdf_pages": [
+          24
+        ]
+      },
+      "gold": {
+        "primary_chunk_indices": [
+          63
+        ],
+        "primary_chunk_ids": [
+          "485c4989-c300-45c8-ac06-79a59492bb5c-c0063-e2642bd95c"
+        ],
+        "supporting_chunk_indices": [],
+        "supporting_chunk_ids": [],
+        "required_evidence_groups": [
+          [
+            "485c4989-c300-45c8-ac06-79a59492bb5c-c0063-e2642bd95c"
+          ]
+        ],
+        "primary_source_element_ids": [
+          "p24-e5",
+          "p24-e6",
+          "p24-e7",
+          "p24-e8",
+          "p24-e9-split-1",
+          "p24-e9-split-2",
+          "p24-e10",
+          "p24-e11",
+          "p24-e12"
+        ]
+      },
+      "rationale": "Enumerated compliance-officer duties."
+    },
+    {
+      "question_id": "RET-009",
+      "split": "dev",
+      "category": "direct_requirement",
+      "difficulty": "medium",
+      "question": "What elements must the ML/TF risk assessment process incorporate under paragraph 7.1.2?",
+      "answerable": true,
+      "evaluation_target": "single_evidence",
+      "source": {
+        "paragraph_or_appendix_ref": "7.1.2",
+        "pdf_pages": [
+          26
+        ]
+      },
+      "gold": {
+        "primary_chunk_indices": [
+          67
+        ],
+        "primary_chunk_ids": [
+          "485c4989-c300-45c8-ac06-79a59492bb5c-c0067-954a8827d0"
+        ],
+        "supporting_chunk_indices": [],
+        "supporting_chunk_ids": [],
+        "required_evidence_groups": [
+          [
+            "485c4989-c300-45c8-ac06-79a59492bb5c-c0067-954a8827d0"
+          ]
+        ],
+        "primary_source_element_ids": [
+          "p26-e5",
+          "p26-e6",
+          "p26-e7",
+          "p26-e8",
+          "p26-e9",
+          "p26-e10"
+        ]
+      },
+      "rationale": "Five mandatory risk-assessment process elements."
+    },
+    {
+      "question_id": "RET-010",
+      "split": "heldout",
+      "category": "direct_requirement",
+      "difficulty": "medium",
+      "question": "Which factors must be considered when determining a customer's ML/TF/PF risk profile?",
+      "answerable": true,
+      "evaluation_target": "single_evidence",
+      "source": {
+        "paragraph_or_appendix_ref": "7.5.3",
+        "pdf_pages": [
+          29
+        ]
+      },
+      "gold": {
+        "primary_chunk_indices": [
+          78
+        ],
+        "primary_chunk_ids": [
+          "485c4989-c300-45c8-ac06-79a59492bb5c-c0078-f2b180259e"
+        ],
+        "supporting_chunk_indices": [],
+        "supporting_chunk_ids": [],
+        "required_evidence_groups": [
+          [
+            "485c4989-c300-45c8-ac06-79a59492bb5c-c0078-f2b180259e"
+          ]
+        ],
+        "primary_source_element_ids": [
+          "p29-e7",
+          "p29-e8",
+          "p29-e9",
+          "p29-e10",
+          "p29-e11",
+          "p29-e12"
+        ]
+      },
+      "rationale": "Customer, geography, products/services, channels and other higher-risk information."
+    },
+    {
+      "question_id": "RET-011",
+      "split": "dev",
+      "category": "direct_requirement",
+      "difficulty": "medium",
+      "question": "What information must be obtained to identify an individual customer or beneficial owner during CDD?",
+      "answerable": true,
+      "evaluation_target": "single_evidence",
+      "source": {
+        "paragraph_or_appendix_ref": "8.1.6",
+        "pdf_pages": [
+          32
+        ]
+      },
+      "gold": {
+        "primary_chunk_indices": [
+          83
+        ],
+        "primary_chunk_ids": [
+          "485c4989-c300-45c8-ac06-79a59492bb5c-c0083-747260288c"
+        ],
+        "supporting_chunk_indices": [],
+        "supporting_chunk_ids": [],
+        "required_evidence_groups": [
+          [
+            "485c4989-c300-45c8-ac06-79a59492bb5c-c0083-747260288c"
+          ]
+        ],
+        "primary_source_element_ids": [
+          "p32-e3",
+          "p32-e4",
+          "p32-e5",
+          "p32-e6",
+          "p32-e7",
+          "p32-e8",
+          "p32-e9",
+          "p32-e10",
+          "p32-e11",
+          "p32-e12",
+          "p32-e13",
+          "p32-e14"
+        ]
+      },
+      "rationale": "Eleven identification fields."
+    },
+    {
+      "question_id": "RET-012",
+      "split": "dev",
+      "category": "paraphrase",
+      "difficulty": "medium",
+      "question": "Before launching a new product, business practice, delivery mechanism or technology, what ML/TF risk work must the reporting institution perform?",
+      "answerable": true,
+      "evaluation_target": "single_evidence",
+      "source": {
+        "paragraph_or_appendix_ref": "7.1.5",
+        "pdf_pages": [
+          27
+        ]
+      },
+      "gold": {
+        "primary_chunk_indices": [
+          69
+        ],
+        "primary_chunk_ids": [
+          "485c4989-c300-45c8-ac06-79a59492bb5c-c0069-fc0dcb44a4"
+        ],
+        "supporting_chunk_indices": [],
+        "supporting_chunk_ids": [],
+        "required_evidence_groups": [
+          [
+            "485c4989-c300-45c8-ac06-79a59492bb5c-c0069-fc0dcb44a4"
+          ]
+        ],
+        "primary_source_element_ids": [
+          "p27-e5"
+        ]
+      },
+      "rationale": "Paraphrases the pre-launch risk-assessment requirement."
+    },
+    {
+      "question_id": "RET-013",
+      "split": "heldout",
+      "category": "paraphrase",
+      "difficulty": "medium",
+      "question": "If the information initially collected is not enough to finish customer identification and verification, what should the reporting institution do?",
+      "answerable": true,
+      "evaluation_target": "single_evidence",
+      "source": {
+        "paragraph_or_appendix_ref": "8.1.7",
+        "pdf_pages": [
+          32
+        ]
+      },
+      "gold": {
+        "primary_chunk_indices": [
+          84
+        ],
+        "primary_chunk_ids": [
+          "485c4989-c300-45c8-ac06-79a59492bb5c-c0084-fb93596733"
+        ],
+        "supporting_chunk_indices": [],
+        "supporting_chunk_ids": [],
+        "required_evidence_groups": [
+          [
+            "485c4989-c300-45c8-ac06-79a59492bb5c-c0084-fb93596733"
+          ]
+        ],
+        "primary_source_element_ids": [
+          "p32-e15"
+        ]
+      },
+      "rationale": "Paraphrase of insufficient-identification-information requirement."
+    },
+    {
+      "question_id": "RET-014",
+      "split": "dev",
+      "category": "paraphrase",
+      "difficulty": "medium",
+      "question": "What additional due-diligence measures are required when a customer is assessed as higher ML/TF/PF risk?",
+      "answerable": true,
+      "evaluation_target": "single_evidence",
+      "source": {
+        "paragraph_or_appendix_ref": "8.3.1",
+        "pdf_pages": [
+          41
+        ]
+      },
+      "gold": {
+        "primary_chunk_indices": [
+          111
+        ],
+        "primary_chunk_ids": [
+          "485c4989-c300-45c8-ac06-79a59492bb5c-c0111-026b10a78d"
+        ],
+        "supporting_chunk_indices": [],
+        "supporting_chunk_ids": [],
+        "required_evidence_groups": [
+          [
+            "485c4989-c300-45c8-ac06-79a59492bb5c-c0111-026b10a78d"
+          ]
+        ],
+        "primary_source_element_ids": [
+          "p41-e7",
+          "p41-e8",
+          "p41-e9",
+          "p41-e10",
+          "p41-e11",
+          "p41-e12",
+          "p41-e13"
+        ]
+      },
+      "rationale": "Enhanced CDD measures."
+    },
+    {
+      "question_id": "RET-015",
+      "split": "heldout",
+      "category": "paraphrase",
+      "difficulty": "hard",
+      "question": "How must a reporting institution deal with a business relationship or transaction involving a person from a higher-risk country?",
+      "answerable": true,
+      "evaluation_target": "multi_evidence",
+      "source": {
+        "paragraph_or_appendix_ref": "8.5.1-8.5.3",
+        "pdf_pages": [
+          43
+        ]
+      },
+      "gold": {
+        "primary_chunk_indices": [
+          114,
+          115
+        ],
+        "primary_chunk_ids": [
+          "485c4989-c300-45c8-ac06-79a59492bb5c-c0114-88e54fa045",
+          "485c4989-c300-45c8-ac06-79a59492bb5c-c0115-ea57db8635"
+        ],
+        "supporting_chunk_indices": [
+          116
+        ],
+        "supporting_chunk_ids": [
+          "485c4989-c300-45c8-ac06-79a59492bb5c-c0116-b6adec1458"
+        ],
+        "required_evidence_groups": [
+          [
+            "485c4989-c300-45c8-ac06-79a59492bb5c-c0114-88e54fa045"
+          ],
+          [
+            "485c4989-c300-45c8-ac06-79a59492bb5c-c0115-ea57db8635"
+          ]
+        ],
+        "primary_source_element_ids": [
+          "p43-e2",
+          "p43-e3",
+          "p43-e4",
+          "p43-e5",
+          "p43-e6",
+          "p43-e7",
+          "p43-e8"
+        ]
+      },
+      "rationale": "Requires enhanced CDD and proportionate counter-measures."
+    },
+    {
+      "question_id": "RET-016",
+      "split": "dev",
+      "category": "paraphrase",
+      "difficulty": "medium",
+      "question": "What should a reporting institution do if it cannot adequately control the ML/TF/PF and associated risks of accepting third-party deposits?",
+      "answerable": true,
+      "evaluation_target": "single_evidence",
+      "source": {
+        "paragraph_or_appendix_ref": "7.6.4",
+        "pdf_pages": [
+          30
+        ]
+      },
+      "gold": {
+        "primary_chunk_indices": [
+          80
+        ],
+        "primary_chunk_ids": [
+          "485c4989-c300-45c8-ac06-79a59492bb5c-c0080-4341282f62"
+        ],
+        "supporting_chunk_indices": [],
+        "supporting_chunk_ids": [],
+        "required_evidence_groups": [
+          [
+            "485c4989-c300-45c8-ac06-79a59492bb5c-c0080-4341282f62"
+          ]
+        ],
+        "primary_source_element_ids": [
+          "p30-e4",
+          "p30-e5",
+          "p30-e6",
+          "p30-e7",
+          "p30-e8"
+        ]
+      },
+      "rationale": "Expected action is not to accept the third-party deposit."
+    },
+    {
+      "question_id": "RET-017",
+      "split": "dev",
+      "category": "paraphrase",
+      "difficulty": "medium",
+      "question": "In which situations must a reporting institution perform renewed CDD on an existing customer?",
+      "answerable": true,
+      "evaluation_target": "single_evidence",
+      "source": {
+        "paragraph_or_appendix_ref": "8.8.7",
+        "pdf_pages": [
+          47
+        ]
+      },
+      "gold": {
+        "primary_chunk_indices": [
+          129
+        ],
+        "primary_chunk_ids": [
+          "485c4989-c300-45c8-ac06-79a59492bb5c-c0129-2767b9c481"
+        ],
+        "supporting_chunk_indices": [],
+        "supporting_chunk_ids": [],
+        "required_evidence_groups": [
+          [
+            "485c4989-c300-45c8-ac06-79a59492bb5c-c0129-2767b9c481"
+          ]
+        ],
+        "primary_source_element_ids": [
+          "p47-e3",
+          "p47-e4",
+          "p47-e5",
+          "p47-e6"
+        ]
+      },
+      "rationale": "Dormant-account reactivation, changed circumstances, or doubts about identification data."
+    },
+    {
+      "question_id": "RET-018",
+      "split": "dev",
+      "category": "multi_clause",
+      "difficulty": "hard",
+      "question": "What safeguards apply when relying on a third-party institution to conduct CDD, and who remains ultimately responsible for the CDD?",
+      "answerable": true,
+      "evaluation_target": "multi_evidence",
+      "source": {
+        "paragraph_or_appendix_ref": "8.6.1-8.6.8",
+        "pdf_pages": [
+          44,
+          45
+        ]
+      },
+      "gold": {
+        "primary_chunk_indices": [
+          117,
+          118,
+          122
+        ],
+        "primary_chunk_ids": [
+          "485c4989-c300-45c8-ac06-79a59492bb5c-c0117-340b2169f0",
+          "485c4989-c300-45c8-ac06-79a59492bb5c-c0118-f54ab82946",
+          "485c4989-c300-45c8-ac06-79a59492bb5c-c0122-db2b4be2b1"
+        ],
+        "supporting_chunk_indices": [
+          119,
+          120,
+          121
+        ],
+        "supporting_chunk_ids": [
+          "485c4989-c300-45c8-ac06-79a59492bb5c-c0119-081d7cfeb3",
+          "485c4989-c300-45c8-ac06-79a59492bb5c-c0120-781c9e318c",
+          "485c4989-c300-45c8-ac06-79a59492bb5c-c0121-4863ecbe4f"
+        ],
+        "required_evidence_groups": [
+          [
+            "485c4989-c300-45c8-ac06-79a59492bb5c-c0117-340b2169f0"
+          ],
+          [
+            "485c4989-c300-45c8-ac06-79a59492bb5c-c0118-f54ab82946"
+          ],
+          [
+            "485c4989-c300-45c8-ac06-79a59492bb5c-c0122-db2b4be2b1"
+          ]
+        ],
+        "primary_source_element_ids": [
+          "p44-e2",
+          "p44-e3",
+          "p44-e4",
+          "p44-e5",
+          "p44-e6",
+          "p44-e7",
+          "p44-e8",
+          "p44-e9",
+          "p44-e10",
+          "p44-e11",
+          "p44-e12",
+          "p45-e8",
+          "p45-e9"
+        ]
+      },
+      "rationale": "Requires evidence across several reliance provisions."
+    },
+    {
+      "question_id": "RET-019",
+      "split": "heldout",
+      "category": "multi_clause",
+      "difficulty": "medium",
+      "question": "What actions are required when a reporting institution cannot satisfactorily complete CDD for a customer?",
+      "answerable": true,
+      "evaluation_target": "single_evidence",
+      "source": {
+        "paragraph_or_appendix_ref": "8.7.1-8.7.2",
+        "pdf_pages": [
+          45
+        ]
+      },
+      "gold": {
+        "primary_chunk_indices": [
+          123
+        ],
+        "primary_chunk_ids": [
+          "485c4989-c300-45c8-ac06-79a59492bb5c-c0123-4f5ad74283"
+        ],
+        "supporting_chunk_indices": [],
+        "supporting_chunk_ids": [],
+        "required_evidence_groups": [
+          [
+            "485c4989-c300-45c8-ac06-79a59492bb5c-c0123-4f5ad74283"
+          ]
+        ],
+        "primary_source_element_ids": [
+          "p45-e11",
+          "p45-e12"
+        ]
+      },
+      "rationale": "Includes refusal/termination and consideration of an STR."
+    },
+    {
+      "question_id": "RET-020",
+      "split": "dev",
+      "category": "multi_clause",
+      "difficulty": "hard",
+      "question": "What does ongoing due diligence require, and how should the frequency and intensity of monitoring be determined?",
+      "answerable": true,
+      "evaluation_target": "multi_evidence",
+      "source": {
+        "paragraph_or_appendix_ref": "8.8.1-8.8.5",
+        "pdf_pages": [
+          46
+        ]
+      },
+      "gold": {
+        "primary_chunk_indices": [
+          124,
+          125
+        ],
+        "primary_chunk_ids": [
+          "485c4989-c300-45c8-ac06-79a59492bb5c-c0124-0f8256155c",
+          "485c4989-c300-45c8-ac06-79a59492bb5c-c0125-e68fb9b60c"
+        ],
+        "supporting_chunk_indices": [
+          126,
+          127
+        ],
+        "supporting_chunk_ids": [
+          "485c4989-c300-45c8-ac06-79a59492bb5c-c0126-37d5229a5d",
+          "485c4989-c300-45c8-ac06-79a59492bb5c-c0127-f692bde454"
+        ],
+        "required_evidence_groups": [
+          [
+            "485c4989-c300-45c8-ac06-79a59492bb5c-c0124-0f8256155c"
+          ],
+          [
+            "485c4989-c300-45c8-ac06-79a59492bb5c-c0125-e68fb9b60c"
+          ]
+        ],
+        "primary_source_element_ids": [
+          "p46-e2",
+          "p46-e3",
+          "p46-e4",
+          "p46-e5",
+          "p46-e6"
+        ]
+      },
+      "rationale": "Core ongoing-DD duties plus risk-proportionate frequency."
+    },
+    {
+      "question_id": "RET-021",
+      "split": "heldout",
+      "category": "multi_clause",
+      "difficulty": "medium",
+      "question": "When must a suspicious transaction be reported to FIED, and does the amount of the transaction affect the obligation to lodge an STR?",
+      "answerable": true,
+      "evaluation_target": "single_evidence",
+      "source": {
+        "paragraph_or_appendix_ref": "11.6, 11.8-11.9",
+        "pdf_pages": [
+          55,
+          56
+        ]
+      },
+      "gold": {
+        "primary_chunk_indices": [
+          147
+        ],
+        "primary_chunk_ids": [
+          "485c4989-c300-45c8-ac06-79a59492bb5c-c0147-4ce9ccc098"
+        ],
+        "supporting_chunk_indices": [],
+        "supporting_chunk_ids": [],
+        "required_evidence_groups": [
+          [
+            "485c4989-c300-45c8-ac06-79a59492bb5c-c0147-4ce9ccc098"
+          ]
+        ],
+        "primary_source_element_ids": [
+          "p55-e3",
+          "p55-e4",
+          "p55-e5",
+          "p55-e6",
+          "p55-e13",
+          "p56-e1",
+          "p56-e2",
+          "p56-e3",
+          "p56-e4"
+        ]
+      },
+      "rationale": "Requires the immediate-reporting and regardless-of-amount rules."
+    },
+    {
+      "question_id": "RET-022",
+      "split": "dev",
+      "category": "multi_clause",
+      "difficulty": "hard",
+      "question": "After a terrorism-financing sanctions name match is confirmed, what immediate actions are required, and what additional rules apply to attempted transactions and false-positive checks?",
+      "answerable": true,
+      "evaluation_target": "multi_evidence",
+      "source": {
+        "paragraph_or_appendix_ref": "14.4-14.8",
+        "pdf_pages": [
+          60,
+          61
+        ]
+      },
+      "gold": {
+        "primary_chunk_indices": [
+          159,
+          160
+        ],
+        "primary_chunk_ids": [
+          "485c4989-c300-45c8-ac06-79a59492bb5c-c0159-7448ed6ef9",
+          "485c4989-c300-45c8-ac06-79a59492bb5c-c0160-41189942a4"
+        ],
+        "supporting_chunk_indices": [
+          161
+        ],
+        "supporting_chunk_ids": [
+          "485c4989-c300-45c8-ac06-79a59492bb5c-c0161-20f0fa1973"
+        ],
+        "required_evidence_groups": [
+          [
+            "485c4989-c300-45c8-ac06-79a59492bb5c-c0159-7448ed6ef9"
+          ],
+          [
+            "485c4989-c300-45c8-ac06-79a59492bb5c-c0160-41189942a4"
+          ]
+        ],
+        "primary_source_element_ids": [
+          "p60-e10",
+          "p60-e11",
+          "p61-e1",
+          "p61-e2",
+          "p61-e3",
+          "p61-e4",
+          "p61-e5",
+          "p61-e9"
+        ]
+      },
+      "rationale": "Combines confirmed-match actions with attempted-transaction and false-positive requirements."
+    },
+    {
+      "question_id": "RET-023",
+      "split": "heldout",
+      "category": "table_form",
+      "difficulty": "medium",
+      "question": "By which methods may a Suspicious Transaction Report be lodged with FIED, and what destination or contact details are provided for those methods?",
+      "answerable": true,
+      "evaluation_target": "multi_evidence",
+      "source": {
+        "paragraph_or_appendix_ref": "Appendix C, paragraphs 1-2 and lodgement table",
+        "pdf_pages": [
+          85
+        ]
+      },
+      "gold": {
+        "primary_chunk_indices": [
+          232,
+          233
+        ],
+        "primary_chunk_ids": [
+          "485c4989-c300-45c8-ac06-79a59492bb5c-c0232-30a6623279",
+          "485c4989-c300-45c8-ac06-79a59492bb5c-c0233-78b2f006e8"
+        ],
+        "supporting_chunk_indices": [
+          231
+        ],
+        "supporting_chunk_ids": [
+          "485c4989-c300-45c8-ac06-79a59492bb5c-c0231-c2c0877b53"
+        ],
+        "required_evidence_groups": [
+          [
+            "485c4989-c300-45c8-ac06-79a59492bb5c-c0232-30a6623279"
+          ],
+          [
+            "485c4989-c300-45c8-ac06-79a59492bb5c-c0233-78b2f006e8"
+          ]
+        ],
+        "primary_source_element_ids": [
+          "p85-e4",
+          "p85-e5"
+        ]
+      },
+      "rationale": "Requires both the lodgement-method introduction and the channel-details table."
+    },
+    {
+      "question_id": "RET-024",
+      "split": "dev",
+      "category": "table_form",
+      "difficulty": "hard",
+      "question": "Which authorities must receive reports when a reporting institution possesses funds, properties or accounts of a listed entity, and what source of obligation is given for each authority?",
+      "answerable": true,
+      "evaluation_target": "multi_evidence",
+      "source": {
+        "paragraph_or_appendix_ref": "Appendix D, 5.1 and reporting-authorities table",
+        "pdf_pages": [
+          89,
+          90
+        ]
+      },
+      "gold": {
+        "primary_chunk_indices": [
+          242,
+          243
+        ],
+        "primary_chunk_ids": [
+          "485c4989-c300-45c8-ac06-79a59492bb5c-c0242-6008df2d99",
+          "485c4989-c300-45c8-ac06-79a59492bb5c-c0243-50a6e75db4"
+        ],
+        "supporting_chunk_indices": [
+          244
+        ],
+        "supporting_chunk_ids": [
+          "485c4989-c300-45c8-ac06-79a59492bb5c-c0244-51c99b8239"
+        ],
+        "required_evidence_groups": [
+          [
+            "485c4989-c300-45c8-ac06-79a59492bb5c-c0242-6008df2d99"
+          ],
+          [
+            "485c4989-c300-45c8-ac06-79a59492bb5c-c0243-50a6e75db4"
+          ]
+        ],
+        "primary_source_element_ids": [
+          "p89-e10",
+          "p89-e11",
+          "p90-e1"
+        ]
+      },
+      "rationale": "Table-based authority/source mapping."
+    },
+    {
+      "question_id": "RET-025",
+      "split": "heldout",
+      "category": "table_form",
+      "difficulty": "medium",
+      "question": "What periodic reporting dates apply to the UNSCR List and Domestic List under Appendix D?",
+      "answerable": true,
+      "evaluation_target": "single_evidence",
+      "source": {
+        "paragraph_or_appendix_ref": "Appendix D, reporting-intervals table",
+        "pdf_pages": [
+          90
+        ]
+      },
+      "gold": {
+        "primary_chunk_indices": [
+          245
+        ],
+        "primary_chunk_ids": [
+          "485c4989-c300-45c8-ac06-79a59492bb5c-c0245-2a27d3f444"
+        ],
+        "supporting_chunk_indices": [
+          244
+        ],
+        "supporting_chunk_ids": [
+          "485c4989-c300-45c8-ac06-79a59492bb5c-c0244-51c99b8239"
+        ],
+        "required_evidence_groups": [
+          [
+            "485c4989-c300-45c8-ac06-79a59492bb5c-c0245-2a27d3f444"
+          ]
+        ],
+        "primary_source_element_ids": [
+          "p90-e6"
+        ]
+      },
+      "rationale": "Exact table retrieval."
+    },
+    {
+      "question_id": "RET-026",
+      "split": "dev",
+      "category": "table_form",
+      "difficulty": "hard",
+      "question": "What information fields are included in Appendix J's periodic report on changes to frozen or blocked funds, properties or accounts?",
+      "answerable": true,
+      "evaluation_target": "single_evidence",
+      "source": {
+        "paragraph_or_appendix_ref": "Appendix J periodic-reporting table",
+        "pdf_pages": [
+          108
+        ]
+      },
+      "gold": {
+        "primary_chunk_indices": [
+          282
+        ],
+        "primary_chunk_ids": [
+          "485c4989-c300-45c8-ac06-79a59492bb5c-c0282-c9062a52a1"
+        ],
+        "supporting_chunk_indices": [
+          281,
+          283
+        ],
+        "supporting_chunk_ids": [
+          "485c4989-c300-45c8-ac06-79a59492bb5c-c0281-58246ab1a4",
+          "485c4989-c300-45c8-ac06-79a59492bb5c-c0283-3f62c4db8f"
+        ],
+        "required_evidence_groups": [
+          [
+            "485c4989-c300-45c8-ac06-79a59492bb5c-c0282-c9062a52a1"
+          ]
+        ],
+        "primary_source_element_ids": [
+          "p108-e5"
+        ]
+      },
+      "rationale": "Large structured table with account and transaction fields."
+    },
+    {
+      "question_id": "RET-027",
+      "split": "dev",
+      "category": "appendix",
+      "difficulty": "hard",
+      "question": "What two assessments make up the risk-based approach in Appendix A, and what is the purpose of each assessment?",
+      "answerable": true,
+      "evaluation_target": "multi_evidence",
+      "source": {
+        "paragraph_or_appendix_ref": "Appendix A, 2.1 RBA Steps",
+        "pdf_pages": [
+          69
+        ]
+      },
+      "gold": {
+        "primary_chunk_indices": [
+          180,
+          181,
+          182
+        ],
+        "primary_chunk_ids": [
+          "485c4989-c300-45c8-ac06-79a59492bb5c-c0180-ac3abad846",
+          "485c4989-c300-45c8-ac06-79a59492bb5c-c0181-272be0f4ef",
+          "485c4989-c300-45c8-ac06-79a59492bb5c-c0182-ec484a2599"
+        ],
+        "supporting_chunk_indices": [],
+        "supporting_chunk_ids": [],
+        "required_evidence_groups": [
+          [
+            "485c4989-c300-45c8-ac06-79a59492bb5c-c0180-ac3abad846"
+          ],
+          [
+            "485c4989-c300-45c8-ac06-79a59492bb5c-c0181-272be0f4ef"
+          ],
+          [
+            "485c4989-c300-45c8-ac06-79a59492bb5c-c0182-ec484a2599"
+          ]
+        ],
+        "primary_source_element_ids": [
+          "p69-e2",
+          "p69-e4",
+          "p69-e5",
+          "p69-e6",
+          "p69-e8",
+          "p69-e9",
+          "p69-e10",
+          "p69-e11"
+        ]
+      },
+      "rationale": "Business-based risk assessment and relationship-based risk assessment."
+    },
+    {
+      "question_id": "RET-028",
+      "split": "heldout",
+      "category": "appendix",
+      "difficulty": "medium",
+      "question": "Under Appendix A1, when may a reporting institution accept an arrangement for third-party deposits?",
+      "answerable": true,
+      "evaluation_target": "single_evidence",
+      "source": {
+        "paragraph_or_appendix_ref": "Appendix A1, 2.4",
+        "pdf_pages": [
+          79
+        ]
+      },
+      "gold": {
+        "primary_chunk_indices": [
+          210
+        ],
+        "primary_chunk_ids": [
+          "485c4989-c300-45c8-ac06-79a59492bb5c-c0210-21bcd6cf1c"
+        ],
+        "supporting_chunk_indices": [],
+        "supporting_chunk_ids": [],
+        "required_evidence_groups": [
+          [
+            "485c4989-c300-45c8-ac06-79a59492bb5c-c0210-21bcd6cf1c"
+          ]
+        ],
+        "primary_source_element_ids": [
+          "p79-e17"
+        ]
+      },
+      "rationale": "Controlled and legitimate circumstances following risk assessment and due diligence."
+    },
+    {
+      "question_id": "RET-029",
+      "split": "dev",
+      "category": "appendix",
+      "difficulty": "medium",
+      "question": "What sources of information may a reporting institution use to identify family members or close associates of a PEP?",
+      "answerable": true,
+      "evaluation_target": "multi_evidence",
+      "source": {
+        "paragraph_or_appendix_ref": "Appendix B, 1.13",
+        "pdf_pages": [
+          83,
+          84
+        ]
+      },
+      "gold": {
+        "primary_chunk_indices": [
+          226,
+          227
+        ],
+        "primary_chunk_ids": [
+          "485c4989-c300-45c8-ac06-79a59492bb5c-c0226-b164ede832",
+          "485c4989-c300-45c8-ac06-79a59492bb5c-c0227-11e7d92580"
+        ],
+        "supporting_chunk_indices": [],
+        "supporting_chunk_ids": [],
+        "required_evidence_groups": [
+          [
+            "485c4989-c300-45c8-ac06-79a59492bb5c-c0226-b164ede832"
+          ],
+          [
+            "485c4989-c300-45c8-ac06-79a59492bb5c-c0227-11e7d92580"
+          ]
+        ],
+        "primary_source_element_ids": [
+          "p83-e14",
+          "p84-e1",
+          "p84-e2",
+          "p84-e3",
+          "p84-e4",
+          "p84-e5"
+        ]
+      },
+      "rationale": "Question text is in one chunk and the enumerated sources in the next."
+    },
+    {
+      "question_id": "RET-030",
+      "split": "heldout",
+      "category": "appendix",
+      "difficulty": "hard",
+      "question": "What are the three phases for identifying and conducting due diligence on a counterparty VASP in Appendix F?",
+      "answerable": true,
+      "evaluation_target": "single_evidence",
+      "source": {
+        "paragraph_or_appendix_ref": "Appendix F, 1.2",
+        "pdf_pages": [
+          103,
+          104
+        ]
+      },
+      "gold": {
+        "primary_chunk_indices": [
+          272
+        ],
+        "primary_chunk_ids": [
+          "485c4989-c300-45c8-ac06-79a59492bb5c-c0272-76a1d56662"
+        ],
+        "supporting_chunk_indices": [
+          273
+        ],
+        "supporting_chunk_ids": [
+          "485c4989-c300-45c8-ac06-79a59492bb5c-c0273-a0f89ccd1b"
+        ],
+        "required_evidence_groups": [
+          [
+            "485c4989-c300-45c8-ac06-79a59492bb5c-c0272-76a1d56662"
+          ]
+        ],
+        "primary_source_element_ids": [
+          "p103-e5",
+          "p103-e6",
+          "p103-e7",
+          "p103-e8",
+          "p103-e9",
+          "p103-e10",
+          "p103-e11",
+          "p103-e12",
+          "p103-e13",
+          "p103-e14",
+          "p104-e1"
+        ]
+      },
+      "rationale": "Three-phase counterparty-VASP process."
+    },
+    {
+      "question_id": "RET-031",
+      "split": "heldout",
+      "category": "cross_page",
+      "difficulty": "hard",
+      "question": "What originator and beneficiary information must accompany a cross-border or domestic digital-asset wire transfer sent by an ordering institution?",
+      "answerable": true,
+      "evaluation_target": "multi_evidence",
+      "source": {
+        "paragraph_or_appendix_ref": "9.2.1-9.2.2",
+        "pdf_pages": [
+          48,
+          49
+        ]
+      },
+      "gold": {
+        "primary_chunk_indices": [
+          132,
+          133
+        ],
+        "primary_chunk_ids": [
+          "485c4989-c300-45c8-ac06-79a59492bb5c-c0132-3c175526c2",
+          "485c4989-c300-45c8-ac06-79a59492bb5c-c0133-f431375115"
+        ],
+        "supporting_chunk_indices": [
+          134,
+          135,
+          136,
+          137
+        ],
+        "supporting_chunk_ids": [
+          "485c4989-c300-45c8-ac06-79a59492bb5c-c0134-f2c5066a48",
+          "485c4989-c300-45c8-ac06-79a59492bb5c-c0135-c7a41d1edf",
+          "485c4989-c300-45c8-ac06-79a59492bb5c-c0136-225386c91b",
+          "485c4989-c300-45c8-ac06-79a59492bb5c-c0137-98ec24b9b2"
+        ],
+        "required_evidence_groups": [
+          [
+            "485c4989-c300-45c8-ac06-79a59492bb5c-c0132-3c175526c2"
+          ],
+          [
+            "485c4989-c300-45c8-ac06-79a59492bb5c-c0133-f431375115"
+          ]
+        ],
+        "primary_source_element_ids": [
+          "p48-e13",
+          "p48-e14",
+          "p48-e15",
+          "p48-e16",
+          "p48-e17",
+          "p49-e2",
+          "p49-e3",
+          "p49-e4",
+          "p49-e1"
+        ]
+      },
+      "rationale": "The required originator fields cross the PDF page boundary."
+    },
+    {
+      "question_id": "RET-032",
+      "split": "dev",
+      "category": "cross_page",
+      "difficulty": "hard",
+      "question": "Across Appendix A's business risk assessment guidance, which major categories of ML/TF/PF risk factors should a reporting institution consider, including institutional-structure and NRA-related factors?",
+      "answerable": true,
+      "evaluation_target": "multi_evidence",
+      "source": {
+        "paragraph_or_appendix_ref": "Appendix A, 3.4",
+        "pdf_pages": [
+          71,
+          72,
+          73
+        ]
+      },
+      "gold": {
+        "primary_chunk_indices": [
+          187,
+          189
+        ],
+        "primary_chunk_ids": [
+          "485c4989-c300-45c8-ac06-79a59492bb5c-c0187-222788f826",
+          "485c4989-c300-45c8-ac06-79a59492bb5c-c0189-da8ccc8fc0"
+        ],
+        "supporting_chunk_indices": [
+          188
+        ],
+        "supporting_chunk_ids": [
+          "485c4989-c300-45c8-ac06-79a59492bb5c-c0188-535a8e9ddc"
+        ],
+        "required_evidence_groups": [
+          [
+            "485c4989-c300-45c8-ac06-79a59492bb5c-c0187-222788f826"
+          ],
+          [
+            "485c4989-c300-45c8-ac06-79a59492bb5c-c0189-da8ccc8fc0"
+          ]
+        ],
+        "primary_source_element_ids": [
+          "p71-e13",
+          "p71-e14",
+          "p72-e10",
+          "p72-e11",
+          "p72-e12",
+          "p72-e13",
+          "p72-e14",
+          "p72-e15",
+          "p72-e16",
+          "p72-e17",
+          "p72-e18",
+          "p73-e1",
+          "p73-e2",
+          "p73-e3",
+          "p73-e4",
+          "p73-e5",
+          "p73-e6",
+          "p73-e7",
+          "p73-e8",
+          "p73-e9",
+          "p73-e10",
+          "p73-e11",
+          "p73-e12",
+          "p73-e13",
+          "p73-e14",
+          "p73-e15",
+          "p73-e16",
+          "p73-e17",
+          "p73-e18",
+          "p73-e19",
+          "p73-e20",
+          "p73-e21"
+        ]
+      },
+      "rationale": "Evidence spans PDF pages 71-73."
+    },
+    {
+      "question_id": "RET-033",
+      "split": "dev",
+      "category": "cross_page",
+      "difficulty": "medium",
+      "question": "What record-keeping and employee-training requirements apply to due diligence and approval of third-party deposits under Appendix A1?",
+      "answerable": true,
+      "evaluation_target": "single_evidence",
+      "source": {
+        "paragraph_or_appendix_ref": "Appendix A1, 2.11-2.12",
+        "pdf_pages": [
+          80,
+          81
+        ]
+      },
+      "gold": {
+        "primary_chunk_indices": [
+          216
+        ],
+        "primary_chunk_ids": [
+          "485c4989-c300-45c8-ac06-79a59492bb5c-c0216-091e0d5d3a"
+        ],
+        "supporting_chunk_indices": [],
+        "supporting_chunk_ids": [],
+        "required_evidence_groups": [
+          [
+            "485c4989-c300-45c8-ac06-79a59492bb5c-c0216-091e0d5d3a"
+          ]
+        ],
+        "primary_source_element_ids": [
+          "p80-e16",
+          "p81-e1"
+        ]
+      },
+      "rationale": "Single semantic chunk intentionally spans PDF pages 80-81."
+    },
+    {
+      "question_id": "RET-034",
+      "split": "dev",
+      "category": "exception_condition",
+      "difficulty": "hard",
+      "question": "Which categories of legal persons are exempt under paragraph 8.1.12 from obtaining constituent documents and verifying directors, shareholders or partners?",
+      "answerable": true,
+      "evaluation_target": "multi_evidence",
+      "source": {
+        "paragraph_or_appendix_ref": "8.1.12-8.1.13",
+        "pdf_pages": [
+          34,
+          35
+        ]
+      },
+      "gold": {
+        "primary_chunk_indices": [
+          90,
+          91
+        ],
+        "primary_chunk_ids": [
+          "485c4989-c300-45c8-ac06-79a59492bb5c-c0090-1b0baef4bb",
+          "485c4989-c300-45c8-ac06-79a59492bb5c-c0091-b1b65b8c5c"
+        ],
+        "supporting_chunk_indices": [
+          92
+        ],
+        "supporting_chunk_ids": [
+          "485c4989-c300-45c8-ac06-79a59492bb5c-c0092-c25594629e"
+        ],
+        "required_evidence_groups": [
+          [
+            "485c4989-c300-45c8-ac06-79a59492bb5c-c0090-1b0baef4bb"
+          ],
+          [
+            "485c4989-c300-45c8-ac06-79a59492bb5c-c0091-b1b65b8c5c"
+          ]
+        ],
+        "primary_source_element_ids": [
+          "p34-e5",
+          "p34-e6",
+          "p34-e7",
+          "p34-e8",
+          "p34-e9",
+          "p34-e11",
+          "p34-e12",
+          "p34-e13",
+          "p34-e14",
+          "p35-e1"
+        ]
+      },
+      "rationale": "The final exempt category continues onto the next PDF page."
+    },
+    {
+      "question_id": "RET-035",
+      "split": "heldout",
+      "category": "exception_condition",
+      "difficulty": "medium",
+      "question": "What additional conditions apply when the third-party institution relied upon for CDD is part of the same financial group?",
+      "answerable": true,
+      "evaluation_target": "single_evidence",
+      "source": {
+        "paragraph_or_appendix_ref": "8.6.6",
+        "pdf_pages": [
+          44,
+          45
+        ]
+      },
+      "gold": {
+        "primary_chunk_indices": [
+          121
+        ],
+        "primary_chunk_ids": [
+          "485c4989-c300-45c8-ac06-79a59492bb5c-c0121-4863ecbe4f"
+        ],
+        "supporting_chunk_indices": [
+          118,
+          122
+        ],
+        "supporting_chunk_ids": [
+          "485c4989-c300-45c8-ac06-79a59492bb5c-c0118-f54ab82946",
+          "485c4989-c300-45c8-ac06-79a59492bb5c-c0122-db2b4be2b1"
+        ],
+        "required_evidence_groups": [
+          [
+            "485c4989-c300-45c8-ac06-79a59492bb5c-c0121-4863ecbe4f"
+          ]
+        ],
+        "primary_source_element_ids": [
+          "p45-e4",
+          "p45-e5",
+          "p45-e6",
+          "p45-e7"
+        ]
+      },
+      "rationale": "Same-group reliance conditions."
+    },
+    {
+      "question_id": "RET-036",
+      "split": "dev",
+      "category": "exception_condition",
+      "difficulty": "medium",
+      "question": "When does a reporting institution not need to repeat counterparty-VASP due diligence for every individual wire transfer, and what circumstances require the due diligence to be refreshed?",
+      "answerable": true,
+      "evaluation_target": "single_evidence",
+      "source": {
+        "paragraph_or_appendix_ref": "9.5.2-9.5.3",
+        "pdf_pages": [
+          51,
+          52
+        ]
+      },
+      "gold": {
+        "primary_chunk_indices": [
+          143
+        ],
+        "primary_chunk_ids": [
+          "485c4989-c300-45c8-ac06-79a59492bb5c-c0143-b3079bbd42"
+        ],
+        "supporting_chunk_indices": [],
+        "supporting_chunk_ids": [],
+        "required_evidence_groups": [
+          [
+            "485c4989-c300-45c8-ac06-79a59492bb5c-c0143-b3079bbd42"
+          ]
+        ],
+        "primary_source_element_ids": [
+          "p51-e11",
+          "p52-e1"
+        ]
+      },
+      "rationale": "Exception plus refresh triggers."
+    },
+    {
+      "question_id": "RET-037",
+      "split": "dev",
+      "category": "exception_condition",
+      "difficulty": "medium",
+      "question": "How long must CDD and transaction records be retained, and in what circumstances must records be kept beyond the normal retention period?",
+      "answerable": true,
+      "evaluation_target": "single_evidence",
+      "source": {
+        "paragraph_or_appendix_ref": "10.2-10.3",
+        "pdf_pages": [
+          53
+        ]
+      },
+      "gold": {
+        "primary_chunk_indices": [
+          145
+        ],
+        "primary_chunk_ids": [
+          "485c4989-c300-45c8-ac06-79a59492bb5c-c0145-dfb6598d11"
+        ],
+        "supporting_chunk_indices": [],
+        "supporting_chunk_ids": [],
+        "required_evidence_groups": [
+          [
+            "485c4989-c300-45c8-ac06-79a59492bb5c-c0145-dfb6598d11"
+          ]
+        ],
+        "primary_source_element_ids": [
+          "p53-e10",
+          "p53-e11",
+          "p53-e12",
+          "p53-e13",
+          "p53-e14",
+          "p53-e15",
+          "p53-e16",
+          "p53-e17"
+        ]
+      },
+      "rationale": "Seven-year rule plus STR/investigation/prosecution exceptions."
+    },
+    {
+      "question_id": "RET-038",
+      "split": "dev",
+      "category": "cross_reference",
+      "difficulty": "easy",
+      "question": "Where do the Guidelines direct reporting institutions for guidance and recommended best practices on identifying beneficial owners of legal persons and legal arrangements?",
+      "answerable": true,
+      "evaluation_target": "single_evidence",
+      "source": {
+        "paragraph_or_appendix_ref": "Guidance for paragraphs 8.1.8-8.1.17",
+        "pdf_pages": [
+          36
+        ]
+      },
+      "gold": {
+        "primary_chunk_indices": [
+          97
+        ],
+        "primary_chunk_ids": [
+          "485c4989-c300-45c8-ac06-79a59492bb5c-c0097-1867d471cc"
+        ],
+        "supporting_chunk_indices": [],
+        "supporting_chunk_ids": [],
+        "required_evidence_groups": [
+          [
+            "485c4989-c300-45c8-ac06-79a59492bb5c-c0097-1867d471cc"
+          ]
+        ],
+        "primary_source_element_ids": [
+          "p36-e2"
+        ]
+      },
+      "rationale": "Expected reference is Appendix E."
+    },
+    {
+      "question_id": "RET-039",
+      "split": "heldout",
+      "category": "cross_reference",
+      "difficulty": "easy",
+      "question": "Which appendix provides the detailed obligations for implementing targeted financial sanctions relating to terrorism financing?",
+      "answerable": true,
+      "evaluation_target": "single_evidence",
+      "source": {
+        "paragraph_or_appendix_ref": "14.8",
+        "pdf_pages": [
+          61
+        ]
+      },
+      "gold": {
+        "primary_chunk_indices": [
+          160
+        ],
+        "primary_chunk_ids": [
+          "485c4989-c300-45c8-ac06-79a59492bb5c-c0160-41189942a4"
+        ],
+        "supporting_chunk_indices": [],
+        "supporting_chunk_ids": [],
+        "required_evidence_groups": [
+          [
+            "485c4989-c300-45c8-ac06-79a59492bb5c-c0160-41189942a4"
+          ]
+        ],
+        "primary_source_element_ids": [
+          "p61-e4",
+          "p61-e5",
+          "p61-e9"
+        ]
+      },
+      "rationale": "Expected reference is Appendix D."
+    },
+    {
+      "question_id": "RET-040",
+      "split": "dev",
+      "category": "cross_reference",
+      "difficulty": "easy",
+      "question": "Where are the explanatory notes for maintaining the proliferation-financing sanctions list provided?",
+      "answerable": true,
+      "evaluation_target": "single_evidence",
+      "source": {
+        "paragraph_or_appendix_ref": "16.2",
+        "pdf_pages": [
+          62,
+          106
+        ]
+      },
+      "gold": {
+        "primary_chunk_indices": [
+          164
+        ],
+        "primary_chunk_ids": [
+          "485c4989-c300-45c8-ac06-79a59492bb5c-c0164-45aead3b04"
+        ],
+        "supporting_chunk_indices": [
+          276
+        ],
+        "supporting_chunk_ids": [
+          "485c4989-c300-45c8-ac06-79a59492bb5c-c0276-b02b6aba4d"
+        ],
+        "required_evidence_groups": [
+          [
+            "485c4989-c300-45c8-ac06-79a59492bb5c-c0164-45aead3b04"
+          ]
+        ],
+        "primary_source_element_ids": [
+          "p62-e8"
+        ]
+      },
+      "rationale": "Expected reference is Appendix H."
+    }
+  ]
+}

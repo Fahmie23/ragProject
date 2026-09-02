@@ -1,0 +1,234 @@
+{
+  "document_id": "485c4989-c300-45c8-ac06-79a59492bb5c",
+  "query": "What sources of information may a reporting institution use to identify family members or close associates of a PEP?",
+  "embedding_model": "BAAI/bge-m3",
+  "requested_device": "auto",
+  "resolved_device": "cuda",
+  "top_k": 10,
+  "embedded_chunk_count": 284,
+  "total_chunk_count": 284,
+  "hits": [
+    {
+      "rank": 1,
+      "chunk_id": "485c4989-c300-45c8-ac06-79a59492bb5c-c0226-b164ede832",
+      "chunk_index": 226,
+      "semantic_type": "clause",
+      "score": 0.7799890273806166,
+      "distance": 0.2200109726193834,
+      "text": "Section: APPENDIX B > Source of Information of Family Members and Close Associates of a PEP\nClause: 1.13\nGroup: Guidance on Politically Exposed Person (PEP) – Family Members\nand Close Associates of PEP\n\n1.13 A reporting institution may refer to any of the following sources of information in\nidentifying a family member or close associate of a PEP:",
+      "content_text": "1.13 A reporting institution may refer to any of the following sources of information in\nidentifying a family member or close associate of a PEP:",
+      "token_count": 68,
+      "pages": [
+        83
+      ],
+      "section_path": [
+        "APPENDIX B",
+        "Source of Information of Family Members and Close Associates of a PEP"
+      ],
+      "source_element_ids": [
+        "p83-e14"
+      ]
+    },
+    {
+      "rank": 2,
+      "chunk_id": "485c4989-c300-45c8-ac06-79a59492bb5c-c0225-d41a16a744",
+      "chunk_index": 225,
+      "semantic_type": "clause",
+      "score": 0.7643598545896967,
+      "distance": 0.23564014541030331,
+      "text": "Section: APPENDIX B > Source of Information of Family Members and Close Associates of a PEP\nClause: 1.12\nGroup: Guidance on Politically Exposed Person (PEP) – Family Members\nand Close Associates of PEP\n\n1.12 For the purpose of determining whether an individual is a family member or a close\nassociate of a PEP, the reporting institution may refer to any information which is\nin its possession, or which is publicly known.",
+      "content_text": "1.12 For the purpose of determining whether an individual is a family member or a close\nassociate of a PEP, the reporting institution may refer to any information which is\nin its possession, or which is publicly known.",
+      "token_count": 83,
+      "pages": [
+        83
+      ],
+      "section_path": [
+        "APPENDIX B",
+        "Source of Information of Family Members and Close Associates of a PEP"
+      ],
+      "source_element_ids": [
+        "p83-e13"
+      ]
+    },
+    {
+      "rank": 3,
+      "chunk_id": "485c4989-c300-45c8-ac06-79a59492bb5c-c0228-1d5ec15af9",
+      "chunk_index": 228,
+      "semantic_type": "clause",
+      "score": 0.7349462728186335,
+      "distance": 0.26505372718136655,
+      "text": "Section: APPENDIX B > Source of Information of Family Members and Close Associates of a PEP\nClause: 1.14\nGroup: Guidance on Politically Exposed Person (PEP) – Family Members\nand Close Associates of PEP\n\n1.14 The sources of information referred above are not exhaustive and a reporting\ninstitution is encouraged to develop its own internal references in identifying\nindividuals who are family members or close associates of a PEP.",
+      "content_text": "1.14 The sources of information referred above are not exhaustive and a reporting\ninstitution is encouraged to develop its own internal references in identifying\nindividuals who are family members or close associates of a PEP.",
+      "token_count": 78,
+      "pages": [
+        84
+      ],
+      "section_path": [
+        "APPENDIX B",
+        "Source of Information of Family Members and Close Associates of a PEP"
+      ],
+      "source_element_ids": [
+        "p84-e6"
+      ]
+    },
+    {
+      "rank": 4,
+      "chunk_id": "485c4989-c300-45c8-ac06-79a59492bb5c-c0217-17d27e7da1",
+      "chunk_index": 217,
+      "semantic_type": "clause",
+      "score": 0.7174284671970749,
+      "distance": 0.28257153280292513,
+      "text": "Section: APPENDIX B\nGroup: Guidance on Politically Exposed Person (PEP) – Family Members\nand Close Associates of PEP\n\n1.1 The requirements imposed on PEP also extend to family members and close associates\nof a PEP.\n\n1.2 A reporting institution is required to effectively identify family members or close\nassociates of a PEP.",
+      "content_text": "1.1 The requirements imposed on PEP also extend to family members and close associates\nof a PEP.\n\n1.2 A reporting institution is required to effectively identify family members or close\nassociates of a PEP.",
+      "token_count": 62,
+      "pages": [
+        82
+      ],
+      "section_path": [
+        "APPENDIX B"
+      ],
+      "source_element_ids": [
+        "p82-e3",
+        "p82-e4"
+      ]
+    },
+    {
+      "rank": 5,
+      "chunk_id": "485c4989-c300-45c8-ac06-79a59492bb5c-c0227-11e7d92580",
+      "chunk_index": 227,
+      "semantic_type": "list_item",
+      "score": 0.7113213499199216,
+      "distance": 0.2886786500800784,
+      "text": "Section: APPENDIX B > Source of Information of Family Members and Close Associates of a PEP\nGroup: Guidance on Politically Exposed Person (PEP) – Family Members\nand Close Associates of PEP\n\n(a)internet and media searches;\n\n(b)commercial databases;\n\n(c)in-house databases and information sharing within financial group;\n\n(d)customer’s self-declaration; and/or\n\n(e)risk information shared by supervisory/regulatory authorities.",
+      "content_text": "(a)internet and media searches;\n\n(b)commercial databases;\n\n(c)in-house databases and information sharing within financial group;\n\n(d)customer’s self-declaration; and/or\n\n(e)risk information shared by supervisory/regulatory authorities.",
+      "token_count": 88,
+      "pages": [
+        84
+      ],
+      "section_path": [
+        "APPENDIX B",
+        "Source of Information of Family Members and Close Associates of a PEP"
+      ],
+      "source_element_ids": [
+        "p84-e1",
+        "p84-e2",
+        "p84-e3",
+        "p84-e4",
+        "p84-e5"
+      ]
+    },
+    {
+      "rank": 6,
+      "chunk_id": "485c4989-c300-45c8-ac06-79a59492bb5c-c0219-45a98d0a5f",
+      "chunk_index": 219,
+      "semantic_type": "clause",
+      "score": 0.6973837821896014,
+      "distance": 0.3026162178103986,
+      "text": "Section: APPENDIX B > Close Associates of a PEP\nGroup: Guidance on Politically Exposed Person (PEP) – Family Members\nand Close Associates of PEP\n\n1.5 A close associate is an individual reasonably known to the reporting institution to be\nclosely connected to a PEP, either socially or professionally.\n\n1.6 An individual who is closely connected to a PEP may include the PEP’s business\npartners or associates, extended family members, close friends and financially\ndependent individuals.\n\n1.7 Reporting institutions must determine the extent to which the close associate is directly\nengaged or involved in the activity of the PEP on best effort basis.",
+      "content_text": "1.5 A close associate is an individual reasonably known to the reporting institution to be\nclosely connected to a PEP, either socially or professionally.\n\n1.6 An individual who is closely connected to a PEP may include the PEP’s business\npartners or associates, extended family members, close friends and financially\ndependent individuals.\n\n1.7 Reporting institutions must determine the extent to which the close associate is directly\nengaged or involved in the activity of the PEP on best effort basis.",
+      "token_count": 120,
+      "pages": [
+        82
+      ],
+      "section_path": [
+        "APPENDIX B",
+        "Close Associates of a PEP"
+      ],
+      "source_element_ids": [
+        "p82-e15",
+        "p82-e16",
+        "p82-e17"
+      ]
+    },
+    {
+      "rank": 7,
+      "chunk_id": "485c4989-c300-45c8-ac06-79a59492bb5c-c0229-c4c6ef7a69",
+      "chunk_index": 229,
+      "semantic_type": "clause",
+      "score": 0.6879001464813994,
+      "distance": 0.3120998535186006,
+      "text": "Section: APPENDIX B > Extent of Application of Family Member or Close Associate of a PEP\nClause: 1.15\nGroup: Guidance on Politically Exposed Person (PEP) – Family Members\nand Close Associates of PEP\n\n1.15 A reporting institution should apply appropriate risk assessment on family members\nor close associates of a PE P who no longer holds prominent public function.",
+      "content_text": "1.15 A reporting institution should apply appropriate risk assessment on family members\nor close associates of a PE P who no longer holds prominent public function.",
+      "token_count": 69,
+      "pages": [
+        84
+      ],
+      "section_path": [
+        "APPENDIX B",
+        "Extent of Application of Family Member or Close Associate of a PEP"
+      ],
+      "source_element_ids": [
+        "p84-e8"
+      ]
+    },
+    {
+      "rank": 8,
+      "chunk_id": "485c4989-c300-45c8-ac06-79a59492bb5c-c0223-b6b8c0071b",
+      "chunk_index": 223,
+      "semantic_type": "clause",
+      "score": 0.6707029542536427,
+      "distance": 0.3292970457463573,
+      "text": "Section: APPENDIX B > Family member or Close Associate of a Domestic PEP or person entrusted with prominent\npublic  function by an international organisation (PEPFIO)\nClause: 1.10\nGroup: Guidance on Politically Exposed Person (PEP) – Family Members\nand Close Associates of PEP\n\n1.10 In assessing the ML/TF risk level of customer or beneficial owner identified as family\nmembers or close associates of a domestic PEP or PEPFIO, the reporting institution\nmay consider the following factors:\n\n(a)The family members or close associates have business interests to the related\nPEP’s public functions (conflict of interest);\n\n(b)The social standing or official capacity of the family members or close associates\nare such that it can be controlled, directed or influenced by the PEP;\n\n(c)Jurisdictions of which the family members or close associates originate from\nor reside in; and\n\n(d)The family members or close associates are known to be involved in businesses\nor activities that have a high probability of being abused as a vehicle for ML/TF\nby the PEP.",
+      "content_text": "1.10 In assessing the ML/TF risk level of customer or beneficial owner identified as family\nmembers or close associates of a domestic PEP or PEPFIO, the reporting institution\nmay consider the following factors:\n\n(a)The family members or close associates have business interests to the related\nPEP’s public functions (conflict of interest);\n\n(b)The social standing or official capacity of the family members or close associates\nare such that it can be controlled, directed or influenced by the PEP;\n\n(c)Jurisdictions of which the family members or close associates originate from\nor reside in; and\n\n(d)The family members or close associates are known to be involved in businesses\nor activities that have a high probability of being abused as a vehicle for ML/TF\nby the PEP.",
+      "token_count": 203,
+      "pages": [
+        83
+      ],
+      "section_path": [
+        "APPENDIX B",
+        "Family member or Close Associate of a Domestic PEP or person entrusted with prominent\npublic  function by an international organisation (PEPFIO)"
+      ],
+      "source_element_ids": [
+        "p83-e6",
+        "p83-e7",
+        "p83-e8",
+        "p83-e9",
+        "p83-e10"
+      ]
+    },
+    {
+      "rank": 9,
+      "chunk_id": "485c4989-c300-45c8-ac06-79a59492bb5c-c0222-98b3161ce7",
+      "chunk_index": 222,
+      "semantic_type": "clause",
+      "score": 0.6666121681515031,
+      "distance": 0.33338783184849685,
+      "text": "Section: APPENDIX B > Family member or Close Associate of a Domestic PEP or person entrusted with prominent\npublic  function by an international organisation (PEPFIO)\nClause: 1.9\nGroup: Guidance on Politically Exposed Person (PEP) – Family Members\nand Close Associates of PEP\n\n1.9 If the customer or beneficial owner is identified as a family member or close associate\nof a domestic PEP or PEPFIO, a reporting institution is required to assess the level of\nML/TF risks posed by the business relationship with the family members or close\nassociates.",
+      "content_text": "1.9 If the customer or beneficial owner is identified as a family member or close associate\nof a domestic PEP or PEPFIO, a reporting institution is required to assess the level of\nML/TF risks posed by the business relationship with the family members or close\nassociates.",
+      "token_count": 103,
+      "pages": [
+        83
+      ],
+      "section_path": [
+        "APPENDIX B",
+        "Family member or Close Associate of a Domestic PEP or person entrusted with prominent\npublic  function by an international organisation (PEPFIO)"
+      ],
+      "source_element_ids": [
+        "p83-e5"
+      ]
+    },
+    {
+      "rank": 10,
+      "chunk_id": "485c4989-c300-45c8-ac06-79a59492bb5c-c0230-54abd1851c",
+      "chunk_index": 230,
+      "semantic_type": "clause",
+      "score": 0.6634153325383467,
+      "distance": 0.3365846674616533,
+      "text": "Section: APPENDIX B > Extent of Application of Family Member or Close Associate of a PEP\nClause: 1.16\nGroup: Guidance on Politically Exposed Person (PEP) – Family Members\nand Close Associates of PEP\n\n1.16 A reporting institution may consider the following factors in determining whether a\nfamily member or close associate of a PEP who no longer holds a prominent public\nfunction should be considered as high risk:\n\n(a)the level of informal influence that the PEP could still exercise, even though he\nno longer holds a prominent public function; and\n\n(b)whether the PEP’s previous and current function (though not in a public/official\ncapacity) are linked by the fact that the PEP continues to deal with the same\nsubstantive matters.",
+      "content_text": "1.16 A reporting institution may consider the following factors in determining whether a\nfamily member or close associate of a PEP who no longer holds a prominent public\nfunction should be considered as high risk:\n\n(a)the level of informal influence that the PEP could still exercise, even though he\nno longer holds a prominent public function; and\n\n(b)whether the PEP’s previous and current function (though not in a public/official\ncapacity) are linked by the fact that the PEP continues to deal with the same\nsubstantive matters.",
+      "token_count": 144,
+      "pages": [
+        84
+      ],
+      "section_path": [
+        "APPENDIX B",
+        "Extent of Application of Family Member or Close Associate of a PEP"
+      ],
+      "source_element_ids": [
+        "p84-e9",
+        "p84-e10",
+        "p84-e11"
+      ]
+    }
+  ]
+}

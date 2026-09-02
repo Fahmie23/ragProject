@@ -1,0 +1,388 @@
+{
+  "document_id": "485c4989-c300-45c8-ac06-79a59492bb5c",
+  "query": "What should a reporting institution do if it cannot adequately control the ML/TF/PF and associated risks of accepting third-party deposits?",
+  "embedding_model": "BAAI/bge-m3",
+  "embedding_requested_device": "auto",
+  "embedding_resolved_device": "cuda",
+  "reranker_model": "BAAI/bge-reranker-v2-m3",
+  "reranker_requested_device": "auto",
+  "reranker_resolved_device": "cuda",
+  "reranker_batch_size": 2,
+  "reranker_max_length": 1024,
+  "top_k": 10,
+  "candidate_k": 20,
+  "candidate_union_count": 26,
+  "embedded_chunk_count": 284,
+  "total_chunk_count": 284,
+  "candidate_strategy": "dense_lexical_union",
+  "ranking_method": "cross_encoder",
+  "fusion_method": "reciprocal_rank_fusion_trace",
+  "rrf_k": 60,
+  "dense_weight": 1.0,
+  "lexical_weight": 1.0,
+  "lexical_ranking_method": "postgresql_fts_term_coverage_then_ts_rank_cd",
+  "lexical_query_mode": "or_content_terms_v1",
+  "lexical_terms": [
+    "reporting",
+    "institution",
+    "cannot",
+    "adequately",
+    "control",
+    "ml",
+    "tf",
+    "pf",
+    "associated",
+    "risks",
+    "accepting",
+    "third",
+    "party",
+    "deposits"
+  ],
+  "lexical_tsquery": "reporting | institution | cannot | adequately | control | ml | tf | pf | associated | risks | accepting | third | party | deposits",
+  "hits": [
+    {
+      "rank": 1,
+      "chunk_id": "485c4989-c300-45c8-ac06-79a59492bb5c-c0080-4341282f62",
+      "chunk_index": 80,
+      "semantic_type": "clause",
+      "reranker_score": 0.9990938901901245,
+      "hybrid_candidate_rank": 2,
+      "fusion_score": 0.03225806451612903,
+      "dense_rank": 2,
+      "dense_score": 0.7796836161990679,
+      "dense_distance": 0.2203163838009321,
+      "dense_rrf_score": 0.016129032258064516,
+      "lexical_rank": 2,
+      "lexical_score": 5.4,
+      "lexical_matched_term_count": 9,
+      "lexical_term_coverage": 0.6428571428571429,
+      "lexical_rrf_score": 0.016129032258064516,
+      "text": "Section: PART II: RISK-BASED APPROACH APPLICATION > 7. RISK-BASED APPROACH APPLICATION > 7.6 Risk management and mitigation in third-party deposits and payments\n\n7.6.1 There are ML/TF/PF risks as well as other risks associated with third-party deposits made\ninto accounts maintained by customers of a reporting institution.\n\n7.6.2 In view of the risks associated with third-party deposits, reporting institutions must in\nconducting its risk assessment consider and assess the risk arising from third-party\ndeposits and ensure that appropriate control measures are implemented to mitigate the\nrisk and/or prevent ML/TF/PF activities.\n\n7.6.3 A reporting institution which accepts third-party deposit must at minimum, comply with\nthe requirements on control measures in accepting third-party deposits set out in\nAppendix A1 of these Guidelines.\n\n7.6.4 A reporting institution which is unable to exercise appropriate control measures to\nmitigate the inherent ML/TF/PF risk and other associated risks and meet the relevant\ncompliance requirements must not accept any third-party deposits.\n\n7.6.5 Generally, a reporting institution must not accept any request from customers for\npayments to be made from the customers’ account into a third-party account except in\nexceptional circumstances where permitted in relevant guidelines.",
+      "content_text": "7.6.1 There are ML/TF/PF risks as well as other risks associated with third-party deposits made\ninto accounts maintained by customers of a reporting institution.\n\n7.6.2 In view of the risks associated with third-party deposits, reporting institutions must in\nconducting its risk assessment consider and assess the risk arising from third-party\ndeposits and ensure that appropriate control measures are implemented to mitigate the\nrisk and/or prevent ML/TF/PF activities.\n\n7.6.3 A reporting institution which accepts third-party deposit must at minimum, comply with\nthe requirements on control measures in accepting third-party deposits set out in\nAppendix A1 of these Guidelines.\n\n7.6.4 A reporting institution which is unable to exercise appropriate control measures to\nmitigate the inherent ML/TF/PF risk and other associated risks and meet the relevant\ncompliance requirements must not accept any third-party deposits.\n\n7.6.5 Generally, a reporting institution must not accept any request from customers for\npayments to be made from the customers’ account into a third-party account except in\nexceptional circumstances where permitted in relevant guidelines.",
+      "token_count": 255,
+      "pages": [
+        30
+      ],
+      "section_path": [
+        "PART II: RISK-BASED APPROACH APPLICATION",
+        "7. RISK-BASED APPROACH APPLICATION",
+        "7.6 Risk management and mitigation in third-party deposits and payments"
+      ],
+      "source_element_ids": [
+        "p30-e4",
+        "p30-e5",
+        "p30-e6",
+        "p30-e7",
+        "p30-e8"
+      ]
+    },
+    {
+      "rank": 2,
+      "chunk_id": "485c4989-c300-45c8-ac06-79a59492bb5c-c0207-2adb54d356",
+      "chunk_index": 207,
+      "semantic_type": "clause",
+      "reranker_score": 0.9965554475784302,
+      "hybrid_candidate_rank": 1,
+      "fusion_score": 0.03278688524590164,
+      "dense_rank": 1,
+      "dense_score": 0.8078998556256524,
+      "dense_distance": 0.19210014437434764,
+      "dense_rrf_score": 0.01639344262295082,
+      "lexical_rank": 1,
+      "lexical_score": 2.7,
+      "lexical_matched_term_count": 10,
+      "lexical_term_coverage": 0.7142857142857143,
+      "lexical_rrf_score": 0.01639344262295082,
+      "text": "Section: APPENDIX A1 > 1.0 General\n\n1.1 This Appendix sets out requirements on control measures to mitigate ML/TF/PF risk\nwhen a reporting institution accepts third-party deposits. For avoidance of doubt, third-\nparty deposits refer to monies deposited by a third-party into the customer’s account\nwith a reporting institution.\n\n1.2 A reporting institution which is unable to exercise adequate control measures to\nmitigate the inherent ML/TF/PF risk and other associated risks and meet the relevant\ncompliance requirements must not accept any third-party deposits.",
+      "content_text": "1.1 This Appendix sets out requirements on control measures to mitigate ML/TF/PF risk\nwhen a reporting institution accepts third-party deposits. For avoidance of doubt, third-\nparty deposits refer to monies deposited by a third-party into the customer’s account\nwith a reporting institution.\n\n1.2 A reporting institution which is unable to exercise adequate control measures to\nmitigate the inherent ML/TF/PF risk and other associated risks and meet the relevant\ncompliance requirements must not accept any third-party deposits.",
+      "token_count": 110,
+      "pages": [
+        79
+      ],
+      "section_path": [
+        "APPENDIX A1",
+        "1.0 General"
+      ],
+      "source_element_ids": [
+        "p79-e5",
+        "p79-e6"
+      ]
+    },
+    {
+      "rank": 3,
+      "chunk_id": "485c4989-c300-45c8-ac06-79a59492bb5c-c0208-9e5f3f0038",
+      "chunk_index": 208,
+      "semantic_type": "clause",
+      "reranker_score": 0.9948592185974121,
+      "hybrid_candidate_rank": 3,
+      "fusion_score": 0.031746031746031744,
+      "dense_rank": 3,
+      "dense_score": 0.7611151026350191,
+      "dense_distance": 0.23888489736498086,
+      "dense_rrf_score": 0.015873015873015872,
+      "lexical_rank": 3,
+      "lexical_score": 2.2,
+      "lexical_matched_term_count": 9,
+      "lexical_term_coverage": 0.6428571428571429,
+      "lexical_rrf_score": 0.015873015873015872,
+      "text": "Section: APPENDIX A1 > 2.0 Policies and procedures\n\n2.1 A reporting institution which accepts third-party deposits must establish and implement\na clear, comprehensive and effective policies and procedures to monitor third-party\ndeposits and have control measures to be carried out before accepting third-party\ndeposits to mitigate ML/TF/PF risk and other associated risks.\n\n2.2 A reporting institution is required to comply with the requirements of paragraph 7.6 of\nthese Guidelines in establishing and implementing third-party deposits policies and\nprocedures.",
+      "content_text": "2.1 A reporting institution which accepts third-party deposits must establish and implement\na clear, comprehensive and effective policies and procedures to monitor third-party\ndeposits and have control measures to be carried out before accepting third-party\ndeposits to mitigate ML/TF/PF risk and other associated risks.\n\n2.2 A reporting institution is required to comply with the requirements of paragraph 7.6 of\nthese Guidelines in establishing and implementing third-party deposits policies and\nprocedures.",
+      "token_count": 102,
+      "pages": [
+        79
+      ],
+      "section_path": [
+        "APPENDIX A1",
+        "2.0 Policies and procedures"
+      ],
+      "source_element_ids": [
+        "p79-e8",
+        "p79-e9"
+      ]
+    },
+    {
+      "rank": 4,
+      "chunk_id": "485c4989-c300-45c8-ac06-79a59492bb5c-c0055-88bd4ccfdd",
+      "chunk_index": 55,
+      "semantic_type": "clause",
+      "reranker_score": 0.993465006351471,
+      "hybrid_candidate_rank": 14,
+      "fusion_score": 0.02666666666666667,
+      "dense_rank": 15,
+      "dense_score": 0.6655528944071705,
+      "dense_distance": 0.33444710559282953,
+      "dense_rrf_score": 0.013333333333333334,
+      "lexical_rank": 15,
+      "lexical_score": 2.1000001,
+      "lexical_matched_term_count": 6,
+      "lexical_term_coverage": 0.42857142857142855,
+      "lexical_rrf_score": 0.013333333333333334,
+      "text": "Section: PART I: INTRODUCTION AND APPLICABILITY > 6. GENERAL PRINCIPLES AND POLICIES TO COMBAT MONEY\nLAUNDERING, TERRORISM FINANCING AND PROLIFERATION\nFINANCING\nClause: 6.2\n\n6.2 In combating ML/TF/PF, a reporting institution must ensure the following:\n\n(a)Compliance with laws: A reporting institution must ensure that laws and\nregulations are adhered to, that business is conducted in conformity with high\nethical standards, and that service is not provided where there is good reason\nto suppose that transactions are associated with ML/TF/PF activities.\n\n(b)Co-operation with law enforcement agencies: A reporting institution\nmust co-operate fully with relevant law enforcement agencies. This includes\ntaking appropriate measures such as timely disclosure of information by the\nreporting institution to the FIED and the relevant law enforcement agencies.\n\n(c)Establishing internal controls: A reporting institution must issue and adopt\npolicies and procedures which are consistent with the principles set out under\nthe AMLA, TFS-PF related legislations and these Guidelines. A reporting\ninstitution must also ensure ongoing training programmes are conducted to\nkeep its board of directors, senior management and employees abreast on\nmatters under the AMLA and these Guidelines.\n\n(d)Risk-based approach: A reporting institution must ensure that the depth\nand breadth of its policies and procedures to identify, assess, monitor, manage\n\nand mitigate ML/TF/PF risks commensurate with the nature, scale and\ncomplexity of its activities.\n\n(e)Customer Due Diligence: A reporting institution must have an effective\nprocedure to identify its customers and to obtain satisfactory evidence to\nverify its customers’ identity.",
+      "content_text": "6.2 In combating ML/TF/PF, a reporting institution must ensure the following:\n\n(a)Compliance with laws: A reporting institution must ensure that laws and\nregulations are adhered to, that business is conducted in conformity with high\nethical standards, and that service is not provided where there is good reason\nto suppose that transactions are associated with ML/TF/PF activities.\n\n(b)Co-operation with law enforcement agencies: A reporting institution\nmust co-operate fully with relevant law enforcement agencies. This includes\ntaking appropriate measures such as timely disclosure of information by the\nreporting institution to the FIED and the relevant law enforcement agencies.\n\n(c)Establishing internal controls: A reporting institution must issue and adopt\npolicies and procedures which are consistent with the principles set out under\nthe AMLA, TFS-PF related legislations and these Guidelines. A reporting\ninstitution must also ensure ongoing training programmes are conducted to\nkeep its board of directors, senior management and employees abreast on\nmatters under the AMLA and these Guidelines.\n\n(d)Risk-based approach: A reporting institution must ensure that the depth\nand breadth of its policies and procedures to identify, assess, monitor, manage\n\nand mitigate ML/TF/PF risks commensurate with the nature, scale and\ncomplexity of its activities.\n\n(e)Customer Due Diligence: A reporting institution must have an effective\nprocedure to identify its customers and to obtain satisfactory evidence to\nverify its customers’ identity.",
+      "token_count": 307,
+      "pages": [
+        19,
+        20
+      ],
+      "section_path": [
+        "PART I: INTRODUCTION AND APPLICABILITY",
+        "6. GENERAL PRINCIPLES AND POLICIES TO COMBAT MONEY\nLAUNDERING, TERRORISM FINANCING AND PROLIFERATION\nFINANCING"
+      ],
+      "source_element_ids": [
+        "p19-e8",
+        "p19-e9",
+        "p19-e10",
+        "p19-e11",
+        "p19-e12",
+        "p20-e1",
+        "p20-e2"
+      ]
+    },
+    {
+      "rank": 5,
+      "chunk_id": "485c4989-c300-45c8-ac06-79a59492bb5c-c0215-2461243dc4",
+      "chunk_index": 215,
+      "semantic_type": "clause",
+      "reranker_score": 0.9766420125961304,
+      "hybrid_candidate_rank": 6,
+      "fusion_score": 0.030117753623188408,
+      "dense_rank": 4,
+      "dense_score": 0.7201221322867764,
+      "dense_distance": 0.27987786771322365,
+      "dense_rrf_score": 0.015625,
+      "lexical_rank": 9,
+      "lexical_score": 1.6,
+      "lexical_matched_term_count": 7,
+      "lexical_term_coverage": 0.5,
+      "lexical_rrf_score": 0.014492753623188406,
+      "text": "Section: APPENDIX A1 > 2.0 Policies and procedures > Monitoring systems and controls to identify and accept third-party deposits\nGroup: On-going monitoring\n\n2.9 A reporting institution must implement an on-going monitoring of customers’ accounts\ninvolving third-party deposits. A suspicious transaction report should be made\nimmediately to the FIED when there are grounds for suspicion of ML/TF/PF.\n\n2.10 A reporting institution must ‘flag’ accounts with suspicious transactions relating to\nthird- party deposits for monitoring purposes.",
+      "content_text": "2.9 A reporting institution must implement an on-going monitoring of customers’ accounts\ninvolving third-party deposits. A suspicious transaction report should be made\nimmediately to the FIED when there are grounds for suspicion of ML/TF/PF.\n\n2.10 A reporting institution must ‘flag’ accounts with suspicious transactions relating to\nthird- party deposits for monitoring purposes.",
+      "token_count": 101,
+      "pages": [
+        80
+      ],
+      "section_path": [
+        "APPENDIX A1",
+        "2.0 Policies and procedures",
+        "Monitoring systems and controls to identify and accept third-party deposits"
+      ],
+      "source_element_ids": [
+        "p80-e13",
+        "p80-e14"
+      ]
+    },
+    {
+      "rank": 6,
+      "chunk_id": "485c4989-c300-45c8-ac06-79a59492bb5c-c0117-340b2169f0",
+      "chunk_index": 117,
+      "semantic_type": "clause",
+      "reranker_score": 0.9747157096862793,
+      "hybrid_candidate_rank": 11,
+      "fusion_score": 0.02797339593114241,
+      "dense_rank": 11,
+      "dense_score": 0.6713757506533127,
+      "dense_distance": 0.3286242493466873,
+      "dense_rrf_score": 0.014084507042253521,
+      "lexical_rank": 12,
+      "lexical_score": 3.5,
+      "lexical_matched_term_count": 6,
+      "lexical_term_coverage": 0.42857142857142855,
+      "lexical_rrf_score": 0.013888888888888888,
+      "text": "Section: PART III: CUSTOMER DUE DILIGENCE > 8. CUSTOMER DUE DILIGENCE (CDD) > 8.6 Reliance on third-party institutions to conduct CDD\n\n8.6.1 A reporting institution may rely on a third-party institution to conduct CDD at the point\nof establishing a business relationship to identify and verify a customer or a beneficial\nowner. The reporting institution must immediately obtain the necessary information\nconcerning the identification and verification of the customer or the beneficial owner\nfrom the third-party institution.\n\n8.6.2 A reporting institution must have in place internal policies and procedures to mitigate\nthe risks when relying on a third-party institution, including those from foreign\njurisdictions. However, the reporting institution must ensure that the third-party\ninstitution adequately applies the FATF Recommendations in determining the extent\nto which reliance could be placed on such third-party institution.\n\n8.6.3 A reporting institution is prohibited from relying on a third-party institution located\nin higher- risk countries that have been identified as having ongoing or substantial\nML/TF/PF risks.",
+      "content_text": "8.6.1 A reporting institution may rely on a third-party institution to conduct CDD at the point\nof establishing a business relationship to identify and verify a customer or a beneficial\nowner. The reporting institution must immediately obtain the necessary information\nconcerning the identification and verification of the customer or the beneficial owner\nfrom the third-party institution.\n\n8.6.2 A reporting institution must have in place internal policies and procedures to mitigate\nthe risks when relying on a third-party institution, including those from foreign\njurisdictions. However, the reporting institution must ensure that the third-party\ninstitution adequately applies the FATF Recommendations in determining the extent\nto which reliance could be placed on such third-party institution.\n\n8.6.3 A reporting institution is prohibited from relying on a third-party institution located\nin higher- risk countries that have been identified as having ongoing or substantial\nML/TF/PF risks.",
+      "token_count": 206,
+      "pages": [
+        44
+      ],
+      "section_path": [
+        "PART III: CUSTOMER DUE DILIGENCE",
+        "8. CUSTOMER DUE DILIGENCE (CDD)",
+        "8.6 Reliance on third-party institutions to conduct CDD"
+      ],
+      "source_element_ids": [
+        "p44-e2",
+        "p44-e3",
+        "p44-e4"
+      ]
+    },
+    {
+      "rank": 7,
+      "chunk_id": "485c4989-c300-45c8-ac06-79a59492bb5c-c0192-a02b79c891",
+      "chunk_index": 192,
+      "semantic_type": "clause",
+      "reranker_score": 0.9724598526954651,
+      "hybrid_candidate_rank": 23,
+      "fusion_score": 0.01282051282051282,
+      "dense_rank": null,
+      "dense_score": null,
+      "dense_distance": null,
+      "dense_rrf_score": 0.0,
+      "lexical_rank": 18,
+      "lexical_score": 3.5,
+      "lexical_matched_term_count": 5,
+      "lexical_term_coverage": 0.35714285714285715,
+      "lexical_rrf_score": 0.01282051282051282,
+      "text": "Section: APPENDIX A > 3.0 A: Perform Risk Assessment\nGroup: Business-based Risk Assessment (BbRA)\n\n3.6 By applying all the risk factors and parameters in performing its risk assessment, the\nreporting institution would be able to determine the extent of ML/TF/PF risks that it\nis exposed to, on a quantitative and/or qualitative basis.\n\n3.7 The outcome of the risk assessment will determine the level of risk the reporting\ninstitution is willing to accept i.e. the reporting institution’s risk appetite and its\nappropriate risk rating. The risk appetite and risk rating will have a direct impact\non the proposed risk management and mitigation procedures, systems and controls\nadopted by the reporting institution.\n\n3.8 Apart from ensuring that the risk assessment is reflected in the policies and\nprocedures, a reporting institution must also be able to justify the outcome of the risk\nassessment conducted.\n\n3.9 Once the reporting institution has identified and assessed the ML/TF/PF risks it faces\nupon performing its risk assessment under paragraph 3 above, a reporting institution\nmust ensure that appropriate risk control measures are formulated and implemented\nin order to manage and mitigate these risks.",
+      "content_text": "3.6 By applying all the risk factors and parameters in performing its risk assessment, the\nreporting institution would be able to determine the extent of ML/TF/PF risks that it\nis exposed to, on a quantitative and/or qualitative basis.\n\n3.7 The outcome of the risk assessment will determine the level of risk the reporting\ninstitution is willing to accept i.e. the reporting institution’s risk appetite and its\nappropriate risk rating. The risk appetite and risk rating will have a direct impact\non the proposed risk management and mitigation procedures, systems and controls\nadopted by the reporting institution.\n\n3.8 Apart from ensuring that the risk assessment is reflected in the policies and\nprocedures, a reporting institution must also be able to justify the outcome of the risk\nassessment conducted.\n\n3.9 Once the reporting institution has identified and assessed the ML/TF/PF risks it faces\nupon performing its risk assessment under paragraph 3 above, a reporting institution\nmust ensure that appropriate risk control measures are formulated and implemented\nin order to manage and mitigate these risks.",
+      "token_count": 228,
+      "pages": [
+        74
+      ],
+      "section_path": [
+        "APPENDIX A",
+        "3.0 A: Perform Risk Assessment"
+      ],
+      "source_element_ids": [
+        "p74-e3",
+        "p74-e4",
+        "p74-e5",
+        "p74-e6"
+      ]
+    },
+    {
+      "rank": 8,
+      "chunk_id": "485c4989-c300-45c8-ac06-79a59492bb5c-c0008-e6045d93c8",
+      "chunk_index": 8,
+      "semantic_type": "clause",
+      "reranker_score": 0.9635739326477051,
+      "hybrid_candidate_rank": 24,
+      "fusion_score": 0.012658227848101266,
+      "dense_rank": null,
+      "dense_score": null,
+      "dense_distance": null,
+      "dense_rrf_score": 0.0,
+      "lexical_rank": 19,
+      "lexical_score": 2.0,
+      "lexical_matched_term_count": 5,
+      "lexical_term_coverage": 0.35714285714285715,
+      "lexical_rrf_score": 0.012658227848101266,
+      "text": "Section: PART I: INTRODUCTION AND APPLICABILITY > 2.  APPLICABILITY\n\n2.1 These Guidelines are applicable to reporting institutions as defined under Part I on Definition,\nPart VII on Combating Terrorism Financing and Part VIII on Combating Proliferation\nFinancing as the case may be, including its branches and majority- owned subsidiaries\noutside Malaysia which carry out, among others, the activities as listed in the First\nSchedule of the AMLA.\n\n2.2 In the case of foreign operations, where anti-money laundering, counter financing terrorism\nand counter proliferation financing (AML/CFT/CPF) measures of the host country are less\nstringent than the Malaysian standards, a reporting institution is required to ensure that its\nforeign branches and majority-owned subsidiaries apply AML/CFT/CPF measures which are\nconsistent with the Malaysian standards, to the extent that the host country laws and\nregulations permit.\n\n2.3 If the host country does not permit the proper implementation of the AML/CFT/CPF\nmeasures consistent with the Malaysian standards, the reporting institution is required to\napply appropriate additional measures to mitigate the money laundering, terrorism\nfinancing and proliferation financing (ML/TF/PF) risks and inform the SC on the\nAML/CFT/CPF gaps and additional measures implemented to manage the ML/TF/PF risks\narising from the identified gaps.\n\n2.4 Where the reporting institution is unable to put in place the necessary mitigating measures\nas required under paragraph 2.3 above, the reporting institution may consider ceasing the\noperations of the branch or subsidiary.\n\n2.5 Part VIII of these Guidelines set out TFS-PF obligations that must be complied with by\nreporting institutions. The Strategic Trade Controller may from time-to-time issue new\nguidelines or directives under the STA which a reporting institution may need to comply\nwith. In this regard, the SC will notify all relevant reporting institutions of such issuances\naccordingly. Where there are differing requirements, the more stringent requirements shall\napply.\n\n2.6 The SC may, upon application, grant an exemption from or variation to the requirements\nof these Guidelines if the SC is satisfied that:\n\n(a) such variation is not contrary to the intended purpose of the relevant requirement\nin these Guidelines; or\n\n(b) there are mitigating factors which justify the said exemption or variation.",
+      "content_text": "2.1 These Guidelines are applicable to reporting institutions as defined under Part I on Definition,\nPart VII on Combating Terrorism Financing and Part VIII on Combating Proliferation\nFinancing as the case may be, including its branches and majority- owned subsidiaries\noutside Malaysia which carry out, among others, the activities as listed in the First\nSchedule of the AMLA.\n\n2.2 In the case of foreign operations, where anti-money laundering, counter financing terrorism\nand counter proliferation financing (AML/CFT/CPF) measures of the host country are less\nstringent than the Malaysian standards, a reporting institution is required to ensure that its\nforeign branches and majority-owned subsidiaries apply AML/CFT/CPF measures which are\nconsistent with the Malaysian standards, to the extent that the host country laws and\nregulations permit.\n\n2.3 If the host country does not permit the proper implementation of the AML/CFT/CPF\nmeasures consistent with the Malaysian standards, the reporting institution is required to\napply appropriate additional measures to mitigate the money laundering, terrorism\nfinancing and proliferation financing (ML/TF/PF) risks and inform the SC on the\nAML/CFT/CPF gaps and additional measures implemented to manage the ML/TF/PF risks\narising from the identified gaps.\n\n2.4 Where the reporting institution is unable to put in place the necessary mitigating measures\nas required under paragraph 2.3 above, the reporting institution may consider ceasing the\noperations of the branch or subsidiary.\n\n2.5 Part VIII of these Guidelines set out TFS-PF obligations that must be complied with by\nreporting institutions. The Strategic Trade Controller may from time-to-time issue new\nguidelines or directives under the STA which a reporting institution may need to comply\nwith. In this regard, the SC will notify all relevant reporting institutions of such issuances\naccordingly. Where there are differing requirements, the more stringent requirements shall\napply.\n\n2.6 The SC may, upon application, grant an exemption from or variation to the requirements\nof these Guidelines if the SC is satisfied that:\n\n(a) such variation is not contrary to the intended purpose of the relevant requirement\nin these Guidelines; or\n\n(b) there are mitigating factors which justify the said exemption or variation.",
+      "token_count": 438,
+      "pages": [
+        7,
+        8
+      ],
+      "section_path": [
+        "PART I: INTRODUCTION AND APPLICABILITY",
+        "2.  APPLICABILITY"
+      ],
+      "source_element_ids": [
+        "p7-e9",
+        "p7-e10",
+        "p8-e1",
+        "p8-e2",
+        "p8-e3",
+        "p8-e4",
+        "p8-e5",
+        "p8-e6"
+      ]
+    },
+    {
+      "rank": 9,
+      "chunk_id": "485c4989-c300-45c8-ac06-79a59492bb5c-c0054-cf7b9dcb54",
+      "chunk_index": 54,
+      "semantic_type": "clause",
+      "reranker_score": 0.9625235199928284,
+      "hybrid_candidate_rank": 19,
+      "fusion_score": 0.013157894736842105,
+      "dense_rank": 16,
+      "dense_score": 0.6646053198685682,
+      "dense_distance": 0.3353946801314318,
+      "dense_rrf_score": 0.013157894736842105,
+      "lexical_rank": null,
+      "lexical_score": null,
+      "lexical_matched_term_count": 0,
+      "lexical_term_coverage": 0.0,
+      "lexical_rrf_score": 0.0,
+      "text": "Section: PART I: INTRODUCTION AND APPLICABILITY > 6. GENERAL PRINCIPLES AND POLICIES TO COMBAT MONEY\nLAUNDERING, TERRORISM FINANCING AND PROLIFERATION\nFINANCING\nClause: 6.1\n\n6.1 A reporting institution is required to take the necessary steps in order to prevent\nML/TF/PF and have a system in place for reporting suspected ML/TF/PF transactions\nto the FIED .",
+      "content_text": "6.1 A reporting institution is required to take the necessary steps in order to prevent\nML/TF/PF and have a system in place for reporting suspected ML/TF/PF transactions\nto the FIED .",
+      "token_count": 71,
+      "pages": [
+        19
+      ],
+      "section_path": [
+        "PART I: INTRODUCTION AND APPLICABILITY",
+        "6. GENERAL PRINCIPLES AND POLICIES TO COMBAT MONEY\nLAUNDERING, TERRORISM FINANCING AND PROLIFERATION\nFINANCING"
+      ],
+      "source_element_ids": [
+        "p19-e7"
+      ]
+    },
+    {
+      "rank": 10,
+      "chunk_id": "485c4989-c300-45c8-ac06-79a59492bb5c-c0070-bfadb14a87",
+      "chunk_index": 70,
+      "semantic_type": "clause",
+      "reranker_score": 0.9552984237670898,
+      "hybrid_candidate_rank": 15,
+      "fusion_score": 0.014492753623188406,
+      "dense_rank": 9,
+      "dense_score": 0.6774192836976953,
+      "dense_distance": 0.32258071630230467,
+      "dense_rrf_score": 0.014492753623188406,
+      "lexical_rank": null,
+      "lexical_score": null,
+      "lexical_matched_term_count": 0,
+      "lexical_term_coverage": 0.0,
+      "lexical_rrf_score": 0.0,
+      "text": "Section: PART II: RISK-BASED APPROACH APPLICATION > 7. RISK-BASED APPROACH APPLICATION > 7.2 ML/TF Risk management and mitigation\nClause: 7.2.1\n\n7.2.1 A reporting institution is required to–\n\n(a)have policies, procedures and controls, which are approved by the board of\ndirectors, to enable it to manage and mitigate effectively the ML/TF risks that\nhave been identified and assessed;\n\n(b)monitor the implementation of those policies, procedures and controls and\nto enhance them if necessary; and\n\n(c)take enhanced measures to manage and mitigate the risks where higher\nrisks are identified.",
+      "content_text": "7.2.1 A reporting institution is required to–\n\n(a)have policies, procedures and controls, which are approved by the board of\ndirectors, to enable it to manage and mitigate effectively the ML/TF risks that\nhave been identified and assessed;\n\n(b)monitor the implementation of those policies, procedures and controls and\nto enhance them if necessary; and\n\n(c)take enhanced measures to manage and mitigate the risks where higher\nrisks are identified.",
+      "token_count": 126,
+      "pages": [
+        27
+      ],
+      "section_path": [
+        "PART II: RISK-BASED APPROACH APPLICATION",
+        "7. RISK-BASED APPROACH APPLICATION",
+        "7.2 ML/TF Risk management and mitigation"
+      ],
+      "source_element_ids": [
+        "p27-e7",
+        "p27-e8",
+        "p27-e9",
+        "p27-e10"
+      ]
+    }
+  ]
+}

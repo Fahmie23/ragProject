@@ -1,0 +1,165 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "answer_citation_eval_schema_v1.json",
+  "title": "Answer and Citation Evaluation Dataset v1",
+  "description": "Stage 11 benchmark contract. This schema defines labels only; it does not authorize tuning frozen retrieval or citation stages.",
+  "type": "object",
+  "required": [
+    "schema_version",
+    "dataset_id",
+    "benchmark_status",
+    "document",
+    "policy",
+    "counts",
+    "questions"
+  ],
+  "properties": {
+    "schema_version": {"const": "1.0"},
+    "dataset_id": {"type": "string", "minLength": 1},
+    "benchmark_status": {"enum": ["draft", "frozen"]},
+    "document": {
+      "type": "object",
+      "required": ["document_id", "source_sha256", "pdf_page_count"],
+      "properties": {
+        "document_id": {"type": "string", "minLength": 1},
+        "source_sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+        "pdf_page_count": {"type": "integer", "minimum": 1}
+      },
+      "additionalProperties": false
+    },
+    "policy": {
+      "type": "object",
+      "required": [
+        "retrieval_profile",
+        "retrieval_v1_frozen",
+        "stage4_frozen",
+        "stage5_frozen",
+        "stage10_frozen",
+        "citation_version",
+        "heldout_tuning_forbidden"
+      ],
+      "properties": {
+        "retrieval_profile": {"const": "retrieval_v1_stage8_2_top5"},
+        "retrieval_v1_frozen": {"const": true},
+        "stage4_frozen": {"const": true},
+        "stage5_frozen": {"const": true},
+        "stage10_frozen": {"const": true},
+        "citation_version": {"const": "deterministic_citations_v1_2"},
+        "heldout_tuning_forbidden": {"const": true}
+      },
+      "additionalProperties": false
+    },
+    "counts": {
+      "type": "object",
+      "required": ["questions", "dev", "heldout", "answered", "insufficient_evidence"],
+      "properties": {
+        "questions": {"type": "integer", "minimum": 1},
+        "dev": {"type": "integer", "minimum": 0},
+        "heldout": {"type": "integer", "minimum": 0},
+        "answered": {"type": "integer", "minimum": 0},
+        "insufficient_evidence": {"type": "integer", "minimum": 0}
+      },
+      "additionalProperties": false
+    },
+    "questions": {
+      "type": "array",
+      "minItems": 1,
+      "items": {"$ref": "#/$defs/question"}
+    }
+  },
+  "$defs": {
+    "locator": {
+      "type": "object",
+      "required": ["kind", "label"],
+      "properties": {
+        "kind": {"enum": ["clause", "subclause", "definition", "appendix", "section", "page"]},
+        "label": {"type": "string", "minLength": 1},
+        "pages": {
+          "type": "array",
+          "items": {"type": "integer", "minimum": 1},
+          "uniqueItems": true
+        }
+      },
+      "additionalProperties": false
+    },
+    "source_group": {
+      "type": "object",
+      "required": ["group_id", "any_of"],
+      "properties": {
+        "group_id": {"type": "string", "pattern": "^G[0-9]+$"},
+        "description": {"type": "string"},
+        "any_of": {
+          "type": "array",
+          "minItems": 1,
+          "items": {"$ref": "#/$defs/locator"}
+        }
+      },
+      "additionalProperties": false
+    },
+    "gold_claim": {
+      "type": "object",
+      "required": ["claim_id", "requirement"],
+      "properties": {
+        "claim_id": {"type": "string", "pattern": "^GC[0-9]+$"},
+        "requirement": {"type": "string", "minLength": 1},
+        "notes": {"type": "string"}
+      },
+      "additionalProperties": false
+    },
+    "question": {
+      "type": "object",
+      "required": [
+        "question_id",
+        "split",
+        "category",
+        "difficulty",
+        "question",
+        "expected_status",
+        "gold"
+      ],
+      "properties": {
+        "question_id": {"type": "string", "pattern": "^ACIT-[0-9]{3}$"},
+        "split": {"enum": ["dev", "heldout"]},
+        "category": {
+          "enum": [
+            "definition",
+            "direct_requirement",
+            "multi_clause",
+            "exception_condition",
+            "table_form",
+            "appendix",
+            "cross_page",
+            "cross_reference",
+            "out_of_scope"
+          ]
+        },
+        "difficulty": {"enum": ["easy", "medium", "hard"]},
+        "question": {"type": "string", "minLength": 10},
+        "expected_status": {"enum": ["answered", "insufficient_evidence"]},
+        "gold": {
+          "type": "object",
+          "required": ["required_claims", "required_source_groups", "answer_notes"],
+          "properties": {
+            "required_claims": {
+              "type": "array",
+              "items": {"$ref": "#/$defs/gold_claim"}
+            },
+            "required_source_groups": {
+              "type": "array",
+              "items": {"$ref": "#/$defs/source_group"}
+            },
+            "answer_notes": {"type": "string"},
+            "forbidden_claims": {
+              "type": "array",
+              "items": {"type": "string", "minLength": 1}
+            }
+          },
+          "additionalProperties": false
+        },
+        "notes": {"type": "string"}
+      },
+      "additionalProperties": false
+    }
+  },
+  "additionalProperties": false
+}

@@ -1,0 +1,267 @@
+{
+  "document_id": "485c4989-c300-45c8-ac06-79a59492bb5c",
+  "question": "When a beneficiary institution encounters a wire transfer lacking required originator or beneficiary information, what monitoring and risk-based decision rules must it have?",
+  "status": "answered",
+  "answer": "A beneficiary institution must take reasonable measures, including post-event or real-time monitoring where feasible, to identify cross-border or domestic wire transfers that lack the required originator or beneficiary information. A beneficiary institution must have effective risk-based policies and procedures for determining when to execute, reject, or suspend a wire transfer lacking the required originator or beneficiary information, and for deciding the appropriate follow-up action.",
+  "cited_answer": "A beneficiary institution must take reasonable measures, including post-event or real-time monitoring where feasible, to identify cross-border or domestic wire transfers that lack the required originator or beneficiary information. [1] A beneficiary institution must have effective risk-based policies and procedures for determining when to execute, reject, or suspend a wire transfer lacking the required originator or beneficiary information, and for deciding the appropriate follow-up action. [1]",
+  "claims": [
+    {
+      "claim_id": "C1",
+      "text": "A beneficiary institution must take reasonable measures, including post-event or real-time monitoring where feasible, to identify cross-border or domestic wire transfers that lack the required originator or beneficiary information.",
+      "evidence_ids": [
+        "E1"
+      ],
+      "citation_ids": [
+        "CIT-E1"
+      ]
+    },
+    {
+      "claim_id": "C2",
+      "text": "A beneficiary institution must have effective risk-based policies and procedures for determining when to execute, reject, or suspend a wire transfer lacking the required originator or beneficiary information, and for deciding the appropriate follow-up action.",
+      "evidence_ids": [
+        "E1"
+      ],
+      "citation_ids": [
+        "CIT-E1"
+      ]
+    }
+  ],
+  "used_evidence_ids": [
+    "E1"
+  ],
+  "missing_information": [],
+  "evidence": [
+    {
+      "evidence_id": "E1",
+      "chunk_id": "485c4989-c300-45c8-ac06-79a59492bb5c-c0138-fc3eaa0c1a",
+      "chunk_index": 138,
+      "semantic_type": "clause",
+      "source_rank": 1,
+      "ranked_seed_rank": 1,
+      "reasons": [
+        "ranked_seed"
+      ],
+      "pages": [
+        50
+      ],
+      "section_path": [
+        "PART IIIA: WIRE TRANSFER",
+        "9. WIRE TRANSFER OF DIGITAL ASSETS",
+        "9.3 Beneficiary Institutions"
+      ],
+      "source_element_ids": [
+        "p50-e2",
+        "p50-e3",
+        "p50-e4",
+        "p50-e5",
+        "p50-e6",
+        "p50-e7",
+        "p50-e8"
+      ],
+      "content_text": "9.3.1 A beneficiary institution must take reasonable measures, including post-event or real-\ntime monitoring where feasible, to identify cross border wire transfers or domestic\nwire transfers that lack the required originator information or required beneficiary\ninformation.\n\n9.3.2 A beneficiary institution is required to have effective risk-based policies and procedures\nfor determining―\n\n(a)when to execute, reject, or suspend a wire transfer lacking the required originator\nor required beneficiary information; and\n\n(b)the appropriate follow-up action.\n\n9.3.3 A beneficiary institution must verify the following beneficiary information received from\nthe ordering institution:\n\n(a)Name of beneficiary; and\n\n(b) Account number or digital wallet address or a unique transaction reference\nnumber used to process the transaction which permits traceability of the\ntransaction."
+    },
+    {
+      "evidence_id": "E2",
+      "chunk_id": "485c4989-c300-45c8-ac06-79a59492bb5c-c0139-f108162213",
+      "chunk_index": 139,
+      "semantic_type": "clause",
+      "source_rank": 2,
+      "ranked_seed_rank": 2,
+      "reasons": [
+        "ranked_seed"
+      ],
+      "pages": [
+        50
+      ],
+      "section_path": [
+        "PART IIIA: WIRE TRANSFER",
+        "9. WIRE TRANSFER OF DIGITAL ASSETS",
+        "9.4 Sanctions Screening"
+      ],
+      "source_element_ids": [
+        "p50-e10",
+        "p50-e11",
+        "p50-e12",
+        "p50-e13",
+        "p50-e14",
+        "p50-e15",
+        "p50-e16",
+        "p50-e17",
+        "p50-e18"
+      ],
+      "content_text": "9.4.1 An ordering institution must conduct sanctions screening of the following persons:\n\n(a) its customer, at the point of onboarding and ongoing due diligence; and\n\n(b) the beneficiary, when a wire transfer is conducted.\n\n9.4.2 A beneficiary institution must conduct sanctions screening of the following persons:\n\n(a) its beneficiary, at the point of onboarding and ongoing due diligence; and\n\n(b) the originator, when a wire transfer is conducted.\n\n9.4.3 Once the person screened is identified as a designated person, the ordering or\nbeneficiary institution must take freezing actions and prohibit transactions.\n\n9.4.4 Ordering or beneficiary institutions must implement effective control frameworks to\nensure that they can comply with their targeted financial sanction obligations.\n\n9.4.5 A reporting institution must document their remediation control actions in their\nAML/CFT/CPF risk assessment."
+    },
+    {
+      "evidence_id": "E3",
+      "chunk_id": "485c4989-c300-45c8-ac06-79a59492bb5c-c0132-3c175526c2",
+      "chunk_index": 132,
+      "semantic_type": "clause",
+      "source_rank": 3,
+      "ranked_seed_rank": 3,
+      "reasons": [
+        "ranked_seed"
+      ],
+      "pages": [
+        48,
+        49
+      ],
+      "section_path": [
+        "PART IIIA: WIRE TRANSFER",
+        "9. WIRE TRANSFER OF DIGITAL ASSETS",
+        "9.2 Ordering institutions"
+      ],
+      "source_element_ids": [
+        "p48-e13",
+        "p48-e14",
+        "p48-e15",
+        "p48-e16",
+        "p48-e17",
+        "p49-e2",
+        "p49-e3",
+        "p49-e4"
+      ],
+      "content_text": "9.2.1 A reporting institution which is an ordering institution must ensure that the message\nfor cross-border or domestic wire transfer are accompanied by the following:\n\n(a)Required and accurate originator information pertaining to:\n\n(i)Name of originator;\n\n(ii)National registration identity card number or passport number;\n\n(iii)Account number or digital wallet address or a unique transaction\nreference number used to process the transaction which permits\ntraceability of the transaction; and\n\n(b)Required beneficiary information pertaining to:\n\n(i)Name of beneficiary; and\n\n(ii)Account number or digital wallet address or a unique transaction\nreference number used to process the transaction which permits\ntraceability of the transaction."
+    },
+    {
+      "evidence_id": "E4",
+      "chunk_id": "485c4989-c300-45c8-ac06-79a59492bb5c-c0130-68d2d5136f",
+      "chunk_index": 130,
+      "semantic_type": "clause",
+      "source_rank": 4,
+      "ranked_seed_rank": 4,
+      "reasons": [
+        "ranked_seed"
+      ],
+      "pages": [
+        48
+      ],
+      "section_path": [
+        "PART IIIA: WIRE TRANSFER",
+        "9. WIRE TRANSFER OF DIGITAL ASSETS",
+        "9.1 General"
+      ],
+      "source_element_ids": [
+        "p48-e4",
+        "p48-e5",
+        "p48-e6",
+        "p48-e7",
+        "p48-e8",
+        "p48-e9",
+        "p48-e10"
+      ],
+      "content_text": "9.1.1 The requirements under this Part are applicable to a reporting institution providing\ncross border wire transfer or domestic wire transfer of digital assets.\n\n9.1.2 A reporting institution must not execute wire transfer of digital assets if it does not comply\nwith the requirements specified in this Part IIIA.\n\n9.1.3 In providing wire transfer of a digital asset, the reporting institutions must comply\nwith requirements on targeted financial sanctions:\n\n(a)In relation to terrorism financing under Part VII of these Guidelines; and\n\n(b)In relation to proliferation financing Part VIII of these Guidelines.\n\n9.1.4 A reporting institution must obtain, hold and maintain all originator and beneficiary\ninformation collected under this Part IIIA, in accordance with record keeping\nrequirements under Part IV of these Guidelines.This information must be made\navailable to regulators or relevant authorities when necessary.\n\n9.1.5 A reporting institution must have in place adequate policies and procedures and the\nability to trace all wire transfers."
+    },
+    {
+      "evidence_id": "E5",
+      "chunk_id": "485c4989-c300-45c8-ac06-79a59492bb5c-c0141-ca25e4a05b",
+      "chunk_index": 141,
+      "semantic_type": "clause",
+      "source_rank": 5,
+      "ranked_seed_rank": 5,
+      "reasons": [
+        "ranked_seed"
+      ],
+      "pages": [
+        51
+      ],
+      "section_path": [
+        "PART IIIA: WIRE TRANSFER",
+        "9. WIRE TRANSFER OF DIGITAL ASSETS",
+        "9.5 Identification and Due Diligence on Counterparty VASP"
+      ],
+      "source_element_ids": [
+        "p51-e6",
+        "p51-e7"
+      ],
+      "content_text": "9.5.1 A reporting institution must identify and conduct due diligence on the counterparty VASP\nbefore the reporting institution transmits the required originator or beneficiary\ninformation.\n\nAppendix F sets out the guide on how due diligence on counterparty VASP could be\nundertaken."
+    }
+  ],
+  "citations": [
+    {
+      "citation_id": "CIT-E1",
+      "marker": "[1]",
+      "evidence_id": "E1",
+      "chunk_id": "485c4989-c300-45c8-ac06-79a59492bb5c-c0138-fc3eaa0c1a",
+      "chunk_index": 138,
+      "source_filename": "sc_aml_cft.pdf",
+      "display": "Clause 9.3.1 · Clause 9.3.2 · Clause 9.3.3 · PDF p. 50",
+      "pages": [
+        50
+      ],
+      "section_path": [
+        "PART IIIA: WIRE TRANSFER",
+        "9. WIRE TRANSFER OF DIGITAL ASSETS",
+        "9.3 Beneficiary Institutions"
+      ],
+      "source_element_ids": [
+        "p50-e2",
+        "p50-e3",
+        "p50-e4",
+        "p50-e5",
+        "p50-e6",
+        "p50-e7",
+        "p50-e8"
+      ],
+      "locators": [
+        {
+          "kind": "clause",
+          "label": "Clause 9.3.1",
+          "pages": [
+            50
+          ],
+          "source_element_ids": [
+            "p50-e2"
+          ]
+        },
+        {
+          "kind": "clause",
+          "label": "Clause 9.3.2",
+          "pages": [
+            50
+          ],
+          "source_element_ids": [
+            "p50-e3"
+          ]
+        },
+        {
+          "kind": "clause",
+          "label": "Clause 9.3.3",
+          "pages": [
+            50
+          ],
+          "source_element_ids": [
+            "p50-e6"
+          ]
+        }
+      ],
+      "validation_status": "valid"
+    }
+  ],
+  "citation_version": "deterministic_citations_v1_2",
+  "citation_validation": {
+    "status": "valid",
+    "citation_count": 1,
+    "valid_citation_count": 1,
+    "errors": []
+  },
+  "generation_provider": "groq",
+  "generation_model": "openai/gpt-oss-120b",
+  "prompt_version": "grounded_claims_v1",
+  "generation_temperature": 0.0,
+  "generation_max_tokens": 1200,
+  "generation_json_mode": true,
+  "usage": {
+    "prompt_tokens": 1628,
+    "completion_tokens": 480,
+    "total_tokens": 2108
+  },
+  "retrieval_profile": "retrieval_v1_stage8_2_top5",
+  "retrieval_top_k": 5,
+  "retrieval_candidate_k": 20,
+  "retrieval_rrf_k": 60,
+  "retrieval_dense_weight": 1.0,
+  "retrieval_lexical_weight": 1.0,
+  "context_strategy": "structural_one_hop_v1",
+  "context_chunk_count": 5,
+  "expanded_chunk_count": 0
+}

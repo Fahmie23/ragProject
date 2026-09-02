@@ -1,0 +1,339 @@
+{
+  "document_id": "485c4989-c300-45c8-ac06-79a59492bb5c",
+  "question": "Does a lower institutional proliferation-financing risk level reduce the obligation to implement targeted financial sanctions on PF?",
+  "status": "answered",
+  "answer": "A reporting institution must ensure full implementation of the targeted financial sanctions on PF irrespective of the institutional PF risk level. When lower PF risks are identified, the institution must apply measures commensurate with the risk level while still ensuring full implementation of the targeted financial sanctions on PF.",
+  "cited_answer": "A reporting institution must ensure full implementation of the targeted financial sanctions on PF irrespective of the institutional PF risk level. [1] When lower PF risks are identified, the institution must apply measures commensurate with the risk level while still ensuring full implementation of the targeted financial sanctions on PF. [2]",
+  "claims": [
+    {
+      "claim_id": "C1",
+      "text": "A reporting institution must ensure full implementation of the targeted financial sanctions on PF irrespective of the institutional PF risk level.",
+      "evidence_ids": [
+        "E1"
+      ],
+      "citation_ids": [
+        "CIT-E1"
+      ]
+    },
+    {
+      "claim_id": "C2",
+      "text": "When lower PF risks are identified, the institution must apply measures commensurate with the risk level while still ensuring full implementation of the targeted financial sanctions on PF.",
+      "evidence_ids": [
+        "E2"
+      ],
+      "citation_ids": [
+        "CIT-E2"
+      ]
+    }
+  ],
+  "used_evidence_ids": [
+    "E1",
+    "E2"
+  ],
+  "missing_information": [],
+  "evidence": [
+    {
+      "evidence_id": "E1",
+      "chunk_id": "485c4989-c300-45c8-ac06-79a59492bb5c-c0076-642cdbb37b",
+      "chunk_index": 76,
+      "semantic_type": "clause",
+      "source_rank": 1,
+      "ranked_seed_rank": 1,
+      "reasons": [
+        "ranked_seed"
+      ],
+      "pages": [
+        29
+      ],
+      "section_path": [
+        "PART II: RISK-BASED APPROACH APPLICATION",
+        "7. RISK-BASED APPROACH APPLICATION",
+        "7.4     PF Risk management and mitigation"
+      ],
+      "source_element_ids": [
+        "p29-e3"
+      ],
+      "content_text": "7.4.1 A reporting institution must ensure full implementation of the targeted financial sanctions\non PF as per Part VIII of these Guidelines irrespective of the institutional PF risk level."
+    },
+    {
+      "evidence_id": "E2",
+      "chunk_id": "485c4989-c300-45c8-ac06-79a59492bb5c-c0075-57734b61ca",
+      "chunk_index": 75,
+      "semantic_type": "clause",
+      "source_rank": 2,
+      "ranked_seed_rank": 2,
+      "reasons": [
+        "ranked_seed"
+      ],
+      "pages": [
+        28,
+        29
+      ],
+      "section_path": [
+        "PART II: RISK-BASED APPROACH APPLICATION",
+        "7. RISK-BASED APPROACH APPLICATION",
+        "7.3    PF Risk assessment"
+      ],
+      "source_element_ids": [
+        "p28-e9",
+        "p28-e10",
+        "p28-e11",
+        "p28-e12",
+        "p28-e13",
+        "p29-e1"
+      ],
+      "content_text": "7.3.5 A reporting institution is required to:\n\n(a) have policies, procedures and controls, which are approved by the board of\ndirectors, to enable it to manage and mitigate effectively the PF risks that have\nbeen identified and assessed;\n\n(b) monitor the implementation of those policies, procedures and controls and to\nenhance them if necessary; and\n\n(c) take commensurate measures to manage and mitigate the risks:\n\n(i) where higher PF risks are identified, a reporting institution must ensure that\nit adequately address such higher PF risk by introducing enhanced controls\nto detect possible breaches, non-implementation or evasion of targeted\nfinancial sanctions on PF under Part VIII of these Guidelines;\n\n(ii) where lower PF risks are identified, reporting institution must ensure that\nthe measures applied are commensurate with the level of PF risk while still\nensuring full implementation of the targeted financial sanctions on PF\nunder Part VIII of these Guidelines."
+    },
+    {
+      "evidence_id": "E3",
+      "chunk_id": "485c4989-c300-45c8-ac06-79a59492bb5c-c0100-d1377a7b3c",
+      "chunk_index": 100,
+      "semantic_type": "clause",
+      "source_rank": 3,
+      "ranked_seed_rank": 3,
+      "reasons": [
+        "ranked_seed"
+      ],
+      "pages": [
+        36,
+        37
+      ],
+      "section_path": [
+        "PART III: CUSTOMER DUE DILIGENCE",
+        "8. CUSTOMER DUE DILIGENCE (CDD)",
+        "8.1 CDD at the point of establishing business relationship"
+      ],
+      "source_element_ids": [
+        "p36-e10",
+        "p36-e11",
+        "p36-e12",
+        "p37-e1",
+        "p37-e2",
+        "p37-e3",
+        "p37-e4",
+        "p37-e5",
+        "p37-e6",
+        "p37-e7",
+        "p37-e8",
+        "p37-e9",
+        "p37-e10",
+        "p37-e11",
+        "p37-e12"
+      ],
+      "content_text": "8.1.23 This section applies when a reporting institution chooses to establish non-face-to-\nface business relationship.\n\n(a) A reporting institution must develop and implement policies and procedures to\naddress and mitigate specific ML/TF/PF risks associated with establishing non\nface-to-face business relationship, as well as operational and information\ntechnology risk.\n\n(b) A reporting institution must establish appropriate measures for identification\nand verification of a customer’s identity before establishing non face-to-face\nbusiness relationship.\n\n(c) For the purpose of identification and verification of the identity of a customer in\na non face-to-face business relationship, a reporting institution must undertake\none or more of the following measures:\n\n(i) Requesting for additional identification documents or information e.g.\nbank statements, utility bills;\n\n(ii) Substantiating the customer’s information with any independent source\ne.g. contacting the customer’s employer and verification through database\nmaintained by any relevant authorities;\n\n(iii) Contacting the customer through any digital communication channel to\nvisually identify and verify the customer’s identity;\n\n(iv) Requesting the customer to make a nominal payment from his own\naccount with a licensed bank under the Financial Services Act 2013 or\nlicensed Islamic bank under the Islamic Financial Services Act 2013 to\nenable the reporting institution to satisfy itself of the customer’s true\nidentity; or\n\n(v) Using new technology solutions including, but not limited to, biometric\ntechnologies (e.g. fingerprint or iris scans, facial recognition), which\nshould be linked incontrovertibly to the customer.\n\n(d) Where the reporting institution is unable to identify and verify the customer’s\nidentity by adopting the measures provided under paragraph (c) above, the\nreporting institution must initiate face-to-face business relationship.\n\n(e) Sub-paragraphs (a) to (d) above are not applicable to:\n\n(i)Customers that are identified as foreign PEP;\n\n(ii)Customers from higher-risk and non co-operative jurisdictions as identified\nby the FATF; or\n\n(iii)Listed persons or entities subjected to targeted financial sanctions for\nterrorism financing and financing of proliferation of weapons of mass\ndestruction pursuant to the UNSCR.\n\n(f) A reporting institution must ensure and be able to demonstrate on a continuing\nbasis that appropriate measures for identification and verification of a customer’s\nidentity when establishing non-face-to-face business relationship are as effective\nas that for face-to-face customer and implement monitoring and reporting\nmechanism to identify potential ML/TF/PF activities."
+    },
+    {
+      "evidence_id": "E4",
+      "chunk_id": "485c4989-c300-45c8-ac06-79a59492bb5c-c0007-22ed76c058",
+      "chunk_index": 7,
+      "semantic_type": "clause",
+      "source_rank": 4,
+      "ranked_seed_rank": 4,
+      "reasons": [
+        "ranked_seed"
+      ],
+      "pages": [
+        6,
+        7
+      ],
+      "section_path": [
+        "PART I: INTRODUCTION AND APPLICABILITY",
+        "1.0 INTRODUCTION"
+      ],
+      "source_element_ids": [
+        "p6-e11",
+        "p6-e12",
+        "p7-e1",
+        "p7-e2",
+        "p7-e3",
+        "p7-e4",
+        "p7-e5",
+        "p7-e6",
+        "p7-e7"
+      ],
+      "content_text": "1.2 These Guidelines are drawn up in accordance with the AMLA and the Financial Action Task\nForce (FATF) 40 Recommendations.\n\n1Regulation 3 of Strategic Trade (United Nations Security Council Resolutions) Regulations 2010 (P.U. (A) 481/2010) is set out in\nAppendix G of these Guidelines.\n\n1.3 These Guidelines provide:\n\n(a)requirements and obligations imposed on reporting institutions in preventing and\ncombating money laundering, terrorism financing, proliferation financing and\ntargeted financial sanctions; and\n\n(b)guidance for reporting institutions to comply with the obligations imposed under the\nAMLA and TFS-PF.\n\n1.4 These Guidelines supersede and replace the Guidelines on Implementation of Targeted\nFinancial Sanctions Relating to Proliferation Financing for Capital Markets.\n\n1.5 These Guidelines are made in addition to and not in derogation of any other guidelines\nissued by the Securities Commission Malaysia (SC) or any requirements as provided under\nthe securities laws and the AMLA. Therefore, a reporting institution must comply with\nother relevant guidelines and requirements.\n\n1.6 A reporting institution that is jointly regulated by Bank Negara Malaysia (BNM) and the\nSC, is required to comply with these Guidelines and the Anti-Money Laundering,\nCountering Financing of Terrorism, Countering Proliferation Financing and Targeted\nFinancial Sanctions for Financial Institutions (AML/CFT and TFS for FIs) issued by BNM.\nWhere there are differing requirements between the said guidelines, the more stringent\nrequirements shall apply.\n\n1.7 Non-compliance with any of the provisions in these Guidelines will subject the reporting\ninstitution to actions under the AMLA, Capital Markets and Services Act 2007 (CMSA) or\nany other relevant provisions under the laws of which these Guidelines are subject to.\nEnforcement actions can be taken against the reporting institutions including its directors,\nofficers, representatives, employees for any non-compliance with any requirements in these\nGuidelines."
+    },
+    {
+      "evidence_id": "E5",
+      "chunk_id": "485c4989-c300-45c8-ac06-79a59492bb5c-c0053-46174d100c",
+      "chunk_index": 53,
+      "semantic_type": "clause",
+      "source_rank": 5,
+      "ranked_seed_rank": 5,
+      "reasons": [
+        "ranked_seed"
+      ],
+      "pages": [
+        18,
+        19
+      ],
+      "section_path": [
+        "PART I: INTRODUCTION AND APPLICABILITY",
+        "5 A. GENERAL DESCRIPTION OF PROLIFERATION FINANCING"
+      ],
+      "source_element_ids": [
+        "p18-e9",
+        "p18-e10",
+        "p18-e11",
+        "p18-e12",
+        "p19-e1",
+        "p19-e2",
+        "p19-e3",
+        "p19-e4",
+        "p19-e5"
+      ],
+      "content_text": "5 A.1 In response to growing concerns over the proliferation of nuclear, biological and\nchemical weapons and their means of delivery which continue to pose a significant\nthreat to international peace and security, the United Nations Security Council (UNSC)\nhas intensified efforts to strengthen its global sanctions regime in order to prevent,\nsuppress and disrupt proliferation of weapons of mass destruction and its financing.\n\n5 A.2 As is the case with other UNSC sanctions programmes, targeted financial sanctions on\ncountries and specifically identified individuals and entities (i.e. designated persons)\nis the primary aspect of its overall sanctions regime to effectively disrupt financial\nflows across known proliferation networks.\n\n5 A.3 Recommendation 7 of the Financial Action Task Force (FATF) Standards requires\ncountries to implement TFS-PF made under UNSCRs. Under this standard, countries\nare required to implement targeted financial sanctions without delay to comply with\nUNSCRs relating to the prevention, suppression and disruption of the proliferation of\nweapons of mass destruction and its financing.\n\n5 A.4 Proliferation financing refers to the act of raising, moving, or making available funds,\nother assets or other economic resources, or financing, in whole or in part, to persons\nor entities for purposes of weapons of mass destruction (WMD) proliferation, including\nthe proliferation of their means of delivery or related materials (including both dual-\nuse technologies and dual-use goods for non-legitimate purposes).\n\n5 A.5 TFS-PF are applicable to persons designated by the UNSC or the relevant committees\nset up by the UNSC. Designation or listing criteria are:\n\n(a) Person engaging in or providing support for, including through illicit means,\nproliferation-sensitive activities and programmes;\n\n(b) Acting on behalf of or at the direction of designated person;\n\n(c) Owned or controlled by designated person; and\n\n(d) Person assisting designated person in evading sanctions, or violating UNSCR\nprovisions."
+    }
+  ],
+  "citations": [
+    {
+      "citation_id": "CIT-E1",
+      "marker": "[1]",
+      "evidence_id": "E1",
+      "chunk_id": "485c4989-c300-45c8-ac06-79a59492bb5c-c0076-642cdbb37b",
+      "chunk_index": 76,
+      "source_filename": "sc_aml_cft.pdf",
+      "display": "Clause 7.4.1 · PDF p. 29",
+      "pages": [
+        29
+      ],
+      "section_path": [
+        "PART II: RISK-BASED APPROACH APPLICATION",
+        "7. RISK-BASED APPROACH APPLICATION",
+        "7.4     PF Risk management and mitigation"
+      ],
+      "source_element_ids": [
+        "p29-e3"
+      ],
+      "locators": [
+        {
+          "kind": "clause",
+          "label": "Clause 7.4.1",
+          "pages": [
+            29
+          ],
+          "source_element_ids": [
+            "p29-e3"
+          ]
+        }
+      ],
+      "validation_status": "valid"
+    },
+    {
+      "citation_id": "CIT-E2",
+      "marker": "[2]",
+      "evidence_id": "E2",
+      "chunk_id": "485c4989-c300-45c8-ac06-79a59492bb5c-c0075-57734b61ca",
+      "chunk_index": 75,
+      "source_filename": "sc_aml_cft.pdf",
+      "display": "Clause 7.3.5 · Clause 7.3.5(a) · Clause 7.3.5(b) · Clause 7.3.5(c) · Clause 7.3.5(c)(i) · Clause 7.3.5(c)(ii) · PDF pp. 28–29",
+      "pages": [
+        28,
+        29
+      ],
+      "section_path": [
+        "PART II: RISK-BASED APPROACH APPLICATION",
+        "7. RISK-BASED APPROACH APPLICATION",
+        "7.3    PF Risk assessment"
+      ],
+      "source_element_ids": [
+        "p28-e9",
+        "p28-e10",
+        "p28-e11",
+        "p28-e12",
+        "p28-e13",
+        "p29-e1"
+      ],
+      "locators": [
+        {
+          "kind": "clause",
+          "label": "Clause 7.3.5",
+          "pages": [
+            28
+          ],
+          "source_element_ids": [
+            "p28-e9"
+          ]
+        },
+        {
+          "kind": "subclause",
+          "label": "Clause 7.3.5(a)",
+          "pages": [
+            28
+          ],
+          "source_element_ids": [
+            "p28-e10"
+          ]
+        },
+        {
+          "kind": "subclause",
+          "label": "Clause 7.3.5(b)",
+          "pages": [
+            28
+          ],
+          "source_element_ids": [
+            "p28-e11"
+          ]
+        },
+        {
+          "kind": "subclause",
+          "label": "Clause 7.3.5(c)",
+          "pages": [
+            28
+          ],
+          "source_element_ids": [
+            "p28-e12"
+          ]
+        },
+        {
+          "kind": "subclause",
+          "label": "Clause 7.3.5(c)(i)",
+          "pages": [
+            28
+          ],
+          "source_element_ids": [
+            "p28-e13"
+          ]
+        },
+        {
+          "kind": "subclause",
+          "label": "Clause 7.3.5(c)(ii)",
+          "pages": [
+            29
+          ],
+          "source_element_ids": [
+            "p29-e1"
+          ]
+        }
+      ],
+      "validation_status": "valid"
+    }
+  ],
+  "citation_version": "deterministic_citations_v1_2",
+  "citation_validation": {
+    "status": "valid",
+    "citation_count": 2,
+    "valid_citation_count": 2,
+    "errors": []
+  },
+  "generation_provider": "groq",
+  "generation_model": "openai/gpt-oss-120b",
+  "prompt_version": "grounded_claims_v1",
+  "generation_temperature": 0.0,
+  "generation_max_tokens": 1200,
+  "generation_json_mode": true,
+  "usage": {
+    "prompt_tokens": 2440,
+    "completion_tokens": 399,
+    "total_tokens": 2839
+  },
+  "retrieval_profile": "retrieval_v1_stage8_2_top5",
+  "retrieval_top_k": 5,
+  "retrieval_candidate_k": 20,
+  "retrieval_rrf_k": 60,
+  "retrieval_dense_weight": 1.0,
+  "retrieval_lexical_weight": 1.0,
+  "context_strategy": "structural_one_hop_v1",
+  "context_chunk_count": 5,
+  "expanded_chunk_count": 0
+}

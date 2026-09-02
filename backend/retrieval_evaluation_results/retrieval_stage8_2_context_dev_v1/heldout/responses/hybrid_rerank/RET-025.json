@@ -1,0 +1,692 @@
+{
+  "document_id": "485c4989-c300-45c8-ac06-79a59492bb5c",
+  "query": "What periodic reporting dates apply to the UNSCR List and Domestic List under Appendix D?",
+  "embedding_model": "BAAI/bge-m3",
+  "embedding_requested_device": "auto",
+  "embedding_resolved_device": "cuda",
+  "reranker_model": "BAAI/bge-reranker-v2-m3",
+  "reranker_requested_device": "auto",
+  "reranker_resolved_device": "cuda",
+  "reranker_batch_size": 2,
+  "reranker_max_length": 1024,
+  "top_k": 10,
+  "candidate_k": 20,
+  "candidate_union_count": 28,
+  "embedded_chunk_count": 284,
+  "total_chunk_count": 284,
+  "candidate_strategy": "dense_lexical_union",
+  "ranking_method": "cross_encoder",
+  "fusion_method": "reciprocal_rank_fusion_trace",
+  "rrf_k": 60,
+  "dense_weight": 1.0,
+  "lexical_weight": 1.0,
+  "lexical_ranking_method": "postgresql_fts_term_coverage_then_ts_rank_cd",
+  "lexical_query_mode": "or_content_terms_v1",
+  "lexical_terms": [
+    "periodic",
+    "reporting",
+    "dates",
+    "apply",
+    "unscr",
+    "list",
+    "domestic",
+    "under",
+    "appendix"
+  ],
+  "lexical_tsquery": "periodic | reporting | dates | apply | unscr | list | domestic | under | appendix",
+  "hits": [
+    {
+      "rank": 1,
+      "chunk_id": "485c4989-c300-45c8-ac06-79a59492bb5c-c0245-2a27d3f444",
+      "chunk_index": 245,
+      "semantic_type": "table",
+      "reranker_score": 0.9931243062019348,
+      "hybrid_candidate_rank": 2,
+      "fusion_score": 0.032018442622950824,
+      "dense_rank": 1,
+      "dense_score": 0.6793494022086468,
+      "dense_distance": 0.3206505977913532,
+      "dense_rrf_score": 0.01639344262295082,
+      "lexical_rank": 4,
+      "lexical_score": 0.8,
+      "lexical_matched_term_count": 5,
+      "lexical_term_coverage": 0.5555555555555556,
+      "lexical_rrf_score": 0.015625,
+      "text": "Section: APPENDIX D > Reporting requirements\nGroup: Guidance on the Implementation of Targeted Financial Sanction in\nRelation to Terrorism Financing\n\nList | UNSCR List | Domestic List\nReporting intervals | Every 31 January | Every 31 May and\n | and 31 July | 30 November",
+      "content_text": "List | UNSCR List | Domestic List\nReporting intervals | Every 31 January | Every 31 May and\n | and 31 July | 30 November",
+      "token_count": 47,
+      "pages": [
+        90
+      ],
+      "section_path": [
+        "APPENDIX D",
+        "Reporting requirements"
+      ],
+      "source_element_ids": [
+        "p90-e6"
+      ]
+    },
+    {
+      "rank": 2,
+      "chunk_id": "485c4989-c300-45c8-ac06-79a59492bb5c-c0238-d6ba6b2474",
+      "chunk_index": 238,
+      "semantic_type": "clause",
+      "reranker_score": 0.8474006652832031,
+      "hybrid_candidate_rank": 4,
+      "fusion_score": 0.0304147465437788,
+      "dense_rank": 2,
+      "dense_score": 0.5942425373648096,
+      "dense_distance": 0.4057574626351904,
+      "dense_rrf_score": 0.016129032258064516,
+      "lexical_rank": 10,
+      "lexical_score": 0.90000004,
+      "lexical_matched_term_count": 4,
+      "lexical_term_coverage": 0.4444444444444444,
+      "lexical_rrf_score": 0.014285714285714285,
+      "text": "Section: APPENDIX D > Obligation to maintain the sanctions list\nClause: 2.2\nGroup: Guidance on the Implementation of Targeted Financial Sanction in\nRelation to Terrorism Financing\n\n2.2 A reporting institution must take note that Amendment Order 2014 (P.U. (A)\n225/2014) provides for an automatic application of the UNSCR lists by making\nreference to the updated list in the UN website. Therefore, for the UNSCR lists, a\n\nreporting institution is advised to update its database regularly, not more than two\nweeks interval.",
+      "content_text": "2.2 A reporting institution must take note that Amendment Order 2014 (P.U. (A)\n225/2014) provides for an automatic application of the UNSCR lists by making\nreference to the updated list in the UN website. Therefore, for the UNSCR lists, a\n\nreporting institution is advised to update its database regularly, not more than two\nweeks interval.",
+      "token_count": 102,
+      "pages": [
+        87,
+        88
+      ],
+      "section_path": [
+        "APPENDIX D",
+        "Obligation to maintain the sanctions list"
+      ],
+      "source_element_ids": [
+        "p87-e4",
+        "p88-e1"
+      ]
+    },
+    {
+      "rank": 3,
+      "chunk_id": "485c4989-c300-45c8-ac06-79a59492bb5c-c0236-63f196d79f",
+      "chunk_index": 236,
+      "semantic_type": "table",
+      "reranker_score": 0.6130475401878357,
+      "hybrid_candidate_rank": 3,
+      "fusion_score": 0.0304147465437788,
+      "dense_rank": 10,
+      "dense_score": 0.5127281837029357,
+      "dense_distance": 0.4872718162970643,
+      "dense_rrf_score": 0.014285714285714285,
+      "lexical_rank": 2,
+      "lexical_score": 1.3000001,
+      "lexical_matched_term_count": 5,
+      "lexical_term_coverage": 0.5555555555555556,
+      "lexical_rrf_score": 0.016129032258064516,
+      "text": "Section: APPENDIX D > The relevant legal instruments\nGroup: Guidance on the Implementation of Targeted Financial Sanction in\nRelation to Terrorism Financing\n\nAMLA Provision | Section 66C | Section 66B\nListing | UNSCR List | Domestic List\nUNSC Resolutions | • UNSCR 1267 (1999) and UNSCR 1989 (2011) (Individuals and entities associated with Al-Qaida) • UNSCR 1988 (2011) and other subsequent resolutions (Individuals and entities associated with Taliban) • UNSCR 2253 (2015) and other subsequent resolutions (Individuals and entities associated with Islamic State in Iraq) | UNSCR 1373(2001)\nSubsidiary Legislation | • Anti-Money Laundering and Anti-Terrorism Financing (Security Council Resolution) (Al-Qaida and Taliban) (Amendment) Order 2011 (P.U.(A) 402/2011); • Anti-Money Laundering and Anti-Terrorism Financing (Security Council Resolution) (Al-Qaida and Taliban) (Amendment) Order 2013 (P.U.(A) 187/2013); • Anti-Money Laundering and Anti-Terrorism Financing (Security Council Resolutions) (Al-Qaida and Taliban) (Amendment) Order 2014 (P.U. (A) 255/2014); and • Other subsidiary legislations made under section 66C of the AMLA which may be issued by the Ministry of Home Affairs from time to time. | • Anti-Money Laundering and Anti-Terrorism Financing (Declaration of Specified Entities and Reporting Requirements) Order 2014 (P.U.(A)93/2014); • Anti-Money Laundering and Anti-Terrorism Financing (Declaration of Specified Entities and Reporting Requirements) (Amendment) Order 2014 (P.U.(A) 301/2014); and • Other subsidiary legislations made under section 66B of the AMLA which may be issued by the Ministry of Home Affairs from time to time.",
+      "content_text": "AMLA Provision | Section 66C | Section 66B\nListing | UNSCR List | Domestic List\nUNSC Resolutions | • UNSCR 1267 (1999) and UNSCR 1989 (2011) (Individuals and entities associated with Al-Qaida) • UNSCR 1988 (2011) and other subsequent resolutions (Individuals and entities associated with Taliban) • UNSCR 2253 (2015) and other subsequent resolutions (Individuals and entities associated with Islamic State in Iraq) | UNSCR 1373(2001)\nSubsidiary Legislation | • Anti-Money Laundering and Anti-Terrorism Financing (Security Council Resolution) (Al-Qaida and Taliban) (Amendment) Order 2011 (P.U.(A) 402/2011); • Anti-Money Laundering and Anti-Terrorism Financing (Security Council Resolution) (Al-Qaida and Taliban) (Amendment) Order 2013 (P.U.(A) 187/2013); • Anti-Money Laundering and Anti-Terrorism Financing (Security Council Resolutions) (Al-Qaida and Taliban) (Amendment) Order 2014 (P.U. (A) 255/2014); and • Other subsidiary legislations made under section 66C of the AMLA which may be issued by the Ministry of Home Affairs from time to time. | • Anti-Money Laundering and Anti-Terrorism Financing (Declaration of Specified Entities and Reporting Requirements) Order 2014 (P.U.(A)93/2014); • Anti-Money Laundering and Anti-Terrorism Financing (Declaration of Specified Entities and Reporting Requirements) (Amendment) Order 2014 (P.U.(A) 301/2014); and • Other subsidiary legislations made under section 66B of the AMLA which may be issued by the Ministry of Home Affairs from time to time.",
+      "token_count": 358,
+      "pages": [
+        86,
+        87
+      ],
+      "section_path": [
+        "APPENDIX D",
+        "The relevant legal instruments"
+      ],
+      "source_element_ids": [
+        "p86-e6",
+        "p87-e1"
+      ]
+    },
+    {
+      "rank": 4,
+      "chunk_id": "485c4989-c300-45c8-ac06-79a59492bb5c-c0237-06eb0908af",
+      "chunk_index": 237,
+      "semantic_type": "clause",
+      "reranker_score": 0.5321056842803955,
+      "hybrid_candidate_rank": 1,
+      "fusion_score": 0.032266458495966696,
+      "dense_rank": 3,
+      "dense_score": 0.5699961441757603,
+      "dense_distance": 0.4300038558242397,
+      "dense_rrf_score": 0.015873015873015872,
+      "lexical_rank": 1,
+      "lexical_score": 3.1000001,
+      "lexical_matched_term_count": 6,
+      "lexical_term_coverage": 0.6666666666666666,
+      "lexical_rrf_score": 0.01639344262295082,
+      "text": "Section: APPENDIX D > Obligation to maintain the sanctions list\nGroup: Guidance on the Implementation of Targeted Financial Sanction in\nRelation to Terrorism Financing\n\n2.1 In implementing the requirements in paragraphs 14.1 and 14.2 of the Guidelines, a\nreporting institution should have policies and procedures to ensure compliance with\nthe obligation to maintain the lists of listed entities in respect the UNSCR and domestic\nlists.\n\n2.3 For the domestic lists, a reporting institution should keep the lists updated as soon as\nthe subsidiary legislation via Orders are published in the gazette by the Ministry of\nHome Affairs.\n\n2.4 Reporting institution must observe the following for the purpose of delisting any listed\nentities:\n\n(a)For any listed entities under UNSCR list, delisting shall take effect automatically\nas soonest as the listed entities are removed from the UNSCR lists; and\n\n(b)For any listed entities under the domestic list, delisting shall take effect\nupon the publication of the subsidiary legislation via Orders by the Ministry of\nHome Affairs on removal of such listed entities.\n\n2.5 A reporting institution may consider subscribing electronic subscription services to\nmaintain the updated UNSCR and domestic lists. However, the ultimate responsibility\nto ensure that the lists are up to date remains with the reporting institution.",
+      "content_text": "2.1 In implementing the requirements in paragraphs 14.1 and 14.2 of the Guidelines, a\nreporting institution should have policies and procedures to ensure compliance with\nthe obligation to maintain the lists of listed entities in respect the UNSCR and domestic\nlists.\n\n2.3 For the domestic lists, a reporting institution should keep the lists updated as soon as\nthe subsidiary legislation via Orders are published in the gazette by the Ministry of\nHome Affairs.\n\n2.4 Reporting institution must observe the following for the purpose of delisting any listed\nentities:\n\n(a)For any listed entities under UNSCR list, delisting shall take effect automatically\nas soonest as the listed entities are removed from the UNSCR lists; and\n\n(b)For any listed entities under the domestic list, delisting shall take effect\nupon the publication of the subsidiary legislation via Orders by the Ministry of\nHome Affairs on removal of such listed entities.\n\n2.5 A reporting institution may consider subscribing electronic subscription services to\nmaintain the updated UNSCR and domestic lists. However, the ultimate responsibility\nto ensure that the lists are up to date remains with the reporting institution.",
+      "token_count": 238,
+      "pages": [
+        87,
+        88
+      ],
+      "section_path": [
+        "APPENDIX D",
+        "Obligation to maintain the sanctions list"
+      ],
+      "source_element_ids": [
+        "p87-e3",
+        "p88-e2",
+        "p88-e3",
+        "p88-e4",
+        "p88-e5",
+        "p88-e6"
+      ]
+    },
+    {
+      "rank": 5,
+      "chunk_id": "485c4989-c300-45c8-ac06-79a59492bb5c-c0244-51c99b8239",
+      "chunk_index": 244,
+      "semantic_type": "clause",
+      "reranker_score": 0.42829036712646484,
+      "hybrid_candidate_rank": 7,
+      "fusion_score": 0.02964426877470356,
+      "dense_rank": 6,
+      "dense_score": 0.53751691952247,
+      "dense_distance": 0.46248308047752995,
+      "dense_rrf_score": 0.015151515151515152,
+      "lexical_rank": 9,
+      "lexical_score": 1.1,
+      "lexical_matched_term_count": 4,
+      "lexical_term_coverage": 0.4444444444444444,
+      "lexical_rrf_score": 0.014492753623188406,
+      "text": "Section: APPENDIX D > Reporting requirements\nGroup: Guidance on the Implementation of Targeted Financial Sanction in\nRelation to Terrorism Financing\n\n5.2 For the purpose of submitting suspicious transaction report to the FIED, a reporting\ninstitution–\n\n(a)should include details and analysis of the CDD, ongoing CDD information,\nactivities of transactions of the listed entity or related parties; and\n\n(b)is encouraged to search, examine and analyse past financial activities of\ncustomers and related parties with a name match that have closed their accounts\nwith the reporting institution.\n\n5.3 A reporting institution is also under an obligation to report to the SC periodically every\nsix months for both lists on frozen funds, properties or accounts of customers that\nare listed.",
+      "content_text": "5.2 For the purpose of submitting suspicious transaction report to the FIED, a reporting\ninstitution–\n\n(a)should include details and analysis of the CDD, ongoing CDD information,\nactivities of transactions of the listed entity or related parties; and\n\n(b)is encouraged to search, examine and analyse past financial activities of\ncustomers and related parties with a name match that have closed their accounts\nwith the reporting institution.\n\n5.3 A reporting institution is also under an obligation to report to the SC periodically every\nsix months for both lists on frozen funds, properties or accounts of customers that\nare listed.",
+      "token_count": 138,
+      "pages": [
+        90
+      ],
+      "section_path": [
+        "APPENDIX D",
+        "Reporting requirements"
+      ],
+      "source_element_ids": [
+        "p90-e2",
+        "p90-e3",
+        "p90-e4",
+        "p90-e5"
+      ]
+    },
+    {
+      "rank": 6,
+      "chunk_id": "485c4989-c300-45c8-ac06-79a59492bb5c-c0239-331bc589b4",
+      "chunk_index": 239,
+      "semantic_type": "clause",
+      "reranker_score": 0.12536780536174774,
+      "hybrid_candidate_rank": 9,
+      "fusion_score": 0.02886002886002886,
+      "dense_rank": 17,
+      "dense_score": 0.46030052124558507,
+      "dense_distance": 0.5396994787544149,
+      "dense_rrf_score": 0.012987012987012988,
+      "lexical_rank": 3,
+      "lexical_score": 0.90000004,
+      "lexical_matched_term_count": 5,
+      "lexical_term_coverage": 0.5555555555555556,
+      "lexical_rrf_score": 0.015873015873015872,
+      "text": "Section: APPENDIX D > Obligation to conduct screening on customers\nGroup: Guidance on the Implementation of Targeted Financial Sanction in\nRelation to Terrorism Financing\n\n3.1 The obligation to conduct screening on customers is applicable both on the existing\nas well as new and potential customers. As such, a reporting institution is required\nto conduct screening on the customers when it undertakes CDD and ongoing CDD.\n\n3.2 A reporting institution is also required to screen its entire customer database within a\nreasonable time when the new names are listed by UNSCR or the domestic lists.\n\n3.4 Further, a reporting institution is also advised to search, examine and analyse past\nfinancial activities of the listed entities or related parties.",
+      "content_text": "3.1 The obligation to conduct screening on customers is applicable both on the existing\nas well as new and potential customers. As such, a reporting institution is required\nto conduct screening on the customers when it undertakes CDD and ongoing CDD.\n\n3.2 A reporting institution is also required to screen its entire customer database within a\nreasonable time when the new names are listed by UNSCR or the domestic lists.\n\n3.4 Further, a reporting institution is also advised to search, examine and analyse past\nfinancial activities of the listed entities or related parties.",
+      "token_count": 132,
+      "pages": [
+        88,
+        89
+      ],
+      "section_path": [
+        "APPENDIX D",
+        "Obligation to conduct screening on customers"
+      ],
+      "source_element_ids": [
+        "p88-e8",
+        "p88-e9",
+        "p89-e1"
+      ]
+    },
+    {
+      "rank": 7,
+      "chunk_id": "485c4989-c300-45c8-ac06-79a59492bb5c-c0282-c9062a52a1",
+      "chunk_index": 282,
+      "semantic_type": "table",
+      "reranker_score": 0.10619295388460159,
+      "hybrid_candidate_rank": 5,
+      "fusion_score": 0.029877369007803793,
+      "dense_rank": 9,
+      "dense_score": 0.523060707863528,
+      "dense_distance": 0.476939292136472,
+      "dense_rrf_score": 0.014492753623188406,
+      "lexical_rank": 5,
+      "lexical_score": 0.7,
+      "lexical_matched_term_count": 5,
+      "lexical_term_coverage": 0.5555555555555556,
+      "lexical_rrf_score": 0.015384615384615385,
+      "text": "Section: APPENDIX J > PERIODIC REPORTING ON ANY CHANGES TO THE FROZEN OR BLOCKED FUNDS, PROPERTIES OR ACCOUNTS\nGroup: MEASURES PURSUANT TO THE STRATEGIC TRADE (UNITED NATIONS SECURITY COUNCIL RESOLUTIONS)\nREGULATIONS 2010 (P.U. (A) 481/2010)\n\nCusto mer No | UNSCR Permanent Ref No (e.g. KPi.001, IRi.001) | Custo mer Name | NRIC / Passport No. Account No. | Account Facility/ Type | Date account frozen (DD/MM /YYYY) Account/ Facility Status | Previous Account Balance (previous reporting) | Transaction No | Tra (line Date (DD/MM /YYYY) | nsaction Details by line transaction) Transaction Type (for e.g. purchases, sales, redemptions, injections / deposits, withdrawals) Remarks | Amount (MYR) | New Account Balance as at: (DD/MM/YYYY) | Remarks\n1. |  |  |  |  |  |  | 1. |  |  |  |  | \n |  |  |  |  |  |  | 2. 3. |  |  |  |  | \n2. |  |  |  |  |  |  | 1. |  |  |  |  | \n3. |  |  |  |  |  |  | 1. |  |  |  |  |",
+      "content_text": "Custo mer No | UNSCR Permanent Ref No (e.g. KPi.001, IRi.001) | Custo mer Name | NRIC / Passport No. Account No. | Account Facility/ Type | Date account frozen (DD/MM /YYYY) Account/ Facility Status | Previous Account Balance (previous reporting) | Transaction No | Tra (line Date (DD/MM /YYYY) | nsaction Details by line transaction) Transaction Type (for e.g. purchases, sales, redemptions, injections / deposits, withdrawals) Remarks | Amount (MYR) | New Account Balance as at: (DD/MM/YYYY) | Remarks\n1. |  |  |  |  |  |  | 1. |  |  |  |  | \n |  |  |  |  |  |  | 2. 3. |  |  |  |  | \n2. |  |  |  |  |  |  | 1. |  |  |  |  | \n3. |  |  |  |  |  |  | 1. |  |  |  |  |",
+      "token_count": 239,
+      "pages": [
+        108
+      ],
+      "section_path": [
+        "APPENDIX J",
+        "PERIODIC REPORTING ON ANY CHANGES TO THE FROZEN OR BLOCKED FUNDS, PROPERTIES OR ACCOUNTS"
+      ],
+      "source_element_ids": [
+        "p108-e5"
+      ]
+    },
+    {
+      "rank": 8,
+      "chunk_id": "485c4989-c300-45c8-ac06-79a59492bb5c-c0276-b02b6aba4d",
+      "chunk_index": 276,
+      "semantic_type": "clause",
+      "reranker_score": 0.057810183614492416,
+      "hybrid_candidate_rank": 10,
+      "fusion_score": 0.028283227848101264,
+      "dense_rank": 4,
+      "dense_score": 0.5543387797868989,
+      "dense_distance": 0.44566122021310106,
+      "dense_rrf_score": 0.015625,
+      "lexical_rank": 19,
+      "lexical_score": 1.4,
+      "lexical_matched_term_count": 3,
+      "lexical_term_coverage": 0.3333333333333333,
+      "lexical_rrf_score": 0.012658227848101266,
+      "text": "Section: APPENDIX H\nGroup: EXPLANATORY NOTES IN RELATION TO MAINTENANCE OF SANCTIONS LIST\n(in relation to Paragraph 16.2 of the Guidelines)\n\n1. The sanction lists are available in the respective UNSCR sanctions webpage (e.g. 1718\nfor DPRK), under the heading of ‘Sanction List Materials’ including:\n\n(a) DPRK: United Nations Security Council Committee established pursuant to\nResolution 1718 (2006); and\n\n(b) Any other UNSCR as specified by the SC in these Guidelines.\n\n2. The updated UN Consolidated List can be obtained at http://www.un.org/ or\nhttps://www.un.org/sc/suborg/en/sanctions/un-sc-consolidated-list\n\n3. A capital market intermediary must take note that Strategic Trade (Restricted End-\nUsers and Prohibited End-Users) Order 2010 (P.U. (A) 484/2010) provides for an\nautomatic application of the UNSCR lists by making reference to the updated list in\nthe UN website. Therefore, for the UNSCR lists, a capital market intermediary is\nadvised to update its database regularly, without delay.\n\n4. A capital market intermediary may consider subscribing to electronic subscription\nservices to maintain the updated UNSCRs.\n\n5. The delisting of any designated country or designated person under UNSCRs shall\nautomatically take effect when the designated country or person is removed by the\nrelevant UNSC Sanctions Committee.",
+      "content_text": "1. The sanction lists are available in the respective UNSCR sanctions webpage (e.g. 1718\nfor DPRK), under the heading of ‘Sanction List Materials’ including:\n\n(a) DPRK: United Nations Security Council Committee established pursuant to\nResolution 1718 (2006); and\n\n(b) Any other UNSCR as specified by the SC in these Guidelines.\n\n2. The updated UN Consolidated List can be obtained at http://www.un.org/ or\nhttps://www.un.org/sc/suborg/en/sanctions/un-sc-consolidated-list\n\n3. A capital market intermediary must take note that Strategic Trade (Restricted End-\nUsers and Prohibited End-Users) Order 2010 (P.U. (A) 484/2010) provides for an\nautomatic application of the UNSCR lists by making reference to the updated list in\nthe UN website. Therefore, for the UNSCR lists, a capital market intermediary is\nadvised to update its database regularly, without delay.\n\n4. A capital market intermediary may consider subscribing to electronic subscription\nservices to maintain the updated UNSCRs.\n\n5. The delisting of any designated country or designated person under UNSCRs shall\nautomatically take effect when the designated country or person is removed by the\nrelevant UNSC Sanctions Committee.",
+      "token_count": 274,
+      "pages": [
+        106
+      ],
+      "section_path": [
+        "APPENDIX H"
+      ],
+      "source_element_ids": [
+        "p106-e3",
+        "p106-e4",
+        "p106-e5",
+        "p106-e6",
+        "p106-e7",
+        "p106-e8",
+        "p106-e9"
+      ]
+    },
+    {
+      "rank": 9,
+      "chunk_id": "485c4989-c300-45c8-ac06-79a59492bb5c-c0279-a5f6ecd15c",
+      "chunk_index": 279,
+      "semantic_type": "table",
+      "reranker_score": 0.0484987311065197,
+      "hybrid_candidate_rank": 8,
+      "fusion_score": 0.02900988017658188,
+      "dense_rank": 7,
+      "dense_score": 0.5353577413941786,
+      "dense_distance": 0.4646422586058214,
+      "dense_rrf_score": 0.014925373134328358,
+      "lexical_rank": 11,
+      "lexical_score": 0.7,
+      "lexical_matched_term_count": 4,
+      "lexical_term_coverage": 0.4444444444444444,
+      "lexical_rrf_score": 0.014084507042253521,
+      "text": "Section: APPENDIX I > REPORTING UPON DETERMINATION\nGroup: Match with Designated Person(s) (YES / NO) :\n\nNo | UNSCR Permanent Ref No | Customer Name | Address | NRIC / Passport No. | Intermediary Name - if reporting done on group basis | Branch maintaining the account/ facility Account No. | Account Facility/ Type | Date services given (DD/MM /YYYY) | Account/ Facility Status (on date of freezing) | Date account frozen (DD/MM /YYYY) | Account Balance as at: ________ | Related Parties | Remarks\n1 |  |  |  |  |  |  |  |  |  |  |  |  | \n2 |  |  |  |  |  |  |  |  |  |  |  |  | \n3 |  |  |  |  |  |  |  |  |  |  |  |  | \n4 |  |  |  |  |  |  |  |  |  |  |  |  | \n5 |  |  |  |  |  |  |  |  |  |  |  |  |",
+      "content_text": "No | UNSCR Permanent Ref No | Customer Name | Address | NRIC / Passport No. | Intermediary Name - if reporting done on group basis | Branch maintaining the account/ facility Account No. | Account Facility/ Type | Date services given (DD/MM /YYYY) | Account/ Facility Status (on date of freezing) | Date account frozen (DD/MM /YYYY) | Account Balance as at: ________ | Related Parties | Remarks\n1 |  |  |  |  |  |  |  |  |  |  |  |  | \n2 |  |  |  |  |  |  |  |  |  |  |  |  | \n3 |  |  |  |  |  |  |  |  |  |  |  |  | \n4 |  |  |  |  |  |  |  |  |  |  |  |  | \n5 |  |  |  |  |  |  |  |  |  |  |  |  |",
+      "token_count": 180,
+      "pages": [
+        107
+      ],
+      "section_path": [
+        "APPENDIX I",
+        "REPORTING UPON DETERMINATION"
+      ],
+      "source_element_ids": [
+        "p107-e7"
+      ]
+    },
+    {
+      "rank": 10,
+      "chunk_id": "485c4989-c300-45c8-ac06-79a59492bb5c-c0241-57faa0c1ac",
+      "chunk_index": 241,
+      "semantic_type": "clause",
+      "reranker_score": 0.04733487591147423,
+      "hybrid_candidate_rank": 23,
+      "fusion_score": 0.012987012987012988,
+      "dense_rank": null,
+      "dense_score": null,
+      "dense_distance": null,
+      "dense_rrf_score": 0.0,
+      "lexical_rank": 17,
+      "lexical_score": 1.5,
+      "lexical_matched_term_count": 3,
+      "lexical_term_coverage": 0.3333333333333333,
+      "lexical_rrf_score": 0.012987012987012988,
+      "text": "Section: APPENDIX D > Obligation to freeze funds, properties or accounts\nGroup: Guidance on the Implementation of Targeted Financial Sanction in\nRelation to Terrorism Financing\n\n4.1 A reporting institution is required to freeze funds, properties or accounts that are\nowned or controlled directly and indirectly by the listed entities without delay2.\n\n4.2 Funds, properties or accounts that are owned or controlled indirectly by the listed\nentities includes situation where the listed entity is a director of a customer. In such\ninstance, once the reporting institution is satisfied that the director owns or controls\ndirectly or indirectly the funds, properties or accounts of the customer, the reporting\ninstitution is required to freeze the same without delay.\n\n4.3 The obligation to freeze funds, properties or accounts of a listed entity continues until\nthe person is delisted from the sanction lists. Even death of the listed entity is not a\nbasis for a reporting institution not to continue its freezing obligation.\n\n4.4 If an asset is owned or controlled by a listed entity and the interest owned or\ncontrolled by the listed party cannot be segregated, then the entire asset should be\nsubjected to freezing.\n\n4.5 Notwithstanding the funds, properties or accounts are frozen, a reporting institution\nmay continue receiving dividends, interests, or other benefits, but such benefits shall\nstill remain frozen, so long as the individuals or entities continue to be listed.\n\n4.6 However no outgoing payment should be made out from the frozen funds, properties\nor accounts, including payment of any fees or service charges for maintaining the\nfrozen funds without the approval of Minister of Home Affairs.",
+      "content_text": "4.1 A reporting institution is required to freeze funds, properties or accounts that are\nowned or controlled directly and indirectly by the listed entities without delay2.\n\n4.2 Funds, properties or accounts that are owned or controlled indirectly by the listed\nentities includes situation where the listed entity is a director of a customer. In such\ninstance, once the reporting institution is satisfied that the director owns or controls\ndirectly or indirectly the funds, properties or accounts of the customer, the reporting\ninstitution is required to freeze the same without delay.\n\n4.3 The obligation to freeze funds, properties or accounts of a listed entity continues until\nthe person is delisted from the sanction lists. Even death of the listed entity is not a\nbasis for a reporting institution not to continue its freezing obligation.\n\n4.4 If an asset is owned or controlled by a listed entity and the interest owned or\ncontrolled by the listed party cannot be segregated, then the entire asset should be\nsubjected to freezing.\n\n4.5 Notwithstanding the funds, properties or accounts are frozen, a reporting institution\nmay continue receiving dividends, interests, or other benefits, but such benefits shall\nstill remain frozen, so long as the individuals or entities continue to be listed.\n\n4.6 However no outgoing payment should be made out from the frozen funds, properties\nor accounts, including payment of any fees or service charges for maintaining the\nfrozen funds without the approval of Minister of Home Affairs.",
+      "token_count": 305,
+      "pages": [
+        89
+      ],
+      "section_path": [
+        "APPENDIX D",
+        "Obligation to freeze funds, properties or accounts"
+      ],
+      "source_element_ids": [
+        "p89-e3",
+        "p89-e4",
+        "p89-e5",
+        "p89-e6",
+        "p89-e7",
+        "p89-e8"
+      ]
+    }
+  ],
+  "context_strategy": "structural_one_hop_v1",
+  "context_recursive": false,
+  "context_same_section_required": true,
+  "context_max_forward_neighbors_per_seed": 2,
+  "context_max_backward_neighbors_per_seed": 1,
+  "context_max_page_gap": 1,
+  "context_max_chunks": 30,
+  "context_chunk_count": 11,
+  "expanded_chunk_count": 1,
+  "context_chunks": [
+    {
+      "context_order": 1,
+      "chunk_id": "485c4989-c300-45c8-ac06-79a59492bb5c-c0245-2a27d3f444",
+      "chunk_index": 245,
+      "semantic_type": "table",
+      "source_rank": 1,
+      "ranked_seed_rank": 1,
+      "reasons": [
+        "ranked_seed",
+        "following_table"
+      ],
+      "attached_from_chunk_ids": [
+        "485c4989-c300-45c8-ac06-79a59492bb5c-c0244-51c99b8239"
+      ],
+      "text": "Section: APPENDIX D > Reporting requirements\nGroup: Guidance on the Implementation of Targeted Financial Sanction in\nRelation to Terrorism Financing\n\nList | UNSCR List | Domestic List\nReporting intervals | Every 31 January | Every 31 May and\n | and 31 July | 30 November",
+      "content_text": "List | UNSCR List | Domestic List\nReporting intervals | Every 31 January | Every 31 May and\n | and 31 July | 30 November",
+      "token_count": 47,
+      "pages": [
+        90
+      ],
+      "section_path": [
+        "APPENDIX D",
+        "Reporting requirements"
+      ],
+      "source_element_ids": [
+        "p90-e6"
+      ]
+    },
+    {
+      "context_order": 2,
+      "chunk_id": "485c4989-c300-45c8-ac06-79a59492bb5c-c0238-d6ba6b2474",
+      "chunk_index": 238,
+      "semantic_type": "clause",
+      "source_rank": 2,
+      "ranked_seed_rank": 2,
+      "reasons": [
+        "ranked_seed"
+      ],
+      "attached_from_chunk_ids": [],
+      "text": "Section: APPENDIX D > Obligation to maintain the sanctions list\nClause: 2.2\nGroup: Guidance on the Implementation of Targeted Financial Sanction in\nRelation to Terrorism Financing\n\n2.2 A reporting institution must take note that Amendment Order 2014 (P.U. (A)\n225/2014) provides for an automatic application of the UNSCR lists by making\nreference to the updated list in the UN website. Therefore, for the UNSCR lists, a\n\nreporting institution is advised to update its database regularly, not more than two\nweeks interval.",
+      "content_text": "2.2 A reporting institution must take note that Amendment Order 2014 (P.U. (A)\n225/2014) provides for an automatic application of the UNSCR lists by making\nreference to the updated list in the UN website. Therefore, for the UNSCR lists, a\n\nreporting institution is advised to update its database regularly, not more than two\nweeks interval.",
+      "token_count": 102,
+      "pages": [
+        87,
+        88
+      ],
+      "section_path": [
+        "APPENDIX D",
+        "Obligation to maintain the sanctions list"
+      ],
+      "source_element_ids": [
+        "p87-e4",
+        "p88-e1"
+      ]
+    },
+    {
+      "context_order": 3,
+      "chunk_id": "485c4989-c300-45c8-ac06-79a59492bb5c-c0235-8ccfd3b8c3",
+      "chunk_index": 235,
+      "semantic_type": "clause",
+      "source_rank": 3,
+      "ranked_seed_rank": null,
+      "reasons": [
+        "preceding_intro"
+      ],
+      "attached_from_chunk_ids": [
+        "485c4989-c300-45c8-ac06-79a59492bb5c-c0236-63f196d79f"
+      ],
+      "text": "Section: APPENDIX D > The relevant legal instruments\nClause: 1.2\nGroup: Guidance on the Implementation of Targeted Financial Sanction in\nRelation to Terrorism Financing\n\n1.2 In implementing TFS-TF, a reporting institution should refer to the relevant legal\ninstruments as stated below:",
+      "content_text": "1.2 In implementing TFS-TF, a reporting institution should refer to the relevant legal\ninstruments as stated below:",
+      "token_count": 52,
+      "pages": [
+        86
+      ],
+      "section_path": [
+        "APPENDIX D",
+        "The relevant legal instruments"
+      ],
+      "source_element_ids": [
+        "p86-e5"
+      ]
+    },
+    {
+      "context_order": 4,
+      "chunk_id": "485c4989-c300-45c8-ac06-79a59492bb5c-c0236-63f196d79f",
+      "chunk_index": 236,
+      "semantic_type": "table",
+      "source_rank": 3,
+      "ranked_seed_rank": 3,
+      "reasons": [
+        "ranked_seed"
+      ],
+      "attached_from_chunk_ids": [],
+      "text": "Section: APPENDIX D > The relevant legal instruments\nGroup: Guidance on the Implementation of Targeted Financial Sanction in\nRelation to Terrorism Financing\n\nAMLA Provision | Section 66C | Section 66B\nListing | UNSCR List | Domestic List\nUNSC Resolutions | • UNSCR 1267 (1999) and UNSCR 1989 (2011) (Individuals and entities associated with Al-Qaida) • UNSCR 1988 (2011) and other subsequent resolutions (Individuals and entities associated with Taliban) • UNSCR 2253 (2015) and other subsequent resolutions (Individuals and entities associated with Islamic State in Iraq) | UNSCR 1373(2001)\nSubsidiary Legislation | • Anti-Money Laundering and Anti-Terrorism Financing (Security Council Resolution) (Al-Qaida and Taliban) (Amendment) Order 2011 (P.U.(A) 402/2011); • Anti-Money Laundering and Anti-Terrorism Financing (Security Council Resolution) (Al-Qaida and Taliban) (Amendment) Order 2013 (P.U.(A) 187/2013); • Anti-Money Laundering and Anti-Terrorism Financing (Security Council Resolutions) (Al-Qaida and Taliban) (Amendment) Order 2014 (P.U. (A) 255/2014); and • Other subsidiary legislations made under section 66C of the AMLA which may be issued by the Ministry of Home Affairs from time to time. | • Anti-Money Laundering and Anti-Terrorism Financing (Declaration of Specified Entities and Reporting Requirements) Order 2014 (P.U.(A)93/2014); • Anti-Money Laundering and Anti-Terrorism Financing (Declaration of Specified Entities and Reporting Requirements) (Amendment) Order 2014 (P.U.(A) 301/2014); and • Other subsidiary legislations made under section 66B of the AMLA which may be issued by the Ministry of Home Affairs from time to time.",
+      "content_text": "AMLA Provision | Section 66C | Section 66B\nListing | UNSCR List | Domestic List\nUNSC Resolutions | • UNSCR 1267 (1999) and UNSCR 1989 (2011) (Individuals and entities associated with Al-Qaida) • UNSCR 1988 (2011) and other subsequent resolutions (Individuals and entities associated with Taliban) • UNSCR 2253 (2015) and other subsequent resolutions (Individuals and entities associated with Islamic State in Iraq) | UNSCR 1373(2001)\nSubsidiary Legislation | • Anti-Money Laundering and Anti-Terrorism Financing (Security Council Resolution) (Al-Qaida and Taliban) (Amendment) Order 2011 (P.U.(A) 402/2011); • Anti-Money Laundering and Anti-Terrorism Financing (Security Council Resolution) (Al-Qaida and Taliban) (Amendment) Order 2013 (P.U.(A) 187/2013); • Anti-Money Laundering and Anti-Terrorism Financing (Security Council Resolutions) (Al-Qaida and Taliban) (Amendment) Order 2014 (P.U. (A) 255/2014); and • Other subsidiary legislations made under section 66C of the AMLA which may be issued by the Ministry of Home Affairs from time to time. | • Anti-Money Laundering and Anti-Terrorism Financing (Declaration of Specified Entities and Reporting Requirements) Order 2014 (P.U.(A)93/2014); • Anti-Money Laundering and Anti-Terrorism Financing (Declaration of Specified Entities and Reporting Requirements) (Amendment) Order 2014 (P.U.(A) 301/2014); and • Other subsidiary legislations made under section 66B of the AMLA which may be issued by the Ministry of Home Affairs from time to time.",
+      "token_count": 358,
+      "pages": [
+        86,
+        87
+      ],
+      "section_path": [
+        "APPENDIX D",
+        "The relevant legal instruments"
+      ],
+      "source_element_ids": [
+        "p86-e6",
+        "p87-e1"
+      ]
+    },
+    {
+      "context_order": 5,
+      "chunk_id": "485c4989-c300-45c8-ac06-79a59492bb5c-c0237-06eb0908af",
+      "chunk_index": 237,
+      "semantic_type": "clause",
+      "source_rank": 4,
+      "ranked_seed_rank": 4,
+      "reasons": [
+        "ranked_seed"
+      ],
+      "attached_from_chunk_ids": [],
+      "text": "Section: APPENDIX D > Obligation to maintain the sanctions list\nGroup: Guidance on the Implementation of Targeted Financial Sanction in\nRelation to Terrorism Financing\n\n2.1 In implementing the requirements in paragraphs 14.1 and 14.2 of the Guidelines, a\nreporting institution should have policies and procedures to ensure compliance with\nthe obligation to maintain the lists of listed entities in respect the UNSCR and domestic\nlists.\n\n2.3 For the domestic lists, a reporting institution should keep the lists updated as soon as\nthe subsidiary legislation via Orders are published in the gazette by the Ministry of\nHome Affairs.\n\n2.4 Reporting institution must observe the following for the purpose of delisting any listed\nentities:\n\n(a)For any listed entities under UNSCR list, delisting shall take effect automatically\nas soonest as the listed entities are removed from the UNSCR lists; and\n\n(b)For any listed entities under the domestic list, delisting shall take effect\nupon the publication of the subsidiary legislation via Orders by the Ministry of\nHome Affairs on removal of such listed entities.\n\n2.5 A reporting institution may consider subscribing electronic subscription services to\nmaintain the updated UNSCR and domestic lists. However, the ultimate responsibility\nto ensure that the lists are up to date remains with the reporting institution.",
+      "content_text": "2.1 In implementing the requirements in paragraphs 14.1 and 14.2 of the Guidelines, a\nreporting institution should have policies and procedures to ensure compliance with\nthe obligation to maintain the lists of listed entities in respect the UNSCR and domestic\nlists.\n\n2.3 For the domestic lists, a reporting institution should keep the lists updated as soon as\nthe subsidiary legislation via Orders are published in the gazette by the Ministry of\nHome Affairs.\n\n2.4 Reporting institution must observe the following for the purpose of delisting any listed\nentities:\n\n(a)For any listed entities under UNSCR list, delisting shall take effect automatically\nas soonest as the listed entities are removed from the UNSCR lists; and\n\n(b)For any listed entities under the domestic list, delisting shall take effect\nupon the publication of the subsidiary legislation via Orders by the Ministry of\nHome Affairs on removal of such listed entities.\n\n2.5 A reporting institution may consider subscribing electronic subscription services to\nmaintain the updated UNSCR and domestic lists. However, the ultimate responsibility\nto ensure that the lists are up to date remains with the reporting institution.",
+      "token_count": 238,
+      "pages": [
+        87,
+        88
+      ],
+      "section_path": [
+        "APPENDIX D",
+        "Obligation to maintain the sanctions list"
+      ],
+      "source_element_ids": [
+        "p87-e3",
+        "p88-e2",
+        "p88-e3",
+        "p88-e4",
+        "p88-e5",
+        "p88-e6"
+      ]
+    },
+    {
+      "context_order": 6,
+      "chunk_id": "485c4989-c300-45c8-ac06-79a59492bb5c-c0244-51c99b8239",
+      "chunk_index": 244,
+      "semantic_type": "clause",
+      "source_rank": 5,
+      "ranked_seed_rank": 5,
+      "reasons": [
+        "ranked_seed"
+      ],
+      "attached_from_chunk_ids": [],
+      "text": "Section: APPENDIX D > Reporting requirements\nGroup: Guidance on the Implementation of Targeted Financial Sanction in\nRelation to Terrorism Financing\n\n5.2 For the purpose of submitting suspicious transaction report to the FIED, a reporting\ninstitution–\n\n(a)should include details and analysis of the CDD, ongoing CDD information,\nactivities of transactions of the listed entity or related parties; and\n\n(b)is encouraged to search, examine and analyse past financial activities of\ncustomers and related parties with a name match that have closed their accounts\nwith the reporting institution.\n\n5.3 A reporting institution is also under an obligation to report to the SC periodically every\nsix months for both lists on frozen funds, properties or accounts of customers that\nare listed.",
+      "content_text": "5.2 For the purpose of submitting suspicious transaction report to the FIED, a reporting\ninstitution–\n\n(a)should include details and analysis of the CDD, ongoing CDD information,\nactivities of transactions of the listed entity or related parties; and\n\n(b)is encouraged to search, examine and analyse past financial activities of\ncustomers and related parties with a name match that have closed their accounts\nwith the reporting institution.\n\n5.3 A reporting institution is also under an obligation to report to the SC periodically every\nsix months for both lists on frozen funds, properties or accounts of customers that\nare listed.",
+      "token_count": 138,
+      "pages": [
+        90
+      ],
+      "section_path": [
+        "APPENDIX D",
+        "Reporting requirements"
+      ],
+      "source_element_ids": [
+        "p90-e2",
+        "p90-e3",
+        "p90-e4",
+        "p90-e5"
+      ]
+    },
+    {
+      "context_order": 7,
+      "chunk_id": "485c4989-c300-45c8-ac06-79a59492bb5c-c0239-331bc589b4",
+      "chunk_index": 239,
+      "semantic_type": "clause",
+      "source_rank": 6,
+      "ranked_seed_rank": 6,
+      "reasons": [
+        "ranked_seed"
+      ],
+      "attached_from_chunk_ids": [],
+      "text": "Section: APPENDIX D > Obligation to conduct screening on customers\nGroup: Guidance on the Implementation of Targeted Financial Sanction in\nRelation to Terrorism Financing\n\n3.1 The obligation to conduct screening on customers is applicable both on the existing\nas well as new and potential customers. As such, a reporting institution is required\nto conduct screening on the customers when it undertakes CDD and ongoing CDD.\n\n3.2 A reporting institution is also required to screen its entire customer database within a\nreasonable time when the new names are listed by UNSCR or the domestic lists.\n\n3.4 Further, a reporting institution is also advised to search, examine and analyse past\nfinancial activities of the listed entities or related parties.",
+      "content_text": "3.1 The obligation to conduct screening on customers is applicable both on the existing\nas well as new and potential customers. As such, a reporting institution is required\nto conduct screening on the customers when it undertakes CDD and ongoing CDD.\n\n3.2 A reporting institution is also required to screen its entire customer database within a\nreasonable time when the new names are listed by UNSCR or the domestic lists.\n\n3.4 Further, a reporting institution is also advised to search, examine and analyse past\nfinancial activities of the listed entities or related parties.",
+      "token_count": 132,
+      "pages": [
+        88,
+        89
+      ],
+      "section_path": [
+        "APPENDIX D",
+        "Obligation to conduct screening on customers"
+      ],
+      "source_element_ids": [
+        "p88-e8",
+        "p88-e9",
+        "p89-e1"
+      ]
+    },
+    {
+      "context_order": 8,
+      "chunk_id": "485c4989-c300-45c8-ac06-79a59492bb5c-c0282-c9062a52a1",
+      "chunk_index": 282,
+      "semantic_type": "table",
+      "source_rank": 7,
+      "ranked_seed_rank": 7,
+      "reasons": [
+        "ranked_seed"
+      ],
+      "attached_from_chunk_ids": [],
+      "text": "Section: APPENDIX J > PERIODIC REPORTING ON ANY CHANGES TO THE FROZEN OR BLOCKED FUNDS, PROPERTIES OR ACCOUNTS\nGroup: MEASURES PURSUANT TO THE STRATEGIC TRADE (UNITED NATIONS SECURITY COUNCIL RESOLUTIONS)\nREGULATIONS 2010 (P.U. (A) 481/2010)\n\nCusto mer No | UNSCR Permanent Ref No (e.g. KPi.001, IRi.001) | Custo mer Name | NRIC / Passport No. Account No. | Account Facility/ Type | Date account frozen (DD/MM /YYYY) Account/ Facility Status | Previous Account Balance (previous reporting) | Transaction No | Tra (line Date (DD/MM /YYYY) | nsaction Details by line transaction) Transaction Type (for e.g. purchases, sales, redemptions, injections / deposits, withdrawals) Remarks | Amount (MYR) | New Account Balance as at: (DD/MM/YYYY) | Remarks\n1. |  |  |  |  |  |  | 1. |  |  |  |  | \n |  |  |  |  |  |  | 2. 3. |  |  |  |  | \n2. |  |  |  |  |  |  | 1. |  |  |  |  | \n3. |  |  |  |  |  |  | 1. |  |  |  |  |",
+      "content_text": "Custo mer No | UNSCR Permanent Ref No (e.g. KPi.001, IRi.001) | Custo mer Name | NRIC / Passport No. Account No. | Account Facility/ Type | Date account frozen (DD/MM /YYYY) Account/ Facility Status | Previous Account Balance (previous reporting) | Transaction No | Tra (line Date (DD/MM /YYYY) | nsaction Details by line transaction) Transaction Type (for e.g. purchases, sales, redemptions, injections / deposits, withdrawals) Remarks | Amount (MYR) | New Account Balance as at: (DD/MM/YYYY) | Remarks\n1. |  |  |  |  |  |  | 1. |  |  |  |  | \n |  |  |  |  |  |  | 2. 3. |  |  |  |  | \n2. |  |  |  |  |  |  | 1. |  |  |  |  | \n3. |  |  |  |  |  |  | 1. |  |  |  |  |",
+      "token_count": 239,
+      "pages": [
+        108
+      ],
+      "section_path": [
+        "APPENDIX J",
+        "PERIODIC REPORTING ON ANY CHANGES TO THE FROZEN OR BLOCKED FUNDS, PROPERTIES OR ACCOUNTS"
+      ],
+      "source_element_ids": [
+        "p108-e5"
+      ]
+    },
+    {
+      "context_order": 9,
+      "chunk_id": "485c4989-c300-45c8-ac06-79a59492bb5c-c0276-b02b6aba4d",
+      "chunk_index": 276,
+      "semantic_type": "clause",
+      "source_rank": 8,
+      "ranked_seed_rank": 8,
+      "reasons": [
+        "ranked_seed"
+      ],
+      "attached_from_chunk_ids": [],
+      "text": "Section: APPENDIX H\nGroup: EXPLANATORY NOTES IN RELATION TO MAINTENANCE OF SANCTIONS LIST\n(in relation to Paragraph 16.2 of the Guidelines)\n\n1. The sanction lists are available in the respective UNSCR sanctions webpage (e.g. 1718\nfor DPRK), under the heading of ‘Sanction List Materials’ including:\n\n(a) DPRK: United Nations Security Council Committee established pursuant to\nResolution 1718 (2006); and\n\n(b) Any other UNSCR as specified by the SC in these Guidelines.\n\n2. The updated UN Consolidated List can be obtained at http://www.un.org/ or\nhttps://www.un.org/sc/suborg/en/sanctions/un-sc-consolidated-list\n\n3. A capital market intermediary must take note that Strategic Trade (Restricted End-\nUsers and Prohibited End-Users) Order 2010 (P.U. (A) 484/2010) provides for an\nautomatic application of the UNSCR lists by making reference to the updated list in\nthe UN website. Therefore, for the UNSCR lists, a capital market intermediary is\nadvised to update its database regularly, without delay.\n\n4. A capital market intermediary may consider subscribing to electronic subscription\nservices to maintain the updated UNSCRs.\n\n5. The delisting of any designated country or designated person under UNSCRs shall\nautomatically take effect when the designated country or person is removed by the\nrelevant UNSC Sanctions Committee.",
+      "content_text": "1. The sanction lists are available in the respective UNSCR sanctions webpage (e.g. 1718\nfor DPRK), under the heading of ‘Sanction List Materials’ including:\n\n(a) DPRK: United Nations Security Council Committee established pursuant to\nResolution 1718 (2006); and\n\n(b) Any other UNSCR as specified by the SC in these Guidelines.\n\n2. The updated UN Consolidated List can be obtained at http://www.un.org/ or\nhttps://www.un.org/sc/suborg/en/sanctions/un-sc-consolidated-list\n\n3. A capital market intermediary must take note that Strategic Trade (Restricted End-\nUsers and Prohibited End-Users) Order 2010 (P.U. (A) 484/2010) provides for an\nautomatic application of the UNSCR lists by making reference to the updated list in\nthe UN website. Therefore, for the UNSCR lists, a capital market intermediary is\nadvised to update its database regularly, without delay.\n\n4. A capital market intermediary may consider subscribing to electronic subscription\nservices to maintain the updated UNSCRs.\n\n5. The delisting of any designated country or designated person under UNSCRs shall\nautomatically take effect when the designated country or person is removed by the\nrelevant UNSC Sanctions Committee.",
+      "token_count": 274,
+      "pages": [
+        106
+      ],
+      "section_path": [
+        "APPENDIX H"
+      ],
+      "source_element_ids": [
+        "p106-e3",
+        "p106-e4",
+        "p106-e5",
+        "p106-e6",
+        "p106-e7",
+        "p106-e8",
+        "p106-e9"
+      ]
+    },
+    {
+      "context_order": 10,
+      "chunk_id": "485c4989-c300-45c8-ac06-79a59492bb5c-c0279-a5f6ecd15c",
+      "chunk_index": 279,
+      "semantic_type": "table",
+      "source_rank": 9,
+      "ranked_seed_rank": 9,
+      "reasons": [
+        "ranked_seed"
+      ],
+      "attached_from_chunk_ids": [],
+      "text": "Section: APPENDIX I > REPORTING UPON DETERMINATION\nGroup: Match with Designated Person(s) (YES / NO) :\n\nNo | UNSCR Permanent Ref No | Customer Name | Address | NRIC / Passport No. | Intermediary Name - if reporting done on group basis | Branch maintaining the account/ facility Account No. | Account Facility/ Type | Date services given (DD/MM /YYYY) | Account/ Facility Status (on date of freezing) | Date account frozen (DD/MM /YYYY) | Account Balance as at: ________ | Related Parties | Remarks\n1 |  |  |  |  |  |  |  |  |  |  |  |  | \n2 |  |  |  |  |  |  |  |  |  |  |  |  | \n3 |  |  |  |  |  |  |  |  |  |  |  |  | \n4 |  |  |  |  |  |  |  |  |  |  |  |  | \n5 |  |  |  |  |  |  |  |  |  |  |  |  |",
+      "content_text": "No | UNSCR Permanent Ref No | Customer Name | Address | NRIC / Passport No. | Intermediary Name - if reporting done on group basis | Branch maintaining the account/ facility Account No. | Account Facility/ Type | Date services given (DD/MM /YYYY) | Account/ Facility Status (on date of freezing) | Date account frozen (DD/MM /YYYY) | Account Balance as at: ________ | Related Parties | Remarks\n1 |  |  |  |  |  |  |  |  |  |  |  |  | \n2 |  |  |  |  |  |  |  |  |  |  |  |  | \n3 |  |  |  |  |  |  |  |  |  |  |  |  | \n4 |  |  |  |  |  |  |  |  |  |  |  |  | \n5 |  |  |  |  |  |  |  |  |  |  |  |  |",
+      "token_count": 180,
+      "pages": [
+        107
+      ],
+      "section_path": [
+        "APPENDIX I",
+        "REPORTING UPON DETERMINATION"
+      ],
+      "source_element_ids": [
+        "p107-e7"
+      ]
+    },
+    {
+      "context_order": 11,
+      "chunk_id": "485c4989-c300-45c8-ac06-79a59492bb5c-c0241-57faa0c1ac",
+      "chunk_index": 241,
+      "semantic_type": "clause",
+      "source_rank": 10,
+      "ranked_seed_rank": 10,
+      "reasons": [
+        "ranked_seed"
+      ],
+      "attached_from_chunk_ids": [],
+      "text": "Section: APPENDIX D > Obligation to freeze funds, properties or accounts\nGroup: Guidance on the Implementation of Targeted Financial Sanction in\nRelation to Terrorism Financing\n\n4.1 A reporting institution is required to freeze funds, properties or accounts that are\nowned or controlled directly and indirectly by the listed entities without delay2.\n\n4.2 Funds, properties or accounts that are owned or controlled indirectly by the listed\nentities includes situation where the listed entity is a director of a customer. In such\ninstance, once the reporting institution is satisfied that the director owns or controls\ndirectly or indirectly the funds, properties or accounts of the customer, the reporting\ninstitution is required to freeze the same without delay.\n\n4.3 The obligation to freeze funds, properties or accounts of a listed entity continues until\nthe person is delisted from the sanction lists. Even death of the listed entity is not a\nbasis for a reporting institution not to continue its freezing obligation.\n\n4.4 If an asset is owned or controlled by a listed entity and the interest owned or\ncontrolled by the listed party cannot be segregated, then the entire asset should be\nsubjected to freezing.\n\n4.5 Notwithstanding the funds, properties or accounts are frozen, a reporting institution\nmay continue receiving dividends, interests, or other benefits, but such benefits shall\nstill remain frozen, so long as the individuals or entities continue to be listed.\n\n4.6 However no outgoing payment should be made out from the frozen funds, properties\nor accounts, including payment of any fees or service charges for maintaining the\nfrozen funds without the approval of Minister of Home Affairs.",
+      "content_text": "4.1 A reporting institution is required to freeze funds, properties or accounts that are\nowned or controlled directly and indirectly by the listed entities without delay2.\n\n4.2 Funds, properties or accounts that are owned or controlled indirectly by the listed\nentities includes situation where the listed entity is a director of a customer. In such\ninstance, once the reporting institution is satisfied that the director owns or controls\ndirectly or indirectly the funds, properties or accounts of the customer, the reporting\ninstitution is required to freeze the same without delay.\n\n4.3 The obligation to freeze funds, properties or accounts of a listed entity continues until\nthe person is delisted from the sanction lists. Even death of the listed entity is not a\nbasis for a reporting institution not to continue its freezing obligation.\n\n4.4 If an asset is owned or controlled by a listed entity and the interest owned or\ncontrolled by the listed party cannot be segregated, then the entire asset should be\nsubjected to freezing.\n\n4.5 Notwithstanding the funds, properties or accounts are frozen, a reporting institution\nmay continue receiving dividends, interests, or other benefits, but such benefits shall\nstill remain frozen, so long as the individuals or entities continue to be listed.\n\n4.6 However no outgoing payment should be made out from the frozen funds, properties\nor accounts, including payment of any fees or service charges for maintaining the\nfrozen funds without the approval of Minister of Home Affairs.",
+      "token_count": 305,
+      "pages": [
+        89
+      ],
+      "section_path": [
+        "APPENDIX D",
+        "Obligation to freeze funds, properties or accounts"
+      ],
+      "source_element_ids": [
+        "p89-e3",
+        "p89-e4",
+        "p89-e5",
+        "p89-e6",
+        "p89-e7",
+        "p89-e8"
+      ]
+    }
+  ]
+}

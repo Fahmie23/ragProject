@@ -1,0 +1,255 @@
+{
+  "document_id": "485c4989-c300-45c8-ac06-79a59492bb5c",
+  "query": "In which situations must a reporting institution perform renewed CDD on an existing customer?",
+  "embedding_model": "BAAI/bge-m3",
+  "requested_device": "auto",
+  "resolved_device": "cuda",
+  "top_k": 10,
+  "embedded_chunk_count": 284,
+  "total_chunk_count": 284,
+  "hits": [
+    {
+      "rank": 1,
+      "chunk_id": "485c4989-c300-45c8-ac06-79a59492bb5c-c0129-2767b9c481",
+      "chunk_index": 129,
+      "semantic_type": "clause",
+      "score": 0.7888212455724241,
+      "distance": 0.21117875442757594,
+      "text": "Section: PART III: CUSTOMER DUE DILIGENCE > 8. CUSTOMER DUE DILIGENCE (CDD) > 8.8 Ongoing Due Diligence\nClause: 8.8.7\nGroup: Renewed CDD\n\n8.8.7 A reporting institution is required to undertake a renewed CDD when:\n\n(a)The customer’s account has been dormant or inactive and the customer is\nseeking to reactivate its account or resume its activities;\n\n(b)There is a change in circumstances relating to a customer which give rise\nto a suspicion of ML/TF/PF risks; or\n\n(c)There is a doubt about the veracity or adequacy of previously obtained\nidentification data.",
+      "content_text": "8.8.7 A reporting institution is required to undertake a renewed CDD when:\n\n(a)The customer’s account has been dormant or inactive and the customer is\nseeking to reactivate its account or resume its activities;\n\n(b)There is a change in circumstances relating to a customer which give rise\nto a suspicion of ML/TF/PF risks; or\n\n(c)There is a doubt about the veracity or adequacy of previously obtained\nidentification data.",
+      "token_count": 125,
+      "pages": [
+        47
+      ],
+      "section_path": [
+        "PART III: CUSTOMER DUE DILIGENCE",
+        "8. CUSTOMER DUE DILIGENCE (CDD)",
+        "8.8 Ongoing Due Diligence"
+      ],
+      "source_element_ids": [
+        "p47-e3",
+        "p47-e4",
+        "p47-e5",
+        "p47-e6"
+      ]
+    },
+    {
+      "rank": 2,
+      "chunk_id": "485c4989-c300-45c8-ac06-79a59492bb5c-c0239-331bc589b4",
+      "chunk_index": 239,
+      "semantic_type": "clause",
+      "score": 0.7197032523420606,
+      "distance": 0.28029674765793944,
+      "text": "Section: APPENDIX D > Obligation to conduct screening on customers\nGroup: Guidance on the Implementation of Targeted Financial Sanction in\nRelation to Terrorism Financing\n\n3.1 The obligation to conduct screening on customers is applicable both on the existing\nas well as new and potential customers. As such, a reporting institution is required\nto conduct screening on the customers when it undertakes CDD and ongoing CDD.\n\n3.2 A reporting institution is also required to screen its entire customer database within a\nreasonable time when the new names are listed by UNSCR or the domestic lists.\n\n3.4 Further, a reporting institution is also advised to search, examine and analyse past\nfinancial activities of the listed entities or related parties.",
+      "content_text": "3.1 The obligation to conduct screening on customers is applicable both on the existing\nas well as new and potential customers. As such, a reporting institution is required\nto conduct screening on the customers when it undertakes CDD and ongoing CDD.\n\n3.2 A reporting institution is also required to screen its entire customer database within a\nreasonable time when the new names are listed by UNSCR or the domestic lists.\n\n3.4 Further, a reporting institution is also advised to search, examine and analyse past\nfinancial activities of the listed entities or related parties.",
+      "token_count": 132,
+      "pages": [
+        88,
+        89
+      ],
+      "section_path": [
+        "APPENDIX D",
+        "Obligation to conduct screening on customers"
+      ],
+      "source_element_ids": [
+        "p88-e8",
+        "p88-e9",
+        "p89-e1"
+      ]
+    },
+    {
+      "rank": 3,
+      "chunk_id": "485c4989-c300-45c8-ac06-79a59492bb5c-c0104-19e5589eb5",
+      "chunk_index": 104,
+      "semantic_type": "clause",
+      "score": 0.7182976343276988,
+      "distance": 0.2817023656723012,
+      "text": "Section: PART III: CUSTOMER DUE DILIGENCE > 8. CUSTOMER DUE DILIGENCE (CDD) > 8.1 CDD at the point of establishing business relationship\nClause: 8.1.29\nGroup: Existing Customers\n\n8.1.29 A reporting institution must apply CDD measures to existing customers on the basis\nof materiality and risk, and conduct due diligence on such existing relationship at\nappropriate times, taking into account whether and when CDD measures have\npreviously been undertaken and the adequacy of the data obtained and verified.",
+      "content_text": "8.1.29 A reporting institution must apply CDD measures to existing customers on the basis\nof materiality and risk, and conduct due diligence on such existing relationship at\nappropriate times, taking into account whether and when CDD measures have\npreviously been undertaken and the adequacy of the data obtained and verified.",
+      "token_count": 97,
+      "pages": [
+        39
+      ],
+      "section_path": [
+        "PART III: CUSTOMER DUE DILIGENCE",
+        "8. CUSTOMER DUE DILIGENCE (CDD)",
+        "8.1 CDD at the point of establishing business relationship"
+      ],
+      "source_element_ids": [
+        "p39-e3"
+      ]
+    },
+    {
+      "rank": 4,
+      "chunk_id": "485c4989-c300-45c8-ac06-79a59492bb5c-c0105-5f695d59b5",
+      "chunk_index": 105,
+      "semantic_type": "mixed",
+      "score": 0.7071568122915304,
+      "distance": 0.2928431877084696,
+      "text": "Section: PART III: CUSTOMER DUE DILIGENCE > 8. CUSTOMER DUE DILIGENCE (CDD) > 8.1 CDD at the point of establishing business relationship\nGroup: Guidance for paragraph 8.1.29:\n\nIn assessing materiality and risk of existing customers, reporting institutions may\nconsider the following circumstances:\n\n(i)the nature and circumstances surrounding the transaction including the significance\nof the transaction;\n\n(ii)any material change in the way the account or business relationship is operated; or\n\n(iii)insufficient information held on the customer or change in customer’s information.",
+      "content_text": "In assessing materiality and risk of existing customers, reporting institutions may\nconsider the following circumstances:\n\n(i)the nature and circumstances surrounding the transaction including the significance\nof the transaction;\n\n(ii)any material change in the way the account or business relationship is operated; or\n\n(iii)insufficient information held on the customer or change in customer’s information.",
+      "token_count": 109,
+      "pages": [
+        39
+      ],
+      "section_path": [
+        "PART III: CUSTOMER DUE DILIGENCE",
+        "8. CUSTOMER DUE DILIGENCE (CDD)",
+        "8.1 CDD at the point of establishing business relationship"
+      ],
+      "source_element_ids": [
+        "p39-e5",
+        "p39-e6",
+        "p39-e7",
+        "p39-e8"
+      ]
+    },
+    {
+      "rank": 5,
+      "chunk_id": "485c4989-c300-45c8-ac06-79a59492bb5c-c0082-60739c961b",
+      "chunk_index": 82,
+      "semantic_type": "clause",
+      "score": 0.7067646312538461,
+      "distance": 0.29323536874615386,
+      "text": "Section: PART III: CUSTOMER DUE DILIGENCE > 8. CUSTOMER DUE DILIGENCE (CDD) > 8.1 CDD at the point of establishing business relationship\nClause: 8.1.3\n\n8.1.3 For the purpose of conducting CDD, a reporting institution is required to–\n\n(a)identify the customer (including foreign body corporate) and verify such\ncustomer’s identity using reliable, independent source of documents, data or\ninformation;\n\n(b)verify that any person purporting to act on behalf of the customer is authorised,\nand identify and verify the identity of that person;\n\n(c)identify the beneficial owner and take reasonable measures to verify the identity\nof the beneficial owner, using relevant information or data obtained from\nreliable sources, such that the reporting institution is satisfied that it knows who\nthe beneficial owner is; and\n\n(d)understand, and where relevant, obtain information on the purpose of opening\nan account and the intended nature of the business relationship.",
+      "content_text": "8.1.3 For the purpose of conducting CDD, a reporting institution is required to–\n\n(a)identify the customer (including foreign body corporate) and verify such\ncustomer’s identity using reliable, independent source of documents, data or\ninformation;\n\n(b)verify that any person purporting to act on behalf of the customer is authorised,\nand identify and verify the identity of that person;\n\n(c)identify the beneficial owner and take reasonable measures to verify the identity\nof the beneficial owner, using relevant information or data obtained from\nreliable sources, such that the reporting institution is satisfied that it knows who\nthe beneficial owner is; and\n\n(d)understand, and where relevant, obtain information on the purpose of opening\nan account and the intended nature of the business relationship.",
+      "token_count": 188,
+      "pages": [
+        31
+      ],
+      "section_path": [
+        "PART III: CUSTOMER DUE DILIGENCE",
+        "8. CUSTOMER DUE DILIGENCE (CDD)",
+        "8.1 CDD at the point of establishing business relationship"
+      ],
+      "source_element_ids": [
+        "p31-e6",
+        "p31-e7",
+        "p31-e8",
+        "p31-e9",
+        "p31-e10"
+      ]
+    },
+    {
+      "rank": 6,
+      "chunk_id": "485c4989-c300-45c8-ac06-79a59492bb5c-c0127-f692bde454",
+      "chunk_index": 127,
+      "semantic_type": "clause",
+      "score": 0.7060979955079612,
+      "distance": 0.29390200449203885,
+      "text": "Section: PART III: CUSTOMER DUE DILIGENCE > 8. CUSTOMER DUE DILIGENCE (CDD) > 8.8 Ongoing Due Diligence\nClause: 8.8.5\nGroup: Monitoring of accounts\n\n8.8.5 A reporting institution should consider reclassifying a customer as higher risk and\nconsider lodging a STR with the FIED under the following circumstances:\n\n(a)Following initial acceptance of the customer, the pattern of account activity\nof the customer is inconsistent and does not fit in with the reporting\ninstitution’s profile knowledge of the customer;\n\n(b)The transaction appears unusual and not in line with the customer’s normal\ntrading pattern; or\n\n(c)There is a material change in the way the account is operated.",
+      "content_text": "8.8.5 A reporting institution should consider reclassifying a customer as higher risk and\nconsider lodging a STR with the FIED under the following circumstances:\n\n(a)Following initial acceptance of the customer, the pattern of account activity\nof the customer is inconsistent and does not fit in with the reporting\ninstitution’s profile knowledge of the customer;\n\n(b)The transaction appears unusual and not in line with the customer’s normal\ntrading pattern; or\n\n(c)There is a material change in the way the account is operated.",
+      "token_count": 139,
+      "pages": [
+        46
+      ],
+      "section_path": [
+        "PART III: CUSTOMER DUE DILIGENCE",
+        "8. CUSTOMER DUE DILIGENCE (CDD)",
+        "8.8 Ongoing Due Diligence"
+      ],
+      "source_element_ids": [
+        "p46-e9",
+        "p46-e10",
+        "p46-e11",
+        "p46-e12"
+      ]
+    },
+    {
+      "rank": 7,
+      "chunk_id": "485c4989-c300-45c8-ac06-79a59492bb5c-c0123-4f5ad74283",
+      "chunk_index": 123,
+      "semantic_type": "clause",
+      "score": 0.7010750887214926,
+      "distance": 0.2989249112785074,
+      "text": "Section: PART III: CUSTOMER DUE DILIGENCE > 8. CUSTOMER DUE DILIGENCE (CDD) > 8.7 Failure to satisfactorily complete CDD\n\n8.7.1 A reporting institution must not commence any business relation, or execute any\ntransaction, or in the case of existing customers, must terminate such business\nrelationship, if the reporting institution fails to comply with the CDD requirement.\n\n8.7.2 In addition to the requirement in paragraph 8.7.1, the reporting institution must also\nconsider lodging a STR in relation to such customer with the FIED",
+      "content_text": "8.7.1 A reporting institution must not commence any business relation, or execute any\ntransaction, or in the case of existing customers, must terminate such business\nrelationship, if the reporting institution fails to comply with the CDD requirement.\n\n8.7.2 In addition to the requirement in paragraph 8.7.1, the reporting institution must also\nconsider lodging a STR in relation to such customer with the FIED",
+      "token_count": 107,
+      "pages": [
+        45
+      ],
+      "section_path": [
+        "PART III: CUSTOMER DUE DILIGENCE",
+        "8. CUSTOMER DUE DILIGENCE (CDD)",
+        "8.7 Failure to satisfactorily complete CDD"
+      ],
+      "source_element_ids": [
+        "p45-e11",
+        "p45-e12"
+      ]
+    },
+    {
+      "rank": 8,
+      "chunk_id": "485c4989-c300-45c8-ac06-79a59492bb5c-c0124-0f8256155c",
+      "chunk_index": 124,
+      "semantic_type": "clause",
+      "score": 0.7001234233158679,
+      "distance": 0.29987657668413215,
+      "text": "Section: PART III: CUSTOMER DUE DILIGENCE > 8. CUSTOMER DUE DILIGENCE (CDD) > 8.8 Ongoing Due Diligence\nClause: 8.8.1\n\n8.8.1 A reporting institution must conduct ongoing due diligence and scrutiny of the business\nrelationship with its customers throughout the course of the business relationship.\nSuch measures shall include–\n\n(a)monitoring, detecting and scrutinizing transactions undertaken throughout the\ncourse of that business relationship to ensure that the transactions being\nconducted are consistent with the reporting institution’s knowledge of the\ncustomer, its business and risk profile, including where necessary, the source\nof funds; and\n\n(b)ensuring that documents, data or information collected under the CDD process\nis kept up-to-date and are relevant, by undertaking periodic reviews of existing\nrecords, particularly for higher-risk categories of customer.",
+      "content_text": "8.8.1 A reporting institution must conduct ongoing due diligence and scrutiny of the business\nrelationship with its customers throughout the course of the business relationship.\nSuch measures shall include–\n\n(a)monitoring, detecting and scrutinizing transactions undertaken throughout the\ncourse of that business relationship to ensure that the transactions being\nconducted are consistent with the reporting institution’s knowledge of the\ncustomer, its business and risk profile, including where necessary, the source\nof funds; and\n\n(b)ensuring that documents, data or information collected under the CDD process\nis kept up-to-date and are relevant, by undertaking periodic reviews of existing\nrecords, particularly for higher-risk categories of customer.",
+      "token_count": 162,
+      "pages": [
+        46
+      ],
+      "section_path": [
+        "PART III: CUSTOMER DUE DILIGENCE",
+        "8. CUSTOMER DUE DILIGENCE (CDD)",
+        "8.8 Ongoing Due Diligence"
+      ],
+      "source_element_ids": [
+        "p46-e2",
+        "p46-e3",
+        "p46-e4"
+      ]
+    },
+    {
+      "rank": 9,
+      "chunk_id": "485c4989-c300-45c8-ac06-79a59492bb5c-c0084-fb93596733",
+      "chunk_index": 84,
+      "semantic_type": "clause",
+      "score": 0.690805472039529,
+      "distance": 0.309194527960471,
+      "text": "Section: PART III: CUSTOMER DUE DILIGENCE > 8. CUSTOMER DUE DILIGENCE (CDD) > 8.1 CDD at the point of establishing business relationship\nClause: 8.1.7\nGroup: CDD requirements for individual customer and beneficial owner > Identification and Verification\n\n8.1.7 Where the above information is not sufficient for the reporting institution to complete its\nidentification and verification process, the reporting institution must seek further relevant\ninformation from the individual customer or beneficial owner.",
+      "content_text": "8.1.7 Where the above information is not sufficient for the reporting institution to complete its\nidentification and verification process, the reporting institution must seek further relevant\ninformation from the individual customer or beneficial owner.",
+      "token_count": 90,
+      "pages": [
+        32
+      ],
+      "section_path": [
+        "PART III: CUSTOMER DUE DILIGENCE",
+        "8. CUSTOMER DUE DILIGENCE (CDD)",
+        "8.1 CDD at the point of establishing business relationship"
+      ],
+      "source_element_ids": [
+        "p32-e15"
+      ]
+    },
+    {
+      "rank": 10,
+      "chunk_id": "485c4989-c300-45c8-ac06-79a59492bb5c-c0081-b1e4e8f0b7",
+      "chunk_index": 81,
+      "semantic_type": "clause",
+      "score": 0.686651228071647,
+      "distance": 0.313348771928353,
+      "text": "Section: PART III: CUSTOMER DUE DILIGENCE > 8. CUSTOMER DUE DILIGENCE (CDD) > 8.1 CDD at the point of establishing business relationship\n\n8.1.1 Section 16 of the AMLA among others clearly sets out customer identification\nrequirements for reporting institutions. A reporting institution must conduct CDD on\ncustomer and obtain satisfactory evidence of the identity and legal existence of the\ncustomer and beneficial owner at the point of establishing the business relationship.\n\n8.1.2 A reporting institution must not keep anonymous accounts or accounts in fictitious\nnames.\n\n8.1.4 A customer who fails to provide evidence of his identity must not be allowed to engage\nin business relations with the reporting institution. Additional measures must be\nundertaken to determine whether to proceed with the business relationship, where\ninitial checks failed to identify the customer or give rise to suspicions that the\ninformation provided is false.\n\n8.1.5 Where applicable, in conducting CDD, a reporting institution is required to comply with\nrequirements on targeted financial sanctions in relation to:\n\n(a) terrorism financing under Part VII of these Guidelines; and\n\n(b) proliferation financing under Part VIII of these Guidelines.",
+      "content_text": "8.1.1 Section 16 of the AMLA among others clearly sets out customer identification\nrequirements for reporting institutions. A reporting institution must conduct CDD on\ncustomer and obtain satisfactory evidence of the identity and legal existence of the\ncustomer and beneficial owner at the point of establishing the business relationship.\n\n8.1.2 A reporting institution must not keep anonymous accounts or accounts in fictitious\nnames.\n\n8.1.4 A customer who fails to provide evidence of his identity must not be allowed to engage\nin business relations with the reporting institution. Additional measures must be\nundertaken to determine whether to proceed with the business relationship, where\ninitial checks failed to identify the customer or give rise to suspicions that the\ninformation provided is false.\n\n8.1.5 Where applicable, in conducting CDD, a reporting institution is required to comply with\nrequirements on targeted financial sanctions in relation to:\n\n(a) terrorism financing under Part VII of these Guidelines; and\n\n(b) proliferation financing under Part VIII of these Guidelines.",
+      "token_count": 221,
+      "pages": [
+        31
+      ],
+      "section_path": [
+        "PART III: CUSTOMER DUE DILIGENCE",
+        "8. CUSTOMER DUE DILIGENCE (CDD)",
+        "8.1 CDD at the point of establishing business relationship"
+      ],
+      "source_element_ids": [
+        "p31-e4",
+        "p31-e5",
+        "p31-e11",
+        "p31-e12",
+        "p31-e13",
+        "p31-e14"
+      ]
+    }
+  ]
+}

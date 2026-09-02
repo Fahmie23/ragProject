@@ -1,0 +1,246 @@
+{
+  "document_id": "485c4989-c300-45c8-ac06-79a59492bb5c",
+  "query": "What should a reporting institution do if it cannot adequately control the ML/TF/PF and associated risks of accepting third-party deposits?",
+  "embedding_model": "BAAI/bge-m3",
+  "requested_device": "auto",
+  "resolved_device": "cuda",
+  "top_k": 10,
+  "embedded_chunk_count": 284,
+  "total_chunk_count": 284,
+  "hits": [
+    {
+      "rank": 1,
+      "chunk_id": "485c4989-c300-45c8-ac06-79a59492bb5c-c0207-2adb54d356",
+      "chunk_index": 207,
+      "semantic_type": "clause",
+      "score": 0.8078998556256524,
+      "distance": 0.19210014437434764,
+      "text": "Section: APPENDIX A1 > 1.0 General\n\n1.1 This Appendix sets out requirements on control measures to mitigate ML/TF/PF risk\nwhen a reporting institution accepts third-party deposits. For avoidance of doubt, third-\nparty deposits refer to monies deposited by a third-party into the customer’s account\nwith a reporting institution.\n\n1.2 A reporting institution which is unable to exercise adequate control measures to\nmitigate the inherent ML/TF/PF risk and other associated risks and meet the relevant\ncompliance requirements must not accept any third-party deposits.",
+      "content_text": "1.1 This Appendix sets out requirements on control measures to mitigate ML/TF/PF risk\nwhen a reporting institution accepts third-party deposits. For avoidance of doubt, third-\nparty deposits refer to monies deposited by a third-party into the customer’s account\nwith a reporting institution.\n\n1.2 A reporting institution which is unable to exercise adequate control measures to\nmitigate the inherent ML/TF/PF risk and other associated risks and meet the relevant\ncompliance requirements must not accept any third-party deposits.",
+      "token_count": 110,
+      "pages": [
+        79
+      ],
+      "section_path": [
+        "APPENDIX A1",
+        "1.0 General"
+      ],
+      "source_element_ids": [
+        "p79-e5",
+        "p79-e6"
+      ]
+    },
+    {
+      "rank": 2,
+      "chunk_id": "485c4989-c300-45c8-ac06-79a59492bb5c-c0080-4341282f62",
+      "chunk_index": 80,
+      "semantic_type": "clause",
+      "score": 0.7796836161990679,
+      "distance": 0.2203163838009321,
+      "text": "Section: PART II: RISK-BASED APPROACH APPLICATION > 7. RISK-BASED APPROACH APPLICATION > 7.6 Risk management and mitigation in third-party deposits and payments\n\n7.6.1 There are ML/TF/PF risks as well as other risks associated with third-party deposits made\ninto accounts maintained by customers of a reporting institution.\n\n7.6.2 In view of the risks associated with third-party deposits, reporting institutions must in\nconducting its risk assessment consider and assess the risk arising from third-party\ndeposits and ensure that appropriate control measures are implemented to mitigate the\nrisk and/or prevent ML/TF/PF activities.\n\n7.6.3 A reporting institution which accepts third-party deposit must at minimum, comply with\nthe requirements on control measures in accepting third-party deposits set out in\nAppendix A1 of these Guidelines.\n\n7.6.4 A reporting institution which is unable to exercise appropriate control measures to\nmitigate the inherent ML/TF/PF risk and other associated risks and meet the relevant\ncompliance requirements must not accept any third-party deposits.\n\n7.6.5 Generally, a reporting institution must not accept any request from customers for\npayments to be made from the customers’ account into a third-party account except in\nexceptional circumstances where permitted in relevant guidelines.",
+      "content_text": "7.6.1 There are ML/TF/PF risks as well as other risks associated with third-party deposits made\ninto accounts maintained by customers of a reporting institution.\n\n7.6.2 In view of the risks associated with third-party deposits, reporting institutions must in\nconducting its risk assessment consider and assess the risk arising from third-party\ndeposits and ensure that appropriate control measures are implemented to mitigate the\nrisk and/or prevent ML/TF/PF activities.\n\n7.6.3 A reporting institution which accepts third-party deposit must at minimum, comply with\nthe requirements on control measures in accepting third-party deposits set out in\nAppendix A1 of these Guidelines.\n\n7.6.4 A reporting institution which is unable to exercise appropriate control measures to\nmitigate the inherent ML/TF/PF risk and other associated risks and meet the relevant\ncompliance requirements must not accept any third-party deposits.\n\n7.6.5 Generally, a reporting institution must not accept any request from customers for\npayments to be made from the customers’ account into a third-party account except in\nexceptional circumstances where permitted in relevant guidelines.",
+      "token_count": 255,
+      "pages": [
+        30
+      ],
+      "section_path": [
+        "PART II: RISK-BASED APPROACH APPLICATION",
+        "7. RISK-BASED APPROACH APPLICATION",
+        "7.6 Risk management and mitigation in third-party deposits and payments"
+      ],
+      "source_element_ids": [
+        "p30-e4",
+        "p30-e5",
+        "p30-e6",
+        "p30-e7",
+        "p30-e8"
+      ]
+    },
+    {
+      "rank": 3,
+      "chunk_id": "485c4989-c300-45c8-ac06-79a59492bb5c-c0208-9e5f3f0038",
+      "chunk_index": 208,
+      "semantic_type": "clause",
+      "score": 0.7611151026350191,
+      "distance": 0.23888489736498086,
+      "text": "Section: APPENDIX A1 > 2.0 Policies and procedures\n\n2.1 A reporting institution which accepts third-party deposits must establish and implement\na clear, comprehensive and effective policies and procedures to monitor third-party\ndeposits and have control measures to be carried out before accepting third-party\ndeposits to mitigate ML/TF/PF risk and other associated risks.\n\n2.2 A reporting institution is required to comply with the requirements of paragraph 7.6 of\nthese Guidelines in establishing and implementing third-party deposits policies and\nprocedures.",
+      "content_text": "2.1 A reporting institution which accepts third-party deposits must establish and implement\na clear, comprehensive and effective policies and procedures to monitor third-party\ndeposits and have control measures to be carried out before accepting third-party\ndeposits to mitigate ML/TF/PF risk and other associated risks.\n\n2.2 A reporting institution is required to comply with the requirements of paragraph 7.6 of\nthese Guidelines in establishing and implementing third-party deposits policies and\nprocedures.",
+      "token_count": 102,
+      "pages": [
+        79
+      ],
+      "section_path": [
+        "APPENDIX A1",
+        "2.0 Policies and procedures"
+      ],
+      "source_element_ids": [
+        "p79-e8",
+        "p79-e9"
+      ]
+    },
+    {
+      "rank": 4,
+      "chunk_id": "485c4989-c300-45c8-ac06-79a59492bb5c-c0215-2461243dc4",
+      "chunk_index": 215,
+      "semantic_type": "clause",
+      "score": 0.7201221322867764,
+      "distance": 0.27987786771322365,
+      "text": "Section: APPENDIX A1 > 2.0 Policies and procedures > Monitoring systems and controls to identify and accept third-party deposits\nGroup: On-going monitoring\n\n2.9 A reporting institution must implement an on-going monitoring of customers’ accounts\ninvolving third-party deposits. A suspicious transaction report should be made\nimmediately to the FIED when there are grounds for suspicion of ML/TF/PF.\n\n2.10 A reporting institution must ‘flag’ accounts with suspicious transactions relating to\nthird- party deposits for monitoring purposes.",
+      "content_text": "2.9 A reporting institution must implement an on-going monitoring of customers’ accounts\ninvolving third-party deposits. A suspicious transaction report should be made\nimmediately to the FIED when there are grounds for suspicion of ML/TF/PF.\n\n2.10 A reporting institution must ‘flag’ accounts with suspicious transactions relating to\nthird- party deposits for monitoring purposes.",
+      "token_count": 101,
+      "pages": [
+        80
+      ],
+      "section_path": [
+        "APPENDIX A1",
+        "2.0 Policies and procedures",
+        "Monitoring systems and controls to identify and accept third-party deposits"
+      ],
+      "source_element_ids": [
+        "p80-e13",
+        "p80-e14"
+      ]
+    },
+    {
+      "rank": 5,
+      "chunk_id": "485c4989-c300-45c8-ac06-79a59492bb5c-c0210-21bcd6cf1c",
+      "chunk_index": 210,
+      "semantic_type": "clause",
+      "score": 0.6961863765272196,
+      "distance": 0.3038136234727804,
+      "text": "Section: APPENDIX A1 > 2.0 Policies and procedures > Circumstances where third-party deposits can be allowed\nClause: 2.4\n\n2.4 Pursuant to the reporting institutions’ risk assessment and findings, a reporting\ninstitution may accept arrangement for third-party deposits under controlled and\nlegitimate circumstances having regard to due diligence and evaluation on the third-\nparty.",
+      "content_text": "2.4 Pursuant to the reporting institutions’ risk assessment and findings, a reporting\ninstitution may accept arrangement for third-party deposits under controlled and\nlegitimate circumstances having regard to due diligence and evaluation on the third-\nparty.",
+      "token_count": 69,
+      "pages": [
+        79
+      ],
+      "section_path": [
+        "APPENDIX A1",
+        "2.0 Policies and procedures",
+        "Circumstances where third-party deposits can be allowed"
+      ],
+      "source_element_ids": [
+        "p79-e17"
+      ]
+    },
+    {
+      "rank": 6,
+      "chunk_id": "485c4989-c300-45c8-ac06-79a59492bb5c-c0211-c0c55369ef",
+      "chunk_index": 211,
+      "semantic_type": "clause",
+      "score": 0.6933768161086112,
+      "distance": 0.30662318389138876,
+      "text": "Section: APPENDIX A1 > 2.0 Policies and procedures > Monitoring systems and controls to identify and accept third-party deposits\nClause: 2.5\n\n2.5 A reporting institution must ensure an effective monitoring systems and controls to\nidentify and accept third-party deposits into their customer’s account, including to\nobtain supporting documents from customers to ascertain whether deposits into the\ncustomer’s accounts comes from a third-party.",
+      "content_text": "2.5 A reporting institution must ensure an effective monitoring systems and controls to\nidentify and accept third-party deposits into their customer’s account, including to\nobtain supporting documents from customers to ascertain whether deposits into the\ncustomer’s accounts comes from a third-party.",
+      "token_count": 82,
+      "pages": [
+        80
+      ],
+      "section_path": [
+        "APPENDIX A1",
+        "2.0 Policies and procedures",
+        "Monitoring systems and controls to identify and accept third-party deposits"
+      ],
+      "source_element_ids": [
+        "p80-e2"
+      ]
+    },
+    {
+      "rank": 7,
+      "chunk_id": "485c4989-c300-45c8-ac06-79a59492bb5c-c0214-9797969218",
+      "chunk_index": 214,
+      "semantic_type": "clause",
+      "score": 0.6896498573243837,
+      "distance": 0.31035014267561634,
+      "text": "Section: APPENDIX A1 > 2.0 Policies and procedures > Monitoring systems and controls to identify and accept third-party deposits\nClause: 2.8\nGroup: Due diligence and evaluation\n\n2.8 Where a reporting institution reject a third-party deposits, the reporting institution\nmust ensure that the monies are returned to the sources of their deposits as soon as\npracticable.",
+      "content_text": "2.8 Where a reporting institution reject a third-party deposits, the reporting institution\nmust ensure that the monies are returned to the sources of their deposits as soon as\npracticable.",
+      "token_count": 70,
+      "pages": [
+        80
+      ],
+      "section_path": [
+        "APPENDIX A1",
+        "2.0 Policies and procedures",
+        "Monitoring systems and controls to identify and accept third-party deposits"
+      ],
+      "source_element_ids": [
+        "p80-e11"
+      ]
+    },
+    {
+      "rank": 8,
+      "chunk_id": "485c4989-c300-45c8-ac06-79a59492bb5c-c0209-3f532e58cb",
+      "chunk_index": 209,
+      "semantic_type": "clause",
+      "score": 0.6834250469893209,
+      "distance": 0.31657495301067906,
+      "text": "Section: APPENDIX A1 > 2.0 Policies and procedures\nClause: 2.3\n\n2.3 A reporting institutions’ policies and procedures on third-party deposits must cover the\nfollowing:\n\n(a)circumstances where the third-party deposits can be allowed having regard\nto the reporting institution’s risk assessment;\n\n(b)an effective monitoring systems and controls to identify and accept third-party\ndeposits, including:\n\n(i)undertake due-diligence and evaluation on third-party deposits; and\n\n(ii)on-going monitoring of third-party deposits.\n\n(c)Other relevant requirements on record keeping and employee training.",
+      "content_text": "2.3 A reporting institutions’ policies and procedures on third-party deposits must cover the\nfollowing:\n\n(a)circumstances where the third-party deposits can be allowed having regard\nto the reporting institution’s risk assessment;\n\n(b)an effective monitoring systems and controls to identify and accept third-party\ndeposits, including:\n\n(i)undertake due-diligence and evaluation on third-party deposits; and\n\n(ii)on-going monitoring of third-party deposits.\n\n(c)Other relevant requirements on record keeping and employee training.",
+      "token_count": 122,
+      "pages": [
+        79
+      ],
+      "section_path": [
+        "APPENDIX A1",
+        "2.0 Policies and procedures"
+      ],
+      "source_element_ids": [
+        "p79-e10",
+        "p79-e11",
+        "p79-e12",
+        "p79-e13",
+        "p79-e14",
+        "p79-e15"
+      ]
+    },
+    {
+      "rank": 9,
+      "chunk_id": "485c4989-c300-45c8-ac06-79a59492bb5c-c0070-bfadb14a87",
+      "chunk_index": 70,
+      "semantic_type": "clause",
+      "score": 0.6774192836976953,
+      "distance": 0.32258071630230467,
+      "text": "Section: PART II: RISK-BASED APPROACH APPLICATION > 7. RISK-BASED APPROACH APPLICATION > 7.2 ML/TF Risk management and mitigation\nClause: 7.2.1\n\n7.2.1 A reporting institution is required to–\n\n(a)have policies, procedures and controls, which are approved by the board of\ndirectors, to enable it to manage and mitigate effectively the ML/TF risks that\nhave been identified and assessed;\n\n(b)monitor the implementation of those policies, procedures and controls and\nto enhance them if necessary; and\n\n(c)take enhanced measures to manage and mitigate the risks where higher\nrisks are identified.",
+      "content_text": "7.2.1 A reporting institution is required to–\n\n(a)have policies, procedures and controls, which are approved by the board of\ndirectors, to enable it to manage and mitigate effectively the ML/TF risks that\nhave been identified and assessed;\n\n(b)monitor the implementation of those policies, procedures and controls and\nto enhance them if necessary; and\n\n(c)take enhanced measures to manage and mitigate the risks where higher\nrisks are identified.",
+      "token_count": 126,
+      "pages": [
+        27
+      ],
+      "section_path": [
+        "PART II: RISK-BASED APPROACH APPLICATION",
+        "7. RISK-BASED APPROACH APPLICATION",
+        "7.2 ML/TF Risk management and mitigation"
+      ],
+      "source_element_ids": [
+        "p27-e7",
+        "p27-e8",
+        "p27-e9",
+        "p27-e10"
+      ]
+    },
+    {
+      "rank": 10,
+      "chunk_id": "485c4989-c300-45c8-ac06-79a59492bb5c-c0213-79d797bb84",
+      "chunk_index": 213,
+      "semantic_type": "clause",
+      "score": 0.6759756383953957,
+      "distance": 0.32402436160460435,
+      "text": "Section: APPENDIX A1 > 2.0 Policies and procedures > Monitoring systems and controls to identify and accept third-party deposits\nClause: 2.7\nGroup: Due diligence and evaluation\n\n2.7 A reporting institution must evaluate the reasons and the need for third-party deposits\nto ensure that a third-party deposit is reasonably in line with the customer’s profile and\nnormal commercial practices (including the frequency and pattern of previous third-\nparty deposits). The evaluations and assessments must include:\n\n(a)Conducting further inquiries with the customers; and\n\n(b)Obtaining corroborative evidence from relevant sources;",
+      "content_text": "2.7 A reporting institution must evaluate the reasons and the need for third-party deposits\nto ensure that a third-party deposit is reasonably in line with the customer’s profile and\nnormal commercial practices (including the frequency and pattern of previous third-\nparty deposits). The evaluations and assessments must include:\n\n(a)Conducting further inquiries with the customers; and\n\n(b)Obtaining corroborative evidence from relevant sources;",
+      "token_count": 117,
+      "pages": [
+        80
+      ],
+      "section_path": [
+        "APPENDIX A1",
+        "2.0 Policies and procedures",
+        "Monitoring systems and controls to identify and accept third-party deposits"
+      ],
+      "source_element_ids": [
+        "p80-e8",
+        "p80-e9",
+        "p80-e10"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,89 @@
+QUESTION: What is a politically exposed person?
+EXPECTATION: answerable
+STATUS: answered
+SMOKE_STATUS: PASS
+ELAPSED_SECONDS: 21.88
+RATE_LIMIT_RETRIES: 0
+PROVIDER: groq
+MODEL: openai/gpt-oss-120b
+PROMPT_VERSION: grounded_claims_v1
+CITATION_VERSION: deterministic_citations_v1_2
+RETRIEVAL_PROFILE: retrieval_v1_stage8_2_top5
+CONTEXT_CHUNKS: 5
+EXPANDED_CHUNKS: 0
+USED_EVIDENCE_IDS: ['E1']
+CITATION_VALIDATION: {'status': 'valid', 'citation_count': 1, 'valid_citation_count': 1, 'errors': []}
+
+ANSWER:
+A politically exposed person (PEP) is an individual who is or has been entrusted with prominent public functions by a foreign country (foreign PEP). A politically exposed person (PEP) is an individual who is or has been entrusted with prominent public functions domestically (domestic PEP). A politically exposed person (PEP) includes an individual who is or has been entrusted with a prominent function by an international organisation, such as senior management positions. The definition of PEP does not cover middle‑ranking or more junior individuals in those categories.
+
+CITED_ANSWER:
+A politically exposed person (PEP) is an individual who is or has been entrusted with prominent public functions by a foreign country (foreign PEP). [1] A politically exposed person (PEP) is an individual who is or has been entrusted with prominent public functions domestically (domestic PEP). [1] A politically exposed person (PEP) includes an individual who is or has been entrusted with a prominent function by an international organisation, such as senior management positions. [1] The definition of PEP does not cover middle‑ranking or more junior individuals in those categories. [1]
+
+CLAIMS:
+- C1: A politically exposed person (PEP) is an individual who is or has been entrusted with prominent public functions by a foreign country (foreign PEP). | evidence=['E1'] | citations=['CIT-E1']
+- C2: A politically exposed person (PEP) is an individual who is or has been entrusted with prominent public functions domestically (domestic PEP). | evidence=['E1'] | citations=['CIT-E1']
+- C3: A politically exposed person (PEP) includes an individual who is or has been entrusted with a prominent function by an international organisation, such as senior management positions. | evidence=['E1'] | citations=['CIT-E1']
+- C4: The definition of PEP does not cover middle‑ranking or more junior individuals in those categories. | evidence=['E1'] | citations=['CIT-E1']
+
+CITATIONS:
+- CIT-E1 [1] evidence=E1 chunk=33 pages=[13] :: Definition “politically exposed person (PEP)” · PDF p. 13
+
+EVIDENCE:
+[E1] chunk_index=33 source_rank=1 pages=[13] type=definition reasons=['ranked_seed']
+politically exposed person (PEP)
+
+means―
+(a)foreign PEP i.e. individual who is or who has been entrusted with prominent public functions by a foreign country, for example, Head of State or of government, senior politician, senior government, judicial or military official, senior executive of state-owned corporation, important political party official;
+(b)domestic PEP i.e. individual who is or has been entrusted domestically with prominent public functions, for example Head of State or of government, senior politician, senior government, judicial or military official, senior executive of state- owned corporation, important political party official; or
+(c)person who is or has been entrusted with a prominent function by an international organisation which refers to member of senior management, i.e. director, deputy director and member of the board or equivalent functions.
+The definition of PEP is not intended to cover middle ranking or more junior individual in the foregoing categories.
+[E2] chunk_index=112 source_rank=2 pages=[42] type=clause reasons=['ranked_seed']
+8.4.1 The requirements set out in paragraph 8.4 herein are also applicable to family
+members or close associates of PEPs. Appendix B of these Guidelines provides
+measures to be adopted by a reporting institution in dealing with the family members
+or close associates of PEPs.
+
+8.4.2 A reporting institution is required to have in place a risk management system to
+determine whether a customer or a beneficial owner is a foreign PEP.
+
+8.4.3 Upon determining that a customer or a beneficial owner is a foreign PEP, the
+requirement to conduct enhanced CDD measures under paragraph 8.3 is applicable
+and the reporting institution is also required to conduct enhanced ongoing due
+diligence.
+
+8.4.4 A reporting institution is required to have in place reasonable measures to determine
+whether a customer or the beneficial owner is a domestic PEP or person entrusted
+with a prominent function by an international organisation.
+
+8.4.5 The reporting institution is required to assess the level of ML/TF/PF risks posed by
+the business relationship with the domestic PEP or person entrusted with a prominent
+function by an international organisation based on sufficient and appropriate
+information gathered through publicly available information or other reasonable
+means. The assessment of the ML/TF/PF risks also must take into account the profile
+of the customer under paragraph 7.5.3 of these Guidelines.
+
+8.4.6 For a higher-risk domestic PEP or higher-risk person entrusted with a prominent
+function by an international organisation, the requirements of enhanced CDD
+measures are as set out in paragraph 8.3.
+
+8.4.7 For a domestic PEP or person entrusted with a prominent function by an international
+organisation that is assessed as low risk, the reporting institution may apply the standard
+CDD measures.
+[E3] chunk_index=220 source_rank=3 pages=[83] type=paragraph reasons=['ranked_seed']
+Family Member or Close Associate of a Foreign PEP
+[E4] chunk_index=224 source_rank=4 pages=[83] type=clause reasons=['ranked_seed']
+1.11 For family members or close associates of a domestic PEP or PEPFIO that is assessed
+as low risk pursuant to the rating assigned to the domestic PEP or PEPFIO, the
+reporting institution must apply the standard CDD measures and where he is assessed
+as higher risk, enhanced CDD measures are applicable.
+[E5] chunk_index=219 source_rank=5 pages=[82] type=clause reasons=['ranked_seed']
+1.5 A close associate is an individual reasonably known to the reporting institution to be
+closely connected to a PEP, either socially or professionally.
+
+1.6 An individual who is closely connected to a PEP may include the PEP’s business
+partners or associates, extended family members, close friends and financially
+dependent individuals.
+
+1.7 Reporting institutions must determine the extent to which the close associate is directly
+engaged or involved in the activity of the PEP on best effort basis.

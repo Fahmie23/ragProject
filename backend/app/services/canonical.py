@@ -8,7 +8,8 @@ import re
 
 from app.services.spans import iter_page_spans
 from app.services.semantic import calibrate_hierarchy_confidence, continuation_boundary_reason, reconcile_same_page_semantic_continuity, resolve_appendix_labels, resolve_appendix_title_scopes, resolve_heading_scopes, resolve_structural_semantics, validate_semantic_structure
-from app.services.semantic.classifier import backfill_classification
+from app.services.semantic.classifier import apply_classification, backfill_classification
+from app.services.semantic.patterns import is_callout_heading
 
 from app.schemas import (
     CanonicalElement,
@@ -70,7 +71,7 @@ NUMBERED_HEADING = re.compile(
     re.IGNORECASE,
 )
 CLAUSE_PREFIX = re.compile(
-    r"^\s*(?:(\d+(?:\s*[A-Z])?\.\d+(?:\.\d+){0,4})(?=\s|[A-Za-z])|(\d+)[.)](?=\s|[A-Za-z]))\s*",
+    r"^\s*(?:(\d+(?:\s*[A-Z])?\.\d+(?:\.\d+){0,4}(?:[A-Z](?=\s))?)(?=\s|[A-Za-z])|(\d+)[.)](?=\s|[A-Za-z]))\s*",
     re.IGNORECASE,
 )
 QUESTION_PREFIX = re.compile(r"^\s*(?:q(?:uestion)?\s*)?\d+\s*[.)]\s*", re.IGNORECASE)
@@ -318,6 +319,7 @@ def _box_text(box: dict) -> str:
 
 TOC_ENTRY_MARKER = re.compile(r"^\s*\d+[A-Za-z]?(?:\.\d+)*\.?\s*$")
 TOC_PAGE_REFERENCE = re.compile(r"^\s*\d{1,4}\s*$")
+TOC_APPENDIX_ENTRY = re.compile(r"^\s*Appendix\s+[A-Z0-9IVXLC]+[:.]?\s*$", re.IGNORECASE)
 TOC_CONTEXT_HEADING = re.compile(
     r"^(?:table\s+of\s+)?contents(?:\s+\(?continued\)?)?$",
     re.IGNORECASE,
@@ -380,6 +382,32 @@ def _looks_like_toc_table(cells: list[list[str | None]]) -> bool:
     return toc_entry_rows >= 3
 
 
+def _looks_like_toc_table_fragment(cells: list[list[str | None]]) -> bool:
+    """Return True for a short continuation fragment of a TOC table.
+
+    Full TOC detection intentionally requires several rows.  Once a preceding
+    page has explicitly established TOC context, however, the next physical
+    page can legitimately begin with only one or two residual rows before a
+    new PART heading or appendix list.  This narrower predicate is used only
+    for adjacent cross-page inheritance and still requires a 3-column
+    number/title/page pattern.
+    """
+    if not cells or max((len(row) for row in cells), default=0) != 3:
+        return False
+    matching_rows = 0
+    for row in cells:
+        if len(row) != 3:
+            continue
+        left_lines = _cell_lines(row[0])
+        right_lines = _cell_lines(row[2])
+        if not left_lines or len(right_lines) != 1 or TOC_PAGE_REFERENCE.fullmatch(right_lines[0]) is None:
+            continue
+        marker = left_lines[-1]
+        if TOC_ENTRY_MARKER.fullmatch(marker) or TOC_APPENDIX_ENTRY.fullmatch(marker):
+            matching_rows += 1
+    return matching_rows >= 1
+
+
 def _repair_merged_toc_rows(cells: list[list[str | None]]) -> tuple[list[list[str | None]], bool]:
     """Split a TOC heading accidentally merged with the following entry.
 
@@ -407,6 +435,32 @@ def _repair_merged_toc_rows(cells: list[list[str | None]]) -> tuple[list[list[st
         left_lines = _cell_lines(row[0])
         middle_lines = _cell_lines(row[1])
         right_lines = _cell_lines(row[2])
+        # The inverse merge also occurs: the next major heading is appended
+        # to the previous numbered entry, e.g. ``9.5\nPART`` with the final
+        # middle-cell line ``IV: RETENTION OF RECORDS``.  In that case the
+        # page reference belongs to the numbered entry and the major heading
+        # must be emitted *after* it.
+        major = re.compile(r"^(?:PART|CHAPTER|BOOK|DIVISION)$", re.IGNORECASE)
+        trailing_major = (
+            len(left_lines) >= 2
+            and len(middle_lines) >= 2
+            and len(right_lines) == 1
+            and TOC_PAGE_REFERENCE.fullmatch(right_lines[0]) is not None
+            and TOC_ENTRY_MARKER.fullmatch(left_lines[0]) is not None
+            and major.fullmatch(left_lines[-1]) is not None
+            and _uppercase_heading_like(middle_lines[-1])
+        )
+        if trailing_major:
+            entry_row: list[str | None] = [
+                "\n".join(left_lines[:-1]),
+                "\n".join(middle_lines[:-1]),
+                right_lines[0],
+            ]
+            header_row: list[str | None] = [left_lines[-1], middle_lines[-1], ""]
+            repaired.extend([entry_row, header_row])
+            changed = True
+            continue
+
         should_split = (
             len(left_lines) >= 2
             and len(middle_lines) >= 2
@@ -430,6 +484,24 @@ def _repair_merged_toc_rows(cells: list[list[str | None]]) -> tuple[list[list[st
         changed = True
 
     return repaired, changed
+
+
+def _table_has_embedded_major_toc_heading(cells: list[list[str | None]]) -> bool:
+    """Return True when a TOC table contains a merged major-outline label row.
+
+    The major label may be merged *before* the following numbered entry
+    (``PART\n14.``) or *after* the preceding entry (``9.5\nPART``).
+    """
+    major = re.compile(r"^(?:PART|CHAPTER|BOOK|DIVISION)$", re.IGNORECASE)
+    for row in cells:
+        if len(row) != 3:
+            continue
+        left_lines = _cell_lines(row[0])
+        if len(left_lines) >= 2 and (
+            major.fullmatch(left_lines[0]) or major.fullmatch(left_lines[-1])
+        ):
+            return True
+    return False
 
 
 def _table_cells_markdown(cells: list[list[str | None]]) -> str | None:
@@ -559,8 +631,36 @@ def _normalize_structural_text(text: str) -> str:
     """
     if not text:
         return text
+    # Recover the common layout artifact ``11.6 A  A reporting...`` where
+    # the clause suffix was separated from the decimal number and the first
+    # word of prose begins with the same single-letter token. The repeated
+    # token makes this conservative; ordinary prose such as ``11.6 A company``
+    # is left untouched.
+    text = re.sub(
+        r"^(\s*\d+(?:\.\d+){1,5})\s+([A-Z])\s+(?=\2\s+)",
+        lambda match: f"{match.group(1)}{match.group(2)} ",
+        text,
+        count=1,
+    )
+    # A layout engine can also remove the whitespace between an ordinary
+    # decimal clause number and the article ``A`` at the start of prose, e.g.
+    # ``11.8 A reporting...`` -> ``11.8A reporting...``.  That must *not* be
+    # interpreted as an alphabetic clause suffix.  A genuine suffix repaired
+    # above remains distinguishable because its following prose starts with a
+    # separate capital token (e.g. ``11.6A A reporting...``).
+    text = re.sub(
+        r"^(\s*\d+(?:\.\d+){1,5})A(?=\s+[a-z])",
+        r"\1 A",
+        text,
+        count=1,
+    )
+    # Preserve a terminal alphabetic suffix when it is already visibly
+    # attached to the decimal number and separated from the following prose
+    # (e.g. ``11.6A A reporting...``).
+    if re.match(r"^\s*\d+(?:\.\d+){1,5}[A-Z]\s+", text):
+        return text
     return re.sub(
-        r"^(\s*\d+(?:\.\d+){0,5})([.)]?)(?=[A-Za-z])",
+        r"^(\s*\d+(?:\.\d+){0,5}(?:[A-Z](?=\s))?)([.)]?)(?=[A-Za-z])",
         lambda match: f"{match.group(1)}{match.group(2)} ",
         text,
         count=1,
@@ -1325,10 +1425,558 @@ def _refine_document_roles(
     return title_element, subtitle_element, metadata_elements
 
 
+
+def _suppress_repeated_document_headers(
+    elements: list[CanonicalElement],
+    pages: list[StructuredPage],
+    title_element: CanonicalElement | None,
+) -> int:
+    """Demote early-page repetitions of the canonical document title.
+
+    Regulatory publications often repeat the full document title above a
+    revision-history table.  A layout engine can label that repetition as a
+    section header even though it is only a running/document header.  The
+    canonical title selected from page 1 is strong evidence: a near-identical,
+    unnumbered heading near the top of an early page must not create a second
+    body SectionRecord.
+    """
+    if title_element is None:
+        return 0
+    canonical = _normalize_heading_text(title_element.text)
+    if not canonical:
+        return 0
+    changed = 0
+    for page in pages[1:6]:
+        height = max(page.height, 1.0)
+        for element in page.elements:
+            if element.type != "section_header" or element.bbox[1] > height * 0.22:
+                continue
+            if _numbering_depth(element.text) is not None or APPENDIX_LABEL.match(element.text):
+                continue
+            candidate = _normalize_heading_text(element.text)
+            if not candidate:
+                continue
+            # Exact normalized repetition is preferred; token containment also
+            # covers harmless line-wrap/punctuation differences.
+            title_tokens = set(canonical.split())
+            candidate_tokens = set(candidate.split())
+            overlap = len(title_tokens & candidate_tokens) / max(len(title_tokens | candidate_tokens), 1)
+            if candidate != canonical and overlap < 0.94:
+                continue
+            element.heading_level = None
+            element.heading_level_source = None
+            element.section_id = None
+            element.role_source = "repeated_document_header_suppression"
+            apply_classification(
+                element,
+                "page_header",
+                confidence=0.99,
+                source="document_zone_resolver",
+                evidence=[
+                    "near-identical to the canonical document title selected from the cover",
+                    "occurs near the top of an early non-body/revision page",
+                    "repeated document titles must not create persistent body sections",
+                ],
+                alternatives=[("section_header", 0.01)],
+            )
+            changed += 1
+    return changed
+
+
+def _split_embedded_captions(
+    elements: list[CanonicalElement],
+    pages: list[StructuredPage],
+) -> int:
+    """Split caption labels that a layout box merged with prose or a table.
+
+    The repair is line-boundary based and figure/table-context guarded.  It is
+    intentionally generic for labels such as ``Illustration 1`` and
+    ``Example 1:`` rather than keyed to any document page.
+    """
+    changed = 0
+    illustration_line = re.compile(r"^(?:illustration|figure|diagram|chart)\s+\d+[.:]?$", re.IGNORECASE)
+    example_line = re.compile(r"^example\s+\d+[.:]?$", re.IGNORECASE)
+
+    for page in pages:
+        rebuilt: list[CanonicalElement] = []
+        figures = [item for item in page.elements if item.type == "figure"]
+        for element in page.elements:
+            # Table captions sometimes occupy the first line of the first cell.
+            if element.type == "table" and element.table and element.table.cells:
+                first = str(element.table.cells[0][0] or "") if element.table.cells[0] else ""
+                lines = [line.strip() for line in first.splitlines() if line.strip()]
+                if len(lines) >= 2 and example_line.fullmatch(lines[0]):
+                    caption = element.model_copy(deep=True)
+                    caption.element_id = f"{element.element_id}-caption"
+                    caption.type = "caption"
+                    caption.text = lines[0]
+                    cap_h = min(18.0, max(10.0, (element.bbox[3] - element.bbox[1]) * 0.08))
+                    caption.bbox = [element.bbox[0], element.bbox[1], element.bbox[2], element.bbox[1] + cap_h]
+                    caption.table = None
+                    caption.logical_table_id = None
+                    caption.heading_level = None
+                    caption.heading_level_source = None
+                    caption.role_source = "embedded_table_caption_split"
+                    caption.classification = None
+                    backfill_classification(caption)
+
+                    element.table.cells[0][0] = "\n".join(lines[1:])
+                    element.table.row_count = len(element.table.cells)
+                    element.table.markdown = _table_cells_markdown(element.table.cells)
+                    element.text = _table_cells_text(element.table.cells)
+                    element.bbox = [element.bbox[0], min(element.bbox[3], element.bbox[1] + cap_h), element.bbox[2], element.bbox[3]]
+                    rebuilt.extend([caption, element])
+                    changed += 1
+                    continue
+
+            if element.type in {"paragraph", "section_header", "group_header"} and "\n" in element.text:
+                lines = [line.strip() for line in element.text.splitlines() if line.strip()]
+                caption_indexes = [i for i, line in enumerate(lines) if illustration_line.fullmatch(line)]
+                if caption_indexes:
+                    idx = caption_indexes[-1]
+                    # Require a nearby following figure. This prevents prose
+                    # references such as "see Figure 2" from being split.
+                    following = [
+                        fig for fig in figures
+                        if fig.bbox[1] >= element.bbox[3] - 4
+                        and fig.bbox[1] - element.bbox[3] <= 120
+                    ]
+                    if following and (idx == 0 or idx == len(lines) - 1):
+                        caption_text = lines[idx]
+                        prose_lines = lines[:idx] + lines[idx + 1:]
+                        caption = element.model_copy(deep=True)
+                        caption.element_id = f"{element.element_id}-caption"
+                        caption.type = "caption"
+                        caption.text = caption_text
+                        caption.table = None
+                        caption.heading_level = None
+                        caption.heading_level_source = None
+                        caption.role_source = "embedded_figure_caption_split"
+                        caption.classification = None
+                        # Approximate the line bands while retaining source
+                        # provenance. Stage-3 spans remain attached to both
+                        # fragments and can be refined by later correction UI.
+                        total_h = max(1.0, element.bbox[3] - element.bbox[1])
+                        line_h = total_h / max(len(lines), 1)
+                        cap_y0 = element.bbox[1] + idx * line_h
+                        caption.bbox = [element.bbox[0], cap_y0, element.bbox[2], min(element.bbox[3], cap_y0 + line_h)]
+                        backfill_classification(caption)
+
+                        if prose_lines:
+                            element.text = "\n".join(prose_lines)
+                            if idx == 0:
+                                element.bbox = [element.bbox[0], min(element.bbox[3], cap_y0 + line_h), element.bbox[2], element.bbox[3]]
+                                rebuilt.extend([caption, element])
+                            else:
+                                element.bbox = [element.bbox[0], element.bbox[1], element.bbox[2], cap_y0]
+                                rebuilt.extend([element, caption])
+                        else:
+                            rebuilt.append(caption)
+                        changed += 1
+                        continue
+            rebuilt.append(element)
+        page.elements = rebuilt
+
+    if changed:
+        _reindex_canonical_elements(elements, pages)
+    return changed
+
+
+def _repair_definition_row_boundaries(
+    elements: list[CanonicalElement],
+    pages: list[StructuredPage],
+) -> int:
+    """Repair a definition text box that spills into the next definition row.
+
+    A spill is accepted only when the next definition term begins vertically
+    inside the current definition-text box and the text itself contains a
+    second definition-introducer.  The overflow prefix is moved to the first
+    text element owned by that next term.
+    """
+    changed = 0
+    intro = re.compile(r"\b(?:means|refers?\s+to|includes?)\b", re.IGNORECASE)
+    for page in pages:
+        terms = [item for item in page.elements if item.type == "definition_term" and item.definition_entry_id]
+        texts = [item for item in page.elements if item.type == "definition_text" and item.definition_entry_id]
+        terms.sort(key=lambda item: (item.bbox[1], item.reading_order))
+        for current in texts:
+            matches = list(intro.finditer(current.text or ""))
+            if len(matches) < 2:
+                continue
+            next_terms = [
+                term for term in terms
+                if term.definition_entry_id != current.definition_entry_id
+                and term.bbox[1] > current.bbox[1] + 2
+                and term.bbox[1] < current.bbox[3] + 2
+            ]
+            if not next_terms:
+                continue
+            next_term = min(next_terms, key=lambda item: item.bbox[1])
+            split_at = matches[1].start()
+            left = current.text[:split_at].strip()
+            overflow = current.text[split_at:].strip()
+            if not left or not overflow:
+                continue
+            targets = [
+                item for item in texts
+                if item.definition_entry_id == next_term.definition_entry_id
+            ]
+            if not targets:
+                continue
+            target = min(targets, key=lambda item: (item.bbox[1], item.reading_order))
+            current.text = left
+            target.text = f"{overflow} {target.text}".strip()
+            current.role_source = "definition_row_boundary_repair"
+            target.role_source = "definition_row_boundary_repair"
+            changed += 1
+    return changed
+
+
+def _reorder_definition_rows(elements: list[CanonicalElement], pages: list[StructuredPage]) -> int:
+    """Serialize two-column definition pages as term -> definition row order."""
+    changed = 0
+    for page in pages:
+        entries: dict[str, list[CanonicalElement]] = {}
+        for item in page.elements:
+            if item.definition_entry_id and item.type in {"definition_term", "definition_text"}:
+                entries.setdefault(item.definition_entry_id, []).append(item)
+        if not entries:
+            continue
+
+        grouped_ids = {item.element_id for group in entries.values() for item in group}
+        units: list[tuple[float, int, list[CanonicalElement]]] = []
+        seen_entries: set[str] = set()
+        for item in page.elements:
+            if item.element_id not in grouped_ids:
+                units.append((item.bbox[1], item.reading_order, [item]))
+                continue
+            entry_id = item.definition_entry_id
+            if not entry_id or entry_id in seen_entries:
+                continue
+            seen_entries.add(entry_id)
+            group = entries[entry_id]
+            terms = sorted([x for x in group if x.type == "definition_term"], key=lambda x: (x.bbox[1], x.bbox[0]))
+            defs = sorted([x for x in group if x.type == "definition_text"], key=lambda x: (x.bbox[1], x.bbox[0]))
+            if not terms:
+                # Cross-page continuation definitions may legitimately have no
+                # term on this physical page.
+                ordered_group = defs
+                anchor_y = min(x.bbox[1] for x in group)
+            else:
+                ordered_group = terms + defs
+                anchor_y = min(x.bbox[1] for x in terms)
+            units.append((anchor_y, min(x.reading_order for x in group), ordered_group))
+
+        rebuilt = [item for _, _, group in sorted(units, key=lambda x: (x[0], x[1])) for item in group]
+        if [x.element_id for x in rebuilt] != [x.element_id for x in page.elements]:
+            page.elements = rebuilt
+            changed += 1
+    if changed:
+        _reindex_canonical_elements(elements, pages)
+    return changed
+
 def _normalize_structural_elements(elements: list[CanonicalElement]) -> None:
     for element in elements:
         if element.type in {"section_header", "list_item"}:
             element.text = _normalize_structural_text(element.text)
+
+
+_LINE_ENUM_MARKER_RE = re.compile(
+    r"(?m)^[ \t]*(\((?:\d{1,3}[A-Za-z]?|[A-Za-z]|[ivxlcdmIVXLCDM]{1,8})\)|(?:\d{1,3}[A-Za-z]?|[A-Za-z]|[ivxlcdmIVXLCDM]{1,8})[.)])(?=\s*)"
+)
+
+
+def _markers_are_sequential(left_text: str, right_text: str) -> bool:
+    left = _hierarchy_marker(left_text)
+    right = _hierarchy_marker(right_text)
+    if left is None or right is None or not left.ordinals or not right.ordinals:
+        return False
+    return any(r == l + 1 for l in left.ordinals for r in right.ordinals)
+
+
+def _split_merged_enumerated_elements(
+    elements: list[CanonicalElement],
+    pages: list[StructuredPage],
+    extraction_by_page: dict[int, object],
+) -> int:
+    """Split vendor list boxes that contain multiple sibling markers.
+
+    Some layout engines merge adjacent visual rows into one ``list-item`` box
+    (for example ``(d) ...;\n(e) ...;``).  Stage 4 cannot recover correct
+    sibling ownership if those rows remain one semantic element.  This repair
+    is intentionally conservative: markers must begin physical text lines and
+    form a sequential family.  Inline references such as ``paragraph (b)`` are
+    therefore never split.
+    """
+    split_count = 0
+    for page in pages:
+        raw_page = extraction_by_page.get(page.page_number)
+        rebuilt: list[CanonicalElement] = []
+        for element in page.elements:
+            if element.type != "list_item" or "\n" not in (element.text or ""):
+                rebuilt.append(element)
+                continue
+
+            matches = list(_LINE_ENUM_MARKER_RE.finditer(element.text or ""))
+            if len(matches) < 2 or matches[0].start() != 0:
+                rebuilt.append(element)
+                continue
+
+            marker_texts = [match.group(1) for match in matches]
+            if not all(
+                _markers_are_sequential(marker_texts[index], marker_texts[index + 1])
+                for index in range(len(marker_texts) - 1)
+            ):
+                rebuilt.append(element)
+                continue
+
+            segments: list[str] = []
+            for index, match in enumerate(matches):
+                start = match.start()
+                end = matches[index + 1].start() if index + 1 < len(matches) else len(element.text)
+                segment = (element.text or "")[start:end].strip()
+                if not segment:
+                    break
+                segments.append(segment)
+            if len(segments) != len(matches):
+                rebuilt.append(element)
+                continue
+
+            # Prefer Stage-3 line geometry for vertical split boundaries.
+            marker_y: list[float] = []
+            if raw_page is not None:
+                raw_lines = sorted(
+                    [
+                        line
+                        for block in getattr(raw_page, "blocks", [])
+                        for line in getattr(block, "lines", [])
+                        if _vertical_overlap_ratio(line.bbox, element.bbox) >= 0.25
+                        and _horizontal_overlap_ratio(line.bbox, element.bbox) >= 0.25
+                    ],
+                    key=lambda line: (line.bbox[1], line.bbox[0]),
+                )
+                search_from = 0
+                for marker in marker_texts:
+                    found = None
+                    marker_norm = " ".join(marker.split()).strip()
+                    for line_index in range(search_from, len(raw_lines)):
+                        line_text = " ".join((raw_lines[line_index].text or "").split()).strip()
+                        if line_text.startswith(marker_norm):
+                            found = line_index
+                            break
+                    if found is None:
+                        marker_y = []
+                        break
+                    marker_y.append(float(raw_lines[found].bbox[1]))
+                    search_from = found + 1
+
+            total_lines = max(1, sum(max(1, len(segment.splitlines())) for segment in segments))
+            consumed_lines = 0
+            for index, segment in enumerate(segments):
+                if marker_y and len(marker_y) == len(segments):
+                    y0 = float(element.bbox[1]) if index == 0 else marker_y[index]
+                    y1 = marker_y[index + 1] if index + 1 < len(marker_y) else float(element.bbox[3])
+                else:
+                    line_count = max(1, len(segment.splitlines()))
+                    y0 = float(element.bbox[1]) + (float(element.bbox[3]) - float(element.bbox[1])) * (consumed_lines / total_lines)
+                    consumed_lines += line_count
+                    y1 = float(element.bbox[1]) + (float(element.bbox[3]) - float(element.bbox[1])) * (consumed_lines / total_lines)
+
+                clone = element.model_copy(deep=True)
+                clone.element_id = f"{element.element_id}-split-{index + 1}"
+                clone.text = segment
+                clone.bbox = [float(element.bbox[0]), round(y0, 3), float(element.bbox[2]), round(y1, 3)]
+                clone.section_id = None
+                clone.definition_entry_id = None
+                clone.clause_number = None
+                clone.clause_id = None
+                clone.parent_clause_id = None
+                clone.subclause_marker = None
+                clone.heading_level = None
+                clone.heading_level_source = None
+                clone.classification = None
+                clone.role_source = "semantic_enumeration_split_recovery"
+                if raw_page is not None:
+                    clone.source = _source_trace(
+                        raw_page,
+                        clone.bbox,
+                        element.source.layout_box_index,
+                        element.source.layout_box_class,
+                    )
+                rebuilt.append(clone)
+            split_count += len(segments) - 1
+        page.elements = rebuilt
+
+    if split_count:
+        _reindex_canonical_elements(elements, pages)
+    return split_count
+
+
+def _section_outline_number(text: str) -> str | None:
+    """Return the explicit decimal outline number of a heading, if present."""
+    normalized = _normalize_structural_text(text or "")
+    match = NUMBERED_HEADING.match(normalized)
+    if not match:
+        return None
+    return match.group(1).strip(". ")
+
+
+def _number_parts(value: str | None) -> tuple[str, ...]:
+    if not value:
+        return ()
+    return tuple(part for part in value.strip(". ").split(".") if part)
+
+
+def _number_is_child_of(child: str | None, parent: str | None) -> bool:
+    child_parts = _number_parts(child)
+    parent_parts = _number_parts(parent)
+    return bool(parent_parts and len(child_parts) > len(parent_parts) and child_parts[: len(parent_parts)] == parent_parts)
+
+
+def _recover_numbered_footer_headings(elements: list[CanonicalElement], pages: list[StructuredPage]) -> int:
+    """Recover real numbered headings that a layout engine mislabeled as footer text.
+
+    The promotion is intentionally conservative: a footer candidate must carry
+    an explicit decimal outline number and the next nearby numbered body unit
+    must be a child of that number.  This uses document structure rather than a
+    page-specific string or location rule.
+    """
+    ordered = sorted(elements, key=lambda item: item.document_order)
+    changed = 0
+    decorations = {"page_header", "page_footer", "footnote", "caption", "document_metadata"}
+    for index, element in enumerate(ordered):
+        if element.type != "page_footer":
+            continue
+        text = _normalize_structural_text(element.text or "")
+        number = _section_outline_number(text)
+        if not number or len(_number_parts(number)) < 2:
+            continue
+        remainder = NUMBERED_HEADING.sub("", text, count=1).strip()
+        if len(remainder.split()) < 2 or len(remainder.split()) > 18:
+            continue
+        child_found = False
+        scanned = 0
+        for candidate in ordered[index + 1 :]:
+            if candidate.page_number > element.page_number + 1:
+                break
+            if not candidate.text.strip() or candidate.type in decorations:
+                continue
+            scanned += 1
+            candidate_number = _extract_clause_number(_normalize_structural_text(candidate.text))
+            if candidate_number and _number_is_child_of(candidate_number, number):
+                child_found = True
+                break
+            if candidate.type in {"section_header", "title", "subtitle"}:
+                break
+            if scanned >= 5:
+                break
+        if not child_found:
+            continue
+        element.text = text
+        element.heading_level = None
+        element.heading_level_source = None
+        element.role_source = "semantic_numbered_footer_heading_recovery"
+        apply_classification(
+            element,
+            "section_header",
+            confidence=0.98,
+            source="heading_boundary_recovery",
+            evidence=[
+                f"footer-labelled text begins with explicit outline number {number}",
+                f"nearby following numbered content is a child of {number}",
+                "numbering continuity outranks bottom-of-page footer geometry",
+            ],
+            alternatives=[("page_footer", 0.02)],
+        )
+        changed += 1
+    return changed
+
+
+def _suppress_toc_navigation_headings(elements: list[CanonicalElement], toc_pages: set[int]) -> int:
+    """Prevent contents-page navigation labels from entering the body section tree."""
+    changed = 0
+    if not toc_pages:
+        return changed
+    for element in elements:
+        if element.page_number not in toc_pages or element.type not in {"section_header", "title", "subtitle"}:
+            continue
+        element.heading_level = None
+        element.heading_level_source = None
+        element.section_id = None
+        element.role_source = "toc_navigation_suppression"
+        apply_classification(
+            element,
+            "unknown",
+            confidence=0.99,
+            source="document_zone_resolver",
+            evidence=[
+                "element occurs on a page identified as table-of-contents navigation",
+                "TOC navigation labels must not create persistent body SectionRecords",
+                "source element is retained for provenance but excluded from canonical body text",
+            ],
+            alternatives=[("section_header", 0.01)],
+        )
+        changed += 1
+    return changed
+
+
+def _top_number_family(value: str | None) -> str | None:
+    parts = _number_parts(value)
+    return parts[0] if parts else None
+
+
+def _repair_appendix_topic_boundaries(elements: list[CanonicalElement]) -> int:
+    """Promote local appendix labels when numbered content clearly changes topic family.
+
+    A heading between clauses 4.x and 5.x is a stronger boundary than typography
+    alone.  Conversely this pass does not promote labels when the surrounding
+    numbered family remains the same.
+    """
+    ordered = sorted(elements, key=lambda item: item.document_order)
+    appendix_indexes = [i for i, item in enumerate(ordered) if item.type == "section_header" and APPENDIX_LABEL.match(item.text)]
+    changed = 0
+    for region_index, start in enumerate(appendix_indexes):
+        end = appendix_indexes[region_index + 1] if region_index + 1 < len(appendix_indexes) else len(ordered)
+        region = ordered[start:end]
+        for local_index, element in enumerate(region):
+            if element.type not in {"group_header", "section_header"}:
+                continue
+            if APPENDIX_LABEL.match(element.text) or _section_outline_number(element.text) or is_callout_heading(element.text):
+                continue
+            previous_number: str | None = None
+            next_number: str | None = None
+            for candidate in reversed(region[:local_index]):
+                if candidate.type == "clause" and candidate.clause_number:
+                    previous_number = candidate.clause_number
+                    break
+            for candidate in region[local_index + 1 :]:
+                if candidate.type == "clause" and candidate.clause_number:
+                    next_number = candidate.clause_number
+                    break
+                if candidate.type == "section_header" and (_section_outline_number(candidate.text) or APPENDIX_LABEL.match(candidate.text)):
+                    break
+            previous_family = _top_number_family(previous_number)
+            next_family = _top_number_family(next_number)
+            if not previous_family or not next_family or previous_family == next_family:
+                continue
+            if element.type != "section_header":
+                element.role_source = "semantic_appendix_numbered_topic_boundary"
+                apply_classification(
+                    element,
+                    "section_header",
+                    confidence=0.94,
+                    source="heading_scope_resolver",
+                    evidence=[
+                        f"appendix topic label occurs between numbered families {previous_family}.x and {next_family}.x",
+                        "number-family transition establishes a persistent topic boundary",
+                    ],
+                    alternatives=[("group_header", 0.06)],
+                )
+                changed += 1
+            if element.heading_level is None:
+                element.heading_level = 2
+                element.heading_level_source = "numbering"
+    return changed
 
 
 def _definition_context_pages(
@@ -2947,12 +3595,29 @@ def _assign_heading_levels(
 
 
 def _build_sections(elements: list[CanonicalElement]) -> list[SectionRecord]:
+    """Build the outline with numbering-aware parent recovery.
+
+    Typography/TOC levels remain useful display evidence, but explicit decimal
+    numbering is the stronger parent signal.  This prevents a subsection such
+    as ``7.3`` from becoming a sibling of ``7`` merely because the two headings
+    were assigned inconsistent vendor/bookmark levels.  Numbering scope resets
+    at major PART/CHAPTER/APPENDIX boundaries so repeated appendix numbering
+    does not attach back into the main document.
+    """
     sections: list[SectionRecord] = []
     stack: list[SectionRecord] = []
+    numbered_in_region: dict[str, SectionRecord] = {}
+    current_major: SectionRecord | None = None
+    latest_numbered_outline: SectionRecord | None = None
 
     for element in elements:
         if element.type != "section_header":
             continue
+
+        is_appendix = APPENDIX_LABEL.match(element.text) is not None
+        is_major = MAJOR_OUTLINE_LABEL.match(element.text) is not None
+        outline_number = _section_outline_number(element.text)
+
         section = SectionRecord(
             section_id=f"sec-{len(sections) + 1}",
             title=element.text or f"Untitled section {len(sections) + 1}",
@@ -2960,17 +3625,78 @@ def _build_sections(elements: list[CanonicalElement]) -> list[SectionRecord]:
             page_number=element.page_number,
             element_id=element.element_id,
             level_source=element.heading_level_source or "unknown",
-            kind=("appendix" if APPENDIX_LABEL.match(element.text) else ("question" if _looks_question(element.text) else "section")),
+            kind=("appendix" if is_appendix else ("question" if _looks_question(element.text) else "section")),
         )
 
-        if section.level is not None:
-            while stack and (stack[-1].level is None or stack[-1].level >= section.level):
+        if is_appendix or is_major:
+            # A major boundary starts a fresh numbering namespace.
+            section.parent_section_id = None
+            if section.level is None:
+                section.level = 1
+                section.level_source = "numbering"
+            current_major = section
+            latest_numbered_outline = None
+            numbered_in_region = {}
+            stack = [section]
+
+        elif outline_number:
+            # Prefer the longest explicit numeric prefix already seen in this
+            # major region (8 -> 8.4 -> 8.4.1).
+            parent: SectionRecord | None = None
+            parts = _number_parts(outline_number)
+            for depth in range(len(parts) - 1, 0, -1):
+                candidate_number = ".".join(parts[:depth])
+                candidate = numbered_in_region.get(candidate_number)
+                if candidate is not None:
+                    parent = candidate
+                    break
+            if parent is None:
+                parent = current_major
+
+            if parent is not None:
+                section.parent_section_id = parent.section_id
+                if parent.level is not None:
+                    expected_level = min(parent.level + 1, 6)
+                    if section.level != expected_level:
+                        section.level = expected_level
+                        section.level_source = "numbering"
+
+            numbered_in_region[outline_number] = section
+            latest_numbered_outline = section
+
+            # Keep the fallback stack coherent for following unnumbered headings.
+            while stack and stack[-1].section_id != (parent.section_id if parent else None):
                 stack.pop()
-            if stack:
-                section.parent_section_id = stack[-1].section_id
+            if parent is not None and (not stack or stack[-1].section_id != parent.section_id):
+                stack.append(parent)
             stack.append(section)
+
         else:
-            stack.clear()
+            # Within appendices, unnumbered topic headings should not nest merely
+            # because font/TOC ranks fluctuate.  If a numbered x.0 outline is
+            # active, use it as the local owner; otherwise keep the topic directly
+            # under the appendix boundary.
+            if current_major is not None and current_major.kind == "appendix":
+                parent = None
+                if latest_numbered_outline is not None:
+                    latest_number = _section_outline_number(latest_numbered_outline.title)
+                    if latest_number and latest_number.endswith(".0"):
+                        parent = latest_numbered_outline
+                if parent is None:
+                    parent = current_major
+                section.parent_section_id = parent.section_id
+                if parent.level is not None:
+                    section.level = min(parent.level + 1, 6)
+                    if section.level_source == "unknown":
+                        section.level_source = "numbering"
+            elif section.level is not None:
+                while stack and (stack[-1].level is None or stack[-1].level >= section.level):
+                    stack.pop()
+                if stack:
+                    section.parent_section_id = stack[-1].section_id
+                stack.append(section)
+            else:
+                stack.clear()
 
         element.section_id = section.section_id
         sections.append(section)
@@ -2985,7 +3711,7 @@ def _build_sections(elements: list[CanonicalElement]) -> list[SectionRecord]:
             current_section = matched.section_id
             continue
 
-        if element.type in {"page_header", "page_footer", "title", "subtitle", "document_metadata"}:
+        if element.type in {"page_header", "page_footer", "title", "subtitle", "document_metadata", "unknown"}:
             continue
 
         element.section_id = current_section
@@ -2997,21 +3723,53 @@ def _build_sections(elements: list[CanonicalElement]) -> list[SectionRecord]:
 
 
 def _refine_footnotes(pages: list[StructuredPage]) -> None:
-    """Repair long footnotes that a layout engine labelled as page footers."""
+    """Repair footnotes mislabeled as page footers or ordinary bottom-page text."""
     for page in pages:
         width = max(page.width, 1.0)
+        height = max(page.height, 1.0)
+        page_fonts = [
+            float(item.dominant_font_size) for item in page.elements
+            if item.dominant_font_size and item.type not in {"page_header", "page_footer"}
+        ]
+        median_font = _median(page_fonts) if page_fonts else None
         for element in page.elements:
-            if element.type != "page_footer":
+            if element.type not in {"page_footer", "paragraph"}:
                 continue
             text = " ".join(element.text.split()).strip()
             if not text or text.isdigit() or len(text) < 24:
                 continue
             box_width = max(0.0, element.bbox[2] - element.bbox[0])
             marker = bool(FOOTNOTE_MARKER.match(text))
-            small_font = element.dominant_font_size is not None and element.dominant_font_size <= 9.5
-            if box_width >= width * 0.55 and (marker or small_font):
-                element.type = "footnote"
-                element.role_source = "footer_to_footnote_geometry"
+            small_font = bool(
+                element.dominant_font_size is not None
+                and (
+                    float(element.dominant_font_size) <= 10.2
+                    or (median_font is not None and float(element.dominant_font_size) <= median_font - 0.8)
+                )
+            )
+            footer_case = element.type == "page_footer" and box_width >= width * 0.55 and (marker or small_font)
+            paragraph_case = bool(
+                element.type == "paragraph"
+                and element.bbox[1] >= height * 0.84
+                and box_width >= width * 0.55
+                and marker
+                and small_font
+            )
+            if footer_case or paragraph_case:
+                element.role_source = "semantic_footnote_geometry"
+                apply_classification(
+                    element,
+                    "footnote",
+                    confidence=0.96 if paragraph_case else 0.93,
+                    source="footnote_resolver",
+                    evidence=[
+                        "text occupies the bottom-page footnote region",
+                        "text begins with a footnote marker or uses footnote-scale typography",
+                        "wide prose geometry is inconsistent with a running page number/footer label",
+                    ],
+                    alternatives=[("paragraph", 0.03), ("page_footer", 0.01)],
+                )
+
 
 
 def _refine_figure_roles(elements: list[CanonicalElement], pages: list[StructuredPage]) -> None:
@@ -3045,6 +3803,63 @@ def _refine_figure_roles(elements: list[CanonicalElement], pages: list[Structure
                         element.heading_level = None
                         element.heading_level_source = None
                     element.role_source = "figure_caption_geometry"
+
+
+def _deduplicate_textual_figure_fragments(elements: list[CanonicalElement], pages: list[StructuredPage]) -> int:
+    """Suppress picture regions whose text is already represented canonically.
+
+    Some layout engines emit both a picture box and a list/table/text box over
+    the same glyphs.  Retaining both inflates figure counts and can duplicate
+    semantic content.  The source picture element is preserved as ``unknown``
+    provenance when strong text-containment *and* geometric-overlap evidence
+    agree.
+    """
+    changed = 0
+    for page in pages:
+        figures = [item for item in page.elements if item.type == "figure" and item.text.strip()]
+        others = [
+            item for item in page.elements
+            if item.type not in {"figure", "page_header", "page_footer", "unknown"}
+            and item.text.strip()
+        ]
+        for figure in figures:
+            figure_text = _normalized_match_text(figure.text)
+            if not figure_text:
+                continue
+            for other in others:
+                other_text = _normalized_match_text(other.text)
+                if not other_text:
+                    continue
+                contained = figure_text in other_text or other_text in figure_text
+                if not contained:
+                    continue
+                if _overlap_ratio(figure.bbox, other.bbox) < 0.45:
+                    continue
+                # Preserve the picture box provenance on the canonical textual
+                # element, then blank the duplicate visual-text shell.  The
+                # generic cleanup pass that follows removes the empty ``unknown``
+                # element, so downstream JSON/chunking contains the text once
+                # rather than merely changing the duplicate's semantic type.
+                _merge_source_trace(other, figure)
+                figure.role_source = "semantic_duplicate_visual_text"
+                apply_classification(
+                    figure,
+                    "unknown",
+                    confidence=0.99,
+                    source="figure_deduplication",
+                    evidence=[
+                        "picture-region text duplicates text already represented by a canonical non-figure element",
+                        "duplicate regions geometrically overlap on the same page",
+                        "visual provenance is merged into the retained canonical text element",
+                        "duplicate semantic text shell is removed during canonical cleanup",
+                    ],
+                    alternatives=[("figure", 0.01)],
+                )
+                figure.figure_id = None
+                figure.text = ""
+                changed += 1
+                break
+    return changed
 
 
 def _build_table_definition_entries(
@@ -3308,9 +4123,27 @@ def _introduces_enumeration_text(text: str) -> bool:
     ) is not None
 
 
+def _is_phrase_like_enumerated_label(element: CanonicalElement) -> bool:
+    marker = _hierarchy_marker(element.text)
+    if marker is None:
+        return False
+    text = " ".join((element.text or "").split()).strip()
+    # Strip the visible marker without rewriting source text.
+    text = PAREN_MARKER_PREFIX.sub("", text, count=1)
+    text = PLAIN_MARKER_PREFIX.sub("", text, count=1)
+    words = text.split()
+    return bool(
+        words
+        and len(words) <= 8
+        and not text.endswith((".", ";", ",", "?"))
+        and re.search(r"\b(?:shall|must|should|may|is|are|was|were|has|have|requires?|means?)\b", text, re.IGNORECASE) is None
+    )
+
+
 def _build_group_and_list_relations(
     elements: list[CanonicalElement],
     sections: list[SectionRecord],
+    continuation_relations: list[StructuralRelation] | None = None,
 ) -> list[StructuralRelation]:
     """Build explicit local-group/list dependencies after semantic resolution.
 
@@ -3334,6 +4167,11 @@ def _build_group_and_list_relations(
     # same-level siblings correctly close the previous local list scope.
     active_list_parents: list[CanonicalElement] = []
     active_section: str | None = None
+    continuation_target_ids = {
+        relation.target_element_id
+        for relation in (continuation_relations or [])
+        if relation.type == "continues"
+    }
 
     def add_relation(kind: str, source: CanonicalElement, target: CanonicalElement, evidence: str) -> None:
         key = (kind, source.element_id, target.element_id)
@@ -3348,14 +4186,21 @@ def _build_group_and_list_relations(
             evidence=evidence,
         ))
 
-    meaningful_types_to_skip = {"page_header", "page_footer", "footnote", "caption", "document_metadata", "title", "subtitle"}
+    meaningful_types_to_skip = {"page_header", "page_footer", "footnote", "caption", "document_metadata", "title", "subtitle", "unknown"}
     previous_meaningful: dict[str, CanonicalElement | None] = {}
     previous: CanonicalElement | None = None
+    meaningful_ordered: list[CanonicalElement] = []
     for item in ordered:
         if item.type in meaningful_types_to_skip or not item.text.strip():
             continue
         previous_meaningful[item.element_id] = previous
         previous = item
+        meaningful_ordered.append(item)
+    next_meaningful: dict[str, CanonicalElement | None] = {}
+    nxt_item: CanonicalElement | None = None
+    for item in reversed(meaningful_ordered):
+        next_meaningful[item.element_id] = nxt_item
+        nxt_item = item
 
     for element in ordered:
         if element.type in meaningful_types_to_skip:
@@ -3387,6 +4232,7 @@ def _build_group_and_list_relations(
             active_list_parents.clear()
 
         if element.type == "group_header":
+            callout = is_callout_heading(element.text)
             if (
                 active_clause is not None
                 and active_group is not None
@@ -3397,20 +4243,34 @@ def _build_group_and_list_relations(
                 active_subclause = None
                 active_group = None
 
-            if active_clause is None and active_group is not None and active_group.section_id == element.section_id:
-                add_relation(
-                    "introduces",
-                    active_group,
-                    element,
-                    "local group label immediately refines the active local group scope",
-                )
-            elif active_clause is not None and active_clause.section_id == element.section_id:
-                add_relation(
-                    "introduces",
-                    active_clause,
-                    element,
-                    "local group header follows the active clause and scopes its following members",
-                )
+            if not callout:
+                prior = previous_meaningful.get(element.element_id)
+                if (
+                    active_paragraph_intro is not None
+                    and prior is not None
+                    and prior.element_id == active_paragraph_intro.element_id
+                    and active_paragraph_intro.section_id == element.section_id
+                ):
+                    add_relation(
+                        "introduces",
+                        active_paragraph_intro,
+                        element,
+                        "local label follows an immediately preceding paragraph that explicitly introduces the grouped content",
+                    )
+                elif active_clause is None and active_group is not None and active_group.section_id == element.section_id:
+                    add_relation(
+                        "introduces",
+                        active_group,
+                        element,
+                        "local group label immediately refines the active local group scope",
+                    )
+                elif active_clause is not None and active_clause.section_id == element.section_id:
+                    add_relation(
+                        "introduces",
+                        active_clause,
+                        element,
+                        "local group header follows the active clause and scopes its following members",
+                    )
             active_group = element
             active_subclause = None
             active_paragraph_intro = None
@@ -3418,7 +4278,11 @@ def _build_group_and_list_relations(
             continue
 
         if element.type == "clause":
-            if active_group is not None and active_group.section_id == element.section_id:
+            if (
+                active_group is not None
+                and active_group.section_id == element.section_id
+                and not is_callout_heading(active_group.text)
+            ):
                 add_relation(
                     "introduces",
                     active_group,
@@ -3458,16 +4322,20 @@ def _build_group_and_list_relations(
             ):
                 owner = active_list_parents[-1]
                 evidence = "nested list item is owned by the nearest list item that introduces a deeper enumeration"
-            elif active_group is not None and active_group.section_id == element.section_id:
-                owner = active_group
-                evidence = "enumerated/list item is a member of the active local group"
             elif (
                 active_paragraph_intro is not None
                 and active_paragraph_intro.section_id == element.section_id
                 and _introduces_enumeration_text(active_paragraph_intro.text)
             ):
+                # The immediate prose introducer is more specific than the
+                # surrounding callout/group.  Keep the chain explicit as
+                # group -> paragraph -> list rather than flattening all list
+                # members directly under the group label.
                 owner = active_paragraph_intro
                 evidence = "list item follows an unnumbered paragraph that explicitly introduces an enumeration"
+            elif active_group is not None and active_group.section_id == element.section_id:
+                owner = active_group
+                evidence = "enumerated/list item is a member of the active local group"
             elif active_subclause is not None and active_subclause.section_id == element.section_id:
                 deeper_indent = current_x >= float(active_subclause.bbox[0]) + 14.0
                 if _introduces_enumeration_text(active_subclause.text) or deeper_indent:
@@ -3485,26 +4353,61 @@ def _build_group_and_list_relations(
             # nested local scope for following indented Roman/alphabetic items.
             # The stack is retained across page decorations so a sub-list can
             # continue onto the next physical page.
-            if _introduces_enumeration_text(element.text):
+            following = next_meaningful.get(element.element_id)
+            deeper_marker_follows = bool(
+                following is not None
+                and following.type in {"list_item", "subclause"}
+                and _hierarchy_marker(following.text) is not None
+                and float(following.bbox[0]) >= current_x + 14.0
+            )
+            if _introduces_enumeration_text(element.text) or (
+                _is_phrase_like_enumerated_label(element) and deeper_marker_follows
+            ):
                 active_list_parents.append(element)
             continue
 
         if element.type == "paragraph":
-            active_group = None
-            # A paragraph is a new immediate semantic scope. If it introduces a
-            # list, it becomes that list's owner; otherwise any active nested
-            # list scope has ended.
-            active_list_parents.clear()
+            # Local callouts/groups can contain one or more prose paragraphs
+            # before a list.  Preserve the group until a real structural
+            # boundary (fresh clause/section/group/table/figure) and make the
+            # prose ownership explicit.
+            if active_group is not None and active_group.section_id == element.section_id:
+                add_relation(
+                    "introduces",
+                    active_group,
+                    element,
+                    "paragraph is substantive body content within the active local group/callout",
+                )
+
+            is_continuation_target = element.element_id in continuation_target_ids
+            # A markerless paragraph that merely continues the previous list
+            # item across a page break is not a new structural boundary.  Keep
+            # the nested list stack so a following sibling marker can return to
+            # the correct outer owner (for example Phase 3 -> (iii) / page
+            # break / continuation / (iv)).
+            if not is_continuation_target:
+                active_list_parents.clear()
+
             if _introduces_enumeration_text(element.text):
-                # Keep clause/subclause state while making the paragraph the
-                # immediate owner of the list it introduces.
+                # The paragraph becomes the immediate owner of any dependent
+                # list or local label that follows it.
                 active_paragraph_intro = element
             else:
                 active_paragraph_intro = None
+
+            # A substantive markerless paragraph closes direct clause/list
+            # ownership unless it is itself only the target of an established
+            # cross-page continuation.  This prevents a completed clause from
+            # adopting unrelated contact/source headings later on the page.
+            if not is_continuation_target:
+                active_clause = None
+                active_subclause = None
             continue
 
         if element.type == "figure":
             active_group = None
+            active_clause = None
+            active_subclause = None
             active_list_parents.clear()
             # A paragraph that explicitly says "the following" / "as follows:"
             # can semantically introduce a list even when the layout engine
@@ -3717,9 +4620,25 @@ def _reconcile_cross_page_open_text_blocks(pages: list[StructuredPage]) -> list[
             evidence.append("source text appears incomplete at the page break")
 
         candidate_text = " ".join(candidate.text.split()).strip()
-        if candidate_text[:1].islower():
+        source_incomplete = _text_looks_incomplete(source.text)
+        candidate_continuation_start = bool(
+            candidate_text[:1].islower()
+            or re.match(
+                r"^(?:and|or|but|which|that|where|whereby|while|when|who|whose|to|of|with|for|including|as|in|on|by|from|under|through)\b",
+                candidate_text,
+                re.IGNORECASE,
+            )
+        )
+        if candidate_continuation_start:
             score += 1
             evidence.append("next-page text begins like prose continuation")
+
+        # For prose-only continuation, geometry is supporting evidence rather
+        # than sufficient evidence. A complete clause/list sentence followed by
+        # a fresh capitalized paragraph is ambiguous and must not be linked
+        # automatically. Marker hierarchy is handled separately above.
+        if marker_relation is None and not (source_incomplete or candidate_continuation_start):
+            continue
 
         if source.dominant_font_size and candidate.dominant_font_size:
             if abs(source.dominant_font_size - candidate.dominant_font_size) <= 1.5:
@@ -3948,9 +4867,9 @@ def _inherit_toc_context_and_repair(
 
         if not _tables_form_cross_page_continuation(previous_page, current_page, source, candidate):
             continue
-        if not _looks_like_toc_table(source.table.cells):
+        if not _looks_like_toc_table_fragment(source.table.cells):
             continue
-        if not _looks_like_toc_table(candidate.table.cells):
+        if not _looks_like_toc_table_fragment(candidate.table.cells):
             continue
 
         active_toc_pages.add(page_number)
@@ -4184,8 +5103,31 @@ def build_canonical_document(
             )
         )
 
+    # Determine full TOC navigation scope before semantic outline construction.
+    # The inheritance predicate is table/geometry based and does not require
+    # SectionRecords, so running it here prevents TOC labels from polluting the
+    # body hierarchy in the first place.
+    active_toc_pages = _inherit_toc_context_and_repair(pages, explicit_toc_pages)
+    # Once a page is proven to be TOC navigation, repair every TOC-shaped table
+    # on that page, not only the first cross-page continuation fragment.
+    for _page in pages:
+        if _page.page_number not in active_toc_pages:
+            continue
+        for _item in _page.elements:
+            if (
+                _item.type == "table"
+                and _item.table is not None
+                and _looks_like_toc_table(_item.table.cells)
+                and _table_has_embedded_major_toc_heading(_item.table.cells)
+            ):
+                _repair_canonical_toc_table(_item)
+
     title_element, subtitle_element, metadata_elements = _refine_document_roles(elements, pages)
+    _suppress_repeated_document_headers(elements, pages, title_element)
     _normalize_structural_elements(elements)
+    _split_embedded_captions(elements, pages)
+    _split_merged_enumerated_elements(elements, pages, extraction_by_page)
+    _recover_numbered_footer_headings(elements, pages)
     resolve_appendix_labels(elements)
     _refine_figure_roles(elements, pages)
     _assign_heading_levels(
@@ -4193,30 +5135,47 @@ def build_canonical_document(
         layout_result,
         title_root_present=title_element is not None,
     )
+    _suppress_toc_navigation_headings(elements, active_toc_pages)
+    # Resolve the appendix descriptive title before the generic semantic and
+    # heading-scope passes.  Otherwise a title such as ``Guidance on ...`` can
+    # temporarily act as a local group and flatten genuine appendix topics.
+    resolve_appendix_title_scopes(elements)
+    # Role refinement runs before document-zone suppression so TOC navigation
+    # can be used as evidence while resolving the page.  If a title/subtitle
+    # candidate was subsequently proven to be TOC navigation, do not retain a
+    # stale pointer that would make it the document title at serialization.
+    if title_element is not None and title_element.type != "title":
+        title_element = None
+    if subtitle_element is not None and subtitle_element.type != "subtitle":
+        subtitle_element = None
     resolve_structural_semantics(elements, pages)
     resolve_heading_scopes(elements, pages)
     reconcile_same_page_semantic_continuity(elements, pages)
-    resolve_appendix_title_scopes(elements)
+    _repair_appendix_topic_boundaries(elements)
     definition_relations = _refine_definition_lists(elements, pages, extraction_by_page)
+    _repair_definition_row_boundaries(elements, pages)
+    _reorder_definition_rows(elements, pages)
     _refine_footnotes(pages)
+    _deduplicate_textual_figure_fragments(elements, pages)
     _cleanup_reconstructed_elements(elements, pages, extraction_by_page)
     for element in elements:
         backfill_classification(element)
 
     sections = _build_sections(elements)
 
-    # Stage 4.5.8.5: carry explicit TOC context only across table fragments
-    # that satisfy the same continuation evidence used by logical-table
-    # reconciliation. This runs after section assignment so a conflicting
-    # section boundary can also block inheritance.
-    _inherit_toc_context_and_repair(pages, explicit_toc_pages)
-
     definitions = _build_definition_entries(elements, pages)
     definitions.extend(_build_table_definition_entries(elements, definitions, pages))
     clauses, clause_relations = _build_clause_records(elements, sections)
-    group_list_relations = _build_group_and_list_relations(elements, sections)
-    clause_tail_relations = _build_clause_tail_relations(elements, clause_relations + group_list_relations)
+    # Cross-page text continuity is resolved before local group/list ownership
+    # so a markerless continuation line does not accidentally close a nested
+    # list stack before the next-page sibling marker is encountered.
     open_block_relations = _reconcile_cross_page_open_text_blocks(pages)
+    group_list_relations = _build_group_and_list_relations(
+        elements,
+        sections,
+        continuation_relations=open_block_relations,
+    )
+    clause_tail_relations = _build_clause_tail_relations(elements, clause_relations + group_list_relations)
     appendices, appendix_relations = _build_appendices(elements, sections, pages)
     logical_tables, table_relations = _build_logical_tables(pages)
     figures, figure_relations = _build_figures_and_relations(pages)

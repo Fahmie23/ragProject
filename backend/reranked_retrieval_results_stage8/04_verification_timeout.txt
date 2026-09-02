@@ -1,0 +1,520 @@
+==============================================================================
+RETRIEVAL BEHAVIOUR: Conceptual / paraphrased query
+==============================================================================
+Test ID                    : 04_verification_timeout
+Query                      : What should an institution do when a customer cannot complete identity verification in time?
+Purpose                    : Tests whether reranking preserves Stage 7.1's improvement for the paraphrased timeout query.
+Document ID                : 485c4989-c300-45c8-ac06-79a59492bb5c
+Embedding model            : BAAI/bge-m3
+Embedding requested device : auto
+Embedding resolved device  : cuda
+Reranker model             : BAAI/bge-reranker-v2-m3
+Reranker requested device  : auto
+Reranker resolved device   : cuda
+Reranker batch size        : 2
+Reranker max length        : 1024
+Top K                      : 5
+Candidate K per retriever  : 20
+Candidate union count      : 27
+Candidate strategy         : dense_lexical_union
+Ranking method             : cross_encoder
+RRF K                      : 60
+Dense weight               : 1.0
+Lexical weight             : 1.0
+Lexical ranking            : postgresql_fts_term_coverage_then_ts_rank_cd
+Lexical query mode         : or_content_terms_v1
+Lexical terms              : ['institution', 'customer', 'cannot', 'complete', 'identity', 'verification', 'time']
+Lexical tsquery            : institution | customer | cannot | complete | identity | verification | time
+Embedded chunks            : 284
+Total chunks               : 284
+Retrieved hits             : 5
+
+------------------------------------------------------------
+RANK 1
+------------------------------------------------------------
+Chunk index          : 101
+Chunk ID             : 485c4989-c300-45c8-ac06-79a59492bb5c-c0101-c09791e527
+Semantic type        : clause
+Reranker raw score   : 0.962971
+Reranker normalized : 0.7237
+Hybrid candidate rank: 1
+Fusion score         : 0.032266
+Dense rank           : 3
+Dense score          : 0.677664
+Dense distance       : 0.322336
+Dense RRF            : 0.015873
+Lexical rank         : 1
+Lexical score        : 1.800000
+Lexical terms hit    : 5
+Lexical coverage     : 0.7143
+Lexical RRF          : 0.016393
+Token count          : 177
+Pages                : [38, 39]
+Section path         : PART III: CUSTOMER DUE DILIGENCE > 8. CUSTOMER DUE DILIGENCE (CDD) > 8.1 CDD at the point of establishing business relationship
+Source element IDs   : ['p38-e2', 'p38-e13', 'p39-e1']
+
+TEXT
+------------------------------------------------------------
+Section: PART III: CUSTOMER DUE DILIGENCE > 8. CUSTOMER DUE DILIGENCE (CDD) > 8.1 CDD at the point of establishing business relationship
+Group: Delayed verification
+
+8.1.24 A reporting institution may complete the verification after the establishment of the
+business relationship (“delayed verification”) to allow some flexibility for its customer
+and beneficial owner to furnish the relevant documents in circumstances where
+verification is not possible at the point of establishing business relationship.
+
+8.1.27 If verification cannot be completed within the reasonable timeframe, the reporting
+institution should terminate the business relationship as soon as reasonably practicable
+and refrain from carrying out further transactions. However, following the termination
+of business relationship, the reporting institution may return funds or other assets to
+the customers.
+
+8.1.28 The reporting institution must assess whether the failure to complete verification within
+the reasonable timeframe provides sufficient grounds for making a STR to the FIED.
+
+------------------------------------------------------------
+RANK 2
+------------------------------------------------------------
+Chunk index          : 103
+Chunk ID             : 485c4989-c300-45c8-ac06-79a59492bb5c-c0103-96fa91f378
+Semantic type        : clause
+Reranker raw score   : 0.738628
+Reranker normalized : 0.6767
+Hybrid candidate rank: 2
+Fusion score         : 0.032258
+Dense rank           : 2
+Dense score          : 0.683181
+Dense distance       : 0.316819
+Dense RRF            : 0.016129
+Lexical rank         : 2
+Lexical score        : 1.400000
+Lexical terms hit    : 5
+Lexical coverage     : 0.7143
+Lexical RRF          : 0.016129
+Token count          : 184
+Pages                : [38]
+Section path         : PART III: CUSTOMER DUE DILIGENCE > 8. CUSTOMER DUE DILIGENCE (CDD) > 8.1 CDD at the point of establishing business relationship
+Source element IDs   : ['p38-e8', 'p38-e9', 'p38-e10', 'p38-e11', 'p38-e12']
+
+TEXT
+------------------------------------------------------------
+Section: PART III: CUSTOMER DUE DILIGENCE > 8. CUSTOMER DUE DILIGENCE (CDD) > 8.1 CDD at the point of establishing business relationship
+Clause: 8.1.26
+Group: Delayed verification
+
+8.1.26 The policies and procedures must include:
+
+(a) Establishing a reasonable timeframe for the completion of the identity verification
+measures to ensure that delayed verification occurs as reasonably practicable.
+The reasonable timeframe shall not exceed 10 working days or any other period
+as may be specified by the SC;
+
+(b) Measures that a reporting institution may take to manage risks of delayed
+verification including conditions under which the customer may utilize the
+business relationship prior to verification and placing appropriate limits on the
+number, types and/or amount of transactions that can be performed;
+
+(c) Monitoring of large and complex transactions being carried out outside the
+expected norms pending completion of verification; and
+
+(d) Keeping senior management periodically informed of any cases pending identity.
+
+------------------------------------------------------------
+RANK 3
+------------------------------------------------------------
+Chunk index          : 84
+Chunk ID             : 485c4989-c300-45c8-ac06-79a59492bb5c-c0084-fb93596733
+Semantic type        : clause
+Reranker raw score   : 0.694479
+Reranker normalized : 0.6670
+Hybrid candidate rank: 8
+Fusion score         : 0.029083
+Dense rank           : 13
+Dense score          : 0.618683
+Dense distance       : 0.381317
+Dense RRF            : 0.013699
+Lexical rank         : 5
+Lexical score        : 0.900000
+Lexical terms hit    : 4
+Lexical coverage     : 0.5714
+Lexical RRF          : 0.015385
+Token count          : 90
+Pages                : [32]
+Section path         : PART III: CUSTOMER DUE DILIGENCE > 8. CUSTOMER DUE DILIGENCE (CDD) > 8.1 CDD at the point of establishing business relationship
+Source element IDs   : ['p32-e15']
+
+TEXT
+------------------------------------------------------------
+Section: PART III: CUSTOMER DUE DILIGENCE > 8. CUSTOMER DUE DILIGENCE (CDD) > 8.1 CDD at the point of establishing business relationship
+Clause: 8.1.7
+Group: CDD requirements for individual customer and beneficial owner > Identification and Verification
+
+8.1.7 Where the above information is not sufficient for the reporting institution to complete its
+identification and verification process, the reporting institution must seek further relevant
+information from the individual customer or beneficial owner.
+
+------------------------------------------------------------
+RANK 4
+------------------------------------------------------------
+Chunk index          : 100
+Chunk ID             : 485c4989-c300-45c8-ac06-79a59492bb5c-c0100-d1377a7b3c
+Semantic type        : clause
+Reranker raw score   : 0.610804
+Reranker normalized : 0.6481
+Hybrid candidate rank: 3
+Fusion score         : 0.030798
+Dense rank           : 7
+Dense score          : 0.626749
+Dense distance       : 0.373251
+Dense RRF            : 0.014925
+Lexical rank         : 3
+Lexical score        : 3.400000
+Lexical terms hit    : 4
+Lexical coverage     : 0.5714
+Lexical RRF          : 0.015873
+Token count          : 550
+Pages                : [36, 37]
+Section path         : PART III: CUSTOMER DUE DILIGENCE > 8. CUSTOMER DUE DILIGENCE (CDD) > 8.1 CDD at the point of establishing business relationship
+Source element IDs   : ['p36-e10', 'p36-e11', 'p36-e12', 'p37-e1', 'p37-e2', 'p37-e3', 'p37-e4', 'p37-e5', 'p37-e6', 'p37-e7', 'p37-e8', 'p37-e9', 'p37-e10', 'p37-e11', 'p37-e12']
+
+TEXT
+------------------------------------------------------------
+Section: PART III: CUSTOMER DUE DILIGENCE > 8. CUSTOMER DUE DILIGENCE (CDD) > 8.1 CDD at the point of establishing business relationship
+Clause: 8.1.23
+Group: CDD requirements for establishing non face-to-face business relationship
+
+8.1.23 This section applies when a reporting institution chooses to establish non-face-to-
+face business relationship.
+
+(a) A reporting institution must develop and implement policies and procedures to
+address and mitigate specific ML/TF/PF risks associated with establishing non
+face-to-face business relationship, as well as operational and information
+technology risk.
+
+(b) A reporting institution must establish appropriate measures for identification
+and verification of a customer’s identity before establishing non face-to-face
+business relationship.
+
+(c) For the purpose of identification and verification of the identity of a customer in
+a non face-to-face business relationship, a reporting institution must undertake
+one or more of the following measures:
+
+(i) Requesting for additional identification documents or information e.g.
+bank statements, utility bills;
+
+(ii) Substantiating the customer’s information with any independent source
+e.g. contacting the customer’s employer and verification through database
+maintained by any relevant authorities;
+
+(iii) Contacting the customer through any digital communication channel to
+visually identify and verify the customer’s identity;
+
+(iv) Requesting the customer to make a nominal payment from his own
+account with a licensed bank under the Financial Services Act 2013 or
+licensed Islamic bank under the Islamic Financial Services Act 2013 to
+enable the reporting institution to satisfy itself of the customer’s true
+identity; or
+
+(v) Using new technology solutions including, but not limited to, biometric
+technologies (e.g. fingerprint or iris scans, facial recognition), which
+should be linked incontrovertibly to the customer.
+
+(d) Where the reporting institution is unable to identify and verify the customer’s
+identity by adopting the measures provided under paragraph (c) above, the
+reporting institution must initiate face-to-face business relationship.
+
+(e) Sub-paragraphs (a) to (d) above are not applicable to:
+
+(i)Customers that are identified as foreign PEP;
+
+(ii)Customers from higher-risk and non co-operative jurisdictions as identified
+by the FATF; or
+
+(iii)Listed persons or entities subjected to targeted financial sanctions for
+terrorism financing and financing of proliferation of weapons of mass
+destruction pursuant to the UNSCR.
+
+(f) A reporting institution must ensure and be able to demonstrate on a continuing
+basis that appropriate measures for identification and verification of a customer’s
+identity when establishing non-face-to-face business relationship are as effective
+as that for face-to-face customer and implement monitoring and reporting
+mechanism to identify potential ML/TF/PF activities.
+
+------------------------------------------------------------
+RANK 5
+------------------------------------------------------------
+Chunk index          : 159
+Chunk ID             : 485c4989-c300-45c8-ac06-79a59492bb5c-c0159-7448ed6ef9
+Semantic type        : clause
+Reranker raw score   : 0.443013
+Reranker normalized : 0.6090
+Hybrid candidate rank: 4
+Fusion score         : 0.030282
+Dense rank           : 1
+Dense score          : 0.687502
+Dense distance       : 0.312498
+Dense RRF            : 0.016393
+Lexical rank         : 12
+Lexical score        : 1.000000
+Lexical terms hit    : 3
+Lexical coverage     : 0.4286
+Lexical RRF          : 0.013889
+Token count          : 163
+Pages                : [60, 61]
+Section path         : PART VII: COMBATING TERRORISM FINANCING > 14 IDENTIFICATION AND DESIGNATION
+Source element IDs   : ['p60-e10', 'p60-e11', 'p61-e1', 'p61-e2', 'p61-e3']
+
+TEXT
+------------------------------------------------------------
+Section: PART VII: COMBATING TERRORISM FINANCING > 14 IDENTIFICATION AND DESIGNATION
+Clause: 14.4
+
+14.4 For the purpose of implementing the obligations under section 66B and section 66C
+of the AMLA, a reporting institution must conduct checks on the names of potential
+and new customers, as well as regular checks on the names of existing customers,
+against the names in the database. If there is any name match, the reporting
+institution must take reasonable and appropriate measures to verify and confirm the
+identity of its customer. Upon such confirmation, the reporting institution must
+immediately–
+
+(a)freeze without delay the customer’s fund or block the transaction, if it is an
+existing customer;
+
+(b)reject the customer, if the transaction has not commenced;
+
+(c)lodge a STR with the FIED; and
+
+(d)notify the SC.
+
+
+==============================================================================
+RAW JSON RESPONSE
+==============================================================================
+{
+  "document_id": "485c4989-c300-45c8-ac06-79a59492bb5c",
+  "query": "What should an institution do when a customer cannot complete identity verification in time?",
+  "embedding_model": "BAAI/bge-m3",
+  "embedding_requested_device": "auto",
+  "embedding_resolved_device": "cuda",
+  "reranker_model": "BAAI/bge-reranker-v2-m3",
+  "reranker_requested_device": "auto",
+  "reranker_resolved_device": "cuda",
+  "reranker_batch_size": 2,
+  "reranker_max_length": 1024,
+  "top_k": 5,
+  "candidate_k": 20,
+  "candidate_union_count": 27,
+  "embedded_chunk_count": 284,
+  "total_chunk_count": 284,
+  "candidate_strategy": "dense_lexical_union",
+  "ranking_method": "cross_encoder",
+  "fusion_method": "reciprocal_rank_fusion_trace",
+  "rrf_k": 60,
+  "dense_weight": 1.0,
+  "lexical_weight": 1.0,
+  "lexical_ranking_method": "postgresql_fts_term_coverage_then_ts_rank_cd",
+  "lexical_query_mode": "or_content_terms_v1",
+  "lexical_terms": [
+    "institution",
+    "customer",
+    "cannot",
+    "complete",
+    "identity",
+    "verification",
+    "time"
+  ],
+  "lexical_tsquery": "institution | customer | cannot | complete | identity | verification | time",
+  "hits": [
+    {
+      "rank": 1,
+      "chunk_id": "485c4989-c300-45c8-ac06-79a59492bb5c-c0101-c09791e527",
+      "chunk_index": 101,
+      "semantic_type": "clause",
+      "reranker_score": 0.9629710912704468,
+      "reranker_normalized_score": 0.7237162725765083,
+      "hybrid_candidate_rank": 1,
+      "fusion_score": 0.032266458495966696,
+      "dense_rank": 3,
+      "dense_score": 0.6776641607284546,
+      "dense_distance": 0.3223358392715454,
+      "dense_rrf_score": 0.015873015873015872,
+      "lexical_rank": 1,
+      "lexical_score": 1.8000001,
+      "lexical_matched_term_count": 5,
+      "lexical_term_coverage": 0.7142857142857143,
+      "lexical_rrf_score": 0.01639344262295082,
+      "text": "Section: PART III: CUSTOMER DUE DILIGENCE > 8. CUSTOMER DUE DILIGENCE (CDD) > 8.1 CDD at the point of establishing business relationship\nGroup: Delayed verification\n\n8.1.24 A reporting institution may complete the verification after the establishment of the\nbusiness relationship (“delayed verification”) to allow some flexibility for its customer\nand beneficial owner to furnish the relevant documents in circumstances where\nverification is not possible at the point of establishing business relationship.\n\n8.1.27 If verification cannot be completed within the reasonable timeframe, the reporting\ninstitution should terminate the business relationship as soon as reasonably practicable\nand refrain from carrying out further transactions. However, following the termination\nof business relationship, the reporting institution may return funds or other assets to\nthe customers.\n\n8.1.28 The reporting institution must assess whether the failure to complete verification within\nthe reasonable timeframe provides sufficient grounds for making a STR to the FIED.",
+      "content_text": "8.1.24 A reporting institution may complete the verification after the establishment of the\nbusiness relationship (“delayed verification”) to allow some flexibility for its customer\nand beneficial owner to furnish the relevant documents in circumstances where\nverification is not possible at the point of establishing business relationship.\n\n8.1.27 If verification cannot be completed within the reasonable timeframe, the reporting\ninstitution should terminate the business relationship as soon as reasonably practicable\nand refrain from carrying out further transactions. However, following the termination\nof business relationship, the reporting institution may return funds or other assets to\nthe customers.\n\n8.1.28 The reporting institution must assess whether the failure to complete verification within\nthe reasonable timeframe provides sufficient grounds for making a STR to the FIED.",
+      "token_count": 177,
+      "pages": [
+        38,
+        39
+      ],
+      "section_path": [
+        "PART III: CUSTOMER DUE DILIGENCE",
+        "8. CUSTOMER DUE DILIGENCE (CDD)",
+        "8.1 CDD at the point of establishing business relationship"
+      ],
+      "source_element_ids": [
+        "p38-e2",
+        "p38-e13",
+        "p39-e1"
+      ]
+    },
+    {
+      "rank": 2,
+      "chunk_id": "485c4989-c300-45c8-ac06-79a59492bb5c-c0103-96fa91f378",
+      "chunk_index": 103,
+      "semantic_type": "clause",
+      "reranker_score": 0.7386283874511719,
+      "reranker_normalized_score": 0.6766958495533647,
+      "hybrid_candidate_rank": 2,
+      "fusion_score": 0.03225806451612903,
+      "dense_rank": 2,
+      "dense_score": 0.6831808875095328,
+      "dense_distance": 0.31681911249046724,
+      "dense_rrf_score": 0.016129032258064516,
+      "lexical_rank": 2,
+      "lexical_score": 1.4,
+      "lexical_matched_term_count": 5,
+      "lexical_term_coverage": 0.7142857142857143,
+      "lexical_rrf_score": 0.016129032258064516,
+      "text": "Section: PART III: CUSTOMER DUE DILIGENCE > 8. CUSTOMER DUE DILIGENCE (CDD) > 8.1 CDD at the point of establishing business relationship\nClause: 8.1.26\nGroup: Delayed verification\n\n8.1.26 The policies and procedures must include:\n\n(a) Establishing a reasonable timeframe for the completion of the identity verification\nmeasures to ensure that delayed verification occurs as reasonably practicable.\nThe reasonable timeframe shall not exceed 10 working days or any other period\nas may be specified by the SC;\n\n(b) Measures that a reporting institution may take to manage risks of delayed\nverification including conditions under which the customer may utilize the\nbusiness relationship prior to verification and placing appropriate limits on the\nnumber, types and/or amount of transactions that can be performed;\n\n(c) Monitoring of large and complex transactions being carried out outside the\nexpected norms pending completion of verification; and\n\n(d) Keeping senior management periodically informed of any cases pending identity.",
+      "content_text": "8.1.26 The policies and procedures must include:\n\n(a) Establishing a reasonable timeframe for the completion of the identity verification\nmeasures to ensure that delayed verification occurs as reasonably practicable.\nThe reasonable timeframe shall not exceed 10 working days or any other period\nas may be specified by the SC;\n\n(b) Measures that a reporting institution may take to manage risks of delayed\nverification including conditions under which the customer may utilize the\nbusiness relationship prior to verification and placing appropriate limits on the\nnumber, types and/or amount of transactions that can be performed;\n\n(c) Monitoring of large and complex transactions being carried out outside the\nexpected norms pending completion of verification; and\n\n(d) Keeping senior management periodically informed of any cases pending identity.",
+      "token_count": 184,
+      "pages": [
+        38
+      ],
+      "section_path": [
+        "PART III: CUSTOMER DUE DILIGENCE",
+        "8. CUSTOMER DUE DILIGENCE (CDD)",
+        "8.1 CDD at the point of establishing business relationship"
+      ],
+      "source_element_ids": [
+        "p38-e8",
+        "p38-e9",
+        "p38-e10",
+        "p38-e11",
+        "p38-e12"
+      ]
+    },
+    {
+      "rank": 3,
+      "chunk_id": "485c4989-c300-45c8-ac06-79a59492bb5c-c0084-fb93596733",
+      "chunk_index": 84,
+      "semantic_type": "clause",
+      "reranker_score": 0.6944794654846191,
+      "reranker_normalized_score": 0.6669626642139667,
+      "hybrid_candidate_rank": 8,
+      "fusion_score": 0.029083245521601686,
+      "dense_rank": 13,
+      "dense_score": 0.6186826229095459,
+      "dense_distance": 0.3813173770904541,
+      "dense_rrf_score": 0.0136986301369863,
+      "lexical_rank": 5,
+      "lexical_score": 0.90000004,
+      "lexical_matched_term_count": 4,
+      "lexical_term_coverage": 0.5714285714285714,
+      "lexical_rrf_score": 0.015384615384615385,
+      "text": "Section: PART III: CUSTOMER DUE DILIGENCE > 8. CUSTOMER DUE DILIGENCE (CDD) > 8.1 CDD at the point of establishing business relationship\nClause: 8.1.7\nGroup: CDD requirements for individual customer and beneficial owner > Identification and Verification\n\n8.1.7 Where the above information is not sufficient for the reporting institution to complete its\nidentification and verification process, the reporting institution must seek further relevant\ninformation from the individual customer or beneficial owner.",
+      "content_text": "8.1.7 Where the above information is not sufficient for the reporting institution to complete its\nidentification and verification process, the reporting institution must seek further relevant\ninformation from the individual customer or beneficial owner.",
+      "token_count": 90,
+      "pages": [
+        32
+      ],
+      "section_path": [
+        "PART III: CUSTOMER DUE DILIGENCE",
+        "8. CUSTOMER DUE DILIGENCE (CDD)",
+        "8.1 CDD at the point of establishing business relationship"
+      ],
+      "source_element_ids": [
+        "p32-e15"
+      ]
+    },
+    {
+      "rank": 4,
+      "chunk_id": "485c4989-c300-45c8-ac06-79a59492bb5c-c0100-d1377a7b3c",
+      "chunk_index": 100,
+      "semantic_type": "clause",
+      "reranker_score": 0.6108037233352661,
+      "reranker_normalized_score": 0.6481241204319671,
+      "hybrid_candidate_rank": 3,
+      "fusion_score": 0.030798389007344232,
+      "dense_rank": 7,
+      "dense_score": 0.6267494336813362,
+      "dense_distance": 0.3732505663186638,
+      "dense_rrf_score": 0.014925373134328358,
+      "lexical_rank": 3,
+      "lexical_score": 3.4,
+      "lexical_matched_term_count": 4,
+      "lexical_term_coverage": 0.5714285714285714,
+      "lexical_rrf_score": 0.015873015873015872,
+      "text": "Section: PART III: CUSTOMER DUE DILIGENCE > 8. CUSTOMER DUE DILIGENCE (CDD) > 8.1 CDD at the point of establishing business relationship\nClause: 8.1.23\nGroup: CDD requirements for establishing non face-to-face business relationship\n\n8.1.23 This section applies when a reporting institution chooses to establish non-face-to-\nface business relationship.\n\n(a) A reporting institution must develop and implement policies and procedures to\naddress and mitigate specific ML/TF/PF risks associated with establishing non\nface-to-face business relationship, as well as operational and information\ntechnology risk.\n\n(b) A reporting institution must establish appropriate measures for identification\nand verification of a customer’s identity before establishing non face-to-face\nbusiness relationship.\n\n(c) For the purpose of identification and verification of the identity of a customer in\na non face-to-face business relationship, a reporting institution must undertake\none or more of the following measures:\n\n(i) Requesting for additional identification documents or information e.g.\nbank statements, utility bills;\n\n(ii) Substantiating the customer’s information with any independent source\ne.g. contacting the customer’s employer and verification through database\nmaintained by any relevant authorities;\n\n(iii) Contacting the customer through any digital communication channel to\nvisually identify and verify the customer’s identity;\n\n(iv) Requesting the customer to make a nominal payment from his own\naccount with a licensed bank under the Financial Services Act 2013 or\nlicensed Islamic bank under the Islamic Financial Services Act 2013 to\nenable the reporting institution to satisfy itself of the customer’s true\nidentity; or\n\n(v) Using new technology solutions including, but not limited to, biometric\ntechnologies (e.g. fingerprint or iris scans, facial recognition), which\nshould be linked incontrovertibly to the customer.\n\n(d) Where the reporting institution is unable to identify and verify the customer’s\nidentity by adopting the measures provided under paragraph (c) above, the\nreporting institution must initiate face-to-face business relationship.\n\n(e) Sub-paragraphs (a) to (d) above are not applicable to:\n\n(i)Customers that are identified as foreign PEP;\n\n(ii)Customers from higher-risk and non co-operative jurisdictions as identified\nby the FATF; or\n\n(iii)Listed persons or entities subjected to targeted financial sanctions for\nterrorism financing and financing of proliferation of weapons of mass\ndestruction pursuant to the UNSCR.\n\n(f) A reporting institution must ensure and be able to demonstrate on a continuing\nbasis that appropriate measures for identification and verification of a customer’s\nidentity when establishing non-face-to-face business relationship are as effective\nas that for face-to-face customer and implement monitoring and reporting\nmechanism to identify potential ML/TF/PF activities.",
+      "content_text": "8.1.23 This section applies when a reporting institution chooses to establish non-face-to-\nface business relationship.\n\n(a) A reporting institution must develop and implement policies and procedures to\naddress and mitigate specific ML/TF/PF risks associated with establishing non\nface-to-face business relationship, as well as operational and information\ntechnology risk.\n\n(b) A reporting institution must establish appropriate measures for identification\nand verification of a customer’s identity before establishing non face-to-face\nbusiness relationship.\n\n(c) For the purpose of identification and verification of the identity of a customer in\na non face-to-face business relationship, a reporting institution must undertake\none or more of the following measures:\n\n(i) Requesting for additional identification documents or information e.g.\nbank statements, utility bills;\n\n(ii) Substantiating the customer’s information with any independent source\ne.g. contacting the customer’s employer and verification through database\nmaintained by any relevant authorities;\n\n(iii) Contacting the customer through any digital communication channel to\nvisually identify and verify the customer’s identity;\n\n(iv) Requesting the customer to make a nominal payment from his own\naccount with a licensed bank under the Financial Services Act 2013 or\nlicensed Islamic bank under the Islamic Financial Services Act 2013 to\nenable the reporting institution to satisfy itself of the customer’s true\nidentity; or\n\n(v) Using new technology solutions including, but not limited to, biometric\ntechnologies (e.g. fingerprint or iris scans, facial recognition), which\nshould be linked incontrovertibly to the customer.\n\n(d) Where the reporting institution is unable to identify and verify the customer’s\nidentity by adopting the measures provided under paragraph (c) above, the\nreporting institution must initiate face-to-face business relationship.\n\n(e) Sub-paragraphs (a) to (d) above are not applicable to:\n\n(i)Customers that are identified as foreign PEP;\n\n(ii)Customers from higher-risk and non co-operative jurisdictions as identified\nby the FATF; or\n\n(iii)Listed persons or entities subjected to targeted financial sanctions for\nterrorism financing and financing of proliferation of weapons of mass\ndestruction pursuant to the UNSCR.\n\n(f) A reporting institution must ensure and be able to demonstrate on a continuing\nbasis that appropriate measures for identification and verification of a customer’s\nidentity when establishing non-face-to-face business relationship are as effective\nas that for face-to-face customer and implement monitoring and reporting\nmechanism to identify potential ML/TF/PF activities.",
+      "token_count": 550,
+      "pages": [
+        36,
+        37
+      ],
+      "section_path": [
+        "PART III: CUSTOMER DUE DILIGENCE",
+        "8. CUSTOMER DUE DILIGENCE (CDD)",
+        "8.1 CDD at the point of establishing business relationship"
+      ],
+      "source_element_ids": [
+        "p36-e10",
+        "p36-e11",
+        "p36-e12",
+        "p37-e1",
+        "p37-e2",
+        "p37-e3",
+        "p37-e4",
+        "p37-e5",
+        "p37-e6",
+        "p37-e7",
+        "p37-e8",
+        "p37-e9",
+        "p37-e10",
+        "p37-e11",
+        "p37-e12"
+      ]
+    },
+    {
+      "rank": 5,
+      "chunk_id": "485c4989-c300-45c8-ac06-79a59492bb5c-c0159-7448ed6ef9",
+      "chunk_index": 159,
+      "semantic_type": "clause",
+      "reranker_score": 0.4430130124092102,
+      "reranker_normalized_score": 0.608976736641503,
+      "hybrid_candidate_rank": 4,
+      "fusion_score": 0.03028233151183971,
+      "dense_rank": 1,
+      "dense_score": 0.6875019688161015,
+      "dense_distance": 0.3124980311838985,
+      "dense_rrf_score": 0.01639344262295082,
+      "lexical_rank": 12,
+      "lexical_score": 1.0,
+      "lexical_matched_term_count": 3,
+      "lexical_term_coverage": 0.42857142857142855,
+      "lexical_rrf_score": 0.013888888888888888,
+      "text": "Section: PART VII: COMBATING TERRORISM FINANCING > 14 IDENTIFICATION AND DESIGNATION\nClause: 14.4\n\n14.4 For the purpose of implementing the obligations under section 66B and section 66C\nof the AMLA, a reporting institution must conduct checks on the names of potential\nand new customers, as well as regular checks on the names of existing customers,\nagainst the names in the database. If there is any name match, the reporting\ninstitution must take reasonable and appropriate measures to verify and confirm the\nidentity of its customer. Upon such confirmation, the reporting institution must\nimmediately–\n\n(a)freeze without delay the customer’s fund or block the transaction, if it is an\nexisting customer;\n\n(b)reject the customer, if the transaction has not commenced;\n\n(c)lodge a STR with the FIED; and\n\n(d)notify the SC.",
+      "content_text": "14.4 For the purpose of implementing the obligations under section 66B and section 66C\nof the AMLA, a reporting institution must conduct checks on the names of potential\nand new customers, as well as regular checks on the names of existing customers,\nagainst the names in the database. If there is any name match, the reporting\ninstitution must take reasonable and appropriate measures to verify and confirm the\nidentity of its customer. Upon such confirmation, the reporting institution must\nimmediately–\n\n(a)freeze without delay the customer’s fund or block the transaction, if it is an\nexisting customer;\n\n(b)reject the customer, if the transaction has not commenced;\n\n(c)lodge a STR with the FIED; and\n\n(d)notify the SC.",
+      "token_count": 163,
+      "pages": [
+        60,
+        61
+      ],
+      "section_path": [
+        "PART VII: COMBATING TERRORISM FINANCING",
+        "14 IDENTIFICATION AND DESIGNATION"
+      ],
+      "source_element_ids": [
+        "p60-e10",
+        "p60-e11",
+        "p61-e1",
+        "p61-e2",
+        "p61-e3"
+      ]
+    }
+  ]
+}

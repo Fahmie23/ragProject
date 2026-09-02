@@ -1,0 +1,688 @@
+{
+  "document_id": "485c4989-c300-45c8-ac06-79a59492bb5c",
+  "query": "Which appendix provides the detailed obligations for implementing targeted financial sanctions relating to terrorism financing?",
+  "embedding_model": "BAAI/bge-m3",
+  "embedding_requested_device": "auto",
+  "embedding_resolved_device": "cuda",
+  "reranker_model": "BAAI/bge-reranker-v2-m3",
+  "reranker_requested_device": "auto",
+  "reranker_resolved_device": "cuda",
+  "reranker_batch_size": 2,
+  "reranker_max_length": 1024,
+  "top_k": 10,
+  "candidate_k": 20,
+  "candidate_union_count": 29,
+  "embedded_chunk_count": 284,
+  "total_chunk_count": 284,
+  "candidate_strategy": "dense_lexical_union",
+  "ranking_method": "cross_encoder",
+  "fusion_method": "reciprocal_rank_fusion_trace",
+  "rrf_k": 60,
+  "dense_weight": 1.0,
+  "lexical_weight": 1.0,
+  "lexical_ranking_method": "postgresql_fts_term_coverage_then_ts_rank_cd",
+  "lexical_query_mode": "or_content_terms_v1",
+  "lexical_terms": [
+    "appendix",
+    "provides",
+    "detailed",
+    "obligations",
+    "implementing",
+    "targeted",
+    "financial",
+    "sanctions",
+    "relating",
+    "terrorism",
+    "financing"
+  ],
+  "lexical_tsquery": "appendix | provides | detailed | obligations | implementing | targeted | financial | sanctions | relating | terrorism | financing",
+  "hits": [
+    {
+      "rank": 1,
+      "chunk_id": "485c4989-c300-45c8-ac06-79a59492bb5c-c0160-41189942a4",
+      "chunk_index": 160,
+      "semantic_type": "clause",
+      "reranker_score": 0.9994233846664429,
+      "hybrid_candidate_rank": 3,
+      "fusion_score": 0.030886196246139225,
+      "dense_rank": 9,
+      "dense_score": 0.6016268730163574,
+      "dense_distance": 0.3983731269836426,
+      "dense_rrf_score": 0.014492753623188406,
+      "lexical_rank": 1,
+      "lexical_score": 1.3000001,
+      "lexical_matched_term_count": 11,
+      "lexical_term_coverage": 1.0,
+      "lexical_rrf_score": 0.01639344262295082,
+      "text": "Section: PART VII: COMBATING TERRORISM FINANCING > 14 IDENTIFICATION AND DESIGNATION\n\n14.5 A reporting institution is required to submit a STR when there is an attempted\ntransaction by any of the listed persons.\n\n14.6 A reporting institution must ascertain potential matches with the UN Consolidated List\nto confirm whether they are true matches to eliminate any “false positives”. The\nreporting institution must make further enquiries from the customer or counterparty\n(where relevant) to assist in determining whether it is a true match.\n\n14.8 Appendix D provides the detailed obligations of a reporting institution for the\nimplementation of the targeted financial sanctions in relation to terrorism financing.",
+      "content_text": "14.5 A reporting institution is required to submit a STR when there is an attempted\ntransaction by any of the listed persons.\n\n14.6 A reporting institution must ascertain potential matches with the UN Consolidated List\nto confirm whether they are true matches to eliminate any “false positives”. The\nreporting institution must make further enquiries from the customer or counterparty\n(where relevant) to assist in determining whether it is a true match.\n\n14.8 Appendix D provides the detailed obligations of a reporting institution for the\nimplementation of the targeted financial sanctions in relation to terrorism financing.",
+      "token_count": 122,
+      "pages": [
+        61
+      ],
+      "section_path": [
+        "PART VII: COMBATING TERRORISM FINANCING",
+        "14 IDENTIFICATION AND DESIGNATION"
+      ],
+      "source_element_ids": [
+        "p61-e4",
+        "p61-e5",
+        "p61-e9"
+      ]
+    },
+    {
+      "rank": 2,
+      "chunk_id": "485c4989-c300-45c8-ac06-79a59492bb5c-c0234-35c92911bb",
+      "chunk_index": 234,
+      "semantic_type": "clause",
+      "reranker_score": 0.9861806035041809,
+      "hybrid_candidate_rank": 1,
+      "fusion_score": 0.03177805800756621,
+      "dense_rank": 1,
+      "dense_score": 0.666989266872406,
+      "dense_distance": 0.333010733127594,
+      "dense_rrf_score": 0.01639344262295082,
+      "lexical_rank": 5,
+      "lexical_score": 1.5,
+      "lexical_matched_term_count": 9,
+      "lexical_term_coverage": 0.8181818181818182,
+      "lexical_rrf_score": 0.015384615384615385,
+      "text": "Section: APPENDIX D > The relevant legal instruments\nClause: 1.1\nGroup: Guidance on the Implementation of Targeted Financial Sanction in\nRelation to Terrorism Financing\n\n1.1 Malaysia as a member of the United Nations has an obligation to implement all the\nResolutions passed in relation to TFS-TF. The UNSCR relating to terrorism financing\nare implemented pursuant to section 66B and section 66C of the AMLA by publication\nin the gazette by the Minister of Home Affairs.",
+      "content_text": "1.1 Malaysia as a member of the United Nations has an obligation to implement all the\nResolutions passed in relation to TFS-TF. The UNSCR relating to terrorism financing\nare implemented pursuant to section 66B and section 66C of the AMLA by publication\nin the gazette by the Minister of Home Affairs.",
+      "token_count": 86,
+      "pages": [
+        86
+      ],
+      "section_path": [
+        "APPENDIX D",
+        "The relevant legal instruments"
+      ],
+      "source_element_ids": [
+        "p86-e4"
+      ]
+    },
+    {
+      "rank": 3,
+      "chunk_id": "485c4989-c300-45c8-ac06-79a59492bb5c-c0245-2a27d3f444",
+      "chunk_index": 245,
+      "semantic_type": "table",
+      "reranker_score": 0.9813360571861267,
+      "hybrid_candidate_rank": 10,
+      "fusion_score": 0.027242401779095628,
+      "dense_rank": 11,
+      "dense_score": 0.5864600117939717,
+      "dense_distance": 0.41353998820602833,
+      "dense_rrf_score": 0.014084507042253521,
+      "lexical_rank": 16,
+      "lexical_score": 0.8,
+      "lexical_matched_term_count": 8,
+      "lexical_term_coverage": 0.7272727272727273,
+      "lexical_rrf_score": 0.013157894736842105,
+      "text": "Section: APPENDIX D > Reporting requirements\nGroup: Guidance on the Implementation of Targeted Financial Sanction in\nRelation to Terrorism Financing\n\nList | UNSCR List | Domestic List\nReporting intervals | Every 31 January | Every 31 May and\n | and 31 July | 30 November",
+      "content_text": "List | UNSCR List | Domestic List\nReporting intervals | Every 31 January | Every 31 May and\n | and 31 July | 30 November",
+      "token_count": 47,
+      "pages": [
+        90
+      ],
+      "section_path": [
+        "APPENDIX D",
+        "Reporting requirements"
+      ],
+      "source_element_ids": [
+        "p90-e6"
+      ]
+    },
+    {
+      "rank": 4,
+      "chunk_id": "485c4989-c300-45c8-ac06-79a59492bb5c-c0247-4fb1eeef28",
+      "chunk_index": 247,
+      "semantic_type": "paragraph",
+      "reranker_score": 0.9775950312614441,
+      "hybrid_candidate_rank": 8,
+      "fusion_score": 0.027799227799227798,
+      "dense_rank": 10,
+      "dense_score": 0.5893877989418637,
+      "dense_distance": 0.41061220105813634,
+      "dense_rrf_score": 0.014285714285714285,
+      "lexical_rank": 14,
+      "lexical_score": 1.4,
+      "lexical_matched_term_count": 8,
+      "lexical_term_coverage": 0.7272727272727273,
+      "lexical_rrf_score": 0.013513513513513514,
+      "text": "Section: APPENDIX D > False positives\nGroup: Guidance on the Implementation of Targeted Financial Sanction in\nRelation to Terrorism Financing\n\nThe contact point for the Ministry of Home Affairs in relation to targeted financial sanctions on\nterrorism financing is:",
+      "content_text": "The contact point for the Ministry of Home Affairs in relation to targeted financial sanctions on\nterrorism financing is:",
+      "token_count": 42,
+      "pages": [
+        91
+      ],
+      "section_path": [
+        "APPENDIX D",
+        "False positives"
+      ],
+      "source_element_ids": [
+        "p91-e1"
+      ]
+    },
+    {
+      "rank": 5,
+      "chunk_id": "485c4989-c300-45c8-ac06-79a59492bb5c-c0007-22ed76c058",
+      "chunk_index": 7,
+      "semantic_type": "clause",
+      "reranker_score": 0.9758573174476624,
+      "hybrid_candidate_rank": 2,
+      "fusion_score": 0.03128054740957967,
+      "dense_rank": 6,
+      "dense_score": 0.6237528920173645,
+      "dense_distance": 0.3762471079826355,
+      "dense_rrf_score": 0.015151515151515152,
+      "lexical_rank": 2,
+      "lexical_score": 2.5,
+      "lexical_matched_term_count": 10,
+      "lexical_term_coverage": 0.9090909090909091,
+      "lexical_rrf_score": 0.016129032258064516,
+      "text": "Section: PART I: INTRODUCTION AND APPLICABILITY > 1.0 INTRODUCTION\n\n1.2 These Guidelines are drawn up in accordance with the AMLA and the Financial Action Task\nForce (FATF) 40 Recommendations.\n\n1Regulation 3 of Strategic Trade (United Nations Security Council Resolutions) Regulations 2010 (P.U. (A) 481/2010) is set out in\nAppendix G of these Guidelines.\n\n1.3 These Guidelines provide:\n\n(a)requirements and obligations imposed on reporting institutions in preventing and\ncombating money laundering, terrorism financing, proliferation financing and\ntargeted financial sanctions; and\n\n(b)guidance for reporting institutions to comply with the obligations imposed under the\nAMLA and TFS-PF.\n\n1.4 These Guidelines supersede and replace the Guidelines on Implementation of Targeted\nFinancial Sanctions Relating to Proliferation Financing for Capital Markets.\n\n1.5 These Guidelines are made in addition to and not in derogation of any other guidelines\nissued by the Securities Commission Malaysia (SC) or any requirements as provided under\nthe securities laws and the AMLA. Therefore, a reporting institution must comply with\nother relevant guidelines and requirements.\n\n1.6 A reporting institution that is jointly regulated by Bank Negara Malaysia (BNM) and the\nSC, is required to comply with these Guidelines and the Anti-Money Laundering,\nCountering Financing of Terrorism, Countering Proliferation Financing and Targeted\nFinancial Sanctions for Financial Institutions (AML/CFT and TFS for FIs) issued by BNM.\nWhere there are differing requirements between the said guidelines, the more stringent\nrequirements shall apply.\n\n1.7 Non-compliance with any of the provisions in these Guidelines will subject the reporting\ninstitution to actions under the AMLA, Capital Markets and Services Act 2007 (CMSA) or\nany other relevant provisions under the laws of which these Guidelines are subject to.\nEnforcement actions can be taken against the reporting institutions including its directors,\nofficers, representatives, employees for any non-compliance with any requirements in these\nGuidelines.",
+      "content_text": "1.2 These Guidelines are drawn up in accordance with the AMLA and the Financial Action Task\nForce (FATF) 40 Recommendations.\n\n1Regulation 3 of Strategic Trade (United Nations Security Council Resolutions) Regulations 2010 (P.U. (A) 481/2010) is set out in\nAppendix G of these Guidelines.\n\n1.3 These Guidelines provide:\n\n(a)requirements and obligations imposed on reporting institutions in preventing and\ncombating money laundering, terrorism financing, proliferation financing and\ntargeted financial sanctions; and\n\n(b)guidance for reporting institutions to comply with the obligations imposed under the\nAMLA and TFS-PF.\n\n1.4 These Guidelines supersede and replace the Guidelines on Implementation of Targeted\nFinancial Sanctions Relating to Proliferation Financing for Capital Markets.\n\n1.5 These Guidelines are made in addition to and not in derogation of any other guidelines\nissued by the Securities Commission Malaysia (SC) or any requirements as provided under\nthe securities laws and the AMLA. Therefore, a reporting institution must comply with\nother relevant guidelines and requirements.\n\n1.6 A reporting institution that is jointly regulated by Bank Negara Malaysia (BNM) and the\nSC, is required to comply with these Guidelines and the Anti-Money Laundering,\nCountering Financing of Terrorism, Countering Proliferation Financing and Targeted\nFinancial Sanctions for Financial Institutions (AML/CFT and TFS for FIs) issued by BNM.\nWhere there are differing requirements between the said guidelines, the more stringent\nrequirements shall apply.\n\n1.7 Non-compliance with any of the provisions in these Guidelines will subject the reporting\ninstitution to actions under the AMLA, Capital Markets and Services Act 2007 (CMSA) or\nany other relevant provisions under the laws of which these Guidelines are subject to.\nEnforcement actions can be taken against the reporting institutions including its directors,\nofficers, representatives, employees for any non-compliance with any requirements in these\nGuidelines.",
+      "token_count": 368,
+      "pages": [
+        6,
+        7
+      ],
+      "section_path": [
+        "PART I: INTRODUCTION AND APPLICABILITY",
+        "1.0 INTRODUCTION"
+      ],
+      "source_element_ids": [
+        "p6-e11",
+        "p6-e12",
+        "p7-e1",
+        "p7-e2",
+        "p7-e3",
+        "p7-e4",
+        "p7-e5",
+        "p7-e6",
+        "p7-e7"
+      ]
+    },
+    {
+      "rank": 6,
+      "chunk_id": "485c4989-c300-45c8-ac06-79a59492bb5c-c0243-50a6e75db4",
+      "chunk_index": 243,
+      "semantic_type": "table",
+      "reranker_score": 0.9747271537780762,
+      "hybrid_candidate_rank": 6,
+      "fusion_score": 0.029709507042253523,
+      "dense_rank": 4,
+      "dense_score": 0.6405435800552368,
+      "dense_distance": 0.3594564199447632,
+      "dense_rrf_score": 0.015625,
+      "lexical_rank": 11,
+      "lexical_score": 0.90000004,
+      "lexical_matched_term_count": 9,
+      "lexical_term_coverage": 0.8181818181818182,
+      "lexical_rrf_score": 0.014084507042253521,
+      "text": "Section: APPENDIX D > Reporting requirements\nGroup: Guidance on the Implementation of Targeted Financial Sanction in\nRelation to Terrorism Financing\n\nNo. | Authority | Source of obligation\n1. | SC as the relevant Supervisory Authority | • Section 66D(2) of AMLA • Section 66E of AMLA • Paragraph 14.3 (d) of the Guidelines\n2. | FIED, Bank Negara Malaysia [as STR] | • Paragraph 14.3 (c) of the Guidelines\n3. | Inspector-General of Police | • Section 66B(3)(d) of the AMLA",
+      "content_text": "No. | Authority | Source of obligation\n1. | SC as the relevant Supervisory Authority | • Section 66D(2) of AMLA • Section 66E of AMLA • Paragraph 14.3 (d) of the Guidelines\n2. | FIED, Bank Negara Malaysia [as STR] | • Paragraph 14.3 (c) of the Guidelines\n3. | Inspector-General of Police | • Section 66B(3)(d) of the AMLA",
+      "token_count": 109,
+      "pages": [
+        90
+      ],
+      "section_path": [
+        "APPENDIX D",
+        "Reporting requirements"
+      ],
+      "source_element_ids": [
+        "p90-e1"
+      ]
+    },
+    {
+      "rank": 7,
+      "chunk_id": "485c4989-c300-45c8-ac06-79a59492bb5c-c0240-790411c67b",
+      "chunk_index": 240,
+      "semantic_type": "clause",
+      "reranker_score": 0.9608502388000488,
+      "hybrid_candidate_rank": 17,
+      "fusion_score": 0.014705882352941176,
+      "dense_rank": null,
+      "dense_score": null,
+      "dense_distance": null,
+      "dense_rrf_score": 0.0,
+      "lexical_rank": 8,
+      "lexical_score": 1.2,
+      "lexical_matched_term_count": 9,
+      "lexical_term_coverage": 0.8181818181818182,
+      "lexical_rrf_score": 0.014705882352941176,
+      "text": "Section: APPENDIX D > Obligation to conduct screening on customers\nClause: 3.3\nGroup: Guidance on the Implementation of Targeted Financial Sanction in\nRelation to Terrorism Financing\n\n3.3 The obligation to conduct screening on customers also includes fund derived from\nproperty owned or controlled directly or indirectly by the listed entities or by persons\nacting on their behalf or at their discretion (related parties). Therefore, a reporting\ninstitution must also conduct checks on–\n\n(a) relationship and transactions connected with the listed entities;\n\n(b) properties or accounts that are jointly owned and/or indirectly controlled by\nthe listed entities; and\n\n(c) parties related to the frozen accounts including beneficial owners, signatories,\npower of attorney relationships, guarantors, nominees, trustees, assignees and\npayors.",
+      "content_text": "3.3 The obligation to conduct screening on customers also includes fund derived from\nproperty owned or controlled directly or indirectly by the listed entities or by persons\nacting on their behalf or at their discretion (related parties). Therefore, a reporting\ninstitution must also conduct checks on–\n\n(a) relationship and transactions connected with the listed entities;\n\n(b) properties or accounts that are jointly owned and/or indirectly controlled by\nthe listed entities; and\n\n(c) parties related to the frozen accounts including beneficial owners, signatories,\npower of attorney relationships, guarantors, nominees, trustees, assignees and\npayors.",
+      "token_count": 147,
+      "pages": [
+        88
+      ],
+      "section_path": [
+        "APPENDIX D",
+        "Obligation to conduct screening on customers"
+      ],
+      "source_element_ids": [
+        "p88-e10",
+        "p88-e11",
+        "p88-e12",
+        "p88-e13"
+      ]
+    },
+    {
+      "rank": 8,
+      "chunk_id": "485c4989-c300-45c8-ac06-79a59492bb5c-c0235-8ccfd3b8c3",
+      "chunk_index": 235,
+      "semantic_type": "clause",
+      "reranker_score": 0.9592044949531555,
+      "hybrid_candidate_rank": 7,
+      "fusion_score": 0.028258706467661692,
+      "dense_rank": 7,
+      "dense_score": 0.6161260604858398,
+      "dense_distance": 0.38387393951416016,
+      "dense_rrf_score": 0.014925373134328358,
+      "lexical_rank": 15,
+      "lexical_score": 0.90000004,
+      "lexical_matched_term_count": 8,
+      "lexical_term_coverage": 0.7272727272727273,
+      "lexical_rrf_score": 0.013333333333333334,
+      "text": "Section: APPENDIX D > The relevant legal instruments\nClause: 1.2\nGroup: Guidance on the Implementation of Targeted Financial Sanction in\nRelation to Terrorism Financing\n\n1.2 In implementing TFS-TF, a reporting institution should refer to the relevant legal\ninstruments as stated below:",
+      "content_text": "1.2 In implementing TFS-TF, a reporting institution should refer to the relevant legal\ninstruments as stated below:",
+      "token_count": 52,
+      "pages": [
+        86
+      ],
+      "section_path": [
+        "APPENDIX D",
+        "The relevant legal instruments"
+      ],
+      "source_element_ids": [
+        "p86-e5"
+      ]
+    },
+    {
+      "rank": 9,
+      "chunk_id": "485c4989-c300-45c8-ac06-79a59492bb5c-c0236-63f196d79f",
+      "chunk_index": 236,
+      "semantic_type": "table",
+      "reranker_score": 0.9588747024536133,
+      "hybrid_candidate_rank": 4,
+      "fusion_score": 0.029827662395050816,
+      "dense_rank": 2,
+      "dense_score": 0.663587212562561,
+      "dense_distance": 0.33641278743743896,
+      "dense_rrf_score": 0.016129032258064516,
+      "lexical_rank": 13,
+      "lexical_score": 1.8000001,
+      "lexical_matched_term_count": 8,
+      "lexical_term_coverage": 0.7272727272727273,
+      "lexical_rrf_score": 0.0136986301369863,
+      "text": "Section: APPENDIX D > The relevant legal instruments\nGroup: Guidance on the Implementation of Targeted Financial Sanction in\nRelation to Terrorism Financing\n\nAMLA Provision | Section 66C | Section 66B\nListing | UNSCR List | Domestic List\nUNSC Resolutions | • UNSCR 1267 (1999) and UNSCR 1989 (2011) (Individuals and entities associated with Al-Qaida) • UNSCR 1988 (2011) and other subsequent resolutions (Individuals and entities associated with Taliban) • UNSCR 2253 (2015) and other subsequent resolutions (Individuals and entities associated with Islamic State in Iraq) | UNSCR 1373(2001)\nSubsidiary Legislation | • Anti-Money Laundering and Anti-Terrorism Financing (Security Council Resolution) (Al-Qaida and Taliban) (Amendment) Order 2011 (P.U.(A) 402/2011); • Anti-Money Laundering and Anti-Terrorism Financing (Security Council Resolution) (Al-Qaida and Taliban) (Amendment) Order 2013 (P.U.(A) 187/2013); • Anti-Money Laundering and Anti-Terrorism Financing (Security Council Resolutions) (Al-Qaida and Taliban) (Amendment) Order 2014 (P.U. (A) 255/2014); and • Other subsidiary legislations made under section 66C of the AMLA which may be issued by the Ministry of Home Affairs from time to time. | • Anti-Money Laundering and Anti-Terrorism Financing (Declaration of Specified Entities and Reporting Requirements) Order 2014 (P.U.(A)93/2014); • Anti-Money Laundering and Anti-Terrorism Financing (Declaration of Specified Entities and Reporting Requirements) (Amendment) Order 2014 (P.U.(A) 301/2014); and • Other subsidiary legislations made under section 66B of the AMLA which may be issued by the Ministry of Home Affairs from time to time.",
+      "content_text": "AMLA Provision | Section 66C | Section 66B\nListing | UNSCR List | Domestic List\nUNSC Resolutions | • UNSCR 1267 (1999) and UNSCR 1989 (2011) (Individuals and entities associated with Al-Qaida) • UNSCR 1988 (2011) and other subsequent resolutions (Individuals and entities associated with Taliban) • UNSCR 2253 (2015) and other subsequent resolutions (Individuals and entities associated with Islamic State in Iraq) | UNSCR 1373(2001)\nSubsidiary Legislation | • Anti-Money Laundering and Anti-Terrorism Financing (Security Council Resolution) (Al-Qaida and Taliban) (Amendment) Order 2011 (P.U.(A) 402/2011); • Anti-Money Laundering and Anti-Terrorism Financing (Security Council Resolution) (Al-Qaida and Taliban) (Amendment) Order 2013 (P.U.(A) 187/2013); • Anti-Money Laundering and Anti-Terrorism Financing (Security Council Resolutions) (Al-Qaida and Taliban) (Amendment) Order 2014 (P.U. (A) 255/2014); and • Other subsidiary legislations made under section 66C of the AMLA which may be issued by the Ministry of Home Affairs from time to time. | • Anti-Money Laundering and Anti-Terrorism Financing (Declaration of Specified Entities and Reporting Requirements) Order 2014 (P.U.(A)93/2014); • Anti-Money Laundering and Anti-Terrorism Financing (Declaration of Specified Entities and Reporting Requirements) (Amendment) Order 2014 (P.U.(A) 301/2014); and • Other subsidiary legislations made under section 66B of the AMLA which may be issued by the Ministry of Home Affairs from time to time.",
+      "token_count": 358,
+      "pages": [
+        86,
+        87
+      ],
+      "section_path": [
+        "APPENDIX D",
+        "The relevant legal instruments"
+      ],
+      "source_element_ids": [
+        "p86-e6",
+        "p87-e1"
+      ]
+    },
+    {
+      "rank": 10,
+      "chunk_id": "485c4989-c300-45c8-ac06-79a59492bb5c-c0241-57faa0c1ac",
+      "chunk_index": 241,
+      "semantic_type": "clause",
+      "reranker_score": 0.9562820792198181,
+      "hybrid_candidate_rank": 18,
+      "fusion_score": 0.014492753623188406,
+      "dense_rank": null,
+      "dense_score": null,
+      "dense_distance": null,
+      "dense_rrf_score": 0.0,
+      "lexical_rank": 9,
+      "lexical_score": 1.2,
+      "lexical_matched_term_count": 9,
+      "lexical_term_coverage": 0.8181818181818182,
+      "lexical_rrf_score": 0.014492753623188406,
+      "text": "Section: APPENDIX D > Obligation to freeze funds, properties or accounts\nGroup: Guidance on the Implementation of Targeted Financial Sanction in\nRelation to Terrorism Financing\n\n4.1 A reporting institution is required to freeze funds, properties or accounts that are\nowned or controlled directly and indirectly by the listed entities without delay2.\n\n4.2 Funds, properties or accounts that are owned or controlled indirectly by the listed\nentities includes situation where the listed entity is a director of a customer. In such\ninstance, once the reporting institution is satisfied that the director owns or controls\ndirectly or indirectly the funds, properties or accounts of the customer, the reporting\ninstitution is required to freeze the same without delay.\n\n4.3 The obligation to freeze funds, properties or accounts of a listed entity continues until\nthe person is delisted from the sanction lists. Even death of the listed entity is not a\nbasis for a reporting institution not to continue its freezing obligation.\n\n4.4 If an asset is owned or controlled by a listed entity and the interest owned or\ncontrolled by the listed party cannot be segregated, then the entire asset should be\nsubjected to freezing.\n\n4.5 Notwithstanding the funds, properties or accounts are frozen, a reporting institution\nmay continue receiving dividends, interests, or other benefits, but such benefits shall\nstill remain frozen, so long as the individuals or entities continue to be listed.\n\n4.6 However no outgoing payment should be made out from the frozen funds, properties\nor accounts, including payment of any fees or service charges for maintaining the\nfrozen funds without the approval of Minister of Home Affairs.",
+      "content_text": "4.1 A reporting institution is required to freeze funds, properties or accounts that are\nowned or controlled directly and indirectly by the listed entities without delay2.\n\n4.2 Funds, properties or accounts that are owned or controlled indirectly by the listed\nentities includes situation where the listed entity is a director of a customer. In such\ninstance, once the reporting institution is satisfied that the director owns or controls\ndirectly or indirectly the funds, properties or accounts of the customer, the reporting\ninstitution is required to freeze the same without delay.\n\n4.3 The obligation to freeze funds, properties or accounts of a listed entity continues until\nthe person is delisted from the sanction lists. Even death of the listed entity is not a\nbasis for a reporting institution not to continue its freezing obligation.\n\n4.4 If an asset is owned or controlled by a listed entity and the interest owned or\ncontrolled by the listed party cannot be segregated, then the entire asset should be\nsubjected to freezing.\n\n4.5 Notwithstanding the funds, properties or accounts are frozen, a reporting institution\nmay continue receiving dividends, interests, or other benefits, but such benefits shall\nstill remain frozen, so long as the individuals or entities continue to be listed.\n\n4.6 However no outgoing payment should be made out from the frozen funds, properties\nor accounts, including payment of any fees or service charges for maintaining the\nfrozen funds without the approval of Minister of Home Affairs.",
+      "token_count": 305,
+      "pages": [
+        89
+      ],
+      "section_path": [
+        "APPENDIX D",
+        "Obligation to freeze funds, properties or accounts"
+      ],
+      "source_element_ids": [
+        "p89-e3",
+        "p89-e4",
+        "p89-e5",
+        "p89-e6",
+        "p89-e7",
+        "p89-e8"
+      ]
+    }
+  ],
+  "context_strategy": "structural_one_hop_v1",
+  "context_recursive": false,
+  "context_same_section_required": true,
+  "context_max_forward_neighbors_per_seed": 2,
+  "context_max_backward_neighbors_per_seed": 1,
+  "context_max_page_gap": 1,
+  "context_max_chunks": 30,
+  "context_chunk_count": 11,
+  "expanded_chunk_count": 1,
+  "context_chunks": [
+    {
+      "context_order": 1,
+      "chunk_id": "485c4989-c300-45c8-ac06-79a59492bb5c-c0160-41189942a4",
+      "chunk_index": 160,
+      "semantic_type": "clause",
+      "source_rank": 1,
+      "ranked_seed_rank": 1,
+      "reasons": [
+        "ranked_seed"
+      ],
+      "attached_from_chunk_ids": [],
+      "text": "Section: PART VII: COMBATING TERRORISM FINANCING > 14 IDENTIFICATION AND DESIGNATION\n\n14.5 A reporting institution is required to submit a STR when there is an attempted\ntransaction by any of the listed persons.\n\n14.6 A reporting institution must ascertain potential matches with the UN Consolidated List\nto confirm whether they are true matches to eliminate any “false positives”. The\nreporting institution must make further enquiries from the customer or counterparty\n(where relevant) to assist in determining whether it is a true match.\n\n14.8 Appendix D provides the detailed obligations of a reporting institution for the\nimplementation of the targeted financial sanctions in relation to terrorism financing.",
+      "content_text": "14.5 A reporting institution is required to submit a STR when there is an attempted\ntransaction by any of the listed persons.\n\n14.6 A reporting institution must ascertain potential matches with the UN Consolidated List\nto confirm whether they are true matches to eliminate any “false positives”. The\nreporting institution must make further enquiries from the customer or counterparty\n(where relevant) to assist in determining whether it is a true match.\n\n14.8 Appendix D provides the detailed obligations of a reporting institution for the\nimplementation of the targeted financial sanctions in relation to terrorism financing.",
+      "token_count": 122,
+      "pages": [
+        61
+      ],
+      "section_path": [
+        "PART VII: COMBATING TERRORISM FINANCING",
+        "14 IDENTIFICATION AND DESIGNATION"
+      ],
+      "source_element_ids": [
+        "p61-e4",
+        "p61-e5",
+        "p61-e9"
+      ]
+    },
+    {
+      "context_order": 2,
+      "chunk_id": "485c4989-c300-45c8-ac06-79a59492bb5c-c0234-35c92911bb",
+      "chunk_index": 234,
+      "semantic_type": "clause",
+      "source_rank": 2,
+      "ranked_seed_rank": 2,
+      "reasons": [
+        "ranked_seed"
+      ],
+      "attached_from_chunk_ids": [],
+      "text": "Section: APPENDIX D > The relevant legal instruments\nClause: 1.1\nGroup: Guidance on the Implementation of Targeted Financial Sanction in\nRelation to Terrorism Financing\n\n1.1 Malaysia as a member of the United Nations has an obligation to implement all the\nResolutions passed in relation to TFS-TF. The UNSCR relating to terrorism financing\nare implemented pursuant to section 66B and section 66C of the AMLA by publication\nin the gazette by the Minister of Home Affairs.",
+      "content_text": "1.1 Malaysia as a member of the United Nations has an obligation to implement all the\nResolutions passed in relation to TFS-TF. The UNSCR relating to terrorism financing\nare implemented pursuant to section 66B and section 66C of the AMLA by publication\nin the gazette by the Minister of Home Affairs.",
+      "token_count": 86,
+      "pages": [
+        86
+      ],
+      "section_path": [
+        "APPENDIX D",
+        "The relevant legal instruments"
+      ],
+      "source_element_ids": [
+        "p86-e4"
+      ]
+    },
+    {
+      "context_order": 3,
+      "chunk_id": "485c4989-c300-45c8-ac06-79a59492bb5c-c0245-2a27d3f444",
+      "chunk_index": 245,
+      "semantic_type": "table",
+      "source_rank": 3,
+      "ranked_seed_rank": 3,
+      "reasons": [
+        "ranked_seed"
+      ],
+      "attached_from_chunk_ids": [],
+      "text": "Section: APPENDIX D > Reporting requirements\nGroup: Guidance on the Implementation of Targeted Financial Sanction in\nRelation to Terrorism Financing\n\nList | UNSCR List | Domestic List\nReporting intervals | Every 31 January | Every 31 May and\n | and 31 July | 30 November",
+      "content_text": "List | UNSCR List | Domestic List\nReporting intervals | Every 31 January | Every 31 May and\n | and 31 July | 30 November",
+      "token_count": 47,
+      "pages": [
+        90
+      ],
+      "section_path": [
+        "APPENDIX D",
+        "Reporting requirements"
+      ],
+      "source_element_ids": [
+        "p90-e6"
+      ]
+    },
+    {
+      "context_order": 4,
+      "chunk_id": "485c4989-c300-45c8-ac06-79a59492bb5c-c0247-4fb1eeef28",
+      "chunk_index": 247,
+      "semantic_type": "paragraph",
+      "source_rank": 4,
+      "ranked_seed_rank": 4,
+      "reasons": [
+        "ranked_seed"
+      ],
+      "attached_from_chunk_ids": [],
+      "text": "Section: APPENDIX D > False positives\nGroup: Guidance on the Implementation of Targeted Financial Sanction in\nRelation to Terrorism Financing\n\nThe contact point for the Ministry of Home Affairs in relation to targeted financial sanctions on\nterrorism financing is:",
+      "content_text": "The contact point for the Ministry of Home Affairs in relation to targeted financial sanctions on\nterrorism financing is:",
+      "token_count": 42,
+      "pages": [
+        91
+      ],
+      "section_path": [
+        "APPENDIX D",
+        "False positives"
+      ],
+      "source_element_ids": [
+        "p91-e1"
+      ]
+    },
+    {
+      "context_order": 5,
+      "chunk_id": "485c4989-c300-45c8-ac06-79a59492bb5c-c0007-22ed76c058",
+      "chunk_index": 7,
+      "semantic_type": "clause",
+      "source_rank": 5,
+      "ranked_seed_rank": 5,
+      "reasons": [
+        "ranked_seed"
+      ],
+      "attached_from_chunk_ids": [],
+      "text": "Section: PART I: INTRODUCTION AND APPLICABILITY > 1.0 INTRODUCTION\n\n1.2 These Guidelines are drawn up in accordance with the AMLA and the Financial Action Task\nForce (FATF) 40 Recommendations.\n\n1Regulation 3 of Strategic Trade (United Nations Security Council Resolutions) Regulations 2010 (P.U. (A) 481/2010) is set out in\nAppendix G of these Guidelines.\n\n1.3 These Guidelines provide:\n\n(a)requirements and obligations imposed on reporting institutions in preventing and\ncombating money laundering, terrorism financing, proliferation financing and\ntargeted financial sanctions; and\n\n(b)guidance for reporting institutions to comply with the obligations imposed under the\nAMLA and TFS-PF.\n\n1.4 These Guidelines supersede and replace the Guidelines on Implementation of Targeted\nFinancial Sanctions Relating to Proliferation Financing for Capital Markets.\n\n1.5 These Guidelines are made in addition to and not in derogation of any other guidelines\nissued by the Securities Commission Malaysia (SC) or any requirements as provided under\nthe securities laws and the AMLA. Therefore, a reporting institution must comply with\nother relevant guidelines and requirements.\n\n1.6 A reporting institution that is jointly regulated by Bank Negara Malaysia (BNM) and the\nSC, is required to comply with these Guidelines and the Anti-Money Laundering,\nCountering Financing of Terrorism, Countering Proliferation Financing and Targeted\nFinancial Sanctions for Financial Institutions (AML/CFT and TFS for FIs) issued by BNM.\nWhere there are differing requirements between the said guidelines, the more stringent\nrequirements shall apply.\n\n1.7 Non-compliance with any of the provisions in these Guidelines will subject the reporting\ninstitution to actions under the AMLA, Capital Markets and Services Act 2007 (CMSA) or\nany other relevant provisions under the laws of which these Guidelines are subject to.\nEnforcement actions can be taken against the reporting institutions including its directors,\nofficers, representatives, employees for any non-compliance with any requirements in these\nGuidelines.",
+      "content_text": "1.2 These Guidelines are drawn up in accordance with the AMLA and the Financial Action Task\nForce (FATF) 40 Recommendations.\n\n1Regulation 3 of Strategic Trade (United Nations Security Council Resolutions) Regulations 2010 (P.U. (A) 481/2010) is set out in\nAppendix G of these Guidelines.\n\n1.3 These Guidelines provide:\n\n(a)requirements and obligations imposed on reporting institutions in preventing and\ncombating money laundering, terrorism financing, proliferation financing and\ntargeted financial sanctions; and\n\n(b)guidance for reporting institutions to comply with the obligations imposed under the\nAMLA and TFS-PF.\n\n1.4 These Guidelines supersede and replace the Guidelines on Implementation of Targeted\nFinancial Sanctions Relating to Proliferation Financing for Capital Markets.\n\n1.5 These Guidelines are made in addition to and not in derogation of any other guidelines\nissued by the Securities Commission Malaysia (SC) or any requirements as provided under\nthe securities laws and the AMLA. Therefore, a reporting institution must comply with\nother relevant guidelines and requirements.\n\n1.6 A reporting institution that is jointly regulated by Bank Negara Malaysia (BNM) and the\nSC, is required to comply with these Guidelines and the Anti-Money Laundering,\nCountering Financing of Terrorism, Countering Proliferation Financing and Targeted\nFinancial Sanctions for Financial Institutions (AML/CFT and TFS for FIs) issued by BNM.\nWhere there are differing requirements between the said guidelines, the more stringent\nrequirements shall apply.\n\n1.7 Non-compliance with any of the provisions in these Guidelines will subject the reporting\ninstitution to actions under the AMLA, Capital Markets and Services Act 2007 (CMSA) or\nany other relevant provisions under the laws of which these Guidelines are subject to.\nEnforcement actions can be taken against the reporting institutions including its directors,\nofficers, representatives, employees for any non-compliance with any requirements in these\nGuidelines.",
+      "token_count": 368,
+      "pages": [
+        6,
+        7
+      ],
+      "section_path": [
+        "PART I: INTRODUCTION AND APPLICABILITY",
+        "1.0 INTRODUCTION"
+      ],
+      "source_element_ids": [
+        "p6-e11",
+        "p6-e12",
+        "p7-e1",
+        "p7-e2",
+        "p7-e3",
+        "p7-e4",
+        "p7-e5",
+        "p7-e6",
+        "p7-e7"
+      ]
+    },
+    {
+      "context_order": 6,
+      "chunk_id": "485c4989-c300-45c8-ac06-79a59492bb5c-c0242-6008df2d99",
+      "chunk_index": 242,
+      "semantic_type": "clause",
+      "source_rank": 6,
+      "ranked_seed_rank": null,
+      "reasons": [
+        "preceding_intro"
+      ],
+      "attached_from_chunk_ids": [
+        "485c4989-c300-45c8-ac06-79a59492bb5c-c0243-50a6e75db4"
+      ],
+      "text": "Section: APPENDIX D > Reporting requirements\nClause: 5.1\nGroup: Guidance on the Implementation of Targeted Financial Sanction in\nRelation to Terrorism Financing\n\n5.1 Once a reporting institution determines that it is in the possession of funds, properties\nor accounts that are owned or controlled by or on behalf of the listed entity, the\nreporting institution is required to report to the following authorities. This obligation\nalso extends to any attempted transactions undertaken by listed entities or related\nparties:\n\n2According to FATF, without delay is defined to be ideally within a matter of hours of designation by the United\nNations Security Council.",
+      "content_text": "5.1 Once a reporting institution determines that it is in the possession of funds, properties\nor accounts that are owned or controlled by or on behalf of the listed entity, the\nreporting institution is required to report to the following authorities. This obligation\nalso extends to any attempted transactions undertaken by listed entities or related\nparties:\n\n2According to FATF, without delay is defined to be ideally within a matter of hours of designation by the United\nNations Security Council.",
+      "token_count": 114,
+      "pages": [
+        89
+      ],
+      "section_path": [
+        "APPENDIX D",
+        "Reporting requirements"
+      ],
+      "source_element_ids": [
+        "p89-e10",
+        "p89-e11"
+      ]
+    },
+    {
+      "context_order": 7,
+      "chunk_id": "485c4989-c300-45c8-ac06-79a59492bb5c-c0243-50a6e75db4",
+      "chunk_index": 243,
+      "semantic_type": "table",
+      "source_rank": 6,
+      "ranked_seed_rank": 6,
+      "reasons": [
+        "ranked_seed"
+      ],
+      "attached_from_chunk_ids": [],
+      "text": "Section: APPENDIX D > Reporting requirements\nGroup: Guidance on the Implementation of Targeted Financial Sanction in\nRelation to Terrorism Financing\n\nNo. | Authority | Source of obligation\n1. | SC as the relevant Supervisory Authority | • Section 66D(2) of AMLA • Section 66E of AMLA • Paragraph 14.3 (d) of the Guidelines\n2. | FIED, Bank Negara Malaysia [as STR] | • Paragraph 14.3 (c) of the Guidelines\n3. | Inspector-General of Police | • Section 66B(3)(d) of the AMLA",
+      "content_text": "No. | Authority | Source of obligation\n1. | SC as the relevant Supervisory Authority | • Section 66D(2) of AMLA • Section 66E of AMLA • Paragraph 14.3 (d) of the Guidelines\n2. | FIED, Bank Negara Malaysia [as STR] | • Paragraph 14.3 (c) of the Guidelines\n3. | Inspector-General of Police | • Section 66B(3)(d) of the AMLA",
+      "token_count": 109,
+      "pages": [
+        90
+      ],
+      "section_path": [
+        "APPENDIX D",
+        "Reporting requirements"
+      ],
+      "source_element_ids": [
+        "p90-e1"
+      ]
+    },
+    {
+      "context_order": 8,
+      "chunk_id": "485c4989-c300-45c8-ac06-79a59492bb5c-c0240-790411c67b",
+      "chunk_index": 240,
+      "semantic_type": "clause",
+      "source_rank": 7,
+      "ranked_seed_rank": 7,
+      "reasons": [
+        "ranked_seed"
+      ],
+      "attached_from_chunk_ids": [],
+      "text": "Section: APPENDIX D > Obligation to conduct screening on customers\nClause: 3.3\nGroup: Guidance on the Implementation of Targeted Financial Sanction in\nRelation to Terrorism Financing\n\n3.3 The obligation to conduct screening on customers also includes fund derived from\nproperty owned or controlled directly or indirectly by the listed entities or by persons\nacting on their behalf or at their discretion (related parties). Therefore, a reporting\ninstitution must also conduct checks on–\n\n(a) relationship and transactions connected with the listed entities;\n\n(b) properties or accounts that are jointly owned and/or indirectly controlled by\nthe listed entities; and\n\n(c) parties related to the frozen accounts including beneficial owners, signatories,\npower of attorney relationships, guarantors, nominees, trustees, assignees and\npayors.",
+      "content_text": "3.3 The obligation to conduct screening on customers also includes fund derived from\nproperty owned or controlled directly or indirectly by the listed entities or by persons\nacting on their behalf or at their discretion (related parties). Therefore, a reporting\ninstitution must also conduct checks on–\n\n(a) relationship and transactions connected with the listed entities;\n\n(b) properties or accounts that are jointly owned and/or indirectly controlled by\nthe listed entities; and\n\n(c) parties related to the frozen accounts including beneficial owners, signatories,\npower of attorney relationships, guarantors, nominees, trustees, assignees and\npayors.",
+      "token_count": 147,
+      "pages": [
+        88
+      ],
+      "section_path": [
+        "APPENDIX D",
+        "Obligation to conduct screening on customers"
+      ],
+      "source_element_ids": [
+        "p88-e10",
+        "p88-e11",
+        "p88-e12",
+        "p88-e13"
+      ]
+    },
+    {
+      "context_order": 9,
+      "chunk_id": "485c4989-c300-45c8-ac06-79a59492bb5c-c0235-8ccfd3b8c3",
+      "chunk_index": 235,
+      "semantic_type": "clause",
+      "source_rank": 8,
+      "ranked_seed_rank": 8,
+      "reasons": [
+        "ranked_seed",
+        "preceding_intro"
+      ],
+      "attached_from_chunk_ids": [
+        "485c4989-c300-45c8-ac06-79a59492bb5c-c0236-63f196d79f"
+      ],
+      "text": "Section: APPENDIX D > The relevant legal instruments\nClause: 1.2\nGroup: Guidance on the Implementation of Targeted Financial Sanction in\nRelation to Terrorism Financing\n\n1.2 In implementing TFS-TF, a reporting institution should refer to the relevant legal\ninstruments as stated below:",
+      "content_text": "1.2 In implementing TFS-TF, a reporting institution should refer to the relevant legal\ninstruments as stated below:",
+      "token_count": 52,
+      "pages": [
+        86
+      ],
+      "section_path": [
+        "APPENDIX D",
+        "The relevant legal instruments"
+      ],
+      "source_element_ids": [
+        "p86-e5"
+      ]
+    },
+    {
+      "context_order": 10,
+      "chunk_id": "485c4989-c300-45c8-ac06-79a59492bb5c-c0236-63f196d79f",
+      "chunk_index": 236,
+      "semantic_type": "table",
+      "source_rank": 8,
+      "ranked_seed_rank": 9,
+      "reasons": [
+        "ranked_seed",
+        "following_table"
+      ],
+      "attached_from_chunk_ids": [
+        "485c4989-c300-45c8-ac06-79a59492bb5c-c0235-8ccfd3b8c3"
+      ],
+      "text": "Section: APPENDIX D > The relevant legal instruments\nGroup: Guidance on the Implementation of Targeted Financial Sanction in\nRelation to Terrorism Financing\n\nAMLA Provision | Section 66C | Section 66B\nListing | UNSCR List | Domestic List\nUNSC Resolutions | • UNSCR 1267 (1999) and UNSCR 1989 (2011) (Individuals and entities associated with Al-Qaida) • UNSCR 1988 (2011) and other subsequent resolutions (Individuals and entities associated with Taliban) • UNSCR 2253 (2015) and other subsequent resolutions (Individuals and entities associated with Islamic State in Iraq) | UNSCR 1373(2001)\nSubsidiary Legislation | • Anti-Money Laundering and Anti-Terrorism Financing (Security Council Resolution) (Al-Qaida and Taliban) (Amendment) Order 2011 (P.U.(A) 402/2011); • Anti-Money Laundering and Anti-Terrorism Financing (Security Council Resolution) (Al-Qaida and Taliban) (Amendment) Order 2013 (P.U.(A) 187/2013); • Anti-Money Laundering and Anti-Terrorism Financing (Security Council Resolutions) (Al-Qaida and Taliban) (Amendment) Order 2014 (P.U. (A) 255/2014); and • Other subsidiary legislations made under section 66C of the AMLA which may be issued by the Ministry of Home Affairs from time to time. | • Anti-Money Laundering and Anti-Terrorism Financing (Declaration of Specified Entities and Reporting Requirements) Order 2014 (P.U.(A)93/2014); • Anti-Money Laundering and Anti-Terrorism Financing (Declaration of Specified Entities and Reporting Requirements) (Amendment) Order 2014 (P.U.(A) 301/2014); and • Other subsidiary legislations made under section 66B of the AMLA which may be issued by the Ministry of Home Affairs from time to time.",
+      "content_text": "AMLA Provision | Section 66C | Section 66B\nListing | UNSCR List | Domestic List\nUNSC Resolutions | • UNSCR 1267 (1999) and UNSCR 1989 (2011) (Individuals and entities associated with Al-Qaida) • UNSCR 1988 (2011) and other subsequent resolutions (Individuals and entities associated with Taliban) • UNSCR 2253 (2015) and other subsequent resolutions (Individuals and entities associated with Islamic State in Iraq) | UNSCR 1373(2001)\nSubsidiary Legislation | • Anti-Money Laundering and Anti-Terrorism Financing (Security Council Resolution) (Al-Qaida and Taliban) (Amendment) Order 2011 (P.U.(A) 402/2011); • Anti-Money Laundering and Anti-Terrorism Financing (Security Council Resolution) (Al-Qaida and Taliban) (Amendment) Order 2013 (P.U.(A) 187/2013); • Anti-Money Laundering and Anti-Terrorism Financing (Security Council Resolutions) (Al-Qaida and Taliban) (Amendment) Order 2014 (P.U. (A) 255/2014); and • Other subsidiary legislations made under section 66C of the AMLA which may be issued by the Ministry of Home Affairs from time to time. | • Anti-Money Laundering and Anti-Terrorism Financing (Declaration of Specified Entities and Reporting Requirements) Order 2014 (P.U.(A)93/2014); • Anti-Money Laundering and Anti-Terrorism Financing (Declaration of Specified Entities and Reporting Requirements) (Amendment) Order 2014 (P.U.(A) 301/2014); and • Other subsidiary legislations made under section 66B of the AMLA which may be issued by the Ministry of Home Affairs from time to time.",
+      "token_count": 358,
+      "pages": [
+        86,
+        87
+      ],
+      "section_path": [
+        "APPENDIX D",
+        "The relevant legal instruments"
+      ],
+      "source_element_ids": [
+        "p86-e6",
+        "p87-e1"
+      ]
+    },
+    {
+      "context_order": 11,
+      "chunk_id": "485c4989-c300-45c8-ac06-79a59492bb5c-c0241-57faa0c1ac",
+      "chunk_index": 241,
+      "semantic_type": "clause",
+      "source_rank": 10,
+      "ranked_seed_rank": 10,
+      "reasons": [
+        "ranked_seed"
+      ],
+      "attached_from_chunk_ids": [],
+      "text": "Section: APPENDIX D > Obligation to freeze funds, properties or accounts\nGroup: Guidance on the Implementation of Targeted Financial Sanction in\nRelation to Terrorism Financing\n\n4.1 A reporting institution is required to freeze funds, properties or accounts that are\nowned or controlled directly and indirectly by the listed entities without delay2.\n\n4.2 Funds, properties or accounts that are owned or controlled indirectly by the listed\nentities includes situation where the listed entity is a director of a customer. In such\ninstance, once the reporting institution is satisfied that the director owns or controls\ndirectly or indirectly the funds, properties or accounts of the customer, the reporting\ninstitution is required to freeze the same without delay.\n\n4.3 The obligation to freeze funds, properties or accounts of a listed entity continues until\nthe person is delisted from the sanction lists. Even death of the listed entity is not a\nbasis for a reporting institution not to continue its freezing obligation.\n\n4.4 If an asset is owned or controlled by a listed entity and the interest owned or\ncontrolled by the listed party cannot be segregated, then the entire asset should be\nsubjected to freezing.\n\n4.5 Notwithstanding the funds, properties or accounts are frozen, a reporting institution\nmay continue receiving dividends, interests, or other benefits, but such benefits shall\nstill remain frozen, so long as the individuals or entities continue to be listed.\n\n4.6 However no outgoing payment should be made out from the frozen funds, properties\nor accounts, including payment of any fees or service charges for maintaining the\nfrozen funds without the approval of Minister of Home Affairs.",
+      "content_text": "4.1 A reporting institution is required to freeze funds, properties or accounts that are\nowned or controlled directly and indirectly by the listed entities without delay2.\n\n4.2 Funds, properties or accounts that are owned or controlled indirectly by the listed\nentities includes situation where the listed entity is a director of a customer. In such\ninstance, once the reporting institution is satisfied that the director owns or controls\ndirectly or indirectly the funds, properties or accounts of the customer, the reporting\ninstitution is required to freeze the same without delay.\n\n4.3 The obligation to freeze funds, properties or accounts of a listed entity continues until\nthe person is delisted from the sanction lists. Even death of the listed entity is not a\nbasis for a reporting institution not to continue its freezing obligation.\n\n4.4 If an asset is owned or controlled by a listed entity and the interest owned or\ncontrolled by the listed party cannot be segregated, then the entire asset should be\nsubjected to freezing.\n\n4.5 Notwithstanding the funds, properties or accounts are frozen, a reporting institution\nmay continue receiving dividends, interests, or other benefits, but such benefits shall\nstill remain frozen, so long as the individuals or entities continue to be listed.\n\n4.6 However no outgoing payment should be made out from the frozen funds, properties\nor accounts, including payment of any fees or service charges for maintaining the\nfrozen funds without the approval of Minister of Home Affairs.",
+      "token_count": 305,
+      "pages": [
+        89
+      ],
+      "section_path": [
+        "APPENDIX D",
+        "Obligation to freeze funds, properties or accounts"
+      ],
+      "source_element_ids": [
+        "p89-e3",
+        "p89-e4",
+        "p89-e5",
+        "p89-e6",
+        "p89-e7",
+        "p89-e8"
+      ]
+    }
+  ]
+}

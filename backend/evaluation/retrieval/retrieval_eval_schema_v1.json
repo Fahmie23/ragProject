@@ -1,0 +1,129 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "retrieval_eval_schema_v1.json",
+  "title": "SC AML/CFT Retrieval Evaluation Dataset v1",
+  "type": "object",
+  "required": [
+    "schema_version",
+    "dataset_id",
+    "document",
+    "chunk_corpus",
+    "split_policy",
+    "relevance_policy",
+    "counts",
+    "questions"
+  ],
+  "properties": {
+    "schema_version": {
+      "const": "1.0"
+    },
+    "dataset_id": {
+      "type": "string"
+    },
+    "document": {
+      "type": "object",
+      "required": [
+        "document_id",
+        "source_sha256",
+        "pdf_page_count"
+      ],
+      "properties": {
+        "document_id": {
+          "type": "string"
+        },
+        "source_sha256": {
+          "type": "string",
+          "pattern": "^[0-9a-f]{64}$"
+        },
+        "pdf_page_count": {
+          "type": "integer",
+          "minimum": 1
+        }
+      }
+    },
+    "questions": {
+      "type": "array",
+      "minItems": 30,
+      "maxItems": 40,
+      "items": {
+        "type": "object",
+        "required": [
+          "question_id",
+          "split",
+          "category",
+          "difficulty",
+          "question",
+          "answerable",
+          "source",
+          "gold"
+        ],
+        "properties": {
+          "question_id": {
+            "type": "string",
+            "pattern": "^RET-[0-9]{3}$"
+          },
+          "split": {
+            "enum": [
+              "dev",
+              "heldout"
+            ]
+          },
+          "category": {
+            "enum": [
+              "definition",
+              "direct_requirement",
+              "paraphrase",
+              "multi_clause",
+              "table_form",
+              "appendix",
+              "cross_page",
+              "exception_condition",
+              "cross_reference"
+            ]
+          },
+          "difficulty": {
+            "enum": [
+              "easy",
+              "medium",
+              "hard"
+            ]
+          },
+          "question": {
+            "type": "string",
+            "minLength": 10
+          },
+          "answerable": {
+            "const": true
+          },
+          "gold": {
+            "type": "object",
+            "required": [
+              "primary_chunk_ids",
+              "supporting_chunk_ids",
+              "required_evidence_groups"
+            ],
+            "properties": {
+              "primary_chunk_ids": {
+                "type": "array",
+                "minItems": 1,
+                "items": {
+                  "type": "string"
+                }
+              },
+              "supporting_chunk_ids": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              },
+              "required_evidence_groups": {
+                "type": "array",
+                "minItems": 1
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

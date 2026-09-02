@@ -1,0 +1,15 @@
+Stage 10.2 realistic Appendix I replay
+
+Input condition simulated from the Stage 10.1 live failure:
+- source: page-107 reporting table p107-e7
+- direct source-element appendix_id removed
+- APPENDIX I AppendixRecord removed
+- canonical SectionRecord(kind="appendix", title="APPENDIX I") retained
+- nested section REPORTING UPON DETERMINATION retained
+
+Resolved locators:
+- appendix: APPENDIX I, page 107, source_element_ids=[p107-e7]
+- section: REPORTING UPON DETERMINATION, page 107, source_element_ids=[p107-e7]
+
+Rendered display:
+APPENDIX I · REPORTING UPON DETERMINATION · PDF p. 107

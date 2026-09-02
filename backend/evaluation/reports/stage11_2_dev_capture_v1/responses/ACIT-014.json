@@ -1,0 +1,239 @@
+{
+  "document_id": "485c4989-c300-45c8-ac06-79a59492bb5c",
+  "question": "According to Appendix B, which family members are expressly included for a PEP?",
+  "status": "answered",
+  "answer": "Appendix B defines a family member of a PEP to include the PEP’s parents, siblings, spouse, child, and spouse’s parents (both biological and non‑biological).",
+  "cited_answer": "Appendix B defines a family member of a PEP to include the PEP’s parents, siblings, spouse, child, and spouse’s parents (both biological and non‑biological). [1]",
+  "claims": [
+    {
+      "claim_id": "C1",
+      "text": "Appendix B defines a family member of a PEP to include the PEP’s parents, siblings, spouse, child, and spouse’s parents (both biological and non‑biological).",
+      "evidence_ids": [
+        "E1"
+      ],
+      "citation_ids": [
+        "CIT-E1"
+      ]
+    }
+  ],
+  "used_evidence_ids": [
+    "E1"
+  ],
+  "missing_information": [],
+  "evidence": [
+    {
+      "evidence_id": "E1",
+      "chunk_id": "485c4989-c300-45c8-ac06-79a59492bb5c-c0218-b1b0309b9d",
+      "chunk_index": 218,
+      "semantic_type": "clause",
+      "source_rank": 1,
+      "ranked_seed_rank": 1,
+      "reasons": [
+        "ranked_seed"
+      ],
+      "pages": [
+        82
+      ],
+      "section_path": [
+        "APPENDIX B",
+        "Family Members of a PEP"
+      ],
+      "source_element_ids": [
+        "p82-e6",
+        "p82-e7",
+        "p82-e8",
+        "p82-e9",
+        "p82-e10",
+        "p82-e11",
+        "p82-e12",
+        "p82-e13"
+      ],
+      "content_text": "1.3 Family members are individuals who are related to a PEP either directly\n(consanguinity) or through marriage.\n\n1.4 A family member of the PEP includes the PEP’s:\n\n(a)parents*;\n\n(b)siblings*\n\n(c)spouse;\n\n(d)child*; or\n\n(e)spouse's parents*;\n\n(*) covers both biological and non-biological relationship."
+    },
+    {
+      "evidence_id": "E2",
+      "chunk_id": "485c4989-c300-45c8-ac06-79a59492bb5c-c0219-45a98d0a5f",
+      "chunk_index": 219,
+      "semantic_type": "clause",
+      "source_rank": 2,
+      "ranked_seed_rank": 2,
+      "reasons": [
+        "ranked_seed"
+      ],
+      "pages": [
+        82
+      ],
+      "section_path": [
+        "APPENDIX B",
+        "Close Associates of a PEP"
+      ],
+      "source_element_ids": [
+        "p82-e15",
+        "p82-e16",
+        "p82-e17"
+      ],
+      "content_text": "1.5 A close associate is an individual reasonably known to the reporting institution to be\nclosely connected to a PEP, either socially or professionally.\n\n1.6 An individual who is closely connected to a PEP may include the PEP’s business\npartners or associates, extended family members, close friends and financially\ndependent individuals.\n\n1.7 Reporting institutions must determine the extent to which the close associate is directly\nengaged or involved in the activity of the PEP on best effort basis."
+    },
+    {
+      "evidence_id": "E3",
+      "chunk_id": "485c4989-c300-45c8-ac06-79a59492bb5c-c0220-2bf2d573f8",
+      "chunk_index": 220,
+      "semantic_type": "paragraph",
+      "source_rank": 3,
+      "ranked_seed_rank": 3,
+      "reasons": [
+        "ranked_seed"
+      ],
+      "pages": [
+        83
+      ],
+      "section_path": [
+        "APPENDIX B",
+        "Applicable CDD or Enhanced CDD Measures"
+      ],
+      "source_element_ids": [
+        "p83-e2"
+      ],
+      "content_text": "Family Member or Close Associate of a Foreign PEP"
+    },
+    {
+      "evidence_id": "E4",
+      "chunk_id": "485c4989-c300-45c8-ac06-79a59492bb5c-c0217-17d27e7da1",
+      "chunk_index": 217,
+      "semantic_type": "clause",
+      "source_rank": 4,
+      "ranked_seed_rank": 4,
+      "reasons": [
+        "ranked_seed"
+      ],
+      "pages": [
+        82
+      ],
+      "section_path": [
+        "APPENDIX B"
+      ],
+      "source_element_ids": [
+        "p82-e3",
+        "p82-e4"
+      ],
+      "content_text": "1.1 The requirements imposed on PEP also extend to family members and close associates\nof a PEP.\n\n1.2 A reporting institution is required to effectively identify family members or close\nassociates of a PEP."
+    },
+    {
+      "evidence_id": "E5",
+      "chunk_id": "485c4989-c300-45c8-ac06-79a59492bb5c-c0229-c4c6ef7a69",
+      "chunk_index": 229,
+      "semantic_type": "clause",
+      "source_rank": 5,
+      "ranked_seed_rank": 5,
+      "reasons": [
+        "ranked_seed"
+      ],
+      "pages": [
+        84
+      ],
+      "section_path": [
+        "APPENDIX B",
+        "Extent of Application of Family Member or Close Associate of a PEP"
+      ],
+      "source_element_ids": [
+        "p84-e8"
+      ],
+      "content_text": "1.15 A reporting institution should apply appropriate risk assessment on family members\nor close associates of a PE P who no longer holds prominent public function."
+    }
+  ],
+  "citations": [
+    {
+      "citation_id": "CIT-E1",
+      "marker": "[1]",
+      "evidence_id": "E1",
+      "chunk_id": "485c4989-c300-45c8-ac06-79a59492bb5c-c0218-b1b0309b9d",
+      "chunk_index": 218,
+      "source_filename": "sc_aml_cft.pdf",
+      "display": "APPENDIX B · Clause 1.3 · Clause 1.4 · PDF p. 82",
+      "pages": [
+        82
+      ],
+      "section_path": [
+        "APPENDIX B",
+        "Family Members of a PEP"
+      ],
+      "source_element_ids": [
+        "p82-e6",
+        "p82-e7",
+        "p82-e8",
+        "p82-e9",
+        "p82-e10",
+        "p82-e11",
+        "p82-e12",
+        "p82-e13"
+      ],
+      "locators": [
+        {
+          "kind": "appendix",
+          "label": "APPENDIX B",
+          "pages": [
+            82
+          ],
+          "source_element_ids": [
+            "p82-e6",
+            "p82-e7",
+            "p82-e8",
+            "p82-e9",
+            "p82-e10",
+            "p82-e11",
+            "p82-e12",
+            "p82-e13"
+          ]
+        },
+        {
+          "kind": "clause",
+          "label": "Clause 1.3",
+          "pages": [
+            82
+          ],
+          "source_element_ids": [
+            "p82-e6"
+          ]
+        },
+        {
+          "kind": "clause",
+          "label": "Clause 1.4",
+          "pages": [
+            82
+          ],
+          "source_element_ids": [
+            "p82-e7"
+          ]
+        }
+      ],
+      "validation_status": "valid"
+    }
+  ],
+  "citation_version": "deterministic_citations_v1_2",
+  "citation_validation": {
+    "status": "valid",
+    "citation_count": 1,
+    "valid_citation_count": 1,
+    "errors": []
+  },
+  "generation_provider": "groq",
+  "generation_model": "openai/gpt-oss-120b",
+  "prompt_version": "grounded_claims_v1",
+  "generation_temperature": 0.0,
+  "generation_max_tokens": 1200,
+  "generation_json_mode": true,
+  "usage": {
+    "prompt_tokens": 1066,
+    "completion_tokens": 244,
+    "total_tokens": 1310
+  },
+  "retrieval_profile": "retrieval_v1_stage8_2_top5",
+  "retrieval_top_k": 5,
+  "retrieval_candidate_k": 20,
+  "retrieval_rrf_k": 60,
+  "retrieval_dense_weight": 1.0,
+  "retrieval_lexical_weight": 1.0,
+  "context_strategy": "structural_one_hop_v1",
+  "context_chunk_count": 5,
+  "expanded_chunk_count": 0
+}

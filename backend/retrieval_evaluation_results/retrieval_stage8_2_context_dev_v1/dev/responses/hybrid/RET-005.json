@@ -1,0 +1,390 @@
+{
+  "document_id": "485c4989-c300-45c8-ac06-79a59492bb5c",
+  "query": "Which activities or operations cause a natural or legal person to fall within the Guidelines' definition of a Virtual Asset Service Provider (VASP)?",
+  "embedding_model": "BAAI/bge-m3",
+  "requested_device": "auto",
+  "resolved_device": "cuda",
+  "top_k": 10,
+  "candidate_k": 20,
+  "embedded_chunk_count": 284,
+  "total_chunk_count": 284,
+  "fusion_method": "reciprocal_rank_fusion",
+  "rrf_k": 60,
+  "dense_weight": 1.0,
+  "lexical_weight": 1.0,
+  "lexical_ranking_method": "postgresql_fts_term_coverage_then_ts_rank_cd",
+  "lexical_query_mode": "or_content_terms_v1",
+  "lexical_terms": [
+    "activities",
+    "operations",
+    "cause",
+    "natural",
+    "legal",
+    "person",
+    "fall",
+    "within",
+    "guidelines",
+    "definition",
+    "virtual",
+    "asset",
+    "service",
+    "provider",
+    "vasp"
+  ],
+  "lexical_tsquery": "activities | operations | cause | natural | legal | person | fall | within | guidelines | definition | virtual | asset | service | provider | vasp",
+  "hits": [
+    {
+      "rank": 1,
+      "chunk_id": "485c4989-c300-45c8-ac06-79a59492bb5c-c0047-9980cdd046",
+      "chunk_index": 47,
+      "semantic_type": "definition",
+      "fusion_score": 0.03278688524590164,
+      "dense_rank": 1,
+      "dense_score": 0.759625091575082,
+      "dense_distance": 0.24037490842491804,
+      "dense_rrf_score": 0.01639344262295082,
+      "lexical_rank": 1,
+      "lexical_score": 3.3,
+      "lexical_matched_term_count": 11,
+      "lexical_term_coverage": 0.7333333333333333,
+      "lexical_rrf_score": 0.01639344262295082,
+      "text": "Section: PART I: INTRODUCTION AND APPLICABILITY > 3. DEFINITIONS\nDefinition: Virtual Asset Service Providers (VASP)\n\nVirtual Asset Service Providers (VASP)\n\nmeans any natural or legal person who is not covered elsewhere under the FATF Recommendations, and as a business conducts one or more of the following activities or operations for on behalf of another natural or legal person:\n(a)exchange between virtual assets and fiat currencies;\n(b)exchange between one or more forms of virtual assets;\n(c)transfer of virtual assets;\n(d)safekeeping and/or administration of virtual assets or instruments enabling\ncontrol over virtual assets; and\n(e)participation in and provision of financial services related to an issuer’s offer and/or sale of a virtual asset.",
+      "content_text": "Virtual Asset Service Providers (VASP)\n\nmeans any natural or legal person who is not covered elsewhere under the FATF Recommendations, and as a business conducts one or more of the following activities or operations for on behalf of another natural or legal person:\n(a)exchange between virtual assets and fiat currencies;\n(b)exchange between one or more forms of virtual assets;\n(c)transfer of virtual assets;\n(d)safekeeping and/or administration of virtual assets or instruments enabling\ncontrol over virtual assets; and\n(e)participation in and provision of financial services related to an issuer’s offer and/or sale of a virtual asset.",
+      "token_count": 146,
+      "pages": [
+        15,
+        16
+      ],
+      "section_path": [
+        "PART I: INTRODUCTION AND APPLICABILITY",
+        "3. DEFINITIONS"
+      ],
+      "source_element_ids": [
+        "p15-e5-r2-term",
+        "p15-e5-r2-definition",
+        "p15-e6",
+        "p15-e7",
+        "p15-e8",
+        "p15-e9",
+        "p16-e1",
+        "p16-e2"
+      ]
+    },
+    {
+      "rank": 2,
+      "chunk_id": "485c4989-c300-45c8-ac06-79a59492bb5c-c0272-76a1d56662",
+      "chunk_index": 272,
+      "semantic_type": "clause",
+      "fusion_score": 0.03125,
+      "dense_rank": 4,
+      "dense_score": 0.5882153931791987,
+      "dense_distance": 0.4117846068208013,
+      "dense_rrf_score": 0.015625,
+      "lexical_rank": 4,
+      "lexical_score": 1.7,
+      "lexical_matched_term_count": 6,
+      "lexical_term_coverage": 0.4,
+      "lexical_rrf_score": 0.015625,
+      "text": "Section: APPENDIX F > 1.0 Introduction\nClause: 1.2\nGroup: Guidance on Identification and Due Diligence on Counterparty Virtual Asset\nService Provider (VASP) (in relation to Paragraph 9.5 of the Guidelines)\n\n1.2 There are three phases in conducting identification and due diligence on counterparty\nVASP:\n\n(a) Phase 1\n\n(i) A reporting institution should determine whether it will be transacting with\nanother counterparty VASP.\n\n(b) Phase 2\n\n(i) A reporting institution should identify the counterparty VASP. In this context,\nit is possible that the reporting institution only knows the “name” of the\ncounterparty VASP following its previous transaction with the counterparty\nVASP.\n\n(ii) A reporting institution may identify a counterparty VASP by itself using a\nreliable database (for example the website of the supervisory authority of\nthe counterparty VASPs), in line with any guidelines from a country on when\nto rely on such data; and\n\n(c) Phase 3\n\n(i) A reporting institution should assess whether the counterparty VASP is an\neligible counterparty for it to send customer data to and to have a business\nrelationship.\n\n(ii) A reporting institution should be able to demonstrate its risk-based analysis\nfrom an AML/CFT/CPF perspectives, as well as considering other compliance\nissues, including data storage and security, and the profitability of the business\nrelationship, which forms the basis of its decision to transact with the\ncounterparty VASP.\n\n(iii) The due diligence results on the counterparty VASPs must be reviewed\n\nperiodically.",
+      "content_text": "1.2 There are three phases in conducting identification and due diligence on counterparty\nVASP:\n\n(a) Phase 1\n\n(i) A reporting institution should determine whether it will be transacting with\nanother counterparty VASP.\n\n(b) Phase 2\n\n(i) A reporting institution should identify the counterparty VASP. In this context,\nit is possible that the reporting institution only knows the “name” of the\ncounterparty VASP following its previous transaction with the counterparty\nVASP.\n\n(ii) A reporting institution may identify a counterparty VASP by itself using a\nreliable database (for example the website of the supervisory authority of\nthe counterparty VASPs), in line with any guidelines from a country on when\nto rely on such data; and\n\n(c) Phase 3\n\n(i) A reporting institution should assess whether the counterparty VASP is an\neligible counterparty for it to send customer data to and to have a business\nrelationship.\n\n(ii) A reporting institution should be able to demonstrate its risk-based analysis\nfrom an AML/CFT/CPF perspectives, as well as considering other compliance\nissues, including data storage and security, and the profitability of the business\nrelationship, which forms the basis of its decision to transact with the\ncounterparty VASP.\n\n(iii) The due diligence results on the counterparty VASPs must be reviewed\n\nperiodically.",
+      "token_count": 291,
+      "pages": [
+        103,
+        104
+      ],
+      "section_path": [
+        "APPENDIX F",
+        "1.0 Introduction"
+      ],
+      "source_element_ids": [
+        "p103-e5",
+        "p103-e6",
+        "p103-e7",
+        "p103-e8",
+        "p103-e9",
+        "p103-e10",
+        "p103-e11",
+        "p103-e12",
+        "p103-e13",
+        "p103-e14",
+        "p104-e1"
+      ]
+    },
+    {
+      "rank": 3,
+      "chunk_id": "485c4989-c300-45c8-ac06-79a59492bb5c-c0271-236dca87b6",
+      "chunk_index": 271,
+      "semantic_type": "clause",
+      "fusion_score": 0.031054405392392875,
+      "dense_rank": 2,
+      "dense_score": 0.6139613850162763,
+      "dense_distance": 0.3860386149837237,
+      "dense_rrf_score": 0.016129032258064516,
+      "lexical_rank": 7,
+      "lexical_score": 0.7,
+      "lexical_matched_term_count": 6,
+      "lexical_term_coverage": 0.4,
+      "lexical_rrf_score": 0.014925373134328358,
+      "text": "Section: APPENDIX F > 1.0 Introduction\nClause: 1.1\nGroup: Guidance on Identification and Due Diligence on Counterparty Virtual Asset\nService Provider (VASP) (in relation to Paragraph 9.5 of the Guidelines)\n\n1.1 This Guidance seeks to outline the recommended process involved in conducting\nidentification and counterparty due diligenceon counterparty VASP. In the event a\nreporting institution has developed and adopted its own process, the adopted process\nmust be able to achieve the outcomes intended under this Guidance.",
+      "content_text": "1.1 This Guidance seeks to outline the recommended process involved in conducting\nidentification and counterparty due diligenceon counterparty VASP. In the event a\nreporting institution has developed and adopted its own process, the adopted process\nmust be able to achieve the outcomes intended under this Guidance.",
+      "token_count": 94,
+      "pages": [
+        103
+      ],
+      "section_path": [
+        "APPENDIX F",
+        "1.0 Introduction"
+      ],
+      "source_element_ids": [
+        "p103-e4"
+      ]
+    },
+    {
+      "rank": 4,
+      "chunk_id": "485c4989-c300-45c8-ac06-79a59492bb5c-c0273-a0f89ccd1b",
+      "chunk_index": 273,
+      "semantic_type": "list_item",
+      "fusion_score": 0.03057889822595705,
+      "dense_rank": 3,
+      "dense_score": 0.6080623140260799,
+      "dense_distance": 0.3919376859739201,
+      "dense_rrf_score": 0.015873015873015872,
+      "lexical_rank": 8,
+      "lexical_score": 0.6,
+      "lexical_matched_term_count": 6,
+      "lexical_term_coverage": 0.4,
+      "lexical_rrf_score": 0.014705882352941176,
+      "text": "Section: APPENDIX F > 1.0 Introduction\nGroup: Guidance on Identification and Due Diligence on Counterparty Virtual Asset\nService Provider (VASP) (in relation to Paragraph 9.5 of the Guidelines)\n\n(iv)Where a regulated originating institution decide to have a business relationship\nwith an unregulated beneficiary institution, the regulated originating institution\nmay require travel rule compliance from the unregulated beneficiary institutions\nby way of a contract.",
+      "content_text": "(iv)Where a regulated originating institution decide to have a business relationship\nwith an unregulated beneficiary institution, the regulated originating institution\nmay require travel rule compliance from the unregulated beneficiary institutions\nby way of a contract.",
+      "token_count": 78,
+      "pages": [
+        104
+      ],
+      "section_path": [
+        "APPENDIX F",
+        "1.0 Introduction"
+      ],
+      "source_element_ids": [
+        "p104-e2"
+      ]
+    },
+    {
+      "rank": 5,
+      "chunk_id": "485c4989-c300-45c8-ac06-79a59492bb5c-c0258-cd8455196d",
+      "chunk_index": 258,
+      "semantic_type": "clause",
+      "fusion_score": 0.029571646010002173,
+      "dense_rank": 13,
+      "dense_score": 0.45908138399831233,
+      "dense_distance": 0.5409186160016877,
+      "dense_rrf_score": 0.0136986301369863,
+      "lexical_rank": 3,
+      "lexical_score": 2.1000001,
+      "lexical_matched_term_count": 6,
+      "lexical_term_coverage": 0.4,
+      "lexical_rrf_score": 0.015873015873015872,
+      "text": "Section: APPENDIX E > Identification\nClause: 1.9\nGroup: Steps to identify beneficial owner > Legal person\n\n1.9 Step 2: Identify the natural person, if any, exercising control of the\nlegal person, through other means\n\n(a) A natural person may also exercise effective control over an entity if he has the\npowers and authority to take actions and make decisions for the entity, including\non matters relating to its financial affairs, financial relationships, operations or\nother matters that may fundamentally affect the business or direction of the\nentity, without having ownership interest over the entity.\n\n(b) Such powers and authority may be attained through other means, such as:\n\n(c) A natural person demonstrating control may be, among others, the entity’s senior\nmanagement, directors, authorised signatory, controller and etc.\n\nWhere, in the course of identifying beneficial owners, reporting institutions\nidentified natural persons who exert control over an entity but have no direct\nownership or apparent control over the entity, this assessment along with\nthe person suspected of being a beneficial owner, should be recorded. Such a\nsituation may be observed through:\n\n(i)personal connections to persons in positions of power within the entity or\npersons who possess ownership over an entity (close or intimate family\nrelationships and historical or contractual associations)\n\n(ii)participation in financing of enterprises which may allow enjoyment or\nbenefits from assets of the legal person",
+      "content_text": "1.9 Step 2: Identify the natural person, if any, exercising control of the\nlegal person, through other means\n\n(a) A natural person may also exercise effective control over an entity if he has the\npowers and authority to take actions and make decisions for the entity, including\non matters relating to its financial affairs, financial relationships, operations or\nother matters that may fundamentally affect the business or direction of the\nentity, without having ownership interest over the entity.\n\n(b) Such powers and authority may be attained through other means, such as:\n\n(c) A natural person demonstrating control may be, among others, the entity’s senior\nmanagement, directors, authorised signatory, controller and etc.\n\nWhere, in the course of identifying beneficial owners, reporting institutions\nidentified natural persons who exert control over an entity but have no direct\nownership or apparent control over the entity, this assessment along with\nthe person suspected of being a beneficial owner, should be recorded. Such a\nsituation may be observed through:\n\n(i)personal connections to persons in positions of power within the entity or\npersons who possess ownership over an entity (close or intimate family\nrelationships and historical or contractual associations)\n\n(ii)participation in financing of enterprises which may allow enjoyment or\nbenefits from assets of the legal person",
+      "token_count": 271,
+      "pages": [
+        94,
+        95
+      ],
+      "section_path": [
+        "APPENDIX E",
+        "Identification"
+      ],
+      "source_element_ids": [
+        "p94-e9",
+        "p94-e10",
+        "p94-e11",
+        "p95-e6",
+        "p95-e7",
+        "p95-e8",
+        "p95-e9"
+      ]
+    },
+    {
+      "rank": 6,
+      "chunk_id": "485c4989-c300-45c8-ac06-79a59492bb5c-c0257-818930868d",
+      "chunk_index": 257,
+      "semantic_type": "clause",
+      "fusion_score": 0.027106227106227107,
+      "dense_rank": 10,
+      "dense_score": 0.4611390852249222,
+      "dense_distance": 0.5388609147750778,
+      "dense_rrf_score": 0.014285714285714285,
+      "lexical_rank": 18,
+      "lexical_score": 2.0,
+      "lexical_matched_term_count": 4,
+      "lexical_term_coverage": 0.26666666666666666,
+      "lexical_rrf_score": 0.01282051282051282,
+      "text": "Section: APPENDIX E > Identification\nClause: 1.8\nGroup: Steps to identify beneficial owner > Legal person\n\n1.8 Step 1: Identify the natural person(s), if any, who ultimately have\ncontrolling ownership interest in the legal person\n\n(a) Having ultimate controlling ownership interest over an entity includes having more\nthan 25% ownership or equity interest in an entity which may be observed, among\nothers, through share capital, capital contribution or voting rights. The ownership\nmay either be direct ownership (through ownership of shares within the entity\nitself) or indirect ownership (through chain of corporate vehicles). In the case of\na limited liability partnership - partners with capital contribution and/or voting\nrights of more than 25%.\n\n(b) Having a golden share within an entity is similar to having ultimate ownership of\nthe entity, as it refers to 51% ownership.\n\n(c) Shareholders may exercise control alone or together with other shareholders,\nincluding through any contract, understanding, relationship, intermediary or tiered\nentity. In most circumstances, ownership over an entity implies control over the\nentity, as ownership may come with the power and authority to take actions\nand make decisions for the entity. Such a situation can be observed, among\nothers, where:\n\n(i)The natural person has majority voting power within the entity to make\ndecisions; or\n\n(ii)The natural person exercises his right to appoint or remove directors\nor senior management, as a major shareholder.\n\n(d) In implementing Step 1, a natural person identified as fulfilling the criteria in (a)\nshall be identified as the beneficial owner. However, where there is doubt that\nthe person identified under Step 1 is not the beneficial owner; or where no natural\nperson has ultimate controlling ownership interest over the legal person, the\nreporting institution shall carry out Step 2.",
+      "content_text": "1.8 Step 1: Identify the natural person(s), if any, who ultimately have\ncontrolling ownership interest in the legal person\n\n(a) Having ultimate controlling ownership interest over an entity includes having more\nthan 25% ownership or equity interest in an entity which may be observed, among\nothers, through share capital, capital contribution or voting rights. The ownership\nmay either be direct ownership (through ownership of shares within the entity\nitself) or indirect ownership (through chain of corporate vehicles). In the case of\na limited liability partnership - partners with capital contribution and/or voting\nrights of more than 25%.\n\n(b) Having a golden share within an entity is similar to having ultimate ownership of\nthe entity, as it refers to 51% ownership.\n\n(c) Shareholders may exercise control alone or together with other shareholders,\nincluding through any contract, understanding, relationship, intermediary or tiered\nentity. In most circumstances, ownership over an entity implies control over the\nentity, as ownership may come with the power and authority to take actions\nand make decisions for the entity. Such a situation can be observed, among\nothers, where:\n\n(i)The natural person has majority voting power within the entity to make\ndecisions; or\n\n(ii)The natural person exercises his right to appoint or remove directors\nor senior management, as a major shareholder.\n\n(d) In implementing Step 1, a natural person identified as fulfilling the criteria in (a)\nshall be identified as the beneficial owner. However, where there is doubt that\nthe person identified under Step 1 is not the beneficial owner; or where no natural\nperson has ultimate controlling ownership interest over the legal person, the\nreporting institution shall carry out Step 2.",
+      "token_count": 355,
+      "pages": [
+        94
+      ],
+      "section_path": [
+        "APPENDIX E",
+        "Identification"
+      ],
+      "source_element_ids": [
+        "p94-e1",
+        "p94-e2",
+        "p94-e3",
+        "p94-e4",
+        "p94-e6",
+        "p94-e7",
+        "p94-e8"
+      ]
+    },
+    {
+      "rank": 7,
+      "chunk_id": "485c4989-c300-45c8-ac06-79a59492bb5c-c0108-746e0d9d19",
+      "chunk_index": 108,
+      "semantic_type": "list_item",
+      "fusion_score": 0.016129032258064516,
+      "dense_rank": null,
+      "dense_score": null,
+      "dense_distance": null,
+      "dense_rrf_score": 0.0,
+      "lexical_rank": 2,
+      "lexical_score": 1.2,
+      "lexical_matched_term_count": 7,
+      "lexical_term_coverage": 0.4666666666666667,
+      "lexical_rrf_score": 0.016129032258064516,
+      "text": "Section: PART III: CUSTOMER DUE DILIGENCE > 8. CUSTOMER DUE DILIGENCE (CDD) > 8.2 Conducting CDD\n\n(v)The ownership structure of a company appears unusual or excessively\ncomplex given the nature of the company’s business.\n\n(vi)High-net-worth individuals and entities.\n\n(vii)Persons from jurisdictions known for their high crime rates (e.g. drug\nproducing, trafficking, smuggling).\n\n(viii)Businesses/activities identified by the FATF as having higher risk for\nML/TF/PF.\n\n(ix)Domestic PEPs.\n\n(x)Persons entrusted with prominent public function by international\norganisations (PEPFIO).\n\n(xi)Legal arrangements that are complex.\n\n(xii)Any persons who match the ‘red flag’ criteria of the reporting institution.\n\n(b)Country or geographic risk factors:\n\n(i)Countries identified by credible sources, such as mutual evaluation or\npublished follow-up reports, as having inadequate AML/CFT/CPF systems.\n\n(ii)Countries subject to sanctions, embargos or similar measures issued by\ninternational organisations such as the United Nations.\n\n(iii)Countries with significant levels of corruption or other criminal activities.\n\n(iv)Countries or geographic areas identified as providing funding or support\nfor terrorist activities, or that have designated terrorist organisations\noperating within their country.\n\n(v)Countries identified by the FATF, other FATF-style regional bodies or other\ninternational bodies as having higher ML/TF/PF risk.\n\n(c)Transaction or distribution channel risk factors:\n\n(i)Anonymous transactions (which may include cash transactions).\n\n(ii)Non-face-to-face business relationships or transactions.\n\n(iii)Payment received from multiple persons and/or countries that do not fit\ninto the customer’s nature of business and risk profile.\n\n(iv)Payment received from unknown or unassociated third parties.",
+      "content_text": "(v)The ownership structure of a company appears unusual or excessively\ncomplex given the nature of the company’s business.\n\n(vi)High-net-worth individuals and entities.\n\n(vii)Persons from jurisdictions known for their high crime rates (e.g. drug\nproducing, trafficking, smuggling).\n\n(viii)Businesses/activities identified by the FATF as having higher risk for\nML/TF/PF.\n\n(ix)Domestic PEPs.\n\n(x)Persons entrusted with prominent public function by international\norganisations (PEPFIO).\n\n(xi)Legal arrangements that are complex.\n\n(xii)Any persons who match the ‘red flag’ criteria of the reporting institution.\n\n(b)Country or geographic risk factors:\n\n(i)Countries identified by credible sources, such as mutual evaluation or\npublished follow-up reports, as having inadequate AML/CFT/CPF systems.\n\n(ii)Countries subject to sanctions, embargos or similar measures issued by\ninternational organisations such as the United Nations.\n\n(iii)Countries with significant levels of corruption or other criminal activities.\n\n(iv)Countries or geographic areas identified as providing funding or support\nfor terrorist activities, or that have designated terrorist organisations\noperating within their country.\n\n(v)Countries identified by the FATF, other FATF-style regional bodies or other\ninternational bodies as having higher ML/TF/PF risk.\n\n(c)Transaction or distribution channel risk factors:\n\n(i)Anonymous transactions (which may include cash transactions).\n\n(ii)Non-face-to-face business relationships or transactions.\n\n(iii)Payment received from multiple persons and/or countries that do not fit\ninto the customer’s nature of business and risk profile.\n\n(iv)Payment received from unknown or unassociated third parties.",
+      "token_count": 364,
+      "pages": [
+        40,
+        41
+      ],
+      "section_path": [
+        "PART III: CUSTOMER DUE DILIGENCE",
+        "8. CUSTOMER DUE DILIGENCE (CDD)",
+        "8.2 Conducting CDD"
+      ],
+      "source_element_ids": [
+        "p40-e1",
+        "p40-e2",
+        "p40-e3",
+        "p40-e4",
+        "p40-e5",
+        "p40-e6",
+        "p40-e7",
+        "p40-e8",
+        "p40-e9",
+        "p40-e10",
+        "p40-e11",
+        "p40-e12",
+        "p40-e13",
+        "p40-e14",
+        "p40-e15",
+        "p40-e16",
+        "p40-e17",
+        "p41-e1",
+        "p41-e2"
+      ]
+    },
+    {
+      "rank": 8,
+      "chunk_id": "485c4989-c300-45c8-ac06-79a59492bb5c-c0142-87f1b197d7",
+      "chunk_index": 142,
+      "semantic_type": "list_item",
+      "fusion_score": 0.015384615384615385,
+      "dense_rank": 5,
+      "dense_score": 0.4961169960429084,
+      "dense_distance": 0.5038830039570916,
+      "dense_rrf_score": 0.015384615384615385,
+      "lexical_rank": null,
+      "lexical_score": null,
+      "lexical_matched_term_count": 0,
+      "lexical_term_coverage": 0.0,
+      "lexical_rrf_score": 0.0,
+      "text": "Section: PART IIIA: WIRE TRANSFER > 9. WIRE TRANSFER OF DIGITAL ASSETS > 9.5 Identification and Due Diligence on Counterparty VASP\nGroup: Guidance for paragraph 9.5.1:\n\n•\nAs a guide, a reporting institution needs to conduct due diligence\non their counterparty VASP before the reporting institution\ntransmits the required information to avoid dealing with illicit actors\nor sanctioned actors unknowingly.\n\n•\nAdditionally, a reporting institution should use this due diligence\nprocess to determine whether a counterparty VASP can reasonably\nbe expected to protect the confidentiality of information shared\nwith it.",
+      "content_text": "•\nAs a guide, a reporting institution needs to conduct due diligence\non their counterparty VASP before the reporting institution\ntransmits the required information to avoid dealing with illicit actors\nor sanctioned actors unknowingly.\n\n•\nAdditionally, a reporting institution should use this due diligence\nprocess to determine whether a counterparty VASP can reasonably\nbe expected to protect the confidentiality of information shared\nwith it.",
+      "token_count": 105,
+      "pages": [
+        51
+      ],
+      "section_path": [
+        "PART IIIA: WIRE TRANSFER",
+        "9. WIRE TRANSFER OF DIGITAL ASSETS",
+        "9.5 Identification and Due Diligence on Counterparty VASP"
+      ],
+      "source_element_ids": [
+        "p51-e9",
+        "p51-e10"
+      ]
+    },
+    {
+      "rank": 9,
+      "chunk_id": "485c4989-c300-45c8-ac06-79a59492bb5c-c0274-fb4537476c",
+      "chunk_index": 274,
+      "semantic_type": "mixed",
+      "fusion_score": 0.015384615384615385,
+      "dense_rank": null,
+      "dense_score": null,
+      "dense_distance": null,
+      "dense_rrf_score": 0.0,
+      "lexical_rank": 5,
+      "lexical_score": 1.2,
+      "lexical_matched_term_count": 6,
+      "lexical_term_coverage": 0.4,
+      "lexical_rrf_score": 0.015384615384615385,
+      "text": "Section: APPENDIX G\nGroup: REGULATION 3 OF STRATEGIC TRADE (UNITED NATIONS SECURITY COUNCIL\nRESOLUTIONS) REGULATIONS 2010 (P.U. (A) 481/2010)\n(in relation to Paragraph 1.1 (b)(ii) of the Guidelines)\n\nRegulation 3 of the Strategic Trade (United Nations Security Council Resolutions)\nRegulations 2010 (P.U. (A) 481/2010) requires the following counter-proliferation financing\nmeasures to be taken in relation to the countries and persons designated under the Strategic Trade\n(Restricted End-Users and Prohibited End-Users) Order 2010 (P.U. (A) 484/2010) in accordance\nwith the relevant UNSCRs:\n\n(a)Freezing of the funds and other financial assets or economic resources of such\ncountries or persons that are located in Malaysia;\n\n(b)Prohibition of investment in Malaysia by such countries or persons involving any\nrestricted activities3;\n\n(c)Prevention of the provision of financial services, including insurance or re-insurance,\nor the transfer to, through, or from Malaysia, or to or by Malaysian nationals or entities\norganised under Malaysian law (including branches abroad), or persons or financial\ninstitutions in Malaysia, of any financial or other assets or resources if there is\ninformation that provides reasonable grounds to believe that such services, assets or\nresources could contribute to any restricted activity in any designated country;",
+      "content_text": "Regulation 3 of the Strategic Trade (United Nations Security Council Resolutions)\nRegulations 2010 (P.U. (A) 481/2010) requires the following counter-proliferation financing\nmeasures to be taken in relation to the countries and persons designated under the Strategic Trade\n(Restricted End-Users and Prohibited End-Users) Order 2010 (P.U. (A) 484/2010) in accordance\nwith the relevant UNSCRs:\n\n(a)Freezing of the funds and other financial assets or economic resources of such\ncountries or persons that are located in Malaysia;\n\n(b)Prohibition of investment in Malaysia by such countries or persons involving any\nrestricted activities3;\n\n(c)Prevention of the provision of financial services, including insurance or re-insurance,\nor the transfer to, through, or from Malaysia, or to or by Malaysian nationals or entities\norganised under Malaysian law (including branches abroad), or persons or financial\ninstitutions in Malaysia, of any financial or other assets or resources if there is\ninformation that provides reasonable grounds to believe that such services, assets or\nresources could contribute to any restricted activity in any designated country;",
+      "token_count": 266,
+      "pages": [
+        105
+      ],
+      "section_path": [
+        "APPENDIX G"
+      ],
+      "source_element_ids": [
+        "p105-e3",
+        "p105-e5",
+        "p105-e6",
+        "p105-e7"
+      ]
+    },
+    {
+      "rank": 10,
+      "chunk_id": "485c4989-c300-45c8-ac06-79a59492bb5c-c0055-88bd4ccfdd",
+      "chunk_index": 55,
+      "semantic_type": "clause",
+      "fusion_score": 0.015151515151515152,
+      "dense_rank": null,
+      "dense_score": null,
+      "dense_distance": null,
+      "dense_rrf_score": 0.0,
+      "lexical_rank": 6,
+      "lexical_score": 0.90000004,
+      "lexical_matched_term_count": 6,
+      "lexical_term_coverage": 0.4,
+      "lexical_rrf_score": 0.015151515151515152,
+      "text": "Section: PART I: INTRODUCTION AND APPLICABILITY > 6. GENERAL PRINCIPLES AND POLICIES TO COMBAT MONEY\nLAUNDERING, TERRORISM FINANCING AND PROLIFERATION\nFINANCING\nClause: 6.2\n\n6.2 In combating ML/TF/PF, a reporting institution must ensure the following:\n\n(a)Compliance with laws: A reporting institution must ensure that laws and\nregulations are adhered to, that business is conducted in conformity with high\nethical standards, and that service is not provided where there is good reason\nto suppose that transactions are associated with ML/TF/PF activities.\n\n(b)Co-operation with law enforcement agencies: A reporting institution\nmust co-operate fully with relevant law enforcement agencies. This includes\ntaking appropriate measures such as timely disclosure of information by the\nreporting institution to the FIED and the relevant law enforcement agencies.\n\n(c)Establishing internal controls: A reporting institution must issue and adopt\npolicies and procedures which are consistent with the principles set out under\nthe AMLA, TFS-PF related legislations and these Guidelines. A reporting\ninstitution must also ensure ongoing training programmes are conducted to\nkeep its board of directors, senior management and employees abreast on\nmatters under the AMLA and these Guidelines.\n\n(d)Risk-based approach: A reporting institution must ensure that the depth\nand breadth of its policies and procedures to identify, assess, monitor, manage\n\nand mitigate ML/TF/PF risks commensurate with the nature, scale and\ncomplexity of its activities.\n\n(e)Customer Due Diligence: A reporting institution must have an effective\nprocedure to identify its customers and to obtain satisfactory evidence to\nverify its customers’ identity.",
+      "content_text": "6.2 In combating ML/TF/PF, a reporting institution must ensure the following:\n\n(a)Compliance with laws: A reporting institution must ensure that laws and\nregulations are adhered to, that business is conducted in conformity with high\nethical standards, and that service is not provided where there is good reason\nto suppose that transactions are associated with ML/TF/PF activities.\n\n(b)Co-operation with law enforcement agencies: A reporting institution\nmust co-operate fully with relevant law enforcement agencies. This includes\ntaking appropriate measures such as timely disclosure of information by the\nreporting institution to the FIED and the relevant law enforcement agencies.\n\n(c)Establishing internal controls: A reporting institution must issue and adopt\npolicies and procedures which are consistent with the principles set out under\nthe AMLA, TFS-PF related legislations and these Guidelines. A reporting\ninstitution must also ensure ongoing training programmes are conducted to\nkeep its board of directors, senior management and employees abreast on\nmatters under the AMLA and these Guidelines.\n\n(d)Risk-based approach: A reporting institution must ensure that the depth\nand breadth of its policies and procedures to identify, assess, monitor, manage\n\nand mitigate ML/TF/PF risks commensurate with the nature, scale and\ncomplexity of its activities.\n\n(e)Customer Due Diligence: A reporting institution must have an effective\nprocedure to identify its customers and to obtain satisfactory evidence to\nverify its customers’ identity.",
+      "token_count": 307,
+      "pages": [
+        19,
+        20
+      ],
+      "section_path": [
+        "PART I: INTRODUCTION AND APPLICABILITY",
+        "6. GENERAL PRINCIPLES AND POLICIES TO COMBAT MONEY\nLAUNDERING, TERRORISM FINANCING AND PROLIFERATION\nFINANCING"
+      ],
+      "source_element_ids": [
+        "p19-e8",
+        "p19-e9",
+        "p19-e10",
+        "p19-e11",
+        "p19-e12",
+        "p20-e1",
+        "p20-e2"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,305 @@
+{
+  "document_id": "485c4989-c300-45c8-ac06-79a59492bb5c",
+  "question": "Under Appendix D, does the death of a listed entity end the obligation to keep its funds, properties or accounts frozen?",
+  "status": "answered",
+  "answer": "The death of a listed entity does not end the obligation to keep its funds, properties or accounts frozen; the freezing obligation continues until the entity is delisted from the sanction lists.",
+  "cited_answer": "The death of a listed entity does not end the obligation to keep its funds, properties or accounts frozen; the freezing obligation continues until the entity is delisted from the sanction lists. [1]",
+  "claims": [
+    {
+      "claim_id": "C1",
+      "text": "The death of a listed entity does not end the obligation to keep its funds, properties or accounts frozen; the freezing obligation continues until the entity is delisted from the sanction lists.",
+      "evidence_ids": [
+        "E1"
+      ],
+      "citation_ids": [
+        "CIT-E1"
+      ]
+    }
+  ],
+  "used_evidence_ids": [
+    "E1"
+  ],
+  "missing_information": [],
+  "evidence": [
+    {
+      "evidence_id": "E1",
+      "chunk_id": "485c4989-c300-45c8-ac06-79a59492bb5c-c0241-57faa0c1ac",
+      "chunk_index": 241,
+      "semantic_type": "clause",
+      "source_rank": 1,
+      "ranked_seed_rank": 1,
+      "reasons": [
+        "ranked_seed"
+      ],
+      "pages": [
+        89
+      ],
+      "section_path": [
+        "APPENDIX D",
+        "Obligation to freeze funds, properties or accounts"
+      ],
+      "source_element_ids": [
+        "p89-e3",
+        "p89-e4",
+        "p89-e5",
+        "p89-e6",
+        "p89-e7",
+        "p89-e8"
+      ],
+      "content_text": "4.1 A reporting institution is required to freeze funds, properties or accounts that are\nowned or controlled directly and indirectly by the listed entities without delay2.\n\n4.2 Funds, properties or accounts that are owned or controlled indirectly by the listed\nentities includes situation where the listed entity is a director of a customer. In such\ninstance, once the reporting institution is satisfied that the director owns or controls\ndirectly or indirectly the funds, properties or accounts of the customer, the reporting\ninstitution is required to freeze the same without delay.\n\n4.3 The obligation to freeze funds, properties or accounts of a listed entity continues until\nthe person is delisted from the sanction lists. Even death of the listed entity is not a\nbasis for a reporting institution not to continue its freezing obligation.\n\n4.4 If an asset is owned or controlled by a listed entity and the interest owned or\ncontrolled by the listed party cannot be segregated, then the entire asset should be\nsubjected to freezing.\n\n4.5 Notwithstanding the funds, properties or accounts are frozen, a reporting institution\nmay continue receiving dividends, interests, or other benefits, but such benefits shall\nstill remain frozen, so long as the individuals or entities continue to be listed.\n\n4.6 However no outgoing payment should be made out from the frozen funds, properties\nor accounts, including payment of any fees or service charges for maintaining the\nfrozen funds without the approval of Minister of Home Affairs."
+    },
+    {
+      "evidence_id": "E2",
+      "chunk_id": "485c4989-c300-45c8-ac06-79a59492bb5c-c0172-3df0a657c5",
+      "chunk_index": 172,
+      "semantic_type": "list_item",
+      "source_rank": 2,
+      "ranked_seed_rank": 2,
+      "reasons": [
+        "ranked_seed"
+      ],
+      "pages": [
+        65
+      ],
+      "section_path": [
+        "PART VIII: COMBATING PROLIFERATION FINANCING",
+        "18. REQUIREMENT TO FREEZE, BLOCK AND REJECT"
+      ],
+      "source_element_ids": [
+        "p65-e2",
+        "p65-e3",
+        "p65-e4",
+        "p65-e5",
+        "p65-e6"
+      ],
+      "content_text": "(a)Funds, properties or accounts that are owned or controlled indirectly by the\ndesignated person includes situation where the designated person is a\ndirector of a customer. In such instance, once the reporting institution is\nsatisfied that the director owns or controls directly or indirectly the funds,\nproperties or accounts of the customer, the reporting institution is required\nto freeze.\n\n(b)The obligation to freeze funds, properties or accounts of a designated person\ncontinues until the person is delisted from the sanction lists. The freezing\nobligations remains even after the designated person passed away.\n\n(c)If an asset is owned or controlled by a designated person and the interest\nowned or controlled by the designated person cannot be segregated, then\nthe entire asset should be subjected to freezing.\n\n(d)Notwithstanding the funds, properties or accounts are frozen, a reporting\ninstitution may continue receiving dividends, interests, or other benefits, but\nsuch benefits shall still remain frozen, so long as the designated person\ncontinue to be listed.\n\n(e)No outgoing payment should be made from the frozen funds, properties or\naccounts including payment of any fees or service charges for maintaining\nthe frozen fund without prior written authorisation of the Strategic Trade\nController in consultation with the SC."
+    },
+    {
+      "evidence_id": "E3",
+      "chunk_id": "485c4989-c300-45c8-ac06-79a59492bb5c-c0240-790411c67b",
+      "chunk_index": 240,
+      "semantic_type": "clause",
+      "source_rank": 3,
+      "ranked_seed_rank": 3,
+      "reasons": [
+        "ranked_seed"
+      ],
+      "pages": [
+        88
+      ],
+      "section_path": [
+        "APPENDIX D",
+        "Obligation to conduct screening on customers"
+      ],
+      "source_element_ids": [
+        "p88-e10",
+        "p88-e11",
+        "p88-e12",
+        "p88-e13"
+      ],
+      "content_text": "3.3 The obligation to conduct screening on customers also includes fund derived from\nproperty owned or controlled directly or indirectly by the listed entities or by persons\nacting on their behalf or at their discretion (related parties). Therefore, a reporting\ninstitution must also conduct checks on–\n\n(a) relationship and transactions connected with the listed entities;\n\n(b) properties or accounts that are jointly owned and/or indirectly controlled by\nthe listed entities; and\n\n(c) parties related to the frozen accounts including beneficial owners, signatories,\npower of attorney relationships, guarantors, nominees, trustees, assignees and\npayors."
+    },
+    {
+      "evidence_id": "E4",
+      "chunk_id": "485c4989-c300-45c8-ac06-79a59492bb5c-c0244-51c99b8239",
+      "chunk_index": 244,
+      "semantic_type": "clause",
+      "source_rank": 4,
+      "ranked_seed_rank": 4,
+      "reasons": [
+        "ranked_seed"
+      ],
+      "pages": [
+        90
+      ],
+      "section_path": [
+        "APPENDIX D",
+        "Reporting requirements"
+      ],
+      "source_element_ids": [
+        "p90-e2",
+        "p90-e3",
+        "p90-e4",
+        "p90-e5"
+      ],
+      "content_text": "5.2 For the purpose of submitting suspicious transaction report to the FIED, a reporting\ninstitution–\n\n(a)should include details and analysis of the CDD, ongoing CDD information,\nactivities of transactions of the listed entity or related parties; and\n\n(b)is encouraged to search, examine and analyse past financial activities of\ncustomers and related parties with a name match that have closed their accounts\nwith the reporting institution.\n\n5.3 A reporting institution is also under an obligation to report to the SC periodically every\nsix months for both lists on frozen funds, properties or accounts of customers that\nare listed."
+    },
+    {
+      "evidence_id": "E5",
+      "chunk_id": "485c4989-c300-45c8-ac06-79a59492bb5c-c0245-2a27d3f444",
+      "chunk_index": 245,
+      "semantic_type": "table",
+      "source_rank": 4,
+      "ranked_seed_rank": null,
+      "reasons": [
+        "following_table"
+      ],
+      "pages": [
+        90
+      ],
+      "section_path": [
+        "APPENDIX D",
+        "Reporting requirements"
+      ],
+      "source_element_ids": [
+        "p90-e6"
+      ],
+      "content_text": "List | UNSCR List | Domestic List\nReporting intervals | Every 31 January | Every 31 May and\n | and 31 July | 30 November"
+    },
+    {
+      "evidence_id": "E6",
+      "chunk_id": "485c4989-c300-45c8-ac06-79a59492bb5c-c0169-f90755eee9",
+      "chunk_index": 169,
+      "semantic_type": "clause",
+      "source_rank": 5,
+      "ranked_seed_rank": 5,
+      "reasons": [
+        "ranked_seed"
+      ],
+      "pages": [
+        64
+      ],
+      "section_path": [
+        "PART VIII: COMBATING PROLIFERATION FINANCING",
+        "18. REQUIREMENT TO FREEZE, BLOCK AND REJECT"
+      ],
+      "source_element_ids": [
+        "p64-e3",
+        "p64-e4",
+        "p64-e5"
+      ],
+      "content_text": "18.2 The freezing of funds, properties or accounts shall remain in effect until:\n\n(a) The designated person is delisted by the UNSC; or\n\n(b) It is confirmed that the customer’s funds, properties or accounts have been\ninadvertently affected by virtue of him having a same or similar name with a\ndesignated person (false positive)."
+    }
+  ],
+  "citations": [
+    {
+      "citation_id": "CIT-E1",
+      "marker": "[1]",
+      "evidence_id": "E1",
+      "chunk_id": "485c4989-c300-45c8-ac06-79a59492bb5c-c0241-57faa0c1ac",
+      "chunk_index": 241,
+      "source_filename": "sc_aml_cft.pdf",
+      "display": "APPENDIX D · Clause 4.1 · Clause 4.2 · Clause 4.3 · Clause 4.4 · Clause 4.5 · Clause 4.6 · PDF p. 89",
+      "pages": [
+        89
+      ],
+      "section_path": [
+        "APPENDIX D",
+        "Obligation to freeze funds, properties or accounts"
+      ],
+      "source_element_ids": [
+        "p89-e3",
+        "p89-e4",
+        "p89-e5",
+        "p89-e6",
+        "p89-e7",
+        "p89-e8"
+      ],
+      "locators": [
+        {
+          "kind": "appendix",
+          "label": "APPENDIX D",
+          "pages": [
+            89
+          ],
+          "source_element_ids": [
+            "p89-e3",
+            "p89-e4",
+            "p89-e5",
+            "p89-e6",
+            "p89-e7",
+            "p89-e8"
+          ]
+        },
+        {
+          "kind": "clause",
+          "label": "Clause 4.1",
+          "pages": [
+            89
+          ],
+          "source_element_ids": [
+            "p89-e3"
+          ]
+        },
+        {
+          "kind": "clause",
+          "label": "Clause 4.2",
+          "pages": [
+            89
+          ],
+          "source_element_ids": [
+            "p89-e4"
+          ]
+        },
+        {
+          "kind": "clause",
+          "label": "Clause 4.3",
+          "pages": [
+            89
+          ],
+          "source_element_ids": [
+            "p89-e5"
+          ]
+        },
+        {
+          "kind": "clause",
+          "label": "Clause 4.4",
+          "pages": [
+            89
+          ],
+          "source_element_ids": [
+            "p89-e6"
+          ]
+        },
+        {
+          "kind": "clause",
+          "label": "Clause 4.5",
+          "pages": [
+            89
+          ],
+          "source_element_ids": [
+            "p89-e7"
+          ]
+        },
+        {
+          "kind": "clause",
+          "label": "Clause 4.6",
+          "pages": [
+            89
+          ],
+          "source_element_ids": [
+            "p89-e8"
+          ]
+        }
+      ],
+      "validation_status": "valid"
+    }
+  ],
+  "citation_version": "deterministic_citations_v1_2",
+  "citation_validation": {
+    "status": "valid",
+    "citation_count": 1,
+    "valid_citation_count": 1,
+    "errors": []
+  },
+  "generation_provider": "groq",
+  "generation_model": "openai/gpt-oss-120b",
+  "prompt_version": "grounded_claims_v1",
+  "generation_temperature": 0.0,
+  "generation_max_tokens": 1200,
+  "generation_json_mode": true,
+  "usage": {
+    "prompt_tokens": 1802,
+    "completion_tokens": 314,
+    "total_tokens": 2116
+  },
+  "retrieval_profile": "retrieval_v1_stage8_2_top5",
+  "retrieval_top_k": 5,
+  "retrieval_candidate_k": 20,
+  "retrieval_rrf_k": 60,
+  "retrieval_dense_weight": 1.0,
+  "retrieval_lexical_weight": 1.0,
+  "context_strategy": "structural_one_hop_v1",
+  "context_chunk_count": 6,
+  "expanded_chunk_count": 1
+}

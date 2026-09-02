@@ -1,0 +1,681 @@
+{
+  "schema_version": "1.0",
+  "calibration_id": "answer_citation_eval_dev_calibration_v1",
+  "dataset_id": "answer_citation_eval_dev_v1",
+  "rubric_version": "stage11_semantic_rubric_v1_draft",
+  "allowed_labels": {
+    "claim_support": [
+      "supported",
+      "partially_supported",
+      "unsupported",
+      "contradicted"
+    ],
+    "citation_entailment": [
+      "entails",
+      "partial",
+      "does_not_entail"
+    ],
+    "gold_claim_coverage": [
+      "covered",
+      "partially_covered",
+      "missing"
+    ],
+    "answer_relevance": [
+      0,
+      1,
+      2
+    ]
+  },
+  "labels_prefilled": false,
+  "questions": [
+    {
+      "question_id": "ACIT-001",
+      "category": "definition",
+      "difficulty": "medium",
+      "question": "In the Guidelines, how does the meaning of 'beneficiary' differ between trust law and a wire transfer?",
+      "expected_status": "answered",
+      "actual_status": "answered",
+      "answer": "In trust law, a beneficiary is the person or persons who are entitled to the benefit of any trust arrangement, which may be a natural or legal person or arrangement, and trusts must have ascertainable beneficiaries. In the context of a wire transfer, a beneficiary is the natural or legal person or legal arrangement identified by the originator as the receiver of the requested wire transfer.",
+      "cited_answer": "In trust law, a beneficiary is the person or persons who are entitled to the benefit of any trust arrangement, which may be a natural or legal person or arrangement, and trusts must have ascertainable beneficiaries. [1] In the context of a wire transfer, a beneficiary is the natural or legal person or legal arrangement identified by the originator as the receiver of the requested wire transfer. [1]",
+      "claims": [
+        {
+          "claim_id": "C1",
+          "text": "In trust law, a beneficiary is the person or persons who are entitled to the benefit of any trust arrangement, which may be a natural or legal person or arrangement, and trusts must have ascertainable beneficiaries.",
+          "evidence_ids": [
+            "E1"
+          ],
+          "citation_ids": [
+            "CIT-E1"
+          ],
+          "support_label": null,
+          "support_notes": ""
+        },
+        {
+          "claim_id": "C2",
+          "text": "In the context of a wire transfer, a beneficiary is the natural or legal person or legal arrangement identified by the originator as the receiver of the requested wire transfer.",
+          "evidence_ids": [
+            "E1"
+          ],
+          "citation_ids": [
+            "CIT-E1"
+          ],
+          "support_label": null,
+          "support_notes": ""
+        }
+      ],
+      "citation_relations": [
+        {
+          "claim_id": "C1",
+          "citation_id": "CIT-E1",
+          "evidence_id": "E1",
+          "citation_display": "Definition “beneficiary” · PDF pp. 9–10",
+          "entailment_label": null,
+          "entailment_notes": ""
+        },
+        {
+          "claim_id": "C2",
+          "citation_id": "CIT-E1",
+          "evidence_id": "E1",
+          "citation_display": "Definition “beneficiary” · PDF pp. 9–10",
+          "entailment_label": null,
+          "entailment_notes": ""
+        }
+      ],
+      "gold_claims": [
+        {
+          "claim_id": "GC1",
+          "requirement": "Explain that in trust law a beneficiary is a person or persons entitled to the benefit of a trust arrangement.",
+          "coverage_label": null,
+          "coverage_notes": ""
+        },
+        {
+          "claim_id": "GC2",
+          "requirement": "Explain that a trust beneficiary can be a natural person, legal person, or legal arrangement.",
+          "coverage_label": null,
+          "coverage_notes": ""
+        },
+        {
+          "claim_id": "GC3",
+          "requirement": "Explain that for a wire transfer, beneficiary means the natural or legal person or legal arrangement identified by the originator as the receiver of the requested wire transfer.",
+          "coverage_label": null,
+          "coverage_notes": ""
+        }
+      ],
+      "answer_relevance_score": null,
+      "answer_relevance_notes": "",
+      "reviewer_notes": ""
+    },
+    {
+      "question_id": "ACIT-003",
+      "category": "exception_condition",
+      "difficulty": "hard",
+      "question": "If a host country does not permit proper implementation of Malaysian-standard AML/CFT/CPF measures, what must the reporting institution do, and what may it consider if adequate mitigation still cannot be put in place?",
+      "expected_status": "answered",
+      "actual_status": "answered",
+      "answer": "If the host country does not permit proper implementation of Malaysian-standard AML/CFT/CPF measures, the reporting institution must apply appropriate additional measures to mitigate money‑laundering, terrorism‑financing and proliferation‑financing risks and inform the SC of the AML/CFT/CPF gaps and the additional measures implemented If the reporting institution is unable to put in place the necessary mitigating measures, it may consider ceasing the operations of the branch or subsidiary",
+      "cited_answer": "If the host country does not permit proper implementation of Malaysian-standard AML/CFT/CPF measures, the reporting institution must apply appropriate additional measures to mitigate money‑laundering, terrorism‑financing and proliferation‑financing risks and inform the SC of the AML/CFT/CPF gaps and the additional measures implemented [1] If the reporting institution is unable to put in place the necessary mitigating measures, it may consider ceasing the operations of the branch or subsidiary [1]",
+      "claims": [
+        {
+          "claim_id": "C1",
+          "text": "If the host country does not permit proper implementation of Malaysian-standard AML/CFT/CPF measures, the reporting institution must apply appropriate additional measures to mitigate money‑laundering, terrorism‑financing and proliferation‑financing risks and inform the SC of the AML/CFT/CPF gaps and the additional measures implemented",
+          "evidence_ids": [
+            "E1"
+          ],
+          "citation_ids": [
+            "CIT-E1"
+          ],
+          "support_label": null,
+          "support_notes": ""
+        },
+        {
+          "claim_id": "C2",
+          "text": "If the reporting institution is unable to put in place the necessary mitigating measures, it may consider ceasing the operations of the branch or subsidiary",
+          "evidence_ids": [
+            "E1"
+          ],
+          "citation_ids": [
+            "CIT-E1"
+          ],
+          "support_label": null,
+          "support_notes": ""
+        }
+      ],
+      "citation_relations": [
+        {
+          "claim_id": "C1",
+          "citation_id": "CIT-E1",
+          "evidence_id": "E1",
+          "citation_display": "Clause 2.1 · Clause 2.2 · Clause 2.3 · Clause 2.4 · Clause 2.5 · Clause 2.6 · PDF pp. 7–8",
+          "entailment_label": null,
+          "entailment_notes": ""
+        },
+        {
+          "claim_id": "C2",
+          "citation_id": "CIT-E1",
+          "evidence_id": "E1",
+          "citation_display": "Clause 2.1 · Clause 2.2 · Clause 2.3 · Clause 2.4 · Clause 2.5 · Clause 2.6 · PDF pp. 7–8",
+          "entailment_label": null,
+          "entailment_notes": ""
+        }
+      ],
+      "gold_claims": [
+        {
+          "claim_id": "GC1",
+          "requirement": "State that appropriate additional measures must be applied to mitigate the ML/TF/PF risks.",
+          "coverage_label": null,
+          "coverage_notes": ""
+        },
+        {
+          "claim_id": "GC2",
+          "requirement": "State that the reporting institution must inform the SC of the AML/CFT/CPF gaps and the additional measures implemented.",
+          "coverage_label": null,
+          "coverage_notes": ""
+        },
+        {
+          "claim_id": "GC3",
+          "requirement": "State that if the necessary mitigating measures cannot be put in place, the reporting institution may consider ceasing the operations of the branch or subsidiary.",
+          "coverage_label": null,
+          "coverage_notes": ""
+        }
+      ],
+      "answer_relevance_score": null,
+      "answer_relevance_notes": "",
+      "reviewer_notes": ""
+    },
+    {
+      "question_id": "ACIT-006",
+      "category": "multi_clause",
+      "difficulty": "hard",
+      "question": "When a beneficiary institution encounters a wire transfer lacking required originator or beneficiary information, what monitoring and risk-based decision rules must it have?",
+      "expected_status": "answered",
+      "actual_status": "answered",
+      "answer": "A beneficiary institution must take reasonable measures, including post-event or real-time monitoring where feasible, to identify cross-border or domestic wire transfers that lack the required originator or beneficiary information. A beneficiary institution must have effective risk-based policies and procedures for determining when to execute, reject, or suspend a wire transfer lacking the required originator or beneficiary information, and for deciding the appropriate follow-up action.",
+      "cited_answer": "A beneficiary institution must take reasonable measures, including post-event or real-time monitoring where feasible, to identify cross-border or domestic wire transfers that lack the required originator or beneficiary information. [1] A beneficiary institution must have effective risk-based policies and procedures for determining when to execute, reject, or suspend a wire transfer lacking the required originator or beneficiary information, and for deciding the appropriate follow-up action. [1]",
+      "claims": [
+        {
+          "claim_id": "C1",
+          "text": "A beneficiary institution must take reasonable measures, including post-event or real-time monitoring where feasible, to identify cross-border or domestic wire transfers that lack the required originator or beneficiary information.",
+          "evidence_ids": [
+            "E1"
+          ],
+          "citation_ids": [
+            "CIT-E1"
+          ],
+          "support_label": null,
+          "support_notes": ""
+        },
+        {
+          "claim_id": "C2",
+          "text": "A beneficiary institution must have effective risk-based policies and procedures for determining when to execute, reject, or suspend a wire transfer lacking the required originator or beneficiary information, and for deciding the appropriate follow-up action.",
+          "evidence_ids": [
+            "E1"
+          ],
+          "citation_ids": [
+            "CIT-E1"
+          ],
+          "support_label": null,
+          "support_notes": ""
+        }
+      ],
+      "citation_relations": [
+        {
+          "claim_id": "C1",
+          "citation_id": "CIT-E1",
+          "evidence_id": "E1",
+          "citation_display": "Clause 9.3.1 · Clause 9.3.2 · Clause 9.3.3 · PDF p. 50",
+          "entailment_label": null,
+          "entailment_notes": ""
+        },
+        {
+          "claim_id": "C2",
+          "citation_id": "CIT-E1",
+          "evidence_id": "E1",
+          "citation_display": "Clause 9.3.1 · Clause 9.3.2 · Clause 9.3.3 · PDF p. 50",
+          "entailment_label": null,
+          "entailment_notes": ""
+        }
+      ],
+      "gold_claims": [
+        {
+          "claim_id": "GC1",
+          "requirement": "State that reasonable measures, including post-event or real-time monitoring where feasible, must identify cross-border or domestic wire transfers lacking required originator or beneficiary information.",
+          "coverage_label": null,
+          "coverage_notes": ""
+        },
+        {
+          "claim_id": "GC2",
+          "requirement": "State that effective risk-based policies and procedures must determine when to execute, reject, or suspend such a wire transfer.",
+          "coverage_label": null,
+          "coverage_notes": ""
+        },
+        {
+          "claim_id": "GC3",
+          "requirement": "State that the policies and procedures must determine the appropriate follow-up action.",
+          "coverage_label": null,
+          "coverage_notes": ""
+        }
+      ],
+      "answer_relevance_score": null,
+      "answer_relevance_notes": "",
+      "reviewer_notes": ""
+    },
+    {
+      "question_id": "ACIT-008",
+      "category": "exception_condition",
+      "difficulty": "medium",
+      "question": "What confidentiality rule applies to suspicion or STR reporting, and when does a disclosure not constitute the offence described by the Guidelines?",
+      "expected_status": "answered",
+      "actual_status": "answered",
+      "answer": "It shall be an offence to disclose to anyone any information that a suspicion has been formed or that information or a STR has been communicated to the FIED and the SC or to infer that any of these have occurred. A disclosure does not constitute the offence when it is made pursuant to the provisions of the AMLA.",
+      "cited_answer": "It shall be an offence to disclose to anyone any information that a suspicion has been formed or that information or a STR has been communicated to the FIED and the SC or to infer that any of these have occurred. [1] A disclosure does not constitute the offence when it is made pursuant to the provisions of the AMLA. [1]",
+      "claims": [
+        {
+          "claim_id": "C1",
+          "text": "It shall be an offence to disclose to anyone any information that a suspicion has been formed or that information or a STR has been communicated to the FIED and the SC or to infer that any of these have occurred.",
+          "evidence_ids": [
+            "E1"
+          ],
+          "citation_ids": [
+            "CIT-E1"
+          ],
+          "support_label": null,
+          "support_notes": ""
+        },
+        {
+          "claim_id": "C2",
+          "text": "A disclosure does not constitute the offence when it is made pursuant to the provisions of the AMLA.",
+          "evidence_ids": [
+            "E1"
+          ],
+          "citation_ids": [
+            "CIT-E1"
+          ],
+          "support_label": null,
+          "support_notes": ""
+        }
+      ],
+      "citation_relations": [
+        {
+          "claim_id": "C1",
+          "citation_id": "CIT-E1",
+          "evidence_id": "E1",
+          "citation_display": "Clause 12.1 · Clause 12.2 · Clause 12.3 · Clause 12.4 · Clause 12.5 · PDF p. 58",
+          "entailment_label": null,
+          "entailment_notes": ""
+        },
+        {
+          "claim_id": "C2",
+          "citation_id": "CIT-E1",
+          "evidence_id": "E1",
+          "citation_display": "Clause 12.1 · Clause 12.2 · Clause 12.3 · Clause 12.4 · Clause 12.5 · PDF p. 58",
+          "entailment_label": null,
+          "entailment_notes": ""
+        }
+      ],
+      "gold_claims": [
+        {
+          "claim_id": "GC1",
+          "requirement": "State that disclosing that a suspicion has been formed, or that information or an STR has been communicated to FIED and the SC, or allowing such matters to be inferred, is an offence.",
+          "coverage_label": null,
+          "coverage_notes": ""
+        },
+        {
+          "claim_id": "GC2",
+          "requirement": "State that a disclosure made pursuant to the provisions of the AMLA does not constitute the offence under paragraph 12.1.",
+          "coverage_label": null,
+          "coverage_notes": ""
+        }
+      ],
+      "answer_relevance_score": null,
+      "answer_relevance_notes": "",
+      "reviewer_notes": ""
+    },
+    {
+      "question_id": "ACIT-012",
+      "category": "cross_page",
+      "difficulty": "hard",
+      "question": "What customer and related-party screening is required under Part VIII, including the response when new UNSCR names are listed?",
+      "expected_status": "answered",
+      "actual_status": "answered",
+      "answer": "Reporting institutions must conduct sanctions screening on existing, new, and potential customers to detect any positive name match with a designated person. The screening must also cover funds derived from property owned or controlled directly or indirectly by the designated person or any related party, including relationships and transactions, jointly owned or indirectly controlled accounts, and parties such as beneficial owners, signatories, power of attorney, guarantors, nominees, trustees, assignees and payors. When new names are listed in the UNSCR, the institution must screen its entire customer database without delay, which is interpreted as ideally within a matter of hours of the designation. Institutions are advised to search, examine and analyse past financial activities of the designated person or related party where relevant. If a positive name match occurs, the institution must take reasonable and appropriate measures to verify and confirm the identity of the customer against the designated person. The screening obligations extend to the delisting of affected customers from the list of countries and persons designated under the relevant UNSCRs.",
+      "cited_answer": "Reporting institutions must conduct sanctions screening on existing, new, and potential customers to detect any positive name match with a designated person. [1] The screening must also cover funds derived from property owned or controlled directly or indirectly by the designated person or any related party, including relationships and transactions, jointly owned or indirectly controlled accounts, and parties such as beneficial owners, signatories, power of attorney, guarantors, nominees, trustees, assignees and payors. [2] When new names are listed in the UNSCR, the institution must screen its entire customer database without delay, which is interpreted as ideally within a matter of hours of the designation. [1][3] Institutions are advised to search, examine and analyse past financial activities of the designated person or related party where relevant. [3][4] If a positive name match occurs, the institution must take reasonable and appropriate measures to verify and confirm the identity of the customer against the designated person. [1] The screening obligations extend to the delisting of affected customers from the list of countries and persons designated under the relevant UNSCRs. [3]",
+      "claims": [
+        {
+          "claim_id": "C1",
+          "text": "Reporting institutions must conduct sanctions screening on existing, new, and potential customers to detect any positive name match with a designated person.",
+          "evidence_ids": [
+            "E1"
+          ],
+          "citation_ids": [
+            "CIT-E1"
+          ],
+          "support_label": null,
+          "support_notes": ""
+        },
+        {
+          "claim_id": "C2",
+          "text": "The screening must also cover funds derived from property owned or controlled directly or indirectly by the designated person or any related party, including relationships and transactions, jointly owned or indirectly controlled accounts, and parties such as beneficial owners, signatories, power of attorney, guarantors, nominees, trustees, assignees and payors.",
+          "evidence_ids": [
+            "E2"
+          ],
+          "citation_ids": [
+            "CIT-E2"
+          ],
+          "support_label": null,
+          "support_notes": ""
+        },
+        {
+          "claim_id": "C3",
+          "text": "When new names are listed in the UNSCR, the institution must screen its entire customer database without delay, which is interpreted as ideally within a matter of hours of the designation.",
+          "evidence_ids": [
+            "E1",
+            "E3"
+          ],
+          "citation_ids": [
+            "CIT-E1",
+            "CIT-E3"
+          ],
+          "support_label": null,
+          "support_notes": ""
+        },
+        {
+          "claim_id": "C4",
+          "text": "Institutions are advised to search, examine and analyse past financial activities of the designated person or related party where relevant.",
+          "evidence_ids": [
+            "E3",
+            "E4"
+          ],
+          "citation_ids": [
+            "CIT-E3",
+            "CIT-E4"
+          ],
+          "support_label": null,
+          "support_notes": ""
+        },
+        {
+          "claim_id": "C5",
+          "text": "If a positive name match occurs, the institution must take reasonable and appropriate measures to verify and confirm the identity of the customer against the designated person.",
+          "evidence_ids": [
+            "E1"
+          ],
+          "citation_ids": [
+            "CIT-E1"
+          ],
+          "support_label": null,
+          "support_notes": ""
+        },
+        {
+          "claim_id": "C6",
+          "text": "The screening obligations extend to the delisting of affected customers from the list of countries and persons designated under the relevant UNSCRs.",
+          "evidence_ids": [
+            "E3"
+          ],
+          "citation_ids": [
+            "CIT-E3"
+          ],
+          "support_label": null,
+          "support_notes": ""
+        }
+      ],
+      "citation_relations": [
+        {
+          "claim_id": "C1",
+          "citation_id": "CIT-E1",
+          "evidence_id": "E1",
+          "citation_display": "Clause 17.1 · Clause 17.2 · Clause 17.4 · PDF pp. 62–63",
+          "entailment_label": null,
+          "entailment_notes": ""
+        },
+        {
+          "claim_id": "C2",
+          "citation_id": "CIT-E2",
+          "evidence_id": "E2",
+          "citation_display": "Clause 17.3 · Clause 17.3(a) · Clause 17.3(b) · Clause 17.3(c) · PDF pp. 62–63",
+          "entailment_label": null,
+          "entailment_notes": ""
+        },
+        {
+          "claim_id": "C3",
+          "citation_id": "CIT-E1",
+          "evidence_id": "E1",
+          "citation_display": "Clause 17.1 · Clause 17.2 · Clause 17.4 · PDF pp. 62–63",
+          "entailment_label": null,
+          "entailment_notes": ""
+        },
+        {
+          "claim_id": "C3",
+          "citation_id": "CIT-E3",
+          "evidence_id": "E3",
+          "citation_display": "17. CONDUCT SANCTIONS SCREENING ON CUSTOMERS · PDF p. 63",
+          "entailment_label": null,
+          "entailment_notes": ""
+        },
+        {
+          "claim_id": "C4",
+          "citation_id": "CIT-E3",
+          "evidence_id": "E3",
+          "citation_display": "17. CONDUCT SANCTIONS SCREENING ON CUSTOMERS · PDF p. 63",
+          "entailment_label": null,
+          "entailment_notes": ""
+        },
+        {
+          "claim_id": "C4",
+          "citation_id": "CIT-E4",
+          "evidence_id": "E4",
+          "citation_display": "APPENDIX D · Clause 3.1 · Clause 3.2 · Clause 3.4 · PDF pp. 88–89",
+          "entailment_label": null,
+          "entailment_notes": ""
+        },
+        {
+          "claim_id": "C5",
+          "citation_id": "CIT-E1",
+          "evidence_id": "E1",
+          "citation_display": "Clause 17.1 · Clause 17.2 · Clause 17.4 · PDF pp. 62–63",
+          "entailment_label": null,
+          "entailment_notes": ""
+        },
+        {
+          "claim_id": "C6",
+          "citation_id": "CIT-E3",
+          "evidence_id": "E3",
+          "citation_display": "17. CONDUCT SANCTIONS SCREENING ON CUSTOMERS · PDF p. 63",
+          "entailment_label": null,
+          "entailment_notes": ""
+        }
+      ],
+      "gold_claims": [
+        {
+          "claim_id": "GC1",
+          "requirement": "State that sanctions screening applies to existing, new and potential customers for positive name matches with designated persons.",
+          "coverage_label": null,
+          "coverage_notes": ""
+        },
+        {
+          "claim_id": "GC2",
+          "requirement": "State that the entire customer database must be screened without delay when new names are listed in the UNSCR.",
+          "coverage_label": null,
+          "coverage_notes": ""
+        },
+        {
+          "claim_id": "GC3",
+          "requirement": "State that screening extends to funds derived from property owned or controlled directly or indirectly by a designated person or related party.",
+          "coverage_label": null,
+          "coverage_notes": ""
+        },
+        {
+          "claim_id": "GC4",
+          "requirement": "Include checks on relationships and transactions connected with the designated person, jointly owned or indirectly controlled properties/accounts, and parties related to frozen accounts such as beneficial owners, signatories, power of attorney relationships, guarantors, nominees, trustees, assignees and payors.",
+          "coverage_label": null,
+          "coverage_notes": ""
+        }
+      ],
+      "answer_relevance_score": null,
+      "answer_relevance_notes": "",
+      "reviewer_notes": ""
+    },
+    {
+      "question_id": "ACIT-014",
+      "category": "appendix",
+      "difficulty": "medium",
+      "question": "According to Appendix B, which family members are expressly included for a PEP?",
+      "expected_status": "answered",
+      "actual_status": "answered",
+      "answer": "Appendix B defines a family member of a PEP to include the PEP’s parents, siblings, spouse, child, and spouse’s parents (both biological and non‑biological).",
+      "cited_answer": "Appendix B defines a family member of a PEP to include the PEP’s parents, siblings, spouse, child, and spouse’s parents (both biological and non‑biological). [1]",
+      "claims": [
+        {
+          "claim_id": "C1",
+          "text": "Appendix B defines a family member of a PEP to include the PEP’s parents, siblings, spouse, child, and spouse’s parents (both biological and non‑biological).",
+          "evidence_ids": [
+            "E1"
+          ],
+          "citation_ids": [
+            "CIT-E1"
+          ],
+          "support_label": null,
+          "support_notes": ""
+        }
+      ],
+      "citation_relations": [
+        {
+          "claim_id": "C1",
+          "citation_id": "CIT-E1",
+          "evidence_id": "E1",
+          "citation_display": "APPENDIX B · Clause 1.3 · Clause 1.4 · PDF p. 82",
+          "entailment_label": null,
+          "entailment_notes": ""
+        }
+      ],
+      "gold_claims": [
+        {
+          "claim_id": "GC1",
+          "requirement": "List the PEP’s parents, siblings, spouse, child, and spouse’s parents.",
+          "coverage_label": null,
+          "coverage_notes": ""
+        },
+        {
+          "claim_id": "GC2",
+          "requirement": "Note that the starred family relationships in Appendix B cover both biological and non-biological relationships.",
+          "coverage_label": null,
+          "coverage_notes": ""
+        }
+      ],
+      "answer_relevance_score": null,
+      "answer_relevance_notes": "",
+      "reviewer_notes": ""
+    },
+    {
+      "question_id": "ACIT-017",
+      "category": "table_form",
+      "difficulty": "easy",
+      "question": "According to the List of Revisions, what were the revision date, effective date, and series number for the third revision?",
+      "expected_status": "answered",
+      "actual_status": "answered",
+      "answer": "The third revision's revision date was 13.6.2024 The third revision's effective date was 13.6.2024 The third revision's series number was SC-GL/AML-2014 (R3- 2024)",
+      "cited_answer": "The third revision's revision date was 13.6.2024 [1] The third revision's effective date was 13.6.2024 [1] The third revision's series number was SC-GL/AML-2014 (R3- 2024) [1]",
+      "claims": [
+        {
+          "claim_id": "C1",
+          "text": "The third revision's revision date was 13.6.2024",
+          "evidence_ids": [
+            "E1"
+          ],
+          "citation_ids": [
+            "CIT-E1"
+          ],
+          "support_label": null,
+          "support_notes": ""
+        },
+        {
+          "claim_id": "C2",
+          "text": "The third revision's effective date was 13.6.2024",
+          "evidence_ids": [
+            "E1"
+          ],
+          "citation_ids": [
+            "CIT-E1"
+          ],
+          "support_label": null,
+          "support_notes": ""
+        },
+        {
+          "claim_id": "C3",
+          "text": "The third revision's series number was SC-GL/AML-2014 (R3- 2024)",
+          "evidence_ids": [
+            "E1"
+          ],
+          "citation_ids": [
+            "CIT-E1"
+          ],
+          "support_label": null,
+          "support_notes": ""
+        }
+      ],
+      "citation_relations": [
+        {
+          "claim_id": "C1",
+          "citation_id": "CIT-E1",
+          "evidence_id": "E1",
+          "citation_display": "List of Revisions · PDF p. 2",
+          "entailment_label": null,
+          "entailment_notes": ""
+        },
+        {
+          "claim_id": "C2",
+          "citation_id": "CIT-E1",
+          "evidence_id": "E1",
+          "citation_display": "List of Revisions · PDF p. 2",
+          "entailment_label": null,
+          "entailment_notes": ""
+        },
+        {
+          "claim_id": "C3",
+          "citation_id": "CIT-E1",
+          "evidence_id": "E1",
+          "citation_display": "List of Revisions · PDF p. 2",
+          "entailment_label": null,
+          "entailment_notes": ""
+        }
+      ],
+      "gold_claims": [
+        {
+          "claim_id": "GC1",
+          "requirement": "State that the third revision date was 13 June 2024.",
+          "coverage_label": null,
+          "coverage_notes": ""
+        },
+        {
+          "claim_id": "GC2",
+          "requirement": "State that the effective date of the third revision was 13 June 2024.",
+          "coverage_label": null,
+          "coverage_notes": ""
+        },
+        {
+          "claim_id": "GC3",
+          "requirement": "State that the series number was SC-GL/AML-2014 (R3-2024).",
+          "coverage_label": null,
+          "coverage_notes": ""
+        }
+      ],
+      "answer_relevance_score": null,
+      "answer_relevance_notes": "",
+      "reviewer_notes": ""
+    },
+    {
+      "question_id": "ACIT-018",
+      "category": "out_of_scope",
+      "difficulty": "easy",
+      "question": "What is today's USD to MYR exchange rate?",
+      "expected_status": "insufficient_evidence",
+      "actual_status": "insufficient_evidence",
+      "answer": "The retrieved evidence is insufficient to answer this question reliably.",
+      "cited_answer": "The retrieved evidence is insufficient to answer this question reliably.",
+      "claims": [],
+      "citation_relations": [],
+      "gold_claims": [],
+      "answer_relevance_score": null,
+      "answer_relevance_notes": "",
+      "reviewer_notes": ""
+    }
+  ]
+}

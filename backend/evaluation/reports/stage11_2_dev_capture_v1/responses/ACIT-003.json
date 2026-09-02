@@ -1,0 +1,309 @@
+{
+  "document_id": "485c4989-c300-45c8-ac06-79a59492bb5c",
+  "question": "If a host country does not permit proper implementation of Malaysian-standard AML/CFT/CPF measures, what must the reporting institution do, and what may it consider if adequate mitigation still cannot be put in place?",
+  "status": "answered",
+  "answer": "If the host country does not permit proper implementation of Malaysian-standard AML/CFT/CPF measures, the reporting institution must apply appropriate additional measures to mitigate money‑laundering, terrorism‑financing and proliferation‑financing risks and inform the SC of the AML/CFT/CPF gaps and the additional measures implemented If the reporting institution is unable to put in place the necessary mitigating measures, it may consider ceasing the operations of the branch or subsidiary",
+  "cited_answer": "If the host country does not permit proper implementation of Malaysian-standard AML/CFT/CPF measures, the reporting institution must apply appropriate additional measures to mitigate money‑laundering, terrorism‑financing and proliferation‑financing risks and inform the SC of the AML/CFT/CPF gaps and the additional measures implemented [1] If the reporting institution is unable to put in place the necessary mitigating measures, it may consider ceasing the operations of the branch or subsidiary [1]",
+  "claims": [
+    {
+      "claim_id": "C1",
+      "text": "If the host country does not permit proper implementation of Malaysian-standard AML/CFT/CPF measures, the reporting institution must apply appropriate additional measures to mitigate money‑laundering, terrorism‑financing and proliferation‑financing risks and inform the SC of the AML/CFT/CPF gaps and the additional measures implemented",
+      "evidence_ids": [
+        "E1"
+      ],
+      "citation_ids": [
+        "CIT-E1"
+      ]
+    },
+    {
+      "claim_id": "C2",
+      "text": "If the reporting institution is unable to put in place the necessary mitigating measures, it may consider ceasing the operations of the branch or subsidiary",
+      "evidence_ids": [
+        "E1"
+      ],
+      "citation_ids": [
+        "CIT-E1"
+      ]
+    }
+  ],
+  "used_evidence_ids": [
+    "E1"
+  ],
+  "missing_information": [],
+  "evidence": [
+    {
+      "evidence_id": "E1",
+      "chunk_id": "485c4989-c300-45c8-ac06-79a59492bb5c-c0008-e6045d93c8",
+      "chunk_index": 8,
+      "semantic_type": "clause",
+      "source_rank": 1,
+      "ranked_seed_rank": 1,
+      "reasons": [
+        "ranked_seed"
+      ],
+      "pages": [
+        7,
+        8
+      ],
+      "section_path": [
+        "PART I: INTRODUCTION AND APPLICABILITY",
+        "2.  APPLICABILITY"
+      ],
+      "source_element_ids": [
+        "p7-e9",
+        "p7-e10",
+        "p8-e1",
+        "p8-e2",
+        "p8-e3",
+        "p8-e4",
+        "p8-e5",
+        "p8-e6"
+      ],
+      "content_text": "2.1 These Guidelines are applicable to reporting institutions as defined under Part I on Definition,\nPart VII on Combating Terrorism Financing and Part VIII on Combating Proliferation\nFinancing as the case may be, including its branches and majority- owned subsidiaries\noutside Malaysia which carry out, among others, the activities as listed in the First\nSchedule of the AMLA.\n\n2.2 In the case of foreign operations, where anti-money laundering, counter financing terrorism\nand counter proliferation financing (AML/CFT/CPF) measures of the host country are less\nstringent than the Malaysian standards, a reporting institution is required to ensure that its\nforeign branches and majority-owned subsidiaries apply AML/CFT/CPF measures which are\nconsistent with the Malaysian standards, to the extent that the host country laws and\nregulations permit.\n\n2.3 If the host country does not permit the proper implementation of the AML/CFT/CPF\nmeasures consistent with the Malaysian standards, the reporting institution is required to\napply appropriate additional measures to mitigate the money laundering, terrorism\nfinancing and proliferation financing (ML/TF/PF) risks and inform the SC on the\nAML/CFT/CPF gaps and additional measures implemented to manage the ML/TF/PF risks\narising from the identified gaps.\n\n2.4 Where the reporting institution is unable to put in place the necessary mitigating measures\nas required under paragraph 2.3 above, the reporting institution may consider ceasing the\noperations of the branch or subsidiary.\n\n2.5 Part VIII of these Guidelines set out TFS-PF obligations that must be complied with by\nreporting institutions. The Strategic Trade Controller may from time-to-time issue new\nguidelines or directives under the STA which a reporting institution may need to comply\nwith. In this regard, the SC will notify all relevant reporting institutions of such issuances\naccordingly. Where there are differing requirements, the more stringent requirements shall\napply.\n\n2.6 The SC may, upon application, grant an exemption from or variation to the requirements\nof these Guidelines if the SC is satisfied that:\n\n(a) such variation is not contrary to the intended purpose of the relevant requirement\nin these Guidelines; or\n\n(b) there are mitigating factors which justify the said exemption or variation."
+    },
+    {
+      "evidence_id": "E2",
+      "chunk_id": "485c4989-c300-45c8-ac06-79a59492bb5c-c0187-222788f826",
+      "chunk_index": 187,
+      "semantic_type": "clause",
+      "source_rank": 2,
+      "ranked_seed_rank": 2,
+      "reasons": [
+        "ranked_seed"
+      ],
+      "pages": [
+        71,
+        72,
+        73
+      ],
+      "section_path": [
+        "APPENDIX A",
+        "3.0 A: Perform Risk Assessment"
+      ],
+      "source_element_ids": [
+        "p71-e13",
+        "p71-e14",
+        "p72-e10",
+        "p72-e11",
+        "p72-e12",
+        "p72-e13",
+        "p72-e14",
+        "p72-e15",
+        "p72-e16",
+        "p72-e17",
+        "p72-e18",
+        "p73-e1",
+        "p73-e2",
+        "p73-e3",
+        "p73-e4",
+        "p73-e5"
+      ],
+      "content_text": "3.4 To assist a reporting institution in assessing the extent of its ML/TF/PF risks, the\nreporting institution may consider the following examples under the risk factors\nmentioned below for guidance:\n\n(a)Customers – in conducting business transactions, the reporting institution is\nexposed to various types of customers that may pose ML/TF/PF risks. In\nanalysing its customers’ risk, a reporting institution may consider the non-\nexhaustive examples below:\n\n(b)Countries or geographic – a reporting institution should take into account factors\nincluding the location of the reporting institution’s branches and subsidiaries and\nwhether its holding company is located within a jurisdiction with full\nAML/CFT/CPF compliance as identified by a credible source. Further non-\nexhaustive examples are as below:\n\n•\nLocation of its branches and subsidiaries in tourist hotspots, crime hotspots,\ncountry’s border and entry-points; and\n\n•\nLocation of its branches and subsidiaries in high-risk jurisdictions e.g.\ncountries identified by FATF and the Government of Malaysia, countries\nsubjected to sanctions by UN, etc.\n\n(c)Transactions and distribution channels – a reporting institution has various\nmodes of transaction and distribution of its products and services. Some of the\nmodes of transaction and distribution channels may be more susceptible to\nML/TF/PF risks. In this regard, a reporting institution must consider the\nappropriate ML/TF/PF risks attributed to these modes including the following\nexamples:\n\n•\nMode of distribution primarily via agents;\n\n•\nOnline or technology based transaction;\n\n•\nNon face-to face business relationship; and\n\n•Cash-based transactions.\n\n(d)Products and services – given the variety of financial products in the market, a\nreporting institution must identify the appropriate level of ML/TF/PF risks\nattached to the types of products and services offered. Some of the non-\n\n(e)exhaustive examples that the reporting institution may take into account are as\nfollows:\n\n•\nNature of the products i.e. transferability/liquidity of the products;\n\n•\nLevel of complexity of the products and services;\n\n•\nBearer instruments; and\n\n•\nNew technologies."
+    },
+    {
+      "evidence_id": "E3",
+      "chunk_id": "485c4989-c300-45c8-ac06-79a59492bb5c-c0055-88bd4ccfdd",
+      "chunk_index": 55,
+      "semantic_type": "clause",
+      "source_rank": 3,
+      "ranked_seed_rank": 3,
+      "reasons": [
+        "ranked_seed"
+      ],
+      "pages": [
+        19,
+        20
+      ],
+      "section_path": [
+        "PART I: INTRODUCTION AND APPLICABILITY",
+        "6. GENERAL PRINCIPLES AND POLICIES TO COMBAT MONEY\nLAUNDERING, TERRORISM FINANCING AND PROLIFERATION\nFINANCING"
+      ],
+      "source_element_ids": [
+        "p19-e8",
+        "p19-e9",
+        "p19-e10",
+        "p19-e11",
+        "p19-e12",
+        "p20-e1",
+        "p20-e2"
+      ],
+      "content_text": "6.2 In combating ML/TF/PF, a reporting institution must ensure the following:\n\n(a)Compliance with laws: A reporting institution must ensure that laws and\nregulations are adhered to, that business is conducted in conformity with high\nethical standards, and that service is not provided where there is good reason\nto suppose that transactions are associated with ML/TF/PF activities.\n\n(b)Co-operation with law enforcement agencies: A reporting institution\nmust co-operate fully with relevant law enforcement agencies. This includes\ntaking appropriate measures such as timely disclosure of information by the\nreporting institution to the FIED and the relevant law enforcement agencies.\n\n(c)Establishing internal controls: A reporting institution must issue and adopt\npolicies and procedures which are consistent with the principles set out under\nthe AMLA, TFS-PF related legislations and these Guidelines. A reporting\ninstitution must also ensure ongoing training programmes are conducted to\nkeep its board of directors, senior management and employees abreast on\nmatters under the AMLA and these Guidelines.\n\n(d)Risk-based approach: A reporting institution must ensure that the depth\nand breadth of its policies and procedures to identify, assess, monitor, manage\n\nand mitigate ML/TF/PF risks commensurate with the nature, scale and\ncomplexity of its activities.\n\n(e)Customer Due Diligence: A reporting institution must have an effective\nprocedure to identify its customers and to obtain satisfactory evidence to\nverify its customers’ identity."
+    },
+    {
+      "evidence_id": "E4",
+      "chunk_id": "485c4989-c300-45c8-ac06-79a59492bb5c-c0179-f5adde1861",
+      "chunk_index": 179,
+      "semantic_type": "clause",
+      "source_rank": 4,
+      "ranked_seed_rank": 4,
+      "reasons": [
+        "ranked_seed"
+      ],
+      "pages": [
+        68
+      ],
+      "section_path": [
+        "APPENDIX A",
+        "1.0 Introduction"
+      ],
+      "source_element_ids": [
+        "p68-e4",
+        "p68-e5",
+        "p68-e6",
+        "p68-e7",
+        "p68-e8",
+        "p68-e9",
+        "p68-e10",
+        "p68-e11",
+        "p68-e12",
+        "p68-e13"
+      ],
+      "content_text": "1.1 The RBA is central to the effective implementation of the FATF Recommendations.\nThe focus on risk is intended to ensure a reporting institution is able to identify, assess\nand understand the ML/TF/PF risks to which it is exposed to and take the necessary\nAML/CFT/ CPF control measures to mitigate them.\n\n1.2 This Guidance seeks to:\n\n(a)assist the reporting institution to design and implement AML/CFT/CPF control\nmeasures by providing a common understanding of what the RBA encompasses;\nand\n\n(b)outline the recommended steps involved in applying the RBA. In the event a\nreporting institution has developed its own RBA, the adopted RBA must be able\nto achieve the outcomes intended under this Guidance.\n\n1.3 For entities under a group structure, this Guidance shall apply to each reporting\ninstitution that falls under First Schedule of the AMLA, whether as a holding or\nsubsidiary entity.\n\n1.4 The RBA–\n\n(a)recognises that the ML/TF/PF threats to a reporting institution vary across\ncustomers, geographic, products and services, transactions and distribution\nchannels;\n\n(b)allows the reporting institution to apply procedures, systems and controls to\nmanage and mitigate the ML/TF/PF risks identified; and\n\n(c)facilitates the reporting institution to allocate its resources and internal\nstructures to manage and mitigate the ML/TF/PF risk identified.\n\n1.5 The RBA provides an assessment of the threats and vulnerabilities of the reporting\ninstitution from being used as a conduit for ML/TF/PF. By regularly assessing the\nreporting institution’s ML/TF/PF risks, it allows the reporting institution to protect\nand maintain the integrity of its business and the financial system as a whole."
+    },
+    {
+      "evidence_id": "E5",
+      "chunk_id": "485c4989-c300-45c8-ac06-79a59492bb5c-c0116-b6adec1458",
+      "chunk_index": 116,
+      "semantic_type": "clause",
+      "source_rank": 5,
+      "ranked_seed_rank": 5,
+      "reasons": [
+        "ranked_seed"
+      ],
+      "pages": [
+        43
+      ],
+      "section_path": [
+        "PART III: CUSTOMER DUE DILIGENCE",
+        "8. CUSTOMER DUE DILIGENCE (CDD)",
+        "8.5 Higher-Risk Countries"
+      ],
+      "source_element_ids": [
+        "p43-e9",
+        "p43-e10",
+        "p43-e11",
+        "p43-e12"
+      ],
+      "content_text": "8.5.3 For business relationship and transaction with any person from countries identified\nby–\n\n(a)the FATF as issued under the “FATF Public Statement”- on jurisdictions with\nstrategic AML/CFT/CPF deficiencies that have not made sufficient progress in\naddressing the deficiencies or have not committed to an action plan developed\nwith the FATF to address the deficiencies; or\n\n(b)the Government of Malaysia as having strategic AML/CFT/CPF deficiencies and\nhave not made sufficient progress in addressing the deficiencies;\n\na reporting institution is required to assess the risk and where the risk is identified\nas higher risk, the reporting institution is required to conduct enhanced CDD as set\nout in paragraph 8.3 above."
+    }
+  ],
+  "citations": [
+    {
+      "citation_id": "CIT-E1",
+      "marker": "[1]",
+      "evidence_id": "E1",
+      "chunk_id": "485c4989-c300-45c8-ac06-79a59492bb5c-c0008-e6045d93c8",
+      "chunk_index": 8,
+      "source_filename": "sc_aml_cft.pdf",
+      "display": "Clause 2.1 · Clause 2.2 · Clause 2.3 · Clause 2.4 · Clause 2.5 · Clause 2.6 · PDF pp. 7–8",
+      "pages": [
+        7,
+        8
+      ],
+      "section_path": [
+        "PART I: INTRODUCTION AND APPLICABILITY",
+        "2.  APPLICABILITY"
+      ],
+      "source_element_ids": [
+        "p7-e9",
+        "p7-e10",
+        "p8-e1",
+        "p8-e2",
+        "p8-e3",
+        "p8-e4",
+        "p8-e5",
+        "p8-e6"
+      ],
+      "locators": [
+        {
+          "kind": "clause",
+          "label": "Clause 2.1",
+          "pages": [
+            7
+          ],
+          "source_element_ids": [
+            "p7-e9"
+          ]
+        },
+        {
+          "kind": "clause",
+          "label": "Clause 2.2",
+          "pages": [
+            7
+          ],
+          "source_element_ids": [
+            "p7-e10"
+          ]
+        },
+        {
+          "kind": "clause",
+          "label": "Clause 2.3",
+          "pages": [
+            8
+          ],
+          "source_element_ids": [
+            "p8-e1"
+          ]
+        },
+        {
+          "kind": "clause",
+          "label": "Clause 2.4",
+          "pages": [
+            8
+          ],
+          "source_element_ids": [
+            "p8-e2"
+          ]
+        },
+        {
+          "kind": "clause",
+          "label": "Clause 2.5",
+          "pages": [
+            8
+          ],
+          "source_element_ids": [
+            "p8-e3"
+          ]
+        },
+        {
+          "kind": "clause",
+          "label": "Clause 2.6",
+          "pages": [
+            8
+          ],
+          "source_element_ids": [
+            "p8-e4"
+          ]
+        }
+      ],
+      "validation_status": "valid"
+    }
+  ],
+  "citation_version": "deterministic_citations_v1_2",
+  "citation_validation": {
+    "status": "valid",
+    "citation_count": 1,
+    "valid_citation_count": 1,
+    "errors": []
+  },
+  "generation_provider": "groq",
+  "generation_model": "openai/gpt-oss-120b",
+  "prompt_version": "grounded_claims_v1",
+  "generation_temperature": 0.0,
+  "generation_max_tokens": 1200,
+  "generation_json_mode": true,
+  "usage": {
+    "prompt_tokens": 2591,
+    "completion_tokens": 504,
+    "total_tokens": 3095
+  },
+  "retrieval_profile": "retrieval_v1_stage8_2_top5",
+  "retrieval_top_k": 5,
+  "retrieval_candidate_k": 20,
+  "retrieval_rrf_k": 60,
+  "retrieval_dense_weight": 1.0,
+  "retrieval_lexical_weight": 1.0,
+  "context_strategy": "structural_one_hop_v1",
+  "context_chunk_count": 5,
+  "expanded_chunk_count": 0
+}

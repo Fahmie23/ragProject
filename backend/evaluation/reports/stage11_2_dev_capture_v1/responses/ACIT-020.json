@@ -1,0 +1,214 @@
+{
+  "document_id": "485c4989-c300-45c8-ac06-79a59492bb5c",
+  "question": "Who is the current CEO of NVIDIA?",
+  "status": "insufficient_evidence",
+  "answer": "The retrieved evidence is insufficient to answer this question reliably.",
+  "cited_answer": "The retrieved evidence is insufficient to answer this question reliably.",
+  "claims": [],
+  "used_evidence_ids": [],
+  "missing_information": [
+    "Information identifying the current CEO of NVIDIA"
+  ],
+  "evidence": [
+    {
+      "evidence_id": "E1",
+      "chunk_id": "485c4989-c300-45c8-ac06-79a59492bb5c-c0257-818930868d",
+      "chunk_index": 257,
+      "semantic_type": "clause",
+      "source_rank": 1,
+      "ranked_seed_rank": 1,
+      "reasons": [
+        "ranked_seed"
+      ],
+      "pages": [
+        94
+      ],
+      "section_path": [
+        "APPENDIX E",
+        "Identification"
+      ],
+      "source_element_ids": [
+        "p94-e1",
+        "p94-e2",
+        "p94-e3",
+        "p94-e4",
+        "p94-e6",
+        "p94-e7",
+        "p94-e8"
+      ],
+      "content_text": "1.8 Step 1: Identify the natural person(s), if any, who ultimately have\ncontrolling ownership interest in the legal person\n\n(a) Having ultimate controlling ownership interest over an entity includes having more\nthan 25% ownership or equity interest in an entity which may be observed, among\nothers, through share capital, capital contribution or voting rights. The ownership\nmay either be direct ownership (through ownership of shares within the entity\nitself) or indirect ownership (through chain of corporate vehicles). In the case of\na limited liability partnership - partners with capital contribution and/or voting\nrights of more than 25%.\n\n(b) Having a golden share within an entity is similar to having ultimate ownership of\nthe entity, as it refers to 51% ownership.\n\n(c) Shareholders may exercise control alone or together with other shareholders,\nincluding through any contract, understanding, relationship, intermediary or tiered\nentity. In most circumstances, ownership over an entity implies control over the\nentity, as ownership may come with the power and authority to take actions\nand make decisions for the entity. Such a situation can be observed, among\nothers, where:\n\n(i)The natural person has majority voting power within the entity to make\ndecisions; or\n\n(ii)The natural person exercises his right to appoint or remove directors\nor senior management, as a major shareholder.\n\n(d) In implementing Step 1, a natural person identified as fulfilling the criteria in (a)\nshall be identified as the beneficial owner. However, where there is doubt that\nthe person identified under Step 1 is not the beneficial owner; or where no natural\nperson has ultimate controlling ownership interest over the legal person, the\nreporting institution shall carry out Step 2."
+    },
+    {
+      "evidence_id": "E2",
+      "chunk_id": "485c4989-c300-45c8-ac06-79a59492bb5c-c0061-0ca350a45f",
+      "chunk_index": 61,
+      "semantic_type": "clause",
+      "source_rank": 2,
+      "ranked_seed_rank": 2,
+      "reasons": [
+        "ranked_seed"
+      ],
+      "pages": [
+        23
+      ],
+      "section_path": [
+        "PART IA: AML/CFT/CPF INTERNAL PROGRAMMES AND\nOBLIGATIONS OF THE BOARD OF DIRECTORS, SENIOR\nMANAGEMENT AND COMPLIANCE OFFICER",
+        "6 C. SENIOR MANAGEMENT"
+      ],
+      "source_element_ids": [
+        "p23-e2",
+        "p23-e3",
+        "p23-e4",
+        "p23-e5",
+        "p23-e6",
+        "p23-e7",
+        "p23-e8",
+        "p23-e9",
+        "p23-e10",
+        "p23-e11"
+      ],
+      "content_text": "6 C.1 The senior management is responsible for effective implementation of AML/CFT/CPF\ninternal programmes, policies and procedures that can manage the ML/TF/PF risks\nidentified. In particular, the senior management has the following roles and\nresponsibilities:\n\n(a)be aware of and understand the ML/TF/PF risks associated with among others\nits business activities or strategies, delivery channels and geographical coverage\nof its business products and services offered and to be offered including new\nbusiness activities or strategies, new products, new delivery channels and new\ngeographical coverage;\n\n(b)formulate AML/CFT/CPF policies to ensure that they are in line with the risks\nprofiles, nature of business, complexity, value or volume of the transactions\nundertaken by the reporting institution and its geographical coverage;\n\n(c)establish appropriate mechanisms to effectively formulate and implement\nAML/CFT/CPF policies and procedures approved by the board of directors;\n\n(d)undertake review and propose to the board of directors the necessary\nenhancements to the AML/CFT/CPF policies to reflect changes in the reporting\ninstitution’s risk profiles;\n\n(e)provide periodic reporting to the board of directors on the level of ML/TF/PF\nrisks faced by the reporting institution, strength and adequacy of risk\nmanagement and internal controls implemented to manage the risks and the\nlatest development on AML/CFT/CPF which may have an impact on the reporting\ninstitution;\n\n(f)allocate adequate resources to effectively implement and administer\nAML/CFT/CPF compliance programmes that are reflective of the size and\ncomplexity of the reporting institution’s operations and risk profiles;\n\n(g)ensure that there is a proper channel of communication in place to effectively\ncommunicate the AML/CFT/CPF policies and procedures to all relevant\nemployees;\n\n(h)ensure that AML/CFT/CPF issues raised are addressed in a timely manner; and\n\n(i)provide appropriate levels of AML/CFT/CPF training for employees throughout\nthe organisation."
+    },
+    {
+      "evidence_id": "E3",
+      "chunk_id": "485c4989-c300-45c8-ac06-79a59492bb5c-c0063-e2642bd95c",
+      "chunk_index": 63,
+      "semantic_type": "clause",
+      "source_rank": 3,
+      "ranked_seed_rank": 3,
+      "reasons": [
+        "ranked_seed"
+      ],
+      "pages": [
+        24
+      ],
+      "section_path": [
+        "PART IA: AML/CFT/CPF INTERNAL PROGRAMMES AND\nOBLIGATIONS OF THE BOARD OF DIRECTORS, SENIOR\nMANAGEMENT AND COMPLIANCE OFFICER",
+        "6 D. COMPLIANCE OFFICER"
+      ],
+      "source_element_ids": [
+        "p24-e5",
+        "p24-e6",
+        "p24-e7",
+        "p24-e8",
+        "p24-e9-split-1",
+        "p24-e9-split-2",
+        "p24-e10",
+        "p24-e11",
+        "p24-e12"
+      ],
+      "content_text": "6 D.4 The roles and responsibilities of a compliance officer include to ensure the following:\n\n(a)The reporting institution’s compliance with the AML/CFT/CPF requirements;\n\n(b)Effective implementation of appropriate AML/CFT/CPF policies and procedures,\nincluding CDD, ongoing due diligence, reporting of suspicious transactions,\nrecord keeping, combating the financing of terrorism and compliance and\ntraining programmes;\n\n(c)AML/CFT/CPF policies and procedures are regularly assessed and kept up-to-date\nto ensure that they are effective and sufficient to address any changes in\nML/TF/PF trends;\n\n(d)Timely reporting of the risk-based approach measures to the board of directors;\n\n(e)All employees are aware of the reporting institution’s AML/CFT/CPF measures,\nincluding policies, control mechanism and reporting channels;\n\n(f)Internally generated suspicious transactions reports are appropriately evaluated\nand recorded before submission to the FIED;\n\n(g)The channel of communication for reporting suspicious transactions is secured and\nthat information is kept confidential; and\n\n(h)The ML/TF/PF risks associated with new products and services or arising from the\nreporting institution’s operational changes, including the introduction of new\ntechnology and processes, are identified and are brought to the attention of the\nboard of directors."
+    },
+    {
+      "evidence_id": "E4",
+      "chunk_id": "485c4989-c300-45c8-ac06-79a59492bb5c-c0053-46174d100c",
+      "chunk_index": 53,
+      "semantic_type": "clause",
+      "source_rank": 4,
+      "ranked_seed_rank": 4,
+      "reasons": [
+        "ranked_seed"
+      ],
+      "pages": [
+        18,
+        19
+      ],
+      "section_path": [
+        "PART I: INTRODUCTION AND APPLICABILITY",
+        "5 A. GENERAL DESCRIPTION OF PROLIFERATION FINANCING"
+      ],
+      "source_element_ids": [
+        "p18-e9",
+        "p18-e10",
+        "p18-e11",
+        "p18-e12",
+        "p19-e1",
+        "p19-e2",
+        "p19-e3",
+        "p19-e4",
+        "p19-e5"
+      ],
+      "content_text": "5 A.1 In response to growing concerns over the proliferation of nuclear, biological and\nchemical weapons and their means of delivery which continue to pose a significant\nthreat to international peace and security, the United Nations Security Council (UNSC)\nhas intensified efforts to strengthen its global sanctions regime in order to prevent,\nsuppress and disrupt proliferation of weapons of mass destruction and its financing.\n\n5 A.2 As is the case with other UNSC sanctions programmes, targeted financial sanctions on\ncountries and specifically identified individuals and entities (i.e. designated persons)\nis the primary aspect of its overall sanctions regime to effectively disrupt financial\nflows across known proliferation networks.\n\n5 A.3 Recommendation 7 of the Financial Action Task Force (FATF) Standards requires\ncountries to implement TFS-PF made under UNSCRs. Under this standard, countries\nare required to implement targeted financial sanctions without delay to comply with\nUNSCRs relating to the prevention, suppression and disruption of the proliferation of\nweapons of mass destruction and its financing.\n\n5 A.4 Proliferation financing refers to the act of raising, moving, or making available funds,\nother assets or other economic resources, or financing, in whole or in part, to persons\nor entities for purposes of weapons of mass destruction (WMD) proliferation, including\nthe proliferation of their means of delivery or related materials (including both dual-\nuse technologies and dual-use goods for non-legitimate purposes).\n\n5 A.5 TFS-PF are applicable to persons designated by the UNSC or the relevant committees\nset up by the UNSC. Designation or listing criteria are:\n\n(a) Person engaging in or providing support for, including through illicit means,\nproliferation-sensitive activities and programmes;\n\n(b) Acting on behalf of or at the direction of designated person;\n\n(c) Owned or controlled by designated person; and\n\n(d) Person assisting designated person in evading sanctions, or violating UNSCR\nprovisions."
+    },
+    {
+      "evidence_id": "E5",
+      "chunk_id": "485c4989-c300-45c8-ac06-79a59492bb5c-c0088-7f07c6b2b9",
+      "chunk_index": 88,
+      "semantic_type": "clause",
+      "source_rank": 5,
+      "ranked_seed_rank": 5,
+      "reasons": [
+        "ranked_seed"
+      ],
+      "pages": [
+        33,
+        34
+      ],
+      "section_path": [
+        "PART III: CUSTOMER DUE DILIGENCE",
+        "8. CUSTOMER DUE DILIGENCE (CDD)",
+        "8.1 CDD at the point of establishing business relationship"
+      ],
+      "source_element_ids": [
+        "p33-e10",
+        "p33-e11",
+        "p33-e12",
+        "p34-e2",
+        "p34-e3",
+        "p34-e4"
+      ],
+      "content_text": "8.1.11 A reporting institution is required to identify and take reasonable measures to verify\nthe identity of beneficial owners according to the following cascading steps:\n\n(a)the identity of the natural person(s) (if any) who ultimately has a controlling\nownership interest in a legal person. Where applicable, this includes identifying:\n\n(i)shareholders with equity interest of more than twenty-five percent in a\ncorporation; and\n\n(b) to the extent that there is doubt as to whether the person(s) with the controlling\nownership interest is the beneficial owner(s) referred to in paragraph 8.1.11(a)\nor where no natural person(s) exert control through ownership interests, the\nidentity of the natural person (if any) exercising control of the legal person\nthrough other means; and\n\n(c) where no natural person is identified under paragraphs 8.1.11(a) or (b), the\nidentity of the relevant natural person who holds the position of senior\nmanagement.\n\nFor the avoidance of doubt, a reporting institution is not required to pursue\nsteps (b) and (c) in circumstances where beneficial owner(s) have been\nidentified through step (a). Similarly, where beneficial owner(s) have been\nidentified at step (b), reporting institutions are not required to pursue step (c)."
+    },
+    {
+      "evidence_id": "E6",
+      "chunk_id": "485c4989-c300-45c8-ac06-79a59492bb5c-c0089-f1b88e8baa",
+      "chunk_index": 89,
+      "semantic_type": "list_item",
+      "source_rank": 5,
+      "ranked_seed_rank": null,
+      "reasons": [
+        "introduced_child"
+      ],
+      "pages": [
+        34
+      ],
+      "section_path": [
+        "PART III: CUSTOMER DUE DILIGENCE",
+        "8. CUSTOMER DUE DILIGENCE (CDD)",
+        "8.1 CDD at the point of establishing business relationship"
+      ],
+      "source_element_ids": [
+        "p34-e1"
+      ],
+      "content_text": "(ii)in the case of a limited liability partnership, partners with capital\ncontribution and/or voting rights of more than twenty-five percent;"
+    }
+  ],
+  "citations": [],
+  "citation_version": "deterministic_citations_v1_2",
+  "citation_validation": {
+    "status": "valid",
+    "citation_count": 0,
+    "valid_citation_count": 0,
+    "errors": []
+  },
+  "generation_provider": "groq",
+  "generation_model": "openai/gpt-oss-120b",
+  "prompt_version": "grounded_claims_v1",
+  "generation_temperature": 0.0,
+  "generation_max_tokens": 1200,
+  "generation_json_mode": true,
+  "usage": {
+    "prompt_tokens": 2699,
+    "completion_tokens": 112,
+    "total_tokens": 2811
+  },
+  "retrieval_profile": "retrieval_v1_stage8_2_top5",
+  "retrieval_top_k": 5,
+  "retrieval_candidate_k": 20,
+  "retrieval_rrf_k": 60,
+  "retrieval_dense_weight": 1.0,
+  "retrieval_lexical_weight": 1.0,
+  "context_strategy": "structural_one_hop_v1",
+  "context_chunk_count": 6,
+  "expanded_chunk_count": 1
+}

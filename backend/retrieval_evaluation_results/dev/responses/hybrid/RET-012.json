@@ -1,0 +1,386 @@
+{
+  "document_id": "485c4989-c300-45c8-ac06-79a59492bb5c",
+  "query": "Before launching a new product, business practice, delivery mechanism or technology, what ML/TF risk work must the reporting institution perform?",
+  "embedding_model": "BAAI/bge-m3",
+  "requested_device": "auto",
+  "resolved_device": "cuda",
+  "top_k": 10,
+  "candidate_k": 20,
+  "embedded_chunk_count": 284,
+  "total_chunk_count": 284,
+  "fusion_method": "reciprocal_rank_fusion",
+  "rrf_k": 60,
+  "dense_weight": 1.0,
+  "lexical_weight": 1.0,
+  "lexical_ranking_method": "postgresql_fts_term_coverage_then_ts_rank_cd",
+  "lexical_query_mode": "or_content_terms_v1",
+  "lexical_terms": [
+    "before",
+    "launching",
+    "new",
+    "product",
+    "business",
+    "practice",
+    "delivery",
+    "mechanism",
+    "technology",
+    "ml",
+    "tf",
+    "risk",
+    "work",
+    "reporting",
+    "institution",
+    "perform"
+  ],
+  "lexical_tsquery": "before | launching | new | product | business | practice | delivery | mechanism | technology | ml | tf | risk | work | reporting | institution | perform",
+  "hits": [
+    {
+      "rank": 1,
+      "chunk_id": "485c4989-c300-45c8-ac06-79a59492bb5c-c0069-fc0dcb44a4",
+      "chunk_index": 69,
+      "semantic_type": "clause",
+      "fusion_score": 0.03252247488101534,
+      "dense_rank": 1,
+      "dense_score": 0.7908695464808033,
+      "dense_distance": 0.20913045351919668,
+      "dense_rrf_score": 0.01639344262295082,
+      "lexical_rank": 2,
+      "lexical_score": 2.6000001,
+      "lexical_matched_term_count": 11,
+      "lexical_term_coverage": 0.6875,
+      "lexical_rrf_score": 0.016129032258064516,
+      "text": "Section: PART II: RISK-BASED APPROACH APPLICATION > 7. RISK-BASED APPROACH APPLICATION > 7.1 ML/TF Risk assessment\nClause: 7.1.5\n\n7.1.5 A reporting institution is also required to identify and assess the ML/TF risks that may\narise in relation to the development of new products and new business practices,\nincluding new delivery mechanisms, and the use of new or developing technologies for\nboth new and pre-existing products. The reporting institution must undertake risk\nassessments prior to the launch or use of such products, practices and technologies\nand take appropriate measures to manage and mitigate such risks.",
+      "content_text": "7.1.5 A reporting institution is also required to identify and assess the ML/TF risks that may\narise in relation to the development of new products and new business practices,\nincluding new delivery mechanisms, and the use of new or developing technologies for\nboth new and pre-existing products. The reporting institution must undertake risk\nassessments prior to the launch or use of such products, practices and technologies\nand take appropriate measures to manage and mitigate such risks.",
+      "token_count": 123,
+      "pages": [
+        27
+      ],
+      "section_path": [
+        "PART II: RISK-BASED APPROACH APPLICATION",
+        "7. RISK-BASED APPROACH APPLICATION",
+        "7.1 ML/TF Risk assessment"
+      ],
+      "source_element_ids": [
+        "p27-e5"
+      ]
+    },
+    {
+      "rank": 2,
+      "chunk_id": "485c4989-c300-45c8-ac06-79a59492bb5c-c0073-937810db87",
+      "chunk_index": 73,
+      "semantic_type": "clause",
+      "fusion_score": 0.03252247488101534,
+      "dense_rank": 2,
+      "dense_score": 0.7263661623001099,
+      "dense_distance": 0.27363383769989014,
+      "dense_rrf_score": 0.016129032258064516,
+      "lexical_rank": 1,
+      "lexical_score": 3.2,
+      "lexical_matched_term_count": 11,
+      "lexical_term_coverage": 0.6875,
+      "lexical_rrf_score": 0.01639344262295082,
+      "text": "Section: PART II: RISK-BASED APPROACH APPLICATION > 7. RISK-BASED APPROACH APPLICATION > 7.3    PF Risk assessment\n\n7.3.2 In conducting the risk assessment, a reporting institution may consider if the existing\nML/TF risk assessments methodologies are adequate to incorporate PF risks and may not\nnecessarily require a stand-alone or an entirely new methodology.\n\n7.3.4 A reporting institution is also required to identify and assess the PF risks that may arise\nin relation to the development of new products and new business practices, including\nnew delivery mechanisms, and the use of new or developing technologies for both new\nand pre-existing products. The reporting institution must undertake risk assessments\nprior to the launch or use of such products, practices and technologies and take\nappropriate measures to manage and mitigate such risks.",
+      "content_text": "7.3.2 In conducting the risk assessment, a reporting institution may consider if the existing\nML/TF risk assessments methodologies are adequate to incorporate PF risks and may not\nnecessarily require a stand-alone or an entirely new methodology.\n\n7.3.4 A reporting institution is also required to identify and assess the PF risks that may arise\nin relation to the development of new products and new business practices, including\nnew delivery mechanisms, and the use of new or developing technologies for both new\nand pre-existing products. The reporting institution must undertake risk assessments\nprior to the launch or use of such products, practices and technologies and take\nappropriate measures to manage and mitigate such risks.",
+      "token_count": 158,
+      "pages": [
+        28
+      ],
+      "section_path": [
+        "PART II: RISK-BASED APPROACH APPLICATION",
+        "7. RISK-BASED APPROACH APPLICATION",
+        "7.3    PF Risk assessment"
+      ],
+      "source_element_ids": [
+        "p28-e1",
+        "p28-e8"
+      ]
+    },
+    {
+      "rank": 3,
+      "chunk_id": "485c4989-c300-45c8-ac06-79a59492bb5c-c0187-222788f826",
+      "chunk_index": 187,
+      "semantic_type": "clause",
+      "fusion_score": 0.03149801587301587,
+      "dense_rank": 4,
+      "dense_score": 0.6792232990264893,
+      "dense_distance": 0.32077670097351074,
+      "dense_rrf_score": 0.015625,
+      "lexical_rank": 3,
+      "lexical_score": 4.4,
+      "lexical_matched_term_count": 8,
+      "lexical_term_coverage": 0.5,
+      "lexical_rrf_score": 0.015873015873015872,
+      "text": "Section: APPENDIX A > 3.0 A: Perform Risk Assessment\nClause: 3.4\nGroup: Business-based Risk Assessment (BbRA)\n\n3.4 To assist a reporting institution in assessing the extent of its ML/TF/PF risks, the\nreporting institution may consider the following examples under the risk factors\nmentioned below for guidance:\n\n(a)Customers – in conducting business transactions, the reporting institution is\nexposed to various types of customers that may pose ML/TF/PF risks. In\nanalysing its customers’ risk, a reporting institution may consider the non-\nexhaustive examples below:\n\n(b)Countries or geographic – a reporting institution should take into account factors\nincluding the location of the reporting institution’s branches and subsidiaries and\nwhether its holding company is located within a jurisdiction with full\nAML/CFT/CPF compliance as identified by a credible source. Further non-\nexhaustive examples are as below:\n\n•\nLocation of its branches and subsidiaries in tourist hotspots, crime hotspots,\ncountry’s border and entry-points; and\n\n•\nLocation of its branches and subsidiaries in high-risk jurisdictions e.g.\ncountries identified by FATF and the Government of Malaysia, countries\nsubjected to sanctions by UN, etc.\n\n(c)Transactions and distribution channels – a reporting institution has various\nmodes of transaction and distribution of its products and services. Some of the\nmodes of transaction and distribution channels may be more susceptible to\nML/TF/PF risks. In this regard, a reporting institution must consider the\nappropriate ML/TF/PF risks attributed to these modes including the following\nexamples:\n\n•\nMode of distribution primarily via agents;\n\n•\nOnline or technology based transaction;\n\n•\nNon face-to face business relationship; and\n\n•Cash-based transactions.\n\n(d)Products and services – given the variety of financial products in the market, a\nreporting institution must identify the appropriate level of ML/TF/PF risks\nattached to the types of products and services offered. Some of the non-\n\n(e)exhaustive examples that the reporting institution may take into account are as\nfollows:\n\n•\nNature of the products i.e. transferability/liquidity of the products;\n\n•\nLevel of complexity of the products and services;\n\n•\nBearer instruments; and\n\n•\nNew technologies.",
+      "content_text": "3.4 To assist a reporting institution in assessing the extent of its ML/TF/PF risks, the\nreporting institution may consider the following examples under the risk factors\nmentioned below for guidance:\n\n(a)Customers – in conducting business transactions, the reporting institution is\nexposed to various types of customers that may pose ML/TF/PF risks. In\nanalysing its customers’ risk, a reporting institution may consider the non-\nexhaustive examples below:\n\n(b)Countries or geographic – a reporting institution should take into account factors\nincluding the location of the reporting institution’s branches and subsidiaries and\nwhether its holding company is located within a jurisdiction with full\nAML/CFT/CPF compliance as identified by a credible source. Further non-\nexhaustive examples are as below:\n\n•\nLocation of its branches and subsidiaries in tourist hotspots, crime hotspots,\ncountry’s border and entry-points; and\n\n•\nLocation of its branches and subsidiaries in high-risk jurisdictions e.g.\ncountries identified by FATF and the Government of Malaysia, countries\nsubjected to sanctions by UN, etc.\n\n(c)Transactions and distribution channels – a reporting institution has various\nmodes of transaction and distribution of its products and services. Some of the\nmodes of transaction and distribution channels may be more susceptible to\nML/TF/PF risks. In this regard, a reporting institution must consider the\nappropriate ML/TF/PF risks attributed to these modes including the following\nexamples:\n\n•\nMode of distribution primarily via agents;\n\n•\nOnline or technology based transaction;\n\n•\nNon face-to face business relationship; and\n\n•Cash-based transactions.\n\n(d)Products and services – given the variety of financial products in the market, a\nreporting institution must identify the appropriate level of ML/TF/PF risks\nattached to the types of products and services offered. Some of the non-\n\n(e)exhaustive examples that the reporting institution may take into account are as\nfollows:\n\n•\nNature of the products i.e. transferability/liquidity of the products;\n\n•\nLevel of complexity of the products and services;\n\n•\nBearer instruments; and\n\n•\nNew technologies.",
+      "token_count": 436,
+      "pages": [
+        71,
+        72,
+        73
+      ],
+      "section_path": [
+        "APPENDIX A",
+        "3.0 A: Perform Risk Assessment"
+      ],
+      "source_element_ids": [
+        "p71-e13",
+        "p71-e14",
+        "p72-e10",
+        "p72-e11",
+        "p72-e12",
+        "p72-e13",
+        "p72-e14",
+        "p72-e15",
+        "p72-e16",
+        "p72-e17",
+        "p72-e18",
+        "p73-e1",
+        "p73-e2",
+        "p73-e3",
+        "p73-e4",
+        "p73-e5"
+      ]
+    },
+    {
+      "rank": 4,
+      "chunk_id": "485c4989-c300-45c8-ac06-79a59492bb5c-c0185-cc49cfc122",
+      "chunk_index": 185,
+      "semantic_type": "clause",
+      "fusion_score": 0.03036576949620428,
+      "dense_rank": 3,
+      "dense_score": 0.6810126710541661,
+      "dense_distance": 0.3189873289458339,
+      "dense_rrf_score": 0.015873015873015872,
+      "lexical_rank": 9,
+      "lexical_score": 2.9,
+      "lexical_matched_term_count": 6,
+      "lexical_term_coverage": 0.375,
+      "lexical_rrf_score": 0.014492753623188406,
+      "text": "Section: APPENDIX A > 3.0 A: Perform Risk Assessment\nClause: 3.2\nGroup: Business-based Risk Assessment (BbRA)\n\n3.2 The reporting institution should evaluate the extent of its ML/TF/PF risks at a macro\nlevel. When assessing the ML/TF/PF risks, a reporting institution should consider all\nrelevant risk factors that affect their business and operations:\n\n(a)Reporting institution’s customers;\n\n(b)Geographic location of the reporting institution;\n\n(c)Transactions and distribution channels offered by the reporting institution;\n\n(d)Products and services offered by the reporting institution;\n\n(e)Structure of the reporting institution;\n\n(f)Findings of the National Risk Assessment (NRA) or any other risk assessment issued by\nrelevant authorities; and\n\n(g)Other specific risk factors that the reporting institution may consider for the\npurpose of identifying its ML/TF/PF risks.",
+      "content_text": "3.2 The reporting institution should evaluate the extent of its ML/TF/PF risks at a macro\nlevel. When assessing the ML/TF/PF risks, a reporting institution should consider all\nrelevant risk factors that affect their business and operations:\n\n(a)Reporting institution’s customers;\n\n(b)Geographic location of the reporting institution;\n\n(c)Transactions and distribution channels offered by the reporting institution;\n\n(d)Products and services offered by the reporting institution;\n\n(e)Structure of the reporting institution;\n\n(f)Findings of the National Risk Assessment (NRA) or any other risk assessment issued by\nrelevant authorities; and\n\n(g)Other specific risk factors that the reporting institution may consider for the\npurpose of identifying its ML/TF/PF risks.",
+      "token_count": 179,
+      "pages": [
+        71
+      ],
+      "section_path": [
+        "APPENDIX A",
+        "3.0 A: Perform Risk Assessment"
+      ],
+      "source_element_ids": [
+        "p71-e4",
+        "p71-e5",
+        "p71-e6",
+        "p71-e7",
+        "p71-e8",
+        "p71-e9",
+        "p71-e10",
+        "p71-e11"
+      ]
+    },
+    {
+      "rank": 5,
+      "chunk_id": "485c4989-c300-45c8-ac06-79a59492bb5c-c0189-da8ccc8fc0",
+      "chunk_index": 189,
+      "semantic_type": "subclause",
+      "fusion_score": 0.029411764705882353,
+      "dense_rank": 8,
+      "dense_score": 0.6539419293403625,
+      "dense_distance": 0.34605807065963745,
+      "dense_rrf_score": 0.014705882352941176,
+      "lexical_rank": 8,
+      "lexical_score": 4.1,
+      "lexical_matched_term_count": 6,
+      "lexical_term_coverage": 0.375,
+      "lexical_rrf_score": 0.014705882352941176,
+      "text": "Section: APPENDIX A > 3.0 A: Perform Risk Assessment\nGroup: Business-based Risk Assessment (BbRA)\nParent context:\n3.4 To assist a reporting institution in assessing the extent of its ML/TF/PF risks, the\nreporting institution may consider the following examples under the risk factors\nmentioned below for guidance:\n\n(f)Reporting institution’s structure – the ML/TF/PF risk of a reporting institution\nmay differ according to its size, structure and nature of business. Appropriate\nassessment of its business model and structure may assist a reporting institution\nto identify the level of ML/TF/PF risks that it is exposed to. In this regard, a\nreporting institution may take into account the following non- exhaustive\nexamples:\n\n•\nNumber of branches and subsidiaries;\n\n•\nSize of the reporting institution;\n\n•\nNumber of employees;\n\n•\nDegree of dependency on technology; and\n\n•\nSize against industry.\n\n(g)Findings of the NRA or any other risk assessments issued by relevant authorities\n–\nin identifying, assessing and understanding the ML/TF/PF risks, a reporting\ninstitution must fully consider the outcome of the NRA or any other equivalent\nrisk assessments by relevant authorities:\n\nUnder the NRA, a reporting institution should take into account the following:\n\n•\nSectors identified as highly vulnerable to ML/TF risks;\n\n•\nCrimes identified as high risk or susceptible to money laundering; and\n\n•\nTerrorism Financing and/or Proliferation Financing risks.\n\n(h)Other factors – a reporting institution may also take into account other factors in\ndetermining its risk assessment such as:\n\n•\nTrends and typologies for a particular sector;\n\n•\nThe internal audit and regulatory findings;\n\n•\nThe number of suspicious transaction reports it has filed with the FIED;\nand\n\n•\nWhether the reporting institution has been subjected to service any freeze or\nseize order by any law enforcement agencies pursuant to the AMLA,\nDangerous Drugs (Forfeiture of Property) Act 1988, Malaysian Anti-Corruption\nCommission Act 2009, etc.",
+      "content_text": "(f)Reporting institution’s structure – the ML/TF/PF risk of a reporting institution\nmay differ according to its size, structure and nature of business. Appropriate\nassessment of its business model and structure may assist a reporting institution\nto identify the level of ML/TF/PF risks that it is exposed to. In this regard, a\nreporting institution may take into account the following non- exhaustive\nexamples:\n\n•\nNumber of branches and subsidiaries;\n\n•\nSize of the reporting institution;\n\n•\nNumber of employees;\n\n•\nDegree of dependency on technology; and\n\n•\nSize against industry.\n\n(g)Findings of the NRA or any other risk assessments issued by relevant authorities\n–\nin identifying, assessing and understanding the ML/TF/PF risks, a reporting\ninstitution must fully consider the outcome of the NRA or any other equivalent\nrisk assessments by relevant authorities:\n\nUnder the NRA, a reporting institution should take into account the following:\n\n•\nSectors identified as highly vulnerable to ML/TF risks;\n\n•\nCrimes identified as high risk or susceptible to money laundering; and\n\n•\nTerrorism Financing and/or Proliferation Financing risks.\n\n(h)Other factors – a reporting institution may also take into account other factors in\ndetermining its risk assessment such as:\n\n•\nTrends and typologies for a particular sector;\n\n•\nThe internal audit and regulatory findings;\n\n•\nThe number of suspicious transaction reports it has filed with the FIED;\nand\n\n•\nWhether the reporting institution has been subjected to service any freeze or\nseize order by any law enforcement agencies pursuant to the AMLA,\nDangerous Drugs (Forfeiture of Property) Act 1988, Malaysian Anti-Corruption\nCommission Act 2009, etc.",
+      "token_count": 379,
+      "pages": [
+        73
+      ],
+      "section_path": [
+        "APPENDIX A",
+        "3.0 A: Perform Risk Assessment"
+      ],
+      "source_element_ids": [
+        "p73-e6",
+        "p73-e7",
+        "p73-e8",
+        "p73-e9",
+        "p73-e10",
+        "p73-e11",
+        "p73-e12",
+        "p73-e13",
+        "p73-e14",
+        "p73-e15",
+        "p73-e16",
+        "p73-e17",
+        "p73-e18",
+        "p73-e19",
+        "p73-e20",
+        "p73-e21"
+      ]
+    },
+    {
+      "rank": 6,
+      "chunk_id": "485c4989-c300-45c8-ac06-79a59492bb5c-c0181-272be0f4ef",
+      "chunk_index": 181,
+      "semantic_type": "mixed",
+      "fusion_score": 0.02854251012145749,
+      "dense_rank": 5,
+      "dense_score": 0.6783549593898642,
+      "dense_distance": 0.32164504061013577,
+      "dense_rrf_score": 0.015384615384615385,
+      "lexical_rank": 16,
+      "lexical_score": 2.9,
+      "lexical_matched_term_count": 5,
+      "lexical_term_coverage": 0.3125,
+      "lexical_rrf_score": 0.013157894736842105,
+      "text": "Section: APPENDIX A > 2.0 RBA Steps\nGroup: Business-based Risk Assessment (BbRA)\n\nIn a BbRA, a reporting institution must identify ML/TF/PF risk factors that affect its\nbusiness and address the impact on the reporting institution’s overall ML/TF/PF risks.\n\nI.Perform risk assessment ― A reporting institution shall perform an assessment\non the degree of ML/TF/PF risks that the reporting institution's business is\nexposed to and determine its risk appetite level. To this end, a reporting\ninstitution should formulate specific parameters of the ML/TF/PF risk factors\nconsidered.\n\nII.Formulate and implement business risk management and mitigation control\nmeasures ― A reporting institution must formulate procedures, systems and\ncontrols designed to manage and mitigate the identified ML/TF/PF risks. These\nrisk control measures should manage and mitigate the ML/TF/PF risks identified\nas well as be proportionate to the risks recognised.",
+      "content_text": "In a BbRA, a reporting institution must identify ML/TF/PF risk factors that affect its\nbusiness and address the impact on the reporting institution’s overall ML/TF/PF risks.\n\nI.Perform risk assessment ― A reporting institution shall perform an assessment\non the degree of ML/TF/PF risks that the reporting institution's business is\nexposed to and determine its risk appetite level. To this end, a reporting\ninstitution should formulate specific parameters of the ML/TF/PF risk factors\nconsidered.\n\nII.Formulate and implement business risk management and mitigation control\nmeasures ― A reporting institution must formulate procedures, systems and\ncontrols designed to manage and mitigate the identified ML/TF/PF risks. These\nrisk control measures should manage and mitigate the ML/TF/PF risks identified\nas well as be proportionate to the risks recognised.",
+      "token_count": 183,
+      "pages": [
+        69
+      ],
+      "section_path": [
+        "APPENDIX A",
+        "2.0 RBA Steps"
+      ],
+      "source_element_ids": [
+        "p69-e4",
+        "p69-e5",
+        "p69-e6"
+      ]
+    },
+    {
+      "rank": 7,
+      "chunk_id": "485c4989-c300-45c8-ac06-79a59492bb5c-c0066-84f6cf0cfe",
+      "chunk_index": 66,
+      "semantic_type": "clause",
+      "fusion_score": 0.027972027972027972,
+      "dense_rank": 6,
+      "dense_score": 0.6770251182287839,
+      "dense_distance": 0.32297488177121614,
+      "dense_rrf_score": 0.015151515151515152,
+      "lexical_rank": 18,
+      "lexical_score": 1.8000001,
+      "lexical_matched_term_count": 5,
+      "lexical_term_coverage": 0.3125,
+      "lexical_rrf_score": 0.01282051282051282,
+      "text": "Section: PART II: RISK-BASED APPROACH APPLICATION > 7. RISK-BASED APPROACH APPLICATION > 7.1 ML/TF Risk assessment\n\n7.1.1 A reporting institution must take appropriate steps to identify, assess and understand\nits ML/TF risks, in relation to its customers, countries or geographical areas and\nproducts, services, transactions or delivery channels, and other relevant risk factors.\nAppendix A of these Guidelines provides for the measures to be adopted in\nimplementing a risk-based approach.\n\n7.1.3 A reporting institution must conduct additional assessment as and when required by\nthe SC.\n\n7.1.4 A reporting institution must be guided by the results of the NRA issued by the National\nCoordination Committee to Counter Money Laundering (NCC) in conducting its own\nrisk assessments. A reporting institution must take enhanced measures to manage\nand mitigate the risks identified in the NRA.",
+      "content_text": "7.1.1 A reporting institution must take appropriate steps to identify, assess and understand\nits ML/TF risks, in relation to its customers, countries or geographical areas and\nproducts, services, transactions or delivery channels, and other relevant risk factors.\nAppendix A of these Guidelines provides for the measures to be adopted in\nimplementing a risk-based approach.\n\n7.1.3 A reporting institution must conduct additional assessment as and when required by\nthe SC.\n\n7.1.4 A reporting institution must be guided by the results of the NRA issued by the National\nCoordination Committee to Counter Money Laundering (NCC) in conducting its own\nrisk assessments. A reporting institution must take enhanced measures to manage\nand mitigate the risks identified in the NRA.",
+      "token_count": 172,
+      "pages": [
+        26
+      ],
+      "section_path": [
+        "PART II: RISK-BASED APPROACH APPLICATION",
+        "7. RISK-BASED APPROACH APPLICATION",
+        "7.1 ML/TF Risk assessment"
+      ],
+      "source_element_ids": [
+        "p26-e4",
+        "p26-e11",
+        "p26-e12"
+      ]
+    },
+    {
+      "rank": 8,
+      "chunk_id": "485c4989-c300-45c8-ac06-79a59492bb5c-c0192-a02b79c891",
+      "chunk_index": 192,
+      "semantic_type": "clause",
+      "fusion_score": 0.027222222222222224,
+      "dense_rank": 12,
+      "dense_score": 0.635254166409126,
+      "dense_distance": 0.364745833590874,
+      "dense_rrf_score": 0.013888888888888888,
+      "lexical_rank": 15,
+      "lexical_score": 3.6000001,
+      "lexical_matched_term_count": 5,
+      "lexical_term_coverage": 0.3125,
+      "lexical_rrf_score": 0.013333333333333334,
+      "text": "Section: APPENDIX A > 3.0 A: Perform Risk Assessment\nGroup: Business-based Risk Assessment (BbRA)\n\n3.6 By applying all the risk factors and parameters in performing its risk assessment, the\nreporting institution would be able to determine the extent of ML/TF/PF risks that it\nis exposed to, on a quantitative and/or qualitative basis.\n\n3.7 The outcome of the risk assessment will determine the level of risk the reporting\ninstitution is willing to accept i.e. the reporting institution’s risk appetite and its\nappropriate risk rating. The risk appetite and risk rating will have a direct impact\non the proposed risk management and mitigation procedures, systems and controls\nadopted by the reporting institution.\n\n3.8 Apart from ensuring that the risk assessment is reflected in the policies and\nprocedures, a reporting institution must also be able to justify the outcome of the risk\nassessment conducted.\n\n3.9 Once the reporting institution has identified and assessed the ML/TF/PF risks it faces\nupon performing its risk assessment under paragraph 3 above, a reporting institution\nmust ensure that appropriate risk control measures are formulated and implemented\nin order to manage and mitigate these risks.",
+      "content_text": "3.6 By applying all the risk factors and parameters in performing its risk assessment, the\nreporting institution would be able to determine the extent of ML/TF/PF risks that it\nis exposed to, on a quantitative and/or qualitative basis.\n\n3.7 The outcome of the risk assessment will determine the level of risk the reporting\ninstitution is willing to accept i.e. the reporting institution’s risk appetite and its\nappropriate risk rating. The risk appetite and risk rating will have a direct impact\non the proposed risk management and mitigation procedures, systems and controls\nadopted by the reporting institution.\n\n3.8 Apart from ensuring that the risk assessment is reflected in the policies and\nprocedures, a reporting institution must also be able to justify the outcome of the risk\nassessment conducted.\n\n3.9 Once the reporting institution has identified and assessed the ML/TF/PF risks it faces\nupon performing its risk assessment under paragraph 3 above, a reporting institution\nmust ensure that appropriate risk control measures are formulated and implemented\nin order to manage and mitigate these risks.",
+      "token_count": 228,
+      "pages": [
+        74
+      ],
+      "section_path": [
+        "APPENDIX A",
+        "3.0 A: Perform Risk Assessment"
+      ],
+      "source_element_ids": [
+        "p74-e3",
+        "p74-e4",
+        "p74-e5",
+        "p74-e6"
+      ]
+    },
+    {
+      "rank": 9,
+      "chunk_id": "485c4989-c300-45c8-ac06-79a59492bb5c-c0202-7273d61844",
+      "chunk_index": 202,
+      "semantic_type": "clause",
+      "fusion_score": 0.026742734890354787,
+      "dense_rank": 11,
+      "dense_score": 0.6442007634520087,
+      "dense_distance": 0.3557992365479913,
+      "dense_rrf_score": 0.014084507042253521,
+      "lexical_rank": 19,
+      "lexical_score": 1.6,
+      "lexical_matched_term_count": 5,
+      "lexical_term_coverage": 0.3125,
+      "lexical_rrf_score": 0.012658227848101266,
+      "text": "Section: APPENDIX A > 8.0 Continuous application of RBA\nGroup: Relationship-based Risk Assessment (RbRA)\n\n8.1 The application of RBA is a continuous process to ensure that RBA processes for\nmanaging and mitigating ML/TF/PF risks are kept under regular review.\n\n8.2 For the purpose of risk assessment, a reporting institution should conduct periodic\nassessment of its ML/TF/PF risks (minimum every two years or sooner if there are\nany changes to the reporting institution’s business model) taking into account the\ngrowth of the business, nature of new products/services and latest trends and\ntypologies in the sector.\n\n8.3 Through the periodic assessment, a reporting institution may be required to update\nor review either its BbRA or RbRA.\n\n8.4 A reporting institution must take appropriate measures to ensure that its policies\nand procedures are updated in light of the continuous risk assessments and ongoing\nmonitoring of its customers.",
+      "content_text": "8.1 The application of RBA is a continuous process to ensure that RBA processes for\nmanaging and mitigating ML/TF/PF risks are kept under regular review.\n\n8.2 For the purpose of risk assessment, a reporting institution should conduct periodic\nassessment of its ML/TF/PF risks (minimum every two years or sooner if there are\nany changes to the reporting institution’s business model) taking into account the\ngrowth of the business, nature of new products/services and latest trends and\ntypologies in the sector.\n\n8.3 Through the periodic assessment, a reporting institution may be required to update\nor review either its BbRA or RbRA.\n\n8.4 A reporting institution must take appropriate measures to ensure that its policies\nand procedures are updated in light of the continuous risk assessments and ongoing\nmonitoring of its customers.",
+      "token_count": 181,
+      "pages": [
+        78
+      ],
+      "section_path": [
+        "APPENDIX A",
+        "8.0 Continuous application of RBA"
+      ],
+      "source_element_ids": [
+        "p78-e2",
+        "p78-e3",
+        "p78-e4",
+        "p78-e5"
+      ]
+    },
+    {
+      "rank": 10,
+      "chunk_id": "485c4989-c300-45c8-ac06-79a59492bb5c-c0183-efab2c3b8f",
+      "chunk_index": 183,
+      "semantic_type": "clause",
+      "fusion_score": 0.02658450704225352,
+      "dense_rank": 20,
+      "dense_score": 0.6088213920593262,
+      "dense_distance": 0.39117860794067383,
+      "dense_rrf_score": 0.0125,
+      "lexical_rank": 11,
+      "lexical_score": 1.7,
+      "lexical_matched_term_count": 6,
+      "lexical_term_coverage": 0.375,
+      "lexical_rrf_score": 0.014084507042253521,
+      "text": "Section: APPENDIX A > 2.0 RBA Steps\n\n2.2 The RBA must be tailored to the reporting institution’s business, size, structure and\nactivities.\n\n2.3 The RBA must be reflected in the reporting institution’s policies and procedures. All\nsteps and processes in relation to the RBA must be documented and supported by\nappropriate rationale.\n\n2.4 Recognising that ML/TF/PF risks may change and evolve over time with new threats,\nproducts/services, new technologies, etc., the reporting institution must understand\nthat assessing and mitigating ML/TF/PF risks is not a static exercise. Therefore, a\nreporting institution must periodically review, evaluate and update the RBA\naccordingly.\n\n2.5 The outcome of the BbRA and RbRA complement each other. Therefore, to effectively\nimplement the RBA–\n\n(a)a reporting institution must determine reasonable risk factors and parameters\nfor the BbRA and RbRA; and\n\n(b)over a period of time, data from the RbRA may also be useful in updating the\nparameters of the BbRA.",
+      "content_text": "2.2 The RBA must be tailored to the reporting institution’s business, size, structure and\nactivities.\n\n2.3 The RBA must be reflected in the reporting institution’s policies and procedures. All\nsteps and processes in relation to the RBA must be documented and supported by\nappropriate rationale.\n\n2.4 Recognising that ML/TF/PF risks may change and evolve over time with new threats,\nproducts/services, new technologies, etc., the reporting institution must understand\nthat assessing and mitigating ML/TF/PF risks is not a static exercise. Therefore, a\nreporting institution must periodically review, evaluate and update the RBA\naccordingly.\n\n2.5 The outcome of the BbRA and RbRA complement each other. Therefore, to effectively\nimplement the RBA–\n\n(a)a reporting institution must determine reasonable risk factors and parameters\nfor the BbRA and RbRA; and\n\n(b)over a period of time, data from the RbRA may also be useful in updating the\nparameters of the BbRA.",
+      "token_count": 203,
+      "pages": [
+        70
+      ],
+      "section_path": [
+        "APPENDIX A",
+        "2.0 RBA Steps"
+      ],
+      "source_element_ids": [
+        "p70-e3",
+        "p70-e4",
+        "p70-e5",
+        "p70-e6",
+        "p70-e7",
+        "p70-e8"
+      ]
+    }
+  ]
+}

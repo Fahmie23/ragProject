@@ -1,0 +1,9 @@
+PASS: frozen Stage 11.3 held-out benchmark
+Dataset: answer_citation_eval_heldout_v1
+Questions: 18
+Split: heldout only
+Benchmark status: frozen
+Production freeze: PASS
+Semantic rubric freeze: PASS
+Held-out dataset hash freeze: PASS
+Independence audit: PASS

@@ -1,0 +1,12 @@
+Scored 20/20 dev responses
+Missing responses: 0
+AnswerStatusAccuracy: 1.0
+ClaimCitationCoverage: 1.0
+DeterministicCitationValidity: 1.0
+RequiredSourceCoverage: 0.9852941176470589
+Semantic calibration questions: 9
+ClaimSupportRate: 0.85
+CitationEntailmentRate: 0.7272727272727273
+GoldClaimCoverage: 0.8333333333333334
+AnswerCompleteness: 0.875
+AnswerRelevanceMean: 1.8888888888888888

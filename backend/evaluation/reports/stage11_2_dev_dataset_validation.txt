@@ -1,0 +1,3 @@
+PASS: evaluation/generation/answer_citation_eval_dev_v1.json
+Questions: 20
+Benchmark status: draft

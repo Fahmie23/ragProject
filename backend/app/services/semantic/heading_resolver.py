@@ -5,13 +5,13 @@ import re
 from app.schemas import CanonicalElement, StructuredPage
 from app.services.semantic.classifier import apply_classification
 from app.services.semantic.features import build_feature_map, strip_clause_prefix
+from app.services.semantic.patterns import is_callout_heading
 
 
 _STRONG_OUTLINE_SOURCES = {"pdf_toc", "numbering"}
 _DECORATION_TYPES = {"page_header", "page_footer", "footnote", "caption", "document_metadata"}
 _APPENDIX_RE = re.compile(r"^\s*APPENDIX\s+[A-Z0-9IVXLC]+\s*$", re.IGNORECASE)
 _MAJOR_OUTLINE_RE = re.compile(r"^\s*(?:PART|CHAPTER|BOOK|DIVISION)\s+[A-Z0-9IVXLC]+(?:\s*[:.-]|\s+)", re.IGNORECASE)
-_GUIDANCE_RE = re.compile(r"^\s*Guidance\s+for\b", re.IGNORECASE)
 _DEFINITION_INTRO_RE = re.compile(r"^\s*(?:means|means[—–-]|refers?\s+to|includes?|in\s+the\s+context\s+of|in\s+relation\s+to)\b", re.IGNORECASE)
 
 
@@ -70,6 +70,17 @@ def _same_number_family(a: str | None, b: str | None) -> bool:
     a_parts = _number_parts(a)
     b_parts = _number_parts(b)
     return bool(a_parts and b_parts and len(a_parts) == len(b_parts) and a_parts[0] == b_parts[0])
+
+
+def _same_number_parent(a: str | None, b: str | None) -> bool:
+    """Return True when two numbered clauses share the same immediate outline parent."""
+    a_parts = _number_parts(a)
+    b_parts = _number_parts(b)
+    return bool(
+        len(a_parts) >= 2
+        and len(a_parts) == len(b_parts)
+        and a_parts[:-1] == b_parts[:-1]
+    )
 
 
 def _next_numbered(ordered: list[CanonicalElement], features, start_index: int, max_scan: int = 12) -> CanonicalElement | None:
@@ -202,6 +213,54 @@ def _demote_to_group(element: CanonicalElement, *, confidence: float, evidence: 
     )
 
 
+def _demote_to_paragraph(element: CanonicalElement, *, confidence: float, evidence: list[str]) -> None:
+    element.heading_level = None
+    element.heading_level_source = None
+    element.section_id = None
+    element.role_source = "semantic_heading_scope"
+    apply_classification(
+        element,
+        "paragraph",
+        confidence=confidence,
+        source="heading_scope_resolver",
+        evidence=evidence,
+        alternatives=[("section_header", max(0.01, 1.0 - confidence))],
+    )
+
+
+
+def _promote_textual_callout_labels(ordered: list[CanonicalElement]) -> None:
+    """Recover standalone callout labels emitted as ordinary text regions.
+
+    Layout engines can flatten shaded/boxed labels such as ``Guidance for
+    paragraph 17`` into a normal text block.  The lexical label is strong
+    structural evidence, but we deliberately require a short non-sentence
+    shape so prose such as ``Guidance on X is available ...`` is not promoted.
+    """
+    for element in ordered:
+        if element.type != "paragraph":
+            continue
+        text = " ".join((element.text or "").split()).strip()
+        if not text or not is_callout_heading(text):
+            continue
+        if len(text.split()) > 20 or text.endswith((".", ";", "?", "!")):
+            continue
+        element.heading_level = None
+        element.heading_level_source = None
+        element.role_source = "semantic_textual_callout_recovery"
+        apply_classification(
+            element,
+            "group_header",
+            confidence=0.96,
+            source="heading_scope_resolver",
+            evidence=[
+                "standalone text matches a recognized guidance/note/callout label",
+                "short non-sentence shape is consistent with a local callout heading",
+                "callout scope must not create a persistent document section",
+            ],
+            alternatives=[("paragraph", 0.04)],
+        )
+
 def resolve_heading_scopes(
     elements: list[CanonicalElement],
     pages: list[StructuredPage],
@@ -214,6 +273,10 @@ def resolve_heading_scopes(
     the SectionRecord stack and incorrectly adopting later real sections.
     """
     ordered = _ordered(elements)
+
+    # Recover callout labels that the layout engine flattened into ordinary
+    # text before any clause/outline scope reasoning.
+    _promote_textual_callout_labels(ordered)
 
     # First recover clauses that a bookmark/layout engine styled as headings.
     _promote_numbered_heading_clauses(ordered, pages)
@@ -270,10 +333,42 @@ def resolve_heading_scopes(
                 ],
             )
 
-    # Rebuild features after mutations and perform the broader stateful scope
-    # walk.  A local group remains active until a genuine section/appendix
-    # boundary appears; this lets related labels span intervening body clauses.
+    # Rebuild features after mutations.  A long sentence-shaped, unnumbered
+    # vendor heading that explicitly introduces the following enumeration is
+    # body prose, not an outline node.  This catches style-only emphasis such
+    # as regulatory sentences ending in a colon while preserving short local
+    # labels and real numbered headings.
     features = build_feature_map(ordered, pages)
+    for index, element in enumerate(ordered):
+        if element.type not in {"section_header", "group_header"}:
+            continue
+        feature = features[element.element_id]
+        if feature.clause_number or _APPENDIX_RE.fullmatch(feature.normalized_text) or _MAJOR_OUTLINE_RE.match(feature.normalized_text):
+            continue
+        nxt_info = _next_meaningful(ordered, index)
+        if nxt_info is None or nxt_info[1].type not in {"list_item", "subclause"}:
+            continue
+        text = feature.normalized_text
+        if (
+            feature.looks_list_intro
+            and (feature.looks_sentence or feature.has_modal_or_finite)
+            and len(text.split()) >= 14
+            and _outline_strength(element) <= 1
+        ):
+            _demote_to_paragraph(
+                element,
+                confidence=0.96,
+                evidence=[
+                    "long sentence-shaped text introduces the immediately following enumeration",
+                    "candidate has no explicit outline number or strong TOC hierarchy evidence",
+                    "sentence semantics outweigh heading-like typography",
+                ],
+            )
+    features = build_feature_map(ordered, pages)
+
+    # Perform the broader stateful scope walk.  A local group remains active
+    # until a genuine section/appendix boundary appears; this lets related
+    # labels span intervening body clauses.
     active_group: CanonicalElement | None = None
     active_numbered_outline: CanonicalElement | None = None
     inside_appendix = False
@@ -296,6 +391,14 @@ def resolve_heading_scopes(
             continue
 
         if element.type == "group_header":
+            # The descriptive title immediately following an APPENDIX label is
+            # represented by AppendixRecord and intentionally demoted from the
+            # SectionRecord tree.  It must not, however, behave like a normal
+            # local group during heading-scope resolution; otherwise every
+            # following appendix topic can be flattened beneath the title.
+            if element.role_source == "semantic_appendix_title_scope":
+                active_group = None
+                continue
             active_group = element
             continue
 
@@ -324,8 +427,8 @@ def resolve_heading_scopes(
 
         reasons: list[str] = []
 
-        if _GUIDANCE_RE.match(text):
-            reasons.append("guidance/callout heading is local to the active substantive section")
+        if is_callout_heading(text):
+            reasons.append("guidance/note/callout heading is local to the active substantive section")
 
         if active_group is not None and (
             inside_appendix
@@ -353,6 +456,37 @@ def resolve_heading_scopes(
                 "paragraph", "list_item", "subclause", "clause"
             }:
                 reasons.append("preceding clause explicitly introduces a locally grouped body")
+
+        if (
+            previous is not None
+            and previous.type == "paragraph"
+            and feature.looks_short_label
+            and " ".join((previous.text or "").split()).strip().endswith((":", "–", "—", "―"))
+        ):
+            reasons.append("preceding paragraph explicitly introduces a local labeled body")
+
+        # In the main body, an unnumbered typography-only label inserted
+        # between two clauses of the same numbered parent (for example
+        # 8.1.19 -> local topic label -> 8.1.20) is a local group, not a new
+        # persistent outline section.  Appendix topic labels are excluded: in
+        # appendices those unnumbered headings often intentionally partition
+        # repeated 1.x/2.x procedural families.
+        if not inside_appendix:
+            previous_numbered = _previous_numbered(ordered, features, index)
+            next_numbered = _next_numbered(ordered, features, index)
+            if (
+                previous_numbered is not None
+                and next_numbered is not None
+                and previous_numbered.type == "clause"
+                and next_numbered.type == "clause"
+                and _same_number_parent(
+                    features[previous_numbered.element_id].clause_number,
+                    features[next_numbered.element_id].clause_number,
+                )
+            ):
+                reasons.append(
+                    "unnumbered label lies between clauses that share the same numbered outline parent"
+                )
 
         if reasons:
             _demote_to_group(

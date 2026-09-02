@@ -1,0 +1,213 @@
+{
+  "dataset_id": "answer_citation_eval_heldout_v1",
+  "dev_dataset_id": "answer_citation_eval_dev_v1",
+  "retrieval_question_count": 40,
+  "question_count": 18,
+  "similarity_warning_threshold": 0.7,
+  "exact_duplicate_count": 0,
+  "similarity_warning_count": 0,
+  "question_id_collision_count": 0,
+  "exact_dev_gold_locator_overlap_count": 0,
+  "valid": true,
+  "locator_overlaps": [],
+  "rows": [
+    {
+      "question_id": "ACIT-101",
+      "question": "Under the Guidelines, who can qualify as a 'related party' of a designated person?",
+      "question_id_collision": false,
+      "exact_duplicate": false,
+      "max_token_jaccard": 0.5714,
+      "nearest_prior_source": "retrieval_eval",
+      "nearest_prior_question_id": "RET-002",
+      "nearest_prior_question": "Who qualifies as a designated person under the Guidelines?",
+      "similarity_warning": false
+    },
+    {
+      "question_id": "ACIT-102",
+      "question": "If a reporting institution is jointly regulated by BNM and the SC, which AML/CFT/CPF guidelines must it follow when the requirements differ?",
+      "question_id_collision": false,
+      "exact_duplicate": false,
+      "max_token_jaccard": 0.2391,
+      "nearest_prior_source": "stage11_dev",
+      "nearest_prior_question_id": "ACIT-003",
+      "nearest_prior_question": "If a host country does not permit proper implementation of Malaysian-standard AML/CFT/CPF measures, what must the reporting institution do, and what may it consider if adequate mitigation still cannot be put in place?",
+      "similarity_warning": false
+    },
+    {
+      "question_id": "ACIT-103",
+      "question": "What consequences can follow from non-compliance with these Guidelines, and which people within a reporting institution may face enforcement action?",
+      "question_id_collision": false,
+      "exact_duplicate": false,
+      "max_token_jaccard": 0.1667,
+      "nearest_prior_source": "stage11_dev",
+      "nearest_prior_question_id": "ACIT-010",
+      "nearest_prior_question": "How must a reporting institution respond to an AMLA enforcement order requesting information or documents, and what internal capability must it maintain?",
+      "similarity_warning": false
+    },
+    {
+      "question_id": "ACIT-104",
+      "question": "What five general principles must a reporting institution ensure when combating ML/TF/PF under paragraph 6.2?",
+      "question_id_collision": false,
+      "exact_duplicate": false,
+      "max_token_jaccard": 0.2692,
+      "nearest_prior_source": "retrieval_eval",
+      "nearest_prior_question_id": "RET-009",
+      "nearest_prior_question": "What elements must the ML/TF risk assessment process incorporate under paragraph 7.1.2?",
+      "similarity_warning": false
+    },
+    {
+      "question_id": "ACIT-105",
+      "question": "For a customer that is a trust or another legal arrangement, whose identity must be considered for beneficial ownership, and what status must trustees or equivalent persons disclose when establishing the relationship?",
+      "question_id_collision": false,
+      "exact_duplicate": false,
+      "max_token_jaccard": 0.2162,
+      "nearest_prior_source": "retrieval_eval",
+      "nearest_prior_question_id": "RET-003",
+      "nearest_prior_question": "What is a nominee director, and does holding that role make the nominee director the beneficial owner of a legal person?",
+      "similarity_warning": false
+    },
+    {
+      "question_id": "ACIT-106",
+      "question": "What record-retention, availability and traceability obligations apply to originator and beneficiary information for digital-asset wire transfers?",
+      "question_id_collision": false,
+      "exact_duplicate": false,
+      "max_token_jaccard": 0.2667,
+      "nearest_prior_source": "retrieval_eval",
+      "nearest_prior_question_id": "RET-031",
+      "nearest_prior_question": "What originator and beneficiary information must accompany a cross-border or domestic digital-asset wire transfer sent by an ordering institution?",
+      "similarity_warning": false
+    },
+    {
+      "question_id": "ACIT-107",
+      "question": "What minimum information must be retained in the records for each transaction under paragraph 10.1?",
+      "question_id_collision": false,
+      "exact_duplicate": false,
+      "max_token_jaccard": 0.3077,
+      "nearest_prior_source": "retrieval_eval",
+      "nearest_prior_question_id": "RET-037",
+      "nearest_prior_question": "How long must CDD and transaction records be retained, and in what circumstances must records be kept beyond the normal retention period?",
+      "similarity_warning": false
+    },
+    {
+      "question_id": "ACIT-108",
+      "question": "If a reporting institution decides there are no reasonable grounds to lodge an STR, what must it document, and what should it do if a new suspicion later arises?",
+      "question_id_collision": false,
+      "exact_duplicate": false,
+      "max_token_jaccard": 0.2432,
+      "nearest_prior_source": "stage11_dev",
+      "nearest_prior_question_id": "ACIT-010",
+      "nearest_prior_question": "How must a reporting institution respond to an AMLA enforcement order requesting information or documents, and what internal capability must it maintain?",
+      "similarity_warning": false
+    },
+    {
+      "question_id": "ACIT-109",
+      "question": "What may a reporting institution do when it suspects ML/TF/PF and reasonably believes that carrying out CDD would tip off the customer?",
+      "question_id_collision": false,
+      "exact_duplicate": false,
+      "max_token_jaccard": 0.3056,
+      "nearest_prior_source": "retrieval_eval",
+      "nearest_prior_question_id": "RET-016",
+      "nearest_prior_question": "What should a reporting institution do if it cannot adequately control the ML/TF/PF and associated risks of accepting third-party deposits?",
+      "similarity_warning": false
+    },
+    {
+      "question_id": "ACIT-110",
+      "question": "What safeguards in paragraphs 11.13 to 11.16 support the compliance officer’s independence and central role in suspicious-transaction reporting?",
+      "question_id_collision": false,
+      "exact_duplicate": false,
+      "max_token_jaccard": 0.1724,
+      "nearest_prior_source": "retrieval_eval",
+      "nearest_prior_question_id": "RET-025",
+      "nearest_prior_question": "What periodic reporting dates apply to the UNSCR List and Domestic List under Appendix D?",
+      "similarity_warning": false
+    },
+    {
+      "question_id": "ACIT-111",
+      "question": "Under Appendix B, how should a reporting institution treat family members or close associates of a PEP who no longer holds a prominent public function, and which factors may indicate continuing high risk?",
+      "question_id_collision": false,
+      "exact_duplicate": false,
+      "max_token_jaccard": 0.2973,
+      "nearest_prior_source": "retrieval_eval",
+      "nearest_prior_question_id": "RET-029",
+      "nearest_prior_question": "What sources of information may a reporting institution use to identify family members or close associates of a PEP?",
+      "similarity_warning": false
+    },
+    {
+      "question_id": "ACIT-112",
+      "question": "According to Appendix E, how do the three cascading steps identify the beneficial owner of a legal person, and when should the next step be used?",
+      "question_id_collision": false,
+      "exact_duplicate": false,
+      "max_token_jaccard": 0.3214,
+      "nearest_prior_source": "retrieval_eval",
+      "nearest_prior_question_id": "RET-001",
+      "nearest_prior_question": "How do the Guidelines define a beneficial owner in the context of a legal person?",
+      "similarity_warning": false
+    },
+    {
+      "question_id": "ACIT-113",
+      "question": "In Appendix E Step 2, what are examples of control over a legal person through means other than ownership?",
+      "question_id_collision": false,
+      "exact_duplicate": false,
+      "max_token_jaccard": 0.1852,
+      "nearest_prior_source": "retrieval_eval",
+      "nearest_prior_question_id": "RET-001",
+      "nearest_prior_question": "How do the Guidelines define a beneficial owner in the context of a legal person?",
+      "similarity_warning": false
+    },
+    {
+      "question_id": "ACIT-114",
+      "question": "What counter-proliferation-financing measures does Appendix G say Regulation 3 requires for designated countries and persons?",
+      "question_id_collision": false,
+      "exact_duplicate": false,
+      "max_token_jaccard": 0.1429,
+      "nearest_prior_source": "retrieval_eval",
+      "nearest_prior_question_id": "RET-007",
+      "nearest_prior_question": "What responsibilities does the board of directors have for AML/CFT/CPF oversight and governance?",
+      "similarity_warning": false
+    },
+    {
+      "question_id": "ACIT-115",
+      "question": "According to Appendix H, how should a capital market intermediary keep UNSCR sanctions information current, and when does a UNSCR delisting take effect?",
+      "question_id_collision": false,
+      "exact_duplicate": false,
+      "max_token_jaccard": 0.1875,
+      "nearest_prior_source": "stage11_dev",
+      "nearest_prior_question_id": "ACIT-011",
+      "nearest_prior_question": "Under Part VIII, what must a reporting institution do to keep its proliferation-financing sanctions information current?",
+      "similarity_warning": false
+    },
+    {
+      "question_id": "ACIT-116",
+      "question": "What is the current Overnight Policy Rate set by Bank Negara Malaysia?",
+      "question_id_collision": false,
+      "exact_duplicate": false,
+      "max_token_jaccard": 0.1875,
+      "nearest_prior_source": "stage11_dev",
+      "nearest_prior_question_id": "ACIT-020",
+      "nearest_prior_question": "Who is the current CEO of NVIDIA?",
+      "similarity_warning": false
+    },
+    {
+      "question_id": "ACIT-117",
+      "question": "What is the current retail price of one gram of 999 gold in Malaysia?",
+      "question_id_collision": false,
+      "exact_duplicate": false,
+      "max_token_jaccard": 0.25,
+      "nearest_prior_source": "stage11_dev",
+      "nearest_prior_question_id": "ACIT-020",
+      "nearest_prior_question": "Who is the current CEO of NVIDIA?",
+      "similarity_warning": false
+    },
+    {
+      "question_id": "ACIT-118",
+      "question": "What is the air quality index in Kuala Lumpur right now?",
+      "question_id_collision": false,
+      "exact_duplicate": false,
+      "max_token_jaccard": 0.3333,
+      "nearest_prior_source": "stage11_dev",
+      "nearest_prior_question_id": "ACIT-019",
+      "nearest_prior_question": "What will the weather be in Kuala Lumpur tomorrow?",
+      "similarity_warning": false
+    }
+  ]
+}

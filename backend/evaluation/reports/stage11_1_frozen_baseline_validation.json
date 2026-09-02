@@ -1,0 +1,50 @@
+{
+  "baseline_id": "stage11_frozen_pipeline_v1",
+  "valid": true,
+  "checked_file_count": 7,
+  "errors": [],
+  "files": [
+    {
+      "path": "backend/app/services/canonical.py",
+      "ok": true,
+      "expected_sha256": "52df35adf5b0a5e864014fb87dba14249e103278274b141e938bb8964b97327a",
+      "actual_sha256": "52df35adf5b0a5e864014fb87dba14249e103278274b141e938bb8964b97327a"
+    },
+    {
+      "path": "backend/app/services/chunking.py",
+      "ok": true,
+      "expected_sha256": "c935092633c603a3e36882691de870f529d50fbd5f0ffa44403552d0ccb8d789",
+      "actual_sha256": "c935092633c603a3e36882691de870f529d50fbd5f0ffa44403552d0ccb8d789"
+    },
+    {
+      "path": "backend/app/services/retrieval.py",
+      "ok": true,
+      "expected_sha256": "6a0c5b8e92f3a05d6c930a74971fbb78e8aaed47ae8b76f59327f57f7fcaee62",
+      "actual_sha256": "6a0c5b8e92f3a05d6c930a74971fbb78e8aaed47ae8b76f59327f57f7fcaee62"
+    },
+    {
+      "path": "backend/app/services/reranking.py",
+      "ok": true,
+      "expected_sha256": "4cde369f00891f524f7d405720931b1af3bbab5f125d2e3757d400270b0f7453",
+      "actual_sha256": "4cde369f00891f524f7d405720931b1af3bbab5f125d2e3757d400270b0f7453"
+    },
+    {
+      "path": "backend/app/services/context_assembly.py",
+      "ok": true,
+      "expected_sha256": "2dba2620129f0347cee5d92ab9fb9f48c42134a0c0337827c8ddb67ac42366af",
+      "actual_sha256": "2dba2620129f0347cee5d92ab9fb9f48c42134a0c0337827c8ddb67ac42366af"
+    },
+    {
+      "path": "backend/app/services/citations.py",
+      "ok": true,
+      "expected_sha256": "457d977ef8fd4d9739c969f9ee6abe1d761963e384fc8c5669d383439e44d18e",
+      "actual_sha256": "457d977ef8fd4d9739c969f9ee6abe1d761963e384fc8c5669d383439e44d18e"
+    },
+    {
+      "path": "backend/evaluation/retrieval/retrieval_config_stage8_1_frozen_v1.json",
+      "ok": true,
+      "expected_sha256": "d050e0cf939eb05547e62d21455df9cc009d39aed6d924521384cb8f668a524e",
+      "actual_sha256": "d050e0cf939eb05547e62d21455df9cc009d39aed6d924521384cb8f668a524e"
+    }
+  ]
+}

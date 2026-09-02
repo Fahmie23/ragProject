@@ -1,0 +1,45 @@
+Stage 11.2 — DEV Answer/Citation Benchmark Construction
+========================================================
+
+Status: CONSTRUCTION + TOOLING PASS; LIVE DEV CAPTURE PENDING
+Dataset: answer_citation_eval_dev_v1
+Benchmark status: draft
+
+Questions: 20
+- answered: 17
+- insufficient_evidence: 3
+- heldout: 0
+
+Category distribution:
+- appendix: 3
+- cross_page: 1
+- definition: 1
+- direct_requirement: 2
+- exception_condition: 4
+- multi_clause: 5
+- out_of_scope: 3
+- table_form: 1
+
+Difficulty distribution:
+- easy: 6
+- hard: 7
+- medium: 7
+
+Construction validation:
+- Dataset contract: PASS
+- Canonical source locator validation: PASS (35 locators / 34 groups)
+- Retrieval-question overlap: PASS (0 exact duplicates, 0 warnings >= 0.70 token Jaccard)
+- Capture runner dry-run: PASS
+- Stage 11 targeted tests: 22 passed
+- Full backend regression: 319 passed
+- Python compileall: PASS
+- Frozen production baseline: PASS (7/7 hashes match)
+
+Live status:
+- Fresh 20-question DEV capture: NOT RUN in packaged archive
+- Deterministic production DEV metrics: NOT SCORED yet
+- Semantic calibration labels: NOT ASSIGNED yet
+- Automated semantic judge: NOT ENABLED
+- Stage 11 held-out set: NOT CREATED / NOT RUN
+
+Reason live capture is pending: packaged archive contains no populated runtime document/database and no generation API key.

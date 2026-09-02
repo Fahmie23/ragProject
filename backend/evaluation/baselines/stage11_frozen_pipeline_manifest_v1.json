@@ -1,0 +1,26 @@
+{
+  "manifest_version": "1.0",
+  "baseline_id": "stage11_frozen_pipeline_v1",
+  "purpose": "Guard Stage 11 evaluation against accidental modification of the frozen production pipeline.",
+  "production_profile": {
+    "retrieval_profile": "retrieval_v1_stage8_2_top5",
+    "embedding_model": "BAAI/bge-m3",
+    "candidate_k": 20,
+    "rrf_k": 60,
+    "dense_weight": 1.0,
+    "lexical_weight": 1.0,
+    "reranker_model": "BAAI/bge-reranker-v2-m3",
+    "top_k": 5,
+    "context_strategy": "structural_one_hop_v1",
+    "citation_version": "deterministic_citations_v1_2"
+  },
+  "files": {
+    "backend/app/services/canonical.py": "52df35adf5b0a5e864014fb87dba14249e103278274b141e938bb8964b97327a",
+    "backend/app/services/chunking.py": "c935092633c603a3e36882691de870f529d50fbd5f0ffa44403552d0ccb8d789",
+    "backend/app/services/retrieval.py": "6a0c5b8e92f3a05d6c930a74971fbb78e8aaed47ae8b76f59327f57f7fcaee62",
+    "backend/app/services/reranking.py": "4cde369f00891f524f7d405720931b1af3bbab5f125d2e3757d400270b0f7453",
+    "backend/app/services/context_assembly.py": "2dba2620129f0347cee5d92ab9fb9f48c42134a0c0337827c8ddb67ac42366af",
+    "backend/app/services/citations.py": "457d977ef8fd4d9739c969f9ee6abe1d761963e384fc8c5669d383439e44d18e",
+    "backend/evaluation/retrieval/retrieval_config_stage8_1_frozen_v1.json": "d050e0cf939eb05547e62d21455df9cc009d39aed6d924521384cb8f668a524e"
+  }
+}

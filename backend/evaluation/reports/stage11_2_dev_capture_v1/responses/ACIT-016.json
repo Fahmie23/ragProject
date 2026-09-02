@@ -1,0 +1,348 @@
+{
+  "document_id": "485c4989-c300-45c8-ac06-79a59492bb5c",
+  "question": "Under Appendix A, how often should the institution reassess its ML/TF/PF risks, and what documentation should support its RBA process?",
+  "status": "answered",
+  "answer": "The institution must conduct a periodic assessment of its ML/TF/PF risks at least every two years, or sooner if there are changes to its business model. The RBA process must be documented with (i) the process and procedures of the risk assessment; (ii) information showing higher‑risk indicators considered and the rationale for any that were discarded; (iii) analysis of the ML/TF/PF risks and conclusions on threats and vulnerabilities; and (iv) the measures implemented for higher‑risk indicators, ensuring they are commensurate with the identified risks.",
+  "cited_answer": "The institution must conduct a periodic assessment of its ML/TF/PF risks at least every two years, or sooner if there are changes to its business model. [1] The RBA process must be documented with (i) the process and procedures of the risk assessment; (ii) information showing higher‑risk indicators considered and the rationale for any that were discarded; (iii) analysis of the ML/TF/PF risks and conclusions on threats and vulnerabilities; and (iv) the measures implemented for higher‑risk indicators, ensuring they are commensurate with the identified risks. [2]",
+  "claims": [
+    {
+      "claim_id": "C1",
+      "text": "The institution must conduct a periodic assessment of its ML/TF/PF risks at least every two years, or sooner if there are changes to its business model.",
+      "evidence_ids": [
+        "E1"
+      ],
+      "citation_ids": [
+        "CIT-E1"
+      ]
+    },
+    {
+      "claim_id": "C2",
+      "text": "The RBA process must be documented with (i) the process and procedures of the risk assessment; (ii) information showing higher‑risk indicators considered and the rationale for any that were discarded; (iii) analysis of the ML/TF/PF risks and conclusions on threats and vulnerabilities; and (iv) the measures implemented for higher‑risk indicators, ensuring they are commensurate with the identified risks.",
+      "evidence_ids": [
+        "E4"
+      ],
+      "citation_ids": [
+        "CIT-E4"
+      ]
+    }
+  ],
+  "used_evidence_ids": [
+    "E1",
+    "E4"
+  ],
+  "missing_information": [],
+  "evidence": [
+    {
+      "evidence_id": "E1",
+      "chunk_id": "485c4989-c300-45c8-ac06-79a59492bb5c-c0202-7273d61844",
+      "chunk_index": 202,
+      "semantic_type": "clause",
+      "source_rank": 1,
+      "ranked_seed_rank": 1,
+      "reasons": [
+        "ranked_seed"
+      ],
+      "pages": [
+        78
+      ],
+      "section_path": [
+        "APPENDIX A",
+        "8.0 Continuous application of RBA"
+      ],
+      "source_element_ids": [
+        "p78-e2",
+        "p78-e3",
+        "p78-e4",
+        "p78-e5"
+      ],
+      "content_text": "8.1 The application of RBA is a continuous process to ensure that RBA processes for\nmanaging and mitigating ML/TF/PF risks are kept under regular review.\n\n8.2 For the purpose of risk assessment, a reporting institution should conduct periodic\nassessment of its ML/TF/PF risks (minimum every two years or sooner if there are\nany changes to the reporting institution’s business model) taking into account the\ngrowth of the business, nature of new products/services and latest trends and\ntypologies in the sector.\n\n8.3 Through the periodic assessment, a reporting institution may be required to update\nor review either its BbRA or RbRA.\n\n8.4 A reporting institution must take appropriate measures to ensure that its policies\nand procedures are updated in light of the continuous risk assessments and ongoing\nmonitoring of its customers."
+    },
+    {
+      "evidence_id": "E2",
+      "chunk_id": "485c4989-c300-45c8-ac06-79a59492bb5c-c0183-efab2c3b8f",
+      "chunk_index": 183,
+      "semantic_type": "clause",
+      "source_rank": 2,
+      "ranked_seed_rank": 2,
+      "reasons": [
+        "ranked_seed"
+      ],
+      "pages": [
+        70
+      ],
+      "section_path": [
+        "APPENDIX A",
+        "2.0 RBA Steps"
+      ],
+      "source_element_ids": [
+        "p70-e3",
+        "p70-e4",
+        "p70-e5",
+        "p70-e6",
+        "p70-e7",
+        "p70-e8"
+      ],
+      "content_text": "2.2 The RBA must be tailored to the reporting institution’s business, size, structure and\nactivities.\n\n2.3 The RBA must be reflected in the reporting institution’s policies and procedures. All\nsteps and processes in relation to the RBA must be documented and supported by\nappropriate rationale.\n\n2.4 Recognising that ML/TF/PF risks may change and evolve over time with new threats,\nproducts/services, new technologies, etc., the reporting institution must understand\nthat assessing and mitigating ML/TF/PF risks is not a static exercise. Therefore, a\nreporting institution must periodically review, evaluate and update the RBA\naccordingly.\n\n2.5 The outcome of the BbRA and RbRA complement each other. Therefore, to effectively\nimplement the RBA–\n\n(a)a reporting institution must determine reasonable risk factors and parameters\nfor the BbRA and RbRA; and\n\n(b)over a period of time, data from the RbRA may also be useful in updating the\nparameters of the BbRA."
+    },
+    {
+      "evidence_id": "E3",
+      "chunk_id": "485c4989-c300-45c8-ac06-79a59492bb5c-c0179-f5adde1861",
+      "chunk_index": 179,
+      "semantic_type": "clause",
+      "source_rank": 3,
+      "ranked_seed_rank": 3,
+      "reasons": [
+        "ranked_seed"
+      ],
+      "pages": [
+        68
+      ],
+      "section_path": [
+        "APPENDIX A",
+        "1.0 Introduction"
+      ],
+      "source_element_ids": [
+        "p68-e4",
+        "p68-e5",
+        "p68-e6",
+        "p68-e7",
+        "p68-e8",
+        "p68-e9",
+        "p68-e10",
+        "p68-e11",
+        "p68-e12",
+        "p68-e13"
+      ],
+      "content_text": "1.1 The RBA is central to the effective implementation of the FATF Recommendations.\nThe focus on risk is intended to ensure a reporting institution is able to identify, assess\nand understand the ML/TF/PF risks to which it is exposed to and take the necessary\nAML/CFT/ CPF control measures to mitigate them.\n\n1.2 This Guidance seeks to:\n\n(a)assist the reporting institution to design and implement AML/CFT/CPF control\nmeasures by providing a common understanding of what the RBA encompasses;\nand\n\n(b)outline the recommended steps involved in applying the RBA. In the event a\nreporting institution has developed its own RBA, the adopted RBA must be able\nto achieve the outcomes intended under this Guidance.\n\n1.3 For entities under a group structure, this Guidance shall apply to each reporting\ninstitution that falls under First Schedule of the AMLA, whether as a holding or\nsubsidiary entity.\n\n1.4 The RBA–\n\n(a)recognises that the ML/TF/PF threats to a reporting institution vary across\ncustomers, geographic, products and services, transactions and distribution\nchannels;\n\n(b)allows the reporting institution to apply procedures, systems and controls to\nmanage and mitigate the ML/TF/PF risks identified; and\n\n(c)facilitates the reporting institution to allocate its resources and internal\nstructures to manage and mitigate the ML/TF/PF risk identified.\n\n1.5 The RBA provides an assessment of the threats and vulnerabilities of the reporting\ninstitution from being used as a conduit for ML/TF/PF. By regularly assessing the\nreporting institution’s ML/TF/PF risks, it allows the reporting institution to protect\nand maintain the integrity of its business and the financial system as a whole."
+    },
+    {
+      "evidence_id": "E4",
+      "chunk_id": "485c4989-c300-45c8-ac06-79a59492bb5c-c0204-2c52279f5c",
+      "chunk_index": 204,
+      "semantic_type": "clause",
+      "source_rank": 4,
+      "ranked_seed_rank": 4,
+      "reasons": [
+        "ranked_seed"
+      ],
+      "pages": [
+        78
+      ],
+      "section_path": [
+        "APPENDIX A",
+        "9.0 Documentation of the RBA process"
+      ],
+      "source_element_ids": [
+        "p78-e8",
+        "p78-e9",
+        "p78-e10",
+        "p78-e11",
+        "p78-e12"
+      ],
+      "content_text": "9.2 Documentation by the reporting institution should include–\n\nI.Process and procedures of the Risk Assessment;\n\nII.Information that demonstrates higher risk indicators have been considered, and\nwhere they have been considered and discarded, reasonable rationale for such\ndecision;\n\nIII.Analysis of the ML/TF/PF risks and conclusions of the ML/TF/PF threats and\nvulnerabilities to which the reporting institution is exposed to;\n\nIV.Measures put in place for higher-risk indicators and to ensure that these\nmeasures commensurate with the higher risks identified."
+    },
+    {
+      "evidence_id": "E5",
+      "chunk_id": "485c4989-c300-45c8-ac06-79a59492bb5c-c0180-ac3abad846",
+      "chunk_index": 180,
+      "semantic_type": "clause",
+      "source_rank": 5,
+      "ranked_seed_rank": null,
+      "reasons": [
+        "preceding_intro"
+      ],
+      "pages": [
+        69
+      ],
+      "section_path": [
+        "APPENDIX A",
+        "2.0 RBA Steps"
+      ],
+      "source_element_ids": [
+        "p69-e2"
+      ],
+      "content_text": "2.1 The RBA entails two (2) assessments:"
+    },
+    {
+      "evidence_id": "E6",
+      "chunk_id": "485c4989-c300-45c8-ac06-79a59492bb5c-c0181-272be0f4ef",
+      "chunk_index": 181,
+      "semantic_type": "mixed",
+      "source_rank": 5,
+      "ranked_seed_rank": 5,
+      "reasons": [
+        "ranked_seed"
+      ],
+      "pages": [
+        69
+      ],
+      "section_path": [
+        "APPENDIX A",
+        "2.0 RBA Steps"
+      ],
+      "source_element_ids": [
+        "p69-e4",
+        "p69-e5",
+        "p69-e6"
+      ],
+      "content_text": "In a BbRA, a reporting institution must identify ML/TF/PF risk factors that affect its\nbusiness and address the impact on the reporting institution’s overall ML/TF/PF risks.\n\nI.Perform risk assessment ― A reporting institution shall perform an assessment\non the degree of ML/TF/PF risks that the reporting institution's business is\nexposed to and determine its risk appetite level. To this end, a reporting\ninstitution should formulate specific parameters of the ML/TF/PF risk factors\nconsidered.\n\nII.Formulate and implement business risk management and mitigation control\nmeasures ― A reporting institution must formulate procedures, systems and\ncontrols designed to manage and mitigate the identified ML/TF/PF risks. These\nrisk control measures should manage and mitigate the ML/TF/PF risks identified\nas well as be proportionate to the risks recognised."
+    }
+  ],
+  "citations": [
+    {
+      "citation_id": "CIT-E1",
+      "marker": "[1]",
+      "evidence_id": "E1",
+      "chunk_id": "485c4989-c300-45c8-ac06-79a59492bb5c-c0202-7273d61844",
+      "chunk_index": 202,
+      "source_filename": "sc_aml_cft.pdf",
+      "display": "APPENDIX A · Clause 8.1 · Clause 8.2 · Clause 8.3 · Clause 8.4 · PDF p. 78",
+      "pages": [
+        78
+      ],
+      "section_path": [
+        "APPENDIX A",
+        "8.0 Continuous application of RBA"
+      ],
+      "source_element_ids": [
+        "p78-e2",
+        "p78-e3",
+        "p78-e4",
+        "p78-e5"
+      ],
+      "locators": [
+        {
+          "kind": "appendix",
+          "label": "APPENDIX A",
+          "pages": [
+            78
+          ],
+          "source_element_ids": [
+            "p78-e2",
+            "p78-e3",
+            "p78-e4",
+            "p78-e5"
+          ]
+        },
+        {
+          "kind": "clause",
+          "label": "Clause 8.1",
+          "pages": [
+            78
+          ],
+          "source_element_ids": [
+            "p78-e2"
+          ]
+        },
+        {
+          "kind": "clause",
+          "label": "Clause 8.2",
+          "pages": [
+            78
+          ],
+          "source_element_ids": [
+            "p78-e3"
+          ]
+        },
+        {
+          "kind": "clause",
+          "label": "Clause 8.3",
+          "pages": [
+            78
+          ],
+          "source_element_ids": [
+            "p78-e4"
+          ]
+        },
+        {
+          "kind": "clause",
+          "label": "Clause 8.4",
+          "pages": [
+            78
+          ],
+          "source_element_ids": [
+            "p78-e5"
+          ]
+        }
+      ],
+      "validation_status": "valid"
+    },
+    {
+      "citation_id": "CIT-E4",
+      "marker": "[2]",
+      "evidence_id": "E4",
+      "chunk_id": "485c4989-c300-45c8-ac06-79a59492bb5c-c0204-2c52279f5c",
+      "chunk_index": 204,
+      "source_filename": "sc_aml_cft.pdf",
+      "display": "APPENDIX A · Clause 9.2 · PDF p. 78",
+      "pages": [
+        78
+      ],
+      "section_path": [
+        "APPENDIX A",
+        "9.0 Documentation of the RBA process"
+      ],
+      "source_element_ids": [
+        "p78-e8",
+        "p78-e9",
+        "p78-e10",
+        "p78-e11",
+        "p78-e12"
+      ],
+      "locators": [
+        {
+          "kind": "appendix",
+          "label": "APPENDIX A",
+          "pages": [
+            78
+          ],
+          "source_element_ids": [
+            "p78-e8",
+            "p78-e9",
+            "p78-e10",
+            "p78-e11",
+            "p78-e12"
+          ]
+        },
+        {
+          "kind": "clause",
+          "label": "Clause 9.2",
+          "pages": [
+            78
+          ],
+          "source_element_ids": [
+            "p78-e8"
+          ]
+        }
+      ],
+      "validation_status": "valid"
+    }
+  ],
+  "citation_version": "deterministic_citations_v1_2",
+  "citation_validation": {
+    "status": "valid",
+    "citation_count": 2,
+    "valid_citation_count": 2,
+    "errors": []
+  },
+  "generation_provider": "groq",
+  "generation_model": "openai/gpt-oss-120b",
+  "prompt_version": "grounded_claims_v1",
+  "generation_temperature": 0.0,
+  "generation_max_tokens": 1200,
+  "generation_json_mode": true,
+  "usage": {
+    "prompt_tokens": 1929,
+    "completion_tokens": 495,
+    "total_tokens": 2424
+  },
+  "retrieval_profile": "retrieval_v1_stage8_2_top5",
+  "retrieval_top_k": 5,
+  "retrieval_candidate_k": 20,
+  "retrieval_rrf_k": 60,
+  "retrieval_dense_weight": 1.0,
+  "retrieval_lexical_weight": 1.0,
+  "context_strategy": "structural_one_hop_v1",
+  "context_chunk_count": 6,
+  "expanded_chunk_count": 1
+}

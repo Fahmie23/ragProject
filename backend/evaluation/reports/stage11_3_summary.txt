@@ -1,0 +1,52 @@
+Stage 11.3 — Independent Frozen Held-Out Answer/Citation Benchmark
+=================================================================
+
+Status: CONSTRUCTION COMPLETE / FROZEN / NOT RUN
+Dataset: answer_citation_eval_heldout_v1
+Benchmark status: frozen
+Questions: 18 heldout only
+Expected answered: 15
+Expected insufficient_evidence: 3
+Gold semantic requirements: 52
+Required source groups: 28
+Gold locators: 28
+
+Construction validation:
+- dataset contract: PASS
+- canonical gold-source validation: PASS (28/28 locators)
+- prior-question exact duplicates: 0
+- token-Jaccard warnings >= 0.70: 0
+- question-ID collisions: 0
+- exact Stage 11 DEV gold-locator overlaps: 0
+- frozen production baseline: PASS (7/7 hashes)
+- frozen semantic evaluation: PASS (3/3 hashes + 9 response bindings)
+- held-out dataset SHA-256 freeze: PASS
+
+Held-out dataset SHA-256:
+a0aaa705a53c8fba1ebad156cf6a6910cb04047ba5d896d897896f39efd4c881
+
+Execution protection:
+- actual dataset path must match frozen held-out SHA-256
+- live capture requires RUN_FROZEN_ANSWER_CITATION_HELDOUT_V1
+- scorer requires the same confirmation for split=heldout
+- capture runner has no overwrite flag
+- capture runner has no single-question selection mode
+- valid existing held-out responses are immutable and skipped on resume
+- default delay between live requests: 30 seconds
+- provider rate-limit retry remains enabled
+
+Testing:
+- Stage 11 targeted evaluation tests: 41 passed
+- Full backend regression: 338 passed
+- Python compileall: PASS
+
+Production RAG changed: NO
+Frozen semantic rubric changed: NO
+Held-out generation performed during construction: NO
+Held-out semantic labels pre-created: NO
+
+Next gate:
+Reproduce Stage 11.3 validation locally. Only then consume the held-out set once using
+capture_answer_citation_heldout.py with the exact confirmation token. After complete
+capture, score deterministic held-out metrics under the frozen benchmark. Semantic
+assessment must use stage11_semantic_rubric_v1 and must not change the benchmark.

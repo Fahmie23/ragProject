@@ -1,0 +1,284 @@
+{
+  "document_id": "485c4989-c300-45c8-ac06-79a59492bb5c",
+  "query": "Before launching a new product, business practice, delivery mechanism or technology, what ML/TF risk work must the reporting institution perform?",
+  "embedding_model": "BAAI/bge-m3",
+  "requested_device": "auto",
+  "resolved_device": "cuda",
+  "top_k": 10,
+  "embedded_chunk_count": 284,
+  "total_chunk_count": 284,
+  "hits": [
+    {
+      "rank": 1,
+      "chunk_id": "485c4989-c300-45c8-ac06-79a59492bb5c-c0069-fc0dcb44a4",
+      "chunk_index": 69,
+      "semantic_type": "clause",
+      "score": 0.7908695464808033,
+      "distance": 0.20913045351919668,
+      "text": "Section: PART II: RISK-BASED APPROACH APPLICATION > 7. RISK-BASED APPROACH APPLICATION > 7.1 ML/TF Risk assessment\nClause: 7.1.5\n\n7.1.5 A reporting institution is also required to identify and assess the ML/TF risks that may\narise in relation to the development of new products and new business practices,\nincluding new delivery mechanisms, and the use of new or developing technologies for\nboth new and pre-existing products. The reporting institution must undertake risk\nassessments prior to the launch or use of such products, practices and technologies\nand take appropriate measures to manage and mitigate such risks.",
+      "content_text": "7.1.5 A reporting institution is also required to identify and assess the ML/TF risks that may\narise in relation to the development of new products and new business practices,\nincluding new delivery mechanisms, and the use of new or developing technologies for\nboth new and pre-existing products. The reporting institution must undertake risk\nassessments prior to the launch or use of such products, practices and technologies\nand take appropriate measures to manage and mitigate such risks.",
+      "token_count": 123,
+      "pages": [
+        27
+      ],
+      "section_path": [
+        "PART II: RISK-BASED APPROACH APPLICATION",
+        "7. RISK-BASED APPROACH APPLICATION",
+        "7.1 ML/TF Risk assessment"
+      ],
+      "source_element_ids": [
+        "p27-e5"
+      ]
+    },
+    {
+      "rank": 2,
+      "chunk_id": "485c4989-c300-45c8-ac06-79a59492bb5c-c0073-937810db87",
+      "chunk_index": 73,
+      "semantic_type": "clause",
+      "score": 0.7263661623001099,
+      "distance": 0.27363383769989014,
+      "text": "Section: PART II: RISK-BASED APPROACH APPLICATION > 7. RISK-BASED APPROACH APPLICATION > 7.3    PF Risk assessment\n\n7.3.2 In conducting the risk assessment, a reporting institution may consider if the existing\nML/TF risk assessments methodologies are adequate to incorporate PF risks and may not\nnecessarily require a stand-alone or an entirely new methodology.\n\n7.3.4 A reporting institution is also required to identify and assess the PF risks that may arise\nin relation to the development of new products and new business practices, including\nnew delivery mechanisms, and the use of new or developing technologies for both new\nand pre-existing products. The reporting institution must undertake risk assessments\nprior to the launch or use of such products, practices and technologies and take\nappropriate measures to manage and mitigate such risks.",
+      "content_text": "7.3.2 In conducting the risk assessment, a reporting institution may consider if the existing\nML/TF risk assessments methodologies are adequate to incorporate PF risks and may not\nnecessarily require a stand-alone or an entirely new methodology.\n\n7.3.4 A reporting institution is also required to identify and assess the PF risks that may arise\nin relation to the development of new products and new business practices, including\nnew delivery mechanisms, and the use of new or developing technologies for both new\nand pre-existing products. The reporting institution must undertake risk assessments\nprior to the launch or use of such products, practices and technologies and take\nappropriate measures to manage and mitigate such risks.",
+      "token_count": 158,
+      "pages": [
+        28
+      ],
+      "section_path": [
+        "PART II: RISK-BASED APPROACH APPLICATION",
+        "7. RISK-BASED APPROACH APPLICATION",
+        "7.3    PF Risk assessment"
+      ],
+      "source_element_ids": [
+        "p28-e1",
+        "p28-e8"
+      ]
+    },
+    {
+      "rank": 3,
+      "chunk_id": "485c4989-c300-45c8-ac06-79a59492bb5c-c0185-cc49cfc122",
+      "chunk_index": 185,
+      "semantic_type": "clause",
+      "score": 0.6810126710541661,
+      "distance": 0.3189873289458339,
+      "text": "Section: APPENDIX A > 3.0 A: Perform Risk Assessment\nClause: 3.2\nGroup: Business-based Risk Assessment (BbRA)\n\n3.2 The reporting institution should evaluate the extent of its ML/TF/PF risks at a macro\nlevel. When assessing the ML/TF/PF risks, a reporting institution should consider all\nrelevant risk factors that affect their business and operations:\n\n(a)Reporting institution’s customers;\n\n(b)Geographic location of the reporting institution;\n\n(c)Transactions and distribution channels offered by the reporting institution;\n\n(d)Products and services offered by the reporting institution;\n\n(e)Structure of the reporting institution;\n\n(f)Findings of the National Risk Assessment (NRA) or any other risk assessment issued by\nrelevant authorities; and\n\n(g)Other specific risk factors that the reporting institution may consider for the\npurpose of identifying its ML/TF/PF risks.",
+      "content_text": "3.2 The reporting institution should evaluate the extent of its ML/TF/PF risks at a macro\nlevel. When assessing the ML/TF/PF risks, a reporting institution should consider all\nrelevant risk factors that affect their business and operations:\n\n(a)Reporting institution’s customers;\n\n(b)Geographic location of the reporting institution;\n\n(c)Transactions and distribution channels offered by the reporting institution;\n\n(d)Products and services offered by the reporting institution;\n\n(e)Structure of the reporting institution;\n\n(f)Findings of the National Risk Assessment (NRA) or any other risk assessment issued by\nrelevant authorities; and\n\n(g)Other specific risk factors that the reporting institution may consider for the\npurpose of identifying its ML/TF/PF risks.",
+      "token_count": 179,
+      "pages": [
+        71
+      ],
+      "section_path": [
+        "APPENDIX A",
+        "3.0 A: Perform Risk Assessment"
+      ],
+      "source_element_ids": [
+        "p71-e4",
+        "p71-e5",
+        "p71-e6",
+        "p71-e7",
+        "p71-e8",
+        "p71-e9",
+        "p71-e10",
+        "p71-e11"
+      ]
+    },
+    {
+      "rank": 4,
+      "chunk_id": "485c4989-c300-45c8-ac06-79a59492bb5c-c0187-222788f826",
+      "chunk_index": 187,
+      "semantic_type": "clause",
+      "score": 0.6792232990264893,
+      "distance": 0.32077670097351074,
+      "text": "Section: APPENDIX A > 3.0 A: Perform Risk Assessment\nClause: 3.4\nGroup: Business-based Risk Assessment (BbRA)\n\n3.4 To assist a reporting institution in assessing the extent of its ML/TF/PF risks, the\nreporting institution may consider the following examples under the risk factors\nmentioned below for guidance:\n\n(a)Customers – in conducting business transactions, the reporting institution is\nexposed to various types of customers that may pose ML/TF/PF risks. In\nanalysing its customers’ risk, a reporting institution may consider the non-\nexhaustive examples below:\n\n(b)Countries or geographic – a reporting institution should take into account factors\nincluding the location of the reporting institution’s branches and subsidiaries and\nwhether its holding company is located within a jurisdiction with full\nAML/CFT/CPF compliance as identified by a credible source. Further non-\nexhaustive examples are as below:\n\n•\nLocation of its branches and subsidiaries in tourist hotspots, crime hotspots,\ncountry’s border and entry-points; and\n\n•\nLocation of its branches and subsidiaries in high-risk jurisdictions e.g.\ncountries identified by FATF and the Government of Malaysia, countries\nsubjected to sanctions by UN, etc.\n\n(c)Transactions and distribution channels – a reporting institution has various\nmodes of transaction and distribution of its products and services. Some of the\nmodes of transaction and distribution channels may be more susceptible to\nML/TF/PF risks. In this regard, a reporting institution must consider the\nappropriate ML/TF/PF risks attributed to these modes including the following\nexamples:\n\n•\nMode of distribution primarily via agents;\n\n•\nOnline or technology based transaction;\n\n•\nNon face-to face business relationship; and\n\n•Cash-based transactions.\n\n(d)Products and services – given the variety of financial products in the market, a\nreporting institution must identify the appropriate level of ML/TF/PF risks\nattached to the types of products and services offered. Some of the non-\n\n(e)exhaustive examples that the reporting institution may take into account are as\nfollows:\n\n•\nNature of the products i.e. transferability/liquidity of the products;\n\n•\nLevel of complexity of the products and services;\n\n•\nBearer instruments; and\n\n•\nNew technologies.",
+      "content_text": "3.4 To assist a reporting institution in assessing the extent of its ML/TF/PF risks, the\nreporting institution may consider the following examples under the risk factors\nmentioned below for guidance:\n\n(a)Customers – in conducting business transactions, the reporting institution is\nexposed to various types of customers that may pose ML/TF/PF risks. In\nanalysing its customers’ risk, a reporting institution may consider the non-\nexhaustive examples below:\n\n(b)Countries or geographic – a reporting institution should take into account factors\nincluding the location of the reporting institution’s branches and subsidiaries and\nwhether its holding company is located within a jurisdiction with full\nAML/CFT/CPF compliance as identified by a credible source. Further non-\nexhaustive examples are as below:\n\n•\nLocation of its branches and subsidiaries in tourist hotspots, crime hotspots,\ncountry’s border and entry-points; and\n\n•\nLocation of its branches and subsidiaries in high-risk jurisdictions e.g.\ncountries identified by FATF and the Government of Malaysia, countries\nsubjected to sanctions by UN, etc.\n\n(c)Transactions and distribution channels – a reporting institution has various\nmodes of transaction and distribution of its products and services. Some of the\nmodes of transaction and distribution channels may be more susceptible to\nML/TF/PF risks. In this regard, a reporting institution must consider the\nappropriate ML/TF/PF risks attributed to these modes including the following\nexamples:\n\n•\nMode of distribution primarily via agents;\n\n•\nOnline or technology based transaction;\n\n•\nNon face-to face business relationship; and\n\n•Cash-based transactions.\n\n(d)Products and services – given the variety of financial products in the market, a\nreporting institution must identify the appropriate level of ML/TF/PF risks\nattached to the types of products and services offered. Some of the non-\n\n(e)exhaustive examples that the reporting institution may take into account are as\nfollows:\n\n•\nNature of the products i.e. transferability/liquidity of the products;\n\n•\nLevel of complexity of the products and services;\n\n•\nBearer instruments; and\n\n•\nNew technologies.",
+      "token_count": 436,
+      "pages": [
+        71,
+        72,
+        73
+      ],
+      "section_path": [
+        "APPENDIX A",
+        "3.0 A: Perform Risk Assessment"
+      ],
+      "source_element_ids": [
+        "p71-e13",
+        "p71-e14",
+        "p72-e10",
+        "p72-e11",
+        "p72-e12",
+        "p72-e13",
+        "p72-e14",
+        "p72-e15",
+        "p72-e16",
+        "p72-e17",
+        "p72-e18",
+        "p73-e1",
+        "p73-e2",
+        "p73-e3",
+        "p73-e4",
+        "p73-e5"
+      ]
+    },
+    {
+      "rank": 5,
+      "chunk_id": "485c4989-c300-45c8-ac06-79a59492bb5c-c0181-272be0f4ef",
+      "chunk_index": 181,
+      "semantic_type": "mixed",
+      "score": 0.6783549593898642,
+      "distance": 0.32164504061013577,
+      "text": "Section: APPENDIX A > 2.0 RBA Steps\nGroup: Business-based Risk Assessment (BbRA)\n\nIn a BbRA, a reporting institution must identify ML/TF/PF risk factors that affect its\nbusiness and address the impact on the reporting institution’s overall ML/TF/PF risks.\n\nI.Perform risk assessment ― A reporting institution shall perform an assessment\non the degree of ML/TF/PF risks that the reporting institution's business is\nexposed to and determine its risk appetite level. To this end, a reporting\ninstitution should formulate specific parameters of the ML/TF/PF risk factors\nconsidered.\n\nII.Formulate and implement business risk management and mitigation control\nmeasures ― A reporting institution must formulate procedures, systems and\ncontrols designed to manage and mitigate the identified ML/TF/PF risks. These\nrisk control measures should manage and mitigate the ML/TF/PF risks identified\nas well as be proportionate to the risks recognised.",
+      "content_text": "In a BbRA, a reporting institution must identify ML/TF/PF risk factors that affect its\nbusiness and address the impact on the reporting institution’s overall ML/TF/PF risks.\n\nI.Perform risk assessment ― A reporting institution shall perform an assessment\non the degree of ML/TF/PF risks that the reporting institution's business is\nexposed to and determine its risk appetite level. To this end, a reporting\ninstitution should formulate specific parameters of the ML/TF/PF risk factors\nconsidered.\n\nII.Formulate and implement business risk management and mitigation control\nmeasures ― A reporting institution must formulate procedures, systems and\ncontrols designed to manage and mitigate the identified ML/TF/PF risks. These\nrisk control measures should manage and mitigate the ML/TF/PF risks identified\nas well as be proportionate to the risks recognised.",
+      "token_count": 183,
+      "pages": [
+        69
+      ],
+      "section_path": [
+        "APPENDIX A",
+        "2.0 RBA Steps"
+      ],
+      "source_element_ids": [
+        "p69-e4",
+        "p69-e5",
+        "p69-e6"
+      ]
+    },
+    {
+      "rank": 6,
+      "chunk_id": "485c4989-c300-45c8-ac06-79a59492bb5c-c0066-84f6cf0cfe",
+      "chunk_index": 66,
+      "semantic_type": "clause",
+      "score": 0.6770251182287839,
+      "distance": 0.32297488177121614,
+      "text": "Section: PART II: RISK-BASED APPROACH APPLICATION > 7. RISK-BASED APPROACH APPLICATION > 7.1 ML/TF Risk assessment\n\n7.1.1 A reporting institution must take appropriate steps to identify, assess and understand\nits ML/TF risks, in relation to its customers, countries or geographical areas and\nproducts, services, transactions or delivery channels, and other relevant risk factors.\nAppendix A of these Guidelines provides for the measures to be adopted in\nimplementing a risk-based approach.\n\n7.1.3 A reporting institution must conduct additional assessment as and when required by\nthe SC.\n\n7.1.4 A reporting institution must be guided by the results of the NRA issued by the National\nCoordination Committee to Counter Money Laundering (NCC) in conducting its own\nrisk assessments. A reporting institution must take enhanced measures to manage\nand mitigate the risks identified in the NRA.",
+      "content_text": "7.1.1 A reporting institution must take appropriate steps to identify, assess and understand\nits ML/TF risks, in relation to its customers, countries or geographical areas and\nproducts, services, transactions or delivery channels, and other relevant risk factors.\nAppendix A of these Guidelines provides for the measures to be adopted in\nimplementing a risk-based approach.\n\n7.1.3 A reporting institution must conduct additional assessment as and when required by\nthe SC.\n\n7.1.4 A reporting institution must be guided by the results of the NRA issued by the National\nCoordination Committee to Counter Money Laundering (NCC) in conducting its own\nrisk assessments. A reporting institution must take enhanced measures to manage\nand mitigate the risks identified in the NRA.",
+      "token_count": 172,
+      "pages": [
+        26
+      ],
+      "section_path": [
+        "PART II: RISK-BASED APPROACH APPLICATION",
+        "7. RISK-BASED APPROACH APPLICATION",
+        "7.1 ML/TF Risk assessment"
+      ],
+      "source_element_ids": [
+        "p26-e4",
+        "p26-e11",
+        "p26-e12"
+      ]
+    },
+    {
+      "rank": 7,
+      "chunk_id": "485c4989-c300-45c8-ac06-79a59492bb5c-c0077-d9ccfb4d42",
+      "chunk_index": 77,
+      "semantic_type": "clause",
+      "score": 0.6665417750750926,
+      "distance": 0.3334582249249074,
+      "text": "Section: PART II: RISK-BASED APPROACH APPLICATION > 7. RISK-BASED APPROACH APPLICATION > 7.5 Risk profiling of customers\n\n7.5.1 A reporting institution must implement and maintain appropriate policies and procedures\nto conduct risk profiling of its customer.\n\n7.5.2 A reporting institution must conduct risk profiling on its customers during the\nestablishment of the business relationship and assign a ML/TF/PF risk rating that\ncommensurate with the customer’s risk profile.\n\n7.5.4 In assessing the level of risk of a customer from a particular country, a reporting\ninstitution shall assess the standards of prevention of ML/TF/PF in that country based on\nthe reporting institution’s knowledge, experience and other reliable sources of that\ncountry. The higher the risk, the greater the due diligence measures that should be\napplied when undertaking business with the customer from that country.\n\n7.5.5 After the initial acceptance of the customer, reporting institutions are required to regularly\nupdate the customer’s risk profile based on their level of ML/TF/PF risks.",
+      "content_text": "7.5.1 A reporting institution must implement and maintain appropriate policies and procedures\nto conduct risk profiling of its customer.\n\n7.5.2 A reporting institution must conduct risk profiling on its customers during the\nestablishment of the business relationship and assign a ML/TF/PF risk rating that\ncommensurate with the customer’s risk profile.\n\n7.5.4 In assessing the level of risk of a customer from a particular country, a reporting\ninstitution shall assess the standards of prevention of ML/TF/PF in that country based on\nthe reporting institution’s knowledge, experience and other reliable sources of that\ncountry. The higher the risk, the greater the due diligence measures that should be\napplied when undertaking business with the customer from that country.\n\n7.5.5 After the initial acceptance of the customer, reporting institutions are required to regularly\nupdate the customer’s risk profile based on their level of ML/TF/PF risks.",
+      "token_count": 210,
+      "pages": [
+        29
+      ],
+      "section_path": [
+        "PART II: RISK-BASED APPROACH APPLICATION",
+        "7. RISK-BASED APPROACH APPLICATION",
+        "7.5 Risk profiling of customers"
+      ],
+      "source_element_ids": [
+        "p29-e5",
+        "p29-e6",
+        "p29-e13",
+        "p29-e14"
+      ]
+    },
+    {
+      "rank": 8,
+      "chunk_id": "485c4989-c300-45c8-ac06-79a59492bb5c-c0189-da8ccc8fc0",
+      "chunk_index": 189,
+      "semantic_type": "subclause",
+      "score": 0.6539419293403625,
+      "distance": 0.34605807065963745,
+      "text": "Section: APPENDIX A > 3.0 A: Perform Risk Assessment\nGroup: Business-based Risk Assessment (BbRA)\nParent context:\n3.4 To assist a reporting institution in assessing the extent of its ML/TF/PF risks, the\nreporting institution may consider the following examples under the risk factors\nmentioned below for guidance:\n\n(f)Reporting institution’s structure – the ML/TF/PF risk of a reporting institution\nmay differ according to its size, structure and nature of business. Appropriate\nassessment of its business model and structure may assist a reporting institution\nto identify the level of ML/TF/PF risks that it is exposed to. In this regard, a\nreporting institution may take into account the following non- exhaustive\nexamples:\n\n•\nNumber of branches and subsidiaries;\n\n•\nSize of the reporting institution;\n\n•\nNumber of employees;\n\n•\nDegree of dependency on technology; and\n\n•\nSize against industry.\n\n(g)Findings of the NRA or any other risk assessments issued by relevant authorities\n–\nin identifying, assessing and understanding the ML/TF/PF risks, a reporting\ninstitution must fully consider the outcome of the NRA or any other equivalent\nrisk assessments by relevant authorities:\n\nUnder the NRA, a reporting institution should take into account the following:\n\n•\nSectors identified as highly vulnerable to ML/TF risks;\n\n•\nCrimes identified as high risk or susceptible to money laundering; and\n\n•\nTerrorism Financing and/or Proliferation Financing risks.\n\n(h)Other factors – a reporting institution may also take into account other factors in\ndetermining its risk assessment such as:\n\n•\nTrends and typologies for a particular sector;\n\n•\nThe internal audit and regulatory findings;\n\n•\nThe number of suspicious transaction reports it has filed with the FIED;\nand\n\n•\nWhether the reporting institution has been subjected to service any freeze or\nseize order by any law enforcement agencies pursuant to the AMLA,\nDangerous Drugs (Forfeiture of Property) Act 1988, Malaysian Anti-Corruption\nCommission Act 2009, etc.",
+      "content_text": "(f)Reporting institution’s structure – the ML/TF/PF risk of a reporting institution\nmay differ according to its size, structure and nature of business. Appropriate\nassessment of its business model and structure may assist a reporting institution\nto identify the level of ML/TF/PF risks that it is exposed to. In this regard, a\nreporting institution may take into account the following non- exhaustive\nexamples:\n\n•\nNumber of branches and subsidiaries;\n\n•\nSize of the reporting institution;\n\n•\nNumber of employees;\n\n•\nDegree of dependency on technology; and\n\n•\nSize against industry.\n\n(g)Findings of the NRA or any other risk assessments issued by relevant authorities\n–\nin identifying, assessing and understanding the ML/TF/PF risks, a reporting\ninstitution must fully consider the outcome of the NRA or any other equivalent\nrisk assessments by relevant authorities:\n\nUnder the NRA, a reporting institution should take into account the following:\n\n•\nSectors identified as highly vulnerable to ML/TF risks;\n\n•\nCrimes identified as high risk or susceptible to money laundering; and\n\n•\nTerrorism Financing and/or Proliferation Financing risks.\n\n(h)Other factors – a reporting institution may also take into account other factors in\ndetermining its risk assessment such as:\n\n•\nTrends and typologies for a particular sector;\n\n•\nThe internal audit and regulatory findings;\n\n•\nThe number of suspicious transaction reports it has filed with the FIED;\nand\n\n•\nWhether the reporting institution has been subjected to service any freeze or\nseize order by any law enforcement agencies pursuant to the AMLA,\nDangerous Drugs (Forfeiture of Property) Act 1988, Malaysian Anti-Corruption\nCommission Act 2009, etc.",
+      "token_count": 379,
+      "pages": [
+        73
+      ],
+      "section_path": [
+        "APPENDIX A",
+        "3.0 A: Perform Risk Assessment"
+      ],
+      "source_element_ids": [
+        "p73-e6",
+        "p73-e7",
+        "p73-e8",
+        "p73-e9",
+        "p73-e10",
+        "p73-e11",
+        "p73-e12",
+        "p73-e13",
+        "p73-e14",
+        "p73-e15",
+        "p73-e16",
+        "p73-e17",
+        "p73-e18",
+        "p73-e19",
+        "p73-e20",
+        "p73-e21"
+      ]
+    },
+    {
+      "rank": 9,
+      "chunk_id": "485c4989-c300-45c8-ac06-79a59492bb5c-c0070-bfadb14a87",
+      "chunk_index": 70,
+      "semantic_type": "clause",
+      "score": 0.6482856273651123,
+      "distance": 0.3517143726348877,
+      "text": "Section: PART II: RISK-BASED APPROACH APPLICATION > 7. RISK-BASED APPROACH APPLICATION > 7.2 ML/TF Risk management and mitigation\nClause: 7.2.1\n\n7.2.1 A reporting institution is required to–\n\n(a)have policies, procedures and controls, which are approved by the board of\ndirectors, to enable it to manage and mitigate effectively the ML/TF risks that\nhave been identified and assessed;\n\n(b)monitor the implementation of those policies, procedures and controls and\nto enhance them if necessary; and\n\n(c)take enhanced measures to manage and mitigate the risks where higher\nrisks are identified.",
+      "content_text": "7.2.1 A reporting institution is required to–\n\n(a)have policies, procedures and controls, which are approved by the board of\ndirectors, to enable it to manage and mitigate effectively the ML/TF risks that\nhave been identified and assessed;\n\n(b)monitor the implementation of those policies, procedures and controls and\nto enhance them if necessary; and\n\n(c)take enhanced measures to manage and mitigate the risks where higher\nrisks are identified.",
+      "token_count": 126,
+      "pages": [
+        27
+      ],
+      "section_path": [
+        "PART II: RISK-BASED APPROACH APPLICATION",
+        "7. RISK-BASED APPROACH APPLICATION",
+        "7.2 ML/TF Risk management and mitigation"
+      ],
+      "source_element_ids": [
+        "p27-e7",
+        "p27-e8",
+        "p27-e9",
+        "p27-e10"
+      ]
+    },
+    {
+      "rank": 10,
+      "chunk_id": "485c4989-c300-45c8-ac06-79a59492bb5c-c0055-88bd4ccfdd",
+      "chunk_index": 55,
+      "semantic_type": "clause",
+      "score": 0.6481781005859375,
+      "distance": 0.3518218994140625,
+      "text": "Section: PART I: INTRODUCTION AND APPLICABILITY > 6. GENERAL PRINCIPLES AND POLICIES TO COMBAT MONEY\nLAUNDERING, TERRORISM FINANCING AND PROLIFERATION\nFINANCING\nClause: 6.2\n\n6.2 In combating ML/TF/PF, a reporting institution must ensure the following:\n\n(a)Compliance with laws: A reporting institution must ensure that laws and\nregulations are adhered to, that business is conducted in conformity with high\nethical standards, and that service is not provided where there is good reason\nto suppose that transactions are associated with ML/TF/PF activities.\n\n(b)Co-operation with law enforcement agencies: A reporting institution\nmust co-operate fully with relevant law enforcement agencies. This includes\ntaking appropriate measures such as timely disclosure of information by the\nreporting institution to the FIED and the relevant law enforcement agencies.\n\n(c)Establishing internal controls: A reporting institution must issue and adopt\npolicies and procedures which are consistent with the principles set out under\nthe AMLA, TFS-PF related legislations and these Guidelines. A reporting\ninstitution must also ensure ongoing training programmes are conducted to\nkeep its board of directors, senior management and employees abreast on\nmatters under the AMLA and these Guidelines.\n\n(d)Risk-based approach: A reporting institution must ensure that the depth\nand breadth of its policies and procedures to identify, assess, monitor, manage\n\nand mitigate ML/TF/PF risks commensurate with the nature, scale and\ncomplexity of its activities.\n\n(e)Customer Due Diligence: A reporting institution must have an effective\nprocedure to identify its customers and to obtain satisfactory evidence to\nverify its customers’ identity.",
+      "content_text": "6.2 In combating ML/TF/PF, a reporting institution must ensure the following:\n\n(a)Compliance with laws: A reporting institution must ensure that laws and\nregulations are adhered to, that business is conducted in conformity with high\nethical standards, and that service is not provided where there is good reason\nto suppose that transactions are associated with ML/TF/PF activities.\n\n(b)Co-operation with law enforcement agencies: A reporting institution\nmust co-operate fully with relevant law enforcement agencies. This includes\ntaking appropriate measures such as timely disclosure of information by the\nreporting institution to the FIED and the relevant law enforcement agencies.\n\n(c)Establishing internal controls: A reporting institution must issue and adopt\npolicies and procedures which are consistent with the principles set out under\nthe AMLA, TFS-PF related legislations and these Guidelines. A reporting\ninstitution must also ensure ongoing training programmes are conducted to\nkeep its board of directors, senior management and employees abreast on\nmatters under the AMLA and these Guidelines.\n\n(d)Risk-based approach: A reporting institution must ensure that the depth\nand breadth of its policies and procedures to identify, assess, monitor, manage\n\nand mitigate ML/TF/PF risks commensurate with the nature, scale and\ncomplexity of its activities.\n\n(e)Customer Due Diligence: A reporting institution must have an effective\nprocedure to identify its customers and to obtain satisfactory evidence to\nverify its customers’ identity.",
+      "token_count": 307,
+      "pages": [
+        19,
+        20
+      ],
+      "section_path": [
+        "PART I: INTRODUCTION AND APPLICABILITY",
+        "6. GENERAL PRINCIPLES AND POLICIES TO COMBAT MONEY\nLAUNDERING, TERRORISM FINANCING AND PROLIFERATION\nFINANCING"
+      ],
+      "source_element_ids": [
+        "p19-e8",
+        "p19-e9",
+        "p19-e10",
+        "p19-e11",
+        "p19-e12",
+        "p20-e1",
+        "p20-e2"
+      ]
+    }
+  ]
+}

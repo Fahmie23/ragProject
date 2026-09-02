@@ -1,0 +1,892 @@
+{
+  "schema_version": "1.0",
+  "dataset_id": "answer_citation_eval_heldout_v1",
+  "benchmark_status": "frozen",
+  "document": {
+    "document_id": "485c4989-c300-45c8-ac06-79a59492bb5c",
+    "source_sha256": "e1d138edd3c55b3fa3dd36b3236876a1a8dd634c4d972cec74157e6bf816bc15",
+    "pdf_page_count": 109
+  },
+  "policy": {
+    "retrieval_profile": "retrieval_v1_stage8_2_top5",
+    "retrieval_v1_frozen": true,
+    "stage4_frozen": true,
+    "stage5_frozen": true,
+    "stage10_frozen": true,
+    "citation_version": "deterministic_citations_v1_2",
+    "heldout_tuning_forbidden": true
+  },
+  "counts": {
+    "questions": 18,
+    "dev": 0,
+    "heldout": 18,
+    "answered": 15,
+    "insufficient_evidence": 3
+  },
+  "questions": [
+    {
+      "question_id": "ACIT-101",
+      "split": "heldout",
+      "category": "definition",
+      "difficulty": "medium",
+      "question": "Under the Guidelines, who can qualify as a 'related party' of a designated person?",
+      "expected_status": "answered",
+      "gold": {
+        "required_claims": [
+          {
+            "claim_id": "GC1",
+            "requirement": "State that a related party includes a person acting on behalf of, at the direction of, or under the control of a designated person."
+          },
+          {
+            "claim_id": "GC2",
+            "requirement": "State that it includes a person engaged in or supporting proliferation-sensitive activities and programmes, including through illicit means."
+          },
+          {
+            "claim_id": "GC3",
+            "requirement": "State that it includes a person assisting a designated person to evade sanctions or violate resolution provisions."
+          },
+          {
+            "claim_id": "GC4",
+            "requirement": "State that it includes a person with joint ownership of, or who is a beneficiary of, assets or property of a designated person."
+          }
+        ],
+        "required_source_groups": [
+          {
+            "group_id": "G1",
+            "description": "Use the cross-page definition of related party.",
+            "any_of": [
+              {
+                "kind": "definition",
+                "label": "Definition “related party”",
+                "pages": [
+                  13,
+                  14
+                ]
+              }
+            ]
+          }
+        ],
+        "answer_notes": "Fresh held-out definition targeting a source not used as a definition question in DEV or retrieval evaluation."
+      },
+      "notes": "Fresh held-out definition targeting a source not used as a definition question in DEV or retrieval evaluation."
+    },
+    {
+      "question_id": "ACIT-102",
+      "split": "heldout",
+      "category": "direct_requirement",
+      "difficulty": "easy",
+      "question": "If a reporting institution is jointly regulated by BNM and the SC, which AML/CFT/CPF guidelines must it follow when the requirements differ?",
+      "expected_status": "answered",
+      "gold": {
+        "required_claims": [
+          {
+            "claim_id": "GC1",
+            "requirement": "State that a jointly regulated reporting institution must comply with both the SC Guidelines and BNM AML/CFT and TFS for FIs requirements."
+          },
+          {
+            "claim_id": "GC2",
+            "requirement": "State that where the requirements differ, the more stringent requirements apply."
+          }
+        ],
+        "required_source_groups": [
+          {
+            "group_id": "G1",
+            "description": "Joint-regulator rule and conflict standard.",
+            "any_of": [
+              {
+                "kind": "clause",
+                "label": "Clause 1.6",
+                "pages": [
+                  7
+                ]
+              }
+            ]
+          }
+        ],
+        "answer_notes": "Fresh held-out governance/applicability question."
+      },
+      "notes": "Fresh held-out governance/applicability question."
+    },
+    {
+      "question_id": "ACIT-103",
+      "split": "heldout",
+      "category": "direct_requirement",
+      "difficulty": "medium",
+      "question": "What consequences can follow from non-compliance with these Guidelines, and which people within a reporting institution may face enforcement action?",
+      "expected_status": "answered",
+      "gold": {
+        "required_claims": [
+          {
+            "claim_id": "GC1",
+            "requirement": "State that non-compliance may result in action under the AMLA, CMSA, or other relevant legal provisions to which the Guidelines are subject."
+          },
+          {
+            "claim_id": "GC2",
+            "requirement": "State that enforcement action can extend beyond the reporting institution to its directors, officers, representatives and employees."
+          }
+        ],
+        "required_source_groups": [
+          {
+            "group_id": "G1",
+            "description": "Non-compliance and enforcement scope.",
+            "any_of": [
+              {
+                "kind": "clause",
+                "label": "Clause 1.7",
+                "pages": [
+                  7
+                ]
+              }
+            ]
+          }
+        ],
+        "answer_notes": "Fresh held-out direct-requirement question."
+      },
+      "notes": "Fresh held-out direct-requirement question."
+    },
+    {
+      "question_id": "ACIT-104",
+      "split": "heldout",
+      "category": "cross_page",
+      "difficulty": "hard",
+      "question": "What five general principles must a reporting institution ensure when combating ML/TF/PF under paragraph 6.2?",
+      "expected_status": "answered",
+      "gold": {
+        "required_claims": [
+          {
+            "claim_id": "GC1",
+            "requirement": "Cover compliance with laws and high ethical standards, including not providing service where there is good reason to suppose transactions are associated with ML/TF/PF."
+          },
+          {
+            "claim_id": "GC2",
+            "requirement": "Cover full cooperation with relevant law-enforcement agencies, including timely disclosure to FIED and relevant agencies."
+          },
+          {
+            "claim_id": "GC3",
+            "requirement": "Cover internal AML/CFT/CPF policies and procedures plus ongoing training for the board, senior management and employees."
+          },
+          {
+            "claim_id": "GC4",
+            "requirement": "Cover a risk-based approach whose policies and procedures are commensurate with the nature, scale and complexity of activities."
+          },
+          {
+            "claim_id": "GC5",
+            "requirement": "Cover effective CDD procedures to identify customers and obtain satisfactory evidence to verify identity."
+          }
+        ],
+        "required_source_groups": [
+          {
+            "group_id": "G1",
+            "description": "Paragraph 6.2 and its first four principles.",
+            "any_of": [
+              {
+                "kind": "clause",
+                "label": "Clause 6.2",
+                "pages": [
+                  19
+                ]
+              }
+            ]
+          },
+          {
+            "group_id": "G2",
+            "description": "CDD principle continuing on the next page.",
+            "any_of": [
+              {
+                "kind": "subclause",
+                "label": "Clause 6.2(e)",
+                "pages": [
+                  20
+                ]
+              }
+            ]
+          }
+        ],
+        "answer_notes": "Cross-page held-out synthesis across paragraph 6.2(a)-(e)."
+      },
+      "notes": "Cross-page held-out synthesis across paragraph 6.2(a)-(e)."
+    },
+    {
+      "question_id": "ACIT-105",
+      "split": "heldout",
+      "category": "multi_clause",
+      "difficulty": "hard",
+      "question": "For a customer that is a trust or another legal arrangement, whose identity must be considered for beneficial ownership, and what status must trustees or equivalent persons disclose when establishing the relationship?",
+      "expected_status": "answered",
+      "gold": {
+        "required_claims": [
+          {
+            "claim_id": "GC1",
+            "requirement": "For a trust, identify and take reasonable measures to verify the settlor, trustee or protector, beneficiary or class of beneficiaries and objects of a power, plus any other natural person exercising ultimate effective control, including through a chain of control or ownership."
+          },
+          {
+            "claim_id": "GC2",
+            "requirement": "For other legal arrangements, identify persons in equivalent or similar positions to those relevant for a trust."
+          },
+          {
+            "claim_id": "GC3",
+            "requirement": "State that trustees or persons holding equivalent positions must disclose their status or function in the legal arrangement when establishing business relations."
+          }
+        ],
+        "required_source_groups": [
+          {
+            "group_id": "G1",
+            "description": "Beneficial-owner identification for legal arrangements.",
+            "any_of": [
+              {
+                "kind": "clause",
+                "label": "Clause 8.1.16",
+                "pages": [
+                  35
+                ]
+              }
+            ]
+          },
+          {
+            "group_id": "G2",
+            "description": "Trustee/equivalent status disclosure.",
+            "any_of": [
+              {
+                "kind": "clause",
+                "label": "Clause 8.1.17",
+                "pages": [
+                  35
+                ]
+              }
+            ]
+          }
+        ],
+        "answer_notes": "Held-out legal-arrangement CDD synthesis distinct from the retrieval legal-person questions."
+      },
+      "notes": "Held-out legal-arrangement CDD synthesis distinct from the retrieval legal-person questions."
+    },
+    {
+      "question_id": "ACIT-106",
+      "split": "heldout",
+      "category": "multi_clause",
+      "difficulty": "medium",
+      "question": "What record-retention, availability and traceability obligations apply to originator and beneficiary information for digital-asset wire transfers?",
+      "expected_status": "answered",
+      "gold": {
+        "required_claims": [
+          {
+            "claim_id": "GC1",
+            "requirement": "State that all originator and beneficiary information collected under Part IIIA must be obtained, held and maintained in accordance with Part IV record-keeping requirements."
+          },
+          {
+            "claim_id": "GC2",
+            "requirement": "State that the information must be made available to regulators or relevant authorities when necessary."
+          },
+          {
+            "claim_id": "GC3",
+            "requirement": "State that adequate policies and procedures and the ability to trace all wire transfers must be in place."
+          }
+        ],
+        "required_source_groups": [
+          {
+            "group_id": "G1",
+            "description": "Wire-transfer information retention and availability.",
+            "any_of": [
+              {
+                "kind": "clause",
+                "label": "Clause 9.1.4",
+                "pages": [
+                  48
+                ]
+              }
+            ]
+          },
+          {
+            "group_id": "G2",
+            "description": "Wire-transfer tracing capability.",
+            "any_of": [
+              {
+                "kind": "clause",
+                "label": "Clause 9.1.5",
+                "pages": [
+                  48
+                ]
+              }
+            ]
+          }
+        ],
+        "answer_notes": "Fresh held-out Part IIIA operational-control question."
+      },
+      "notes": "Fresh held-out Part IIIA operational-control question."
+    },
+    {
+      "question_id": "ACIT-107",
+      "split": "heldout",
+      "category": "multi_clause",
+      "difficulty": "hard",
+      "question": "What minimum information must be retained in the records for each transaction under paragraph 10.1?",
+      "expected_status": "answered",
+      "gold": {
+        "required_claims": [
+          {
+            "claim_id": "GC1",
+            "requirement": "Include documents for customer identification and verification."
+          },
+          {
+            "claim_id": "GC2",
+            "requirement": "Include identification of the beneficial owner or person on whose behalf the account is opened or transaction executed."
+          },
+          {
+            "claim_id": "GC3",
+            "requirement": "Include relevant account records relating to the transaction."
+          },
+          {
+            "claim_id": "GC4",
+            "requirement": "Include the type and details of the transaction."
+          },
+          {
+            "claim_id": "GC5",
+            "requirement": "Include the origin and destination of funds where applicable."
+          },
+          {
+            "claim_id": "GC6",
+            "requirement": "Include any other information the SC and BNM may specify in writing."
+          }
+        ],
+        "required_source_groups": [
+          {
+            "group_id": "G1",
+            "description": "Minimum transaction-record contents.",
+            "any_of": [
+              {
+                "kind": "clause",
+                "label": "Clause 10.1",
+                "pages": [
+                  53
+                ]
+              }
+            ]
+          }
+        ],
+        "answer_notes": "Held-out record-content question, distinct from the retrieval retention-period question."
+      },
+      "notes": "Held-out record-content question, distinct from the retrieval retention-period question."
+    },
+    {
+      "question_id": "ACIT-108",
+      "split": "heldout",
+      "category": "multi_clause",
+      "difficulty": "hard",
+      "question": "If a reporting institution decides there are no reasonable grounds to lodge an STR, what must it document, and what should it do if a new suspicion later arises?",
+      "expected_status": "answered",
+      "gold": {
+        "required_claims": [
+          {
+            "claim_id": "GC1",
+            "requirement": "State that the grounds for the decision not to lodge an STR must be established."
+          },
+          {
+            "claim_id": "GC2",
+            "requirement": "State that the compliance officer must ensure the decision and all supporting documentary evidence are recorded and maintained."
+          },
+          {
+            "claim_id": "GC3",
+            "requirement": "State that a previous STR does not prevent a fresh STR from being lodged when a new suspicion arises."
+          }
+        ],
+        "required_source_groups": [
+          {
+            "group_id": "G1",
+            "description": "Decision and evidence when no STR is lodged.",
+            "any_of": [
+              {
+                "kind": "clause",
+                "label": "Clause 11.7",
+                "pages": [
+                  56
+                ]
+              }
+            ]
+          },
+          {
+            "group_id": "G2",
+            "description": "Fresh STR when a new suspicion arises.",
+            "any_of": [
+              {
+                "kind": "clause",
+                "label": "Clause 11.10",
+                "pages": [
+                  56
+                ]
+              }
+            ]
+          }
+        ],
+        "answer_notes": "Held-out suspicious-transaction decision lifecycle question."
+      },
+      "notes": "Held-out suspicious-transaction decision lifecycle question."
+    },
+    {
+      "question_id": "ACIT-109",
+      "split": "heldout",
+      "category": "exception_condition",
+      "difficulty": "medium",
+      "question": "What may a reporting institution do when it suspects ML/TF/PF and reasonably believes that carrying out CDD would tip off the customer?",
+      "expected_status": "answered",
+      "gold": {
+        "required_claims": [
+          {
+            "claim_id": "GC1",
+            "requirement": "State that the reporting institution is permitted not to pursue the CDD process in this situation."
+          },
+          {
+            "claim_id": "GC2",
+            "requirement": "State that it is required to lodge an STR."
+          }
+        ],
+        "required_source_groups": [
+          {
+            "group_id": "G1",
+            "description": "CDD tip-off exception and STR requirement.",
+            "any_of": [
+              {
+                "kind": "clause",
+                "label": "Clause 11.12",
+                "pages": [
+                  56
+                ]
+              }
+            ]
+          }
+        ],
+        "answer_notes": "Held-out exception-condition question on the CDD/tipping-off rule."
+      },
+      "notes": "Held-out exception-condition question on the CDD/tipping-off rule."
+    },
+    {
+      "question_id": "ACIT-110",
+      "split": "heldout",
+      "category": "multi_clause",
+      "difficulty": "hard",
+      "question": "What safeguards in paragraphs 11.13 to 11.16 support the compliance officer’s independence and central role in suspicious-transaction reporting?",
+      "expected_status": "answered",
+      "gold": {
+        "required_claims": [
+          {
+            "claim_id": "GC1",
+            "requirement": "State that the compliance officer must maintain a complete file of internal suspicious-transaction reports and STRs lodged with FIED together with supporting documentary evidence."
+          },
+          {
+            "claim_id": "GC2",
+            "requirement": "State that the board must ensure the compliance officer has the necessary authority, resources and support to act independently and effectively."
+          },
+          {
+            "claim_id": "GC3",
+            "requirement": "State that the compliance officer has sole discretion and independence to report suspicious transactions."
+          },
+          {
+            "claim_id": "GC4",
+            "requirement": "State that the compliance officer must act as the organisation’s central reference point for AML/CFT/CPF matters."
+          }
+        ],
+        "required_source_groups": [
+          {
+            "group_id": "G1",
+            "description": "Complete suspicious-transaction files.",
+            "any_of": [
+              {
+                "kind": "clause",
+                "label": "Clause 11.13",
+                "pages": [
+                  56
+                ]
+              }
+            ]
+          },
+          {
+            "group_id": "G2",
+            "description": "Board support for compliance-officer independence.",
+            "any_of": [
+              {
+                "kind": "clause",
+                "label": "Clause 11.14",
+                "pages": [
+                  56
+                ]
+              }
+            ]
+          },
+          {
+            "group_id": "G3",
+            "description": "Sole discretion and independence.",
+            "any_of": [
+              {
+                "kind": "clause",
+                "label": "Clause 11.15",
+                "pages": [
+                  56
+                ]
+              }
+            ]
+          },
+          {
+            "group_id": "G4",
+            "description": "Central reference-point role.",
+            "any_of": [
+              {
+                "kind": "clause",
+                "label": "Clause 11.16",
+                "pages": [
+                  56
+                ]
+              }
+            ]
+          }
+        ],
+        "answer_notes": "Held-out multi-clause compliance-officer synthesis."
+      },
+      "notes": "Held-out multi-clause compliance-officer synthesis."
+    },
+    {
+      "question_id": "ACIT-111",
+      "split": "heldout",
+      "category": "appendix",
+      "difficulty": "medium",
+      "question": "Under Appendix B, how should a reporting institution treat family members or close associates of a PEP who no longer holds a prominent public function, and which factors may indicate continuing high risk?",
+      "expected_status": "answered",
+      "gold": {
+        "required_claims": [
+          {
+            "claim_id": "GC1",
+            "requirement": "State that an appropriate risk assessment should be applied to family members or close associates of a PEP who no longer holds a prominent public function."
+          },
+          {
+            "claim_id": "GC2",
+            "requirement": "Include the level of informal influence the former PEP could still exercise."
+          },
+          {
+            "claim_id": "GC3",
+            "requirement": "Include whether the former PEP’s previous and current functions remain linked because the person continues to deal with the same substantive matters."
+          }
+        ],
+        "required_source_groups": [
+          {
+            "group_id": "G1",
+            "description": "Risk assessment for family/close associates of a former PEP.",
+            "any_of": [
+              {
+                "kind": "clause",
+                "label": "Clause 1.15",
+                "pages": [
+                  84
+                ]
+              }
+            ]
+          },
+          {
+            "group_id": "G2",
+            "description": "Factors indicating continuing high risk.",
+            "any_of": [
+              {
+                "kind": "clause",
+                "label": "Clause 1.16",
+                "pages": [
+                  84
+                ]
+              }
+            ]
+          }
+        ],
+        "answer_notes": "Fresh held-out Appendix B question distinct from family-member identification/source questions."
+      },
+      "notes": "Fresh held-out Appendix B question distinct from family-member identification/source questions."
+    },
+    {
+      "question_id": "ACIT-112",
+      "split": "heldout",
+      "category": "appendix",
+      "difficulty": "hard",
+      "question": "According to Appendix E, how do the three cascading steps identify the beneficial owner of a legal person, and when should the next step be used?",
+      "expected_status": "answered",
+      "gold": {
+        "required_claims": [
+          {
+            "claim_id": "GC1",
+            "requirement": "State that the steps are cascading: a subsequent step applies only when no natural person is identified under the preceding step."
+          },
+          {
+            "claim_id": "GC2",
+            "requirement": "Step 1 identifies natural persons with ultimate controlling ownership interest."
+          },
+          {
+            "claim_id": "GC3",
+            "requirement": "Step 2 identifies a natural person exercising control through other means when Step 1 does not identify the beneficial owner or ownership control is absent/doubtful."
+          },
+          {
+            "claim_id": "GC4",
+            "requirement": "Step 3 identifies the relevant natural person holding a senior-management position when the earlier steps identify no natural person."
+          }
+        ],
+        "required_source_groups": [
+          {
+            "group_id": "G1",
+            "description": "Cascading-step rule.",
+            "any_of": [
+              {
+                "kind": "clause",
+                "label": "Clause 1.7",
+                "pages": [
+                  93
+                ]
+              }
+            ]
+          },
+          {
+            "group_id": "G2",
+            "description": "Step 1.",
+            "any_of": [
+              {
+                "kind": "clause",
+                "label": "Clause 1.8",
+                "pages": [
+                  94
+                ]
+              }
+            ]
+          },
+          {
+            "group_id": "G3",
+            "description": "Step 2.",
+            "any_of": [
+              {
+                "kind": "clause",
+                "label": "Clause 1.9",
+                "pages": [
+                  94
+                ]
+              }
+            ]
+          },
+          {
+            "group_id": "G4",
+            "description": "Step 3.",
+            "any_of": [
+              {
+                "kind": "clause",
+                "label": "Clause 1.10",
+                "pages": [
+                  95
+                ]
+              }
+            ]
+          }
+        ],
+        "answer_notes": "Held-out Appendix E cross-page synthesis across the three beneficial-owner steps."
+      },
+      "notes": "Held-out Appendix E cross-page synthesis across the three beneficial-owner steps."
+    },
+    {
+      "question_id": "ACIT-113",
+      "split": "heldout",
+      "category": "appendix",
+      "difficulty": "hard",
+      "question": "In Appendix E Step 2, what are examples of control over a legal person through means other than ownership?",
+      "expected_status": "answered",
+      "gold": {
+        "required_claims": [
+          {
+            "claim_id": "GC1",
+            "requirement": "Explain that effective control can exist without ownership where a natural person has power and authority to take actions and make decisions affecting the entity."
+          },
+          {
+            "claim_id": "GC2",
+            "requirement": "Include dominant influence to appoint or remove directors or senior management."
+          },
+          {
+            "claim_id": "GC3",
+            "requirement": "Include power of attorney over the entity."
+          },
+          {
+            "claim_id": "GC4",
+            "requirement": "Include convertible stocks or rights over outstanding debts, participation in financing, or control through trusts, agreements, arrangements, policies, practices, close family relationships or certain payment defaults as examples of other means of control."
+          }
+        ],
+        "required_source_groups": [
+          {
+            "group_id": "G1",
+            "description": "Appendix E Step 2 control through other means.",
+            "any_of": [
+              {
+                "kind": "clause",
+                "label": "Clause 1.9",
+                "pages": [
+                  94
+                ]
+              }
+            ]
+          }
+        ],
+        "answer_notes": "Fresh held-out Appendix E detail question."
+      },
+      "notes": "Fresh held-out Appendix E detail question."
+    },
+    {
+      "question_id": "ACIT-114",
+      "split": "heldout",
+      "category": "appendix",
+      "difficulty": "hard",
+      "question": "What counter-proliferation-financing measures does Appendix G say Regulation 3 requires for designated countries and persons?",
+      "expected_status": "answered",
+      "gold": {
+        "required_claims": [
+          {
+            "claim_id": "GC1",
+            "requirement": "Include freezing funds and other financial assets or economic resources of designated countries or persons located in Malaysia."
+          },
+          {
+            "claim_id": "GC2",
+            "requirement": "Include prohibiting investment in Malaysia by designated countries or persons involving restricted activities."
+          },
+          {
+            "claim_id": "GC3",
+            "requirement": "Include preventing specified financial services or transfers where there are reasonable grounds to believe they could contribute to a restricted activity in a designated country."
+          },
+          {
+            "claim_id": "GC4",
+            "requirement": "Include prohibiting other activities required by relevant UNSC decisions."
+          }
+        ],
+        "required_source_groups": [
+          {
+            "group_id": "G1",
+            "description": "Regulation 3 measures reproduced in Appendix G.",
+            "any_of": [
+              {
+                "kind": "appendix",
+                "label": "APPENDIX G",
+                "pages": [
+                  105
+                ]
+              }
+            ]
+          }
+        ],
+        "answer_notes": "Fresh held-out Appendix G synthesis."
+      },
+      "notes": "Fresh held-out Appendix G synthesis."
+    },
+    {
+      "question_id": "ACIT-115",
+      "split": "heldout",
+      "category": "appendix",
+      "difficulty": "hard",
+      "question": "According to Appendix H, how should a capital market intermediary keep UNSCR sanctions information current, and when does a UNSCR delisting take effect?",
+      "expected_status": "answered",
+      "gold": {
+        "required_claims": [
+          {
+            "claim_id": "GC1",
+            "requirement": "State that the UNSCR lists should be updated regularly without delay because the relevant Strategic Trade order automatically applies the updated UNSCR lists by reference to the UN website."
+          },
+          {
+            "claim_id": "GC2",
+            "requirement": "State that an intermediary may consider electronic subscription services to maintain updated UNSCRs."
+          },
+          {
+            "claim_id": "GC3",
+            "requirement": "State that delisting automatically takes effect when the designated country or person is removed by the relevant UNSC Sanctions Committee."
+          }
+        ],
+        "required_source_groups": [
+          {
+            "group_id": "G1",
+            "description": "Regular no-delay database updating.",
+            "any_of": [
+              {
+                "kind": "clause",
+                "label": "Clause 3",
+                "pages": [
+                  106
+                ]
+              }
+            ]
+          },
+          {
+            "group_id": "G2",
+            "description": "Electronic subscription option.",
+            "any_of": [
+              {
+                "kind": "clause",
+                "label": "Clause 4",
+                "pages": [
+                  106
+                ]
+              }
+            ]
+          },
+          {
+            "group_id": "G3",
+            "description": "Automatic delisting effect.",
+            "any_of": [
+              {
+                "kind": "clause",
+                "label": "Clause 5",
+                "pages": [
+                  106
+                ]
+              }
+            ]
+          }
+        ],
+        "answer_notes": "Held-out Appendix H content question; DEV only asked where Appendix H was located."
+      },
+      "notes": "Held-out Appendix H content question; DEV only asked where Appendix H was located."
+    },
+    {
+      "question_id": "ACIT-116",
+      "split": "heldout",
+      "category": "out_of_scope",
+      "difficulty": "easy",
+      "question": "What is the current Overnight Policy Rate set by Bank Negara Malaysia?",
+      "expected_status": "insufficient_evidence",
+      "gold": {
+        "required_claims": [],
+        "required_source_groups": [],
+        "answer_notes": "The document is an AML/CFT/CPF guideline and does not provide the current BNM Overnight Policy Rate.",
+        "forbidden_claims": [
+          "Do not answer from general knowledge, current web knowledge, or unrelated retrieved document content."
+        ]
+      },
+      "notes": "Fresh Stage 11 held-out abstention control; current external information is not contained in the frozen document."
+    },
+    {
+      "question_id": "ACIT-117",
+      "split": "heldout",
+      "category": "out_of_scope",
+      "difficulty": "easy",
+      "question": "What is the current retail price of one gram of 999 gold in Malaysia?",
+      "expected_status": "insufficient_evidence",
+      "gold": {
+        "required_claims": [],
+        "required_source_groups": [],
+        "answer_notes": "Current Malaysian retail gold prices are external market information and are not contained in the frozen guideline.",
+        "forbidden_claims": [
+          "Do not answer from general knowledge, current web knowledge, or unrelated retrieved document content."
+        ]
+      },
+      "notes": "Fresh Stage 11 held-out abstention control; current external information is not contained in the frozen document."
+    },
+    {
+      "question_id": "ACIT-118",
+      "split": "heldout",
+      "category": "out_of_scope",
+      "difficulty": "easy",
+      "question": "What is the air quality index in Kuala Lumpur right now?",
+      "expected_status": "insufficient_evidence",
+      "gold": {
+        "required_claims": [],
+        "required_source_groups": [],
+        "answer_notes": "Real-time Kuala Lumpur air-quality information is outside the frozen guideline.",
+        "forbidden_claims": [
+          "Do not answer from general knowledge, current web knowledge, or unrelated retrieved document content."
+        ]
+      },
+      "notes": "Fresh Stage 11 held-out abstention control; current external information is not contained in the frozen document."
+    }
+  ]
+}

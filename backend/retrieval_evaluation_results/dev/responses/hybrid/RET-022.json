@@ -1,0 +1,364 @@
+{
+  "document_id": "485c4989-c300-45c8-ac06-79a59492bb5c",
+  "query": "After a terrorism-financing sanctions name match is confirmed, what immediate actions are required, and what additional rules apply to attempted transactions and false-positive checks?",
+  "embedding_model": "BAAI/bge-m3",
+  "requested_device": "auto",
+  "resolved_device": "cuda",
+  "top_k": 10,
+  "candidate_k": 20,
+  "embedded_chunk_count": 284,
+  "total_chunk_count": 284,
+  "fusion_method": "reciprocal_rank_fusion",
+  "rrf_k": 60,
+  "dense_weight": 1.0,
+  "lexical_weight": 1.0,
+  "lexical_ranking_method": "postgresql_fts_term_coverage_then_ts_rank_cd",
+  "lexical_query_mode": "or_content_terms_v1",
+  "lexical_terms": [
+    "after",
+    "terrorism",
+    "financing",
+    "sanctions",
+    "name",
+    "match",
+    "confirmed",
+    "immediate",
+    "actions",
+    "required",
+    "additional",
+    "rules",
+    "apply",
+    "attempted",
+    "transactions",
+    "false",
+    "positive",
+    "checks"
+  ],
+  "lexical_tsquery": "after | terrorism | financing | sanctions | name | match | confirmed | immediate | actions | required | additional | rules | apply | attempted | transactions | false | positive | checks",
+  "hits": [
+    {
+      "rank": 1,
+      "chunk_id": "485c4989-c300-45c8-ac06-79a59492bb5c-c0160-41189942a4",
+      "chunk_index": 160,
+      "semantic_type": "clause",
+      "fusion_score": 0.03278688524590164,
+      "dense_rank": 1,
+      "dense_score": 0.6880730390548706,
+      "dense_distance": 0.3119269609451294,
+      "dense_rrf_score": 0.01639344262295082,
+      "lexical_rank": 1,
+      "lexical_score": 1.4,
+      "lexical_matched_term_count": 10,
+      "lexical_term_coverage": 0.5555555555555556,
+      "lexical_rrf_score": 0.01639344262295082,
+      "text": "Section: PART VII: COMBATING TERRORISM FINANCING > 14 IDENTIFICATION AND DESIGNATION\n\n14.5 A reporting institution is required to submit a STR when there is an attempted\ntransaction by any of the listed persons.\n\n14.6 A reporting institution must ascertain potential matches with the UN Consolidated List\nto confirm whether they are true matches to eliminate any “false positives”. The\nreporting institution must make further enquiries from the customer or counterparty\n(where relevant) to assist in determining whether it is a true match.\n\n14.8 Appendix D provides the detailed obligations of a reporting institution for the\nimplementation of the targeted financial sanctions in relation to terrorism financing.",
+      "content_text": "14.5 A reporting institution is required to submit a STR when there is an attempted\ntransaction by any of the listed persons.\n\n14.6 A reporting institution must ascertain potential matches with the UN Consolidated List\nto confirm whether they are true matches to eliminate any “false positives”. The\nreporting institution must make further enquiries from the customer or counterparty\n(where relevant) to assist in determining whether it is a true match.\n\n14.8 Appendix D provides the detailed obligations of a reporting institution for the\nimplementation of the targeted financial sanctions in relation to terrorism financing.",
+      "token_count": 122,
+      "pages": [
+        61
+      ],
+      "section_path": [
+        "PART VII: COMBATING TERRORISM FINANCING",
+        "14 IDENTIFICATION AND DESIGNATION"
+      ],
+      "source_element_ids": [
+        "p61-e4",
+        "p61-e5",
+        "p61-e9"
+      ]
+    },
+    {
+      "rank": 2,
+      "chunk_id": "485c4989-c300-45c8-ac06-79a59492bb5c-c0246-81b5268a66",
+      "chunk_index": 246,
+      "semantic_type": "clause",
+      "fusion_score": 0.031754032258064516,
+      "dense_rank": 2,
+      "dense_score": 0.6684613027022763,
+      "dense_distance": 0.3315386972977237,
+      "dense_rrf_score": 0.016129032258064516,
+      "lexical_rank": 4,
+      "lexical_score": 1.1,
+      "lexical_matched_term_count": 8,
+      "lexical_term_coverage": 0.4444444444444444,
+      "lexical_rrf_score": 0.015625,
+      "text": "Section: APPENDIX D > False positives\nGroup: Guidance on the Implementation of Targeted Financial Sanction in\nRelation to Terrorism Financing\n\n6.1 A reporting institution may forward queries to the Ministry of Home Affairs to ascertain\nwhether or not the customer is a listed individual or entity in cases of similar name\nmatch with any listed entities.\n\n6.2 A reporting institution should direct its customers to the Ministry of Home Affairs to\nverify the false positive match in the event their accounts have been mistakenly frozen\nor transactions have been mistakenly rejected or blocked.",
+      "content_text": "6.1 A reporting institution may forward queries to the Ministry of Home Affairs to ascertain\nwhether or not the customer is a listed individual or entity in cases of similar name\nmatch with any listed entities.\n\n6.2 A reporting institution should direct its customers to the Ministry of Home Affairs to\nverify the false positive match in the event their accounts have been mistakenly frozen\nor transactions have been mistakenly rejected or blocked.",
+      "token_count": 101,
+      "pages": [
+        90
+      ],
+      "section_path": [
+        "APPENDIX D",
+        "False positives"
+      ],
+      "source_element_ids": [
+        "p90-e8",
+        "p90-e9"
+      ]
+    },
+    {
+      "rank": 3,
+      "chunk_id": "485c4989-c300-45c8-ac06-79a59492bb5c-c0159-7448ed6ef9",
+      "chunk_index": 159,
+      "semantic_type": "clause",
+      "fusion_score": 0.0315136476426799,
+      "dense_rank": 5,
+      "dense_score": 0.6302537885535195,
+      "dense_distance": 0.36974621144648046,
+      "dense_rrf_score": 0.015384615384615385,
+      "lexical_rank": 2,
+      "lexical_score": 1.4,
+      "lexical_matched_term_count": 8,
+      "lexical_term_coverage": 0.4444444444444444,
+      "lexical_rrf_score": 0.016129032258064516,
+      "text": "Section: PART VII: COMBATING TERRORISM FINANCING > 14 IDENTIFICATION AND DESIGNATION\nClause: 14.4\n\n14.4 For the purpose of implementing the obligations under section 66B and section 66C\nof the AMLA, a reporting institution must conduct checks on the names of potential\nand new customers, as well as regular checks on the names of existing customers,\nagainst the names in the database. If there is any name match, the reporting\ninstitution must take reasonable and appropriate measures to verify and confirm the\nidentity of its customer. Upon such confirmation, the reporting institution must\nimmediately–\n\n(a)freeze without delay the customer’s fund or block the transaction, if it is an\nexisting customer;\n\n(b)reject the customer, if the transaction has not commenced;\n\n(c)lodge a STR with the FIED; and\n\n(d)notify the SC.",
+      "content_text": "14.4 For the purpose of implementing the obligations under section 66B and section 66C\nof the AMLA, a reporting institution must conduct checks on the names of potential\nand new customers, as well as regular checks on the names of existing customers,\nagainst the names in the database. If there is any name match, the reporting\ninstitution must take reasonable and appropriate measures to verify and confirm the\nidentity of its customer. Upon such confirmation, the reporting institution must\nimmediately–\n\n(a)freeze without delay the customer’s fund or block the transaction, if it is an\nexisting customer;\n\n(b)reject the customer, if the transaction has not commenced;\n\n(c)lodge a STR with the FIED; and\n\n(d)notify the SC.",
+      "token_count": 163,
+      "pages": [
+        60,
+        61
+      ],
+      "section_path": [
+        "PART VII: COMBATING TERRORISM FINANCING",
+        "14 IDENTIFICATION AND DESIGNATION"
+      ],
+      "source_element_ids": [
+        "p60-e10",
+        "p60-e11",
+        "p61-e1",
+        "p61-e2",
+        "p61-e3"
+      ]
+    },
+    {
+      "rank": 4,
+      "chunk_id": "485c4989-c300-45c8-ac06-79a59492bb5c-c0161-20f0fa1973",
+      "chunk_index": 161,
+      "semantic_type": "clause",
+      "fusion_score": 0.03057889822595705,
+      "dense_rank": 3,
+      "dense_score": 0.6613462365476046,
+      "dense_distance": 0.3386537634523954,
+      "dense_rrf_score": 0.015873015873015872,
+      "lexical_rank": 8,
+      "lexical_score": 1.3000001,
+      "lexical_matched_term_count": 7,
+      "lexical_term_coverage": 0.3888888888888889,
+      "lexical_rrf_score": 0.014705882352941176,
+      "text": "Section: PART VII: COMBATING TERRORISM FINANCING > 14 IDENTIFICATION AND DESIGNATION\nClause: 14.7\n\n14.7 In addition to relying on the consolidated list, a reporting institution is also required\nto closely monitor news or developments concerning terrorist activities or terrorism\nfinancing. Where names of individuals or entities involved in such terrorist activities\nor terrorism financing are identified, the reporting institution must check these names\nagainst its existing customer database. Where there is a name match, the reporting\ninstitution must–\n\n(a)lodge a STR with the FIED; and\n\n(b)notify the SC.",
+      "content_text": "14.7 In addition to relying on the consolidated list, a reporting institution is also required\nto closely monitor news or developments concerning terrorist activities or terrorism\nfinancing. Where names of individuals or entities involved in such terrorist activities\nor terrorism financing are identified, the reporting institution must check these names\nagainst its existing customer database. Where there is a name match, the reporting\ninstitution must–\n\n(a)lodge a STR with the FIED; and\n\n(b)notify the SC.",
+      "token_count": 109,
+      "pages": [
+        61
+      ],
+      "section_path": [
+        "PART VII: COMBATING TERRORISM FINANCING",
+        "14 IDENTIFICATION AND DESIGNATION"
+      ],
+      "source_element_ids": [
+        "p61-e6",
+        "p61-e7",
+        "p61-e8"
+      ]
+    },
+    {
+      "rank": 5,
+      "chunk_id": "485c4989-c300-45c8-ac06-79a59492bb5c-c0170-bca06805f2",
+      "chunk_index": 170,
+      "semantic_type": "list_item",
+      "fusion_score": 0.030309988518943745,
+      "dense_rank": 7,
+      "dense_score": 0.5987871885299683,
+      "dense_distance": 0.40121281147003174,
+      "dense_rrf_score": 0.014925373134328358,
+      "lexical_rank": 5,
+      "lexical_score": 1.0,
+      "lexical_matched_term_count": 8,
+      "lexical_term_coverage": 0.4444444444444444,
+      "lexical_rrf_score": 0.015384615384615385,
+      "text": "Section: PART VIII: COMBATING PROLIFERATION FINANCING > 18. REQUIREMENT TO FREEZE, BLOCK AND REJECT\nGroup: Guidance for False Positive under paragraph 18.2(b)\n\n(a)A reporting institution may forward queries to the SC to determine whether\nthe customer is a designated person in the case of similar or common names.\n\n(b)Any query submitted to the SC must include any additional information,\ncopies of identification documents and relevant analysis conducted by the\nreporting institution.\n\n(c)A reporting institution should advice any customers who complain about\ntheir accounts being inadvertently frozen or transactions being erroneously\nrejected or blocked to contact the Strategic Trade Controller under the STA\nto verify the false positive match.",
+      "content_text": "(a)A reporting institution may forward queries to the SC to determine whether\nthe customer is a designated person in the case of similar or common names.\n\n(b)Any query submitted to the SC must include any additional information,\ncopies of identification documents and relevant analysis conducted by the\nreporting institution.\n\n(c)A reporting institution should advice any customers who complain about\ntheir accounts being inadvertently frozen or transactions being erroneously\nrejected or blocked to contact the Strategic Trade Controller under the STA\nto verify the false positive match.",
+      "token_count": 131,
+      "pages": [
+        64
+      ],
+      "section_path": [
+        "PART VIII: COMBATING PROLIFERATION FINANCING",
+        "18. REQUIREMENT TO FREEZE, BLOCK AND REJECT"
+      ],
+      "source_element_ids": [
+        "p64-e7",
+        "p64-e8",
+        "p64-e9"
+      ]
+    },
+    {
+      "rank": 6,
+      "chunk_id": "485c4989-c300-45c8-ac06-79a59492bb5c-c0165-8354c916df",
+      "chunk_index": 165,
+      "semantic_type": "clause",
+      "fusion_score": 0.030117753623188408,
+      "dense_rank": 4,
+      "dense_score": 0.6353300213813782,
+      "dense_distance": 0.3646699786186218,
+      "dense_rrf_score": 0.015625,
+      "lexical_rank": 9,
+      "lexical_score": 1.2,
+      "lexical_matched_term_count": 7,
+      "lexical_term_coverage": 0.3888888888888889,
+      "lexical_rrf_score": 0.014492753623188406,
+      "text": "Section: PART VIII: COMBATING PROLIFERATION FINANCING > 17. CONDUCT SANCTIONS SCREENING ON CUSTOMERS\n\n17.1 A reporting institution must conduct sanctions screening on its existing, new and\npotential customers, to check for any positive name matched with any designated\nperson.\n\n17.2 A reporting institution must screen its entire customer database without delay when\nnew names are listed in the UNSCR.\n\n17.4 If there is a positive name match, a reporting institution must take reasonable and\nappropriate measures to verify and confirm the identity of its customer against the\ndesignated person.",
+      "content_text": "17.1 A reporting institution must conduct sanctions screening on its existing, new and\npotential customers, to check for any positive name matched with any designated\nperson.\n\n17.2 A reporting institution must screen its entire customer database without delay when\nnew names are listed in the UNSCR.\n\n17.4 If there is a positive name match, a reporting institution must take reasonable and\nappropriate measures to verify and confirm the identity of its customer against the\ndesignated person.",
+      "token_count": 104,
+      "pages": [
+        62,
+        63
+      ],
+      "section_path": [
+        "PART VIII: COMBATING PROLIFERATION FINANCING",
+        "17. CONDUCT SANCTIONS SCREENING ON CUSTOMERS"
+      ],
+      "source_element_ids": [
+        "p62-e10",
+        "p62-e11",
+        "p63-e3"
+      ]
+    },
+    {
+      "rank": 7,
+      "chunk_id": "485c4989-c300-45c8-ac06-79a59492bb5c-c0007-22ed76c058",
+      "chunk_index": 7,
+      "semantic_type": "clause",
+      "fusion_score": 0.03007688828584351,
+      "dense_rank": 6,
+      "dense_score": 0.5991148948669434,
+      "dense_distance": 0.40088510513305664,
+      "dense_rrf_score": 0.015151515151515152,
+      "lexical_rank": 7,
+      "lexical_score": 2.2,
+      "lexical_matched_term_count": 7,
+      "lexical_term_coverage": 0.3888888888888889,
+      "lexical_rrf_score": 0.014925373134328358,
+      "text": "Section: PART I: INTRODUCTION AND APPLICABILITY > 1.0 INTRODUCTION\n\n1.2 These Guidelines are drawn up in accordance with the AMLA and the Financial Action Task\nForce (FATF) 40 Recommendations.\n\n1Regulation 3 of Strategic Trade (United Nations Security Council Resolutions) Regulations 2010 (P.U. (A) 481/2010) is set out in\nAppendix G of these Guidelines.\n\n1.3 These Guidelines provide:\n\n(a)requirements and obligations imposed on reporting institutions in preventing and\ncombating money laundering, terrorism financing, proliferation financing and\ntargeted financial sanctions; and\n\n(b)guidance for reporting institutions to comply with the obligations imposed under the\nAMLA and TFS-PF.\n\n1.4 These Guidelines supersede and replace the Guidelines on Implementation of Targeted\nFinancial Sanctions Relating to Proliferation Financing for Capital Markets.\n\n1.5 These Guidelines are made in addition to and not in derogation of any other guidelines\nissued by the Securities Commission Malaysia (SC) or any requirements as provided under\nthe securities laws and the AMLA. Therefore, a reporting institution must comply with\nother relevant guidelines and requirements.\n\n1.6 A reporting institution that is jointly regulated by Bank Negara Malaysia (BNM) and the\nSC, is required to comply with these Guidelines and the Anti-Money Laundering,\nCountering Financing of Terrorism, Countering Proliferation Financing and Targeted\nFinancial Sanctions for Financial Institutions (AML/CFT and TFS for FIs) issued by BNM.\nWhere there are differing requirements between the said guidelines, the more stringent\nrequirements shall apply.\n\n1.7 Non-compliance with any of the provisions in these Guidelines will subject the reporting\ninstitution to actions under the AMLA, Capital Markets and Services Act 2007 (CMSA) or\nany other relevant provisions under the laws of which these Guidelines are subject to.\nEnforcement actions can be taken against the reporting institutions including its directors,\nofficers, representatives, employees for any non-compliance with any requirements in these\nGuidelines.",
+      "content_text": "1.2 These Guidelines are drawn up in accordance with the AMLA and the Financial Action Task\nForce (FATF) 40 Recommendations.\n\n1Regulation 3 of Strategic Trade (United Nations Security Council Resolutions) Regulations 2010 (P.U. (A) 481/2010) is set out in\nAppendix G of these Guidelines.\n\n1.3 These Guidelines provide:\n\n(a)requirements and obligations imposed on reporting institutions in preventing and\ncombating money laundering, terrorism financing, proliferation financing and\ntargeted financial sanctions; and\n\n(b)guidance for reporting institutions to comply with the obligations imposed under the\nAMLA and TFS-PF.\n\n1.4 These Guidelines supersede and replace the Guidelines on Implementation of Targeted\nFinancial Sanctions Relating to Proliferation Financing for Capital Markets.\n\n1.5 These Guidelines are made in addition to and not in derogation of any other guidelines\nissued by the Securities Commission Malaysia (SC) or any requirements as provided under\nthe securities laws and the AMLA. Therefore, a reporting institution must comply with\nother relevant guidelines and requirements.\n\n1.6 A reporting institution that is jointly regulated by Bank Negara Malaysia (BNM) and the\nSC, is required to comply with these Guidelines and the Anti-Money Laundering,\nCountering Financing of Terrorism, Countering Proliferation Financing and Targeted\nFinancial Sanctions for Financial Institutions (AML/CFT and TFS for FIs) issued by BNM.\nWhere there are differing requirements between the said guidelines, the more stringent\nrequirements shall apply.\n\n1.7 Non-compliance with any of the provisions in these Guidelines will subject the reporting\ninstitution to actions under the AMLA, Capital Markets and Services Act 2007 (CMSA) or\nany other relevant provisions under the laws of which these Guidelines are subject to.\nEnforcement actions can be taken against the reporting institutions including its directors,\nofficers, representatives, employees for any non-compliance with any requirements in these\nGuidelines.",
+      "token_count": 368,
+      "pages": [
+        6,
+        7
+      ],
+      "section_path": [
+        "PART I: INTRODUCTION AND APPLICABILITY",
+        "1.0 INTRODUCTION"
+      ],
+      "source_element_ids": [
+        "p6-e11",
+        "p6-e12",
+        "p7-e1",
+        "p7-e2",
+        "p7-e3",
+        "p7-e4",
+        "p7-e5",
+        "p7-e6",
+        "p7-e7"
+      ]
+    },
+    {
+      "rank": 8,
+      "chunk_id": "485c4989-c300-45c8-ac06-79a59492bb5c-c0247-4fb1eeef28",
+      "chunk_index": 247,
+      "semantic_type": "paragraph",
+      "fusion_score": 0.027692895339954164,
+      "dense_rank": 8,
+      "dense_score": 0.5987522841243585,
+      "dense_distance": 0.40124771587564145,
+      "dense_rrf_score": 0.014705882352941176,
+      "lexical_rank": 17,
+      "lexical_score": 0.8,
+      "lexical_matched_term_count": 5,
+      "lexical_term_coverage": 0.2777777777777778,
+      "lexical_rrf_score": 0.012987012987012988,
+      "text": "Section: APPENDIX D > False positives\nGroup: Guidance on the Implementation of Targeted Financial Sanction in\nRelation to Terrorism Financing\n\nThe contact point for the Ministry of Home Affairs in relation to targeted financial sanctions on\nterrorism financing is:",
+      "content_text": "The contact point for the Ministry of Home Affairs in relation to targeted financial sanctions on\nterrorism financing is:",
+      "token_count": 42,
+      "pages": [
+        91
+      ],
+      "section_path": [
+        "APPENDIX D",
+        "False positives"
+      ],
+      "source_element_ids": [
+        "p91-e1"
+      ]
+    },
+    {
+      "rank": 9,
+      "chunk_id": "485c4989-c300-45c8-ac06-79a59492bb5c-c0147-4ce9ccc098",
+      "chunk_index": 147,
+      "semantic_type": "clause",
+      "fusion_score": 0.027651515151515153,
+      "dense_rank": 20,
+      "dense_score": 0.5623950623038384,
+      "dense_distance": 0.4376049376961616,
+      "dense_rrf_score": 0.0125,
+      "lexical_rank": 6,
+      "lexical_score": 2.7,
+      "lexical_matched_term_count": 7,
+      "lexical_term_coverage": 0.3888888888888889,
+      "lexical_rrf_score": 0.015151515151515152,
+      "text": "Section: PART V: SUSPICIOUS TRANSACTIONS > 11 REPORTING OF SUSPICIOUS TRANSACTIONS\n\n11.1 A reporting institution must establish in place strong mechanisms for reporting\nsuspicious transactions, including having an appointed AML/CFT/CPF compliance\nofficer, and where appropriate, having a unit primarily responsible for complying with\nthe AML/CFT/CPF requirements on reporting of suspicious transactions.\n\n11.2 A reporting institution must also ensure that the suspicious transaction reporting\nmechanism is operated in a secured environment to maintain the confidentiality and\npreservation of secrecy.\n\n11.3 A reporting institution must clarify the economic background and purpose of any\ntransaction or business relationship if it appears unusual in relation to the reporting\ninstitution’s knowledge of the customer, or if the economic purpose or legality of the\ntransaction is not immediately clear. Special attention should also be paid to all\ncomplex and unusual patterns of transaction.\n\n11.4 A reporting institution must also consider whether the transactions involve a number\nof factors which when taken together may raise a suspicion that the transactions may\nbe connected with certain unlawful activities.\n\n11.6 If in bringing together all relevant factors, a reporting institution has reasonable\ngrounds to suspect that the transaction or the funds utilised involve proceeds of an\nunlawful activity or is related to terrorism financing and proliferation financing, such\ntransaction should be reported immediately to the FIED through lodgement of a STR.\n\n11.6A A reporting institution is required to have in place policies on the duration upon which\ninternal suspicious transaction reports must be reviewed by the reporting institution,\nincluding the circumstances when the timeframe can be exceeded, where necessary.\n\n11.7 Where the reporting institution decides that there are no reasonable grounds for\nsuspicion to warrant a lodgement of a STR, the reporting institution must establish the\ngrounds for such decision. In this regard, the compliance officer must ensure that the\nreporting institution’s decision together with all supporting documentary evidence is\nrecorded and maintained.\n\n11.8 A reporting institution is required to report all suspicious transactions, including\nattempted transactions, regardless of the amount of the transaction. A reporting\ninstitution should be aware that in some cases, suspicion may be formed after a\nconsiderable time from the date of the transaction, in view of subsequent additional\ninformation.\n\n11.9 STRs must be lodged to the FIED in accordance with the method as provided in\nAppendix C herein.",
+      "content_text": "11.1 A reporting institution must establish in place strong mechanisms for reporting\nsuspicious transactions, including having an appointed AML/CFT/CPF compliance\nofficer, and where appropriate, having a unit primarily responsible for complying with\nthe AML/CFT/CPF requirements on reporting of suspicious transactions.\n\n11.2 A reporting institution must also ensure that the suspicious transaction reporting\nmechanism is operated in a secured environment to maintain the confidentiality and\npreservation of secrecy.\n\n11.3 A reporting institution must clarify the economic background and purpose of any\ntransaction or business relationship if it appears unusual in relation to the reporting\ninstitution’s knowledge of the customer, or if the economic purpose or legality of the\ntransaction is not immediately clear. Special attention should also be paid to all\ncomplex and unusual patterns of transaction.\n\n11.4 A reporting institution must also consider whether the transactions involve a number\nof factors which when taken together may raise a suspicion that the transactions may\nbe connected with certain unlawful activities.\n\n11.6 If in bringing together all relevant factors, a reporting institution has reasonable\ngrounds to suspect that the transaction or the funds utilised involve proceeds of an\nunlawful activity or is related to terrorism financing and proliferation financing, such\ntransaction should be reported immediately to the FIED through lodgement of a STR.\n\n11.6A A reporting institution is required to have in place policies on the duration upon which\ninternal suspicious transaction reports must be reviewed by the reporting institution,\nincluding the circumstances when the timeframe can be exceeded, where necessary.\n\n11.7 Where the reporting institution decides that there are no reasonable grounds for\nsuspicion to warrant a lodgement of a STR, the reporting institution must establish the\ngrounds for such decision. In this regard, the compliance officer must ensure that the\nreporting institution’s decision together with all supporting documentary evidence is\nrecorded and maintained.\n\n11.8 A reporting institution is required to report all suspicious transactions, including\nattempted transactions, regardless of the amount of the transaction. A reporting\ninstitution should be aware that in some cases, suspicion may be formed after a\nconsiderable time from the date of the transaction, in view of subsequent additional\ninformation.\n\n11.9 STRs must be lodged to the FIED in accordance with the method as provided in\nAppendix C herein.",
+      "token_count": 442,
+      "pages": [
+        55,
+        56
+      ],
+      "section_path": [
+        "PART V: SUSPICIOUS TRANSACTIONS",
+        "11 REPORTING OF SUSPICIOUS TRANSACTIONS"
+      ],
+      "source_element_ids": [
+        "p55-e3",
+        "p55-e4",
+        "p55-e5",
+        "p55-e6",
+        "p55-e13",
+        "p56-e1",
+        "p56-e2",
+        "p56-e3",
+        "p56-e4"
+      ]
+    },
+    {
+      "rank": 10,
+      "chunk_id": "485c4989-c300-45c8-ac06-79a59492bb5c-c0242-6008df2d99",
+      "chunk_index": 242,
+      "semantic_type": "clause",
+      "fusion_score": 0.02684684684684685,
+      "dense_rank": 15,
+      "dense_score": 0.5757120504550914,
+      "dense_distance": 0.42428794954490856,
+      "dense_rrf_score": 0.013333333333333334,
+      "lexical_rank": 14,
+      "lexical_score": 0.7,
+      "lexical_matched_term_count": 6,
+      "lexical_term_coverage": 0.3333333333333333,
+      "lexical_rrf_score": 0.013513513513513514,
+      "text": "Section: APPENDIX D > Reporting requirements\nClause: 5.1\nGroup: Guidance on the Implementation of Targeted Financial Sanction in\nRelation to Terrorism Financing\n\n5.1 Once a reporting institution determines that it is in the possession of funds, properties\nor accounts that are owned or controlled by or on behalf of the listed entity, the\nreporting institution is required to report to the following authorities. This obligation\nalso extends to any attempted transactions undertaken by listed entities or related\nparties:\n\n2According to FATF, without delay is defined to be ideally within a matter of hours of designation by the United\nNations Security Council.",
+      "content_text": "5.1 Once a reporting institution determines that it is in the possession of funds, properties\nor accounts that are owned or controlled by or on behalf of the listed entity, the\nreporting institution is required to report to the following authorities. This obligation\nalso extends to any attempted transactions undertaken by listed entities or related\nparties:\n\n2According to FATF, without delay is defined to be ideally within a matter of hours of designation by the United\nNations Security Council.",
+      "token_count": 114,
+      "pages": [
+        89
+      ],
+      "section_path": [
+        "APPENDIX D",
+        "Reporting requirements"
+      ],
+      "source_element_ids": [
+        "p89-e10",
+        "p89-e11"
+      ]
+    }
+  ]
+}

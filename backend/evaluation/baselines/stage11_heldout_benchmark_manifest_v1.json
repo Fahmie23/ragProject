@@ -1,0 +1,12 @@
+{
+  "manifest_version": "1.0",
+  "baseline_id": "stage11_answer_citation_heldout_benchmark_v1",
+  "purpose": "Freeze the independent Stage 11.3 held-out answer/citation benchmark before the first live run. Any dataset change requires a new held-out benchmark version.",
+  "dataset_id": "answer_citation_eval_heldout_v1",
+  "benchmark_status": "frozen",
+  "question_count": 18,
+  "confirmation_token": "RUN_FROZEN_ANSWER_CITATION_HELDOUT_V1",
+  "files": {
+    "backend/evaluation/generation/answer_citation_eval_heldout_v1.json": "a0aaa705a53c8fba1ebad156cf6a6910cb04047ba5d896d897896f39efd4c881"
+  }
+}

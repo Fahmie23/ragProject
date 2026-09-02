@@ -1,0 +1,36 @@
+usage: run_retrieval_evaluation.py [-h] [--dataset DATASET] [--config CONFIG]
+                                   [--base-url BASE_URL]
+                                   [--split {dev,heldout}]
+                                   [--strategies STRATEGIES]
+                                   [--output-dir OUTPUT_DIR] [--resume]
+                                   [--overwrite]
+                                   [--confirm-heldout CONFIRM_HELDOUT]
+                                   [--timeout TIMEOUT]
+
+Run the formal SC AML/CFT retrieval benchmark against live FastAPI endpoints.
+Default behavior evaluates ONLY the 25-question development split. Held-out
+evaluation is deliberately protected and requires an explicit confirmation.
+Outputs (default development run): retrieval_evaluation_results/dev/
+run_manifest.json all_results.json per_question_results.csv
+aggregate_metrics.json comparison_report.txt
+all_retrieval_evaluation_results.txt responses/ dense/RET-001.json
+hybrid/RET-001.json hybrid_rerank/RET-001.json ... The raw response files make
+runs resumable and auditable. Use --resume after an interrupted run. Existing
+output is never silently overwritten.
+
+options:
+  -h, --help            show this help message and exit
+  --dataset DATASET
+  --config CONFIG
+  --base-url BASE_URL
+  --split {dev,heldout}
+  --strategies STRATEGIES
+                        Comma-separated: dense,hybrid,hybrid_rerank
+  --output-dir OUTPUT_DIR
+  --resume              Reuse saved successful raw responses and continue an
+                        interrupted run
+  --overwrite           Delete an existing output directory before starting
+  --confirm-heldout CONFIRM_HELDOUT
+                        Required for heldout: I_HAVE_FROZEN_RETRIEVAL
+  --timeout TIMEOUT     Per-request timeout in seconds; defaults to retrieval
+                        config

@@ -1,0 +1,84 @@
+Benchmark: sc-aml-cft-stage4-primary-v1 (1.4)
+Source match: yes
+Required: 159/235 (67.7%)
+Advisory: 6/6 (100.0%)
+
+Failed checks:
+- [required] toc-part-iiia-nav: type='section_header', expected 'unknown'; element must not create a SectionRecord
+- [required] toc-part-vi-nav: type='section_header', expected 'unknown'; element must not create a SectionRecord
+- [required] toc-part-viii-nav: type='section_header', expected 'unknown'; element must not create a SectionRecord
+- [required] page10-customer-footnote: type='paragraph', expected 'footnote'
+- [required] page24-compliance-item-e: expected 1 element match(es), found 0
+- [required] section-7-root: section_level=3, expected 2
+- [required] section-7-1: section_level=4, expected 3
+- [required] guidance-7-1: type='paragraph', expected 'group_header'
+- [required] pf-risk-item-a: type='list_item', expected 'subclause'
+- [required] page34-marker-ii-merged: expected 1 element match(es), found 0
+- [required] guidance-8-1-8-to-17: type='paragraph', expected 'group_header'
+- [required] non-face-subclause-d: type='list_item', expected 'subclause'
+- [required] non-face-subclause-e: type='list_item', expected 'subclause'
+- [required] note-risk-websites: type='section_header', expected 'group_header'; element must not create a SectionRecord
+- [required] section-8-4-pep: expected 1 element match(es), found 0
+- [required] section-9-1: section_level=5, expected 3
+- [required] section-9-2: section_level=5, expected 3
+- [required] guidance-point-1: type='clause', expected 'list_item'
+- [required] guidance-point-2: type='clause', expected 'list_item'
+- [required] section-9-3: section_level=5, expected 3
+- [required] page57-note: type='section_header', expected 'group_header'; element must not create a SectionRecord
+- [required] page60-note: type='section_header', expected 'group_header'; element must not create a SectionRecord
+- [required] guidance-17-item-a: type='subclause', expected 'list_item'
+- [required] guidance-false-positive-item-a: type='subclause', expected 'list_item'
+- [required] guidance-18-item-a: type='subclause', expected 'list_item'
+- [required] appendix-a1-2-6-item-b: expected 1 element match(es), found 0
+- [required] appendix-b-family-members: section_level=4, expected 2
+- [required] appendix-b-close-associates: section_level=5, expected 2
+- [required] appendix-b-cdd-measures: section_level=5, expected 2
+- [required] appendix-b-domestic-pep: section_level=4, expected 2
+- [required] appendix-b-source-info: section_level=5, expected 2
+- [required] appendix-b-extent: section_level=5, expected 2
+- [required] appendix-d-reporting-requirements: type='group_header', expected 'section_header'; expected a SectionRecord for this element; section_level expectation requires a SectionRecord
+- [required] appendix-d-false-positives: type='group_header', expected 'section_header'; expected a SectionRecord for this element; section_level expectation requires a SectionRecord
+- [required] appendix-d-contact-label: expected 1 element match(es), found 0
+- [required] page99-beneficial-owner-a-single: expected 0 element match(es), found 1
+- [required] appendix-f-phase-1: type='group_header', expected 'list_item'
+- [required] appendix-f-phase-1-i: type='subclause', expected 'list_item'
+- [required] appendix-f-phase-2-i: type='subclause', expected 'list_item'
+- [required] appendix-f-phase-2-ii: type='subclause', expected 'list_item'
+- [required] appendix-f-phase-3: type='group_header', expected 'list_item'
+- [required] appendix-f-phase-3-i: type='subclause', expected 'list_item'
+- [required] appendix-f-phase-3-ii: type='subclause', expected 'list_item'
+- [required] appendix-f-phase-3-iii: type='subclause', expected 'list_item'
+- [required] appendix-f-phase-3-iv: type='subclause', expected 'list_item'
+- [required] no-continue-7-1-4-to-guidance: relation continues present=True, expected present=False
+- [required] guidance-9-5-1-does-not-own-9-5-2: relation introduces present=True, expected present=False
+- [required] guidance-17-owns-a: relation introduces present=False, expected present=True
+- [required] guidance-false-positive-owns-a: relation introduces present=False, expected present=True
+- [required] guidance-18-owns-a: relation introduces present=False, expected present=True
+- [required] 18-4-does-not-parent-guidance-a: relation parent_of present=True, expected present=False
+- [required] no-continue-69-to-70: relation continues present=True, expected present=False
+- [required] no-continue-90-to-91: relation continues present=True, expected present=False
+- [required] appendix-f-1-2-introduces-phase2: relation introduces present=False, expected present=True
+- [required] appendix-f-phase1-introduces-i: relation introduces present=False, expected present=True
+- [required] appendix-f-phase2-introduces-i: relation introduces present=False, expected present=True
+- [required] appendix-f-phase2-introduces-ii: relation introduces present=False, expected present=True
+- [required] appendix-f-phase3-introduces-i: relation introduces present=False, expected present=True
+- [required] appendix-f-phase3-introduces-ii: relation introduces present=False, expected present=True
+- [required] appendix-f-phase3-introduces-iii: relation introduces present=False, expected present=True
+- [required] appendix-f-phase3-introduces-iv: relation introduces present=False, expected present=True
+- [required] h-7-3-under-7: section parent='sec-22', expected 'sec-23'
+- [required] h-7-4-under-7: section parent='sec-22', expected 'sec-23'
+- [required] h-7-5-under-7: section parent='sec-22', expected 'sec-23'
+- [required] h-pf-item-a-parent-7-3-3: child or parent anchor does not create a ClauseRecord
+- [required] h-8-4-1-in-8-4: element or section anchor did not resolve
+- [required] h-14-4-in-14: element section='sec-57', expected 'sec-56'
+- [required] h-a1-2-6-b-parent: child or parent anchor did not resolve
+- [required] h-app-b-close-under-root: section parent='sec-80', expected 'sec-79'
+- [required] h-app-b-cdd-under-root: section parent='sec-80', expected 'sec-79'
+- [required] h-app-b-source-under-root: section parent='sec-83', expected 'sec-79'
+- [required] h-app-b-extent-under-root: section parent='sec-83', expected 'sec-79'
+- [required] h-app-d-reporting-under-root: child or parent anchor does not create a SectionRecord
+- [required] h-app-d-false-under-root: child or parent anchor does not create a SectionRecord
+- [required] h-app-d-5-1-in-reporting: section anchor does not create a SectionRecord
+- [required] h-app-d-6-1-in-false: section anchor does not create a SectionRecord
+
+Open taxonomy questions: 3

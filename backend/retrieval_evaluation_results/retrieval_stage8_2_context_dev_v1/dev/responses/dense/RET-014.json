@@ -1,0 +1,288 @@
+{
+  "document_id": "485c4989-c300-45c8-ac06-79a59492bb5c",
+  "query": "What additional due-diligence measures are required when a customer is assessed as higher ML/TF/PF risk?",
+  "embedding_model": "BAAI/bge-m3",
+  "requested_device": "auto",
+  "resolved_device": "cuda",
+  "top_k": 10,
+  "embedded_chunk_count": 284,
+  "total_chunk_count": 284,
+  "hits": [
+    {
+      "rank": 1,
+      "chunk_id": "485c4989-c300-45c8-ac06-79a59492bb5c-c0111-026b10a78d",
+      "chunk_index": 111,
+      "semantic_type": "clause",
+      "score": 0.7810153495660229,
+      "distance": 0.21898465043397708,
+      "text": "Section: PART III: CUSTOMER DUE DILIGENCE > 8. CUSTOMER DUE DILIGENCE (CDD) > 8.3 Enhanced CDD measures\nClause: 8.3.1\n\n8.3.1 Where the ML/TF/PF risks are assessed as higher risk, a reporting institution must\nundertake enhanced CDD measures on the customer and, where applicable, the\nbeneficial owner. These measures must include:\n\n(a)Obtaining additional information for identification and verification on the\ncustomer and beneficial owner, particularly for non face-to-face transactions (e.g.\nvolume of assets and other information from public database);\n\n(b)Obtaining additional information on the intended level and nature of the\nbusiness relationship;\n\n(c)Enquiring on the source of wealth and source of funds;\n\n(d)Updating on a more regular basis, the identification data of the customer\nand the beneficial owner;\n\n(e)Obtaining approval from the senior management before establishing (or\ncontinuing for existing customer) such business relationship with the customer;\nand\n\n(f)Conducting enhanced ongoing monitoring on the business relationship.",
+      "content_text": "8.3.1 Where the ML/TF/PF risks are assessed as higher risk, a reporting institution must\nundertake enhanced CDD measures on the customer and, where applicable, the\nbeneficial owner. These measures must include:\n\n(a)Obtaining additional information for identification and verification on the\ncustomer and beneficial owner, particularly for non face-to-face transactions (e.g.\nvolume of assets and other information from public database);\n\n(b)Obtaining additional information on the intended level and nature of the\nbusiness relationship;\n\n(c)Enquiring on the source of wealth and source of funds;\n\n(d)Updating on a more regular basis, the identification data of the customer\nand the beneficial owner;\n\n(e)Obtaining approval from the senior management before establishing (or\ncontinuing for existing customer) such business relationship with the customer;\nand\n\n(f)Conducting enhanced ongoing monitoring on the business relationship.",
+      "token_count": 207,
+      "pages": [
+        41
+      ],
+      "section_path": [
+        "PART III: CUSTOMER DUE DILIGENCE",
+        "8. CUSTOMER DUE DILIGENCE (CDD)",
+        "8.3 Enhanced CDD measures"
+      ],
+      "source_element_ids": [
+        "p41-e7",
+        "p41-e8",
+        "p41-e9",
+        "p41-e10",
+        "p41-e11",
+        "p41-e12",
+        "p41-e13"
+      ]
+    },
+    {
+      "rank": 2,
+      "chunk_id": "485c4989-c300-45c8-ac06-79a59492bb5c-c0128-8984f4d356",
+      "chunk_index": 128,
+      "semantic_type": "clause",
+      "score": 0.7032200032675273,
+      "distance": 0.2967799967324727,
+      "text": "Section: PART III: CUSTOMER DUE DILIGENCE > 8. CUSTOMER DUE DILIGENCE (CDD) > 8.8 Ongoing Due Diligence\nClause: 8.8.6\nGroup: Monitoring of accounts\n\n8.8.6 While extra care should be exercised in such cases, the reporting institution\nmust weigh all the circumstances of the particular situation and assess whether\nthere is a higher than normal risk of ML/TF/PF and consider whether to refuse to\ndo any business with such customers.",
+      "content_text": "8.8.6 While extra care should be exercised in such cases, the reporting institution\nmust weigh all the circumstances of the particular situation and assess whether\nthere is a higher than normal risk of ML/TF/PF and consider whether to refuse to\ndo any business with such customers.",
+      "token_count": 92,
+      "pages": [
+        47
+      ],
+      "section_path": [
+        "PART III: CUSTOMER DUE DILIGENCE",
+        "8. CUSTOMER DUE DILIGENCE (CDD)",
+        "8.8 Ongoing Due Diligence"
+      ],
+      "source_element_ids": [
+        "p47-e1"
+      ]
+    },
+    {
+      "rank": 3,
+      "chunk_id": "485c4989-c300-45c8-ac06-79a59492bb5c-c0077-d9ccfb4d42",
+      "chunk_index": 77,
+      "semantic_type": "clause",
+      "score": 0.6779193666077415,
+      "distance": 0.32208063339225845,
+      "text": "Section: PART II: RISK-BASED APPROACH APPLICATION > 7. RISK-BASED APPROACH APPLICATION > 7.5 Risk profiling of customers\n\n7.5.1 A reporting institution must implement and maintain appropriate policies and procedures\nto conduct risk profiling of its customer.\n\n7.5.2 A reporting institution must conduct risk profiling on its customers during the\nestablishment of the business relationship and assign a ML/TF/PF risk rating that\ncommensurate with the customer’s risk profile.\n\n7.5.4 In assessing the level of risk of a customer from a particular country, a reporting\ninstitution shall assess the standards of prevention of ML/TF/PF in that country based on\nthe reporting institution’s knowledge, experience and other reliable sources of that\ncountry. The higher the risk, the greater the due diligence measures that should be\napplied when undertaking business with the customer from that country.\n\n7.5.5 After the initial acceptance of the customer, reporting institutions are required to regularly\nupdate the customer’s risk profile based on their level of ML/TF/PF risks.",
+      "content_text": "7.5.1 A reporting institution must implement and maintain appropriate policies and procedures\nto conduct risk profiling of its customer.\n\n7.5.2 A reporting institution must conduct risk profiling on its customers during the\nestablishment of the business relationship and assign a ML/TF/PF risk rating that\ncommensurate with the customer’s risk profile.\n\n7.5.4 In assessing the level of risk of a customer from a particular country, a reporting\ninstitution shall assess the standards of prevention of ML/TF/PF in that country based on\nthe reporting institution’s knowledge, experience and other reliable sources of that\ncountry. The higher the risk, the greater the due diligence measures that should be\napplied when undertaking business with the customer from that country.\n\n7.5.5 After the initial acceptance of the customer, reporting institutions are required to regularly\nupdate the customer’s risk profile based on their level of ML/TF/PF risks.",
+      "token_count": 210,
+      "pages": [
+        29
+      ],
+      "section_path": [
+        "PART II: RISK-BASED APPROACH APPLICATION",
+        "7. RISK-BASED APPROACH APPLICATION",
+        "7.5 Risk profiling of customers"
+      ],
+      "source_element_ids": [
+        "p29-e5",
+        "p29-e6",
+        "p29-e13",
+        "p29-e14"
+      ]
+    },
+    {
+      "rank": 4,
+      "chunk_id": "485c4989-c300-45c8-ac06-79a59492bb5c-c0116-b6adec1458",
+      "chunk_index": 116,
+      "semantic_type": "clause",
+      "score": 0.6752694040215725,
+      "distance": 0.32473059597842746,
+      "text": "Section: PART III: CUSTOMER DUE DILIGENCE > 8. CUSTOMER DUE DILIGENCE (CDD) > 8.5 Higher-Risk Countries\nClause: 8.5.3\n\n8.5.3 For business relationship and transaction with any person from countries identified\nby–\n\n(a)the FATF as issued under the “FATF Public Statement”- on jurisdictions with\nstrategic AML/CFT/CPF deficiencies that have not made sufficient progress in\naddressing the deficiencies or have not committed to an action plan developed\nwith the FATF to address the deficiencies; or\n\n(b)the Government of Malaysia as having strategic AML/CFT/CPF deficiencies and\nhave not made sufficient progress in addressing the deficiencies;\n\na reporting institution is required to assess the risk and where the risk is identified\nas higher risk, the reporting institution is required to conduct enhanced CDD as set\nout in paragraph 8.3 above.",
+      "content_text": "8.5.3 For business relationship and transaction with any person from countries identified\nby–\n\n(a)the FATF as issued under the “FATF Public Statement”- on jurisdictions with\nstrategic AML/CFT/CPF deficiencies that have not made sufficient progress in\naddressing the deficiencies or have not committed to an action plan developed\nwith the FATF to address the deficiencies; or\n\n(b)the Government of Malaysia as having strategic AML/CFT/CPF deficiencies and\nhave not made sufficient progress in addressing the deficiencies;\n\na reporting institution is required to assess the risk and where the risk is identified\nas higher risk, the reporting institution is required to conduct enhanced CDD as set\nout in paragraph 8.3 above.",
+      "token_count": 168,
+      "pages": [
+        43
+      ],
+      "section_path": [
+        "PART III: CUSTOMER DUE DILIGENCE",
+        "8. CUSTOMER DUE DILIGENCE (CDD)",
+        "8.5 Higher-Risk Countries"
+      ],
+      "source_element_ids": [
+        "p43-e9",
+        "p43-e10",
+        "p43-e11",
+        "p43-e12"
+      ]
+    },
+    {
+      "rank": 5,
+      "chunk_id": "485c4989-c300-45c8-ac06-79a59492bb5c-c0114-88e54fa045",
+      "chunk_index": 114,
+      "semantic_type": "clause",
+      "score": 0.6746942192680574,
+      "distance": 0.3253057807319426,
+      "text": "Section: PART III: CUSTOMER DUE DILIGENCE > 8. CUSTOMER DUE DILIGENCE (CDD) > 8.5 Higher-Risk Countries\nClause: 8.5.1\n\n8.5.1 A reporting institution is required to conduct enhanced CDD for any business\nrelationship and transaction with any person from countries identified by–\n\n(a)the FATF as issued under the “FATF Public Statement” – on jurisdictions\nsubject to a FATF call on its members and other jurisdictions to apply counter-\nmeasures to protect the international financial system from the ongoing and\nsubstantial ML/TF/PF risks emanating from such jurisdictions; or\n\n(b)the Government of Malaysia as having ongoing or substantial ML/TF/PF risks.",
+      "content_text": "8.5.1 A reporting institution is required to conduct enhanced CDD for any business\nrelationship and transaction with any person from countries identified by–\n\n(a)the FATF as issued under the “FATF Public Statement” – on jurisdictions\nsubject to a FATF call on its members and other jurisdictions to apply counter-\nmeasures to protect the international financial system from the ongoing and\nsubstantial ML/TF/PF risks emanating from such jurisdictions; or\n\n(b)the Government of Malaysia as having ongoing or substantial ML/TF/PF risks.",
+      "token_count": 135,
+      "pages": [
+        43
+      ],
+      "section_path": [
+        "PART III: CUSTOMER DUE DILIGENCE",
+        "8. CUSTOMER DUE DILIGENCE (CDD)",
+        "8.5 Higher-Risk Countries"
+      ],
+      "source_element_ids": [
+        "p43-e2",
+        "p43-e3",
+        "p43-e4"
+      ]
+    },
+    {
+      "rank": 6,
+      "chunk_id": "485c4989-c300-45c8-ac06-79a59492bb5c-c0125-e68fb9b60c",
+      "chunk_index": 125,
+      "semantic_type": "clause",
+      "score": 0.6729167298724228,
+      "distance": 0.3270832701275772,
+      "text": "Section: PART III: CUSTOMER DUE DILIGENCE > 8. CUSTOMER DUE DILIGENCE (CDD) > 8.8 Ongoing Due Diligence\n\n8.8.2 The frequency in implementing paragraph 8.8.1(a) under on-going due diligence or\nenhanced due diligence must commensurate with the level of ML/TF/PF risks posed\nby the customer based on the risk profiles and nature of transactions.\n\n8.8.3 When conducting enhanced due diligence, reporting institutions must, amongst\nothers, enhance the control measures, increase of the number of monitoring of the\nrelevant customers’ accounts, and timing of controls applied.",
+      "content_text": "8.8.2 The frequency in implementing paragraph 8.8.1(a) under on-going due diligence or\nenhanced due diligence must commensurate with the level of ML/TF/PF risks posed\nby the customer based on the risk profiles and nature of transactions.\n\n8.8.3 When conducting enhanced due diligence, reporting institutions must, amongst\nothers, enhance the control measures, increase of the number of monitoring of the\nrelevant customers’ accounts, and timing of controls applied.",
+      "token_count": 120,
+      "pages": [
+        46
+      ],
+      "section_path": [
+        "PART III: CUSTOMER DUE DILIGENCE",
+        "8. CUSTOMER DUE DILIGENCE (CDD)",
+        "8.8 Ongoing Due Diligence"
+      ],
+      "source_element_ids": [
+        "p46-e5",
+        "p46-e6"
+      ]
+    },
+    {
+      "rank": 7,
+      "chunk_id": "485c4989-c300-45c8-ac06-79a59492bb5c-c0112-8c652d9f62",
+      "chunk_index": 112,
+      "semantic_type": "clause",
+      "score": 0.6544573718956266,
+      "distance": 0.3455426281043734,
+      "text": "Section: PART III: CUSTOMER DUE DILIGENCE > 8. CUSTOMER DUE DILIGENCE (CDD) > 8.4 Politically exposed persons (PEPs)\n\n8.4.1 The requirements set out in paragraph 8.4 herein are also applicable to family\nmembers or close associates of PEPs. Appendix B of these Guidelines provides\nmeasures to be adopted by a reporting institution in dealing with the family members\nor close associates of PEPs.\n\n8.4.2 A reporting institution is required to have in place a risk management system to\ndetermine whether a customer or a beneficial owner is a foreign PEP.\n\n8.4.3 Upon determining that a customer or a beneficial owner is a foreign PEP, the\nrequirement to conduct enhanced CDD measures under paragraph 8.3 is applicable\nand the reporting institution is also required to conduct enhanced ongoing due\ndiligence.\n\n8.4.4 A reporting institution is required to have in place reasonable measures to determine\nwhether a customer or the beneficial owner is a domestic PEP or person entrusted\nwith a prominent function by an international organisation.\n\n8.4.5 The reporting institution is required to assess the level of ML/TF/PF risks posed by\nthe business relationship with the domestic PEP or person entrusted with a prominent\nfunction by an international organisation based on sufficient and appropriate\ninformation gathered through publicly available information or other reasonable\nmeans. The assessment of the ML/TF/PF risks also must take into account the profile\nof the customer under paragraph 7.5.3 of these Guidelines.\n\n8.4.6 For a higher-risk domestic PEP or higher-risk person entrusted with a prominent\nfunction by an international organisation, the requirements of enhanced CDD\nmeasures are as set out in paragraph 8.3.\n\n8.4.7 For a domestic PEP or person entrusted with a prominent function by an international\norganisation that is assessed as low risk, the reporting institution may apply the standard\nCDD measures.",
+      "content_text": "8.4.1 The requirements set out in paragraph 8.4 herein are also applicable to family\nmembers or close associates of PEPs. Appendix B of these Guidelines provides\nmeasures to be adopted by a reporting institution in dealing with the family members\nor close associates of PEPs.\n\n8.4.2 A reporting institution is required to have in place a risk management system to\ndetermine whether a customer or a beneficial owner is a foreign PEP.\n\n8.4.3 Upon determining that a customer or a beneficial owner is a foreign PEP, the\nrequirement to conduct enhanced CDD measures under paragraph 8.3 is applicable\nand the reporting institution is also required to conduct enhanced ongoing due\ndiligence.\n\n8.4.4 A reporting institution is required to have in place reasonable measures to determine\nwhether a customer or the beneficial owner is a domestic PEP or person entrusted\nwith a prominent function by an international organisation.\n\n8.4.5 The reporting institution is required to assess the level of ML/TF/PF risks posed by\nthe business relationship with the domestic PEP or person entrusted with a prominent\nfunction by an international organisation based on sufficient and appropriate\ninformation gathered through publicly available information or other reasonable\nmeans. The assessment of the ML/TF/PF risks also must take into account the profile\nof the customer under paragraph 7.5.3 of these Guidelines.\n\n8.4.6 For a higher-risk domestic PEP or higher-risk person entrusted with a prominent\nfunction by an international organisation, the requirements of enhanced CDD\nmeasures are as set out in paragraph 8.3.\n\n8.4.7 For a domestic PEP or person entrusted with a prominent function by an international\norganisation that is assessed as low risk, the reporting institution may apply the standard\nCDD measures.",
+      "token_count": 368,
+      "pages": [
+        42
+      ],
+      "section_path": [
+        "PART III: CUSTOMER DUE DILIGENCE",
+        "8. CUSTOMER DUE DILIGENCE (CDD)",
+        "8.4 Politically exposed persons (PEPs)"
+      ],
+      "source_element_ids": [
+        "p42-e1",
+        "p42-e2",
+        "p42-e3",
+        "p42-e4",
+        "p42-e5",
+        "p42-e6",
+        "p42-e7"
+      ]
+    },
+    {
+      "rank": 8,
+      "chunk_id": "485c4989-c300-45c8-ac06-79a59492bb5c-c0108-746e0d9d19",
+      "chunk_index": 108,
+      "semantic_type": "list_item",
+      "score": 0.6410074042973721,
+      "distance": 0.35899259570262787,
+      "text": "Section: PART III: CUSTOMER DUE DILIGENCE > 8. CUSTOMER DUE DILIGENCE (CDD) > 8.2 Conducting CDD\n\n(v)The ownership structure of a company appears unusual or excessively\ncomplex given the nature of the company’s business.\n\n(vi)High-net-worth individuals and entities.\n\n(vii)Persons from jurisdictions known for their high crime rates (e.g. drug\nproducing, trafficking, smuggling).\n\n(viii)Businesses/activities identified by the FATF as having higher risk for\nML/TF/PF.\n\n(ix)Domestic PEPs.\n\n(x)Persons entrusted with prominent public function by international\norganisations (PEPFIO).\n\n(xi)Legal arrangements that are complex.\n\n(xii)Any persons who match the ‘red flag’ criteria of the reporting institution.\n\n(b)Country or geographic risk factors:\n\n(i)Countries identified by credible sources, such as mutual evaluation or\npublished follow-up reports, as having inadequate AML/CFT/CPF systems.\n\n(ii)Countries subject to sanctions, embargos or similar measures issued by\ninternational organisations such as the United Nations.\n\n(iii)Countries with significant levels of corruption or other criminal activities.\n\n(iv)Countries or geographic areas identified as providing funding or support\nfor terrorist activities, or that have designated terrorist organisations\noperating within their country.\n\n(v)Countries identified by the FATF, other FATF-style regional bodies or other\ninternational bodies as having higher ML/TF/PF risk.\n\n(c)Transaction or distribution channel risk factors:\n\n(i)Anonymous transactions (which may include cash transactions).\n\n(ii)Non-face-to-face business relationships or transactions.\n\n(iii)Payment received from multiple persons and/or countries that do not fit\ninto the customer’s nature of business and risk profile.\n\n(iv)Payment received from unknown or unassociated third parties.",
+      "content_text": "(v)The ownership structure of a company appears unusual or excessively\ncomplex given the nature of the company’s business.\n\n(vi)High-net-worth individuals and entities.\n\n(vii)Persons from jurisdictions known for their high crime rates (e.g. drug\nproducing, trafficking, smuggling).\n\n(viii)Businesses/activities identified by the FATF as having higher risk for\nML/TF/PF.\n\n(ix)Domestic PEPs.\n\n(x)Persons entrusted with prominent public function by international\norganisations (PEPFIO).\n\n(xi)Legal arrangements that are complex.\n\n(xii)Any persons who match the ‘red flag’ criteria of the reporting institution.\n\n(b)Country or geographic risk factors:\n\n(i)Countries identified by credible sources, such as mutual evaluation or\npublished follow-up reports, as having inadequate AML/CFT/CPF systems.\n\n(ii)Countries subject to sanctions, embargos or similar measures issued by\ninternational organisations such as the United Nations.\n\n(iii)Countries with significant levels of corruption or other criminal activities.\n\n(iv)Countries or geographic areas identified as providing funding or support\nfor terrorist activities, or that have designated terrorist organisations\noperating within their country.\n\n(v)Countries identified by the FATF, other FATF-style regional bodies or other\ninternational bodies as having higher ML/TF/PF risk.\n\n(c)Transaction or distribution channel risk factors:\n\n(i)Anonymous transactions (which may include cash transactions).\n\n(ii)Non-face-to-face business relationships or transactions.\n\n(iii)Payment received from multiple persons and/or countries that do not fit\ninto the customer’s nature of business and risk profile.\n\n(iv)Payment received from unknown or unassociated third parties.",
+      "token_count": 364,
+      "pages": [
+        40,
+        41
+      ],
+      "section_path": [
+        "PART III: CUSTOMER DUE DILIGENCE",
+        "8. CUSTOMER DUE DILIGENCE (CDD)",
+        "8.2 Conducting CDD"
+      ],
+      "source_element_ids": [
+        "p40-e1",
+        "p40-e2",
+        "p40-e3",
+        "p40-e4",
+        "p40-e5",
+        "p40-e6",
+        "p40-e7",
+        "p40-e8",
+        "p40-e9",
+        "p40-e10",
+        "p40-e11",
+        "p40-e12",
+        "p40-e13",
+        "p40-e14",
+        "p40-e15",
+        "p40-e16",
+        "p40-e17",
+        "p41-e1",
+        "p41-e2"
+      ]
+    },
+    {
+      "rank": 9,
+      "chunk_id": "485c4989-c300-45c8-ac06-79a59492bb5c-c0207-2adb54d356",
+      "chunk_index": 207,
+      "semantic_type": "clause",
+      "score": 0.639589092755969,
+      "distance": 0.360410907244031,
+      "text": "Section: APPENDIX A1 > 1.0 General\n\n1.1 This Appendix sets out requirements on control measures to mitigate ML/TF/PF risk\nwhen a reporting institution accepts third-party deposits. For avoidance of doubt, third-\nparty deposits refer to monies deposited by a third-party into the customer’s account\nwith a reporting institution.\n\n1.2 A reporting institution which is unable to exercise adequate control measures to\nmitigate the inherent ML/TF/PF risk and other associated risks and meet the relevant\ncompliance requirements must not accept any third-party deposits.",
+      "content_text": "1.1 This Appendix sets out requirements on control measures to mitigate ML/TF/PF risk\nwhen a reporting institution accepts third-party deposits. For avoidance of doubt, third-\nparty deposits refer to monies deposited by a third-party into the customer’s account\nwith a reporting institution.\n\n1.2 A reporting institution which is unable to exercise adequate control measures to\nmitigate the inherent ML/TF/PF risk and other associated risks and meet the relevant\ncompliance requirements must not accept any third-party deposits.",
+      "token_count": 110,
+      "pages": [
+        79
+      ],
+      "section_path": [
+        "APPENDIX A1",
+        "1.0 General"
+      ],
+      "source_element_ids": [
+        "p79-e5",
+        "p79-e6"
+      ]
+    },
+    {
+      "rank": 10,
+      "chunk_id": "485c4989-c300-45c8-ac06-79a59492bb5c-c0187-222788f826",
+      "chunk_index": 187,
+      "semantic_type": "clause",
+      "score": 0.6378833867380996,
+      "distance": 0.36211661326190037,
+      "text": "Section: APPENDIX A > 3.0 A: Perform Risk Assessment\nClause: 3.4\nGroup: Business-based Risk Assessment (BbRA)\n\n3.4 To assist a reporting institution in assessing the extent of its ML/TF/PF risks, the\nreporting institution may consider the following examples under the risk factors\nmentioned below for guidance:\n\n(a)Customers – in conducting business transactions, the reporting institution is\nexposed to various types of customers that may pose ML/TF/PF risks. In\nanalysing its customers’ risk, a reporting institution may consider the non-\nexhaustive examples below:\n\n(b)Countries or geographic – a reporting institution should take into account factors\nincluding the location of the reporting institution’s branches and subsidiaries and\nwhether its holding company is located within a jurisdiction with full\nAML/CFT/CPF compliance as identified by a credible source. Further non-\nexhaustive examples are as below:\n\n•\nLocation of its branches and subsidiaries in tourist hotspots, crime hotspots,\ncountry’s border and entry-points; and\n\n•\nLocation of its branches and subsidiaries in high-risk jurisdictions e.g.\ncountries identified by FATF and the Government of Malaysia, countries\nsubjected to sanctions by UN, etc.\n\n(c)Transactions and distribution channels – a reporting institution has various\nmodes of transaction and distribution of its products and services. Some of the\nmodes of transaction and distribution channels may be more susceptible to\nML/TF/PF risks. In this regard, a reporting institution must consider the\nappropriate ML/TF/PF risks attributed to these modes including the following\nexamples:\n\n•\nMode of distribution primarily via agents;\n\n•\nOnline or technology based transaction;\n\n•\nNon face-to face business relationship; and\n\n•Cash-based transactions.\n\n(d)Products and services – given the variety of financial products in the market, a\nreporting institution must identify the appropriate level of ML/TF/PF risks\nattached to the types of products and services offered. Some of the non-\n\n(e)exhaustive examples that the reporting institution may take into account are as\nfollows:\n\n•\nNature of the products i.e. transferability/liquidity of the products;\n\n•\nLevel of complexity of the products and services;\n\n•\nBearer instruments; and\n\n•\nNew technologies.",
+      "content_text": "3.4 To assist a reporting institution in assessing the extent of its ML/TF/PF risks, the\nreporting institution may consider the following examples under the risk factors\nmentioned below for guidance:\n\n(a)Customers – in conducting business transactions, the reporting institution is\nexposed to various types of customers that may pose ML/TF/PF risks. In\nanalysing its customers’ risk, a reporting institution may consider the non-\nexhaustive examples below:\n\n(b)Countries or geographic – a reporting institution should take into account factors\nincluding the location of the reporting institution’s branches and subsidiaries and\nwhether its holding company is located within a jurisdiction with full\nAML/CFT/CPF compliance as identified by a credible source. Further non-\nexhaustive examples are as below:\n\n•\nLocation of its branches and subsidiaries in tourist hotspots, crime hotspots,\ncountry’s border and entry-points; and\n\n•\nLocation of its branches and subsidiaries in high-risk jurisdictions e.g.\ncountries identified by FATF and the Government of Malaysia, countries\nsubjected to sanctions by UN, etc.\n\n(c)Transactions and distribution channels – a reporting institution has various\nmodes of transaction and distribution of its products and services. Some of the\nmodes of transaction and distribution channels may be more susceptible to\nML/TF/PF risks. In this regard, a reporting institution must consider the\nappropriate ML/TF/PF risks attributed to these modes including the following\nexamples:\n\n•\nMode of distribution primarily via agents;\n\n•\nOnline or technology based transaction;\n\n•\nNon face-to face business relationship; and\n\n•Cash-based transactions.\n\n(d)Products and services – given the variety of financial products in the market, a\nreporting institution must identify the appropriate level of ML/TF/PF risks\nattached to the types of products and services offered. Some of the non-\n\n(e)exhaustive examples that the reporting institution may take into account are as\nfollows:\n\n•\nNature of the products i.e. transferability/liquidity of the products;\n\n•\nLevel of complexity of the products and services;\n\n•\nBearer instruments; and\n\n•\nNew technologies.",
+      "token_count": 436,
+      "pages": [
+        71,
+        72,
+        73
+      ],
+      "section_path": [
+        "APPENDIX A",
+        "3.0 A: Perform Risk Assessment"
+      ],
+      "source_element_ids": [
+        "p71-e13",
+        "p71-e14",
+        "p72-e10",
+        "p72-e11",
+        "p72-e12",
+        "p72-e13",
+        "p72-e14",
+        "p72-e15",
+        "p72-e16",
+        "p72-e17",
+        "p72-e18",
+        "p73-e1",
+        "p73-e2",
+        "p73-e3",
+        "p73-e4",
+        "p73-e5"
+      ]
+    }
+  ]
+}

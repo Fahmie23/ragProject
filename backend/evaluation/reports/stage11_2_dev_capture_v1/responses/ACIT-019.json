@@ -1,0 +1,187 @@
+{
+  "document_id": "485c4989-c300-45c8-ac06-79a59492bb5c",
+  "question": "What will the weather be in Kuala Lumpur tomorrow?",
+  "status": "insufficient_evidence",
+  "answer": "The retrieved evidence is insufficient to answer this question reliably.",
+  "cited_answer": "The retrieved evidence is insufficient to answer this question reliably.",
+  "claims": [],
+  "used_evidence_ids": [],
+  "missing_information": [
+    "weather forecast data for Kuala Lumpur for tomorrow"
+  ],
+  "evidence": [
+    {
+      "evidence_id": "E1",
+      "chunk_id": "485c4989-c300-45c8-ac06-79a59492bb5c-c0248-b0543a0c19",
+      "chunk_index": 248,
+      "semantic_type": "paragraph",
+      "source_rank": 1,
+      "ranked_seed_rank": 1,
+      "reasons": [
+        "ranked_seed"
+      ],
+      "pages": [
+        91
+      ],
+      "section_path": [
+        "APPENDIX D",
+        "False positives"
+      ],
+      "source_element_ids": [
+        "p91-e4"
+      ],
+      "content_text": "Level 10, Block D1, Complex D\n62546 Putrajaya\n(Attn.: Security and Public Order Division)\nTel: 03-8886 8000 ext. 8064, 8543, 8055, 3453\nFax: 03-8889 1763\nEmail: amlcft@moha.gov.my\nWebsite: Membanteras Pembiayaan Keganasan (moha.gov.my)"
+    },
+    {
+      "evidence_id": "E2",
+      "chunk_id": "485c4989-c300-45c8-ac06-79a59492bb5c-c0006-7370ea1972",
+      "chunk_index": 6,
+      "semantic_type": "clause",
+      "source_rank": 2,
+      "ranked_seed_rank": 2,
+      "reasons": [
+        "ranked_seed"
+      ],
+      "pages": [
+        6
+      ],
+      "section_path": [
+        "PART I: INTRODUCTION AND APPLICABILITY",
+        "1.0 INTRODUCTION"
+      ],
+      "source_element_ids": [
+        "p6-e3",
+        "p6-e4",
+        "p6-e5",
+        "p6-e6",
+        "p6-e7",
+        "p6-e8",
+        "p6-e9",
+        "p6-e10"
+      ],
+      "content_text": "1.1 The Guidelines on Prevention of Money Laundering, Countering Financing of Terrorism,\nCountering Proliferation Financing and Targeted Financial Sanctions for Reporting\nInstitutions in the Capital Market (Guidelines) are issued pursuant to the following:\n\n(a) in relation to anti-money laundering and countering financing of terrorism including\nTargeted Financial Sanctions relating to Terrorism Financing (TFS-TF), section\n158(1) and section 160A of the Securities Commission Malaysia Act 1993 (SCMA)\nread together with section 66B, section 66E and section 83 of the Anti-Money\nLaundering, Anti-Terrorism Financing and Proceeds of Unlawful Activities Act 2001\n(AMLA);\n\n(b) in relation to countering proliferation financing including Targeted Financial\nSanctions relating to Proliferation Financing (TFS-PF), section 158(1) and section\n160A of the SCMA read together with the following legislations (collectively referred\nto as “TFS-PF related legislations”) which provides the legal basis for domestic\nimplementation of TFS-PF in relation to United Nations Security Council Resolutions\n(UNSCR) imposed on the designated countries and persons:\n\n(i) Strategic Trade Act 2010 (Act 708) (STA);\n\n(ii) Strategic Trade (United Nations Security Council Resolutions)\nRegulations 2010 (P.U. (A) 481/2010) 1;\n\n(iii) Strategic Trade (Restricted End-Users and Prohibited End-Users) Order\n2010 (P.U. (A) 484/2010);\n\n(iv) Strategic Trade (Delisting of Prohibited End-Users) Regulations 2014\n(P.U. (A) 289/2014); and\n\n(v) Strategic Trade (Unfreezing of Property in relation to Prohibited End-\nUsers) Regulations 2014 (P.U. (A) 290/2014)."
+    },
+    {
+      "evidence_id": "E3",
+      "chunk_id": "485c4989-c300-45c8-ac06-79a59492bb5c-c0008-e6045d93c8",
+      "chunk_index": 8,
+      "semantic_type": "clause",
+      "source_rank": 3,
+      "ranked_seed_rank": 3,
+      "reasons": [
+        "ranked_seed"
+      ],
+      "pages": [
+        7,
+        8
+      ],
+      "section_path": [
+        "PART I: INTRODUCTION AND APPLICABILITY",
+        "2.  APPLICABILITY"
+      ],
+      "source_element_ids": [
+        "p7-e9",
+        "p7-e10",
+        "p8-e1",
+        "p8-e2",
+        "p8-e3",
+        "p8-e4",
+        "p8-e5",
+        "p8-e6"
+      ],
+      "content_text": "2.1 These Guidelines are applicable to reporting institutions as defined under Part I on Definition,\nPart VII on Combating Terrorism Financing and Part VIII on Combating Proliferation\nFinancing as the case may be, including its branches and majority- owned subsidiaries\noutside Malaysia which carry out, among others, the activities as listed in the First\nSchedule of the AMLA.\n\n2.2 In the case of foreign operations, where anti-money laundering, counter financing terrorism\nand counter proliferation financing (AML/CFT/CPF) measures of the host country are less\nstringent than the Malaysian standards, a reporting institution is required to ensure that its\nforeign branches and majority-owned subsidiaries apply AML/CFT/CPF measures which are\nconsistent with the Malaysian standards, to the extent that the host country laws and\nregulations permit.\n\n2.3 If the host country does not permit the proper implementation of the AML/CFT/CPF\nmeasures consistent with the Malaysian standards, the reporting institution is required to\napply appropriate additional measures to mitigate the money laundering, terrorism\nfinancing and proliferation financing (ML/TF/PF) risks and inform the SC on the\nAML/CFT/CPF gaps and additional measures implemented to manage the ML/TF/PF risks\narising from the identified gaps.\n\n2.4 Where the reporting institution is unable to put in place the necessary mitigating measures\nas required under paragraph 2.3 above, the reporting institution may consider ceasing the\noperations of the branch or subsidiary.\n\n2.5 Part VIII of these Guidelines set out TFS-PF obligations that must be complied with by\nreporting institutions. The Strategic Trade Controller may from time-to-time issue new\nguidelines or directives under the STA which a reporting institution may need to comply\nwith. In this regard, the SC will notify all relevant reporting institutions of such issuances\naccordingly. Where there are differing requirements, the more stringent requirements shall\napply.\n\n2.6 The SC may, upon application, grant an exemption from or variation to the requirements\nof these Guidelines if the SC is satisfied that:\n\n(a) such variation is not contrary to the intended purpose of the relevant requirement\nin these Guidelines; or\n\n(b) there are mitigating factors which justify the said exemption or variation."
+    },
+    {
+      "evidence_id": "E4",
+      "chunk_id": "485c4989-c300-45c8-ac06-79a59492bb5c-c0178-80a00c877d",
+      "chunk_index": 178,
+      "semantic_type": "paragraph",
+      "source_rank": 4,
+      "ranked_seed_rank": 4,
+      "reasons": [
+        "ranked_seed"
+      ],
+      "pages": [
+        67
+      ],
+      "section_path": [
+        "PART VIII: COMBATING PROLIFERATION FINANCING",
+        "19. REPORTING REQUIREMENTS"
+      ],
+      "source_element_ids": [
+        "p67-e2"
+      ],
+      "content_text": "Strategic Trade Secretariat,\nMinistry of International Trade and Industry,\nLevel 4, MITI Tower, No. 7, Jalan Sultan Haji Ahmad Shah,\n50622 Kuala Lumpur\nTel: 03-8000 8000\nE-mail: admin.sts@miti.gov.my\nWebsite: http://www.miti.gov.my/index.php/pages/view/sta2010"
+    },
+    {
+      "evidence_id": "E5",
+      "chunk_id": "485c4989-c300-45c8-ac06-79a59492bb5c-c0232-30a6623279",
+      "chunk_index": 232,
+      "semantic_type": "clause",
+      "source_rank": 5,
+      "ranked_seed_rank": null,
+      "reasons": [
+        "preceding_intro"
+      ],
+      "pages": [
+        85
+      ],
+      "section_path": [
+        "APPENDIX C"
+      ],
+      "source_element_ids": [
+        "p85-e4"
+      ],
+      "content_text": "2. The lodgement of the STR may be made by any of the following means:"
+    },
+    {
+      "evidence_id": "E6",
+      "chunk_id": "485c4989-c300-45c8-ac06-79a59492bb5c-c0233-78b2f006e8",
+      "chunk_index": 233,
+      "semantic_type": "table",
+      "source_rank": 5,
+      "ranked_seed_rank": 5,
+      "reasons": [
+        "ranked_seed"
+      ],
+      "pages": [
+        85
+      ],
+      "section_path": [
+        "APPENDIX C"
+      ],
+      "source_element_ids": [
+        "p85-e5"
+      ],
+      "content_text": "Mail | The physical forms should be placed in a sealed envelope and addressed to the following: Director Financial Intelligence and Enforcement Department Bank Negara Malaysia Jalan Dato' Onn 50480 Kuala Lumpur\nFax | 03-2693 3625\nE-mail | str@bnm.gov.my\nOthers (where and if available) | FIED’s Financial Intelligence System (FINS) FINS 2.0 (bnm.gov.my)"
+    }
+  ],
+  "citations": [],
+  "citation_version": "deterministic_citations_v1_2",
+  "citation_validation": {
+    "status": "valid",
+    "citation_count": 0,
+    "valid_citation_count": 0,
+    "errors": []
+  },
+  "generation_provider": "groq",
+  "generation_model": "openai/gpt-oss-120b",
+  "prompt_version": "grounded_claims_v1",
+  "generation_temperature": 0.0,
+  "generation_max_tokens": 1200,
+  "generation_json_mode": true,
+  "usage": {
+    "prompt_tokens": 2021,
+    "completion_tokens": 102,
+    "total_tokens": 2123
+  },
+  "retrieval_profile": "retrieval_v1_stage8_2_top5",
+  "retrieval_top_k": 5,
+  "retrieval_candidate_k": 20,
+  "retrieval_rrf_k": 60,
+  "retrieval_dense_weight": 1.0,
+  "retrieval_lexical_weight": 1.0,
+  "context_strategy": "structural_one_hop_v1",
+  "context_chunk_count": 6,
+  "expanded_chunk_count": 1
+}

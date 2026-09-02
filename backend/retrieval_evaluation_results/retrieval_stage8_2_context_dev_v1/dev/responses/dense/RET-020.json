@@ -1,0 +1,247 @@
+{
+  "document_id": "485c4989-c300-45c8-ac06-79a59492bb5c",
+  "query": "What does ongoing due diligence require, and how should the frequency and intensity of monitoring be determined?",
+  "embedding_model": "BAAI/bge-m3",
+  "requested_device": "auto",
+  "resolved_device": "cuda",
+  "top_k": 10,
+  "embedded_chunk_count": 284,
+  "total_chunk_count": 284,
+  "hits": [
+    {
+      "rank": 1,
+      "chunk_id": "485c4989-c300-45c8-ac06-79a59492bb5c-c0124-0f8256155c",
+      "chunk_index": 124,
+      "semantic_type": "clause",
+      "score": 0.7146930907575296,
+      "distance": 0.2853069092424704,
+      "text": "Section: PART III: CUSTOMER DUE DILIGENCE > 8. CUSTOMER DUE DILIGENCE (CDD) > 8.8 Ongoing Due Diligence\nClause: 8.8.1\n\n8.8.1 A reporting institution must conduct ongoing due diligence and scrutiny of the business\nrelationship with its customers throughout the course of the business relationship.\nSuch measures shall include–\n\n(a)monitoring, detecting and scrutinizing transactions undertaken throughout the\ncourse of that business relationship to ensure that the transactions being\nconducted are consistent with the reporting institution’s knowledge of the\ncustomer, its business and risk profile, including where necessary, the source\nof funds; and\n\n(b)ensuring that documents, data or information collected under the CDD process\nis kept up-to-date and are relevant, by undertaking periodic reviews of existing\nrecords, particularly for higher-risk categories of customer.",
+      "content_text": "8.8.1 A reporting institution must conduct ongoing due diligence and scrutiny of the business\nrelationship with its customers throughout the course of the business relationship.\nSuch measures shall include–\n\n(a)monitoring, detecting and scrutinizing transactions undertaken throughout the\ncourse of that business relationship to ensure that the transactions being\nconducted are consistent with the reporting institution’s knowledge of the\ncustomer, its business and risk profile, including where necessary, the source\nof funds; and\n\n(b)ensuring that documents, data or information collected under the CDD process\nis kept up-to-date and are relevant, by undertaking periodic reviews of existing\nrecords, particularly for higher-risk categories of customer.",
+      "token_count": 162,
+      "pages": [
+        46
+      ],
+      "section_path": [
+        "PART III: CUSTOMER DUE DILIGENCE",
+        "8. CUSTOMER DUE DILIGENCE (CDD)",
+        "8.8 Ongoing Due Diligence"
+      ],
+      "source_element_ids": [
+        "p46-e2",
+        "p46-e3",
+        "p46-e4"
+      ]
+    },
+    {
+      "rank": 2,
+      "chunk_id": "485c4989-c300-45c8-ac06-79a59492bb5c-c0125-e68fb9b60c",
+      "chunk_index": 125,
+      "semantic_type": "clause",
+      "score": 0.6654676793933847,
+      "distance": 0.3345323206066153,
+      "text": "Section: PART III: CUSTOMER DUE DILIGENCE > 8. CUSTOMER DUE DILIGENCE (CDD) > 8.8 Ongoing Due Diligence\n\n8.8.2 The frequency in implementing paragraph 8.8.1(a) under on-going due diligence or\nenhanced due diligence must commensurate with the level of ML/TF/PF risks posed\nby the customer based on the risk profiles and nature of transactions.\n\n8.8.3 When conducting enhanced due diligence, reporting institutions must, amongst\nothers, enhance the control measures, increase of the number of monitoring of the\nrelevant customers’ accounts, and timing of controls applied.",
+      "content_text": "8.8.2 The frequency in implementing paragraph 8.8.1(a) under on-going due diligence or\nenhanced due diligence must commensurate with the level of ML/TF/PF risks posed\nby the customer based on the risk profiles and nature of transactions.\n\n8.8.3 When conducting enhanced due diligence, reporting institutions must, amongst\nothers, enhance the control measures, increase of the number of monitoring of the\nrelevant customers’ accounts, and timing of controls applied.",
+      "token_count": 120,
+      "pages": [
+        46
+      ],
+      "section_path": [
+        "PART III: CUSTOMER DUE DILIGENCE",
+        "8. CUSTOMER DUE DILIGENCE (CDD)",
+        "8.8 Ongoing Due Diligence"
+      ],
+      "source_element_ids": [
+        "p46-e5",
+        "p46-e6"
+      ]
+    },
+    {
+      "rank": 3,
+      "chunk_id": "485c4989-c300-45c8-ac06-79a59492bb5c-c0128-8984f4d356",
+      "chunk_index": 128,
+      "semantic_type": "clause",
+      "score": 0.6322258522443357,
+      "distance": 0.3677741477556643,
+      "text": "Section: PART III: CUSTOMER DUE DILIGENCE > 8. CUSTOMER DUE DILIGENCE (CDD) > 8.8 Ongoing Due Diligence\nClause: 8.8.6\nGroup: Monitoring of accounts\n\n8.8.6 While extra care should be exercised in such cases, the reporting institution\nmust weigh all the circumstances of the particular situation and assess whether\nthere is a higher than normal risk of ML/TF/PF and consider whether to refuse to\ndo any business with such customers.",
+      "content_text": "8.8.6 While extra care should be exercised in such cases, the reporting institution\nmust weigh all the circumstances of the particular situation and assess whether\nthere is a higher than normal risk of ML/TF/PF and consider whether to refuse to\ndo any business with such customers.",
+      "token_count": 92,
+      "pages": [
+        47
+      ],
+      "section_path": [
+        "PART III: CUSTOMER DUE DILIGENCE",
+        "8. CUSTOMER DUE DILIGENCE (CDD)",
+        "8.8 Ongoing Due Diligence"
+      ],
+      "source_element_ids": [
+        "p47-e1"
+      ]
+    },
+    {
+      "rank": 4,
+      "chunk_id": "485c4989-c300-45c8-ac06-79a59492bb5c-c0126-37d5229a5d",
+      "chunk_index": 126,
+      "semantic_type": "clause",
+      "score": 0.6079570236193315,
+      "distance": 0.39204297638066854,
+      "text": "Section: PART III: CUSTOMER DUE DILIGENCE > 8. CUSTOMER DUE DILIGENCE (CDD) > 8.8 Ongoing Due Diligence\nClause: 8.8.4\nGroup: Monitoring of accounts\n\n8.8.4 A reporting institution must monitor the customers’ accounts on a regular basis for\nsuspicious transactions. One method is to 'flag' accounts with suspicious transactions\nfor monitoring purpose.",
+      "content_text": "8.8.4 A reporting institution must monitor the customers’ accounts on a regular basis for\nsuspicious transactions. One method is to 'flag' accounts with suspicious transactions\nfor monitoring purpose.",
+      "token_count": 73,
+      "pages": [
+        46
+      ],
+      "section_path": [
+        "PART III: CUSTOMER DUE DILIGENCE",
+        "8. CUSTOMER DUE DILIGENCE (CDD)",
+        "8.8 Ongoing Due Diligence"
+      ],
+      "source_element_ids": [
+        "p46-e8"
+      ]
+    },
+    {
+      "rank": 5,
+      "chunk_id": "485c4989-c300-45c8-ac06-79a59492bb5c-c0213-79d797bb84",
+      "chunk_index": 213,
+      "semantic_type": "clause",
+      "score": 0.6061106739607385,
+      "distance": 0.3938893260392615,
+      "text": "Section: APPENDIX A1 > 2.0 Policies and procedures > Monitoring systems and controls to identify and accept third-party deposits\nClause: 2.7\nGroup: Due diligence and evaluation\n\n2.7 A reporting institution must evaluate the reasons and the need for third-party deposits\nto ensure that a third-party deposit is reasonably in line with the customer’s profile and\nnormal commercial practices (including the frequency and pattern of previous third-\nparty deposits). The evaluations and assessments must include:\n\n(a)Conducting further inquiries with the customers; and\n\n(b)Obtaining corroborative evidence from relevant sources;",
+      "content_text": "2.7 A reporting institution must evaluate the reasons and the need for third-party deposits\nto ensure that a third-party deposit is reasonably in line with the customer’s profile and\nnormal commercial practices (including the frequency and pattern of previous third-\nparty deposits). The evaluations and assessments must include:\n\n(a)Conducting further inquiries with the customers; and\n\n(b)Obtaining corroborative evidence from relevant sources;",
+      "token_count": 117,
+      "pages": [
+        80
+      ],
+      "section_path": [
+        "APPENDIX A1",
+        "2.0 Policies and procedures",
+        "Monitoring systems and controls to identify and accept third-party deposits"
+      ],
+      "source_element_ids": [
+        "p80-e8",
+        "p80-e9",
+        "p80-e10"
+      ]
+    },
+    {
+      "rank": 6,
+      "chunk_id": "485c4989-c300-45c8-ac06-79a59492bb5c-c0215-2461243dc4",
+      "chunk_index": 215,
+      "semantic_type": "clause",
+      "score": 0.5925677352459218,
+      "distance": 0.40743226475407823,
+      "text": "Section: APPENDIX A1 > 2.0 Policies and procedures > Monitoring systems and controls to identify and accept third-party deposits\nGroup: On-going monitoring\n\n2.9 A reporting institution must implement an on-going monitoring of customers’ accounts\ninvolving third-party deposits. A suspicious transaction report should be made\nimmediately to the FIED when there are grounds for suspicion of ML/TF/PF.\n\n2.10 A reporting institution must ‘flag’ accounts with suspicious transactions relating to\nthird- party deposits for monitoring purposes.",
+      "content_text": "2.9 A reporting institution must implement an on-going monitoring of customers’ accounts\ninvolving third-party deposits. A suspicious transaction report should be made\nimmediately to the FIED when there are grounds for suspicion of ML/TF/PF.\n\n2.10 A reporting institution must ‘flag’ accounts with suspicious transactions relating to\nthird- party deposits for monitoring purposes.",
+      "token_count": 101,
+      "pages": [
+        80
+      ],
+      "section_path": [
+        "APPENDIX A1",
+        "2.0 Policies and procedures",
+        "Monitoring systems and controls to identify and accept third-party deposits"
+      ],
+      "source_element_ids": [
+        "p80-e13",
+        "p80-e14"
+      ]
+    },
+    {
+      "rank": 7,
+      "chunk_id": "485c4989-c300-45c8-ac06-79a59492bb5c-c0129-2767b9c481",
+      "chunk_index": 129,
+      "semantic_type": "clause",
+      "score": 0.5870131779026869,
+      "distance": 0.4129868220973131,
+      "text": "Section: PART III: CUSTOMER DUE DILIGENCE > 8. CUSTOMER DUE DILIGENCE (CDD) > 8.8 Ongoing Due Diligence\nClause: 8.8.7\nGroup: Renewed CDD\n\n8.8.7 A reporting institution is required to undertake a renewed CDD when:\n\n(a)The customer’s account has been dormant or inactive and the customer is\nseeking to reactivate its account or resume its activities;\n\n(b)There is a change in circumstances relating to a customer which give rise\nto a suspicion of ML/TF/PF risks; or\n\n(c)There is a doubt about the veracity or adequacy of previously obtained\nidentification data.",
+      "content_text": "8.8.7 A reporting institution is required to undertake a renewed CDD when:\n\n(a)The customer’s account has been dormant or inactive and the customer is\nseeking to reactivate its account or resume its activities;\n\n(b)There is a change in circumstances relating to a customer which give rise\nto a suspicion of ML/TF/PF risks; or\n\n(c)There is a doubt about the veracity or adequacy of previously obtained\nidentification data.",
+      "token_count": 125,
+      "pages": [
+        47
+      ],
+      "section_path": [
+        "PART III: CUSTOMER DUE DILIGENCE",
+        "8. CUSTOMER DUE DILIGENCE (CDD)",
+        "8.8 Ongoing Due Diligence"
+      ],
+      "source_element_ids": [
+        "p47-e3",
+        "p47-e4",
+        "p47-e5",
+        "p47-e6"
+      ]
+    },
+    {
+      "rank": 8,
+      "chunk_id": "485c4989-c300-45c8-ac06-79a59492bb5c-c0212-f40ff47418",
+      "chunk_index": 212,
+      "semantic_type": "clause",
+      "score": 0.584300033834582,
+      "distance": 0.41569996616541804,
+      "text": "Section: APPENDIX A1 > 2.0 Policies and procedures > Monitoring systems and controls to identify and accept third-party deposits\nClause: 2.6\nGroup: Due diligence and evaluation\n\n2.6 On a risk-based approach, a reporting institution must conduct a due-diligence on\nthird- party deposits to determine the following:\n\n(a)The identity of the third-party payor, including national registration identity\ncard number or passport number, residential address and contact number;\n\n(b)The relationship between the customer and the third-party payor;\n\n(c)The reason for making deposits into the customer account; and\n\n(d)Whether the third-party exercises trading authority over the customer’s account.",
+      "content_text": "2.6 On a risk-based approach, a reporting institution must conduct a due-diligence on\nthird- party deposits to determine the following:\n\n(a)The identity of the third-party payor, including national registration identity\ncard number or passport number, residential address and contact number;\n\n(b)The relationship between the customer and the third-party payor;\n\n(c)The reason for making deposits into the customer account; and\n\n(d)Whether the third-party exercises trading authority over the customer’s account.",
+      "token_count": 139,
+      "pages": [
+        80
+      ],
+      "section_path": [
+        "APPENDIX A1",
+        "2.0 Policies and procedures",
+        "Monitoring systems and controls to identify and accept third-party deposits"
+      ],
+      "source_element_ids": [
+        "p80-e4",
+        "p80-e5-split-1",
+        "p80-e5-split-2",
+        "p80-e6",
+        "p80-e7"
+      ]
+    },
+    {
+      "rank": 9,
+      "chunk_id": "485c4989-c300-45c8-ac06-79a59492bb5c-c0104-19e5589eb5",
+      "chunk_index": 104,
+      "semantic_type": "clause",
+      "score": 0.5778938452506546,
+      "distance": 0.42210615474934543,
+      "text": "Section: PART III: CUSTOMER DUE DILIGENCE > 8. CUSTOMER DUE DILIGENCE (CDD) > 8.1 CDD at the point of establishing business relationship\nClause: 8.1.29\nGroup: Existing Customers\n\n8.1.29 A reporting institution must apply CDD measures to existing customers on the basis\nof materiality and risk, and conduct due diligence on such existing relationship at\nappropriate times, taking into account whether and when CDD measures have\npreviously been undertaken and the adequacy of the data obtained and verified.",
+      "content_text": "8.1.29 A reporting institution must apply CDD measures to existing customers on the basis\nof materiality and risk, and conduct due diligence on such existing relationship at\nappropriate times, taking into account whether and when CDD measures have\npreviously been undertaken and the adequacy of the data obtained and verified.",
+      "token_count": 97,
+      "pages": [
+        39
+      ],
+      "section_path": [
+        "PART III: CUSTOMER DUE DILIGENCE",
+        "8. CUSTOMER DUE DILIGENCE (CDD)",
+        "8.1 CDD at the point of establishing business relationship"
+      ],
+      "source_element_ids": [
+        "p39-e3"
+      ]
+    },
+    {
+      "rank": 10,
+      "chunk_id": "485c4989-c300-45c8-ac06-79a59492bb5c-c0216-091e0d5d3a",
+      "chunk_index": 216,
+      "semantic_type": "clause",
+      "score": 0.5746984399585544,
+      "distance": 0.4253015600414456,
+      "text": "Section: APPENDIX A1 > 2.0 Policies and procedures > Monitoring systems and controls to identify and accept third-party deposits\nGroup: Record keeping, employee training on third-party deposits and communication to\ncustomers\n\n2.11 A reporting institution must keep records of all documents and the findings of inquiries\nmade together with the corroborative evidence obtained during the due diligence\nevaluation and approval of a third-party deposit.\n\n2.12 A reporting institution must provide relevant training and guidance to the employee\nresponsible for the implementation of the reporting institution’s policies and procedures\nin relation to third-party deposits.",
+      "content_text": "2.11 A reporting institution must keep records of all documents and the findings of inquiries\nmade together with the corroborative evidence obtained during the due diligence\nevaluation and approval of a third-party deposit.\n\n2.12 A reporting institution must provide relevant training and guidance to the employee\nresponsible for the implementation of the reporting institution’s policies and procedures\nin relation to third-party deposits.",
+      "token_count": 114,
+      "pages": [
+        80,
+        81
+      ],
+      "section_path": [
+        "APPENDIX A1",
+        "2.0 Policies and procedures",
+        "Monitoring systems and controls to identify and accept third-party deposits"
+      ],
+      "source_element_ids": [
+        "p80-e16",
+        "p81-e1"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,132 @@
+QUESTION: What should an institution do when a customer cannot complete identity verification in time?
+EXPECTATION: answerable
+STATUS: answered
+ELAPSED_SECONDS: 3.20
+RATE_LIMIT_RETRIES: 0
+PROVIDER: groq
+MODEL: openai/gpt-oss-120b
+PROMPT_VERSION: grounded_claims_v1
+RETRIEVAL_PROFILE: retrieval_v1_stage8_2_top5
+CONTEXT_CHUNKS: 5
+EXPANDED_CHUNKS: 0
+USED_EVIDENCE_IDS: ['E1']
+
+ANSWER:
+The institution should terminate the business relationship as soon as reasonably practicable when verification cannot be completed within the reasonable timeframe. The institution should refrain from carrying out further transactions after termination due to incomplete verification. After terminating the relationship, the institution may return funds or other assets to the customer. The institution must assess whether the failure to complete verification within the reasonable timeframe provides sufficient grounds to file a suspicious transaction report (STR) to the FIED.
+
+CLAIMS:
+- C1: The institution should terminate the business relationship as soon as reasonably practicable when verification cannot be completed within the reasonable timeframe. | evidence=['E1']
+- C2: The institution should refrain from carrying out further transactions after termination due to incomplete verification. | evidence=['E1']
+- C3: After terminating the relationship, the institution may return funds or other assets to the customer. | evidence=['E1']
+- C4: The institution must assess whether the failure to complete verification within the reasonable timeframe provides sufficient grounds to file a suspicious transaction report (STR) to the FIED. | evidence=['E1']
+
+EVIDENCE:
+[E1] chunk_index=101 source_rank=1 pages=[38, 39] type=clause reasons=['ranked_seed']
+8.1.24 A reporting institution may complete the verification after the establishment of the
+business relationship (“delayed verification”) to allow some flexibility for its customer
+and beneficial owner to furnish the relevant documents in circumstances where
+verification is not possible at the point of establishing business relationship.
+
+8.1.27 If verification cannot be completed within the reasonable timeframe, the reporting
+institution should terminate the business relationship as soon as reasonably practicable
+and refrain from carrying out further transactions. However, following the termination
+of business relationship, the reporting institution may return funds or other assets to
+the customers.
+
+8.1.28 The reporting institution must assess whether the failure to complete verification within
+the reasonable timeframe provides sufficient grounds for making a STR to the FIED.
+[E2] chunk_index=103 source_rank=2 pages=[38] type=clause reasons=['ranked_seed']
+8.1.26 The policies and procedures must include:
+
+(a) Establishing a reasonable timeframe for the completion of the identity verification
+measures to ensure that delayed verification occurs as reasonably practicable.
+The reasonable timeframe shall not exceed 10 working days or any other period
+as may be specified by the SC;
+
+(b) Measures that a reporting institution may take to manage risks of delayed
+verification including conditions under which the customer may utilize the
+business relationship prior to verification and placing appropriate limits on the
+number, types and/or amount of transactions that can be performed;
+
+(c) Monitoring of large and complex transactions being carried out outside the
+expected norms pending completion of verification; and
+
+(d) Keeping senior management periodically informed of any cases pending identity.
+[E3] chunk_index=84 source_rank=3 pages=[32] type=clause reasons=['ranked_seed']
+8.1.7 Where the above information is not sufficient for the reporting institution to complete its
+identification and verification process, the reporting institution must seek further relevant
+information from the individual customer or beneficial owner.
+[E4] chunk_index=100 source_rank=4 pages=[36, 37] type=clause reasons=['ranked_seed']
+8.1.23 This section applies when a reporting institution chooses to establish non-face-to-
+face business relationship.
+
+(a) A reporting institution must develop and implement policies and procedures to
+address and mitigate specific ML/TF/PF risks associated with establishing non
+face-to-face business relationship, as well as operational and information
+technology risk.
+
+(b) A reporting institution must establish appropriate measures for identification
+and verification of a customer’s identity before establishing non face-to-face
+business relationship.
+
+(c) For the purpose of identification and verification of the identity of a customer in
+a non face-to-face business relationship, a reporting institution must undertake
+one or more of the following measures:
+
+(i) Requesting for additional identification documents or information e.g.
+bank statements, utility bills;
+
+(ii) Substantiating the customer’s information with any independent source
+e.g. contacting the customer’s employer and verification through database
+maintained by any relevant authorities;
+
+(iii) Contacting the customer through any digital communication channel to
+visually identify and verify the customer’s identity;
+
+(iv) Requesting the customer to make a nominal payment from his own
+account with a licensed bank under the Financial Services Act 2013 or
+licensed Islamic bank under the Islamic Financial Services Act 2013 to
+enable the reporting institution to satisfy itself of the customer’s true
+identity; or
+
+(v) Using new technology solutions including, but not limited to, biometric
+technologies (e.g. fingerprint or iris scans, facial recognition), which
+should be linked incontrovertibly to the customer.
+
+(d) Where the reporting institution is unable to identify and verify the customer’s
+identity by adopting the measures provided under paragraph (c) above, the
+reporting institution must initiate face-to-face business relationship.
+
+(e) Sub-paragraphs (a) to (d) above are not applicable to:
+
+(i)Customers that are identified as foreign PEP;
+
+(ii)Customers from higher-risk and non co-operative jurisdictions as identified
+by the FATF; or
+
+(iii)Listed persons or entities subjected to targeted financial sanctions for
+terrorism financing and financing of proliferation of weapons of mass
+destruction pursuant to the UNSCR.
+
+(f) A reporting institution must ensure and be able to demonstrate on a continuing
+basis that appropriate measures for identification and verification of a customer’s
+identity when establishing non-face-to-face business relationship are as effective
+as that for face-to-face customer and implement monitoring and reporting
+mechanism to identify potential ML/TF/PF activities.
+[E5] chunk_index=159 source_rank=5 pages=[60, 61] type=clause reasons=['ranked_seed']
+14.4 For the purpose of implementing the obligations under section 66B and section 66C
+of the AMLA, a reporting institution must conduct checks on the names of potential
+and new customers, as well as regular checks on the names of existing customers,
+against the names in the database. If there is any name match, the reporting
+institution must take reasonable and appropriate measures to verify and confirm the
+identity of its customer. Upon such confirmation, the reporting institution must
+immediately–
+
+(a)freeze without delay the customer’s fund or block the transaction, if it is an
+existing customer;
+
+(b)reject the customer, if the transaction has not commenced;
+
+(c)lodge a STR with the FIED; and
+
+(d)notify the SC.

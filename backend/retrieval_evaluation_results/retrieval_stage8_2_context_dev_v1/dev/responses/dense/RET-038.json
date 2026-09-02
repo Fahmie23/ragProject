@@ -1,0 +1,235 @@
+{
+  "document_id": "485c4989-c300-45c8-ac06-79a59492bb5c",
+  "query": "Where do the Guidelines direct reporting institutions for guidance and recommended best practices on identifying beneficial owners of legal persons and legal arrangements?",
+  "embedding_model": "BAAI/bge-m3",
+  "requested_device": "auto",
+  "resolved_device": "cuda",
+  "top_k": 10,
+  "embedded_chunk_count": 284,
+  "total_chunk_count": 284,
+  "hits": [
+    {
+      "rank": 1,
+      "chunk_id": "485c4989-c300-45c8-ac06-79a59492bb5c-c0097-1867d471cc",
+      "chunk_index": 97,
+      "semantic_type": "paragraph",
+      "score": 0.7162814905475694,
+      "distance": 0.2837185094524306,
+      "text": "Section: PART III: CUSTOMER DUE DILIGENCE > 8. CUSTOMER DUE DILIGENCE (CDD) > 8.1 CDD at the point of establishing business relationship\nGroup: Guidance for paragraphs 8.1.8 to 8.1.17\n\nAppendix E of these Guidelines sets out guidance and recommended best practices\nto guide reporting institutions in complying with the relevant requirements in relation\nto identification of beneficial owners of legal persons and legal arrangement.",
+      "content_text": "Appendix E of these Guidelines sets out guidance and recommended best practices\nto guide reporting institutions in complying with the relevant requirements in relation\nto identification of beneficial owners of legal persons and legal arrangement.",
+      "token_count": 81,
+      "pages": [
+        36
+      ],
+      "section_path": [
+        "PART III: CUSTOMER DUE DILIGENCE",
+        "8. CUSTOMER DUE DILIGENCE (CDD)",
+        "8.1 CDD at the point of establishing business relationship"
+      ],
+      "source_element_ids": [
+        "p36-e2"
+      ]
+    },
+    {
+      "rank": 2,
+      "chunk_id": "485c4989-c300-45c8-ac06-79a59492bb5c-c0251-25f0a8fcf9",
+      "chunk_index": 251,
+      "semantic_type": "clause",
+      "score": 0.6814093183631124,
+      "distance": 0.31859068163688764,
+      "text": "Section: APPENDIX E > Introduction\nClause: 1.2\n\n1.2 The purpose of this Appendix is to set out guidance and recommended best practices\nto guide a reporting institution in complying with the relevant requirements in relation\nto identification of beneficial owners of legal persons and legal arrangement.",
+      "content_text": "1.2 The purpose of this Appendix is to set out guidance and recommended best practices\nto guide a reporting institution in complying with the relevant requirements in relation\nto identification of beneficial owners of legal persons and legal arrangement.",
+      "token_count": 53,
+      "pages": [
+        92
+      ],
+      "section_path": [
+        "APPENDIX E",
+        "Introduction"
+      ],
+      "source_element_ids": [
+        "p92-e9"
+      ]
+    },
+    {
+      "rank": 3,
+      "chunk_id": "485c4989-c300-45c8-ac06-79a59492bb5c-c0261-faf61438c6",
+      "chunk_index": 261,
+      "semantic_type": "clause",
+      "score": 0.6564781665802002,
+      "distance": 0.3435218334197998,
+      "text": "Section: APPENDIX E > Identification\nClause: 1.11\nGroup: Methods to identify beneficial owners\n\n1.11 A reporting institution may seek to review the beneficial ownership information relating\nto an entity, based on the following recommended source documents to determine the\nownership structure and governance of an entity. The following list is non-exhaustive\nand reporting institutions are encouraged to explore other possible sources of\ndocuments to review such information.",
+      "content_text": "1.11 A reporting institution may seek to review the beneficial ownership information relating\nto an entity, based on the following recommended source documents to determine the\nownership structure and governance of an entity. The following list is non-exhaustive\nand reporting institutions are encouraged to explore other possible sources of\ndocuments to review such information.",
+      "token_count": 79,
+      "pages": [
+        95
+      ],
+      "section_path": [
+        "APPENDIX E",
+        "Identification"
+      ],
+      "source_element_ids": [
+        "p95-e13"
+      ]
+    },
+    {
+      "rank": 4,
+      "chunk_id": "485c4989-c300-45c8-ac06-79a59492bb5c-c0266-392b4532b7",
+      "chunk_index": 266,
+      "semantic_type": "clause",
+      "score": 0.6552602648735046,
+      "distance": 0.34473973512649536,
+      "text": "Section: APPENDIX E > Identification\nClause: 1.13\nGroup: Record-keeping of beneficial ownership\n\n1.13 A reporting institution shall obtain and retain records of beneficial owner information\nin accordance with the requirements of the Guidelines.",
+      "content_text": "1.13 A reporting institution shall obtain and retain records of beneficial owner information\nin accordance with the requirements of the Guidelines.",
+      "token_count": 43,
+      "pages": [
+        98
+      ],
+      "section_path": [
+        "APPENDIX E",
+        "Identification"
+      ],
+      "source_element_ids": [
+        "p98-e4"
+      ]
+    },
+    {
+      "rank": 5,
+      "chunk_id": "485c4989-c300-45c8-ac06-79a59492bb5c-c0262-dc090ebe7a",
+      "chunk_index": 262,
+      "semantic_type": "table",
+      "score": 0.633000097692008,
+      "distance": 0.36699990230799195,
+      "text": "Section: APPENDIX E > Identification\nGroup: Methods to identify beneficial owners\n\nType of legal person/ legal arrangement | Information relating to beneficial ownership | Source documents\nPrivate and public companies/ Bodies corporate/ Partnership/ | Legal vehicle (e.g. corporate, partnership etc) | • Certificate of incorporation • Certificate of registration • Company constitution • Minutes of Board meeting\nGovernment linked companies (GLC) | • Shareholding including information on parent company and subsidiaries information • Direct or indirect ownership • Relationship to conglomerates/ corporate groups • Company tree | • Director’s and shareholder’s resolution • Partnership agreement • Appointment/ Authorisation letter • Senior management list • Company’s annual report and annual return • Joint venture agreement, shareholder’s agreements and other related agreements • Director nomination agreement • Register of member including beneficial owner • Any other source documents that sufficiently identifies the beneficial owner\nTrust arrangement | • Parties to the trust • Persons involved in the trust establishment | • Trust deed • Trust registration document\nType of legal person/ legal arrangement | Information relating to beneficial ownership | Source documents\n | • Administrator of the trust • Type of trust | \nCooperatives | • Management of the cooperatives • Rules governing the cooperatives | • Registration form of the Cooperatives • By-laws of the cooperative • Minutes of General Meeting\nClubs/ Societies/ Foundations/ Charities/ NGOs | • Rules governing the clubs/ societies/ foundations/ charities/ NGO | • Constitution/ charter/ rules • Registration form • Minutes of meeting • List of members of committee",
+      "content_text": "Type of legal person/ legal arrangement | Information relating to beneficial ownership | Source documents\nPrivate and public companies/ Bodies corporate/ Partnership/ | Legal vehicle (e.g. corporate, partnership etc) | • Certificate of incorporation • Certificate of registration • Company constitution • Minutes of Board meeting\nGovernment linked companies (GLC) | • Shareholding including information on parent company and subsidiaries information • Direct or indirect ownership • Relationship to conglomerates/ corporate groups • Company tree | • Director’s and shareholder’s resolution • Partnership agreement • Appointment/ Authorisation letter • Senior management list • Company’s annual report and annual return • Joint venture agreement, shareholder’s agreements and other related agreements • Director nomination agreement • Register of member including beneficial owner • Any other source documents that sufficiently identifies the beneficial owner\nTrust arrangement | • Parties to the trust • Persons involved in the trust establishment | • Trust deed • Trust registration document\nType of legal person/ legal arrangement | Information relating to beneficial ownership | Source documents\n | • Administrator of the trust • Type of trust | \nCooperatives | • Management of the cooperatives • Rules governing the cooperatives | • Registration form of the Cooperatives • By-laws of the cooperative • Minutes of General Meeting\nClubs/ Societies/ Foundations/ Charities/ NGOs | • Rules governing the clubs/ societies/ foundations/ charities/ NGO | • Constitution/ charter/ rules • Registration form • Minutes of meeting • List of members of committee",
+      "token_count": 291,
+      "pages": [
+        96,
+        97
+      ],
+      "section_path": [
+        "APPENDIX E",
+        "Identification"
+      ],
+      "source_element_ids": [
+        "p96-e1",
+        "p97-e1"
+      ]
+    },
+    {
+      "rank": 6,
+      "chunk_id": "485c4989-c300-45c8-ac06-79a59492bb5c-c0256-f951ee1eb5",
+      "chunk_index": 256,
+      "semantic_type": "clause",
+      "score": 0.6326200584995723,
+      "distance": 0.36737994150042774,
+      "text": "Section: APPENDIX E > Identification\nClause: 1.7\nGroup: Steps to identify beneficial owner > Legal person\n\n1.7 A reporting institution should identify the beneficial owners of legal persons through\nthe cascading steps reflected below. In applying the cascading step, the subsequent\nstep would apply only in circumstances where no natural person is identified as\nbeneficial owner under the preceding step. For example, Step 3 would only apply where\nno natural person is identified as beneficial owner under Step 1 and Step 2.",
+      "content_text": "1.7 A reporting institution should identify the beneficial owners of legal persons through\nthe cascading steps reflected below. In applying the cascading step, the subsequent\nstep would apply only in circumstances where no natural person is identified as\nbeneficial owner under the preceding step. For example, Step 3 would only apply where\nno natural person is identified as beneficial owner under Step 1 and Step 2.",
+      "token_count": 94,
+      "pages": [
+        93
+      ],
+      "section_path": [
+        "APPENDIX E",
+        "Identification"
+      ],
+      "source_element_ids": [
+        "p93-e16"
+      ]
+    },
+    {
+      "rank": 7,
+      "chunk_id": "485c4989-c300-45c8-ac06-79a59492bb5c-c0250-f52650db4c",
+      "chunk_index": 250,
+      "semantic_type": "clause",
+      "score": 0.6269673109054565,
+      "distance": 0.37303268909454346,
+      "text": "Section: APPENDIX E > Introduction\nClause: 1.1\n\n1.1 The obligations of a reporting institution on beneficial ownership requirements are:\n\n(a)identifying a natural person who is the beneficial owner of the customer and\nobtaining information that describes the ownership, control and structure of the\nlegal persons/ legal arrangements relating to the beneficial owner;\n\n(b)taking reasonable measures to verify the accuracy of the information obtained\nand keeping records of all relevant documents;\n\n(c)conducting customer risk profiling to identify the risk category of the beneficial\nowner; and\n\n(d)performing further regulatory obligations based on the risk category of the\nbeneficial owner such as CDD, sanction screening and high-risk jurisdiction.",
+      "content_text": "1.1 The obligations of a reporting institution on beneficial ownership requirements are:\n\n(a)identifying a natural person who is the beneficial owner of the customer and\nobtaining information that describes the ownership, control and structure of the\nlegal persons/ legal arrangements relating to the beneficial owner;\n\n(b)taking reasonable measures to verify the accuracy of the information obtained\nand keeping records of all relevant documents;\n\n(c)conducting customer risk profiling to identify the risk category of the beneficial\nowner; and\n\n(d)performing further regulatory obligations based on the risk category of the\nbeneficial owner such as CDD, sanction screening and high-risk jurisdiction.",
+      "token_count": 133,
+      "pages": [
+        92
+      ],
+      "section_path": [
+        "APPENDIX E",
+        "Introduction"
+      ],
+      "source_element_ids": [
+        "p92-e4",
+        "p92-e5",
+        "p92-e6",
+        "p92-e7",
+        "p92-e8"
+      ]
+    },
+    {
+      "rank": 8,
+      "chunk_id": "485c4989-c300-45c8-ac06-79a59492bb5c-c0088-7f07c6b2b9",
+      "chunk_index": 88,
+      "semantic_type": "clause",
+      "score": 0.6228432880137402,
+      "distance": 0.3771567119862598,
+      "text": "Section: PART III: CUSTOMER DUE DILIGENCE > 8. CUSTOMER DUE DILIGENCE (CDD) > 8.1 CDD at the point of establishing business relationship\nClause: 8.1.11\nGroup: CDD requirements for legal persons\n\n8.1.11 A reporting institution is required to identify and take reasonable measures to verify\nthe identity of beneficial owners according to the following cascading steps:\n\n(a)the identity of the natural person(s) (if any) who ultimately has a controlling\nownership interest in a legal person. Where applicable, this includes identifying:\n\n(i)shareholders with equity interest of more than twenty-five percent in a\ncorporation; and\n\n(b) to the extent that there is doubt as to whether the person(s) with the controlling\nownership interest is the beneficial owner(s) referred to in paragraph 8.1.11(a)\nor where no natural person(s) exert control through ownership interests, the\nidentity of the natural person (if any) exercising control of the legal person\nthrough other means; and\n\n(c) where no natural person is identified under paragraphs 8.1.11(a) or (b), the\nidentity of the relevant natural person who holds the position of senior\nmanagement.\n\nFor the avoidance of doubt, a reporting institution is not required to pursue\nsteps (b) and (c) in circumstances where beneficial owner(s) have been\nidentified through step (a). Similarly, where beneficial owner(s) have been\nidentified at step (b), reporting institutions are not required to pursue step (c).",
+      "content_text": "8.1.11 A reporting institution is required to identify and take reasonable measures to verify\nthe identity of beneficial owners according to the following cascading steps:\n\n(a)the identity of the natural person(s) (if any) who ultimately has a controlling\nownership interest in a legal person. Where applicable, this includes identifying:\n\n(i)shareholders with equity interest of more than twenty-five percent in a\ncorporation; and\n\n(b) to the extent that there is doubt as to whether the person(s) with the controlling\nownership interest is the beneficial owner(s) referred to in paragraph 8.1.11(a)\nor where no natural person(s) exert control through ownership interests, the\nidentity of the natural person (if any) exercising control of the legal person\nthrough other means; and\n\n(c) where no natural person is identified under paragraphs 8.1.11(a) or (b), the\nidentity of the relevant natural person who holds the position of senior\nmanagement.\n\nFor the avoidance of doubt, a reporting institution is not required to pursue\nsteps (b) and (c) in circumstances where beneficial owner(s) have been\nidentified through step (a). Similarly, where beneficial owner(s) have been\nidentified at step (b), reporting institutions are not required to pursue step (c).",
+      "token_count": 311,
+      "pages": [
+        33,
+        34
+      ],
+      "section_path": [
+        "PART III: CUSTOMER DUE DILIGENCE",
+        "8. CUSTOMER DUE DILIGENCE (CDD)",
+        "8.1 CDD at the point of establishing business relationship"
+      ],
+      "source_element_ids": [
+        "p33-e10",
+        "p33-e11",
+        "p33-e12",
+        "p34-e2",
+        "p34-e3",
+        "p34-e4"
+      ]
+    },
+    {
+      "rank": 9,
+      "chunk_id": "485c4989-c300-45c8-ac06-79a59492bb5c-c0162-aded0a9984",
+      "chunk_index": 162,
+      "semantic_type": "clause",
+      "score": 0.6193670034408569,
+      "distance": 0.38063299655914307,
+      "text": "Section: PART VIII: COMBATING PROLIFERATION FINANCING > 15. DEFINITION AND INTERPRETATION\nClause: 15.1\n\n15.1 For the purpose of Part VIII of these Guidelines, “reporting institution” refers to\nreporting institution as defined in the Definition section under Part I of these Guidelines\nand includes a registered person under section 76 of the CMSA that is registered under\nthe Guidelines on the Registration of Venture Capital and Private Equity Corporations\nand Management Corporation.",
+      "content_text": "15.1 For the purpose of Part VIII of these Guidelines, “reporting institution” refers to\nreporting institution as defined in the Definition section under Part I of these Guidelines\nand includes a registered person under section 76 of the CMSA that is registered under\nthe Guidelines on the Registration of Venture Capital and Private Equity Corporations\nand Management Corporation.",
+      "token_count": 83,
+      "pages": [
+        62
+      ],
+      "section_path": [
+        "PART VIII: COMBATING PROLIFERATION FINANCING",
+        "15. DEFINITION AND INTERPRETATION"
+      ],
+      "source_element_ids": [
+        "p62-e3"
+      ]
+    },
+    {
+      "rank": 10,
+      "chunk_id": "485c4989-c300-45c8-ac06-79a59492bb5c-c0249-158df30f90",
+      "chunk_index": 249,
+      "semantic_type": "paragraph",
+      "score": 0.6071562947975487,
+      "distance": 0.39284370520245127,
+      "text": "Section: APPENDIX E\n\nGuidance on Beneficial Ownership for Legal Persons and Legal Arrangement\n(in relation to paragraphs 8.1.8 to 8.1.17 of these Guidelines)",
+      "content_text": "Guidance on Beneficial Ownership for Legal Persons and Legal Arrangement\n(in relation to paragraphs 8.1.8 to 8.1.17 of these Guidelines)",
+      "token_count": 34,
+      "pages": [
+        92
+      ],
+      "section_path": [
+        "APPENDIX E"
+      ],
+      "source_element_ids": [
+        "p92-e2"
+      ]
+    }
+  ]
+}

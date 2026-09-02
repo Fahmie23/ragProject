@@ -1,0 +1,352 @@
+{
+  "document_id": "485c4989-c300-45c8-ac06-79a59492bb5c",
+  "query": "Which appendix provides the detailed obligations for implementing targeted financial sanctions relating to terrorism financing?",
+  "embedding_model": "BAAI/bge-m3",
+  "requested_device": "auto",
+  "resolved_device": "cuda",
+  "top_k": 10,
+  "candidate_k": 20,
+  "embedded_chunk_count": 284,
+  "total_chunk_count": 284,
+  "fusion_method": "reciprocal_rank_fusion",
+  "rrf_k": 60,
+  "dense_weight": 1.0,
+  "lexical_weight": 1.0,
+  "lexical_ranking_method": "postgresql_fts_term_coverage_then_ts_rank_cd",
+  "lexical_query_mode": "or_content_terms_v1",
+  "lexical_terms": [
+    "appendix",
+    "provides",
+    "detailed",
+    "obligations",
+    "implementing",
+    "targeted",
+    "financial",
+    "sanctions",
+    "relating",
+    "terrorism",
+    "financing"
+  ],
+  "lexical_tsquery": "appendix | provides | detailed | obligations | implementing | targeted | financial | sanctions | relating | terrorism | financing",
+  "hits": [
+    {
+      "rank": 1,
+      "chunk_id": "485c4989-c300-45c8-ac06-79a59492bb5c-c0234-35c92911bb",
+      "chunk_index": 234,
+      "semantic_type": "clause",
+      "fusion_score": 0.03177805800756621,
+      "dense_rank": 1,
+      "dense_score": 0.666989266872406,
+      "dense_distance": 0.333010733127594,
+      "dense_rrf_score": 0.01639344262295082,
+      "lexical_rank": 5,
+      "lexical_score": 1.5,
+      "lexical_matched_term_count": 9,
+      "lexical_term_coverage": 0.8181818181818182,
+      "lexical_rrf_score": 0.015384615384615385,
+      "text": "Section: APPENDIX D > The relevant legal instruments\nClause: 1.1\nGroup: Guidance on the Implementation of Targeted Financial Sanction in\nRelation to Terrorism Financing\n\n1.1 Malaysia as a member of the United Nations has an obligation to implement all the\nResolutions passed in relation to TFS-TF. The UNSCR relating to terrorism financing\nare implemented pursuant to section 66B and section 66C of the AMLA by publication\nin the gazette by the Minister of Home Affairs.",
+      "content_text": "1.1 Malaysia as a member of the United Nations has an obligation to implement all the\nResolutions passed in relation to TFS-TF. The UNSCR relating to terrorism financing\nare implemented pursuant to section 66B and section 66C of the AMLA by publication\nin the gazette by the Minister of Home Affairs.",
+      "token_count": 86,
+      "pages": [
+        86
+      ],
+      "section_path": [
+        "APPENDIX D",
+        "The relevant legal instruments"
+      ],
+      "source_element_ids": [
+        "p86-e4"
+      ]
+    },
+    {
+      "rank": 2,
+      "chunk_id": "485c4989-c300-45c8-ac06-79a59492bb5c-c0007-22ed76c058",
+      "chunk_index": 7,
+      "semantic_type": "clause",
+      "fusion_score": 0.03128054740957967,
+      "dense_rank": 6,
+      "dense_score": 0.6237528920173645,
+      "dense_distance": 0.3762471079826355,
+      "dense_rrf_score": 0.015151515151515152,
+      "lexical_rank": 2,
+      "lexical_score": 2.5,
+      "lexical_matched_term_count": 10,
+      "lexical_term_coverage": 0.9090909090909091,
+      "lexical_rrf_score": 0.016129032258064516,
+      "text": "Section: PART I: INTRODUCTION AND APPLICABILITY > 1.0 INTRODUCTION\n\n1.2 These Guidelines are drawn up in accordance with the AMLA and the Financial Action Task\nForce (FATF) 40 Recommendations.\n\n1Regulation 3 of Strategic Trade (United Nations Security Council Resolutions) Regulations 2010 (P.U. (A) 481/2010) is set out in\nAppendix G of these Guidelines.\n\n1.3 These Guidelines provide:\n\n(a)requirements and obligations imposed on reporting institutions in preventing and\ncombating money laundering, terrorism financing, proliferation financing and\ntargeted financial sanctions; and\n\n(b)guidance for reporting institutions to comply with the obligations imposed under the\nAMLA and TFS-PF.\n\n1.4 These Guidelines supersede and replace the Guidelines on Implementation of Targeted\nFinancial Sanctions Relating to Proliferation Financing for Capital Markets.\n\n1.5 These Guidelines are made in addition to and not in derogation of any other guidelines\nissued by the Securities Commission Malaysia (SC) or any requirements as provided under\nthe securities laws and the AMLA. Therefore, a reporting institution must comply with\nother relevant guidelines and requirements.\n\n1.6 A reporting institution that is jointly regulated by Bank Negara Malaysia (BNM) and the\nSC, is required to comply with these Guidelines and the Anti-Money Laundering,\nCountering Financing of Terrorism, Countering Proliferation Financing and Targeted\nFinancial Sanctions for Financial Institutions (AML/CFT and TFS for FIs) issued by BNM.\nWhere there are differing requirements between the said guidelines, the more stringent\nrequirements shall apply.\n\n1.7 Non-compliance with any of the provisions in these Guidelines will subject the reporting\ninstitution to actions under the AMLA, Capital Markets and Services Act 2007 (CMSA) or\nany other relevant provisions under the laws of which these Guidelines are subject to.\nEnforcement actions can be taken against the reporting institutions including its directors,\nofficers, representatives, employees for any non-compliance with any requirements in these\nGuidelines.",
+      "content_text": "1.2 These Guidelines are drawn up in accordance with the AMLA and the Financial Action Task\nForce (FATF) 40 Recommendations.\n\n1Regulation 3 of Strategic Trade (United Nations Security Council Resolutions) Regulations 2010 (P.U. (A) 481/2010) is set out in\nAppendix G of these Guidelines.\n\n1.3 These Guidelines provide:\n\n(a)requirements and obligations imposed on reporting institutions in preventing and\ncombating money laundering, terrorism financing, proliferation financing and\ntargeted financial sanctions; and\n\n(b)guidance for reporting institutions to comply with the obligations imposed under the\nAMLA and TFS-PF.\n\n1.4 These Guidelines supersede and replace the Guidelines on Implementation of Targeted\nFinancial Sanctions Relating to Proliferation Financing for Capital Markets.\n\n1.5 These Guidelines are made in addition to and not in derogation of any other guidelines\nissued by the Securities Commission Malaysia (SC) or any requirements as provided under\nthe securities laws and the AMLA. Therefore, a reporting institution must comply with\nother relevant guidelines and requirements.\n\n1.6 A reporting institution that is jointly regulated by Bank Negara Malaysia (BNM) and the\nSC, is required to comply with these Guidelines and the Anti-Money Laundering,\nCountering Financing of Terrorism, Countering Proliferation Financing and Targeted\nFinancial Sanctions for Financial Institutions (AML/CFT and TFS for FIs) issued by BNM.\nWhere there are differing requirements between the said guidelines, the more stringent\nrequirements shall apply.\n\n1.7 Non-compliance with any of the provisions in these Guidelines will subject the reporting\ninstitution to actions under the AMLA, Capital Markets and Services Act 2007 (CMSA) or\nany other relevant provisions under the laws of which these Guidelines are subject to.\nEnforcement actions can be taken against the reporting institutions including its directors,\nofficers, representatives, employees for any non-compliance with any requirements in these\nGuidelines.",
+      "token_count": 368,
+      "pages": [
+        6,
+        7
+      ],
+      "section_path": [
+        "PART I: INTRODUCTION AND APPLICABILITY",
+        "1.0 INTRODUCTION"
+      ],
+      "source_element_ids": [
+        "p6-e11",
+        "p6-e12",
+        "p7-e1",
+        "p7-e2",
+        "p7-e3",
+        "p7-e4",
+        "p7-e5",
+        "p7-e6",
+        "p7-e7"
+      ]
+    },
+    {
+      "rank": 3,
+      "chunk_id": "485c4989-c300-45c8-ac06-79a59492bb5c-c0160-41189942a4",
+      "chunk_index": 160,
+      "semantic_type": "clause",
+      "fusion_score": 0.030886196246139225,
+      "dense_rank": 9,
+      "dense_score": 0.6016268730163574,
+      "dense_distance": 0.3983731269836426,
+      "dense_rrf_score": 0.014492753623188406,
+      "lexical_rank": 1,
+      "lexical_score": 1.3000001,
+      "lexical_matched_term_count": 11,
+      "lexical_term_coverage": 1.0,
+      "lexical_rrf_score": 0.01639344262295082,
+      "text": "Section: PART VII: COMBATING TERRORISM FINANCING > 14 IDENTIFICATION AND DESIGNATION\n\n14.5 A reporting institution is required to submit a STR when there is an attempted\ntransaction by any of the listed persons.\n\n14.6 A reporting institution must ascertain potential matches with the UN Consolidated List\nto confirm whether they are true matches to eliminate any “false positives”. The\nreporting institution must make further enquiries from the customer or counterparty\n(where relevant) to assist in determining whether it is a true match.\n\n14.8 Appendix D provides the detailed obligations of a reporting institution for the\nimplementation of the targeted financial sanctions in relation to terrorism financing.",
+      "content_text": "14.5 A reporting institution is required to submit a STR when there is an attempted\ntransaction by any of the listed persons.\n\n14.6 A reporting institution must ascertain potential matches with the UN Consolidated List\nto confirm whether they are true matches to eliminate any “false positives”. The\nreporting institution must make further enquiries from the customer or counterparty\n(where relevant) to assist in determining whether it is a true match.\n\n14.8 Appendix D provides the detailed obligations of a reporting institution for the\nimplementation of the targeted financial sanctions in relation to terrorism financing.",
+      "token_count": 122,
+      "pages": [
+        61
+      ],
+      "section_path": [
+        "PART VII: COMBATING TERRORISM FINANCING",
+        "14 IDENTIFICATION AND DESIGNATION"
+      ],
+      "source_element_ids": [
+        "p61-e4",
+        "p61-e5",
+        "p61-e9"
+      ]
+    },
+    {
+      "rank": 4,
+      "chunk_id": "485c4989-c300-45c8-ac06-79a59492bb5c-c0236-63f196d79f",
+      "chunk_index": 236,
+      "semantic_type": "table",
+      "fusion_score": 0.029827662395050816,
+      "dense_rank": 2,
+      "dense_score": 0.663587212562561,
+      "dense_distance": 0.33641278743743896,
+      "dense_rrf_score": 0.016129032258064516,
+      "lexical_rank": 13,
+      "lexical_score": 1.8000001,
+      "lexical_matched_term_count": 8,
+      "lexical_term_coverage": 0.7272727272727273,
+      "lexical_rrf_score": 0.0136986301369863,
+      "text": "Section: APPENDIX D > The relevant legal instruments\nGroup: Guidance on the Implementation of Targeted Financial Sanction in\nRelation to Terrorism Financing\n\nAMLA Provision | Section 66C | Section 66B\nListing | UNSCR List | Domestic List\nUNSC Resolutions | • UNSCR 1267 (1999) and UNSCR 1989 (2011) (Individuals and entities associated with Al-Qaida) • UNSCR 1988 (2011) and other subsequent resolutions (Individuals and entities associated with Taliban) • UNSCR 2253 (2015) and other subsequent resolutions (Individuals and entities associated with Islamic State in Iraq) | UNSCR 1373(2001)\nSubsidiary Legislation | • Anti-Money Laundering and Anti-Terrorism Financing (Security Council Resolution) (Al-Qaida and Taliban) (Amendment) Order 2011 (P.U.(A) 402/2011); • Anti-Money Laundering and Anti-Terrorism Financing (Security Council Resolution) (Al-Qaida and Taliban) (Amendment) Order 2013 (P.U.(A) 187/2013); • Anti-Money Laundering and Anti-Terrorism Financing (Security Council Resolutions) (Al-Qaida and Taliban) (Amendment) Order 2014 (P.U. (A) 255/2014); and • Other subsidiary legislations made under section 66C of the AMLA which may be issued by the Ministry of Home Affairs from time to time. | • Anti-Money Laundering and Anti-Terrorism Financing (Declaration of Specified Entities and Reporting Requirements) Order 2014 (P.U.(A)93/2014); • Anti-Money Laundering and Anti-Terrorism Financing (Declaration of Specified Entities and Reporting Requirements) (Amendment) Order 2014 (P.U.(A) 301/2014); and • Other subsidiary legislations made under section 66B of the AMLA which may be issued by the Ministry of Home Affairs from time to time.",
+      "content_text": "AMLA Provision | Section 66C | Section 66B\nListing | UNSCR List | Domestic List\nUNSC Resolutions | • UNSCR 1267 (1999) and UNSCR 1989 (2011) (Individuals and entities associated with Al-Qaida) • UNSCR 1988 (2011) and other subsequent resolutions (Individuals and entities associated with Taliban) • UNSCR 2253 (2015) and other subsequent resolutions (Individuals and entities associated with Islamic State in Iraq) | UNSCR 1373(2001)\nSubsidiary Legislation | • Anti-Money Laundering and Anti-Terrorism Financing (Security Council Resolution) (Al-Qaida and Taliban) (Amendment) Order 2011 (P.U.(A) 402/2011); • Anti-Money Laundering and Anti-Terrorism Financing (Security Council Resolution) (Al-Qaida and Taliban) (Amendment) Order 2013 (P.U.(A) 187/2013); • Anti-Money Laundering and Anti-Terrorism Financing (Security Council Resolutions) (Al-Qaida and Taliban) (Amendment) Order 2014 (P.U. (A) 255/2014); and • Other subsidiary legislations made under section 66C of the AMLA which may be issued by the Ministry of Home Affairs from time to time. | • Anti-Money Laundering and Anti-Terrorism Financing (Declaration of Specified Entities and Reporting Requirements) Order 2014 (P.U.(A)93/2014); • Anti-Money Laundering and Anti-Terrorism Financing (Declaration of Specified Entities and Reporting Requirements) (Amendment) Order 2014 (P.U.(A) 301/2014); and • Other subsidiary legislations made under section 66B of the AMLA which may be issued by the Ministry of Home Affairs from time to time.",
+      "token_count": 358,
+      "pages": [
+        86,
+        87
+      ],
+      "section_path": [
+        "APPENDIX D",
+        "The relevant legal instruments"
+      ],
+      "source_element_ids": [
+        "p86-e6",
+        "p87-e1"
+      ]
+    },
+    {
+      "rank": 5,
+      "chunk_id": "485c4989-c300-45c8-ac06-79a59492bb5c-c0006-7370ea1972",
+      "chunk_index": 6,
+      "semantic_type": "clause",
+      "fusion_score": 0.02976190476190476,
+      "dense_rank": 3,
+      "dense_score": 0.6409723376648236,
+      "dense_distance": 0.35902766233517636,
+      "dense_rrf_score": 0.015873015873015872,
+      "lexical_rank": 12,
+      "lexical_score": 2.9,
+      "lexical_matched_term_count": 8,
+      "lexical_term_coverage": 0.7272727272727273,
+      "lexical_rrf_score": 0.013888888888888888,
+      "text": "Section: PART I: INTRODUCTION AND APPLICABILITY > 1.0 INTRODUCTION\nClause: 1.1\n\n1.1 The Guidelines on Prevention of Money Laundering, Countering Financing of Terrorism,\nCountering Proliferation Financing and Targeted Financial Sanctions for Reporting\nInstitutions in the Capital Market (Guidelines) are issued pursuant to the following:\n\n(a) in relation to anti-money laundering and countering financing of terrorism including\nTargeted Financial Sanctions relating to Terrorism Financing (TFS-TF), section\n158(1) and section 160A of the Securities Commission Malaysia Act 1993 (SCMA)\nread together with section 66B, section 66E and section 83 of the Anti-Money\nLaundering, Anti-Terrorism Financing and Proceeds of Unlawful Activities Act 2001\n(AMLA);\n\n(b) in relation to countering proliferation financing including Targeted Financial\nSanctions relating to Proliferation Financing (TFS-PF), section 158(1) and section\n160A of the SCMA read together with the following legislations (collectively referred\nto as “TFS-PF related legislations”) which provides the legal basis for domestic\nimplementation of TFS-PF in relation to United Nations Security Council Resolutions\n(UNSCR) imposed on the designated countries and persons:\n\n(i) Strategic Trade Act 2010 (Act 708) (STA);\n\n(ii) Strategic Trade (United Nations Security Council Resolutions)\nRegulations 2010 (P.U. (A) 481/2010) 1;\n\n(iii) Strategic Trade (Restricted End-Users and Prohibited End-Users) Order\n2010 (P.U. (A) 484/2010);\n\n(iv) Strategic Trade (Delisting of Prohibited End-Users) Regulations 2014\n(P.U. (A) 289/2014); and\n\n(v) Strategic Trade (Unfreezing of Property in relation to Prohibited End-\nUsers) Regulations 2014 (P.U. (A) 290/2014).",
+      "content_text": "1.1 The Guidelines on Prevention of Money Laundering, Countering Financing of Terrorism,\nCountering Proliferation Financing and Targeted Financial Sanctions for Reporting\nInstitutions in the Capital Market (Guidelines) are issued pursuant to the following:\n\n(a) in relation to anti-money laundering and countering financing of terrorism including\nTargeted Financial Sanctions relating to Terrorism Financing (TFS-TF), section\n158(1) and section 160A of the Securities Commission Malaysia Act 1993 (SCMA)\nread together with section 66B, section 66E and section 83 of the Anti-Money\nLaundering, Anti-Terrorism Financing and Proceeds of Unlawful Activities Act 2001\n(AMLA);\n\n(b) in relation to countering proliferation financing including Targeted Financial\nSanctions relating to Proliferation Financing (TFS-PF), section 158(1) and section\n160A of the SCMA read together with the following legislations (collectively referred\nto as “TFS-PF related legislations”) which provides the legal basis for domestic\nimplementation of TFS-PF in relation to United Nations Security Council Resolutions\n(UNSCR) imposed on the designated countries and persons:\n\n(i) Strategic Trade Act 2010 (Act 708) (STA);\n\n(ii) Strategic Trade (United Nations Security Council Resolutions)\nRegulations 2010 (P.U. (A) 481/2010) 1;\n\n(iii) Strategic Trade (Restricted End-Users and Prohibited End-Users) Order\n2010 (P.U. (A) 484/2010);\n\n(iv) Strategic Trade (Delisting of Prohibited End-Users) Regulations 2014\n(P.U. (A) 289/2014); and\n\n(v) Strategic Trade (Unfreezing of Property in relation to Prohibited End-\nUsers) Regulations 2014 (P.U. (A) 290/2014).",
+      "token_count": 357,
+      "pages": [
+        6
+      ],
+      "section_path": [
+        "PART I: INTRODUCTION AND APPLICABILITY",
+        "1.0 INTRODUCTION"
+      ],
+      "source_element_ids": [
+        "p6-e3",
+        "p6-e4",
+        "p6-e5",
+        "p6-e6",
+        "p6-e7",
+        "p6-e8",
+        "p6-e9",
+        "p6-e10"
+      ]
+    },
+    {
+      "rank": 6,
+      "chunk_id": "485c4989-c300-45c8-ac06-79a59492bb5c-c0243-50a6e75db4",
+      "chunk_index": 243,
+      "semantic_type": "table",
+      "fusion_score": 0.029709507042253523,
+      "dense_rank": 4,
+      "dense_score": 0.6405435800552368,
+      "dense_distance": 0.3594564199447632,
+      "dense_rrf_score": 0.015625,
+      "lexical_rank": 11,
+      "lexical_score": 0.90000004,
+      "lexical_matched_term_count": 9,
+      "lexical_term_coverage": 0.8181818181818182,
+      "lexical_rrf_score": 0.014084507042253521,
+      "text": "Section: APPENDIX D > Reporting requirements\nGroup: Guidance on the Implementation of Targeted Financial Sanction in\nRelation to Terrorism Financing\n\nNo. | Authority | Source of obligation\n1. | SC as the relevant Supervisory Authority | • Section 66D(2) of AMLA • Section 66E of AMLA • Paragraph 14.3 (d) of the Guidelines\n2. | FIED, Bank Negara Malaysia [as STR] | • Paragraph 14.3 (c) of the Guidelines\n3. | Inspector-General of Police | • Section 66B(3)(d) of the AMLA",
+      "content_text": "No. | Authority | Source of obligation\n1. | SC as the relevant Supervisory Authority | • Section 66D(2) of AMLA • Section 66E of AMLA • Paragraph 14.3 (d) of the Guidelines\n2. | FIED, Bank Negara Malaysia [as STR] | • Paragraph 14.3 (c) of the Guidelines\n3. | Inspector-General of Police | • Section 66B(3)(d) of the AMLA",
+      "token_count": 109,
+      "pages": [
+        90
+      ],
+      "section_path": [
+        "APPENDIX D",
+        "Reporting requirements"
+      ],
+      "source_element_ids": [
+        "p90-e1"
+      ]
+    },
+    {
+      "rank": 7,
+      "chunk_id": "485c4989-c300-45c8-ac06-79a59492bb5c-c0235-8ccfd3b8c3",
+      "chunk_index": 235,
+      "semantic_type": "clause",
+      "fusion_score": 0.028258706467661692,
+      "dense_rank": 7,
+      "dense_score": 0.6161260604858398,
+      "dense_distance": 0.38387393951416016,
+      "dense_rrf_score": 0.014925373134328358,
+      "lexical_rank": 15,
+      "lexical_score": 0.90000004,
+      "lexical_matched_term_count": 8,
+      "lexical_term_coverage": 0.7272727272727273,
+      "lexical_rrf_score": 0.013333333333333334,
+      "text": "Section: APPENDIX D > The relevant legal instruments\nClause: 1.2\nGroup: Guidance on the Implementation of Targeted Financial Sanction in\nRelation to Terrorism Financing\n\n1.2 In implementing TFS-TF, a reporting institution should refer to the relevant legal\ninstruments as stated below:",
+      "content_text": "1.2 In implementing TFS-TF, a reporting institution should refer to the relevant legal\ninstruments as stated below:",
+      "token_count": 52,
+      "pages": [
+        86
+      ],
+      "section_path": [
+        "APPENDIX D",
+        "The relevant legal instruments"
+      ],
+      "source_element_ids": [
+        "p86-e5"
+      ]
+    },
+    {
+      "rank": 8,
+      "chunk_id": "485c4989-c300-45c8-ac06-79a59492bb5c-c0247-4fb1eeef28",
+      "chunk_index": 247,
+      "semantic_type": "paragraph",
+      "fusion_score": 0.027799227799227798,
+      "dense_rank": 10,
+      "dense_score": 0.5893877989418637,
+      "dense_distance": 0.41061220105813634,
+      "dense_rrf_score": 0.014285714285714285,
+      "lexical_rank": 14,
+      "lexical_score": 1.4,
+      "lexical_matched_term_count": 8,
+      "lexical_term_coverage": 0.7272727272727273,
+      "lexical_rrf_score": 0.013513513513513514,
+      "text": "Section: APPENDIX D > False positives\nGroup: Guidance on the Implementation of Targeted Financial Sanction in\nRelation to Terrorism Financing\n\nThe contact point for the Ministry of Home Affairs in relation to targeted financial sanctions on\nterrorism financing is:",
+      "content_text": "The contact point for the Ministry of Home Affairs in relation to targeted financial sanctions on\nterrorism financing is:",
+      "token_count": 42,
+      "pages": [
+        91
+      ],
+      "section_path": [
+        "APPENDIX D",
+        "False positives"
+      ],
+      "source_element_ids": [
+        "p91-e1"
+      ]
+    },
+    {
+      "rank": 9,
+      "chunk_id": "485c4989-c300-45c8-ac06-79a59492bb5c-c0053-46174d100c",
+      "chunk_index": 53,
+      "semantic_type": "clause",
+      "fusion_score": 0.027526395173453996,
+      "dense_rank": 8,
+      "dense_score": 0.6076366901397705,
+      "dense_distance": 0.3923633098602295,
+      "dense_rrf_score": 0.014705882352941176,
+      "lexical_rank": 18,
+      "lexical_score": 2.2,
+      "lexical_matched_term_count": 7,
+      "lexical_term_coverage": 0.6363636363636364,
+      "lexical_rrf_score": 0.01282051282051282,
+      "text": "Section: PART I: INTRODUCTION AND APPLICABILITY > 5 A. GENERAL DESCRIPTION OF PROLIFERATION FINANCING\n\n5 A.1 In response to growing concerns over the proliferation of nuclear, biological and\nchemical weapons and their means of delivery which continue to pose a significant\nthreat to international peace and security, the United Nations Security Council (UNSC)\nhas intensified efforts to strengthen its global sanctions regime in order to prevent,\nsuppress and disrupt proliferation of weapons of mass destruction and its financing.\n\n5 A.2 As is the case with other UNSC sanctions programmes, targeted financial sanctions on\ncountries and specifically identified individuals and entities (i.e. designated persons)\nis the primary aspect of its overall sanctions regime to effectively disrupt financial\nflows across known proliferation networks.\n\n5 A.3 Recommendation 7 of the Financial Action Task Force (FATF) Standards requires\ncountries to implement TFS-PF made under UNSCRs. Under this standard, countries\nare required to implement targeted financial sanctions without delay to comply with\nUNSCRs relating to the prevention, suppression and disruption of the proliferation of\nweapons of mass destruction and its financing.\n\n5 A.4 Proliferation financing refers to the act of raising, moving, or making available funds,\nother assets or other economic resources, or financing, in whole or in part, to persons\nor entities for purposes of weapons of mass destruction (WMD) proliferation, including\nthe proliferation of their means of delivery or related materials (including both dual-\nuse technologies and dual-use goods for non-legitimate purposes).\n\n5 A.5 TFS-PF are applicable to persons designated by the UNSC or the relevant committees\nset up by the UNSC. Designation or listing criteria are:\n\n(a) Person engaging in or providing support for, including through illicit means,\nproliferation-sensitive activities and programmes;\n\n(b) Acting on behalf of or at the direction of designated person;\n\n(c) Owned or controlled by designated person; and\n\n(d) Person assisting designated person in evading sanctions, or violating UNSCR\nprovisions.",
+      "content_text": "5 A.1 In response to growing concerns over the proliferation of nuclear, biological and\nchemical weapons and their means of delivery which continue to pose a significant\nthreat to international peace and security, the United Nations Security Council (UNSC)\nhas intensified efforts to strengthen its global sanctions regime in order to prevent,\nsuppress and disrupt proliferation of weapons of mass destruction and its financing.\n\n5 A.2 As is the case with other UNSC sanctions programmes, targeted financial sanctions on\ncountries and specifically identified individuals and entities (i.e. designated persons)\nis the primary aspect of its overall sanctions regime to effectively disrupt financial\nflows across known proliferation networks.\n\n5 A.3 Recommendation 7 of the Financial Action Task Force (FATF) Standards requires\ncountries to implement TFS-PF made under UNSCRs. Under this standard, countries\nare required to implement targeted financial sanctions without delay to comply with\nUNSCRs relating to the prevention, suppression and disruption of the proliferation of\nweapons of mass destruction and its financing.\n\n5 A.4 Proliferation financing refers to the act of raising, moving, or making available funds,\nother assets or other economic resources, or financing, in whole or in part, to persons\nor entities for purposes of weapons of mass destruction (WMD) proliferation, including\nthe proliferation of their means of delivery or related materials (including both dual-\nuse technologies and dual-use goods for non-legitimate purposes).\n\n5 A.5 TFS-PF are applicable to persons designated by the UNSC or the relevant committees\nset up by the UNSC. Designation or listing criteria are:\n\n(a) Person engaging in or providing support for, including through illicit means,\nproliferation-sensitive activities and programmes;\n\n(b) Acting on behalf of or at the direction of designated person;\n\n(c) Owned or controlled by designated person; and\n\n(d) Person assisting designated person in evading sanctions, or violating UNSCR\nprovisions.",
+      "token_count": 384,
+      "pages": [
+        18,
+        19
+      ],
+      "section_path": [
+        "PART I: INTRODUCTION AND APPLICABILITY",
+        "5 A. GENERAL DESCRIPTION OF PROLIFERATION FINANCING"
+      ],
+      "source_element_ids": [
+        "p18-e9",
+        "p18-e10",
+        "p18-e11",
+        "p18-e12",
+        "p19-e1",
+        "p19-e2",
+        "p19-e3",
+        "p19-e4",
+        "p19-e5"
+      ]
+    },
+    {
+      "rank": 10,
+      "chunk_id": "485c4989-c300-45c8-ac06-79a59492bb5c-c0245-2a27d3f444",
+      "chunk_index": 245,
+      "semantic_type": "table",
+      "fusion_score": 0.027242401779095628,
+      "dense_rank": 11,
+      "dense_score": 0.5864600117939717,
+      "dense_distance": 0.41353998820602833,
+      "dense_rrf_score": 0.014084507042253521,
+      "lexical_rank": 16,
+      "lexical_score": 0.8,
+      "lexical_matched_term_count": 8,
+      "lexical_term_coverage": 0.7272727272727273,
+      "lexical_rrf_score": 0.013157894736842105,
+      "text": "Section: APPENDIX D > Reporting requirements\nGroup: Guidance on the Implementation of Targeted Financial Sanction in\nRelation to Terrorism Financing\n\nList | UNSCR List | Domestic List\nReporting intervals | Every 31 January | Every 31 May and\n | and 31 July | 30 November",
+      "content_text": "List | UNSCR List | Domestic List\nReporting intervals | Every 31 January | Every 31 May and\n | and 31 July | 30 November",
+      "token_count": 47,
+      "pages": [
+        90
+      ],
+      "section_path": [
+        "APPENDIX D",
+        "Reporting requirements"
+      ],
+      "source_element_ids": [
+        "p90-e6"
+      ]
+    }
+  ]
+}

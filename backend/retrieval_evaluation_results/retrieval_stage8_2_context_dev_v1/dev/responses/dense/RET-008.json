@@ -1,0 +1,260 @@
+{
+  "document_id": "485c4989-c300-45c8-ac06-79a59492bb5c",
+  "query": "What responsibilities must the compliance officer perform under paragraph 6D.4?",
+  "embedding_model": "BAAI/bge-m3",
+  "requested_device": "auto",
+  "resolved_device": "cuda",
+  "top_k": 10,
+  "embedded_chunk_count": 284,
+  "total_chunk_count": 284,
+  "hits": [
+    {
+      "rank": 1,
+      "chunk_id": "485c4989-c300-45c8-ac06-79a59492bb5c-c0063-e2642bd95c",
+      "chunk_index": 63,
+      "semantic_type": "clause",
+      "score": 0.7139542102813721,
+      "distance": 0.28604578971862793,
+      "text": "Section: PART IA: AML/CFT/CPF INTERNAL PROGRAMMES AND\nOBLIGATIONS OF THE BOARD OF DIRECTORS, SENIOR\nMANAGEMENT AND COMPLIANCE OFFICER > 6 D. COMPLIANCE OFFICER\nClause: 6D.4\n\n6 D.4 The roles and responsibilities of a compliance officer include to ensure the following:\n\n(a)The reporting institution’s compliance with the AML/CFT/CPF requirements;\n\n(b)Effective implementation of appropriate AML/CFT/CPF policies and procedures,\nincluding CDD, ongoing due diligence, reporting of suspicious transactions,\nrecord keeping, combating the financing of terrorism and compliance and\ntraining programmes;\n\n(c)AML/CFT/CPF policies and procedures are regularly assessed and kept up-to-date\nto ensure that they are effective and sufficient to address any changes in\nML/TF/PF trends;\n\n(d)Timely reporting of the risk-based approach measures to the board of directors;\n\n(e)All employees are aware of the reporting institution’s AML/CFT/CPF measures,\nincluding policies, control mechanism and reporting channels;\n\n(f)Internally generated suspicious transactions reports are appropriately evaluated\nand recorded before submission to the FIED;\n\n(g)The channel of communication for reporting suspicious transactions is secured and\nthat information is kept confidential; and\n\n(h)The ML/TF/PF risks associated with new products and services or arising from the\nreporting institution’s operational changes, including the introduction of new\ntechnology and processes, are identified and are brought to the attention of the\nboard of directors.",
+      "content_text": "6 D.4 The roles and responsibilities of a compliance officer include to ensure the following:\n\n(a)The reporting institution’s compliance with the AML/CFT/CPF requirements;\n\n(b)Effective implementation of appropriate AML/CFT/CPF policies and procedures,\nincluding CDD, ongoing due diligence, reporting of suspicious transactions,\nrecord keeping, combating the financing of terrorism and compliance and\ntraining programmes;\n\n(c)AML/CFT/CPF policies and procedures are regularly assessed and kept up-to-date\nto ensure that they are effective and sufficient to address any changes in\nML/TF/PF trends;\n\n(d)Timely reporting of the risk-based approach measures to the board of directors;\n\n(e)All employees are aware of the reporting institution’s AML/CFT/CPF measures,\nincluding policies, control mechanism and reporting channels;\n\n(f)Internally generated suspicious transactions reports are appropriately evaluated\nand recorded before submission to the FIED;\n\n(g)The channel of communication for reporting suspicious transactions is secured and\nthat information is kept confidential; and\n\n(h)The ML/TF/PF risks associated with new products and services or arising from the\nreporting institution’s operational changes, including the introduction of new\ntechnology and processes, are identified and are brought to the attention of the\nboard of directors.",
+      "token_count": 292,
+      "pages": [
+        24
+      ],
+      "section_path": [
+        "PART IA: AML/CFT/CPF INTERNAL PROGRAMMES AND\nOBLIGATIONS OF THE BOARD OF DIRECTORS, SENIOR\nMANAGEMENT AND COMPLIANCE OFFICER",
+        "6 D. COMPLIANCE OFFICER"
+      ],
+      "source_element_ids": [
+        "p24-e5",
+        "p24-e6",
+        "p24-e7",
+        "p24-e8",
+        "p24-e9-split-1",
+        "p24-e9-split-2",
+        "p24-e10",
+        "p24-e11",
+        "p24-e12"
+      ]
+    },
+    {
+      "rank": 2,
+      "chunk_id": "485c4989-c300-45c8-ac06-79a59492bb5c-c0062-fece9a1a38",
+      "chunk_index": 62,
+      "semantic_type": "clause",
+      "score": 0.6960471453638598,
+      "distance": 0.3039528546361402,
+      "text": "Section: PART IA: AML/CFT/CPF INTERNAL PROGRAMMES AND\nOBLIGATIONS OF THE BOARD OF DIRECTORS, SENIOR\nMANAGEMENT AND COMPLIANCE OFFICER > 6 D. COMPLIANCE OFFICER\n\n6 D.1 A reporting institution shall designate compliance officers at management level in each\nof its branches, who will be responsible for the compliance of the AML/CFT/CPF internal\nprogrammes, policies and procedures.\n\n6 D.2 The compliance officer appointed by a reporting institution must have necessary\nknowledge, expertise and the required authority to discharge his responsibilities\neffectively, including knowledge on the relevant laws and regulations and the latest\nAML/CFT/CPF developments. A reporting institution should encourage its compliance\nofficer to pursue professional qualifications in AML/CFT/CPF to enable him to carry out\nhis obligations effectively.\n\n6 D.3 A reporting institution must also ensure that the roles and responsibilities of the\ncompliance officer are clearly defined and documented.",
+      "content_text": "6 D.1 A reporting institution shall designate compliance officers at management level in each\nof its branches, who will be responsible for the compliance of the AML/CFT/CPF internal\nprogrammes, policies and procedures.\n\n6 D.2 The compliance officer appointed by a reporting institution must have necessary\nknowledge, expertise and the required authority to discharge his responsibilities\neffectively, including knowledge on the relevant laws and regulations and the latest\nAML/CFT/CPF developments. A reporting institution should encourage its compliance\nofficer to pursue professional qualifications in AML/CFT/CPF to enable him to carry out\nhis obligations effectively.\n\n6 D.3 A reporting institution must also ensure that the roles and responsibilities of the\ncompliance officer are clearly defined and documented.",
+      "token_count": 171,
+      "pages": [
+        24
+      ],
+      "section_path": [
+        "PART IA: AML/CFT/CPF INTERNAL PROGRAMMES AND\nOBLIGATIONS OF THE BOARD OF DIRECTORS, SENIOR\nMANAGEMENT AND COMPLIANCE OFFICER",
+        "6 D. COMPLIANCE OFFICER"
+      ],
+      "source_element_ids": [
+        "p24-e2",
+        "p24-e3",
+        "p24-e4"
+      ]
+    },
+    {
+      "rank": 3,
+      "chunk_id": "485c4989-c300-45c8-ac06-79a59492bb5c-c0146-f1daf1e33c",
+      "chunk_index": 146,
+      "semantic_type": "clause",
+      "score": 0.5736523270606995,
+      "distance": 0.42634767293930054,
+      "text": "Section: PART IV: RETENTION OF RECORDS > 10 RECORD KEEPING\nClause: 10.4\n\n10.4 A reporting institution must retain, maintain and update the relevant records\n(including CDD records and all relevant transaction records) in such a way that–\n\n(a)the relevant law enforcement agencies and internal and external auditors of the\nreporting institution will be able to reliably judge the reporting institution’s\ntransactions and its compliance with the AMLA and TFS-PF legislations;\n\n(b)it is sufficient to permit reconstruction of individual transactions so as to provide,\nif necessary, evidence for prosecution of criminal activity; and\n\n(c)the reporting institution can satisfy within a reasonable time any enquiry or order\nfrom the relevant law enforcement agencies as to the disclosure of such relevant\nrecord.",
+      "content_text": "10.4 A reporting institution must retain, maintain and update the relevant records\n(including CDD records and all relevant transaction records) in such a way that–\n\n(a)the relevant law enforcement agencies and internal and external auditors of the\nreporting institution will be able to reliably judge the reporting institution’s\ntransactions and its compliance with the AMLA and TFS-PF legislations;\n\n(b)it is sufficient to permit reconstruction of individual transactions so as to provide,\nif necessary, evidence for prosecution of criminal activity; and\n\n(c)the reporting institution can satisfy within a reasonable time any enquiry or order\nfrom the relevant law enforcement agencies as to the disclosure of such relevant\nrecord.",
+      "token_count": 148,
+      "pages": [
+        54
+      ],
+      "section_path": [
+        "PART IV: RETENTION OF RECORDS",
+        "10 RECORD KEEPING"
+      ],
+      "source_element_ids": [
+        "p54-e1",
+        "p54-e2",
+        "p54-e3",
+        "p54-e4"
+      ]
+    },
+    {
+      "rank": 4,
+      "chunk_id": "485c4989-c300-45c8-ac06-79a59492bb5c-c0058-cd24b0151c",
+      "chunk_index": 58,
+      "semantic_type": "list_item",
+      "score": 0.5652028322219849,
+      "distance": 0.43479716777801514,
+      "text": "Section: PART IA: AML/CFT/CPF INTERNAL PROGRAMMES AND\nOBLIGATIONS OF THE BOARD OF DIRECTORS, SENIOR\nMANAGEMENT AND COMPLIANCE OFFICER > 6 B. BOARD OF DIRECTORS\n\n(b)provide oversight and accord adequate priority and dedicated resources to\nmanage ML/TF/PF risks faced by the reporting institution including defining the\nlines of authority and responsibility for implementing the AML/CFT/CPF\nmeasures;\n\n(c)approve policies and procedures regarding AML/CFT/CPF measures within the\nreporting institution;\n\n(d)ensure that the policies and procedures are implemented effectively by the\nsenior management;\n\n(e)monitor the effectiveness of the implementation of the policies and procedures;\n\n(f)ensure that the policies and procedures are periodically reviewed and improved\nwhere required in line with the changes and developments in the reporting\ninstitution’s products and services, technology as well as trends in ML/TF/PF;\n\n(g)ensure effective independent audit function in assessing and evaluating the\nrobustness and adequacy of overall AML/CFT/CPF measures; and\n\n(h)ensure that the board keeps itself updated and is aware of new or emerging\ntrends of ML/TF/PF including the relevant UNSCRs and any order issued\npursuant to section 66B of the AMLA and understand the potential impact of\nsuch developments to the reporting institution.",
+      "content_text": "(b)provide oversight and accord adequate priority and dedicated resources to\nmanage ML/TF/PF risks faced by the reporting institution including defining the\nlines of authority and responsibility for implementing the AML/CFT/CPF\nmeasures;\n\n(c)approve policies and procedures regarding AML/CFT/CPF measures within the\nreporting institution;\n\n(d)ensure that the policies and procedures are implemented effectively by the\nsenior management;\n\n(e)monitor the effectiveness of the implementation of the policies and procedures;\n\n(f)ensure that the policies and procedures are periodically reviewed and improved\nwhere required in line with the changes and developments in the reporting\ninstitution’s products and services, technology as well as trends in ML/TF/PF;\n\n(g)ensure effective independent audit function in assessing and evaluating the\nrobustness and adequacy of overall AML/CFT/CPF measures; and\n\n(h)ensure that the board keeps itself updated and is aware of new or emerging\ntrends of ML/TF/PF including the relevant UNSCRs and any order issued\npursuant to section 66B of the AMLA and understand the potential impact of\nsuch developments to the reporting institution.",
+      "token_count": 249,
+      "pages": [
+        22
+      ],
+      "section_path": [
+        "PART IA: AML/CFT/CPF INTERNAL PROGRAMMES AND\nOBLIGATIONS OF THE BOARD OF DIRECTORS, SENIOR\nMANAGEMENT AND COMPLIANCE OFFICER",
+        "6 B. BOARD OF DIRECTORS"
+      ],
+      "source_element_ids": [
+        "p22-e1",
+        "p22-e2",
+        "p22-e3",
+        "p22-e4",
+        "p22-e5",
+        "p22-e6",
+        "p22-e7"
+      ]
+    },
+    {
+      "rank": 5,
+      "chunk_id": "485c4989-c300-45c8-ac06-79a59492bb5c-c0059-bb2e3b039b",
+      "chunk_index": 59,
+      "semantic_type": "paragraph",
+      "score": 0.5642257928848267,
+      "distance": 0.43577420711517334,
+      "text": "Section: PART IA: AML/CFT/CPF INTERNAL PROGRAMMES AND\nOBLIGATIONS OF THE BOARD OF DIRECTORS, SENIOR\nMANAGEMENT AND COMPLIANCE OFFICER > 6 B. BOARD OF DIRECTORS\nGroup: Guidance for paragraph 6B.2(c):\n\nAML/CFT/CPF measures include but are not limited to those required for risk\nassessment, mitigation and profiling, customer due diligence (CDD), record\nkeeping, enhanced CDD and ongoing due diligence, suspicious transaction\nreport and targeted financial sanctions.",
+      "content_text": "AML/CFT/CPF measures include but are not limited to those required for risk\nassessment, mitigation and profiling, customer due diligence (CDD), record\nkeeping, enhanced CDD and ongoing due diligence, suspicious transaction\nreport and targeted financial sanctions.",
+      "token_count": 91,
+      "pages": [
+        22
+      ],
+      "section_path": [
+        "PART IA: AML/CFT/CPF INTERNAL PROGRAMMES AND\nOBLIGATIONS OF THE BOARD OF DIRECTORS, SENIOR\nMANAGEMENT AND COMPLIANCE OFFICER",
+        "6 B. BOARD OF DIRECTORS"
+      ],
+      "source_element_ids": [
+        "p22-e9"
+      ]
+    },
+    {
+      "rank": 6,
+      "chunk_id": "485c4989-c300-45c8-ac06-79a59492bb5c-c0118-f54ab82946",
+      "chunk_index": 118,
+      "semantic_type": "clause",
+      "score": 0.5626829005886863,
+      "distance": 0.4373170994113137,
+      "text": "Section: PART III: CUSTOMER DUE DILIGENCE > 8. CUSTOMER DUE DILIGENCE (CDD) > 8.6 Reliance on third-party institutions to conduct CDD\nClause: 8.6.4\n\n8.6.4 The relationship between a reporting institution and the third-party institution relied\nupon by the reporting institution to conduct the CDD, shall be governed by an\narrangement that clearly specifies the rights, responsibilities and expectations of all\nparties. In placing the reliance on the third-party institution, the reporting institution at\nthe minimum:\n\n(a)Must be able to obtain immediately the necessary information concerning the CDD\nin paragraph 8.1 above;\n\n(b)Must be satisfied that the third-party institution:\n\n(i)has adequate CDD processes;\n\n(ii)has measures in place for record keeping requirements;\n\n(iii)can provide the standard CDD or enhanced CDD information and\nprovide copies of the relevant documentation immediately upon\nrequest;\n\n(iv)is properly regulated and supervised by the respective authorities; and\n\n(v)complies with the provisions of any applicable laws.",
+      "content_text": "8.6.4 The relationship between a reporting institution and the third-party institution relied\nupon by the reporting institution to conduct the CDD, shall be governed by an\narrangement that clearly specifies the rights, responsibilities and expectations of all\nparties. In placing the reliance on the third-party institution, the reporting institution at\nthe minimum:\n\n(a)Must be able to obtain immediately the necessary information concerning the CDD\nin paragraph 8.1 above;\n\n(b)Must be satisfied that the third-party institution:\n\n(i)has adequate CDD processes;\n\n(ii)has measures in place for record keeping requirements;\n\n(iii)can provide the standard CDD or enhanced CDD information and\nprovide copies of the relevant documentation immediately upon\nrequest;\n\n(iv)is properly regulated and supervised by the respective authorities; and\n\n(v)complies with the provisions of any applicable laws.",
+      "token_count": 206,
+      "pages": [
+        44
+      ],
+      "section_path": [
+        "PART III: CUSTOMER DUE DILIGENCE",
+        "8. CUSTOMER DUE DILIGENCE (CDD)",
+        "8.6 Reliance on third-party institutions to conduct CDD"
+      ],
+      "source_element_ids": [
+        "p44-e5",
+        "p44-e6",
+        "p44-e7",
+        "p44-e8",
+        "p44-e9",
+        "p44-e10",
+        "p44-e11",
+        "p44-e12"
+      ]
+    },
+    {
+      "rank": 7,
+      "chunk_id": "485c4989-c300-45c8-ac06-79a59492bb5c-c0120-781c9e318c",
+      "chunk_index": 120,
+      "semantic_type": "clause",
+      "score": 0.5617154836654663,
+      "distance": 0.4382845163345337,
+      "text": "Section: PART III: CUSTOMER DUE DILIGENCE > 8. CUSTOMER DUE DILIGENCE (CDD) > 8.6 Reliance on third-party institutions to conduct CDD\nClause: 8.6.5\n\n8.6.5 A reporting institution must obtain an attestation from the third-party institution to\nsatisfy itself that the requirements in paragraph 8.6.4 have been met.",
+      "content_text": "8.6.5 A reporting institution must obtain an attestation from the third-party institution to\nsatisfy itself that the requirements in paragraph 8.6.4 have been met.",
+      "token_count": 72,
+      "pages": [
+        45
+      ],
+      "section_path": [
+        "PART III: CUSTOMER DUE DILIGENCE",
+        "8. CUSTOMER DUE DILIGENCE (CDD)",
+        "8.6 Reliance on third-party institutions to conduct CDD"
+      ],
+      "source_element_ids": [
+        "p45-e3"
+      ]
+    },
+    {
+      "rank": 8,
+      "chunk_id": "485c4989-c300-45c8-ac06-79a59492bb5c-c0112-8c652d9f62",
+      "chunk_index": 112,
+      "semantic_type": "clause",
+      "score": 0.5603582525039771,
+      "distance": 0.4396417474960229,
+      "text": "Section: PART III: CUSTOMER DUE DILIGENCE > 8. CUSTOMER DUE DILIGENCE (CDD) > 8.4 Politically exposed persons (PEPs)\n\n8.4.1 The requirements set out in paragraph 8.4 herein are also applicable to family\nmembers or close associates of PEPs. Appendix B of these Guidelines provides\nmeasures to be adopted by a reporting institution in dealing with the family members\nor close associates of PEPs.\n\n8.4.2 A reporting institution is required to have in place a risk management system to\ndetermine whether a customer or a beneficial owner is a foreign PEP.\n\n8.4.3 Upon determining that a customer or a beneficial owner is a foreign PEP, the\nrequirement to conduct enhanced CDD measures under paragraph 8.3 is applicable\nand the reporting institution is also required to conduct enhanced ongoing due\ndiligence.\n\n8.4.4 A reporting institution is required to have in place reasonable measures to determine\nwhether a customer or the beneficial owner is a domestic PEP or person entrusted\nwith a prominent function by an international organisation.\n\n8.4.5 The reporting institution is required to assess the level of ML/TF/PF risks posed by\nthe business relationship with the domestic PEP or person entrusted with a prominent\nfunction by an international organisation based on sufficient and appropriate\ninformation gathered through publicly available information or other reasonable\nmeans. The assessment of the ML/TF/PF risks also must take into account the profile\nof the customer under paragraph 7.5.3 of these Guidelines.\n\n8.4.6 For a higher-risk domestic PEP or higher-risk person entrusted with a prominent\nfunction by an international organisation, the requirements of enhanced CDD\nmeasures are as set out in paragraph 8.3.\n\n8.4.7 For a domestic PEP or person entrusted with a prominent function by an international\norganisation that is assessed as low risk, the reporting institution may apply the standard\nCDD measures.",
+      "content_text": "8.4.1 The requirements set out in paragraph 8.4 herein are also applicable to family\nmembers or close associates of PEPs. Appendix B of these Guidelines provides\nmeasures to be adopted by a reporting institution in dealing with the family members\nor close associates of PEPs.\n\n8.4.2 A reporting institution is required to have in place a risk management system to\ndetermine whether a customer or a beneficial owner is a foreign PEP.\n\n8.4.3 Upon determining that a customer or a beneficial owner is a foreign PEP, the\nrequirement to conduct enhanced CDD measures under paragraph 8.3 is applicable\nand the reporting institution is also required to conduct enhanced ongoing due\ndiligence.\n\n8.4.4 A reporting institution is required to have in place reasonable measures to determine\nwhether a customer or the beneficial owner is a domestic PEP or person entrusted\nwith a prominent function by an international organisation.\n\n8.4.5 The reporting institution is required to assess the level of ML/TF/PF risks posed by\nthe business relationship with the domestic PEP or person entrusted with a prominent\nfunction by an international organisation based on sufficient and appropriate\ninformation gathered through publicly available information or other reasonable\nmeans. The assessment of the ML/TF/PF risks also must take into account the profile\nof the customer under paragraph 7.5.3 of these Guidelines.\n\n8.4.6 For a higher-risk domestic PEP or higher-risk person entrusted with a prominent\nfunction by an international organisation, the requirements of enhanced CDD\nmeasures are as set out in paragraph 8.3.\n\n8.4.7 For a domestic PEP or person entrusted with a prominent function by an international\norganisation that is assessed as low risk, the reporting institution may apply the standard\nCDD measures.",
+      "token_count": 368,
+      "pages": [
+        42
+      ],
+      "section_path": [
+        "PART III: CUSTOMER DUE DILIGENCE",
+        "8. CUSTOMER DUE DILIGENCE (CDD)",
+        "8.4 Politically exposed persons (PEPs)"
+      ],
+      "source_element_ids": [
+        "p42-e1",
+        "p42-e2",
+        "p42-e3",
+        "p42-e4",
+        "p42-e5",
+        "p42-e6",
+        "p42-e7"
+      ]
+    },
+    {
+      "rank": 9,
+      "chunk_id": "485c4989-c300-45c8-ac06-79a59492bb5c-c0065-d4d36f22c0",
+      "chunk_index": 65,
+      "semantic_type": "clause",
+      "score": 0.5597174501250665,
+      "distance": 0.44028254987493354,
+      "text": "Section: PART IA: AML/CFT/CPF INTERNAL PROGRAMMES AND\nOBLIGATIONS OF THE BOARD OF DIRECTORS, SENIOR\nMANAGEMENT AND COMPLIANCE OFFICER > 6 E.   GROUP-WIDE AML/CFT/CPF PROGRAMMES\nClause: 6E.2\n\n6 E.2 Where applicable, a reporting institution is required to implement appropriate group-\nwide AML/CFT/CPF programmes appropriate to its branches and majority-owned\nsubsidiaries. Such AML/CFT/CPF programmes must include–\n\n(a)policies and procedures for sharing information required for the purposes of\nCDD and ML/TF/PF risk management;\n\n(b)the provision, at group-level compliance, audit, and/or AML/CFT/CPF functions,\nof customer, account, and transaction information from branches and\nsubsidiaries when necessary for AML/CFT/CPF purposes; and\n\n(c)adequate safeguards on the confidentiality and use of information exchanged.",
+      "content_text": "6 E.2 Where applicable, a reporting institution is required to implement appropriate group-\nwide AML/CFT/CPF programmes appropriate to its branches and majority-owned\nsubsidiaries. Such AML/CFT/CPF programmes must include–\n\n(a)policies and procedures for sharing information required for the purposes of\nCDD and ML/TF/PF risk management;\n\n(b)the provision, at group-level compliance, audit, and/or AML/CFT/CPF functions,\nof customer, account, and transaction information from branches and\nsubsidiaries when necessary for AML/CFT/CPF purposes; and\n\n(c)adequate safeguards on the confidentiality and use of information exchanged.",
+      "token_count": 172,
+      "pages": [
+        25
+      ],
+      "section_path": [
+        "PART IA: AML/CFT/CPF INTERNAL PROGRAMMES AND\nOBLIGATIONS OF THE BOARD OF DIRECTORS, SENIOR\nMANAGEMENT AND COMPLIANCE OFFICER",
+        "6 E.   GROUP-WIDE AML/CFT/CPF PROGRAMMES"
+      ],
+      "source_element_ids": [
+        "p25-e3",
+        "p25-e4",
+        "p25-e5",
+        "p25-e6"
+      ]
+    },
+    {
+      "rank": 10,
+      "chunk_id": "485c4989-c300-45c8-ac06-79a59492bb5c-c0150-58da50754b",
+      "chunk_index": 150,
+      "semantic_type": "clause",
+      "score": 0.5584760308265686,
+      "distance": 0.4415239691734314,
+      "text": "Section: PART V: SUSPICIOUS TRANSACTIONS > 11 REPORTING OF SUSPICIOUS TRANSACTIONS\nClause: 11.16\n\n11.16 The compliance officer must act as a central reference point within the organisation\nfor all AML/CFT/CPF matters, including–",
+      "content_text": "11.16 The compliance officer must act as a central reference point within the organisation\nfor all AML/CFT/CPF matters, including–",
+      "token_count": 45,
+      "pages": [
+        56
+      ],
+      "section_path": [
+        "PART V: SUSPICIOUS TRANSACTIONS",
+        "11 REPORTING OF SUSPICIOUS TRANSACTIONS"
+      ],
+      "source_element_ids": [
+        "p56-e11"
+      ]
+    }
+  ]
+}

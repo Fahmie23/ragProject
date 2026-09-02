@@ -1,0 +1,242 @@
+{
+  "document_id": "485c4989-c300-45c8-ac06-79a59492bb5c",
+  "question": "How must a reporting institution respond to an AMLA enforcement order requesting information or documents, and what internal capability must it maintain?",
+  "status": "answered",
+  "answer": "A reporting institution must produce the information or document requested by a relevant law enforcement agency under an AMLA enforcement order within a reasonable time frame that has been agreed upon between the investigating officer and the reporting institution. The reporting institution must establish and maintain policies, procedures and systems to ensure no undue delay in responding to enforcement orders.",
+  "cited_answer": "A reporting institution must produce the information or document requested by a relevant law enforcement agency under an AMLA enforcement order within a reasonable time frame that has been agreed upon between the investigating officer and the reporting institution. [1] The reporting institution must establish and maintain policies, procedures and systems to ensure no undue delay in responding to enforcement orders. [1]",
+  "claims": [
+    {
+      "claim_id": "C1",
+      "text": "A reporting institution must produce the information or document requested by a relevant law enforcement agency under an AMLA enforcement order within a reasonable time frame that has been agreed upon between the investigating officer and the reporting institution.",
+      "evidence_ids": [
+        "E1"
+      ],
+      "citation_ids": [
+        "CIT-E1"
+      ]
+    },
+    {
+      "claim_id": "C2",
+      "text": "The reporting institution must establish and maintain policies, procedures and systems to ensure no undue delay in responding to enforcement orders.",
+      "evidence_ids": [
+        "E1"
+      ],
+      "citation_ids": [
+        "CIT-E1"
+      ]
+    }
+  ],
+  "used_evidence_ids": [
+    "E1"
+  ],
+  "missing_information": [],
+  "evidence": [
+    {
+      "evidence_id": "E1",
+      "chunk_id": "485c4989-c300-45c8-ac06-79a59492bb5c-c0155-79c20a622f",
+      "chunk_index": 155,
+      "semantic_type": "clause",
+      "source_rank": 1,
+      "ranked_seed_rank": 1,
+      "reasons": [
+        "ranked_seed"
+      ],
+      "pages": [
+        59
+      ],
+      "section_path": [
+        "PART VI: ENFORCEMENT ORDERS",
+        "13 COMPLIANCE WITH ENFORCEMENT ORDERS"
+      ],
+      "source_element_ids": [
+        "p59-e3",
+        "p59-e4"
+      ],
+      "content_text": "13.1 A reporting institution must produce information or document requested by a relevant\nlaw enforcement agency, pursuant to any investigation order under the AMLA served\non the reporting institution (“enforcement orders”), within a reasonable time frame that\nhas been agreed upon between the investigating officer of the law enforcement agency\nand the reporting institution.\n\n13.2 A reporting institution must establish policies and procedures and systems to ensure no\nundue delay in responding to the enforcement orders."
+    },
+    {
+      "evidence_id": "E2",
+      "chunk_id": "485c4989-c300-45c8-ac06-79a59492bb5c-c0055-88bd4ccfdd",
+      "chunk_index": 55,
+      "semantic_type": "clause",
+      "source_rank": 2,
+      "ranked_seed_rank": 2,
+      "reasons": [
+        "ranked_seed"
+      ],
+      "pages": [
+        19,
+        20
+      ],
+      "section_path": [
+        "PART I: INTRODUCTION AND APPLICABILITY",
+        "6. GENERAL PRINCIPLES AND POLICIES TO COMBAT MONEY\nLAUNDERING, TERRORISM FINANCING AND PROLIFERATION\nFINANCING"
+      ],
+      "source_element_ids": [
+        "p19-e8",
+        "p19-e9",
+        "p19-e10",
+        "p19-e11",
+        "p19-e12",
+        "p20-e1",
+        "p20-e2"
+      ],
+      "content_text": "6.2 In combating ML/TF/PF, a reporting institution must ensure the following:\n\n(a)Compliance with laws: A reporting institution must ensure that laws and\nregulations are adhered to, that business is conducted in conformity with high\nethical standards, and that service is not provided where there is good reason\nto suppose that transactions are associated with ML/TF/PF activities.\n\n(b)Co-operation with law enforcement agencies: A reporting institution\nmust co-operate fully with relevant law enforcement agencies. This includes\ntaking appropriate measures such as timely disclosure of information by the\nreporting institution to the FIED and the relevant law enforcement agencies.\n\n(c)Establishing internal controls: A reporting institution must issue and adopt\npolicies and procedures which are consistent with the principles set out under\nthe AMLA, TFS-PF related legislations and these Guidelines. A reporting\ninstitution must also ensure ongoing training programmes are conducted to\nkeep its board of directors, senior management and employees abreast on\nmatters under the AMLA and these Guidelines.\n\n(d)Risk-based approach: A reporting institution must ensure that the depth\nand breadth of its policies and procedures to identify, assess, monitor, manage\n\nand mitigate ML/TF/PF risks commensurate with the nature, scale and\ncomplexity of its activities.\n\n(e)Customer Due Diligence: A reporting institution must have an effective\nprocedure to identify its customers and to obtain satisfactory evidence to\nverify its customers’ identity."
+    },
+    {
+      "evidence_id": "E3",
+      "chunk_id": "485c4989-c300-45c8-ac06-79a59492bb5c-c0146-f1daf1e33c",
+      "chunk_index": 146,
+      "semantic_type": "clause",
+      "source_rank": 3,
+      "ranked_seed_rank": 3,
+      "reasons": [
+        "ranked_seed"
+      ],
+      "pages": [
+        54
+      ],
+      "section_path": [
+        "PART IV: RETENTION OF RECORDS",
+        "10 RECORD KEEPING"
+      ],
+      "source_element_ids": [
+        "p54-e1",
+        "p54-e2",
+        "p54-e3",
+        "p54-e4"
+      ],
+      "content_text": "10.4 A reporting institution must retain, maintain and update the relevant records\n(including CDD records and all relevant transaction records) in such a way that–\n\n(a)the relevant law enforcement agencies and internal and external auditors of the\nreporting institution will be able to reliably judge the reporting institution’s\ntransactions and its compliance with the AMLA and TFS-PF legislations;\n\n(b)it is sufficient to permit reconstruction of individual transactions so as to provide,\nif necessary, evidence for prosecution of criminal activity; and\n\n(c)the reporting institution can satisfy within a reasonable time any enquiry or order\nfrom the relevant law enforcement agencies as to the disclosure of such relevant\nrecord."
+    },
+    {
+      "evidence_id": "E4",
+      "chunk_id": "485c4989-c300-45c8-ac06-79a59492bb5c-c0149-324f72fd13",
+      "chunk_index": 149,
+      "semantic_type": "clause",
+      "source_rank": 4,
+      "ranked_seed_rank": 4,
+      "reasons": [
+        "ranked_seed"
+      ],
+      "pages": [
+        56
+      ],
+      "section_path": [
+        "PART V: SUSPICIOUS TRANSACTIONS",
+        "11 REPORTING OF SUSPICIOUS TRANSACTIONS"
+      ],
+      "source_element_ids": [
+        "p56-e5",
+        "p56-e6",
+        "p56-e7",
+        "p56-e8",
+        "p56-e9",
+        "p56-e10"
+      ],
+      "content_text": "11.10 The fact that a STR may have been lodged with the FIED previously should not\npreclude the reporting institution from lodging a fresh STR as and when a new\nsuspicion arises.\n\n11.11 When required by FIED, a reporting institution must provide additional information\nand documentation and respond promptly to any further enquiries with regard to the\nSTR lodged.\n\n11.12 Where a reporting institution forms a suspicion of ML/TF/PF and reasonably believes\nthat performing the CDD process would tip off the customer, the reporting institution\nis permitted not to pursue the CDD process and is required to lodge a STR.\n\n11.13 The reporting institution must ensure that the compliance officer maintains a complete\nfile of all internal reports on suspicious transactions and STRs lodged with FIED\ntogether with the relevant supporting documentary evidence.\n\n11.14 The board of directors must ensure that the compliance officer has the necessary\nauthority, resources and support to discharge his obligation independently and\neffectively in complying with the reporting institution’s compliance policies and\nprocedures on AML/CFT/CPF, particularly on reporting suspicious transactions.\n\n11.15 The compliance officer has the sole discretion and independence to report suspicious\ntransactions."
+    },
+    {
+      "evidence_id": "E5",
+      "chunk_id": "485c4989-c300-45c8-ac06-79a59492bb5c-c0147-4ce9ccc098",
+      "chunk_index": 147,
+      "semantic_type": "clause",
+      "source_rank": 5,
+      "ranked_seed_rank": 5,
+      "reasons": [
+        "ranked_seed"
+      ],
+      "pages": [
+        55,
+        56
+      ],
+      "section_path": [
+        "PART V: SUSPICIOUS TRANSACTIONS",
+        "11 REPORTING OF SUSPICIOUS TRANSACTIONS"
+      ],
+      "source_element_ids": [
+        "p55-e3",
+        "p55-e4",
+        "p55-e5",
+        "p55-e6",
+        "p55-e13",
+        "p56-e1",
+        "p56-e2",
+        "p56-e3",
+        "p56-e4"
+      ],
+      "content_text": "11.1 A reporting institution must establish in place strong mechanisms for reporting\nsuspicious transactions, including having an appointed AML/CFT/CPF compliance\nofficer, and where appropriate, having a unit primarily responsible for complying with\nthe AML/CFT/CPF requirements on reporting of suspicious transactions.\n\n11.2 A reporting institution must also ensure that the suspicious transaction reporting\nmechanism is operated in a secured environment to maintain the confidentiality and\npreservation of secrecy.\n\n11.3 A reporting institution must clarify the economic background and purpose of any\ntransaction or business relationship if it appears unusual in relation to the reporting\ninstitution’s knowledge of the customer, or if the economic purpose or legality of the\ntransaction is not immediately clear. Special attention should also be paid to all\ncomplex and unusual patterns of transaction.\n\n11.4 A reporting institution must also consider whether the transactions involve a number\nof factors which when taken together may raise a suspicion that the transactions may\nbe connected with certain unlawful activities.\n\n11.6 If in bringing together all relevant factors, a reporting institution has reasonable\ngrounds to suspect that the transaction or the funds utilised involve proceeds of an\nunlawful activity or is related to terrorism financing and proliferation financing, such\ntransaction should be reported immediately to the FIED through lodgement of a STR.\n\n11.6A A reporting institution is required to have in place policies on the duration upon which\ninternal suspicious transaction reports must be reviewed by the reporting institution,\nincluding the circumstances when the timeframe can be exceeded, where necessary.\n\n11.7 Where the reporting institution decides that there are no reasonable grounds for\nsuspicion to warrant a lodgement of a STR, the reporting institution must establish the\ngrounds for such decision. In this regard, the compliance officer must ensure that the\nreporting institution’s decision together with all supporting documentary evidence is\nrecorded and maintained.\n\n11.8 A reporting institution is required to report all suspicious transactions, including\nattempted transactions, regardless of the amount of the transaction. A reporting\ninstitution should be aware that in some cases, suspicion may be formed after a\nconsiderable time from the date of the transaction, in view of subsequent additional\ninformation.\n\n11.9 STRs must be lodged to the FIED in accordance with the method as provided in\nAppendix C herein."
+    }
+  ],
+  "citations": [
+    {
+      "citation_id": "CIT-E1",
+      "marker": "[1]",
+      "evidence_id": "E1",
+      "chunk_id": "485c4989-c300-45c8-ac06-79a59492bb5c-c0155-79c20a622f",
+      "chunk_index": 155,
+      "source_filename": "sc_aml_cft.pdf",
+      "display": "Clause 13.1 · Clause 13.2 · PDF p. 59",
+      "pages": [
+        59
+      ],
+      "section_path": [
+        "PART VI: ENFORCEMENT ORDERS",
+        "13 COMPLIANCE WITH ENFORCEMENT ORDERS"
+      ],
+      "source_element_ids": [
+        "p59-e3",
+        "p59-e4"
+      ],
+      "locators": [
+        {
+          "kind": "clause",
+          "label": "Clause 13.1",
+          "pages": [
+            59
+          ],
+          "source_element_ids": [
+            "p59-e3"
+          ]
+        },
+        {
+          "kind": "clause",
+          "label": "Clause 13.2",
+          "pages": [
+            59
+          ],
+          "source_element_ids": [
+            "p59-e4"
+          ]
+        }
+      ],
+      "validation_status": "valid"
+    }
+  ],
+  "citation_version": "deterministic_citations_v1_2",
+  "citation_validation": {
+    "status": "valid",
+    "citation_count": 1,
+    "valid_citation_count": 1,
+    "errors": []
+  },
+  "generation_provider": "groq",
+  "generation_model": "openai/gpt-oss-120b",
+  "prompt_version": "grounded_claims_v1",
+  "generation_temperature": 0.0,
+  "generation_max_tokens": 1200,
+  "generation_json_mode": true,
+  "usage": {
+    "prompt_tokens": 2122,
+    "completion_tokens": 372,
+    "total_tokens": 2494
+  },
+  "retrieval_profile": "retrieval_v1_stage8_2_top5",
+  "retrieval_top_k": 5,
+  "retrieval_candidate_k": 20,
+  "retrieval_rrf_k": 60,
+  "retrieval_dense_weight": 1.0,
+  "retrieval_lexical_weight": 1.0,
+  "context_strategy": "structural_one_hop_v1",
+  "context_chunk_count": 5,
+  "expanded_chunk_count": 0
+}

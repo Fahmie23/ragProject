@@ -1,0 +1,281 @@
+{
+  "document_id": "485c4989-c300-45c8-ac06-79a59492bb5c",
+  "question": "When can freezing under Part VIII end because of a false positive, and what route is available to the customer to have the affected funds, properties or accounts unfrozen?",
+  "status": "answered",
+  "answer": "Freezing of funds, properties or accounts may end when it is confirmed that the customer’s funds, properties or accounts have been inadvertently affected due to a false positive (same or similar name with a designated person). The customer can apply to the Strategic Trade Controller under the Strategic Trade (Unfreezing of Property in relation to Prohibited End‑Users) Regulations 2014 to have the affected funds, properties or accounts unfrozen.",
+  "cited_answer": "Freezing of funds, properties or accounts may end when it is confirmed that the customer’s funds, properties or accounts have been inadvertently affected due to a false positive (same or similar name with a designated person). [1] The customer can apply to the Strategic Trade Controller under the Strategic Trade (Unfreezing of Property in relation to Prohibited End‑Users) Regulations 2014 to have the affected funds, properties or accounts unfrozen. [2]",
+  "claims": [
+    {
+      "claim_id": "C1",
+      "text": "Freezing of funds, properties or accounts may end when it is confirmed that the customer’s funds, properties or accounts have been inadvertently affected due to a false positive (same or similar name with a designated person).",
+      "evidence_ids": [
+        "E1"
+      ],
+      "citation_ids": [
+        "CIT-E1"
+      ]
+    },
+    {
+      "claim_id": "C2",
+      "text": "The customer can apply to the Strategic Trade Controller under the Strategic Trade (Unfreezing of Property in relation to Prohibited End‑Users) Regulations 2014 to have the affected funds, properties or accounts unfrozen.",
+      "evidence_ids": [
+        "E2"
+      ],
+      "citation_ids": [
+        "CIT-E2"
+      ]
+    }
+  ],
+  "used_evidence_ids": [
+    "E1",
+    "E2"
+  ],
+  "missing_information": [],
+  "evidence": [
+    {
+      "evidence_id": "E1",
+      "chunk_id": "485c4989-c300-45c8-ac06-79a59492bb5c-c0169-f90755eee9",
+      "chunk_index": 169,
+      "semantic_type": "clause",
+      "source_rank": 1,
+      "ranked_seed_rank": 1,
+      "reasons": [
+        "ranked_seed"
+      ],
+      "pages": [
+        64
+      ],
+      "section_path": [
+        "PART VIII: COMBATING PROLIFERATION FINANCING",
+        "18. REQUIREMENT TO FREEZE, BLOCK AND REJECT"
+      ],
+      "source_element_ids": [
+        "p64-e3",
+        "p64-e4",
+        "p64-e5"
+      ],
+      "content_text": "18.2 The freezing of funds, properties or accounts shall remain in effect until:\n\n(a) The designated person is delisted by the UNSC; or\n\n(b) It is confirmed that the customer’s funds, properties or accounts have been\ninadvertently affected by virtue of him having a same or similar name with a\ndesignated person (false positive)."
+    },
+    {
+      "evidence_id": "E2",
+      "chunk_id": "485c4989-c300-45c8-ac06-79a59492bb5c-c0171-3ef92066d3",
+      "chunk_index": 171,
+      "semantic_type": "clause",
+      "source_rank": 2,
+      "ranked_seed_rank": 2,
+      "reasons": [
+        "ranked_seed"
+      ],
+      "pages": [
+        64
+      ],
+      "section_path": [
+        "PART VIII: COMBATING PROLIFERATION FINANCING",
+        "18. REQUIREMENT TO FREEZE, BLOCK AND REJECT"
+      ],
+      "source_element_ids": [
+        "p64-e10",
+        "p64-e11"
+      ],
+      "content_text": "18.3 If circumstances in paragraph 18.2(b) arose, an application may be made by the\ncustomer to the Strategic Trade Controller under the Strategic Trade (Unfreezing of\nProperty in relation to Prohibited End-Users) Regulations 2014 (P.U.(A) 290/2014) for\nthe unfreezing of such funds, properties and accounts.\n\n18.4 Where the screening assessment results in a match with a potential or new customer,\na reporting institution must reject the customer if the transaction has not commenced."
+    },
+    {
+      "evidence_id": "E3",
+      "chunk_id": "485c4989-c300-45c8-ac06-79a59492bb5c-c0172-3df0a657c5",
+      "chunk_index": 172,
+      "semantic_type": "list_item",
+      "source_rank": 3,
+      "ranked_seed_rank": 3,
+      "reasons": [
+        "ranked_seed"
+      ],
+      "pages": [
+        65
+      ],
+      "section_path": [
+        "PART VIII: COMBATING PROLIFERATION FINANCING",
+        "18. REQUIREMENT TO FREEZE, BLOCK AND REJECT"
+      ],
+      "source_element_ids": [
+        "p65-e2",
+        "p65-e3",
+        "p65-e4",
+        "p65-e5",
+        "p65-e6"
+      ],
+      "content_text": "(a)Funds, properties or accounts that are owned or controlled indirectly by the\ndesignated person includes situation where the designated person is a\ndirector of a customer. In such instance, once the reporting institution is\nsatisfied that the director owns or controls directly or indirectly the funds,\nproperties or accounts of the customer, the reporting institution is required\nto freeze.\n\n(b)The obligation to freeze funds, properties or accounts of a designated person\ncontinues until the person is delisted from the sanction lists. The freezing\nobligations remains even after the designated person passed away.\n\n(c)If an asset is owned or controlled by a designated person and the interest\nowned or controlled by the designated person cannot be segregated, then\nthe entire asset should be subjected to freezing.\n\n(d)Notwithstanding the funds, properties or accounts are frozen, a reporting\ninstitution may continue receiving dividends, interests, or other benefits, but\nsuch benefits shall still remain frozen, so long as the designated person\ncontinue to be listed.\n\n(e)No outgoing payment should be made from the frozen funds, properties or\naccounts including payment of any fees or service charges for maintaining\nthe frozen fund without prior written authorisation of the Strategic Trade\nController in consultation with the SC."
+    },
+    {
+      "evidence_id": "E4",
+      "chunk_id": "485c4989-c300-45c8-ac06-79a59492bb5c-c0170-bca06805f2",
+      "chunk_index": 170,
+      "semantic_type": "list_item",
+      "source_rank": 4,
+      "ranked_seed_rank": 4,
+      "reasons": [
+        "ranked_seed"
+      ],
+      "pages": [
+        64
+      ],
+      "section_path": [
+        "PART VIII: COMBATING PROLIFERATION FINANCING",
+        "18. REQUIREMENT TO FREEZE, BLOCK AND REJECT"
+      ],
+      "source_element_ids": [
+        "p64-e7",
+        "p64-e8",
+        "p64-e9"
+      ],
+      "content_text": "(a)A reporting institution may forward queries to the SC to determine whether\nthe customer is a designated person in the case of similar or common names.\n\n(b)Any query submitted to the SC must include any additional information,\ncopies of identification documents and relevant analysis conducted by the\nreporting institution.\n\n(c)A reporting institution should advice any customers who complain about\ntheir accounts being inadvertently frozen or transactions being erroneously\nrejected or blocked to contact the Strategic Trade Controller under the STA\nto verify the false positive match."
+    },
+    {
+      "evidence_id": "E5",
+      "chunk_id": "485c4989-c300-45c8-ac06-79a59492bb5c-c0168-620e197639",
+      "chunk_index": 168,
+      "semantic_type": "clause",
+      "source_rank": 5,
+      "ranked_seed_rank": 5,
+      "reasons": [
+        "ranked_seed"
+      ],
+      "pages": [
+        64
+      ],
+      "section_path": [
+        "PART VIII: COMBATING PROLIFERATION FINANCING",
+        "18. REQUIREMENT TO FREEZE, BLOCK AND REJECT"
+      ],
+      "source_element_ids": [
+        "p64-e2"
+      ],
+      "content_text": "18.1 Once a customer’s identity as a designated person is confirmed, a reporting institution\nmust freeze the customer’s funds, properties or accounts or any transaction executed\nby the customer to prevent the flight or dissipation of the funds, other properties or\nassets or controlled directly or indirectly by the customer without delay."
+    }
+  ],
+  "citations": [
+    {
+      "citation_id": "CIT-E1",
+      "marker": "[1]",
+      "evidence_id": "E1",
+      "chunk_id": "485c4989-c300-45c8-ac06-79a59492bb5c-c0169-f90755eee9",
+      "chunk_index": 169,
+      "source_filename": "sc_aml_cft.pdf",
+      "display": "Clause 18.2 · Clause 18.2(a) · Clause 18.2(b) · PDF p. 64",
+      "pages": [
+        64
+      ],
+      "section_path": [
+        "PART VIII: COMBATING PROLIFERATION FINANCING",
+        "18. REQUIREMENT TO FREEZE, BLOCK AND REJECT"
+      ],
+      "source_element_ids": [
+        "p64-e3",
+        "p64-e4",
+        "p64-e5"
+      ],
+      "locators": [
+        {
+          "kind": "clause",
+          "label": "Clause 18.2",
+          "pages": [
+            64
+          ],
+          "source_element_ids": [
+            "p64-e3"
+          ]
+        },
+        {
+          "kind": "subclause",
+          "label": "Clause 18.2(a)",
+          "pages": [
+            64
+          ],
+          "source_element_ids": [
+            "p64-e4"
+          ]
+        },
+        {
+          "kind": "subclause",
+          "label": "Clause 18.2(b)",
+          "pages": [
+            64
+          ],
+          "source_element_ids": [
+            "p64-e5"
+          ]
+        }
+      ],
+      "validation_status": "valid"
+    },
+    {
+      "citation_id": "CIT-E2",
+      "marker": "[2]",
+      "evidence_id": "E2",
+      "chunk_id": "485c4989-c300-45c8-ac06-79a59492bb5c-c0171-3ef92066d3",
+      "chunk_index": 171,
+      "source_filename": "sc_aml_cft.pdf",
+      "display": "Clause 18.3 · Clause 18.4 · PDF p. 64",
+      "pages": [
+        64
+      ],
+      "section_path": [
+        "PART VIII: COMBATING PROLIFERATION FINANCING",
+        "18. REQUIREMENT TO FREEZE, BLOCK AND REJECT"
+      ],
+      "source_element_ids": [
+        "p64-e10",
+        "p64-e11"
+      ],
+      "locators": [
+        {
+          "kind": "clause",
+          "label": "Clause 18.3",
+          "pages": [
+            64
+          ],
+          "source_element_ids": [
+            "p64-e10"
+          ]
+        },
+        {
+          "kind": "clause",
+          "label": "Clause 18.4",
+          "pages": [
+            64
+          ],
+          "source_element_ids": [
+            "p64-e11"
+          ]
+        }
+      ],
+      "validation_status": "valid"
+    }
+  ],
+  "citation_version": "deterministic_citations_v1_2",
+  "citation_validation": {
+    "status": "valid",
+    "citation_count": 2,
+    "valid_citation_count": 2,
+    "errors": []
+  },
+  "generation_provider": "groq",
+  "generation_model": "openai/gpt-oss-120b",
+  "prompt_version": "grounded_claims_v1",
+  "generation_temperature": 0.0,
+  "generation_max_tokens": 1200,
+  "generation_json_mode": true,
+  "usage": {
+    "prompt_tokens": 1489,
+    "completion_tokens": 508,
+    "total_tokens": 1997
+  },
+  "retrieval_profile": "retrieval_v1_stage8_2_top5",
+  "retrieval_top_k": 5,
+  "retrieval_candidate_k": 20,
+  "retrieval_rrf_k": 60,
+  "retrieval_dense_weight": 1.0,
+  "retrieval_lexical_weight": 1.0,
+  "context_strategy": "structural_one_hop_v1",
+  "context_chunk_count": 5,
+  "expanded_chunk_count": 0
+}

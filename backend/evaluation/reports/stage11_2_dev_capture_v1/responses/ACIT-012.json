@@ -1,0 +1,467 @@
+{
+  "document_id": "485c4989-c300-45c8-ac06-79a59492bb5c",
+  "question": "What customer and related-party screening is required under Part VIII, including the response when new UNSCR names are listed?",
+  "status": "answered",
+  "answer": "Reporting institutions must conduct sanctions screening on existing, new, and potential customers to detect any positive name match with a designated person. The screening must also cover funds derived from property owned or controlled directly or indirectly by the designated person or any related party, including relationships and transactions, jointly owned or indirectly controlled accounts, and parties such as beneficial owners, signatories, power of attorney, guarantors, nominees, trustees, assignees and payors. When new names are listed in the UNSCR, the institution must screen its entire customer database without delay, which is interpreted as ideally within a matter of hours of the designation. Institutions are advised to search, examine and analyse past financial activities of the designated person or related party where relevant. If a positive name match occurs, the institution must take reasonable and appropriate measures to verify and confirm the identity of the customer against the designated person. The screening obligations extend to the delisting of affected customers from the list of countries and persons designated under the relevant UNSCRs.",
+  "cited_answer": "Reporting institutions must conduct sanctions screening on existing, new, and potential customers to detect any positive name match with a designated person. [1] The screening must also cover funds derived from property owned or controlled directly or indirectly by the designated person or any related party, including relationships and transactions, jointly owned or indirectly controlled accounts, and parties such as beneficial owners, signatories, power of attorney, guarantors, nominees, trustees, assignees and payors. [2] When new names are listed in the UNSCR, the institution must screen its entire customer database without delay, which is interpreted as ideally within a matter of hours of the designation. [1][3] Institutions are advised to search, examine and analyse past financial activities of the designated person or related party where relevant. [3][4] If a positive name match occurs, the institution must take reasonable and appropriate measures to verify and confirm the identity of the customer against the designated person. [1] The screening obligations extend to the delisting of affected customers from the list of countries and persons designated under the relevant UNSCRs. [3]",
+  "claims": [
+    {
+      "claim_id": "C1",
+      "text": "Reporting institutions must conduct sanctions screening on existing, new, and potential customers to detect any positive name match with a designated person.",
+      "evidence_ids": [
+        "E1"
+      ],
+      "citation_ids": [
+        "CIT-E1"
+      ]
+    },
+    {
+      "claim_id": "C2",
+      "text": "The screening must also cover funds derived from property owned or controlled directly or indirectly by the designated person or any related party, including relationships and transactions, jointly owned or indirectly controlled accounts, and parties such as beneficial owners, signatories, power of attorney, guarantors, nominees, trustees, assignees and payors.",
+      "evidence_ids": [
+        "E2"
+      ],
+      "citation_ids": [
+        "CIT-E2"
+      ]
+    },
+    {
+      "claim_id": "C3",
+      "text": "When new names are listed in the UNSCR, the institution must screen its entire customer database without delay, which is interpreted as ideally within a matter of hours of the designation.",
+      "evidence_ids": [
+        "E1",
+        "E3"
+      ],
+      "citation_ids": [
+        "CIT-E1",
+        "CIT-E3"
+      ]
+    },
+    {
+      "claim_id": "C4",
+      "text": "Institutions are advised to search, examine and analyse past financial activities of the designated person or related party where relevant.",
+      "evidence_ids": [
+        "E3",
+        "E4"
+      ],
+      "citation_ids": [
+        "CIT-E3",
+        "CIT-E4"
+      ]
+    },
+    {
+      "claim_id": "C5",
+      "text": "If a positive name match occurs, the institution must take reasonable and appropriate measures to verify and confirm the identity of the customer against the designated person.",
+      "evidence_ids": [
+        "E1"
+      ],
+      "citation_ids": [
+        "CIT-E1"
+      ]
+    },
+    {
+      "claim_id": "C6",
+      "text": "The screening obligations extend to the delisting of affected customers from the list of countries and persons designated under the relevant UNSCRs.",
+      "evidence_ids": [
+        "E3"
+      ],
+      "citation_ids": [
+        "CIT-E3"
+      ]
+    }
+  ],
+  "used_evidence_ids": [
+    "E1",
+    "E2",
+    "E3",
+    "E4"
+  ],
+  "missing_information": [],
+  "evidence": [
+    {
+      "evidence_id": "E1",
+      "chunk_id": "485c4989-c300-45c8-ac06-79a59492bb5c-c0165-8354c916df",
+      "chunk_index": 165,
+      "semantic_type": "clause",
+      "source_rank": 1,
+      "ranked_seed_rank": 1,
+      "reasons": [
+        "ranked_seed"
+      ],
+      "pages": [
+        62,
+        63
+      ],
+      "section_path": [
+        "PART VIII: COMBATING PROLIFERATION FINANCING",
+        "17. CONDUCT SANCTIONS SCREENING ON CUSTOMERS"
+      ],
+      "source_element_ids": [
+        "p62-e10",
+        "p62-e11",
+        "p63-e3"
+      ],
+      "content_text": "17.1 A reporting institution must conduct sanctions screening on its existing, new and\npotential customers, to check for any positive name matched with any designated\nperson.\n\n17.2 A reporting institution must screen its entire customer database without delay when\nnew names are listed in the UNSCR.\n\n17.4 If there is a positive name match, a reporting institution must take reasonable and\nappropriate measures to verify and confirm the identity of its customer against the\ndesignated person."
+    },
+    {
+      "evidence_id": "E2",
+      "chunk_id": "485c4989-c300-45c8-ac06-79a59492bb5c-c0166-2be11686ea",
+      "chunk_index": 166,
+      "semantic_type": "clause",
+      "source_rank": 2,
+      "ranked_seed_rank": 4,
+      "reasons": [
+        "ranked_seed",
+        "preceding_intro"
+      ],
+      "pages": [
+        62,
+        63
+      ],
+      "section_path": [
+        "PART VIII: COMBATING PROLIFERATION FINANCING",
+        "17. CONDUCT SANCTIONS SCREENING ON CUSTOMERS"
+      ],
+      "source_element_ids": [
+        "p62-e12",
+        "p62-e13",
+        "p63-e1",
+        "p63-e2"
+      ],
+      "content_text": "17.3 The obligation to conduct sanctions screening on customers also includes funds\nderived from property owned or controlled directly or indirectly by the designated\nperson or by any of its related party. In this regard, a reporting institution must conduct\nchecks on:\n\n(a) relationship and transactions connected with the designated person;\n\n(b) properties or accounts that are jointly owned and/or indirectly controlled by the\ndesignated person; and\n\n(c) parties related to the frozen accounts including beneficial owners, signatories,\npower of attorney relationships, guarantors, nominees, trustees, assignees and\npayors."
+    },
+    {
+      "evidence_id": "E3",
+      "chunk_id": "485c4989-c300-45c8-ac06-79a59492bb5c-c0167-5fb13811a7",
+      "chunk_index": 167,
+      "semantic_type": "list_item",
+      "source_rank": 2,
+      "ranked_seed_rank": 2,
+      "reasons": [
+        "ranked_seed",
+        "introduced_child"
+      ],
+      "pages": [
+        63
+      ],
+      "section_path": [
+        "PART VIII: COMBATING PROLIFERATION FINANCING",
+        "17. CONDUCT SANCTIONS SCREENING ON CUSTOMERS"
+      ],
+      "source_element_ids": [
+        "p63-e5",
+        "p63-e6",
+        "p63-e7",
+        "p63-e8"
+      ],
+      "content_text": "(a)According to the standards prescribed by the FATF, “without delay” means,\nideally within a matter of hours of a designation by the UNSC or its relevant\nSanctions Committee. The phrase “without delay” should be interpreted in\nthe context of the need to prevent the flight or dissipation of funds or other\nassets which are linked to the financing of proliferation of weapons of mass\ndestruction.\n\n(b)A reporting institution is also advised to search, examine and analyse past\nfinancial activities of the designated person or related party, where relevant.\n\n(c)A reporting institution must always be wary of the possible use of among\nothers, false identities, dual nationalities, multiple names and identities\nwhen performing name searches for each designated person to prevent\nunintended omissions.\n\n(d)The screening obligations under these Guidelines extend to the delisting of\naffected customers from the list of countries and persons designated under\nthe relevant UNSCRs."
+    },
+    {
+      "evidence_id": "E4",
+      "chunk_id": "485c4989-c300-45c8-ac06-79a59492bb5c-c0239-331bc589b4",
+      "chunk_index": 239,
+      "semantic_type": "clause",
+      "source_rank": 3,
+      "ranked_seed_rank": 3,
+      "reasons": [
+        "ranked_seed"
+      ],
+      "pages": [
+        88,
+        89
+      ],
+      "section_path": [
+        "APPENDIX D",
+        "Obligation to conduct screening on customers"
+      ],
+      "source_element_ids": [
+        "p88-e8",
+        "p88-e9",
+        "p89-e1"
+      ],
+      "content_text": "3.1 The obligation to conduct screening on customers is applicable both on the existing\nas well as new and potential customers. As such, a reporting institution is required\nto conduct screening on the customers when it undertakes CDD and ongoing CDD.\n\n3.2 A reporting institution is also required to screen its entire customer database within a\nreasonable time when the new names are listed by UNSCR or the domestic lists.\n\n3.4 Further, a reporting institution is also advised to search, examine and analyse past\nfinancial activities of the listed entities or related parties."
+    },
+    {
+      "evidence_id": "E5",
+      "chunk_id": "485c4989-c300-45c8-ac06-79a59492bb5c-c0175-9774b5ede3",
+      "chunk_index": 175,
+      "semantic_type": "clause",
+      "source_rank": 5,
+      "ranked_seed_rank": 5,
+      "reasons": [
+        "ranked_seed"
+      ],
+      "pages": [
+        66
+      ],
+      "section_path": [
+        "PART VIII: COMBATING PROLIFERATION FINANCING",
+        "19. REPORTING REQUIREMENTS"
+      ],
+      "source_element_ids": [
+        "p66-e7",
+        "p66-e8",
+        "p66-e9",
+        "p66-e10",
+        "p66-e11"
+      ],
+      "content_text": "19.4 The form for periodic reporting to the SC is set out in Appendix J.\n\n19.5 A reporting institution must submit a STR to the FIED in the following circumstances:\n\n(a) In the event of positive name matches arising from ongoing screening of their\ncustomer database involving designated person or person identified as related\nparty related to the designated person; and\n\n(b) Where there is an attempted transaction by any of the designated person or its\nrelated party.\n\n19.6 The details on the lodgement of STR with FIED are set out in Appendix C."
+    }
+  ],
+  "citations": [
+    {
+      "citation_id": "CIT-E1",
+      "marker": "[1]",
+      "evidence_id": "E1",
+      "chunk_id": "485c4989-c300-45c8-ac06-79a59492bb5c-c0165-8354c916df",
+      "chunk_index": 165,
+      "source_filename": "sc_aml_cft.pdf",
+      "display": "Clause 17.1 · Clause 17.2 · Clause 17.4 · PDF pp. 62–63",
+      "pages": [
+        62,
+        63
+      ],
+      "section_path": [
+        "PART VIII: COMBATING PROLIFERATION FINANCING",
+        "17. CONDUCT SANCTIONS SCREENING ON CUSTOMERS"
+      ],
+      "source_element_ids": [
+        "p62-e10",
+        "p62-e11",
+        "p63-e3"
+      ],
+      "locators": [
+        {
+          "kind": "clause",
+          "label": "Clause 17.1",
+          "pages": [
+            62
+          ],
+          "source_element_ids": [
+            "p62-e10"
+          ]
+        },
+        {
+          "kind": "clause",
+          "label": "Clause 17.2",
+          "pages": [
+            62
+          ],
+          "source_element_ids": [
+            "p62-e11"
+          ]
+        },
+        {
+          "kind": "clause",
+          "label": "Clause 17.4",
+          "pages": [
+            63
+          ],
+          "source_element_ids": [
+            "p63-e3"
+          ]
+        }
+      ],
+      "validation_status": "valid"
+    },
+    {
+      "citation_id": "CIT-E2",
+      "marker": "[2]",
+      "evidence_id": "E2",
+      "chunk_id": "485c4989-c300-45c8-ac06-79a59492bb5c-c0166-2be11686ea",
+      "chunk_index": 166,
+      "source_filename": "sc_aml_cft.pdf",
+      "display": "Clause 17.3 · Clause 17.3(a) · Clause 17.3(b) · Clause 17.3(c) · PDF pp. 62–63",
+      "pages": [
+        62,
+        63
+      ],
+      "section_path": [
+        "PART VIII: COMBATING PROLIFERATION FINANCING",
+        "17. CONDUCT SANCTIONS SCREENING ON CUSTOMERS"
+      ],
+      "source_element_ids": [
+        "p62-e12",
+        "p62-e13",
+        "p63-e1",
+        "p63-e2"
+      ],
+      "locators": [
+        {
+          "kind": "clause",
+          "label": "Clause 17.3",
+          "pages": [
+            62
+          ],
+          "source_element_ids": [
+            "p62-e12"
+          ]
+        },
+        {
+          "kind": "subclause",
+          "label": "Clause 17.3(a)",
+          "pages": [
+            62
+          ],
+          "source_element_ids": [
+            "p62-e13"
+          ]
+        },
+        {
+          "kind": "subclause",
+          "label": "Clause 17.3(b)",
+          "pages": [
+            63
+          ],
+          "source_element_ids": [
+            "p63-e1"
+          ]
+        },
+        {
+          "kind": "subclause",
+          "label": "Clause 17.3(c)",
+          "pages": [
+            63
+          ],
+          "source_element_ids": [
+            "p63-e2"
+          ]
+        }
+      ],
+      "validation_status": "valid"
+    },
+    {
+      "citation_id": "CIT-E3",
+      "marker": "[3]",
+      "evidence_id": "E3",
+      "chunk_id": "485c4989-c300-45c8-ac06-79a59492bb5c-c0167-5fb13811a7",
+      "chunk_index": 167,
+      "source_filename": "sc_aml_cft.pdf",
+      "display": "17. CONDUCT SANCTIONS SCREENING ON CUSTOMERS · PDF p. 63",
+      "pages": [
+        63
+      ],
+      "section_path": [
+        "PART VIII: COMBATING PROLIFERATION FINANCING",
+        "17. CONDUCT SANCTIONS SCREENING ON CUSTOMERS"
+      ],
+      "source_element_ids": [
+        "p63-e5",
+        "p63-e6",
+        "p63-e7",
+        "p63-e8"
+      ],
+      "locators": [
+        {
+          "kind": "section",
+          "label": "17. CONDUCT SANCTIONS SCREENING ON CUSTOMERS",
+          "pages": [
+            63
+          ],
+          "source_element_ids": [
+            "p63-e5",
+            "p63-e6",
+            "p63-e7",
+            "p63-e8"
+          ]
+        }
+      ],
+      "validation_status": "valid"
+    },
+    {
+      "citation_id": "CIT-E4",
+      "marker": "[4]",
+      "evidence_id": "E4",
+      "chunk_id": "485c4989-c300-45c8-ac06-79a59492bb5c-c0239-331bc589b4",
+      "chunk_index": 239,
+      "source_filename": "sc_aml_cft.pdf",
+      "display": "APPENDIX D · Clause 3.1 · Clause 3.2 · Clause 3.4 · PDF pp. 88–89",
+      "pages": [
+        88,
+        89
+      ],
+      "section_path": [
+        "APPENDIX D",
+        "Obligation to conduct screening on customers"
+      ],
+      "source_element_ids": [
+        "p88-e8",
+        "p88-e9",
+        "p89-e1"
+      ],
+      "locators": [
+        {
+          "kind": "appendix",
+          "label": "APPENDIX D",
+          "pages": [
+            88,
+            89
+          ],
+          "source_element_ids": [
+            "p88-e8",
+            "p88-e9",
+            "p89-e1"
+          ]
+        },
+        {
+          "kind": "clause",
+          "label": "Clause 3.1",
+          "pages": [
+            88
+          ],
+          "source_element_ids": [
+            "p88-e8"
+          ]
+        },
+        {
+          "kind": "clause",
+          "label": "Clause 3.2",
+          "pages": [
+            88
+          ],
+          "source_element_ids": [
+            "p88-e9"
+          ]
+        },
+        {
+          "kind": "clause",
+          "label": "Clause 3.4",
+          "pages": [
+            89
+          ],
+          "source_element_ids": [
+            "p89-e1"
+          ]
+        }
+      ],
+      "validation_status": "valid"
+    }
+  ],
+  "citation_version": "deterministic_citations_v1_2",
+  "citation_validation": {
+    "status": "valid",
+    "citation_count": 4,
+    "valid_citation_count": 4,
+    "errors": []
+  },
+  "generation_provider": "groq",
+  "generation_model": "openai/gpt-oss-120b",
+  "prompt_version": "grounded_claims_v1",
+  "generation_temperature": 0.0,
+  "generation_max_tokens": 1200,
+  "generation_json_mode": true,
+  "usage": {
+    "prompt_tokens": 1492,
+    "completion_tokens": 1080,
+    "total_tokens": 2572
+  },
+  "retrieval_profile": "retrieval_v1_stage8_2_top5",
+  "retrieval_top_k": 5,
+  "retrieval_candidate_k": 20,
+  "retrieval_rrf_k": 60,
+  "retrieval_dense_weight": 1.0,
+  "retrieval_lexical_weight": 1.0,
+  "context_strategy": "structural_one_hop_v1",
+  "context_chunk_count": 5,
+  "expanded_chunk_count": 0
+}
