@@ -1,0 +1,60 @@
+Baseline: stage11_frozen_pipeline_v1
+Checked: 7 files
+Status: PASS
+PASS: frozen Stage 11.3 held-out benchmark
+Dataset: answer_citation_eval_heldout_v1
+Questions: 18
+Split: heldout only
+Benchmark status: frozen
+Production freeze: PASS
+Semantic rubric freeze: PASS
+Held-out dataset hash freeze: PASS
+Independence audit: PASS
+PASS: frozen Stage 11 final evaluation reproduced offline
+Evaluation: stage11_answer_citation_heldout_v1_final
+Responses: 18 exact hash-bound held-out snapshots
+AnswerStatusAccuracy: 0.9444444444444444
+DeterministicCitationValidity: 1.0
+RequiredSourceCoverage: 0.9333333333333333
+ClaimSupportRate: 0.9583333333333334
+AnswerCompleteness: 0.8365384615384616
+External API calls: 0
+........................                                                 [100%]
+24 passed in 2.50s
+........................................................................ [ 19%]
+........................................................................ [ 39%]
+........................................................................ [ 59%]
+........................................................................ [ 79%]
+........................................................................ [ 99%]
+..                                                                       [100%]
+362 passed in 18.96s
+
+=== Production freeze guard ===
+$ /opt/pyvenv/bin/python scripts/validate_stage11_frozen_baseline.py
+PASS: Production freeze guard
+
+=== Held-out benchmark freeze guard ===
+$ /opt/pyvenv/bin/python scripts/validate_stage11_heldout_benchmark.py
+PASS: Held-out benchmark freeze guard
+
+=== Final Stage 11 evaluation reproduction ===
+$ /opt/pyvenv/bin/python scripts/validate_stage11_final_evaluation.py
+PASS: Final Stage 11 evaluation reproduction
+
+=== Stage 12 system/API tests ===
+$ /opt/pyvenv/bin/python -m pytest -q tests/test_stage12_system_contracts.py tests/test_stage12_pipeline_system.py tests/test_stage12_stage11_final_reproduction.py
+PASS: Stage 12 system/API tests
+
+=== Python compile ===
+$ /opt/pyvenv/bin/python -m compileall -q app scripts tests
+PASS: Python compile
+
+=== Full backend regression ===
+$ /opt/pyvenv/bin/python -m pytest -q
+PASS: Full backend regression
+
+SKIP: frontend build (node_modules/npm unavailable). Run locally with --frontend required after npm dependencies are installed.
+
+=== Stage 12 verification summary ===
+Backend/system gates: PASS
+Frontend build: skipped-dependencies-missing

@@ -1,0 +1,240 @@
+{
+  "document_id": "485c4989-c300-45c8-ac06-79a59492bb5c",
+  "question": "What is the current Overnight Policy Rate set by Bank Negara Malaysia?",
+  "status": "insufficient_evidence",
+  "answer": "The retrieved evidence is insufficient to answer this question reliably.",
+  "cited_answer": "The retrieved evidence is insufficient to answer this question reliably.",
+  "claims": [],
+  "used_evidence_ids": [],
+  "missing_information": [
+    "Evidence providing the current Overnight Policy Rate set by Bank Negara Malaysia is missing"
+  ],
+  "evidence": [
+    {
+      "evidence_id": "E1",
+      "chunk_id": "485c4989-c300-45c8-ac06-79a59492bb5c-c0007-22ed76c058",
+      "chunk_index": 7,
+      "semantic_type": "clause",
+      "source_rank": 1,
+      "ranked_seed_rank": 1,
+      "reasons": [
+        "ranked_seed"
+      ],
+      "pages": [
+        6,
+        7
+      ],
+      "section_path": [
+        "PART I: INTRODUCTION AND APPLICABILITY",
+        "1.0 INTRODUCTION"
+      ],
+      "source_element_ids": [
+        "p6-e11",
+        "p6-e12",
+        "p7-e1",
+        "p7-e2",
+        "p7-e3",
+        "p7-e4",
+        "p7-e5",
+        "p7-e6",
+        "p7-e7"
+      ],
+      "content_text": "1.2 These Guidelines are drawn up in accordance with the AMLA and the Financial Action Task\nForce (FATF) 40 Recommendations.\n\n1Regulation 3 of Strategic Trade (United Nations Security Council Resolutions) Regulations 2010 (P.U. (A) 481/2010) is set out in\nAppendix G of these Guidelines.\n\n1.3 These Guidelines provide:\n\n(a)requirements and obligations imposed on reporting institutions in preventing and\ncombating money laundering, terrorism financing, proliferation financing and\ntargeted financial sanctions; and\n\n(b)guidance for reporting institutions to comply with the obligations imposed under the\nAMLA and TFS-PF.\n\n1.4 These Guidelines supersede and replace the Guidelines on Implementation of Targeted\nFinancial Sanctions Relating to Proliferation Financing for Capital Markets.\n\n1.5 These Guidelines are made in addition to and not in derogation of any other guidelines\nissued by the Securities Commission Malaysia (SC) or any requirements as provided under\nthe securities laws and the AMLA. Therefore, a reporting institution must comply with\nother relevant guidelines and requirements.\n\n1.6 A reporting institution that is jointly regulated by Bank Negara Malaysia (BNM) and the\nSC, is required to comply with these Guidelines and the Anti-Money Laundering,\nCountering Financing of Terrorism, Countering Proliferation Financing and Targeted\nFinancial Sanctions for Financial Institutions (AML/CFT and TFS for FIs) issued by BNM.\nWhere there are differing requirements between the said guidelines, the more stringent\nrequirements shall apply.\n\n1.7 Non-compliance with any of the provisions in these Guidelines will subject the reporting\ninstitution to actions under the AMLA, Capital Markets and Services Act 2007 (CMSA) or\nany other relevant provisions under the laws of which these Guidelines are subject to.\nEnforcement actions can be taken against the reporting institutions including its directors,\nofficers, representatives, employees for any non-compliance with any requirements in these\nGuidelines."
+    },
+    {
+      "evidence_id": "E2",
+      "chunk_id": "485c4989-c300-45c8-ac06-79a59492bb5c-c0270-f2d90defd6",
+      "chunk_index": 270,
+      "semantic_type": "figure",
+      "source_rank": 2,
+      "ranked_seed_rank": 2,
+      "reasons": [
+        "ranked_seed"
+      ],
+      "pages": [
+        102
+      ],
+      "section_path": [
+        "APPENDIX E",
+        "Identification"
+      ],
+      "source_element_ids": [
+        "p102-e1",
+        "p102-e3",
+        "p102-e4",
+        "p102-e5",
+        "p102-e6"
+      ],
+      "content_text": "Illustration 4\n\nTrust XYZ has 100% ownership of Company A, with the trustee Ms. D holding the shares as the\ntitled legal owner. In such scenario, the beneficial owner of Company A is not Trust XYZ, but\nrather the individuals that are parties to the trust (e.g. the settlor, protector, trustee and\nbeneficiary) and any other person exercising effective control of the trust.\n\nAs one of the beneficiaries of Trust XYZ is not a natural person, i.e. Company F, the beneficial\nowners of Company F shall also be identified. As such, the beneficial owners in this case for\nCompany A are Ms B, Mr. C, Ms. D, Mr. E and Mr. G.\n\nSource for images and explanations labelled as Illustration 1-4:\n\nGuidance on Beneficial Ownership, Bank Negara Malaysia, published 1 September 2020,\n<http://amlcft.bnm.gov.my/document/DNFBP/faq/04.Guidance_on_BO_01092020.pdf>."
+    },
+    {
+      "evidence_id": "E3",
+      "chunk_id": "485c4989-c300-45c8-ac06-79a59492bb5c-c0242-6008df2d99",
+      "chunk_index": 242,
+      "semantic_type": "clause",
+      "source_rank": 3,
+      "ranked_seed_rank": null,
+      "reasons": [
+        "preceding_intro"
+      ],
+      "pages": [
+        89
+      ],
+      "section_path": [
+        "APPENDIX D",
+        "Reporting requirements"
+      ],
+      "source_element_ids": [
+        "p89-e10",
+        "p89-e11"
+      ],
+      "content_text": "5.1 Once a reporting institution determines that it is in the possession of funds, properties\nor accounts that are owned or controlled by or on behalf of the listed entity, the\nreporting institution is required to report to the following authorities. This obligation\nalso extends to any attempted transactions undertaken by listed entities or related\nparties:\n\n2According to FATF, without delay is defined to be ideally within a matter of hours of designation by the United\nNations Security Council."
+    },
+    {
+      "evidence_id": "E4",
+      "chunk_id": "485c4989-c300-45c8-ac06-79a59492bb5c-c0243-50a6e75db4",
+      "chunk_index": 243,
+      "semantic_type": "table",
+      "source_rank": 3,
+      "ranked_seed_rank": 3,
+      "reasons": [
+        "ranked_seed"
+      ],
+      "pages": [
+        90
+      ],
+      "section_path": [
+        "APPENDIX D",
+        "Reporting requirements"
+      ],
+      "source_element_ids": [
+        "p90-e1"
+      ],
+      "content_text": "No. | Authority | Source of obligation\n1. | SC as the relevant Supervisory Authority | • Section 66D(2) of AMLA • Section 66E of AMLA • Paragraph 14.3 (d) of the Guidelines\n2. | FIED, Bank Negara Malaysia [as STR] | • Paragraph 14.3 (c) of the Guidelines\n3. | Inspector-General of Police | • Section 66B(3)(d) of the AMLA"
+    },
+    {
+      "evidence_id": "E5",
+      "chunk_id": "485c4989-c300-45c8-ac06-79a59492bb5c-c0090-1b0baef4bb",
+      "chunk_index": 90,
+      "semantic_type": "clause",
+      "source_rank": 4,
+      "ranked_seed_rank": 4,
+      "reasons": [
+        "ranked_seed"
+      ],
+      "pages": [
+        34
+      ],
+      "section_path": [
+        "PART III: CUSTOMER DUE DILIGENCE",
+        "8. CUSTOMER DUE DILIGENCE (CDD)",
+        "8.1 CDD at the point of establishing business relationship"
+      ],
+      "source_element_ids": [
+        "p34-e5",
+        "p34-e6",
+        "p34-e7",
+        "p34-e8",
+        "p34-e9",
+        "p34-e11",
+        "p34-e12",
+        "p34-e13",
+        "p34-e14"
+      ],
+      "content_text": "8.1.12 Notwithstanding the above, a reporting institution is exempted from obtaining the\nconstituent document, and from verifying the identity of the directors and shareholders\nor partners of legal persons which fall under the following categories:\n\n(a)Public-listed companies/corporations listed on Bursa Malaysia or majority-owned\nsubsidiaries of such public-listed companies;\n\n(b)Foreign public-listed companies:\n\n(i)Listed on exchanges recognised by Bursa Malaysia. A reporting institution\nmay refer to the directive in relation to recognised stock exchanges issued\nby Bursa Malaysia; and\n\n(ii)\nNot listed in jurisdictions identified in the FATF Public Statements;\n\n(c)An authorised person, an operator of a designated payment system, under the\nFinancial Services Act 2013 or the Islamic Financial Services Act 2013;\n\n(d)Entities licensed under the Labuan Financial Services and Securities Act 2010 or the\nLabuan Islamic Financial Services and Securities Act 2010;\n\n(e)Persons licensed or registered under the CMSA;\n\n(f)Prescribed institutions under the Development Financial Institutions Act 2002; and"
+    },
+    {
+      "evidence_id": "E6",
+      "chunk_id": "485c4989-c300-45c8-ac06-79a59492bb5c-c0091-b1b65b8c5c",
+      "chunk_index": 91,
+      "semantic_type": "list_item",
+      "source_rank": 4,
+      "ranked_seed_rank": null,
+      "reasons": [
+        "continuation_list_item"
+      ],
+      "pages": [
+        35
+      ],
+      "section_path": [
+        "PART III: CUSTOMER DUE DILIGENCE",
+        "8. CUSTOMER DUE DILIGENCE (CDD)",
+        "8.1 CDD at the point of establishing business relationship"
+      ],
+      "source_element_ids": [
+        "p35-e1"
+      ],
+      "content_text": "(g)Licensed entities under Money Services Business Act 2011."
+    },
+    {
+      "evidence_id": "E7",
+      "chunk_id": "485c4989-c300-45c8-ac06-79a59492bb5c-c0232-30a6623279",
+      "chunk_index": 232,
+      "semantic_type": "clause",
+      "source_rank": 5,
+      "ranked_seed_rank": null,
+      "reasons": [
+        "preceding_intro"
+      ],
+      "pages": [
+        85
+      ],
+      "section_path": [
+        "APPENDIX C"
+      ],
+      "source_element_ids": [
+        "p85-e4"
+      ],
+      "content_text": "2. The lodgement of the STR may be made by any of the following means:"
+    },
+    {
+      "evidence_id": "E8",
+      "chunk_id": "485c4989-c300-45c8-ac06-79a59492bb5c-c0233-78b2f006e8",
+      "chunk_index": 233,
+      "semantic_type": "table",
+      "source_rank": 5,
+      "ranked_seed_rank": 5,
+      "reasons": [
+        "ranked_seed"
+      ],
+      "pages": [
+        85
+      ],
+      "section_path": [
+        "APPENDIX C"
+      ],
+      "source_element_ids": [
+        "p85-e5"
+      ],
+      "content_text": "Mail | The physical forms should be placed in a sealed envelope and addressed to the following: Director Financial Intelligence and Enforcement Department Bank Negara Malaysia Jalan Dato' Onn 50480 Kuala Lumpur\nFax | 03-2693 3625\nE-mail | str@bnm.gov.my\nOthers (where and if available) | FIED’s Financial Intelligence System (FINS) FINS 2.0 (bnm.gov.my)"
+    }
+  ],
+  "citations": [],
+  "citation_version": "deterministic_citations_v1_2",
+  "citation_validation": {
+    "status": "valid",
+    "citation_count": 0,
+    "valid_citation_count": 0,
+    "errors": []
+  },
+  "generation_provider": "groq",
+  "generation_model": "openai/gpt-oss-120b",
+  "prompt_version": "grounded_claims_v1",
+  "generation_temperature": 0.0,
+  "generation_max_tokens": 1200,
+  "generation_json_mode": true,
+  "usage": {
+    "prompt_tokens": 2219,
+    "completion_tokens": 138,
+    "total_tokens": 2357
+  },
+  "retrieval_profile": "retrieval_v1_stage8_2_top5",
+  "retrieval_top_k": 5,
+  "retrieval_candidate_k": 20,
+  "retrieval_rrf_k": 60,
+  "retrieval_dense_weight": 1.0,
+  "retrieval_lexical_weight": 1.0,
+  "context_strategy": "structural_one_hop_v1",
+  "context_chunk_count": 8,
+  "expanded_chunk_count": 3
+}

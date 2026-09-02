@@ -1,0 +1,286 @@
+{
+  "document_id": "485c4989-c300-45c8-ac06-79a59492bb5c",
+  "question": "What minimum information must be retained in the records for each transaction under paragraph 10.1?",
+  "status": "answered",
+  "answer": "Records must include documents relating to the identification and verification of the customer in whose name the account is opened or transaction is executed Records must include the identification of the beneficial owner or the person on whose behalf the account is opened or transaction is executed Records must include records of the relevant account pertaining to the transaction executed Records must include the type and details of the transaction involved Records must include the origin and the destination of the funds, where applicable Records must include any other information as the SC and BNM may specify in writing",
+  "cited_answer": "Records must include documents relating to the identification and verification of the customer in whose name the account is opened or transaction is executed [1] Records must include the identification of the beneficial owner or the person on whose behalf the account is opened or transaction is executed [1] Records must include records of the relevant account pertaining to the transaction executed [1] Records must include the type and details of the transaction involved [1] Records must include the origin and the destination of the funds, where applicable [1] Records must include any other information as the SC and BNM may specify in writing [1]",
+  "claims": [
+    {
+      "claim_id": "C1",
+      "text": "Records must include documents relating to the identification and verification of the customer in whose name the account is opened or transaction is executed",
+      "evidence_ids": [
+        "E1"
+      ],
+      "citation_ids": [
+        "CIT-E1"
+      ]
+    },
+    {
+      "claim_id": "C2",
+      "text": "Records must include the identification of the beneficial owner or the person on whose behalf the account is opened or transaction is executed",
+      "evidence_ids": [
+        "E1"
+      ],
+      "citation_ids": [
+        "CIT-E1"
+      ]
+    },
+    {
+      "claim_id": "C3",
+      "text": "Records must include records of the relevant account pertaining to the transaction executed",
+      "evidence_ids": [
+        "E1"
+      ],
+      "citation_ids": [
+        "CIT-E1"
+      ]
+    },
+    {
+      "claim_id": "C4",
+      "text": "Records must include the type and details of the transaction involved",
+      "evidence_ids": [
+        "E1"
+      ],
+      "citation_ids": [
+        "CIT-E1"
+      ]
+    },
+    {
+      "claim_id": "C5",
+      "text": "Records must include the origin and the destination of the funds, where applicable",
+      "evidence_ids": [
+        "E1"
+      ],
+      "citation_ids": [
+        "CIT-E1"
+      ]
+    },
+    {
+      "claim_id": "C6",
+      "text": "Records must include any other information as the SC and BNM may specify in writing",
+      "evidence_ids": [
+        "E1"
+      ],
+      "citation_ids": [
+        "CIT-E1"
+      ]
+    }
+  ],
+  "used_evidence_ids": [
+    "E1"
+  ],
+  "missing_information": [],
+  "evidence": [
+    {
+      "evidence_id": "E1",
+      "chunk_id": "485c4989-c300-45c8-ac06-79a59492bb5c-c0144-0d790b7fda",
+      "chunk_index": 144,
+      "semantic_type": "clause",
+      "source_rank": 1,
+      "ranked_seed_rank": 1,
+      "reasons": [
+        "ranked_seed"
+      ],
+      "pages": [
+        53
+      ],
+      "section_path": [
+        "PART IV: RETENTION OF RECORDS",
+        "10 RECORD KEEPING"
+      ],
+      "source_element_ids": [
+        "p53-e3",
+        "p53-e4",
+        "p53-e5",
+        "p53-e6",
+        "p53-e7",
+        "p53-e8",
+        "p53-e9"
+      ],
+      "content_text": "10.1 A reporting institution must keep records of all transactions and ensure they are up to\ndate and relevant. The records must at least include the following information for each\ntransaction:\n\n(a)Documents relating to the identification and verification of the customer\nin whose name the account is opened or transaction is executed;\n\n(b)The identification of the beneficial owner or the person on whose behalf\nthe account is opened or transaction is executed;\n\n(c)Records of the relevant account pertaining to the transaction executed;\n\n(d)The type and details of transaction involved;\n\n(e)The origin and the destination of the funds, where applicable; and\n\n(f)Such other information as the SC and BNM may specify in writing."
+    },
+    {
+      "evidence_id": "E2",
+      "chunk_id": "485c4989-c300-45c8-ac06-79a59492bb5c-c0145-dfb6598d11",
+      "chunk_index": 145,
+      "semantic_type": "clause",
+      "source_rank": 2,
+      "ranked_seed_rank": 2,
+      "reasons": [
+        "ranked_seed"
+      ],
+      "pages": [
+        53
+      ],
+      "section_path": [
+        "PART IV: RETENTION OF RECORDS",
+        "10 RECORD KEEPING"
+      ],
+      "source_element_ids": [
+        "p53-e10",
+        "p53-e11",
+        "p53-e12",
+        "p53-e13",
+        "p53-e14",
+        "p53-e15",
+        "p53-e16",
+        "p53-e17"
+      ],
+      "content_text": "10.2 A reporting institution is required to maintain records for a period of at least\nseven years from–\n\n(a)in the case of record obtained through the CDD and enhanced CDD\nprocess ,the date the account is closed; or\n\n(b)in the case of transaction records, the date the transaction is completed\nor terminated.\n\n10.3 A reporting institution must retain a record beyond the retention period provided\nin paragraph 10.2 above, if the record is in relation to–\n\n(a)a STR that has been lodged to FIED;\n\n(b)a transaction that is subject to an ongoing investigation by any law\nenforcement agency; or\n\n(c)a transaction that is subject to prosecution in court,\n\nuntil it is confirmed that the case is closed or records are no longer required."
+    },
+    {
+      "evidence_id": "E3",
+      "chunk_id": "485c4989-c300-45c8-ac06-79a59492bb5c-c0146-f1daf1e33c",
+      "chunk_index": 146,
+      "semantic_type": "clause",
+      "source_rank": 3,
+      "ranked_seed_rank": 3,
+      "reasons": [
+        "ranked_seed"
+      ],
+      "pages": [
+        54
+      ],
+      "section_path": [
+        "PART IV: RETENTION OF RECORDS",
+        "10 RECORD KEEPING"
+      ],
+      "source_element_ids": [
+        "p54-e1",
+        "p54-e2",
+        "p54-e3",
+        "p54-e4"
+      ],
+      "content_text": "10.4 A reporting institution must retain, maintain and update the relevant records\n(including CDD records and all relevant transaction records) in such a way that–\n\n(a)the relevant law enforcement agencies and internal and external auditors of the\nreporting institution will be able to reliably judge the reporting institution’s\ntransactions and its compliance with the AMLA and TFS-PF legislations;\n\n(b)it is sufficient to permit reconstruction of individual transactions so as to provide,\nif necessary, evidence for prosecution of criminal activity; and\n\n(c)the reporting institution can satisfy within a reasonable time any enquiry or order\nfrom the relevant law enforcement agencies as to the disclosure of such relevant\nrecord."
+    },
+    {
+      "evidence_id": "E4",
+      "chunk_id": "485c4989-c300-45c8-ac06-79a59492bb5c-c0147-4ce9ccc098",
+      "chunk_index": 147,
+      "semantic_type": "clause",
+      "source_rank": 4,
+      "ranked_seed_rank": 4,
+      "reasons": [
+        "ranked_seed"
+      ],
+      "pages": [
+        55,
+        56
+      ],
+      "section_path": [
+        "PART V: SUSPICIOUS TRANSACTIONS",
+        "11 REPORTING OF SUSPICIOUS TRANSACTIONS"
+      ],
+      "source_element_ids": [
+        "p55-e3",
+        "p55-e4",
+        "p55-e5",
+        "p55-e6",
+        "p55-e13",
+        "p56-e1",
+        "p56-e2",
+        "p56-e3",
+        "p56-e4"
+      ],
+      "content_text": "11.1 A reporting institution must establish in place strong mechanisms for reporting\nsuspicious transactions, including having an appointed AML/CFT/CPF compliance\nofficer, and where appropriate, having a unit primarily responsible for complying with\nthe AML/CFT/CPF requirements on reporting of suspicious transactions.\n\n11.2 A reporting institution must also ensure that the suspicious transaction reporting\nmechanism is operated in a secured environment to maintain the confidentiality and\npreservation of secrecy.\n\n11.3 A reporting institution must clarify the economic background and purpose of any\ntransaction or business relationship if it appears unusual in relation to the reporting\ninstitution’s knowledge of the customer, or if the economic purpose or legality of the\ntransaction is not immediately clear. Special attention should also be paid to all\ncomplex and unusual patterns of transaction.\n\n11.4 A reporting institution must also consider whether the transactions involve a number\nof factors which when taken together may raise a suspicion that the transactions may\nbe connected with certain unlawful activities.\n\n11.6 If in bringing together all relevant factors, a reporting institution has reasonable\ngrounds to suspect that the transaction or the funds utilised involve proceeds of an\nunlawful activity or is related to terrorism financing and proliferation financing, such\ntransaction should be reported immediately to the FIED through lodgement of a STR.\n\n11.6A A reporting institution is required to have in place policies on the duration upon which\ninternal suspicious transaction reports must be reviewed by the reporting institution,\nincluding the circumstances when the timeframe can be exceeded, where necessary.\n\n11.7 Where the reporting institution decides that there are no reasonable grounds for\nsuspicion to warrant a lodgement of a STR, the reporting institution must establish the\ngrounds for such decision. In this regard, the compliance officer must ensure that the\nreporting institution’s decision together with all supporting documentary evidence is\nrecorded and maintained.\n\n11.8 A reporting institution is required to report all suspicious transactions, including\nattempted transactions, regardless of the amount of the transaction. A reporting\ninstitution should be aware that in some cases, suspicion may be formed after a\nconsiderable time from the date of the transaction, in view of subsequent additional\ninformation.\n\n11.9 STRs must be lodged to the FIED in accordance with the method as provided in\nAppendix C herein."
+    },
+    {
+      "evidence_id": "E5",
+      "chunk_id": "485c4989-c300-45c8-ac06-79a59492bb5c-c0132-3c175526c2",
+      "chunk_index": 132,
+      "semantic_type": "clause",
+      "source_rank": 5,
+      "ranked_seed_rank": 5,
+      "reasons": [
+        "ranked_seed"
+      ],
+      "pages": [
+        48,
+        49
+      ],
+      "section_path": [
+        "PART IIIA: WIRE TRANSFER",
+        "9. WIRE TRANSFER OF DIGITAL ASSETS",
+        "9.2 Ordering institutions"
+      ],
+      "source_element_ids": [
+        "p48-e13",
+        "p48-e14",
+        "p48-e15",
+        "p48-e16",
+        "p48-e17",
+        "p49-e2",
+        "p49-e3",
+        "p49-e4"
+      ],
+      "content_text": "9.2.1 A reporting institution which is an ordering institution must ensure that the message\nfor cross-border or domestic wire transfer are accompanied by the following:\n\n(a)Required and accurate originator information pertaining to:\n\n(i)Name of originator;\n\n(ii)National registration identity card number or passport number;\n\n(iii)Account number or digital wallet address or a unique transaction\nreference number used to process the transaction which permits\ntraceability of the transaction; and\n\n(b)Required beneficiary information pertaining to:\n\n(i)Name of beneficiary; and\n\n(ii)Account number or digital wallet address or a unique transaction\nreference number used to process the transaction which permits\ntraceability of the transaction."
+    }
+  ],
+  "citations": [
+    {
+      "citation_id": "CIT-E1",
+      "marker": "[1]",
+      "evidence_id": "E1",
+      "chunk_id": "485c4989-c300-45c8-ac06-79a59492bb5c-c0144-0d790b7fda",
+      "chunk_index": 144,
+      "source_filename": "sc_aml_cft.pdf",
+      "display": "Clause 10.1 · PDF p. 53",
+      "pages": [
+        53
+      ],
+      "section_path": [
+        "PART IV: RETENTION OF RECORDS",
+        "10 RECORD KEEPING"
+      ],
+      "source_element_ids": [
+        "p53-e3",
+        "p53-e4",
+        "p53-e5",
+        "p53-e6",
+        "p53-e7",
+        "p53-e8",
+        "p53-e9"
+      ],
+      "locators": [
+        {
+          "kind": "clause",
+          "label": "Clause 10.1",
+          "pages": [
+            53
+          ],
+          "source_element_ids": [
+            "p53-e3"
+          ]
+        }
+      ],
+      "validation_status": "valid"
+    }
+  ],
+  "citation_version": "deterministic_citations_v1_2",
+  "citation_validation": {
+    "status": "valid",
+    "citation_count": 1,
+    "valid_citation_count": 1,
+    "errors": []
+  },
+  "generation_provider": "groq",
+  "generation_model": "openai/gpt-oss-120b",
+  "prompt_version": "grounded_claims_v1",
+  "generation_temperature": 0.0,
+  "generation_max_tokens": 1200,
+  "generation_json_mode": true,
+  "usage": {
+    "prompt_tokens": 1880,
+    "completion_tokens": 655,
+    "total_tokens": 2535
+  },
+  "retrieval_profile": "retrieval_v1_stage8_2_top5",
+  "retrieval_top_k": 5,
+  "retrieval_candidate_k": 20,
+  "retrieval_rrf_k": 60,
+  "retrieval_dense_weight": 1.0,
+  "retrieval_lexical_weight": 1.0,
+  "context_strategy": "structural_one_hop_v1",
+  "context_chunk_count": 5,
+  "expanded_chunk_count": 0
+}

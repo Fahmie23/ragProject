@@ -1,0 +1,29 @@
+{
+  "schema_version": "1.0",
+  "verification_id": "stage12_verification_contract_v1",
+  "status": "candidate",
+  "production_pipeline_change_authorized": false,
+  "external_generation_required_for_automated_suite": false,
+  "required_gates": [
+    "stage11_frozen_pipeline_guard",
+    "stage11_heldout_benchmark_guard",
+    "stage11_final_evaluation_offline_reproduction",
+    "stage12_system_api_tests",
+    "python_compileall",
+    "full_backend_pytest",
+    "frontend_typescript_vite_build",
+    "live_local_postgres_pgvector_retrieval_smoke"
+  ],
+  "offline_candidate_results": {
+    "stage12_system_test_count": 24,
+    "stage12_system_tests_passed": 24,
+    "full_backend_test_count": 362,
+    "full_backend_tests_passed": 362,
+    "python_compile": "pass",
+    "stage11_freeze_guards": "pass",
+    "stage11_final_evaluation_reproduction": "pass",
+    "frontend_build": "pending_local_required_gate",
+    "live_local_system_smoke": "pending_local_required_gate"
+  },
+  "freeze_rule": "Do not set status=frozen until the required frontend build and live local-system smoke pass in the user's runtime without modifying frozen production RAG files."
+}

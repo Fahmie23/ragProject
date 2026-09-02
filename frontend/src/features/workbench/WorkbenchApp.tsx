@@ -3,6 +3,7 @@ import type { ChangeEvent, KeyboardEvent as ReactKeyboardEvent, MouseEvent as Re
 import {
   generateChunks,
   getChunks,
+  getEmbeddingStatus,
   getCorrections,
   getDocument,
   getExtraction,
@@ -39,6 +40,7 @@ import type {
   StructuredDocument,
   TableExtraction,
   TextBlock,
+  EmbeddingStatus,
 } from "../../types";
 import "../../styles.css";
 import { CompactDocumentBar, DocumentSidebar as V2DocumentSidebar } from "../../components/layout/DocumentSidebar";
@@ -46,6 +48,7 @@ import { DocumentWorkflowNav } from "../../components/layout/DocumentWorkflowNav
 import { DocumentTree } from "../../components/structure/DocumentTree";
 import { OverviewPage } from "../../pages/OverviewPage";
 import { ChunkingPage } from "../../pages/ChunkingPage";
+import { IndexPage } from "../../pages/IndexPage";
 import type { WorkspaceTab } from "../../app/workspace";
 import { useViewportMode } from "../../hooks/useViewportMode";
 
@@ -3613,6 +3616,8 @@ function Workspace({
   corrections,
   layout,
   chunking,
+  embeddingStatus,
+  onEmbeddingStatusChange,
   onRunExtraction,
   onRunStructure,
   onSaveCorrections,
@@ -3631,6 +3636,8 @@ function Workspace({
   corrections: CorrectionArtifact | null;
   layout: LayoutArtifact | null;
   chunking: ChunkingArtifact | null;
+  embeddingStatus: EmbeddingStatus | null;
+  onEmbeddingStatusChange: (status: EmbeddingStatus | null) => void;
   onRunExtraction: () => void;
   onRunStructure: () => void;
   onSaveCorrections: (operations: CorrectionOperation[]) => Promise<void>;
@@ -3687,6 +3694,8 @@ function Workspace({
           reviewDone={reviewDone}
           chunkingAvailable={Boolean(structure)}
           chunkingDone={Boolean(chunking)}
+          indexAvailable={Boolean(chunking)}
+          indexDone={Boolean(embeddingStatus?.complete)}
           onChange={setTab}
         />
         <div className="v2-advanced-nav" aria-label="Advanced developer views">
@@ -3704,7 +3713,7 @@ function Workspace({
       )}
 
       <div className="workspace-body v2-workspace-body">
-        {tab === "overview" && <OverviewPage document={document} extraction={extraction} structure={structure} resolved={resolved} corrections={corrections} chunking={chunking} />}
+        {tab === "overview" && <OverviewPage document={document} extraction={extraction} structure={structure} resolved={resolved} corrections={corrections} chunking={chunking} embeddingStatus={embeddingStatus} />}
         {tab === "extraction" && extraction && <ExtractionWorkspace document={document} extraction={extraction} pageNumber={pageNumber} setPageNumber={setPageNumber} />}
         {tab === "extraction" && !extraction && <div className="v2-placeholder-page"><h2>Extraction is not available yet</h2><p>Run Stage 3 to inspect raw blocks, tables, spans, and page coordinates.</p></div>}
         {tab === "layout" && <LayoutWorkspace document={document} extraction={extraction} structure={structure} resolved={resolved} pageNumber={pageNumber} setPageNumber={setPageNumber} />}
@@ -3738,6 +3747,12 @@ function Workspace({
           onReset={onResetChunks}
           onOpenReview={(targetPage) => { setPageNumber(targetPage); setTab("review"); }}
         />}
+        {tab === "index" && <IndexPage
+          document={document}
+          chunking={chunking}
+          status={embeddingStatus}
+          onStatusChange={onEmbeddingStatusChange}
+        />}
         {tab === "json" && <JsonViewer extraction={extraction} structure={structure} resolved={resolved} corrections={corrections} layout={layout} />}
       </div>
     </div>
@@ -3754,6 +3769,7 @@ export default function App() {
   const [corrections, setCorrections] = useState<CorrectionArtifact | null>(null);
   const [layout, setLayout] = useState<LayoutArtifact | null>(null);
   const [chunking, setChunking] = useState<ChunkingArtifact | null>(null);
+  const [embeddingStatus, setEmbeddingStatus] = useState<EmbeddingStatus | null>(null);
   const [loading, setLoading] = useState(true);
   const [extracting, setExtracting] = useState(false);
   const [structuring, setStructuring] = useState(false);
@@ -3792,6 +3808,7 @@ export default function App() {
       setCorrections(null);
       setLayout(null);
       setChunking(null);
+      setEmbeddingStatus(null);
       return;
     }
     setError("");
@@ -3812,6 +3829,12 @@ export default function App() {
         setCorrections(correctionArtifact);
         setLayout(layoutArtifact);
         setChunking(chunkingArtifact);
+        setEmbeddingStatus(null);
+        if (chunkingArtifact) {
+          getEmbeddingStatus(selectedId)
+            .then((next) => setEmbeddingStatus(next))
+            .catch(() => setEmbeddingStatus(null));
+        }
       })
       .catch((e) => setError(e instanceof Error ? e.message : "Failed to load document"));
   }, [selectedId]);
@@ -3839,6 +3862,7 @@ export default function App() {
       setCorrections(null);
       setLayout(null);
       setChunking(null);
+      setEmbeddingStatus(null);
       updateRecord(updated);
     } catch (e) {
       setError(e instanceof Error ? e.message : "Extraction failed");
@@ -3861,6 +3885,7 @@ export default function App() {
       setCorrections(null);
       setLayout(layoutArtifact);
       setChunking(null);
+      setEmbeddingStatus(null);
       updateRecord(updated);
     } catch (e) {
       setError(e instanceof Error ? e.message : "Structure reconstruction failed");
@@ -3869,6 +3894,7 @@ export default function App() {
       setCorrections(null);
       setLayout(null);
       setChunking(null);
+      setEmbeddingStatus(null);
       const updated = await getDocument(selected.document_id).catch(() => null);
       if (updated) updateRecord(updated);
     } finally {
@@ -3888,6 +3914,7 @@ export default function App() {
       setCorrections(response.corrections);
       setResolved(response.resolved);
       setChunking(null);
+      setEmbeddingStatus(null);
     } catch (e) {
       setError(e instanceof Error ? e.message : "Saving corrections failed");
       throw e;
@@ -3905,6 +3932,7 @@ export default function App() {
       setCorrections(null);
       setResolved(null);
       setChunking(null);
+      setEmbeddingStatus(null);
     } catch (e) {
       setError(e instanceof Error ? e.message : "Resetting corrections failed");
       throw e;
@@ -3920,6 +3948,7 @@ export default function App() {
     try {
       const artifact = await generateChunks(selected.document_id, config);
       setChunking(artifact);
+      setEmbeddingStatus(null);
     } catch (e) {
       setError(e instanceof Error ? e.message : "Stage 5 chunking failed");
       throw e;
@@ -3935,6 +3964,7 @@ export default function App() {
     try {
       await resetChunks(selected.document_id);
       setChunking(null);
+      setEmbeddingStatus(null);
     } catch (e) {
       setError(e instanceof Error ? e.message : "Resetting Stage 5 chunks failed");
       throw e;
@@ -3971,6 +4001,8 @@ export default function App() {
             corrections={corrections}
             layout={layout}
             chunking={chunking}
+            embeddingStatus={embeddingStatus}
+            onEmbeddingStatusChange={setEmbeddingStatus}
             onRunExtraction={handleRunExtraction}
             onRunStructure={handleRunStructure}
             onSaveCorrections={handleSaveCorrections}
@@ -3985,8 +4017,8 @@ export default function App() {
         ) : (
           <div className="welcome-state">
             <div className="welcome-mark">RW</div>
-            <h1>RAG Document Studio</h1>
-            <p>Upload a PDF, inspect deterministic extraction, review canonical structure, and apply non-destructive human corrections before chunking.</p>
+            <h1>Document Workbench</h1>
+            <p>Upload a PDF, inspect deterministic extraction, review canonical structure, and apply non-destructive corrections before retrieval preparation.</p>
             <StageRail />
           </div>
         )}

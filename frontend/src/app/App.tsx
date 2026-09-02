@@ -1,5 +1,5 @@
-import WorkbenchApp from "../features/workbench/WorkbenchApp";
+import RagWorkbenchShell from "./RagWorkbenchShell";
 
 export default function App() {
-  return <WorkbenchApp />;
+  return <RagWorkbenchShell />;
 }

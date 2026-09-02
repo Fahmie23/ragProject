@@ -1,7 +1,7 @@
 {
   "name": "rag-document-pipeline-ui",
   "private": true,
-  "version": "0.6.2-stage4-semantic-v22",
+  "version": "0.10.0-stage10-citations",
   "type": "module",
   "scripts": {
     "dev": "vite",

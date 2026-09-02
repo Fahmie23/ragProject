@@ -500,6 +500,9 @@ export interface ChunkingConfig {
   attach_parent_context_on_split: boolean;
   pack_short_sibling_clauses: boolean;
   attach_contextual_notes: boolean;
+  attach_group_headers_as_context: boolean;
+  suppress_intro_only_figure_chunks: boolean;
+  suppress_non_explanatory_figure_shells: boolean;
   exclude_navigation_sections: boolean;
   row_aware_table_splitting: boolean;
   cleaning: RetrievalCleaningPolicy;
@@ -575,6 +578,11 @@ export interface DeterministicChunkQualityReport {
   sibling_pack_chunk_count: number;
   table_split_chunk_count: number;
   note_attachment_chunk_count: number;
+  caption_attachment_chunk_count: number;
+  group_header_context_chunk_count: number;
+  standalone_group_header_chunk_count: number;
+  intro_only_figure_chunk_count: number;
+  non_explanatory_figure_chunk_count: number;
   signals: DeterministicChunkQualitySignal[];
 }
 
@@ -594,4 +602,347 @@ export interface ChunkingArtifact {
   chunks: RetrievalChunk[];
   warnings: string[];
   generated_at: string;
+}
+
+export interface EmbeddingCudaDevice {
+  index: number;
+  name: string;
+}
+
+export interface EmbeddingSystemStatus {
+  embedding_model: string;
+  configured_device: string;
+  resolved_device?: string | null;
+  embedding_batch_size: number;
+  torch_available: boolean;
+  cuda_available: boolean;
+  cuda_device_count: number;
+  cuda_devices: EmbeddingCudaDevice[];
+  resolution_error?: string | null;
+}
+
+export interface EmbeddingStatus {
+  document_id: string;
+  embedding_model: string;
+  chunk_count: number;
+  embedded_chunk_count: number;
+  missing_chunk_count: number;
+  dimension?: number | null;
+  complete: boolean;
+}
+
+export interface GenerateEmbeddingsRequest {
+  embedding_model?: string | null;
+  embedding_device?: string | null;
+  force?: boolean;
+  batch_size?: number | null;
+}
+
+export interface GenerateEmbeddingsResponse extends EmbeddingStatus {
+  generated_count: number;
+  reused_count: number;
+  requested_device: string;
+  resolved_device: string;
+}
+
+export interface EmbeddingCompatibilityViolation {
+  chunk_id: string;
+  chunk_index: number;
+  model_token_count: number;
+  model_max_seq_length: number;
+}
+
+export interface EmbeddingCompatibilityResponse {
+  document_id: string;
+  embedding_model: string;
+  requested_device: string;
+  resolved_device: string;
+  chunk_count: number;
+  compatible_chunk_count: number;
+  compatible: boolean;
+  violation_count: number;
+  model_max_seq_length?: number | null;
+  max_model_token_count?: number | null;
+  longest_chunk_id?: string | null;
+  longest_chunk_index?: number | null;
+  violations: EmbeddingCompatibilityViolation[];
+}
+
+
+export interface DenseRetrievalRequest {
+  document_id: string;
+  query: string;
+  top_k?: number;
+  embedding_model?: string | null;
+  embedding_device?: string | null;
+  semantic_types?: string[];
+}
+
+export interface DenseRetrievalHit {
+  rank: number;
+  chunk_id: string;
+  chunk_index: number;
+  semantic_type: string;
+  score: number;
+  distance: number;
+  text: string;
+  content_text: string;
+  token_count: number;
+  pages: number[];
+  section_path: string[];
+  source_element_ids: string[];
+}
+
+export interface DenseRetrievalResponse {
+  document_id: string;
+  query: string;
+  embedding_model: string;
+  requested_device: string;
+  resolved_device: string;
+  top_k: number;
+  embedded_chunk_count: number;
+  total_chunk_count: number;
+  hits: DenseRetrievalHit[];
+}
+
+export interface HybridRetrievalRequest extends DenseRetrievalRequest {
+  candidate_k?: number;
+  rrf_k?: number;
+  dense_weight?: number;
+  lexical_weight?: number;
+}
+
+export interface HybridRetrievalHit {
+  rank: number;
+  chunk_id: string;
+  chunk_index: number;
+  semantic_type: string;
+  fusion_score: number;
+  dense_rank?: number | null;
+  dense_score?: number | null;
+  dense_distance?: number | null;
+  dense_rrf_score: number;
+  lexical_rank?: number | null;
+  lexical_score?: number | null;
+  lexical_matched_term_count: number;
+  lexical_term_coverage: number;
+  lexical_rrf_score: number;
+  text: string;
+  content_text: string;
+  token_count: number;
+  pages: number[];
+  section_path: string[];
+  source_element_ids: string[];
+}
+
+export interface HybridRetrievalResponse {
+  document_id: string;
+  query: string;
+  embedding_model: string;
+  requested_device: string;
+  resolved_device: string;
+  top_k: number;
+  candidate_k: number;
+  embedded_chunk_count: number;
+  total_chunk_count: number;
+  fusion_method: "reciprocal_rank_fusion" | string;
+  rrf_k: number;
+  dense_weight: number;
+  lexical_weight: number;
+  lexical_ranking_method: string;
+  lexical_query_mode: string;
+  lexical_terms: string[];
+  lexical_tsquery: string;
+  hits: HybridRetrievalHit[];
+}
+
+export interface RerankedRetrievalRequest extends HybridRetrievalRequest {
+  reranker_model?: string | null;
+  reranker_device?: string | null;
+  reranker_batch_size?: number | null;
+}
+
+export interface RerankedRetrievalHit {
+  rank: number;
+  chunk_id: string;
+  chunk_index: number;
+  semantic_type: string;
+  reranker_score: number;
+  hybrid_candidate_rank: number;
+  fusion_score: number;
+  dense_rank?: number | null;
+  dense_score?: number | null;
+  dense_distance?: number | null;
+  dense_rrf_score: number;
+  lexical_rank?: number | null;
+  lexical_score?: number | null;
+  lexical_matched_term_count: number;
+  lexical_term_coverage: number;
+  lexical_rrf_score: number;
+  text: string;
+  content_text: string;
+  token_count: number;
+  pages: number[];
+  section_path: string[];
+  source_element_ids: string[];
+}
+
+export interface RerankedRetrievalResponse {
+  document_id: string;
+  query: string;
+  embedding_model: string;
+  embedding_requested_device: string;
+  embedding_resolved_device: string;
+  reranker_model: string;
+  reranker_requested_device: string;
+  reranker_resolved_device: string;
+  reranker_batch_size: number;
+  reranker_max_length: number;
+  top_k: number;
+  candidate_k: number;
+  candidate_union_count: number;
+  embedded_chunk_count: number;
+  total_chunk_count: number;
+  candidate_strategy: string;
+  ranking_method: string;
+  fusion_method: string;
+  rrf_k: number;
+  dense_weight: number;
+  lexical_weight: number;
+  lexical_ranking_method: string;
+  lexical_query_mode: string;
+  lexical_terms: string[];
+  lexical_tsquery: string;
+  hits: RerankedRetrievalHit[];
+}
+
+export interface StructuralContextChunk {
+  context_order: number;
+  chunk_id: string;
+  chunk_index: number;
+  semantic_type: string;
+  source_rank: number;
+  ranked_seed_rank?: number | null;
+  reasons: string[];
+  attached_from_chunk_ids: string[];
+  text: string;
+  content_text: string;
+  token_count: number;
+  pages: number[];
+  section_path: string[];
+  source_element_ids: string[];
+}
+
+export interface ContextExpandedRetrievalRequest extends RerankedRetrievalRequest {
+  context_max_forward_neighbors_per_seed?: number;
+  context_max_backward_neighbors_per_seed?: number;
+  context_max_page_gap?: number;
+  context_max_chunks?: number;
+}
+
+export interface ContextExpandedRetrievalResponse extends RerankedRetrievalResponse {
+  context_strategy: string;
+  context_recursive: boolean;
+  context_same_section_required: boolean;
+  context_max_forward_neighbors_per_seed: number;
+  context_max_backward_neighbors_per_seed: number;
+  context_max_page_gap: number;
+  context_max_chunks: number;
+  context_chunk_count: number;
+  expanded_chunk_count: number;
+  context_chunks: StructuralContextChunk[];
+}
+
+
+
+export interface GroundedAnswerRequest {
+  document_id: string;
+  question: string;
+}
+
+export interface GenerationEvidence {
+  evidence_id: string;
+  chunk_id: string;
+  chunk_index: number;
+  semantic_type: string;
+  source_rank: number;
+  ranked_seed_rank?: number | null;
+  reasons: string[];
+  pages: number[];
+  section_path: string[];
+  source_element_ids: string[];
+  content_text: string;
+}
+
+export interface CitationLocator {
+  kind: "clause" | "subclause" | "definition" | "appendix" | "section" | "page";
+  label: string;
+  pages: number[];
+  source_element_ids: string[];
+}
+
+export interface SourceCitation {
+  citation_id: string;
+  marker: string;
+  evidence_id: string;
+  chunk_id: string;
+  chunk_index: number;
+  source_filename: string;
+  display: string;
+  pages: number[];
+  section_path: string[];
+  source_element_ids: string[];
+  locators: CitationLocator[];
+  validation_status: "valid";
+}
+
+export interface CitationValidationSummary {
+  status: "valid";
+  citation_count: number;
+  valid_citation_count: number;
+  errors: string[];
+}
+
+export interface GroundedClaim {
+  claim_id: string;
+  text: string;
+  evidence_ids: string[];
+  citation_ids: string[];
+}
+
+export interface GenerationUsage {
+  prompt_tokens?: number | null;
+  completion_tokens?: number | null;
+  total_tokens?: number | null;
+}
+
+export interface GroundedAnswerResponse {
+  document_id: string;
+  question: string;
+  status: "answered" | "insufficient_evidence";
+  answer: string;
+  cited_answer: string;
+  claims: GroundedClaim[];
+  used_evidence_ids: string[];
+  missing_information: string[];
+  evidence: GenerationEvidence[];
+  citations: SourceCitation[];
+  citation_version: string;
+  citation_validation: CitationValidationSummary;
+  generation_provider: string;
+  generation_model: string;
+  prompt_version: string;
+  generation_temperature: number;
+  generation_max_tokens: number;
+  generation_json_mode: boolean;
+  usage?: GenerationUsage | null;
+  retrieval_profile: string;
+  retrieval_top_k: number;
+  retrieval_candidate_k: number;
+  retrieval_rrf_k: number;
+  retrieval_dense_weight: number;
+  retrieval_lexical_weight: number;
+  context_strategy: string;
+  context_chunk_count: number;
+  expanded_chunk_count: number;
 }

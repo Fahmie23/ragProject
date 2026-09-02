@@ -1,0 +1,19 @@
+Stage 12 — Offline Candidate Summary
+====================================
+Status: candidate; NOT frozen
+
+New Stage 12 system/API tests: 24/24 PASS
+Full backend regression: 362/362 PASS
+Python compileall: PASS
+Stage 11 frozen production baseline: PASS
+Stage 11 frozen held-out benchmark: PASS
+Stage 11 final evaluation offline reproduction: PASS
+External generation-provider calls: 0
+
+Not claimed in build sandbox:
+- frontend npm build (dependencies unavailable in restricted sandbox)
+- live local PostgreSQL/pgvector/model smoke
+
+Required local freeze gates:
+1) python scripts/run_stage12_verification.py --frontend required
+2) python scripts/run_stage12_live_smoke.py --base-url http://localhost:8000

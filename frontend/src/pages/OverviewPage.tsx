@@ -1,4 +1,4 @@
-import type { ChunkingArtifact, CorrectionArtifact, DocumentExtraction, DocumentRecord, ResolvedStructureArtifact, StructuredDocument } from "../types";
+import type { ChunkingArtifact, CorrectionArtifact, DocumentExtraction, DocumentRecord, EmbeddingStatus, ResolvedStructureArtifact, StructuredDocument } from "../types";
 
 function formatBytes(value: number) {
   if (value < 1024) return `${value} B`;
@@ -28,6 +28,7 @@ export function OverviewPage({
   resolved,
   corrections,
   chunking,
+  embeddingStatus,
 }: {
   document: DocumentRecord;
   extraction: DocumentExtraction | null;
@@ -35,10 +36,12 @@ export function OverviewPage({
   resolved: ResolvedStructureArtifact | null;
   corrections: CorrectionArtifact | null;
   chunking: ChunkingArtifact | null;
+  embeddingStatus: EmbeddingStatus | null;
 }) {
   const stage5Ready = Boolean(resolved && resolved.integrity.status === "pass" && resolved.review.stage5_eligible);
   const reviewState = structure ? (resolved ? "complete" : "available") : "pending";
   const chunkingState = chunking ? "complete" : stage5Ready ? "available" : structure ? "blocked" : "pending";
+  const indexState = embeddingStatus?.complete ? "complete" : chunking?.quality.status === "pass" ? "available" : chunking ? "blocked" : "pending";
 
   return (
     <div className="v2-overview-page">
@@ -70,6 +73,17 @@ export function OverviewPage({
               label="Chunking"
               state={chunkingState}
               detail={chunking ? `${chunking.summary.chunk_count} retrieval chunks` : stage5Ready ? "Stage 5 · ready to generate" : structure ? "Requires saved Stage 4.5 resolved structure" : "Stage 5"}
+            />
+            <StatusRow
+              label="Embedding & index"
+              state={indexState}
+              detail={embeddingStatus?.complete
+                ? `${embeddingStatus.embedded_chunk_count} vectors · ${embeddingStatus.dimension ?? "?"}D`
+                : chunking?.quality.status === "pass"
+                  ? "Stage 6 · ready to validate and generate"
+                  : chunking
+                    ? "Requires Stage 5 quality pass"
+                    : "Stage 6"}
             />
           </div>
         </div>

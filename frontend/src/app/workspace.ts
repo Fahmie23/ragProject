@@ -4,5 +4,6 @@ export type WorkspaceTab =
   | "structure"
   | "review"
   | "chunking"
+  | "index"
   | "layout"
   | "json";

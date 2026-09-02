@@ -1,0 +1,223 @@
+{
+  "document_id": "485c4989-c300-45c8-ac06-79a59492bb5c",
+  "question": "What is the current retail price of one gram of 999 gold in Malaysia?",
+  "status": "insufficient_evidence",
+  "answer": "The retrieved evidence is insufficient to answer this question reliably.",
+  "cited_answer": "The retrieved evidence is insufficient to answer this question reliably.",
+  "claims": [],
+  "used_evidence_ids": [],
+  "missing_information": [
+    "current retail price of one gram of 999 gold in Malaysia"
+  ],
+  "evidence": [
+    {
+      "evidence_id": "E1",
+      "chunk_id": "485c4989-c300-45c8-ac06-79a59492bb5c-c0196-08986b7945",
+      "chunk_index": 196,
+      "semantic_type": "clause",
+      "source_rank": 1,
+      "ranked_seed_rank": null,
+      "reasons": [
+        "preceding_intro"
+      ],
+      "pages": [
+        75
+      ],
+      "section_path": [
+        "APPENDIX A",
+        "5.0 A: Determine the risk parameters for customer profiling"
+      ],
+      "source_element_ids": [
+        "p75-e18"
+      ],
+      "content_text": "5.1 A reporting institution should determine the appropriate risk parameters when\nconsidering the risk factors such as customer, country or geographic, product\nor service and transaction or distribution channel. These risk parameters will assist the\nreporting institution in identifying the ML/TF/PF risk factors for customers for the\npurpose of risk profiling. Refer to Example 2 below for illustration purposes:"
+    },
+    {
+      "evidence_id": "E2",
+      "chunk_id": "485c4989-c300-45c8-ac06-79a59492bb5c-c0197-a07173f789",
+      "chunk_index": 197,
+      "semantic_type": "table",
+      "source_rank": 1,
+      "ranked_seed_rank": 1,
+      "reasons": [
+        "ranked_seed"
+      ],
+      "pages": [
+        76
+      ],
+      "section_path": [
+        "APPENDIX A",
+        "5.0 A: Determine the risk parameters for customer profiling"
+      ],
+      "source_element_ids": [
+        "p76-e1",
+        "p76-e2"
+      ],
+      "content_text": "Example 2:\n\nRisk Factor | Parameters determined for risk profiling | Risk Rating\nCustomer | Type Individual | Low\n | Legal Person | Medium\n | Legal Arrangement | High\n | Net Worth Less than RM500,000 | Low\n | RM500,000 – RM3 million | Medium\n | Above RM3 million | High\nTransaction | Over the Counter | Low\nor Distribution | On behalf | Medium\nChannel | Non Face-to-face | High"
+    },
+    {
+      "evidence_id": "E3",
+      "chunk_id": "485c4989-c300-45c8-ac06-79a59492bb5c-c0190-284956dc4e",
+      "chunk_index": 190,
+      "semantic_type": "clause",
+      "source_rank": 2,
+      "ranked_seed_rank": null,
+      "reasons": [
+        "preceding_intro"
+      ],
+      "pages": [
+        74
+      ],
+      "section_path": [
+        "APPENDIX A",
+        "3.0 A: Perform Risk Assessment"
+      ],
+      "source_element_ids": [
+        "p74-e1"
+      ],
+      "content_text": "3.5 In considering each risk factor mentioned above, a reporting institution must\nformulate parameters that indicate their risk appetite to the potential ML/TF/PF risks\nit may be exposed to. The reporting institution should set the parameters according\nto the size and complexity of its business. Refer Example 1 below for illustration\npurposes:"
+    },
+    {
+      "evidence_id": "E4",
+      "chunk_id": "485c4989-c300-45c8-ac06-79a59492bb5c-c0191-0f829064a1",
+      "chunk_index": 191,
+      "semantic_type": "table",
+      "source_rank": 2,
+      "ranked_seed_rank": 2,
+      "reasons": [
+        "ranked_seed"
+      ],
+      "pages": [
+        74
+      ],
+      "section_path": [
+        "APPENDIX A",
+        "3.0 A: Perform Risk Assessment"
+      ],
+      "source_element_ids": [
+        "p74-e2-caption",
+        "p74-e2"
+      ],
+      "content_text": "Example 1:\n\nRisk Factor | Examples | Formulated Parameters\nCustomer | Percentage of high- net-worth customers within the reporting institution | • Customers with high-net- worth of RM5 million\nTransactions and Distribution Channels | Number of cash- based transaction | • Cash transaction above RM50,000\nFindings of the NRA | Sectors identified as highly vulnerable to ML/TF/PF risks | • Number of customers with occupation or nature of business from highly vulnerable sectors identified under the NRA"
+    },
+    {
+      "evidence_id": "E5",
+      "chunk_id": "485c4989-c300-45c8-ac06-79a59492bb5c-c0100-d1377a7b3c",
+      "chunk_index": 100,
+      "semantic_type": "clause",
+      "source_rank": 3,
+      "ranked_seed_rank": 3,
+      "reasons": [
+        "ranked_seed"
+      ],
+      "pages": [
+        36,
+        37
+      ],
+      "section_path": [
+        "PART III: CUSTOMER DUE DILIGENCE",
+        "8. CUSTOMER DUE DILIGENCE (CDD)",
+        "8.1 CDD at the point of establishing business relationship"
+      ],
+      "source_element_ids": [
+        "p36-e10",
+        "p36-e11",
+        "p36-e12",
+        "p37-e1",
+        "p37-e2",
+        "p37-e3",
+        "p37-e4",
+        "p37-e5",
+        "p37-e6",
+        "p37-e7",
+        "p37-e8",
+        "p37-e9",
+        "p37-e10",
+        "p37-e11",
+        "p37-e12"
+      ],
+      "content_text": "8.1.23 This section applies when a reporting institution chooses to establish non-face-to-\nface business relationship.\n\n(a) A reporting institution must develop and implement policies and procedures to\naddress and mitigate specific ML/TF/PF risks associated with establishing non\nface-to-face business relationship, as well as operational and information\ntechnology risk.\n\n(b) A reporting institution must establish appropriate measures for identification\nand verification of a customer’s identity before establishing non face-to-face\nbusiness relationship.\n\n(c) For the purpose of identification and verification of the identity of a customer in\na non face-to-face business relationship, a reporting institution must undertake\none or more of the following measures:\n\n(i) Requesting for additional identification documents or information e.g.\nbank statements, utility bills;\n\n(ii) Substantiating the customer’s information with any independent source\ne.g. contacting the customer’s employer and verification through database\nmaintained by any relevant authorities;\n\n(iii) Contacting the customer through any digital communication channel to\nvisually identify and verify the customer’s identity;\n\n(iv) Requesting the customer to make a nominal payment from his own\naccount with a licensed bank under the Financial Services Act 2013 or\nlicensed Islamic bank under the Islamic Financial Services Act 2013 to\nenable the reporting institution to satisfy itself of the customer’s true\nidentity; or\n\n(v) Using new technology solutions including, but not limited to, biometric\ntechnologies (e.g. fingerprint or iris scans, facial recognition), which\nshould be linked incontrovertibly to the customer.\n\n(d) Where the reporting institution is unable to identify and verify the customer’s\nidentity by adopting the measures provided under paragraph (c) above, the\nreporting institution must initiate face-to-face business relationship.\n\n(e) Sub-paragraphs (a) to (d) above are not applicable to:\n\n(i)Customers that are identified as foreign PEP;\n\n(ii)Customers from higher-risk and non co-operative jurisdictions as identified\nby the FATF; or\n\n(iii)Listed persons or entities subjected to targeted financial sanctions for\nterrorism financing and financing of proliferation of weapons of mass\ndestruction pursuant to the UNSCR.\n\n(f) A reporting institution must ensure and be able to demonstrate on a continuing\nbasis that appropriate measures for identification and verification of a customer’s\nidentity when establishing non-face-to-face business relationship are as effective\nas that for face-to-face customer and implement monitoring and reporting\nmechanism to identify potential ML/TF/PF activities."
+    },
+    {
+      "evidence_id": "E6",
+      "chunk_id": "485c4989-c300-45c8-ac06-79a59492bb5c-c0274-fb4537476c",
+      "chunk_index": 274,
+      "semantic_type": "mixed",
+      "source_rank": 4,
+      "ranked_seed_rank": 4,
+      "reasons": [
+        "ranked_seed"
+      ],
+      "pages": [
+        105
+      ],
+      "section_path": [
+        "APPENDIX G"
+      ],
+      "source_element_ids": [
+        "p105-e3",
+        "p105-e5",
+        "p105-e6",
+        "p105-e7"
+      ],
+      "content_text": "Regulation 3 of the Strategic Trade (United Nations Security Council Resolutions)\nRegulations 2010 (P.U. (A) 481/2010) requires the following counter-proliferation financing\nmeasures to be taken in relation to the countries and persons designated under the Strategic Trade\n(Restricted End-Users and Prohibited End-Users) Order 2010 (P.U. (A) 484/2010) in accordance\nwith the relevant UNSCRs:\n\n(a)Freezing of the funds and other financial assets or economic resources of such\ncountries or persons that are located in Malaysia;\n\n(b)Prohibition of investment in Malaysia by such countries or persons involving any\nrestricted activities3;\n\n(c)Prevention of the provision of financial services, including insurance or re-insurance,\nor the transfer to, through, or from Malaysia, or to or by Malaysian nationals or entities\norganised under Malaysian law (including branches abroad), or persons or financial\ninstitutions in Malaysia, of any financial or other assets or resources if there is\ninformation that provides reasonable grounds to believe that such services, assets or\nresources could contribute to any restricted activity in any designated country;"
+    },
+    {
+      "evidence_id": "E7",
+      "chunk_id": "485c4989-c300-45c8-ac06-79a59492bb5c-c0006-7370ea1972",
+      "chunk_index": 6,
+      "semantic_type": "clause",
+      "source_rank": 5,
+      "ranked_seed_rank": 5,
+      "reasons": [
+        "ranked_seed"
+      ],
+      "pages": [
+        6
+      ],
+      "section_path": [
+        "PART I: INTRODUCTION AND APPLICABILITY",
+        "1.0 INTRODUCTION"
+      ],
+      "source_element_ids": [
+        "p6-e3",
+        "p6-e4",
+        "p6-e5",
+        "p6-e6",
+        "p6-e7",
+        "p6-e8",
+        "p6-e9",
+        "p6-e10"
+      ],
+      "content_text": "1.1 The Guidelines on Prevention of Money Laundering, Countering Financing of Terrorism,\nCountering Proliferation Financing and Targeted Financial Sanctions for Reporting\nInstitutions in the Capital Market (Guidelines) are issued pursuant to the following:\n\n(a) in relation to anti-money laundering and countering financing of terrorism including\nTargeted Financial Sanctions relating to Terrorism Financing (TFS-TF), section\n158(1) and section 160A of the Securities Commission Malaysia Act 1993 (SCMA)\nread together with section 66B, section 66E and section 83 of the Anti-Money\nLaundering, Anti-Terrorism Financing and Proceeds of Unlawful Activities Act 2001\n(AMLA);\n\n(b) in relation to countering proliferation financing including Targeted Financial\nSanctions relating to Proliferation Financing (TFS-PF), section 158(1) and section\n160A of the SCMA read together with the following legislations (collectively referred\nto as “TFS-PF related legislations”) which provides the legal basis for domestic\nimplementation of TFS-PF in relation to United Nations Security Council Resolutions\n(UNSCR) imposed on the designated countries and persons:\n\n(i) Strategic Trade Act 2010 (Act 708) (STA);\n\n(ii) Strategic Trade (United Nations Security Council Resolutions)\nRegulations 2010 (P.U. (A) 481/2010) 1;\n\n(iii) Strategic Trade (Restricted End-Users and Prohibited End-Users) Order\n2010 (P.U. (A) 484/2010);\n\n(iv) Strategic Trade (Delisting of Prohibited End-Users) Regulations 2014\n(P.U. (A) 289/2014); and\n\n(v) Strategic Trade (Unfreezing of Property in relation to Prohibited End-\nUsers) Regulations 2014 (P.U. (A) 290/2014)."
+    }
+  ],
+  "citations": [],
+  "citation_version": "deterministic_citations_v1_2",
+  "citation_validation": {
+    "status": "valid",
+    "citation_count": 0,
+    "valid_citation_count": 0,
+    "errors": []
+  },
+  "generation_provider": "groq",
+  "generation_model": "openai/gpt-oss-120b",
+  "prompt_version": "grounded_claims_v1",
+  "generation_temperature": 0.0,
+  "generation_max_tokens": 1200,
+  "generation_json_mode": true,
+  "usage": {
+    "prompt_tokens": 2486,
+    "completion_tokens": 121,
+    "total_tokens": 2607
+  },
+  "retrieval_profile": "retrieval_v1_stage8_2_top5",
+  "retrieval_top_k": 5,
+  "retrieval_candidate_k": 20,
+  "retrieval_rrf_k": 60,
+  "retrieval_dense_weight": 1.0,
+  "retrieval_lexical_weight": 1.0,
+  "context_strategy": "structural_one_hop_v1",
+  "context_chunk_count": 7,
+  "expanded_chunk_count": 2
+}

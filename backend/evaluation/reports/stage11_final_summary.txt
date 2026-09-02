@@ -1,0 +1,34 @@
+Stage 11 final status: COMPLETE / FROZEN
+
+Production baseline: stage11_frozen_pipeline_v1 — PASS
+Semantic rubric: stage11_semantic_rubric_v1 — FROZEN
+Held-out benchmark: answer_citation_eval_heldout_v1 — FROZEN / consumed once
+Held-out human calibration: answer_citation_eval_heldout_calibration_v1_frozen — FROZEN
+Automated semantic judge: disabled
+Held-out tuning authorized: no
+
+Held-out deterministic:
+- Questions: 18/18
+- AnswerStatusAccuracy: 0.9444444444444444
+- ClaimCitationCoverage: 1.0
+- DeterministicCitationValidity: 1.0
+- RequiredSourceCoverage: 0.9333333333333333
+- AbstentionPrecision: 0.75
+- AbstentionRecall: 1.0
+- AbstentionF1: 0.8571428571428571
+
+Held-out semantic:
+- ClaimSupportRate: 0.9583333333333334
+- PartialSupportRate: 0.041666666666666664
+- UnsupportedClaimRate: 0.0
+- ContradictionRate: 0.0
+- CitationEntailmentRate: 0.9387755102040817
+- CitationPartialRate: 0.061224489795918366
+- CitationNonEntailmentRate: 0.0
+- GoldClaimCoverage: 0.7884615384615384
+- PartialGoldClaimCoverage: 0.09615384615384616
+- MissingGoldClaimRate: 0.11538461538461539
+- AnswerCompleteness: 0.8365384615384616
+- AnswerRelevanceMean: 1.7777777777777777
+
+Primary held-out weakness: completeness/context coverage, not hallucinated or invalid citations.

@@ -1,0 +1,316 @@
+{
+  "document_id": "485c4989-c300-45c8-ac06-79a59492bb5c",
+  "question": "What five general principles must a reporting institution ensure when combating ML/TF/PF under paragraph 6.2?",
+  "status": "answered",
+  "answer": "A reporting institution must ensure compliance with laws and regulations, conduct business in conformity with high ethical standards, and not provide services where there is good reason to suspect transactions are associated with ML/TF/PF activities. A reporting institution must co‑operate fully with relevant law enforcement agencies, including taking appropriate measures such as timely disclosure of information to the FIED and the relevant law enforcement agencies. A reporting institution must establish internal controls by issuing and adopting policies and procedures consistent with the AMLA, TFS‑PF related legislations and these Guidelines, and ensure ongoing training programmes for its board of directors, senior management and employees. A reporting institution must adopt a risk‑based approach, ensuring that the depth and breadth of its policies and procedures to identify, assess, monitor, manage and mitigate ML/TF/PF risks are commensurate with the nature, scale and complexity of its activities. A reporting institution must have an effective Customer Due Diligence procedure to identify its customers and obtain satisfactory evidence to verify their identity.",
+  "cited_answer": "A reporting institution must ensure compliance with laws and regulations, conduct business in conformity with high ethical standards, and not provide services where there is good reason to suspect transactions are associated with ML/TF/PF activities. [1] A reporting institution must co‑operate fully with relevant law enforcement agencies, including taking appropriate measures such as timely disclosure of information to the FIED and the relevant law enforcement agencies. [1] A reporting institution must establish internal controls by issuing and adopting policies and procedures consistent with the AMLA, TFS‑PF related legislations and these Guidelines, and ensure ongoing training programmes for its board of directors, senior management and employees. [1] A reporting institution must adopt a risk‑based approach, ensuring that the depth and breadth of its policies and procedures to identify, assess, monitor, manage and mitigate ML/TF/PF risks are commensurate with the nature, scale and complexity of its activities. [1] A reporting institution must have an effective Customer Due Diligence procedure to identify its customers and obtain satisfactory evidence to verify their identity. [1]",
+  "claims": [
+    {
+      "claim_id": "C1",
+      "text": "A reporting institution must ensure compliance with laws and regulations, conduct business in conformity with high ethical standards, and not provide services where there is good reason to suspect transactions are associated with ML/TF/PF activities.",
+      "evidence_ids": [
+        "E1"
+      ],
+      "citation_ids": [
+        "CIT-E1"
+      ]
+    },
+    {
+      "claim_id": "C2",
+      "text": "A reporting institution must co‑operate fully with relevant law enforcement agencies, including taking appropriate measures such as timely disclosure of information to the FIED and the relevant law enforcement agencies.",
+      "evidence_ids": [
+        "E1"
+      ],
+      "citation_ids": [
+        "CIT-E1"
+      ]
+    },
+    {
+      "claim_id": "C3",
+      "text": "A reporting institution must establish internal controls by issuing and adopting policies and procedures consistent with the AMLA, TFS‑PF related legislations and these Guidelines, and ensure ongoing training programmes for its board of directors, senior management and employees.",
+      "evidence_ids": [
+        "E1"
+      ],
+      "citation_ids": [
+        "CIT-E1"
+      ]
+    },
+    {
+      "claim_id": "C4",
+      "text": "A reporting institution must adopt a risk‑based approach, ensuring that the depth and breadth of its policies and procedures to identify, assess, monitor, manage and mitigate ML/TF/PF risks are commensurate with the nature, scale and complexity of its activities.",
+      "evidence_ids": [
+        "E1"
+      ],
+      "citation_ids": [
+        "CIT-E1"
+      ]
+    },
+    {
+      "claim_id": "C5",
+      "text": "A reporting institution must have an effective Customer Due Diligence procedure to identify its customers and obtain satisfactory evidence to verify their identity.",
+      "evidence_ids": [
+        "E1"
+      ],
+      "citation_ids": [
+        "CIT-E1"
+      ]
+    }
+  ],
+  "used_evidence_ids": [
+    "E1"
+  ],
+  "missing_information": [],
+  "evidence": [
+    {
+      "evidence_id": "E1",
+      "chunk_id": "485c4989-c300-45c8-ac06-79a59492bb5c-c0055-88bd4ccfdd",
+      "chunk_index": 55,
+      "semantic_type": "clause",
+      "source_rank": 1,
+      "ranked_seed_rank": 1,
+      "reasons": [
+        "ranked_seed"
+      ],
+      "pages": [
+        19,
+        20
+      ],
+      "section_path": [
+        "PART I: INTRODUCTION AND APPLICABILITY",
+        "6. GENERAL PRINCIPLES AND POLICIES TO COMBAT MONEY\nLAUNDERING, TERRORISM FINANCING AND PROLIFERATION\nFINANCING"
+      ],
+      "source_element_ids": [
+        "p19-e8",
+        "p19-e9",
+        "p19-e10",
+        "p19-e11",
+        "p19-e12",
+        "p20-e1",
+        "p20-e2"
+      ],
+      "content_text": "6.2 In combating ML/TF/PF, a reporting institution must ensure the following:\n\n(a)Compliance with laws: A reporting institution must ensure that laws and\nregulations are adhered to, that business is conducted in conformity with high\nethical standards, and that service is not provided where there is good reason\nto suppose that transactions are associated with ML/TF/PF activities.\n\n(b)Co-operation with law enforcement agencies: A reporting institution\nmust co-operate fully with relevant law enforcement agencies. This includes\ntaking appropriate measures such as timely disclosure of information by the\nreporting institution to the FIED and the relevant law enforcement agencies.\n\n(c)Establishing internal controls: A reporting institution must issue and adopt\npolicies and procedures which are consistent with the principles set out under\nthe AMLA, TFS-PF related legislations and these Guidelines. A reporting\ninstitution must also ensure ongoing training programmes are conducted to\nkeep its board of directors, senior management and employees abreast on\nmatters under the AMLA and these Guidelines.\n\n(d)Risk-based approach: A reporting institution must ensure that the depth\nand breadth of its policies and procedures to identify, assess, monitor, manage\n\nand mitigate ML/TF/PF risks commensurate with the nature, scale and\ncomplexity of its activities.\n\n(e)Customer Due Diligence: A reporting institution must have an effective\nprocedure to identify its customers and to obtain satisfactory evidence to\nverify its customers’ identity."
+    },
+    {
+      "evidence_id": "E2",
+      "chunk_id": "485c4989-c300-45c8-ac06-79a59492bb5c-c0054-cf7b9dcb54",
+      "chunk_index": 54,
+      "semantic_type": "clause",
+      "source_rank": 2,
+      "ranked_seed_rank": 2,
+      "reasons": [
+        "ranked_seed"
+      ],
+      "pages": [
+        19
+      ],
+      "section_path": [
+        "PART I: INTRODUCTION AND APPLICABILITY",
+        "6. GENERAL PRINCIPLES AND POLICIES TO COMBAT MONEY\nLAUNDERING, TERRORISM FINANCING AND PROLIFERATION\nFINANCING"
+      ],
+      "source_element_ids": [
+        "p19-e7"
+      ],
+      "content_text": "6.1 A reporting institution is required to take the necessary steps in order to prevent\nML/TF/PF and have a system in place for reporting suspected ML/TF/PF transactions\nto the FIED ."
+    },
+    {
+      "evidence_id": "E3",
+      "chunk_id": "485c4989-c300-45c8-ac06-79a59492bb5c-c0080-4341282f62",
+      "chunk_index": 80,
+      "semantic_type": "clause",
+      "source_rank": 3,
+      "ranked_seed_rank": 3,
+      "reasons": [
+        "ranked_seed"
+      ],
+      "pages": [
+        30
+      ],
+      "section_path": [
+        "PART II: RISK-BASED APPROACH APPLICATION",
+        "7. RISK-BASED APPROACH APPLICATION",
+        "7.6 Risk management and mitigation in third-party deposits and payments"
+      ],
+      "source_element_ids": [
+        "p30-e4",
+        "p30-e5",
+        "p30-e6",
+        "p30-e7",
+        "p30-e8"
+      ],
+      "content_text": "7.6.1 There are ML/TF/PF risks as well as other risks associated with third-party deposits made\ninto accounts maintained by customers of a reporting institution.\n\n7.6.2 In view of the risks associated with third-party deposits, reporting institutions must in\nconducting its risk assessment consider and assess the risk arising from third-party\ndeposits and ensure that appropriate control measures are implemented to mitigate the\nrisk and/or prevent ML/TF/PF activities.\n\n7.6.3 A reporting institution which accepts third-party deposit must at minimum, comply with\nthe requirements on control measures in accepting third-party deposits set out in\nAppendix A1 of these Guidelines.\n\n7.6.4 A reporting institution which is unable to exercise appropriate control measures to\nmitigate the inherent ML/TF/PF risk and other associated risks and meet the relevant\ncompliance requirements must not accept any third-party deposits.\n\n7.6.5 Generally, a reporting institution must not accept any request from customers for\npayments to be made from the customers’ account into a third-party account except in\nexceptional circumstances where permitted in relevant guidelines."
+    },
+    {
+      "evidence_id": "E4",
+      "chunk_id": "485c4989-c300-45c8-ac06-79a59492bb5c-c0008-e6045d93c8",
+      "chunk_index": 8,
+      "semantic_type": "clause",
+      "source_rank": 4,
+      "ranked_seed_rank": 4,
+      "reasons": [
+        "ranked_seed"
+      ],
+      "pages": [
+        7,
+        8
+      ],
+      "section_path": [
+        "PART I: INTRODUCTION AND APPLICABILITY",
+        "2.  APPLICABILITY"
+      ],
+      "source_element_ids": [
+        "p7-e9",
+        "p7-e10",
+        "p8-e1",
+        "p8-e2",
+        "p8-e3",
+        "p8-e4",
+        "p8-e5",
+        "p8-e6"
+      ],
+      "content_text": "2.1 These Guidelines are applicable to reporting institutions as defined under Part I on Definition,\nPart VII on Combating Terrorism Financing and Part VIII on Combating Proliferation\nFinancing as the case may be, including its branches and majority- owned subsidiaries\noutside Malaysia which carry out, among others, the activities as listed in the First\nSchedule of the AMLA.\n\n2.2 In the case of foreign operations, where anti-money laundering, counter financing terrorism\nand counter proliferation financing (AML/CFT/CPF) measures of the host country are less\nstringent than the Malaysian standards, a reporting institution is required to ensure that its\nforeign branches and majority-owned subsidiaries apply AML/CFT/CPF measures which are\nconsistent with the Malaysian standards, to the extent that the host country laws and\nregulations permit.\n\n2.3 If the host country does not permit the proper implementation of the AML/CFT/CPF\nmeasures consistent with the Malaysian standards, the reporting institution is required to\napply appropriate additional measures to mitigate the money laundering, terrorism\nfinancing and proliferation financing (ML/TF/PF) risks and inform the SC on the\nAML/CFT/CPF gaps and additional measures implemented to manage the ML/TF/PF risks\narising from the identified gaps.\n\n2.4 Where the reporting institution is unable to put in place the necessary mitigating measures\nas required under paragraph 2.3 above, the reporting institution may consider ceasing the\noperations of the branch or subsidiary.\n\n2.5 Part VIII of these Guidelines set out TFS-PF obligations that must be complied with by\nreporting institutions. The Strategic Trade Controller may from time-to-time issue new\nguidelines or directives under the STA which a reporting institution may need to comply\nwith. In this regard, the SC will notify all relevant reporting institutions of such issuances\naccordingly. Where there are differing requirements, the more stringent requirements shall\napply.\n\n2.6 The SC may, upon application, grant an exemption from or variation to the requirements\nof these Guidelines if the SC is satisfied that:\n\n(a) such variation is not contrary to the intended purpose of the relevant requirement\nin these Guidelines; or\n\n(b) there are mitigating factors which justify the said exemption or variation."
+    },
+    {
+      "evidence_id": "E5",
+      "chunk_id": "485c4989-c300-45c8-ac06-79a59492bb5c-c0117-340b2169f0",
+      "chunk_index": 117,
+      "semantic_type": "clause",
+      "source_rank": 5,
+      "ranked_seed_rank": 5,
+      "reasons": [
+        "ranked_seed"
+      ],
+      "pages": [
+        44
+      ],
+      "section_path": [
+        "PART III: CUSTOMER DUE DILIGENCE",
+        "8. CUSTOMER DUE DILIGENCE (CDD)",
+        "8.6 Reliance on third-party institutions to conduct CDD"
+      ],
+      "source_element_ids": [
+        "p44-e2",
+        "p44-e3",
+        "p44-e4"
+      ],
+      "content_text": "8.6.1 A reporting institution may rely on a third-party institution to conduct CDD at the point\nof establishing a business relationship to identify and verify a customer or a beneficial\nowner. The reporting institution must immediately obtain the necessary information\nconcerning the identification and verification of the customer or the beneficial owner\nfrom the third-party institution.\n\n8.6.2 A reporting institution must have in place internal policies and procedures to mitigate\nthe risks when relying on a third-party institution, including those from foreign\njurisdictions. However, the reporting institution must ensure that the third-party\ninstitution adequately applies the FATF Recommendations in determining the extent\nto which reliance could be placed on such third-party institution.\n\n8.6.3 A reporting institution is prohibited from relying on a third-party institution located\nin higher- risk countries that have been identified as having ongoing or substantial\nML/TF/PF risks."
+    }
+  ],
+  "citations": [
+    {
+      "citation_id": "CIT-E1",
+      "marker": "[1]",
+      "evidence_id": "E1",
+      "chunk_id": "485c4989-c300-45c8-ac06-79a59492bb5c-c0055-88bd4ccfdd",
+      "chunk_index": 55,
+      "source_filename": "sc_aml_cft.pdf",
+      "display": "Clause 6.2 · Clause 6.2(a) · Clause 6.2(b) · Clause 6.2(c) · Clause 6.2(d) · Clause 6.2(e) · PDF pp. 19–20",
+      "pages": [
+        19,
+        20
+      ],
+      "section_path": [
+        "PART I: INTRODUCTION AND APPLICABILITY",
+        "6. GENERAL PRINCIPLES AND POLICIES TO COMBAT MONEY\nLAUNDERING, TERRORISM FINANCING AND PROLIFERATION\nFINANCING"
+      ],
+      "source_element_ids": [
+        "p19-e8",
+        "p19-e9",
+        "p19-e10",
+        "p19-e11",
+        "p19-e12",
+        "p20-e1",
+        "p20-e2"
+      ],
+      "locators": [
+        {
+          "kind": "clause",
+          "label": "Clause 6.2",
+          "pages": [
+            19
+          ],
+          "source_element_ids": [
+            "p19-e8"
+          ]
+        },
+        {
+          "kind": "subclause",
+          "label": "Clause 6.2(a)",
+          "pages": [
+            19
+          ],
+          "source_element_ids": [
+            "p19-e9"
+          ]
+        },
+        {
+          "kind": "subclause",
+          "label": "Clause 6.2(b)",
+          "pages": [
+            19
+          ],
+          "source_element_ids": [
+            "p19-e10"
+          ]
+        },
+        {
+          "kind": "subclause",
+          "label": "Clause 6.2(c)",
+          "pages": [
+            19
+          ],
+          "source_element_ids": [
+            "p19-e11"
+          ]
+        },
+        {
+          "kind": "subclause",
+          "label": "Clause 6.2(d)",
+          "pages": [
+            19
+          ],
+          "source_element_ids": [
+            "p19-e12"
+          ]
+        },
+        {
+          "kind": "subclause",
+          "label": "Clause 6.2(e)",
+          "pages": [
+            20
+          ],
+          "source_element_ids": [
+            "p20-e2"
+          ]
+        }
+      ],
+      "validation_status": "valid"
+    }
+  ],
+  "citation_version": "deterministic_citations_v1_2",
+  "citation_validation": {
+    "status": "valid",
+    "citation_count": 1,
+    "valid_citation_count": 1,
+    "errors": []
+  },
+  "generation_provider": "groq",
+  "generation_model": "openai/gpt-oss-120b",
+  "prompt_version": "grounded_claims_v1",
+  "generation_temperature": 0.0,
+  "generation_max_tokens": 1200,
+  "generation_json_mode": true,
+  "usage": {
+    "prompt_tokens": 2155,
+    "completion_tokens": 576,
+    "total_tokens": 2731
+  },
+  "retrieval_profile": "retrieval_v1_stage8_2_top5",
+  "retrieval_top_k": 5,
+  "retrieval_candidate_k": 20,
+  "retrieval_rrf_k": 60,
+  "retrieval_dense_weight": 1.0,
+  "retrieval_lexical_weight": 1.0,
+  "context_strategy": "structural_one_hop_v1",
+  "context_chunk_count": 5,
+  "expanded_chunk_count": 0
+}

@@ -63,7 +63,7 @@ export function CompactDocumentBar({
 }) {
   return (
     <div className="v2-compact-document-bar">
-      <div className="v2-compact-brand" aria-label="RAG Document Studio">R</div>
+      <div className="v2-compact-brand" aria-label="Document Intelligence">R</div>
       <label className="v2-compact-document-select">
         <span>Document</span>
         <select value={selectedId ?? ""} onChange={(event) => event.target.value && onSelect(event.target.value)}>
@@ -96,8 +96,8 @@ export function DocumentSidebar({
         <div className="v2-brand-mark">R</div>
         {!collapsed && (
           <div className="v2-brand-copy">
-            <strong>RAG Document Studio</strong>
-            <span>Document processing workbench</span>
+            <strong>Document Intelligence</strong>
+            <span>Extraction & structure inspector</span>
           </div>
         )}
         <button

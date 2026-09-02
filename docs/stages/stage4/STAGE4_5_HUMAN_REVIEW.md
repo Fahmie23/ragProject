@@ -302,7 +302,7 @@ No Stage 3 re-extraction is required merely to install Stage 4.5. Existing Stage
 
 ## Exact text-span correction (Stage 4.5.8.10)
 
-The correction layer can now rebuild safe leaf/content elements from exact immutable Stage 3 span IDs. Use **Review → Text spans** when the automatic canonical element boundary is too coarse. A `span_rebuild` operation derives its text and bbox from `source_span_ids`; any unselected spans from a replaced source element are preserved as residual result elements, and the backend rejects silent span loss or duplicate span assignment. Record-bearing structural types still require dedicated editors. See `STAGE4_5_8_10_TEXT_SPAN_CORRECTION.md`.
+The correction layer can now rebuild safe leaf/content elements from exact immutable Stage 3 span IDs. Use **Review → Text spans** when the automatic canonical element boundary is too coarse. A `span_rebuild` operation derives its text and bbox from `source_span_ids`; any unselected spans from a replaced source element are preserved as residual result elements, and the backend rejects silent span loss or duplicate span assignment. Record-bearing structural types still require dedicated editors. See `docs/stages/stage4/STAGE4_5_8_10_TEXT_SPAN_CORRECTION.md`.
 
 
 ## Stage 4.5.8.12 relation review gate

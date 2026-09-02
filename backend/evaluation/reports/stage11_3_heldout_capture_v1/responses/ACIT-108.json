@@ -1,0 +1,410 @@
+{
+  "document_id": "485c4989-c300-45c8-ac06-79a59492bb5c",
+  "question": "If a reporting institution decides there are no reasonable grounds to lodge an STR, what must it document, and what should it do if a new suspicion later arises?",
+  "status": "answered",
+  "answer": "When a reporting institution decides there are no reasonable grounds to lodge a STR, it must establish and record the grounds for that decision together with all supporting documentary evidence, and ensure the decision is maintained as a record If a new suspicion later arises, the reporting institution must lodge a fresh STR, even if a STR has been lodged previously",
+  "cited_answer": "When a reporting institution decides there are no reasonable grounds to lodge a STR, it must establish and record the grounds for that decision together with all supporting documentary evidence, and ensure the decision is maintained as a record [1] If a new suspicion later arises, the reporting institution must lodge a fresh STR, even if a STR has been lodged previously [2]",
+  "claims": [
+    {
+      "claim_id": "C1",
+      "text": "When a reporting institution decides there are no reasonable grounds to lodge a STR, it must establish and record the grounds for that decision together with all supporting documentary evidence, and ensure the decision is maintained as a record",
+      "evidence_ids": [
+        "E1"
+      ],
+      "citation_ids": [
+        "CIT-E1"
+      ]
+    },
+    {
+      "claim_id": "C2",
+      "text": "If a new suspicion later arises, the reporting institution must lodge a fresh STR, even if a STR has been lodged previously",
+      "evidence_ids": [
+        "E2"
+      ],
+      "citation_ids": [
+        "CIT-E2"
+      ]
+    }
+  ],
+  "used_evidence_ids": [
+    "E1",
+    "E2"
+  ],
+  "missing_information": [],
+  "evidence": [
+    {
+      "evidence_id": "E1",
+      "chunk_id": "485c4989-c300-45c8-ac06-79a59492bb5c-c0147-4ce9ccc098",
+      "chunk_index": 147,
+      "semantic_type": "clause",
+      "source_rank": 1,
+      "ranked_seed_rank": 1,
+      "reasons": [
+        "ranked_seed"
+      ],
+      "pages": [
+        55,
+        56
+      ],
+      "section_path": [
+        "PART V: SUSPICIOUS TRANSACTIONS",
+        "11 REPORTING OF SUSPICIOUS TRANSACTIONS"
+      ],
+      "source_element_ids": [
+        "p55-e3",
+        "p55-e4",
+        "p55-e5",
+        "p55-e6",
+        "p55-e13",
+        "p56-e1",
+        "p56-e2",
+        "p56-e3",
+        "p56-e4"
+      ],
+      "content_text": "11.1 A reporting institution must establish in place strong mechanisms for reporting\nsuspicious transactions, including having an appointed AML/CFT/CPF compliance\nofficer, and where appropriate, having a unit primarily responsible for complying with\nthe AML/CFT/CPF requirements on reporting of suspicious transactions.\n\n11.2 A reporting institution must also ensure that the suspicious transaction reporting\nmechanism is operated in a secured environment to maintain the confidentiality and\npreservation of secrecy.\n\n11.3 A reporting institution must clarify the economic background and purpose of any\ntransaction or business relationship if it appears unusual in relation to the reporting\ninstitution’s knowledge of the customer, or if the economic purpose or legality of the\ntransaction is not immediately clear. Special attention should also be paid to all\ncomplex and unusual patterns of transaction.\n\n11.4 A reporting institution must also consider whether the transactions involve a number\nof factors which when taken together may raise a suspicion that the transactions may\nbe connected with certain unlawful activities.\n\n11.6 If in bringing together all relevant factors, a reporting institution has reasonable\ngrounds to suspect that the transaction or the funds utilised involve proceeds of an\nunlawful activity or is related to terrorism financing and proliferation financing, such\ntransaction should be reported immediately to the FIED through lodgement of a STR.\n\n11.6A A reporting institution is required to have in place policies on the duration upon which\ninternal suspicious transaction reports must be reviewed by the reporting institution,\nincluding the circumstances when the timeframe can be exceeded, where necessary.\n\n11.7 Where the reporting institution decides that there are no reasonable grounds for\nsuspicion to warrant a lodgement of a STR, the reporting institution must establish the\ngrounds for such decision. In this regard, the compliance officer must ensure that the\nreporting institution’s decision together with all supporting documentary evidence is\nrecorded and maintained.\n\n11.8 A reporting institution is required to report all suspicious transactions, including\nattempted transactions, regardless of the amount of the transaction. A reporting\ninstitution should be aware that in some cases, suspicion may be formed after a\nconsiderable time from the date of the transaction, in view of subsequent additional\ninformation.\n\n11.9 STRs must be lodged to the FIED in accordance with the method as provided in\nAppendix C herein."
+    },
+    {
+      "evidence_id": "E2",
+      "chunk_id": "485c4989-c300-45c8-ac06-79a59492bb5c-c0149-324f72fd13",
+      "chunk_index": 149,
+      "semantic_type": "clause",
+      "source_rank": 2,
+      "ranked_seed_rank": 2,
+      "reasons": [
+        "ranked_seed"
+      ],
+      "pages": [
+        56
+      ],
+      "section_path": [
+        "PART V: SUSPICIOUS TRANSACTIONS",
+        "11 REPORTING OF SUSPICIOUS TRANSACTIONS"
+      ],
+      "source_element_ids": [
+        "p56-e5",
+        "p56-e6",
+        "p56-e7",
+        "p56-e8",
+        "p56-e9",
+        "p56-e10"
+      ],
+      "content_text": "11.10 The fact that a STR may have been lodged with the FIED previously should not\npreclude the reporting institution from lodging a fresh STR as and when a new\nsuspicion arises.\n\n11.11 When required by FIED, a reporting institution must provide additional information\nand documentation and respond promptly to any further enquiries with regard to the\nSTR lodged.\n\n11.12 Where a reporting institution forms a suspicion of ML/TF/PF and reasonably believes\nthat performing the CDD process would tip off the customer, the reporting institution\nis permitted not to pursue the CDD process and is required to lodge a STR.\n\n11.13 The reporting institution must ensure that the compliance officer maintains a complete\nfile of all internal reports on suspicious transactions and STRs lodged with FIED\ntogether with the relevant supporting documentary evidence.\n\n11.14 The board of directors must ensure that the compliance officer has the necessary\nauthority, resources and support to discharge his obligation independently and\neffectively in complying with the reporting institution’s compliance policies and\nprocedures on AML/CFT/CPF, particularly on reporting suspicious transactions.\n\n11.15 The compliance officer has the sole discretion and independence to report suspicious\ntransactions."
+    },
+    {
+      "evidence_id": "E3",
+      "chunk_id": "485c4989-c300-45c8-ac06-79a59492bb5c-c0101-c09791e527",
+      "chunk_index": 101,
+      "semantic_type": "clause",
+      "source_rank": 3,
+      "ranked_seed_rank": 3,
+      "reasons": [
+        "ranked_seed"
+      ],
+      "pages": [
+        38,
+        39
+      ],
+      "section_path": [
+        "PART III: CUSTOMER DUE DILIGENCE",
+        "8. CUSTOMER DUE DILIGENCE (CDD)",
+        "8.1 CDD at the point of establishing business relationship"
+      ],
+      "source_element_ids": [
+        "p38-e2",
+        "p38-e13",
+        "p39-e1"
+      ],
+      "content_text": "8.1.24 A reporting institution may complete the verification after the establishment of the\nbusiness relationship (“delayed verification”) to allow some flexibility for its customer\nand beneficial owner to furnish the relevant documents in circumstances where\nverification is not possible at the point of establishing business relationship.\n\n8.1.27 If verification cannot be completed within the reasonable timeframe, the reporting\ninstitution should terminate the business relationship as soon as reasonably practicable\nand refrain from carrying out further transactions. However, following the termination\nof business relationship, the reporting institution may return funds or other assets to\nthe customers.\n\n8.1.28 The reporting institution must assess whether the failure to complete verification within\nthe reasonable timeframe provides sufficient grounds for making a STR to the FIED."
+    },
+    {
+      "evidence_id": "E4",
+      "chunk_id": "485c4989-c300-45c8-ac06-79a59492bb5c-c0154-efe91f5828",
+      "chunk_index": 154,
+      "semantic_type": "clause",
+      "source_rank": 4,
+      "ranked_seed_rank": 4,
+      "reasons": [
+        "ranked_seed"
+      ],
+      "pages": [
+        58
+      ],
+      "section_path": [
+        "PART V: SUSPICIOUS TRANSACTIONS",
+        "12 CONFIDENTIALITY OF REPORTING"
+      ],
+      "source_element_ids": [
+        "p58-e2",
+        "p58-e3",
+        "p58-e4",
+        "p58-e5",
+        "p58-e6"
+      ],
+      "content_text": "12.1 It shall be an offence to disclose to anyone any information that a suspicion has been\nformed or that information or a STR has been communicated to the FIED and the SC\nor to infer that any of these have occurred.\n\n12.2 A person does not commit an offence under paragraph 12.1 above, where such a\ndisclosure is made pursuant to the provisions of the AMLA.\n\n12.3 A reporting institution is required to establish proper policies and procedures to\nensure effective controls when considering disclosures of report or related information\nunder section 14A(3) of the AMLA.\n\n12.4 The reporting institution must establish parameters on the circumstances where\ndisclosure is required, types of report or related information that may be disclosed\nand to whom it may be disclosed under section 14A(3) of the AMLA. All disclosures\nmade pursuant to these parameters must be properly documented with reasonable\njustification.\n\n12.5 The compliance officer must ensure that the transmission of the report or related\ninformation must be conducted in a controlled environment and that confidentiality\nof the report or related information is safeguarded to avoid any leakage to an\nunauthorised third part."
+    },
+    {
+      "evidence_id": "E5",
+      "chunk_id": "485c4989-c300-45c8-ac06-79a59492bb5c-c0159-7448ed6ef9",
+      "chunk_index": 159,
+      "semantic_type": "clause",
+      "source_rank": 5,
+      "ranked_seed_rank": 5,
+      "reasons": [
+        "ranked_seed"
+      ],
+      "pages": [
+        60,
+        61
+      ],
+      "section_path": [
+        "PART VII: COMBATING TERRORISM FINANCING",
+        "14 IDENTIFICATION AND DESIGNATION"
+      ],
+      "source_element_ids": [
+        "p60-e10",
+        "p60-e11",
+        "p61-e1",
+        "p61-e2",
+        "p61-e3"
+      ],
+      "content_text": "14.4 For the purpose of implementing the obligations under section 66B and section 66C\nof the AMLA, a reporting institution must conduct checks on the names of potential\nand new customers, as well as regular checks on the names of existing customers,\nagainst the names in the database. If there is any name match, the reporting\ninstitution must take reasonable and appropriate measures to verify and confirm the\nidentity of its customer. Upon such confirmation, the reporting institution must\nimmediately–\n\n(a)freeze without delay the customer’s fund or block the transaction, if it is an\nexisting customer;\n\n(b)reject the customer, if the transaction has not commenced;\n\n(c)lodge a STR with the FIED; and\n\n(d)notify the SC."
+    }
+  ],
+  "citations": [
+    {
+      "citation_id": "CIT-E1",
+      "marker": "[1]",
+      "evidence_id": "E1",
+      "chunk_id": "485c4989-c300-45c8-ac06-79a59492bb5c-c0147-4ce9ccc098",
+      "chunk_index": 147,
+      "source_filename": "sc_aml_cft.pdf",
+      "display": "Clause 11.1 · Clause 11.2 · Clause 11.3 · Clause 11.4 · Clause 11.6 · Clause 11.6A · Clause 11.7 · Clause 11.8 · Clause 11.9 · PDF pp. 55–56",
+      "pages": [
+        55,
+        56
+      ],
+      "section_path": [
+        "PART V: SUSPICIOUS TRANSACTIONS",
+        "11 REPORTING OF SUSPICIOUS TRANSACTIONS"
+      ],
+      "source_element_ids": [
+        "p55-e3",
+        "p55-e4",
+        "p55-e5",
+        "p55-e6",
+        "p55-e13",
+        "p56-e1",
+        "p56-e2",
+        "p56-e3",
+        "p56-e4"
+      ],
+      "locators": [
+        {
+          "kind": "clause",
+          "label": "Clause 11.1",
+          "pages": [
+            55
+          ],
+          "source_element_ids": [
+            "p55-e3"
+          ]
+        },
+        {
+          "kind": "clause",
+          "label": "Clause 11.2",
+          "pages": [
+            55
+          ],
+          "source_element_ids": [
+            "p55-e4"
+          ]
+        },
+        {
+          "kind": "clause",
+          "label": "Clause 11.3",
+          "pages": [
+            55
+          ],
+          "source_element_ids": [
+            "p55-e5"
+          ]
+        },
+        {
+          "kind": "clause",
+          "label": "Clause 11.4",
+          "pages": [
+            55
+          ],
+          "source_element_ids": [
+            "p55-e6"
+          ]
+        },
+        {
+          "kind": "clause",
+          "label": "Clause 11.6",
+          "pages": [
+            55
+          ],
+          "source_element_ids": [
+            "p55-e13"
+          ]
+        },
+        {
+          "kind": "clause",
+          "label": "Clause 11.6A",
+          "pages": [
+            56
+          ],
+          "source_element_ids": [
+            "p56-e1"
+          ]
+        },
+        {
+          "kind": "clause",
+          "label": "Clause 11.7",
+          "pages": [
+            56
+          ],
+          "source_element_ids": [
+            "p56-e2"
+          ]
+        },
+        {
+          "kind": "clause",
+          "label": "Clause 11.8",
+          "pages": [
+            56
+          ],
+          "source_element_ids": [
+            "p56-e3"
+          ]
+        },
+        {
+          "kind": "clause",
+          "label": "Clause 11.9",
+          "pages": [
+            56
+          ],
+          "source_element_ids": [
+            "p56-e4"
+          ]
+        }
+      ],
+      "validation_status": "valid"
+    },
+    {
+      "citation_id": "CIT-E2",
+      "marker": "[2]",
+      "evidence_id": "E2",
+      "chunk_id": "485c4989-c300-45c8-ac06-79a59492bb5c-c0149-324f72fd13",
+      "chunk_index": 149,
+      "source_filename": "sc_aml_cft.pdf",
+      "display": "Clause 11.10 · Clause 11.11 · Clause 11.12 · Clause 11.13 · Clause 11.14 · Clause 11.15 · PDF p. 56",
+      "pages": [
+        56
+      ],
+      "section_path": [
+        "PART V: SUSPICIOUS TRANSACTIONS",
+        "11 REPORTING OF SUSPICIOUS TRANSACTIONS"
+      ],
+      "source_element_ids": [
+        "p56-e5",
+        "p56-e6",
+        "p56-e7",
+        "p56-e8",
+        "p56-e9",
+        "p56-e10"
+      ],
+      "locators": [
+        {
+          "kind": "clause",
+          "label": "Clause 11.10",
+          "pages": [
+            56
+          ],
+          "source_element_ids": [
+            "p56-e5"
+          ]
+        },
+        {
+          "kind": "clause",
+          "label": "Clause 11.11",
+          "pages": [
+            56
+          ],
+          "source_element_ids": [
+            "p56-e6"
+          ]
+        },
+        {
+          "kind": "clause",
+          "label": "Clause 11.12",
+          "pages": [
+            56
+          ],
+          "source_element_ids": [
+            "p56-e7"
+          ]
+        },
+        {
+          "kind": "clause",
+          "label": "Clause 11.13",
+          "pages": [
+            56
+          ],
+          "source_element_ids": [
+            "p56-e8"
+          ]
+        },
+        {
+          "kind": "clause",
+          "label": "Clause 11.14",
+          "pages": [
+            56
+          ],
+          "source_element_ids": [
+            "p56-e9"
+          ]
+        },
+        {
+          "kind": "clause",
+          "label": "Clause 11.15",
+          "pages": [
+            56
+          ],
+          "source_element_ids": [
+            "p56-e10"
+          ]
+        }
+      ],
+      "validation_status": "valid"
+    }
+  ],
+  "citation_version": "deterministic_citations_v1_2",
+  "citation_validation": {
+    "status": "valid",
+    "citation_count": 2,
+    "valid_citation_count": 2,
+    "errors": []
+  },
+  "generation_provider": "groq",
+  "generation_model": "openai/gpt-oss-120b",
+  "prompt_version": "grounded_claims_v1",
+  "generation_temperature": 0.0,
+  "generation_max_tokens": 1200,
+  "generation_json_mode": true,
+  "usage": {
+    "prompt_tokens": 2141,
+    "completion_tokens": 384,
+    "total_tokens": 2525
+  },
+  "retrieval_profile": "retrieval_v1_stage8_2_top5",
+  "retrieval_top_k": 5,
+  "retrieval_candidate_k": 20,
+  "retrieval_rrf_k": 60,
+  "retrieval_dense_weight": 1.0,
+  "retrieval_lexical_weight": 1.0,
+  "context_strategy": "structural_one_hop_v1",
+  "context_chunk_count": 5,
+  "expanded_chunk_count": 0
+}

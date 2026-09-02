@@ -1,0 +1,195 @@
+{
+  "capture_stage": "11.3",
+  "dataset_id": "answer_citation_eval_heldout_v1",
+  "benchmark_status": "frozen",
+  "heldout_confirmation_verified": true,
+  "captured_at_utc": "2026-09-02T09:17:01.690593+00:00",
+  "selected_question_count": 18,
+  "valid_response_file_count": 18,
+  "newly_captured_count": 18,
+  "skipped_frozen_existing_count": 0,
+  "failure_count": 0,
+  "complete": true,
+  "rows": [
+    {
+      "question_id": "ACIT-101",
+      "capture_status": "captured",
+      "actual_status": "answered",
+      "expected_status": "answered",
+      "elapsed_seconds": 48.484,
+      "rate_limit_retries": 0,
+      "claim_count": 4,
+      "citation_count": 1
+    },
+    {
+      "question_id": "ACIT-102",
+      "capture_status": "captured",
+      "actual_status": "answered",
+      "expected_status": "answered",
+      "elapsed_seconds": 3.902,
+      "rate_limit_retries": 0,
+      "claim_count": 3,
+      "citation_count": 1
+    },
+    {
+      "question_id": "ACIT-103",
+      "capture_status": "captured",
+      "actual_status": "answered",
+      "expected_status": "answered",
+      "elapsed_seconds": 3.247,
+      "rate_limit_retries": 0,
+      "claim_count": 2,
+      "citation_count": 1
+    },
+    {
+      "question_id": "ACIT-104",
+      "capture_status": "captured",
+      "actual_status": "answered",
+      "expected_status": "answered",
+      "elapsed_seconds": 3.657,
+      "rate_limit_retries": 0,
+      "claim_count": 5,
+      "citation_count": 1
+    },
+    {
+      "question_id": "ACIT-105",
+      "capture_status": "captured",
+      "actual_status": "answered",
+      "expected_status": "answered",
+      "elapsed_seconds": 3.141,
+      "rate_limit_retries": 0,
+      "claim_count": 3,
+      "citation_count": 2
+    },
+    {
+      "question_id": "ACIT-106",
+      "capture_status": "captured",
+      "actual_status": "answered",
+      "expected_status": "answered",
+      "elapsed_seconds": 3.952,
+      "rate_limit_retries": 0,
+      "claim_count": 3,
+      "citation_count": 1
+    },
+    {
+      "question_id": "ACIT-107",
+      "capture_status": "captured",
+      "actual_status": "answered",
+      "expected_status": "answered",
+      "elapsed_seconds": 3.732,
+      "rate_limit_retries": 0,
+      "claim_count": 6,
+      "citation_count": 1
+    },
+    {
+      "question_id": "ACIT-108",
+      "capture_status": "captured",
+      "actual_status": "answered",
+      "expected_status": "answered",
+      "elapsed_seconds": 3.251,
+      "rate_limit_retries": 0,
+      "claim_count": 2,
+      "citation_count": 2
+    },
+    {
+      "question_id": "ACIT-109",
+      "capture_status": "captured",
+      "actual_status": "answered",
+      "expected_status": "answered",
+      "elapsed_seconds": 2.9,
+      "rate_limit_retries": 0,
+      "claim_count": 1,
+      "citation_count": 1
+    },
+    {
+      "question_id": "ACIT-110",
+      "capture_status": "captured",
+      "actual_status": "answered",
+      "expected_status": "answered",
+      "elapsed_seconds": 3.847,
+      "rate_limit_retries": 0,
+      "claim_count": 4,
+      "citation_count": 2
+    },
+    {
+      "question_id": "ACIT-111",
+      "capture_status": "captured",
+      "actual_status": "answered",
+      "expected_status": "answered",
+      "elapsed_seconds": 3.19,
+      "rate_limit_retries": 0,
+      "claim_count": 3,
+      "citation_count": 2
+    },
+    {
+      "question_id": "ACIT-112",
+      "capture_status": "captured",
+      "actual_status": "insufficient_evidence",
+      "expected_status": "answered",
+      "elapsed_seconds": 2.402,
+      "rate_limit_retries": 0,
+      "claim_count": 0,
+      "citation_count": 0
+    },
+    {
+      "question_id": "ACIT-113",
+      "capture_status": "captured",
+      "actual_status": "answered",
+      "expected_status": "answered",
+      "elapsed_seconds": 3.383,
+      "rate_limit_retries": 0,
+      "claim_count": 7,
+      "citation_count": 2
+    },
+    {
+      "question_id": "ACIT-114",
+      "capture_status": "captured",
+      "actual_status": "answered",
+      "expected_status": "answered",
+      "elapsed_seconds": 3.466,
+      "rate_limit_retries": 0,
+      "claim_count": 3,
+      "citation_count": 1
+    },
+    {
+      "question_id": "ACIT-115",
+      "capture_status": "captured",
+      "actual_status": "answered",
+      "expected_status": "answered",
+      "elapsed_seconds": 3.791,
+      "rate_limit_retries": 0,
+      "claim_count": 2,
+      "citation_count": 1
+    },
+    {
+      "question_id": "ACIT-116",
+      "capture_status": "captured",
+      "actual_status": "insufficient_evidence",
+      "expected_status": "insufficient_evidence",
+      "elapsed_seconds": 2.413,
+      "rate_limit_retries": 0,
+      "claim_count": 0,
+      "citation_count": 0
+    },
+    {
+      "question_id": "ACIT-117",
+      "capture_status": "captured",
+      "actual_status": "insufficient_evidence",
+      "expected_status": "insufficient_evidence",
+      "elapsed_seconds": 2.15,
+      "rate_limit_retries": 0,
+      "claim_count": 0,
+      "citation_count": 0
+    },
+    {
+      "question_id": "ACIT-118",
+      "capture_status": "captured",
+      "actual_status": "insufficient_evidence",
+      "expected_status": "insufficient_evidence",
+      "elapsed_seconds": 2.121,
+      "rate_limit_retries": 0,
+      "claim_count": 0,
+      "citation_count": 0
+    }
+  ]
+}

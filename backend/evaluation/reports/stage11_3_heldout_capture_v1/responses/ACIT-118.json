@@ -1,0 +1,206 @@
+{
+  "document_id": "485c4989-c300-45c8-ac06-79a59492bb5c",
+  "question": "What is the air quality index in Kuala Lumpur right now?",
+  "status": "insufficient_evidence",
+  "answer": "The retrieved evidence is insufficient to answer this question reliably.",
+  "cited_answer": "The retrieved evidence is insufficient to answer this question reliably.",
+  "claims": [],
+  "used_evidence_ids": [],
+  "missing_information": [
+    "Current air quality index data for Kuala Lumpur"
+  ],
+  "evidence": [
+    {
+      "evidence_id": "E1",
+      "chunk_id": "485c4989-c300-45c8-ac06-79a59492bb5c-c0178-80a00c877d",
+      "chunk_index": 178,
+      "semantic_type": "paragraph",
+      "source_rank": 1,
+      "ranked_seed_rank": 1,
+      "reasons": [
+        "ranked_seed"
+      ],
+      "pages": [
+        67
+      ],
+      "section_path": [
+        "PART VIII: COMBATING PROLIFERATION FINANCING",
+        "19. REPORTING REQUIREMENTS"
+      ],
+      "source_element_ids": [
+        "p67-e2"
+      ],
+      "content_text": "Strategic Trade Secretariat,\nMinistry of International Trade and Industry,\nLevel 4, MITI Tower, No. 7, Jalan Sultan Haji Ahmad Shah,\n50622 Kuala Lumpur\nTel: 03-8000 8000\nE-mail: admin.sts@miti.gov.my\nWebsite: http://www.miti.gov.my/index.php/pages/view/sta2010"
+    },
+    {
+      "evidence_id": "E2",
+      "chunk_id": "485c4989-c300-45c8-ac06-79a59492bb5c-c0248-b0543a0c19",
+      "chunk_index": 248,
+      "semantic_type": "paragraph",
+      "source_rank": 2,
+      "ranked_seed_rank": 2,
+      "reasons": [
+        "ranked_seed"
+      ],
+      "pages": [
+        91
+      ],
+      "section_path": [
+        "APPENDIX D",
+        "False positives"
+      ],
+      "source_element_ids": [
+        "p91-e4"
+      ],
+      "content_text": "Level 10, Block D1, Complex D\n62546 Putrajaya\n(Attn.: Security and Public Order Division)\nTel: 03-8886 8000 ext. 8064, 8543, 8055, 3453\nFax: 03-8889 1763\nEmail: amlcft@moha.gov.my\nWebsite: Membanteras Pembiayaan Keganasan (moha.gov.my)"
+    },
+    {
+      "evidence_id": "E3",
+      "chunk_id": "485c4989-c300-45c8-ac06-79a59492bb5c-c0090-1b0baef4bb",
+      "chunk_index": 90,
+      "semantic_type": "clause",
+      "source_rank": 3,
+      "ranked_seed_rank": 3,
+      "reasons": [
+        "ranked_seed"
+      ],
+      "pages": [
+        34
+      ],
+      "section_path": [
+        "PART III: CUSTOMER DUE DILIGENCE",
+        "8. CUSTOMER DUE DILIGENCE (CDD)",
+        "8.1 CDD at the point of establishing business relationship"
+      ],
+      "source_element_ids": [
+        "p34-e5",
+        "p34-e6",
+        "p34-e7",
+        "p34-e8",
+        "p34-e9",
+        "p34-e11",
+        "p34-e12",
+        "p34-e13",
+        "p34-e14"
+      ],
+      "content_text": "8.1.12 Notwithstanding the above, a reporting institution is exempted from obtaining the\nconstituent document, and from verifying the identity of the directors and shareholders\nor partners of legal persons which fall under the following categories:\n\n(a)Public-listed companies/corporations listed on Bursa Malaysia or majority-owned\nsubsidiaries of such public-listed companies;\n\n(b)Foreign public-listed companies:\n\n(i)Listed on exchanges recognised by Bursa Malaysia. A reporting institution\nmay refer to the directive in relation to recognised stock exchanges issued\nby Bursa Malaysia; and\n\n(ii)\nNot listed in jurisdictions identified in the FATF Public Statements;\n\n(c)An authorised person, an operator of a designated payment system, under the\nFinancial Services Act 2013 or the Islamic Financial Services Act 2013;\n\n(d)Entities licensed under the Labuan Financial Services and Securities Act 2010 or the\nLabuan Islamic Financial Services and Securities Act 2010;\n\n(e)Persons licensed or registered under the CMSA;\n\n(f)Prescribed institutions under the Development Financial Institutions Act 2002; and"
+    },
+    {
+      "evidence_id": "E4",
+      "chunk_id": "485c4989-c300-45c8-ac06-79a59492bb5c-c0091-b1b65b8c5c",
+      "chunk_index": 91,
+      "semantic_type": "list_item",
+      "source_rank": 3,
+      "ranked_seed_rank": null,
+      "reasons": [
+        "continuation_list_item"
+      ],
+      "pages": [
+        35
+      ],
+      "section_path": [
+        "PART III: CUSTOMER DUE DILIGENCE",
+        "8. CUSTOMER DUE DILIGENCE (CDD)",
+        "8.1 CDD at the point of establishing business relationship"
+      ],
+      "source_element_ids": [
+        "p35-e1"
+      ],
+      "content_text": "(g)Licensed entities under Money Services Business Act 2011."
+    },
+    {
+      "evidence_id": "E5",
+      "chunk_id": "485c4989-c300-45c8-ac06-79a59492bb5c-c0232-30a6623279",
+      "chunk_index": 232,
+      "semantic_type": "clause",
+      "source_rank": 4,
+      "ranked_seed_rank": null,
+      "reasons": [
+        "preceding_intro"
+      ],
+      "pages": [
+        85
+      ],
+      "section_path": [
+        "APPENDIX C"
+      ],
+      "source_element_ids": [
+        "p85-e4"
+      ],
+      "content_text": "2. The lodgement of the STR may be made by any of the following means:"
+    },
+    {
+      "evidence_id": "E6",
+      "chunk_id": "485c4989-c300-45c8-ac06-79a59492bb5c-c0233-78b2f006e8",
+      "chunk_index": 233,
+      "semantic_type": "table",
+      "source_rank": 4,
+      "ranked_seed_rank": 4,
+      "reasons": [
+        "ranked_seed"
+      ],
+      "pages": [
+        85
+      ],
+      "section_path": [
+        "APPENDIX C"
+      ],
+      "source_element_ids": [
+        "p85-e5"
+      ],
+      "content_text": "Mail | The physical forms should be placed in a sealed envelope and addressed to the following: Director Financial Intelligence and Enforcement Department Bank Negara Malaysia Jalan Dato' Onn 50480 Kuala Lumpur\nFax | 03-2693 3625\nE-mail | str@bnm.gov.my\nOthers (where and if available) | FIED’s Financial Intelligence System (FINS) FINS 2.0 (bnm.gov.my)"
+    },
+    {
+      "evidence_id": "E7",
+      "chunk_id": "485c4989-c300-45c8-ac06-79a59492bb5c-c0274-fb4537476c",
+      "chunk_index": 274,
+      "semantic_type": "mixed",
+      "source_rank": 5,
+      "ranked_seed_rank": 5,
+      "reasons": [
+        "ranked_seed"
+      ],
+      "pages": [
+        105
+      ],
+      "section_path": [
+        "APPENDIX G"
+      ],
+      "source_element_ids": [
+        "p105-e3",
+        "p105-e5",
+        "p105-e6",
+        "p105-e7"
+      ],
+      "content_text": "Regulation 3 of the Strategic Trade (United Nations Security Council Resolutions)\nRegulations 2010 (P.U. (A) 481/2010) requires the following counter-proliferation financing\nmeasures to be taken in relation to the countries and persons designated under the Strategic Trade\n(Restricted End-Users and Prohibited End-Users) Order 2010 (P.U. (A) 484/2010) in accordance\nwith the relevant UNSCRs:\n\n(a)Freezing of the funds and other financial assets or economic resources of such\ncountries or persons that are located in Malaysia;\n\n(b)Prohibition of investment in Malaysia by such countries or persons involving any\nrestricted activities3;\n\n(c)Prevention of the provision of financial services, including insurance or re-insurance,\nor the transfer to, through, or from Malaysia, or to or by Malaysian nationals or entities\norganised under Malaysian law (including branches abroad), or persons or financial\ninstitutions in Malaysia, of any financial or other assets or resources if there is\ninformation that provides reasonable grounds to believe that such services, assets or\nresources could contribute to any restricted activity in any designated country;"
+    }
+  ],
+  "citations": [],
+  "citation_version": "deterministic_citations_v1_2",
+  "citation_validation": {
+    "status": "valid",
+    "citation_count": 0,
+    "valid_citation_count": 0,
+    "errors": []
+  },
+  "generation_provider": "groq",
+  "generation_model": "openai/gpt-oss-120b",
+  "prompt_version": "grounded_claims_v1",
+  "generation_temperature": 0.0,
+  "generation_max_tokens": 1200,
+  "generation_json_mode": true,
+  "usage": {
+    "prompt_tokens": 1732,
+    "completion_tokens": 124,
+    "total_tokens": 1856
+  },
+  "retrieval_profile": "retrieval_v1_stage8_2_top5",
+  "retrieval_top_k": 5,
+  "retrieval_candidate_k": 20,
+  "retrieval_rrf_k": 60,
+  "retrieval_dense_weight": 1.0,
+  "retrieval_lexical_weight": 1.0,
+  "context_strategy": "structural_one_hop_v1",
+  "context_chunk_count": 7,
+  "expanded_chunk_count": 2
+}

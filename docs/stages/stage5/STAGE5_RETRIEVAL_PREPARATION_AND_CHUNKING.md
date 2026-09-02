@@ -60,7 +60,7 @@ Whitespace normalization is enabled by default. Line-break dehyphenation is opt-
 
 ## Semantic grouping and deterministic refinement
 
-`semantic_v2` is the default strategy. `semantic_v1` remains available as a legacy comparison baseline. Semantic v2 is deliberately document-structure driven: it contains no AML/CDD/PEP-specific vocabulary and no fixed page or clause numbers.
+`semantic_v2` is the default strategy. `semantic_v1` remains available as a legacy comparison baseline. The current emitted semantic-v2 artifact version is `semantic-v2.1`. Semantic v2 is deliberately document-structure driven: it contains no AML/CDD/PEP-specific vocabulary and no fixed page or clause numbers.
 
 Semantic v2 adds generic parent/dependent-child grouping, explicit continuation merging, conservative short standalone-clause packing, contextual note attachment, parent-context repetition when oversized hierarchies are split, and row-aware table splitting.
 
@@ -148,13 +148,23 @@ POST body:
 ```json
 {
   "config": {
-    "strategy": "semantic_v1",
+    "strategy": "semantic_v2",
+    "soft_min_tokens": 100,
     "target_tokens": 450,
     "max_tokens": 700,
     "overlap_tokens": 60,
     "keep_definitions_together": true,
     "preserve_section_context": true,
     "preserve_cross_page_continuations": true,
+    "group_dependent_children": true,
+    "attach_parent_context_on_split": true,
+    "pack_short_sibling_clauses": true,
+    "attach_contextual_notes": true,
+    "attach_group_headers_as_context": true,
+    "suppress_intro_only_figure_chunks": true,
+    "suppress_non_explanatory_figure_shells": true,
+    "exclude_navigation_sections": true,
+    "row_aware_table_splitting": true,
     "cleaning": {
       "exclude_page_headers": true,
       "exclude_page_footers": true,
@@ -172,7 +182,7 @@ POST body:
 }
 ```
 
-`semantic_v1` currently requires definition grouping and cross-page preservation. Textless figures are explicitly unavailable until image semantic extraction is implemented; the API rejects configurations that claim otherwise.
+`semantic_v2` is the default retrieval strategy. It preserves definitions and cross-page continuations, uses canonical hierarchy/group relationships, excludes navigation material, contextualizes local headings, and suppresses answer-poor text representations of visuals. Textless figures are explicitly unavailable until image semantic extraction is implemented; the API rejects configurations that claim otherwise. `semantic_v1` remains available only as a legacy baseline.
 
 ## UI
 
@@ -199,3 +209,9 @@ Stage 5 tests cover:
 - ineligible resolved structures;
 - Stage 5 API generate/fetch/reset;
 - zero-correction Review finalization.
+
+## Stage 5.6 retrieval-context policy
+
+Semantic-v2 now treats answer-poor local headings as retrieval context rather than independent Top-K candidates when they scope following body content. The heading text is repeated through `context_text`, its provenance is retained through `context_element_ids`, and chunks are tagged `group_header_context`. Scope prefers canonical `introduces` relations; if a resolved Stage 4.5 artifact preserves a parent/child section hierarchy but omits a redundant group-to-section `introduces` edge, Stage 5 uses that descendant-section relationship as a conservative fallback.
+
+Text-only figure records that have no answer-bearing visual/explanatory representation are not emitted merely because they contain a referential intro, generic illustration label, or source citation. Group-header scope is relation-aware, and generic packing treats differing retrieval contexts as semantic boundaries. See `STAGE5_5_RETRIEVAL_PREPARATION_REPAIR.md` for the detailed Stage 5.5–5.7 acceptance rules.

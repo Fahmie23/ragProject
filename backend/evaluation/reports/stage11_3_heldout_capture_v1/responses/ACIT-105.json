@@ -1,0 +1,270 @@
+{
+  "document_id": "485c4989-c300-45c8-ac06-79a59492bb5c",
+  "question": "For a customer that is a trust or another legal arrangement, whose identity must be considered for beneficial ownership, and what status must trustees or equivalent persons disclose when establishing the relationship?",
+  "status": "answered",
+  "answer": "For a trust, the beneficial‑owner identification must consider the identity of the settlor, the trustee or protector, the beneficiary or class of beneficiaries and objects of a power, and any other natural person exercising ultimate effective control over the trust For other legal arrangements, the beneficial‑owner identification must consider the identity of the person in an equivalent or similar position to those identified for trusts When establishing the business relationship, trustees or persons holding equivalent positions in similar legal arrangements must disclose their status or function in the legal arrangement",
+  "cited_answer": "For a trust, the beneficial‑owner identification must consider the identity of the settlor, the trustee or protector, the beneficiary or class of beneficiaries and objects of a power, and any other natural person exercising ultimate effective control over the trust [1] For other legal arrangements, the beneficial‑owner identification must consider the identity of the person in an equivalent or similar position to those identified for trusts [1] When establishing the business relationship, trustees or persons holding equivalent positions in similar legal arrangements must disclose their status or function in the legal arrangement [2]",
+  "claims": [
+    {
+      "claim_id": "C1",
+      "text": "For a trust, the beneficial‑owner identification must consider the identity of the settlor, the trustee or protector, the beneficiary or class of beneficiaries and objects of a power, and any other natural person exercising ultimate effective control over the trust",
+      "evidence_ids": [
+        "E2"
+      ],
+      "citation_ids": [
+        "CIT-E2"
+      ]
+    },
+    {
+      "claim_id": "C2",
+      "text": "For other legal arrangements, the beneficial‑owner identification must consider the identity of the person in an equivalent or similar position to those identified for trusts",
+      "evidence_ids": [
+        "E2"
+      ],
+      "citation_ids": [
+        "CIT-E2"
+      ]
+    },
+    {
+      "claim_id": "C3",
+      "text": "When establishing the business relationship, trustees or persons holding equivalent positions in similar legal arrangements must disclose their status or function in the legal arrangement",
+      "evidence_ids": [
+        "E1"
+      ],
+      "citation_ids": [
+        "CIT-E1"
+      ]
+    }
+  ],
+  "used_evidence_ids": [
+    "E2",
+    "E1"
+  ],
+  "missing_information": [],
+  "evidence": [
+    {
+      "evidence_id": "E1",
+      "chunk_id": "485c4989-c300-45c8-ac06-79a59492bb5c-c0096-2b74b6fabe",
+      "chunk_index": 96,
+      "semantic_type": "clause",
+      "source_rank": 1,
+      "ranked_seed_rank": 1,
+      "reasons": [
+        "ranked_seed"
+      ],
+      "pages": [
+        35
+      ],
+      "section_path": [
+        "PART III: CUSTOMER DUE DILIGENCE",
+        "8. CUSTOMER DUE DILIGENCE (CDD)",
+        "8.1 CDD at the point of establishing business relationship"
+      ],
+      "source_element_ids": [
+        "p35-e12"
+      ],
+      "content_text": "8.1.17 A reporting institution is required to ensure that trustees or persons holding equivalent\npositions in similar legal arrangements disclose their status or function in the legal\narrangement when establishing business relations."
+    },
+    {
+      "evidence_id": "E2",
+      "chunk_id": "485c4989-c300-45c8-ac06-79a59492bb5c-c0095-b12c916c14",
+      "chunk_index": 95,
+      "semantic_type": "clause",
+      "source_rank": 2,
+      "ranked_seed_rank": 2,
+      "reasons": [
+        "ranked_seed"
+      ],
+      "pages": [
+        35
+      ],
+      "section_path": [
+        "PART III: CUSTOMER DUE DILIGENCE",
+        "8. CUSTOMER DUE DILIGENCE (CDD)",
+        "8.1 CDD at the point of establishing business relationship"
+      ],
+      "source_element_ids": [
+        "p35-e9",
+        "p35-e10",
+        "p35-e11"
+      ],
+      "content_text": "8.1.16 A reporting institution is required to identify and take reasonable measures to verify the\nidentity of the beneficial owner of a legal arrangement by taking into consideration the\nfollowing information:\n\n(a) In the case of a trust, the identity of the settlor, the trustee or the protector, the\nbeneficiary or class of beneficiaries and objects of a power, and any other natural\nperson exercising ultimate effective control over the trust (including through a\nchain of control/ownership); or\n\n(b) In the case of other types of legal arrangement, the identity of the person in an\nequivalent or similar position referred to in (a) above."
+    },
+    {
+      "evidence_id": "E3",
+      "chunk_id": "485c4989-c300-45c8-ac06-79a59492bb5c-c0087-fd64fed063",
+      "chunk_index": 87,
+      "semantic_type": "clause",
+      "source_rank": 3,
+      "ranked_seed_rank": 3,
+      "reasons": [
+        "ranked_seed"
+      ],
+      "pages": [
+        33
+      ],
+      "section_path": [
+        "PART III: CUSTOMER DUE DILIGENCE",
+        "8. CUSTOMER DUE DILIGENCE (CDD)",
+        "8.1 CDD at the point of establishing business relationship"
+      ],
+      "source_element_ids": [
+        "p33-e5",
+        "p33-e6",
+        "p33-e7",
+        "p33-e8",
+        "p33-e9"
+      ],
+      "content_text": "8.1.10 A reporting institution is required to identify and take reasonable measures to verify\nthe identity of the beneficial owner of a legal person by taking into consideration the\nfollowing information or document:\n\n(a) duly certified true copy/duly notarised copy of the latest Forms 24 and 49 as\nprescribed by the Companies Commission of Malaysia under the Companies\nAct 2016 or equivalent document for a foreign body corporate; and\nidentification document of the shareholders with an equity interest of more\nthan 25%, directors, partners and office bearers (as the case may be);\n\n(b) authorisation for any person to represent the company/business either via a\nletter of authority or directors resolution;\n\n(c) relevant document such as NRIC for Malaysians/permanent residents or\npassport for foreigners, to identify the identity of the person authorised to\nrepresent the company/business in its dealing with the reporting institution;\nand\n\n(d) to the extent, there is a doubt as to whether the controlling ownership interest\nis the beneficial owner or where no natural person exerts control through\nownership interest, the identity of the natural person (if any) who exercises\ncontrol of the legal person through other means or who holds the position of\nsenior management."
+    },
+    {
+      "evidence_id": "E4",
+      "chunk_id": "485c4989-c300-45c8-ac06-79a59492bb5c-c0011-01b2d194b2",
+      "chunk_index": 11,
+      "semantic_type": "definition",
+      "source_rank": 4,
+      "ranked_seed_rank": 4,
+      "reasons": [
+        "ranked_seed"
+      ],
+      "pages": [
+        9
+      ],
+      "section_path": [
+        "PART I: INTRODUCTION AND APPLICABILITY",
+        "3. DEFINITIONS"
+      ],
+      "source_element_ids": [
+        "p9-e5",
+        "p9-e6",
+        "p9-e7",
+        "p9-e8",
+        "p9-e9"
+      ],
+      "content_text": "beneficial owner\n\nin the context of legal person, means any natural person who ultimately owns or controls a customer and/or the natural person on whose behalf a transaction is being conducted. It also includes the natural person who exercises ultimate effective control over a legal person.\nReference to “ultimately owns or controls” and “ultimate effective control” refer to situations in which ownership or control is exercised through a chain of ownership or by means of control other than direct control.\nin the context of legal arrangements, beneficial owner includes: (a) the settlor(s); (b) the trustee(s); (c) the protector(s) (if any); (d) each beneficiary, or where applicable, the class of beneficiaries and objects of a power; and (e) any other natural person(s) exercising ultimate effective control over the legal arrangement. In the case of a legal arrangement similar to an express trust, beneficial owner refers to the natural person(s) holding an equivalent position to those referred above. When the trustee and any other party to the legal arrangement is a legal person, the beneficial owner of that legal person should be identified.\nReference to “ultimate effective control” over trusts or similar legal arrangements includes situations in which ownership or control is exercised through a chain of ownership or control."
+    },
+    {
+      "evidence_id": "E5",
+      "chunk_id": "485c4989-c300-45c8-ac06-79a59492bb5c-c0250-f52650db4c",
+      "chunk_index": 250,
+      "semantic_type": "clause",
+      "source_rank": 5,
+      "ranked_seed_rank": 5,
+      "reasons": [
+        "ranked_seed"
+      ],
+      "pages": [
+        92
+      ],
+      "section_path": [
+        "APPENDIX E",
+        "Introduction"
+      ],
+      "source_element_ids": [
+        "p92-e4",
+        "p92-e5",
+        "p92-e6",
+        "p92-e7",
+        "p92-e8"
+      ],
+      "content_text": "1.1 The obligations of a reporting institution on beneficial ownership requirements are:\n\n(a)identifying a natural person who is the beneficial owner of the customer and\nobtaining information that describes the ownership, control and structure of the\nlegal persons/ legal arrangements relating to the beneficial owner;\n\n(b)taking reasonable measures to verify the accuracy of the information obtained\nand keeping records of all relevant documents;\n\n(c)conducting customer risk profiling to identify the risk category of the beneficial\nowner; and\n\n(d)performing further regulatory obligations based on the risk category of the\nbeneficial owner such as CDD, sanction screening and high-risk jurisdiction."
+    }
+  ],
+  "citations": [
+    {
+      "citation_id": "CIT-E2",
+      "marker": "[1]",
+      "evidence_id": "E2",
+      "chunk_id": "485c4989-c300-45c8-ac06-79a59492bb5c-c0095-b12c916c14",
+      "chunk_index": 95,
+      "source_filename": "sc_aml_cft.pdf",
+      "display": "Clause 8.1.16 · PDF p. 35",
+      "pages": [
+        35
+      ],
+      "section_path": [
+        "PART III: CUSTOMER DUE DILIGENCE",
+        "8. CUSTOMER DUE DILIGENCE (CDD)",
+        "8.1 CDD at the point of establishing business relationship"
+      ],
+      "source_element_ids": [
+        "p35-e9",
+        "p35-e10",
+        "p35-e11"
+      ],
+      "locators": [
+        {
+          "kind": "clause",
+          "label": "Clause 8.1.16",
+          "pages": [
+            35
+          ],
+          "source_element_ids": [
+            "p35-e9"
+          ]
+        }
+      ],
+      "validation_status": "valid"
+    },
+    {
+      "citation_id": "CIT-E1",
+      "marker": "[2]",
+      "evidence_id": "E1",
+      "chunk_id": "485c4989-c300-45c8-ac06-79a59492bb5c-c0096-2b74b6fabe",
+      "chunk_index": 96,
+      "source_filename": "sc_aml_cft.pdf",
+      "display": "Clause 8.1.17 · PDF p. 35",
+      "pages": [
+        35
+      ],
+      "section_path": [
+        "PART III: CUSTOMER DUE DILIGENCE",
+        "8. CUSTOMER DUE DILIGENCE (CDD)",
+        "8.1 CDD at the point of establishing business relationship"
+      ],
+      "source_element_ids": [
+        "p35-e12"
+      ],
+      "locators": [
+        {
+          "kind": "clause",
+          "label": "Clause 8.1.17",
+          "pages": [
+            35
+          ],
+          "source_element_ids": [
+            "p35-e12"
+          ]
+        }
+      ],
+      "validation_status": "valid"
+    }
+  ],
+  "citation_version": "deterministic_citations_v1_2",
+  "citation_validation": {
+    "status": "valid",
+    "citation_count": 2,
+    "valid_citation_count": 2,
+    "errors": []
+  },
+  "generation_provider": "groq",
+  "generation_model": "openai/gpt-oss-120b",
+  "prompt_version": "grounded_claims_v1",
+  "generation_temperature": 0.0,
+  "generation_max_tokens": 1200,
+  "generation_json_mode": true,
+  "usage": {
+    "prompt_tokens": 1691,
+    "completion_tokens": 506,
+    "total_tokens": 2197
+  },
+  "retrieval_profile": "retrieval_v1_stage8_2_top5",
+  "retrieval_top_k": 5,
+  "retrieval_candidate_k": 20,
+  "retrieval_rrf_k": 60,
+  "retrieval_dense_weight": 1.0,
+  "retrieval_lexical_weight": 1.0,
+  "context_strategy": "structural_one_hop_v1",
+  "context_chunk_count": 5,
+  "expanded_chunk_count": 0
+}

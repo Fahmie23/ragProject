@@ -1,0 +1,316 @@
+{
+  "document_id": "485c4989-c300-45c8-ac06-79a59492bb5c",
+  "question": "According to Appendix H, how should a capital market intermediary keep UNSCR sanctions information current, and when does a UNSCR delisting take effect?",
+  "status": "answered",
+  "answer": "A capital market intermediary should update its UNSCR sanctions database regularly, without delay, to keep the information current A UNSCR delisting takes effect automatically when the designated country or person is removed by the relevant UNSC Sanctions Committee",
+  "cited_answer": "A capital market intermediary should update its UNSCR sanctions database regularly, without delay, to keep the information current [1] A UNSCR delisting takes effect automatically when the designated country or person is removed by the relevant UNSC Sanctions Committee [1]",
+  "claims": [
+    {
+      "claim_id": "C1",
+      "text": "A capital market intermediary should update its UNSCR sanctions database regularly, without delay, to keep the information current",
+      "evidence_ids": [
+        "E1"
+      ],
+      "citation_ids": [
+        "CIT-E1"
+      ]
+    },
+    {
+      "claim_id": "C2",
+      "text": "A UNSCR delisting takes effect automatically when the designated country or person is removed by the relevant UNSC Sanctions Committee",
+      "evidence_ids": [
+        "E1"
+      ],
+      "citation_ids": [
+        "CIT-E1"
+      ]
+    }
+  ],
+  "used_evidence_ids": [
+    "E1"
+  ],
+  "missing_information": [],
+  "evidence": [
+    {
+      "evidence_id": "E1",
+      "chunk_id": "485c4989-c300-45c8-ac06-79a59492bb5c-c0276-b02b6aba4d",
+      "chunk_index": 276,
+      "semantic_type": "clause",
+      "source_rank": 1,
+      "ranked_seed_rank": 1,
+      "reasons": [
+        "ranked_seed"
+      ],
+      "pages": [
+        106
+      ],
+      "section_path": [
+        "APPENDIX H"
+      ],
+      "source_element_ids": [
+        "p106-e3",
+        "p106-e4",
+        "p106-e5",
+        "p106-e6",
+        "p106-e7",
+        "p106-e8",
+        "p106-e9"
+      ],
+      "content_text": "1. The sanction lists are available in the respective UNSCR sanctions webpage (e.g. 1718\nfor DPRK), under the heading of ‘Sanction List Materials’ including:\n\n(a) DPRK: United Nations Security Council Committee established pursuant to\nResolution 1718 (2006); and\n\n(b) Any other UNSCR as specified by the SC in these Guidelines.\n\n2. The updated UN Consolidated List can be obtained at http://www.un.org/ or\nhttps://www.un.org/sc/suborg/en/sanctions/un-sc-consolidated-list\n\n3. A capital market intermediary must take note that Strategic Trade (Restricted End-\nUsers and Prohibited End-Users) Order 2010 (P.U. (A) 484/2010) provides for an\nautomatic application of the UNSCR lists by making reference to the updated list in\nthe UN website. Therefore, for the UNSCR lists, a capital market intermediary is\nadvised to update its database regularly, without delay.\n\n4. A capital market intermediary may consider subscribing to electronic subscription\nservices to maintain the updated UNSCRs.\n\n5. The delisting of any designated country or designated person under UNSCRs shall\nautomatically take effect when the designated country or person is removed by the\nrelevant UNSC Sanctions Committee."
+    },
+    {
+      "evidence_id": "E2",
+      "chunk_id": "485c4989-c300-45c8-ac06-79a59492bb5c-c0237-06eb0908af",
+      "chunk_index": 237,
+      "semantic_type": "clause",
+      "source_rank": 2,
+      "ranked_seed_rank": 2,
+      "reasons": [
+        "ranked_seed"
+      ],
+      "pages": [
+        87,
+        88
+      ],
+      "section_path": [
+        "APPENDIX D",
+        "Obligation to maintain the sanctions list"
+      ],
+      "source_element_ids": [
+        "p87-e3",
+        "p88-e2",
+        "p88-e3",
+        "p88-e4",
+        "p88-e5",
+        "p88-e6"
+      ],
+      "content_text": "2.1 In implementing the requirements in paragraphs 14.1 and 14.2 of the Guidelines, a\nreporting institution should have policies and procedures to ensure compliance with\nthe obligation to maintain the lists of listed entities in respect the UNSCR and domestic\nlists.\n\n2.3 For the domestic lists, a reporting institution should keep the lists updated as soon as\nthe subsidiary legislation via Orders are published in the gazette by the Ministry of\nHome Affairs.\n\n2.4 Reporting institution must observe the following for the purpose of delisting any listed\nentities:\n\n(a)For any listed entities under UNSCR list, delisting shall take effect automatically\nas soonest as the listed entities are removed from the UNSCR lists; and\n\n(b)For any listed entities under the domestic list, delisting shall take effect\nupon the publication of the subsidiary legislation via Orders by the Ministry of\nHome Affairs on removal of such listed entities.\n\n2.5 A reporting institution may consider subscribing electronic subscription services to\nmaintain the updated UNSCR and domestic lists. However, the ultimate responsibility\nto ensure that the lists are up to date remains with the reporting institution."
+    },
+    {
+      "evidence_id": "E3",
+      "chunk_id": "485c4989-c300-45c8-ac06-79a59492bb5c-c0166-2be11686ea",
+      "chunk_index": 166,
+      "semantic_type": "clause",
+      "source_rank": 3,
+      "ranked_seed_rank": null,
+      "reasons": [
+        "preceding_intro"
+      ],
+      "pages": [
+        62,
+        63
+      ],
+      "section_path": [
+        "PART VIII: COMBATING PROLIFERATION FINANCING",
+        "17. CONDUCT SANCTIONS SCREENING ON CUSTOMERS"
+      ],
+      "source_element_ids": [
+        "p62-e12",
+        "p62-e13",
+        "p63-e1",
+        "p63-e2"
+      ],
+      "content_text": "17.3 The obligation to conduct sanctions screening on customers also includes funds\nderived from property owned or controlled directly or indirectly by the designated\nperson or by any of its related party. In this regard, a reporting institution must conduct\nchecks on:\n\n(a) relationship and transactions connected with the designated person;\n\n(b) properties or accounts that are jointly owned and/or indirectly controlled by the\ndesignated person; and\n\n(c) parties related to the frozen accounts including beneficial owners, signatories,\npower of attorney relationships, guarantors, nominees, trustees, assignees and\npayors."
+    },
+    {
+      "evidence_id": "E4",
+      "chunk_id": "485c4989-c300-45c8-ac06-79a59492bb5c-c0167-5fb13811a7",
+      "chunk_index": 167,
+      "semantic_type": "list_item",
+      "source_rank": 3,
+      "ranked_seed_rank": 3,
+      "reasons": [
+        "ranked_seed"
+      ],
+      "pages": [
+        63
+      ],
+      "section_path": [
+        "PART VIII: COMBATING PROLIFERATION FINANCING",
+        "17. CONDUCT SANCTIONS SCREENING ON CUSTOMERS"
+      ],
+      "source_element_ids": [
+        "p63-e5",
+        "p63-e6",
+        "p63-e7",
+        "p63-e8"
+      ],
+      "content_text": "(a)According to the standards prescribed by the FATF, “without delay” means,\nideally within a matter of hours of a designation by the UNSC or its relevant\nSanctions Committee. The phrase “without delay” should be interpreted in\nthe context of the need to prevent the flight or dissipation of funds or other\nassets which are linked to the financing of proliferation of weapons of mass\ndestruction.\n\n(b)A reporting institution is also advised to search, examine and analyse past\nfinancial activities of the designated person or related party, where relevant.\n\n(c)A reporting institution must always be wary of the possible use of among\nothers, false identities, dual nationalities, multiple names and identities\nwhen performing name searches for each designated person to prevent\nunintended omissions.\n\n(d)The screening obligations under these Guidelines extend to the delisting of\naffected customers from the list of countries and persons designated under\nthe relevant UNSCRs."
+    },
+    {
+      "evidence_id": "E5",
+      "chunk_id": "485c4989-c300-45c8-ac06-79a59492bb5c-c0006-7370ea1972",
+      "chunk_index": 6,
+      "semantic_type": "clause",
+      "source_rank": 4,
+      "ranked_seed_rank": 4,
+      "reasons": [
+        "ranked_seed"
+      ],
+      "pages": [
+        6
+      ],
+      "section_path": [
+        "PART I: INTRODUCTION AND APPLICABILITY",
+        "1.0 INTRODUCTION"
+      ],
+      "source_element_ids": [
+        "p6-e3",
+        "p6-e4",
+        "p6-e5",
+        "p6-e6",
+        "p6-e7",
+        "p6-e8",
+        "p6-e9",
+        "p6-e10"
+      ],
+      "content_text": "1.1 The Guidelines on Prevention of Money Laundering, Countering Financing of Terrorism,\nCountering Proliferation Financing and Targeted Financial Sanctions for Reporting\nInstitutions in the Capital Market (Guidelines) are issued pursuant to the following:\n\n(a) in relation to anti-money laundering and countering financing of terrorism including\nTargeted Financial Sanctions relating to Terrorism Financing (TFS-TF), section\n158(1) and section 160A of the Securities Commission Malaysia Act 1993 (SCMA)\nread together with section 66B, section 66E and section 83 of the Anti-Money\nLaundering, Anti-Terrorism Financing and Proceeds of Unlawful Activities Act 2001\n(AMLA);\n\n(b) in relation to countering proliferation financing including Targeted Financial\nSanctions relating to Proliferation Financing (TFS-PF), section 158(1) and section\n160A of the SCMA read together with the following legislations (collectively referred\nto as “TFS-PF related legislations”) which provides the legal basis for domestic\nimplementation of TFS-PF in relation to United Nations Security Council Resolutions\n(UNSCR) imposed on the designated countries and persons:\n\n(i) Strategic Trade Act 2010 (Act 708) (STA);\n\n(ii) Strategic Trade (United Nations Security Council Resolutions)\nRegulations 2010 (P.U. (A) 481/2010) 1;\n\n(iii) Strategic Trade (Restricted End-Users and Prohibited End-Users) Order\n2010 (P.U. (A) 484/2010);\n\n(iv) Strategic Trade (Delisting of Prohibited End-Users) Regulations 2014\n(P.U. (A) 289/2014); and\n\n(v) Strategic Trade (Unfreezing of Property in relation to Prohibited End-\nUsers) Regulations 2014 (P.U. (A) 290/2014)."
+    },
+    {
+      "evidence_id": "E6",
+      "chunk_id": "485c4989-c300-45c8-ac06-79a59492bb5c-c0238-d6ba6b2474",
+      "chunk_index": 238,
+      "semantic_type": "clause",
+      "source_rank": 5,
+      "ranked_seed_rank": 5,
+      "reasons": [
+        "ranked_seed"
+      ],
+      "pages": [
+        87,
+        88
+      ],
+      "section_path": [
+        "APPENDIX D",
+        "Obligation to maintain the sanctions list"
+      ],
+      "source_element_ids": [
+        "p87-e4",
+        "p88-e1"
+      ],
+      "content_text": "2.2 A reporting institution must take note that Amendment Order 2014 (P.U. (A)\n225/2014) provides for an automatic application of the UNSCR lists by making\nreference to the updated list in the UN website. Therefore, for the UNSCR lists, a\n\nreporting institution is advised to update its database regularly, not more than two\nweeks interval."
+    }
+  ],
+  "citations": [
+    {
+      "citation_id": "CIT-E1",
+      "marker": "[1]",
+      "evidence_id": "E1",
+      "chunk_id": "485c4989-c300-45c8-ac06-79a59492bb5c-c0276-b02b6aba4d",
+      "chunk_index": 276,
+      "source_filename": "sc_aml_cft.pdf",
+      "display": "APPENDIX H · Clause 1 · Clause 2 · Clause 3 · Clause 4 · Clause 5 · PDF p. 106",
+      "pages": [
+        106
+      ],
+      "section_path": [
+        "APPENDIX H"
+      ],
+      "source_element_ids": [
+        "p106-e3",
+        "p106-e4",
+        "p106-e5",
+        "p106-e6",
+        "p106-e7",
+        "p106-e8",
+        "p106-e9"
+      ],
+      "locators": [
+        {
+          "kind": "appendix",
+          "label": "APPENDIX H",
+          "pages": [
+            106
+          ],
+          "source_element_ids": [
+            "p106-e3",
+            "p106-e4",
+            "p106-e5",
+            "p106-e6",
+            "p106-e7",
+            "p106-e8",
+            "p106-e9"
+          ]
+        },
+        {
+          "kind": "clause",
+          "label": "Clause 1",
+          "pages": [
+            106
+          ],
+          "source_element_ids": [
+            "p106-e3"
+          ]
+        },
+        {
+          "kind": "clause",
+          "label": "Clause 2",
+          "pages": [
+            106
+          ],
+          "source_element_ids": [
+            "p106-e6"
+          ]
+        },
+        {
+          "kind": "clause",
+          "label": "Clause 3",
+          "pages": [
+            106
+          ],
+          "source_element_ids": [
+            "p106-e7"
+          ]
+        },
+        {
+          "kind": "clause",
+          "label": "Clause 4",
+          "pages": [
+            106
+          ],
+          "source_element_ids": [
+            "p106-e8"
+          ]
+        },
+        {
+          "kind": "clause",
+          "label": "Clause 5",
+          "pages": [
+            106
+          ],
+          "source_element_ids": [
+            "p106-e9"
+          ]
+        }
+      ],
+      "validation_status": "valid"
+    }
+  ],
+  "citation_version": "deterministic_citations_v1_2",
+  "citation_validation": {
+    "status": "valid",
+    "citation_count": 1,
+    "valid_citation_count": 1,
+    "errors": []
+  },
+  "generation_provider": "groq",
+  "generation_model": "openai/gpt-oss-120b",
+  "prompt_version": "grounded_claims_v1",
+  "generation_temperature": 0.0,
+  "generation_max_tokens": 1200,
+  "generation_json_mode": true,
+  "usage": {
+    "prompt_tokens": 2222,
+    "completion_tokens": 573,
+    "total_tokens": 2795
+  },
+  "retrieval_profile": "retrieval_v1_stage8_2_top5",
+  "retrieval_top_k": 5,
+  "retrieval_candidate_k": 20,
+  "retrieval_rrf_k": 60,
+  "retrieval_dense_weight": 1.0,
+  "retrieval_lexical_weight": 1.0,
+  "context_strategy": "structural_one_hop_v1",
+  "context_chunk_count": 6,
+  "expanded_chunk_count": 1
+}

@@ -8,6 +8,8 @@ export function DocumentWorkflowNav({
   reviewDone,
   chunkingAvailable,
   chunkingDone,
+  indexAvailable,
+  indexDone,
   onChange,
 }: {
   tab: WorkspaceTab;
@@ -17,6 +19,8 @@ export function DocumentWorkflowNav({
   reviewDone: boolean;
   chunkingAvailable: boolean;
   chunkingDone: boolean;
+  indexAvailable: boolean;
+  indexDone: boolean;
   onChange: (tab: WorkspaceTab) => void;
 }) {
   const items: Array<{
@@ -30,6 +34,7 @@ export function DocumentWorkflowNav({
     { id: "structure", label: "Structure", enabled: structureReady, done: structureReady },
     { id: "review", label: "Review", enabled: reviewReady, done: reviewDone },
     { id: "chunking", label: "Chunking", enabled: chunkingAvailable, done: chunkingDone },
+    { id: "index", label: "Index", enabled: indexAvailable, done: indexDone },
   ];
 
   return (
@@ -43,7 +48,11 @@ export function DocumentWorkflowNav({
             disabled={!item.enabled}
             className={`${active ? "active" : ""} ${item.done ? "done" : ""}`}
             onClick={() => onChange(item.id)}
-            title={item.id === "chunking" && !item.enabled ? "Complete Stage 4 before opening Stage 5." : undefined}
+            title={item.id === "chunking" && !item.enabled
+              ? "Complete Stage 4 before opening Stage 5."
+              : item.id === "index" && !item.enabled
+                ? "Generate Stage 5 chunks before opening the vector index."
+                : undefined}
           >
             <span className="v2-workflow-state" aria-hidden="true">{item.done ? "✓" : active ? "●" : "○"}</span>
             <span>{item.label}</span>

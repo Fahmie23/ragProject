@@ -1,0 +1,394 @@
+{
+  "document_id": "485c4989-c300-45c8-ac06-79a59492bb5c",
+  "question": "In Appendix E Step 2, what are examples of control over a legal person through means other than ownership?",
+  "status": "answered",
+  "answer": "Control may be exercised through personal connections to persons in positions of power within the entity or persons who possess ownership, such as close or intimate family relationships and historical or contractual associations Control may be exercised through participation in financing of the enterprise, which may allow enjoyment or benefits from the assets of the legal person A natural person demonstrating control may be senior management, directors, an authorised signatory, a controller, or similar positions Control may be reflected by a dominant influence to appoint or remove directors or senior management Control may be exercised by having power of attorney over the entity Control may arise from owning stocks or rights over outstanding debts that are convertible into voting equity Control may be exercised through trusts, agreements, arrangements, understandings, policies or practices, close and intimate family relationships, or if a company defaults on certain payments",
+  "cited_answer": "Control may be exercised through personal connections to persons in positions of power within the entity or persons who possess ownership, such as close or intimate family relationships and historical or contractual associations [1] Control may be exercised through participation in financing of the enterprise, which may allow enjoyment or benefits from the assets of the legal person [1][2] A natural person demonstrating control may be senior management, directors, an authorised signatory, a controller, or similar positions [1] Control may be reflected by a dominant influence to appoint or remove directors or senior management [2] Control may be exercised by having power of attorney over the entity [2] Control may arise from owning stocks or rights over outstanding debts that are convertible into voting equity [2] Control may be exercised through trusts, agreements, arrangements, understandings, policies or practices, close and intimate family relationships, or if a company defaults on certain payments [2]",
+  "claims": [
+    {
+      "claim_id": "C1",
+      "text": "Control may be exercised through personal connections to persons in positions of power within the entity or persons who possess ownership, such as close or intimate family relationships and historical or contractual associations",
+      "evidence_ids": [
+        "E1"
+      ],
+      "citation_ids": [
+        "CIT-E1"
+      ]
+    },
+    {
+      "claim_id": "C2",
+      "text": "Control may be exercised through participation in financing of the enterprise, which may allow enjoyment or benefits from the assets of the legal person",
+      "evidence_ids": [
+        "E1",
+        "E3"
+      ],
+      "citation_ids": [
+        "CIT-E1",
+        "CIT-E3"
+      ]
+    },
+    {
+      "claim_id": "C3",
+      "text": "A natural person demonstrating control may be senior management, directors, an authorised signatory, a controller, or similar positions",
+      "evidence_ids": [
+        "E1"
+      ],
+      "citation_ids": [
+        "CIT-E1"
+      ]
+    },
+    {
+      "claim_id": "C4",
+      "text": "Control may be reflected by a dominant influence to appoint or remove directors or senior management",
+      "evidence_ids": [
+        "E3"
+      ],
+      "citation_ids": [
+        "CIT-E3"
+      ]
+    },
+    {
+      "claim_id": "C5",
+      "text": "Control may be exercised by having power of attorney over the entity",
+      "evidence_ids": [
+        "E3"
+      ],
+      "citation_ids": [
+        "CIT-E3"
+      ]
+    },
+    {
+      "claim_id": "C6",
+      "text": "Control may arise from owning stocks or rights over outstanding debts that are convertible into voting equity",
+      "evidence_ids": [
+        "E3"
+      ],
+      "citation_ids": [
+        "CIT-E3"
+      ]
+    },
+    {
+      "claim_id": "C7",
+      "text": "Control may be exercised through trusts, agreements, arrangements, understandings, policies or practices, close and intimate family relationships, or if a company defaults on certain payments",
+      "evidence_ids": [
+        "E3"
+      ],
+      "citation_ids": [
+        "CIT-E3"
+      ]
+    }
+  ],
+  "used_evidence_ids": [
+    "E1",
+    "E3"
+  ],
+  "missing_information": [],
+  "evidence": [
+    {
+      "evidence_id": "E1",
+      "chunk_id": "485c4989-c300-45c8-ac06-79a59492bb5c-c0258-cd8455196d",
+      "chunk_index": 258,
+      "semantic_type": "clause",
+      "source_rank": 1,
+      "ranked_seed_rank": 1,
+      "reasons": [
+        "ranked_seed"
+      ],
+      "pages": [
+        94,
+        95
+      ],
+      "section_path": [
+        "APPENDIX E",
+        "Identification"
+      ],
+      "source_element_ids": [
+        "p94-e9",
+        "p94-e10",
+        "p94-e11",
+        "p95-e6",
+        "p95-e7",
+        "p95-e8",
+        "p95-e9"
+      ],
+      "content_text": "1.9 Step 2: Identify the natural person, if any, exercising control of the\nlegal person, through other means\n\n(a) A natural person may also exercise effective control over an entity if he has the\npowers and authority to take actions and make decisions for the entity, including\non matters relating to its financial affairs, financial relationships, operations or\nother matters that may fundamentally affect the business or direction of the\nentity, without having ownership interest over the entity.\n\n(b) Such powers and authority may be attained through other means, such as:\n\n(c) A natural person demonstrating control may be, among others, the entity’s senior\nmanagement, directors, authorised signatory, controller and etc.\n\nWhere, in the course of identifying beneficial owners, reporting institutions\nidentified natural persons who exert control over an entity but have no direct\nownership or apparent control over the entity, this assessment along with\nthe person suspected of being a beneficial owner, should be recorded. Such a\nsituation may be observed through:\n\n(i)personal connections to persons in positions of power within the entity or\npersons who possess ownership over an entity (close or intimate family\nrelationships and historical or contractual associations)\n\n(ii)participation in financing of enterprises which may allow enjoyment or\nbenefits from assets of the legal person"
+    },
+    {
+      "evidence_id": "E2",
+      "chunk_id": "485c4989-c300-45c8-ac06-79a59492bb5c-c0257-818930868d",
+      "chunk_index": 257,
+      "semantic_type": "clause",
+      "source_rank": 2,
+      "ranked_seed_rank": 2,
+      "reasons": [
+        "ranked_seed"
+      ],
+      "pages": [
+        94
+      ],
+      "section_path": [
+        "APPENDIX E",
+        "Identification"
+      ],
+      "source_element_ids": [
+        "p94-e1",
+        "p94-e2",
+        "p94-e3",
+        "p94-e4",
+        "p94-e6",
+        "p94-e7",
+        "p94-e8"
+      ],
+      "content_text": "1.8 Step 1: Identify the natural person(s), if any, who ultimately have\ncontrolling ownership interest in the legal person\n\n(a) Having ultimate controlling ownership interest over an entity includes having more\nthan 25% ownership or equity interest in an entity which may be observed, among\nothers, through share capital, capital contribution or voting rights. The ownership\nmay either be direct ownership (through ownership of shares within the entity\nitself) or indirect ownership (through chain of corporate vehicles). In the case of\na limited liability partnership - partners with capital contribution and/or voting\nrights of more than 25%.\n\n(b) Having a golden share within an entity is similar to having ultimate ownership of\nthe entity, as it refers to 51% ownership.\n\n(c) Shareholders may exercise control alone or together with other shareholders,\nincluding through any contract, understanding, relationship, intermediary or tiered\nentity. In most circumstances, ownership over an entity implies control over the\nentity, as ownership may come with the power and authority to take actions\nand make decisions for the entity. Such a situation can be observed, among\nothers, where:\n\n(i)The natural person has majority voting power within the entity to make\ndecisions; or\n\n(ii)The natural person exercises his right to appoint or remove directors\nor senior management, as a major shareholder.\n\n(d) In implementing Step 1, a natural person identified as fulfilling the criteria in (a)\nshall be identified as the beneficial owner. However, where there is doubt that\nthe person identified under Step 1 is not the beneficial owner; or where no natural\nperson has ultimate controlling ownership interest over the legal person, the\nreporting institution shall carry out Step 2."
+    },
+    {
+      "evidence_id": "E3",
+      "chunk_id": "485c4989-c300-45c8-ac06-79a59492bb5c-c0259-61724dcafa",
+      "chunk_index": 259,
+      "semantic_type": "list_item",
+      "source_rank": 3,
+      "ranked_seed_rank": 3,
+      "reasons": [
+        "ranked_seed"
+      ],
+      "pages": [
+        95
+      ],
+      "section_path": [
+        "APPENDIX E",
+        "Identification"
+      ],
+      "source_element_ids": [
+        "p95-e1",
+        "p95-e2",
+        "p95-e3",
+        "p95-e4",
+        "p95-e5"
+      ],
+      "content_text": "(i) Reflecting dominant influence to appoint or remove directors/ senior\nmanagement;\n\n(ii) Having the power of attorney over the entity;\n\n(iii)Owning stocks or rights over outstanding debts that are convertible into\nvoting equity;\n\n(iv)Participating in the financing of the enterprise; or\n\n(v)Having control through trusts, agreements, arrangements, understandings,\npolicies or practices, close and intimate family relationships or if a company\ndefaults on certain payments."
+    },
+    {
+      "evidence_id": "E4",
+      "chunk_id": "485c4989-c300-45c8-ac06-79a59492bb5c-c0011-01b2d194b2",
+      "chunk_index": 11,
+      "semantic_type": "definition",
+      "source_rank": 4,
+      "ranked_seed_rank": 4,
+      "reasons": [
+        "ranked_seed"
+      ],
+      "pages": [
+        9
+      ],
+      "section_path": [
+        "PART I: INTRODUCTION AND APPLICABILITY",
+        "3. DEFINITIONS"
+      ],
+      "source_element_ids": [
+        "p9-e5",
+        "p9-e6",
+        "p9-e7",
+        "p9-e8",
+        "p9-e9"
+      ],
+      "content_text": "beneficial owner\n\nin the context of legal person, means any natural person who ultimately owns or controls a customer and/or the natural person on whose behalf a transaction is being conducted. It also includes the natural person who exercises ultimate effective control over a legal person.\nReference to “ultimately owns or controls” and “ultimate effective control” refer to situations in which ownership or control is exercised through a chain of ownership or by means of control other than direct control.\nin the context of legal arrangements, beneficial owner includes: (a) the settlor(s); (b) the trustee(s); (c) the protector(s) (if any); (d) each beneficiary, or where applicable, the class of beneficiaries and objects of a power; and (e) any other natural person(s) exercising ultimate effective control over the legal arrangement. In the case of a legal arrangement similar to an express trust, beneficial owner refers to the natural person(s) holding an equivalent position to those referred above. When the trustee and any other party to the legal arrangement is a legal person, the beneficial owner of that legal person should be identified.\nReference to “ultimate effective control” over trusts or similar legal arrangements includes situations in which ownership or control is exercised through a chain of ownership or control."
+    },
+    {
+      "evidence_id": "E5",
+      "chunk_id": "485c4989-c300-45c8-ac06-79a59492bb5c-c0268-27b66b66b6",
+      "chunk_index": 268,
+      "semantic_type": "figure",
+      "source_rank": 5,
+      "ranked_seed_rank": 5,
+      "reasons": [
+        "ranked_seed"
+      ],
+      "pages": [
+        100
+      ],
+      "section_path": [
+        "APPENDIX E",
+        "Identification"
+      ],
+      "source_element_ids": [
+        "p100-e1",
+        "p100-e3",
+        "p100-e4",
+        "p100-e5",
+        "p100-e6",
+        "p100-e7",
+        "p100-e8"
+      ],
+      "content_text": "Illustration 2\n\nBased on the shareholding, there is neither a beneficial owner with 25% or more shareholding nor is\nthere any person with effective control over the company apart from the senior management.\n\nIn this case, the senior management with control of decisions over Company A is Mr. X. Mr. X is\nconsidered the beneficial owner for AML/CFT requirements purposes.\n\nWhere there is any doubt on other persons having effective control, reporting institutions may take\nthe effort to explore nature of relationship between shareholders (i.e. spousal, familial relationship,\npower of attorney relationship).\n\nFor example, based on the above shareholding, if Ms. M is the daughter of Mr. Z, Mr. Z may have\neffective control over Company A even though there is no control through shareholding and may be\ndeemed the beneficial owner.\n\nSimilarly, if Mr. Y allows Mr. Z the power of attorney over his shareholding, Mr. Z may also have\neffective control over Company A and may be deemed the beneficial owner.\n\nThe relationships between the relevant stakeholders can be determined and established if the\nreporting institution truly knows its customer, as required through customer due diligence\nrequirement. Reporting institutions may practise best efforts basis in ensuring these information are\ndiscovered."
+    }
+  ],
+  "citations": [
+    {
+      "citation_id": "CIT-E1",
+      "marker": "[1]",
+      "evidence_id": "E1",
+      "chunk_id": "485c4989-c300-45c8-ac06-79a59492bb5c-c0258-cd8455196d",
+      "chunk_index": 258,
+      "source_filename": "sc_aml_cft.pdf",
+      "display": "APPENDIX E · Clause 1.9 · Clause 1.9(a) · Clause 1.9(b) · Clause 1.9(c) · PDF pp. 94–95",
+      "pages": [
+        94,
+        95
+      ],
+      "section_path": [
+        "APPENDIX E",
+        "Identification"
+      ],
+      "source_element_ids": [
+        "p94-e9",
+        "p94-e10",
+        "p94-e11",
+        "p95-e6",
+        "p95-e7",
+        "p95-e8",
+        "p95-e9"
+      ],
+      "locators": [
+        {
+          "kind": "appendix",
+          "label": "APPENDIX E",
+          "pages": [
+            94,
+            95
+          ],
+          "source_element_ids": [
+            "p94-e9",
+            "p94-e10",
+            "p94-e11",
+            "p95-e6",
+            "p95-e7",
+            "p95-e8",
+            "p95-e9"
+          ]
+        },
+        {
+          "kind": "clause",
+          "label": "Clause 1.9",
+          "pages": [
+            94
+          ],
+          "source_element_ids": [
+            "p94-e9"
+          ]
+        },
+        {
+          "kind": "subclause",
+          "label": "Clause 1.9(a)",
+          "pages": [
+            94
+          ],
+          "source_element_ids": [
+            "p94-e10"
+          ]
+        },
+        {
+          "kind": "subclause",
+          "label": "Clause 1.9(b)",
+          "pages": [
+            94
+          ],
+          "source_element_ids": [
+            "p94-e11"
+          ]
+        },
+        {
+          "kind": "subclause",
+          "label": "Clause 1.9(c)",
+          "pages": [
+            95
+          ],
+          "source_element_ids": [
+            "p95-e6"
+          ]
+        }
+      ],
+      "validation_status": "valid"
+    },
+    {
+      "citation_id": "CIT-E3",
+      "marker": "[2]",
+      "evidence_id": "E3",
+      "chunk_id": "485c4989-c300-45c8-ac06-79a59492bb5c-c0259-61724dcafa",
+      "chunk_index": 259,
+      "source_filename": "sc_aml_cft.pdf",
+      "display": "APPENDIX E · Identification · PDF p. 95",
+      "pages": [
+        95
+      ],
+      "section_path": [
+        "APPENDIX E",
+        "Identification"
+      ],
+      "source_element_ids": [
+        "p95-e1",
+        "p95-e2",
+        "p95-e3",
+        "p95-e4",
+        "p95-e5"
+      ],
+      "locators": [
+        {
+          "kind": "appendix",
+          "label": "APPENDIX E",
+          "pages": [
+            95
+          ],
+          "source_element_ids": [
+            "p95-e1",
+            "p95-e2",
+            "p95-e3",
+            "p95-e4",
+            "p95-e5"
+          ]
+        },
+        {
+          "kind": "section",
+          "label": "Identification",
+          "pages": [
+            95
+          ],
+          "source_element_ids": [
+            "p95-e1",
+            "p95-e2",
+            "p95-e3",
+            "p95-e4",
+            "p95-e5"
+          ]
+        }
+      ],
+      "validation_status": "valid"
+    }
+  ],
+  "citation_version": "deterministic_citations_v1_2",
+  "citation_validation": {
+    "status": "valid",
+    "citation_count": 2,
+    "valid_citation_count": 2,
+    "errors": []
+  },
+  "generation_provider": "groq",
+  "generation_model": "openai/gpt-oss-120b",
+  "prompt_version": "grounded_claims_v1",
+  "generation_temperature": 0.0,
+  "generation_max_tokens": 1200,
+  "generation_json_mode": true,
+  "usage": {
+    "prompt_tokens": 2007,
+    "completion_tokens": 705,
+    "total_tokens": 2712
+  },
+  "retrieval_profile": "retrieval_v1_stage8_2_top5",
+  "retrieval_top_k": 5,
+  "retrieval_candidate_k": 20,
+  "retrieval_rrf_k": 60,
+  "retrieval_dense_weight": 1.0,
+  "retrieval_lexical_weight": 1.0,
+  "context_strategy": "structural_one_hop_v1",
+  "context_chunk_count": 5,
+  "expanded_chunk_count": 0
+}

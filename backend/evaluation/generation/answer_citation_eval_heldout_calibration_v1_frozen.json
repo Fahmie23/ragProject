@@ -1,0 +1,1669 @@
+{
+  "schema_version": "1.0",
+  "calibration_id": "answer_citation_eval_heldout_calibration_v1_frozen",
+  "dataset_id": "answer_citation_eval_heldout_v1",
+  "rubric_version": "stage11_semantic_rubric_v1",
+  "allowed_labels": {
+    "claim_support": [
+      "supported",
+      "partially_supported",
+      "unsupported",
+      "contradicted"
+    ],
+    "citation_entailment": [
+      "entails",
+      "partial",
+      "does_not_entail"
+    ],
+    "gold_claim_coverage": [
+      "covered",
+      "partially_covered",
+      "missing"
+    ],
+    "answer_relevance": [
+      0,
+      1,
+      2
+    ]
+  },
+  "labels_prefilled": true,
+  "calibration_status": "frozen",
+  "human_confirmed": true,
+  "confirmed_on": "2026-09-02",
+  "dataset_canonical_sha256": "70152c81690c086e4e96c42dca6a31527298a467771e7f3fda593f11473f4379",
+  "automated_judge_used": false,
+  "heldout_tuning_authorized": false,
+  "questions": [
+    {
+      "question_id": "ACIT-101",
+      "category": "definition",
+      "difficulty": "medium",
+      "question": "Under the Guidelines, who can qualify as a 'related party' of a designated person?",
+      "expected_status": "answered",
+      "actual_status": "answered",
+      "answer": "A related party includes a person acting on behalf of, at the direction of, or under the control of a designated person. A related party includes a person engaged in or providing support for proliferation‑sensitive activities and programmes, including through illicit means. A related party includes a person assisting the designated person in evading sanctions or violating resolution provisions. A related party includes a person with joint ownership of, or a beneficiary of, the assets (including property) of a designated person.",
+      "cited_answer": "A related party includes a person acting on behalf of, at the direction of, or under the control of a designated person. [1] A related party includes a person engaged in or providing support for proliferation‑sensitive activities and programmes, including through illicit means. [1] A related party includes a person assisting the designated person in evading sanctions or violating resolution provisions. [1] A related party includes a person with joint ownership of, or a beneficiary of, the assets (including property) of a designated person. [1]",
+      "claims": [
+        {
+          "claim_id": "C1",
+          "text": "A related party includes a person acting on behalf of, at the direction of, or under the control of a designated person.",
+          "evidence_ids": [
+            "E1"
+          ],
+          "citation_ids": [
+            "CIT-E1"
+          ],
+          "support_label": "supported",
+          "support_notes": "The cited evidence fully supports the material content of this generated claim."
+        },
+        {
+          "claim_id": "C2",
+          "text": "A related party includes a person engaged in or providing support for proliferation‑sensitive activities and programmes, including through illicit means.",
+          "evidence_ids": [
+            "E1"
+          ],
+          "citation_ids": [
+            "CIT-E1"
+          ],
+          "support_label": "supported",
+          "support_notes": "The cited evidence fully supports the material content of this generated claim."
+        },
+        {
+          "claim_id": "C3",
+          "text": "A related party includes a person assisting the designated person in evading sanctions or violating resolution provisions.",
+          "evidence_ids": [
+            "E1"
+          ],
+          "citation_ids": [
+            "CIT-E1"
+          ],
+          "support_label": "supported",
+          "support_notes": "The cited evidence fully supports the material content of this generated claim."
+        },
+        {
+          "claim_id": "C4",
+          "text": "A related party includes a person with joint ownership of, or a beneficiary of, the assets (including property) of a designated person.",
+          "evidence_ids": [
+            "E1"
+          ],
+          "citation_ids": [
+            "CIT-E1"
+          ],
+          "support_label": "supported",
+          "support_notes": "The cited evidence fully supports the material content of this generated claim."
+        }
+      ],
+      "citation_relations": [
+        {
+          "claim_id": "C1",
+          "citation_id": "CIT-E1",
+          "evidence_id": "E1",
+          "citation_display": "Definition “related party” · PDF pp. 13–14",
+          "entailment_label": "entails",
+          "entailment_notes": "This individual citation fully supports the material claim."
+        },
+        {
+          "claim_id": "C2",
+          "citation_id": "CIT-E1",
+          "evidence_id": "E1",
+          "citation_display": "Definition “related party” · PDF pp. 13–14",
+          "entailment_label": "entails",
+          "entailment_notes": "This individual citation fully supports the material claim."
+        },
+        {
+          "claim_id": "C3",
+          "citation_id": "CIT-E1",
+          "evidence_id": "E1",
+          "citation_display": "Definition “related party” · PDF pp. 13–14",
+          "entailment_label": "entails",
+          "entailment_notes": "This individual citation fully supports the material claim."
+        },
+        {
+          "claim_id": "C4",
+          "citation_id": "CIT-E1",
+          "evidence_id": "E1",
+          "citation_display": "Definition “related party” · PDF pp. 13–14",
+          "entailment_label": "entails",
+          "entailment_notes": "This individual citation fully supports the material claim."
+        }
+      ],
+      "gold_claims": [
+        {
+          "claim_id": "GC1",
+          "requirement": "State that a related party includes a person acting on behalf of, at the direction of, or under the control of a designated person.",
+          "coverage_label": "covered",
+          "coverage_notes": "The answer contains the required semantic content with material scope and modality preserved."
+        },
+        {
+          "claim_id": "GC2",
+          "requirement": "State that it includes a person engaged in or supporting proliferation-sensitive activities and programmes, including through illicit means.",
+          "coverage_label": "covered",
+          "coverage_notes": "The answer contains the required semantic content with material scope and modality preserved."
+        },
+        {
+          "claim_id": "GC3",
+          "requirement": "State that it includes a person assisting a designated person to evade sanctions or violate resolution provisions.",
+          "coverage_label": "covered",
+          "coverage_notes": "The answer contains the required semantic content with material scope and modality preserved."
+        },
+        {
+          "claim_id": "GC4",
+          "requirement": "State that it includes a person with joint ownership of, or who is a beneficiary of, assets or property of a designated person.",
+          "coverage_label": "covered",
+          "coverage_notes": "The answer contains the required semantic content with material scope and modality preserved."
+        }
+      ],
+      "answer_relevance_score": 2,
+      "answer_relevance_notes": "Directly addresses the question and is substantially complete for the requested scope.",
+      "reviewer_notes": "",
+      "response_canonical_sha256": "962d42e712309705de0b555ea1291ffe40f10486d7212a6c1eb8389f785ff351"
+    },
+    {
+      "question_id": "ACIT-102",
+      "category": "direct_requirement",
+      "difficulty": "easy",
+      "question": "If a reporting institution is jointly regulated by BNM and the SC, which AML/CFT/CPF guidelines must it follow when the requirements differ?",
+      "expected_status": "answered",
+      "actual_status": "answered",
+      "answer": "A reporting institution jointly regulated by Bank Negara Malaysia (BNM) and the Securities Commission Malaysia (SC) must comply with the SC's Guidelines It must also comply with the Anti-Money Laundering, Countering Financing of Terrorism, Countering Proliferation Financing and Targeted Financial Sanctions guidelines issued by BNM If the SC's Guidelines and BNM's guidelines contain differing requirements, the more stringent requirements shall apply",
+      "cited_answer": "A reporting institution jointly regulated by Bank Negara Malaysia (BNM) and the Securities Commission Malaysia (SC) must comply with the SC's Guidelines [1] It must also comply with the Anti-Money Laundering, Countering Financing of Terrorism, Countering Proliferation Financing and Targeted Financial Sanctions guidelines issued by BNM [1] If the SC's Guidelines and BNM's guidelines contain differing requirements, the more stringent requirements shall apply [1]",
+      "claims": [
+        {
+          "claim_id": "C1",
+          "text": "A reporting institution jointly regulated by Bank Negara Malaysia (BNM) and the Securities Commission Malaysia (SC) must comply with the SC's Guidelines",
+          "evidence_ids": [
+            "E1"
+          ],
+          "citation_ids": [
+            "CIT-E1"
+          ],
+          "support_label": "supported",
+          "support_notes": "The cited evidence fully supports the material content of this generated claim."
+        },
+        {
+          "claim_id": "C2",
+          "text": "It must also comply with the Anti-Money Laundering, Countering Financing of Terrorism, Countering Proliferation Financing and Targeted Financial Sanctions guidelines issued by BNM",
+          "evidence_ids": [
+            "E1"
+          ],
+          "citation_ids": [
+            "CIT-E1"
+          ],
+          "support_label": "supported",
+          "support_notes": "The cited evidence fully supports the material content of this generated claim."
+        },
+        {
+          "claim_id": "C3",
+          "text": "If the SC's Guidelines and BNM's guidelines contain differing requirements, the more stringent requirements shall apply",
+          "evidence_ids": [
+            "E1"
+          ],
+          "citation_ids": [
+            "CIT-E1"
+          ],
+          "support_label": "supported",
+          "support_notes": "The cited evidence fully supports the material content of this generated claim."
+        }
+      ],
+      "citation_relations": [
+        {
+          "claim_id": "C1",
+          "citation_id": "CIT-E1",
+          "evidence_id": "E1",
+          "citation_display": "Clause 1.2 · Clause 1.3 · Clause 1.4 · Clause 1.5 · Clause 1.6 · Clause 1.7 · PDF pp. 6–7",
+          "entailment_label": "entails",
+          "entailment_notes": "This individual citation fully supports the material claim."
+        },
+        {
+          "claim_id": "C2",
+          "citation_id": "CIT-E1",
+          "evidence_id": "E1",
+          "citation_display": "Clause 1.2 · Clause 1.3 · Clause 1.4 · Clause 1.5 · Clause 1.6 · Clause 1.7 · PDF pp. 6–7",
+          "entailment_label": "entails",
+          "entailment_notes": "This individual citation fully supports the material claim."
+        },
+        {
+          "claim_id": "C3",
+          "citation_id": "CIT-E1",
+          "evidence_id": "E1",
+          "citation_display": "Clause 1.2 · Clause 1.3 · Clause 1.4 · Clause 1.5 · Clause 1.6 · Clause 1.7 · PDF pp. 6–7",
+          "entailment_label": "entails",
+          "entailment_notes": "This individual citation fully supports the material claim."
+        }
+      ],
+      "gold_claims": [
+        {
+          "claim_id": "GC1",
+          "requirement": "State that a jointly regulated reporting institution must comply with both the SC Guidelines and BNM AML/CFT and TFS for FIs requirements.",
+          "coverage_label": "covered",
+          "coverage_notes": "The answer contains the required semantic content with material scope and modality preserved."
+        },
+        {
+          "claim_id": "GC2",
+          "requirement": "State that where the requirements differ, the more stringent requirements apply.",
+          "coverage_label": "covered",
+          "coverage_notes": "The answer contains the required semantic content with material scope and modality preserved."
+        }
+      ],
+      "answer_relevance_score": 2,
+      "answer_relevance_notes": "Directly addresses the question and is substantially complete for the requested scope.",
+      "reviewer_notes": "",
+      "response_canonical_sha256": "46a310eaffb743e881fc7dfe3fb1e739735408810124daadde33d6843dd7820a"
+    },
+    {
+      "question_id": "ACIT-103",
+      "category": "direct_requirement",
+      "difficulty": "medium",
+      "question": "What consequences can follow from non-compliance with these Guidelines, and which people within a reporting institution may face enforcement action?",
+      "expected_status": "answered",
+      "actual_status": "answered",
+      "answer": "Non‑compliance with any provision of these Guidelines may subject the reporting institution to actions under the Anti‑Money Laundering Act, the Capital Markets and Services Act 2007, or other relevant legal provisions Enforcement actions can be taken against the reporting institution and its directors, officers, representatives, and employees for any non‑compliance with the Guidelines",
+      "cited_answer": "Non‑compliance with any provision of these Guidelines may subject the reporting institution to actions under the Anti‑Money Laundering Act, the Capital Markets and Services Act 2007, or other relevant legal provisions [1] Enforcement actions can be taken against the reporting institution and its directors, officers, representatives, and employees for any non‑compliance with the Guidelines [1]",
+      "claims": [
+        {
+          "claim_id": "C1",
+          "text": "Non‑compliance with any provision of these Guidelines may subject the reporting institution to actions under the Anti‑Money Laundering Act, the Capital Markets and Services Act 2007, or other relevant legal provisions",
+          "evidence_ids": [
+            "E1"
+          ],
+          "citation_ids": [
+            "CIT-E1"
+          ],
+          "support_label": "supported",
+          "support_notes": "The cited evidence fully supports the material content of this generated claim."
+        },
+        {
+          "claim_id": "C2",
+          "text": "Enforcement actions can be taken against the reporting institution and its directors, officers, representatives, and employees for any non‑compliance with the Guidelines",
+          "evidence_ids": [
+            "E1"
+          ],
+          "citation_ids": [
+            "CIT-E1"
+          ],
+          "support_label": "supported",
+          "support_notes": "The cited evidence fully supports the material content of this generated claim."
+        }
+      ],
+      "citation_relations": [
+        {
+          "claim_id": "C1",
+          "citation_id": "CIT-E1",
+          "evidence_id": "E1",
+          "citation_display": "Clause 1.2 · Clause 1.3 · Clause 1.4 · Clause 1.5 · Clause 1.6 · Clause 1.7 · PDF pp. 6–7",
+          "entailment_label": "entails",
+          "entailment_notes": "This individual citation fully supports the material claim."
+        },
+        {
+          "claim_id": "C2",
+          "citation_id": "CIT-E1",
+          "evidence_id": "E1",
+          "citation_display": "Clause 1.2 · Clause 1.3 · Clause 1.4 · Clause 1.5 · Clause 1.6 · Clause 1.7 · PDF pp. 6–7",
+          "entailment_label": "entails",
+          "entailment_notes": "This individual citation fully supports the material claim."
+        }
+      ],
+      "gold_claims": [
+        {
+          "claim_id": "GC1",
+          "requirement": "State that non-compliance may result in action under the AMLA, CMSA, or other relevant legal provisions to which the Guidelines are subject.",
+          "coverage_label": "covered",
+          "coverage_notes": "The answer contains the required semantic content with material scope and modality preserved."
+        },
+        {
+          "claim_id": "GC2",
+          "requirement": "State that enforcement action can extend beyond the reporting institution to its directors, officers, representatives and employees.",
+          "coverage_label": "covered",
+          "coverage_notes": "The answer contains the required semantic content with material scope and modality preserved."
+        }
+      ],
+      "answer_relevance_score": 2,
+      "answer_relevance_notes": "Directly addresses the question and is substantially complete for the requested scope.",
+      "reviewer_notes": "",
+      "response_canonical_sha256": "83b3427eb1799839d53369794ea90f7849910289cfc043d35c4e7c756a1c044e"
+    },
+    {
+      "question_id": "ACIT-104",
+      "category": "cross_page",
+      "difficulty": "hard",
+      "question": "What five general principles must a reporting institution ensure when combating ML/TF/PF under paragraph 6.2?",
+      "expected_status": "answered",
+      "actual_status": "answered",
+      "answer": "A reporting institution must ensure compliance with laws and regulations, conduct business in conformity with high ethical standards, and not provide services where there is good reason to suspect transactions are associated with ML/TF/PF activities. A reporting institution must co‑operate fully with relevant law enforcement agencies, including taking appropriate measures such as timely disclosure of information to the FIED and the relevant law enforcement agencies. A reporting institution must establish internal controls by issuing and adopting policies and procedures consistent with the AMLA, TFS‑PF related legislations and these Guidelines, and ensure ongoing training programmes for its board of directors, senior management and employees. A reporting institution must adopt a risk‑based approach, ensuring that the depth and breadth of its policies and procedures to identify, assess, monitor, manage and mitigate ML/TF/PF risks are commensurate with the nature, scale and complexity of its activities. A reporting institution must have an effective Customer Due Diligence procedure to identify its customers and obtain satisfactory evidence to verify their identity.",
+      "cited_answer": "A reporting institution must ensure compliance with laws and regulations, conduct business in conformity with high ethical standards, and not provide services where there is good reason to suspect transactions are associated with ML/TF/PF activities. [1] A reporting institution must co‑operate fully with relevant law enforcement agencies, including taking appropriate measures such as timely disclosure of information to the FIED and the relevant law enforcement agencies. [1] A reporting institution must establish internal controls by issuing and adopting policies and procedures consistent with the AMLA, TFS‑PF related legislations and these Guidelines, and ensure ongoing training programmes for its board of directors, senior management and employees. [1] A reporting institution must adopt a risk‑based approach, ensuring that the depth and breadth of its policies and procedures to identify, assess, monitor, manage and mitigate ML/TF/PF risks are commensurate with the nature, scale and complexity of its activities. [1] A reporting institution must have an effective Customer Due Diligence procedure to identify its customers and obtain satisfactory evidence to verify their identity. [1]",
+      "claims": [
+        {
+          "claim_id": "C1",
+          "text": "A reporting institution must ensure compliance with laws and regulations, conduct business in conformity with high ethical standards, and not provide services where there is good reason to suspect transactions are associated with ML/TF/PF activities.",
+          "evidence_ids": [
+            "E1"
+          ],
+          "citation_ids": [
+            "CIT-E1"
+          ],
+          "support_label": "supported",
+          "support_notes": "The cited evidence fully supports the material content of this generated claim."
+        },
+        {
+          "claim_id": "C2",
+          "text": "A reporting institution must co‑operate fully with relevant law enforcement agencies, including taking appropriate measures such as timely disclosure of information to the FIED and the relevant law enforcement agencies.",
+          "evidence_ids": [
+            "E1"
+          ],
+          "citation_ids": [
+            "CIT-E1"
+          ],
+          "support_label": "supported",
+          "support_notes": "The cited evidence fully supports the material content of this generated claim."
+        },
+        {
+          "claim_id": "C3",
+          "text": "A reporting institution must establish internal controls by issuing and adopting policies and procedures consistent with the AMLA, TFS‑PF related legislations and these Guidelines, and ensure ongoing training programmes for its board of directors, senior management and employees.",
+          "evidence_ids": [
+            "E1"
+          ],
+          "citation_ids": [
+            "CIT-E1"
+          ],
+          "support_label": "supported",
+          "support_notes": "The cited evidence fully supports the material content of this generated claim."
+        },
+        {
+          "claim_id": "C4",
+          "text": "A reporting institution must adopt a risk‑based approach, ensuring that the depth and breadth of its policies and procedures to identify, assess, monitor, manage and mitigate ML/TF/PF risks are commensurate with the nature, scale and complexity of its activities.",
+          "evidence_ids": [
+            "E1"
+          ],
+          "citation_ids": [
+            "CIT-E1"
+          ],
+          "support_label": "supported",
+          "support_notes": "The cited evidence fully supports the material content of this generated claim."
+        },
+        {
+          "claim_id": "C5",
+          "text": "A reporting institution must have an effective Customer Due Diligence procedure to identify its customers and obtain satisfactory evidence to verify their identity.",
+          "evidence_ids": [
+            "E1"
+          ],
+          "citation_ids": [
+            "CIT-E1"
+          ],
+          "support_label": "supported",
+          "support_notes": "The cited evidence fully supports the material content of this generated claim."
+        }
+      ],
+      "citation_relations": [
+        {
+          "claim_id": "C1",
+          "citation_id": "CIT-E1",
+          "evidence_id": "E1",
+          "citation_display": "Clause 6.2 · Clause 6.2(a) · Clause 6.2(b) · Clause 6.2(c) · Clause 6.2(d) · Clause 6.2(e) · PDF pp. 19–20",
+          "entailment_label": "entails",
+          "entailment_notes": "This individual citation fully supports the material claim."
+        },
+        {
+          "claim_id": "C2",
+          "citation_id": "CIT-E1",
+          "evidence_id": "E1",
+          "citation_display": "Clause 6.2 · Clause 6.2(a) · Clause 6.2(b) · Clause 6.2(c) · Clause 6.2(d) · Clause 6.2(e) · PDF pp. 19–20",
+          "entailment_label": "entails",
+          "entailment_notes": "This individual citation fully supports the material claim."
+        },
+        {
+          "claim_id": "C3",
+          "citation_id": "CIT-E1",
+          "evidence_id": "E1",
+          "citation_display": "Clause 6.2 · Clause 6.2(a) · Clause 6.2(b) · Clause 6.2(c) · Clause 6.2(d) · Clause 6.2(e) · PDF pp. 19–20",
+          "entailment_label": "entails",
+          "entailment_notes": "This individual citation fully supports the material claim."
+        },
+        {
+          "claim_id": "C4",
+          "citation_id": "CIT-E1",
+          "evidence_id": "E1",
+          "citation_display": "Clause 6.2 · Clause 6.2(a) · Clause 6.2(b) · Clause 6.2(c) · Clause 6.2(d) · Clause 6.2(e) · PDF pp. 19–20",
+          "entailment_label": "entails",
+          "entailment_notes": "This individual citation fully supports the material claim."
+        },
+        {
+          "claim_id": "C5",
+          "citation_id": "CIT-E1",
+          "evidence_id": "E1",
+          "citation_display": "Clause 6.2 · Clause 6.2(a) · Clause 6.2(b) · Clause 6.2(c) · Clause 6.2(d) · Clause 6.2(e) · PDF pp. 19–20",
+          "entailment_label": "entails",
+          "entailment_notes": "This individual citation fully supports the material claim."
+        }
+      ],
+      "gold_claims": [
+        {
+          "claim_id": "GC1",
+          "requirement": "Cover compliance with laws and high ethical standards, including not providing service where there is good reason to suppose transactions are associated with ML/TF/PF.",
+          "coverage_label": "covered",
+          "coverage_notes": "The answer contains the required semantic content with material scope and modality preserved."
+        },
+        {
+          "claim_id": "GC2",
+          "requirement": "Cover full cooperation with relevant law-enforcement agencies, including timely disclosure to FIED and relevant agencies.",
+          "coverage_label": "covered",
+          "coverage_notes": "The answer contains the required semantic content with material scope and modality preserved."
+        },
+        {
+          "claim_id": "GC3",
+          "requirement": "Cover internal AML/CFT/CPF policies and procedures plus ongoing training for the board, senior management and employees.",
+          "coverage_label": "covered",
+          "coverage_notes": "The answer contains the required semantic content with material scope and modality preserved."
+        },
+        {
+          "claim_id": "GC4",
+          "requirement": "Cover a risk-based approach whose policies and procedures are commensurate with the nature, scale and complexity of activities.",
+          "coverage_label": "covered",
+          "coverage_notes": "The answer contains the required semantic content with material scope and modality preserved."
+        },
+        {
+          "claim_id": "GC5",
+          "requirement": "Cover effective CDD procedures to identify customers and obtain satisfactory evidence to verify identity.",
+          "coverage_label": "covered",
+          "coverage_notes": "The answer contains the required semantic content with material scope and modality preserved."
+        }
+      ],
+      "answer_relevance_score": 2,
+      "answer_relevance_notes": "Directly addresses the question and is substantially complete for the requested scope.",
+      "reviewer_notes": "",
+      "response_canonical_sha256": "08bb06504e3bc9d3db7f52e2fd2d58d8b0182823f14bf9d98e46b061d85c0922"
+    },
+    {
+      "question_id": "ACIT-105",
+      "category": "multi_clause",
+      "difficulty": "hard",
+      "question": "For a customer that is a trust or another legal arrangement, whose identity must be considered for beneficial ownership, and what status must trustees or equivalent persons disclose when establishing the relationship?",
+      "expected_status": "answered",
+      "actual_status": "answered",
+      "answer": "For a trust, the beneficial‑owner identification must consider the identity of the settlor, the trustee or protector, the beneficiary or class of beneficiaries and objects of a power, and any other natural person exercising ultimate effective control over the trust For other legal arrangements, the beneficial‑owner identification must consider the identity of the person in an equivalent or similar position to those identified for trusts When establishing the business relationship, trustees or persons holding equivalent positions in similar legal arrangements must disclose their status or function in the legal arrangement",
+      "cited_answer": "For a trust, the beneficial‑owner identification must consider the identity of the settlor, the trustee or protector, the beneficiary or class of beneficiaries and objects of a power, and any other natural person exercising ultimate effective control over the trust [1] For other legal arrangements, the beneficial‑owner identification must consider the identity of the person in an equivalent or similar position to those identified for trusts [1] When establishing the business relationship, trustees or persons holding equivalent positions in similar legal arrangements must disclose their status or function in the legal arrangement [2]",
+      "claims": [
+        {
+          "claim_id": "C1",
+          "text": "For a trust, the beneficial‑owner identification must consider the identity of the settlor, the trustee or protector, the beneficiary or class of beneficiaries and objects of a power, and any other natural person exercising ultimate effective control over the trust",
+          "evidence_ids": [
+            "E2"
+          ],
+          "citation_ids": [
+            "CIT-E2"
+          ],
+          "support_label": "supported",
+          "support_notes": "The cited evidence fully supports the material content of this generated claim."
+        },
+        {
+          "claim_id": "C2",
+          "text": "For other legal arrangements, the beneficial‑owner identification must consider the identity of the person in an equivalent or similar position to those identified for trusts",
+          "evidence_ids": [
+            "E2"
+          ],
+          "citation_ids": [
+            "CIT-E2"
+          ],
+          "support_label": "supported",
+          "support_notes": "The cited evidence fully supports the material content of this generated claim."
+        },
+        {
+          "claim_id": "C3",
+          "text": "When establishing the business relationship, trustees or persons holding equivalent positions in similar legal arrangements must disclose their status or function in the legal arrangement",
+          "evidence_ids": [
+            "E1"
+          ],
+          "citation_ids": [
+            "CIT-E1"
+          ],
+          "support_label": "supported",
+          "support_notes": "The cited evidence fully supports the material content of this generated claim."
+        }
+      ],
+      "citation_relations": [
+        {
+          "claim_id": "C1",
+          "citation_id": "CIT-E2",
+          "evidence_id": "E2",
+          "citation_display": "Clause 8.1.16 · PDF p. 35",
+          "entailment_label": "entails",
+          "entailment_notes": "This individual citation fully supports the material claim."
+        },
+        {
+          "claim_id": "C2",
+          "citation_id": "CIT-E2",
+          "evidence_id": "E2",
+          "citation_display": "Clause 8.1.16 · PDF p. 35",
+          "entailment_label": "entails",
+          "entailment_notes": "This individual citation fully supports the material claim."
+        },
+        {
+          "claim_id": "C3",
+          "citation_id": "CIT-E1",
+          "evidence_id": "E1",
+          "citation_display": "Clause 8.1.17 · PDF p. 35",
+          "entailment_label": "entails",
+          "entailment_notes": "This individual citation fully supports the material claim."
+        }
+      ],
+      "gold_claims": [
+        {
+          "claim_id": "GC1",
+          "requirement": "For a trust, identify and take reasonable measures to verify the settlor, trustee or protector, beneficiary or class of beneficiaries and objects of a power, plus any other natural person exercising ultimate effective control, including through a chain of control or ownership.",
+          "coverage_label": "partially_covered",
+          "coverage_notes": "Correct trust parties are identified, but the answer omits the requirement to take reasonable measures to verify identity and omits the explicit chain-of-control/ownership qualification."
+        },
+        {
+          "claim_id": "GC2",
+          "requirement": "For other legal arrangements, identify persons in equivalent or similar positions to those relevant for a trust.",
+          "coverage_label": "covered",
+          "coverage_notes": "The answer contains the required semantic content with material scope and modality preserved."
+        },
+        {
+          "claim_id": "GC3",
+          "requirement": "State that trustees or persons holding equivalent positions must disclose their status or function in the legal arrangement when establishing business relations.",
+          "coverage_label": "covered",
+          "coverage_notes": "The answer contains the required semantic content with material scope and modality preserved."
+        }
+      ],
+      "answer_relevance_score": 2,
+      "answer_relevance_notes": "Directly addresses the question and is substantially complete for the requested scope.",
+      "reviewer_notes": "",
+      "response_canonical_sha256": "55c84238beafe3c0f6fd03a18f197922c4fa1da3365bc17f4817778efcd1e277"
+    },
+    {
+      "question_id": "ACIT-106",
+      "category": "multi_clause",
+      "difficulty": "medium",
+      "question": "What record-retention, availability and traceability obligations apply to originator and beneficiary information for digital-asset wire transfers?",
+      "expected_status": "answered",
+      "actual_status": "answered",
+      "answer": "A reporting institution must obtain, hold and maintain all originator and beneficiary information collected under Part IIIA, in accordance with the record‑keeping requirements of Part IV of these Guidelines. The retained originator and beneficiary information must be made available to regulators or relevant authorities when necessary. A reporting institution must have in place adequate policies and procedures and the ability to trace all wire transfers.",
+      "cited_answer": "A reporting institution must obtain, hold and maintain all originator and beneficiary information collected under Part IIIA, in accordance with the record‑keeping requirements of Part IV of these Guidelines. [1] The retained originator and beneficiary information must be made available to regulators or relevant authorities when necessary. [1] A reporting institution must have in place adequate policies and procedures and the ability to trace all wire transfers. [1]",
+      "claims": [
+        {
+          "claim_id": "C1",
+          "text": "A reporting institution must obtain, hold and maintain all originator and beneficiary information collected under Part IIIA, in accordance with the record‑keeping requirements of Part IV of these Guidelines.",
+          "evidence_ids": [
+            "E1"
+          ],
+          "citation_ids": [
+            "CIT-E1"
+          ],
+          "support_label": "supported",
+          "support_notes": "The cited evidence fully supports the material content of this generated claim."
+        },
+        {
+          "claim_id": "C2",
+          "text": "The retained originator and beneficiary information must be made available to regulators or relevant authorities when necessary.",
+          "evidence_ids": [
+            "E1"
+          ],
+          "citation_ids": [
+            "CIT-E1"
+          ],
+          "support_label": "supported",
+          "support_notes": "The cited evidence fully supports the material content of this generated claim."
+        },
+        {
+          "claim_id": "C3",
+          "text": "A reporting institution must have in place adequate policies and procedures and the ability to trace all wire transfers.",
+          "evidence_ids": [
+            "E1"
+          ],
+          "citation_ids": [
+            "CIT-E1"
+          ],
+          "support_label": "supported",
+          "support_notes": "The cited evidence fully supports the material content of this generated claim."
+        }
+      ],
+      "citation_relations": [
+        {
+          "claim_id": "C1",
+          "citation_id": "CIT-E1",
+          "evidence_id": "E1",
+          "citation_display": "Clause 9.1.1 · Clause 9.1.2 · Clause 9.1.3 · Clause 9.1.4 · Clause 9.1.5 · PDF p. 48",
+          "entailment_label": "entails",
+          "entailment_notes": "This individual citation fully supports the material claim."
+        },
+        {
+          "claim_id": "C2",
+          "citation_id": "CIT-E1",
+          "evidence_id": "E1",
+          "citation_display": "Clause 9.1.1 · Clause 9.1.2 · Clause 9.1.3 · Clause 9.1.4 · Clause 9.1.5 · PDF p. 48",
+          "entailment_label": "entails",
+          "entailment_notes": "This individual citation fully supports the material claim."
+        },
+        {
+          "claim_id": "C3",
+          "citation_id": "CIT-E1",
+          "evidence_id": "E1",
+          "citation_display": "Clause 9.1.1 · Clause 9.1.2 · Clause 9.1.3 · Clause 9.1.4 · Clause 9.1.5 · PDF p. 48",
+          "entailment_label": "entails",
+          "entailment_notes": "This individual citation fully supports the material claim."
+        }
+      ],
+      "gold_claims": [
+        {
+          "claim_id": "GC1",
+          "requirement": "State that all originator and beneficiary information collected under Part IIIA must be obtained, held and maintained in accordance with Part IV record-keeping requirements.",
+          "coverage_label": "covered",
+          "coverage_notes": "The answer contains the required semantic content with material scope and modality preserved."
+        },
+        {
+          "claim_id": "GC2",
+          "requirement": "State that the information must be made available to regulators or relevant authorities when necessary.",
+          "coverage_label": "covered",
+          "coverage_notes": "The answer contains the required semantic content with material scope and modality preserved."
+        },
+        {
+          "claim_id": "GC3",
+          "requirement": "State that adequate policies and procedures and the ability to trace all wire transfers must be in place.",
+          "coverage_label": "covered",
+          "coverage_notes": "The answer contains the required semantic content with material scope and modality preserved."
+        }
+      ],
+      "answer_relevance_score": 2,
+      "answer_relevance_notes": "Directly addresses the question and is substantially complete for the requested scope.",
+      "reviewer_notes": "",
+      "response_canonical_sha256": "a149a3d756d5f9d175211f824785569f4f7f5496bbede2b737a0484fff80690c"
+    },
+    {
+      "question_id": "ACIT-107",
+      "category": "multi_clause",
+      "difficulty": "hard",
+      "question": "What minimum information must be retained in the records for each transaction under paragraph 10.1?",
+      "expected_status": "answered",
+      "actual_status": "answered",
+      "answer": "Records must include documents relating to the identification and verification of the customer in whose name the account is opened or transaction is executed Records must include the identification of the beneficial owner or the person on whose behalf the account is opened or transaction is executed Records must include records of the relevant account pertaining to the transaction executed Records must include the type and details of the transaction involved Records must include the origin and the destination of the funds, where applicable Records must include any other information as the SC and BNM may specify in writing",
+      "cited_answer": "Records must include documents relating to the identification and verification of the customer in whose name the account is opened or transaction is executed [1] Records must include the identification of the beneficial owner or the person on whose behalf the account is opened or transaction is executed [1] Records must include records of the relevant account pertaining to the transaction executed [1] Records must include the type and details of the transaction involved [1] Records must include the origin and the destination of the funds, where applicable [1] Records must include any other information as the SC and BNM may specify in writing [1]",
+      "claims": [
+        {
+          "claim_id": "C1",
+          "text": "Records must include documents relating to the identification and verification of the customer in whose name the account is opened or transaction is executed",
+          "evidence_ids": [
+            "E1"
+          ],
+          "citation_ids": [
+            "CIT-E1"
+          ],
+          "support_label": "supported",
+          "support_notes": "The cited evidence fully supports the material content of this generated claim."
+        },
+        {
+          "claim_id": "C2",
+          "text": "Records must include the identification of the beneficial owner or the person on whose behalf the account is opened or transaction is executed",
+          "evidence_ids": [
+            "E1"
+          ],
+          "citation_ids": [
+            "CIT-E1"
+          ],
+          "support_label": "supported",
+          "support_notes": "The cited evidence fully supports the material content of this generated claim."
+        },
+        {
+          "claim_id": "C3",
+          "text": "Records must include records of the relevant account pertaining to the transaction executed",
+          "evidence_ids": [
+            "E1"
+          ],
+          "citation_ids": [
+            "CIT-E1"
+          ],
+          "support_label": "supported",
+          "support_notes": "The cited evidence fully supports the material content of this generated claim."
+        },
+        {
+          "claim_id": "C4",
+          "text": "Records must include the type and details of the transaction involved",
+          "evidence_ids": [
+            "E1"
+          ],
+          "citation_ids": [
+            "CIT-E1"
+          ],
+          "support_label": "supported",
+          "support_notes": "The cited evidence fully supports the material content of this generated claim."
+        },
+        {
+          "claim_id": "C5",
+          "text": "Records must include the origin and the destination of the funds, where applicable",
+          "evidence_ids": [
+            "E1"
+          ],
+          "citation_ids": [
+            "CIT-E1"
+          ],
+          "support_label": "supported",
+          "support_notes": "The cited evidence fully supports the material content of this generated claim."
+        },
+        {
+          "claim_id": "C6",
+          "text": "Records must include any other information as the SC and BNM may specify in writing",
+          "evidence_ids": [
+            "E1"
+          ],
+          "citation_ids": [
+            "CIT-E1"
+          ],
+          "support_label": "supported",
+          "support_notes": "The cited evidence fully supports the material content of this generated claim."
+        }
+      ],
+      "citation_relations": [
+        {
+          "claim_id": "C1",
+          "citation_id": "CIT-E1",
+          "evidence_id": "E1",
+          "citation_display": "Clause 10.1 · PDF p. 53",
+          "entailment_label": "entails",
+          "entailment_notes": "This individual citation fully supports the material claim."
+        },
+        {
+          "claim_id": "C2",
+          "citation_id": "CIT-E1",
+          "evidence_id": "E1",
+          "citation_display": "Clause 10.1 · PDF p. 53",
+          "entailment_label": "entails",
+          "entailment_notes": "This individual citation fully supports the material claim."
+        },
+        {
+          "claim_id": "C3",
+          "citation_id": "CIT-E1",
+          "evidence_id": "E1",
+          "citation_display": "Clause 10.1 · PDF p. 53",
+          "entailment_label": "entails",
+          "entailment_notes": "This individual citation fully supports the material claim."
+        },
+        {
+          "claim_id": "C4",
+          "citation_id": "CIT-E1",
+          "evidence_id": "E1",
+          "citation_display": "Clause 10.1 · PDF p. 53",
+          "entailment_label": "entails",
+          "entailment_notes": "This individual citation fully supports the material claim."
+        },
+        {
+          "claim_id": "C5",
+          "citation_id": "CIT-E1",
+          "evidence_id": "E1",
+          "citation_display": "Clause 10.1 · PDF p. 53",
+          "entailment_label": "entails",
+          "entailment_notes": "This individual citation fully supports the material claim."
+        },
+        {
+          "claim_id": "C6",
+          "citation_id": "CIT-E1",
+          "evidence_id": "E1",
+          "citation_display": "Clause 10.1 · PDF p. 53",
+          "entailment_label": "entails",
+          "entailment_notes": "This individual citation fully supports the material claim."
+        }
+      ],
+      "gold_claims": [
+        {
+          "claim_id": "GC1",
+          "requirement": "Include documents for customer identification and verification.",
+          "coverage_label": "covered",
+          "coverage_notes": "The answer contains the required semantic content with material scope and modality preserved."
+        },
+        {
+          "claim_id": "GC2",
+          "requirement": "Include identification of the beneficial owner or person on whose behalf the account is opened or transaction executed.",
+          "coverage_label": "covered",
+          "coverage_notes": "The answer contains the required semantic content with material scope and modality preserved."
+        },
+        {
+          "claim_id": "GC3",
+          "requirement": "Include relevant account records relating to the transaction.",
+          "coverage_label": "covered",
+          "coverage_notes": "The answer contains the required semantic content with material scope and modality preserved."
+        },
+        {
+          "claim_id": "GC4",
+          "requirement": "Include the type and details of the transaction.",
+          "coverage_label": "covered",
+          "coverage_notes": "The answer contains the required semantic content with material scope and modality preserved."
+        },
+        {
+          "claim_id": "GC5",
+          "requirement": "Include the origin and destination of funds where applicable.",
+          "coverage_label": "covered",
+          "coverage_notes": "The answer contains the required semantic content with material scope and modality preserved."
+        },
+        {
+          "claim_id": "GC6",
+          "requirement": "Include any other information the SC and BNM may specify in writing.",
+          "coverage_label": "covered",
+          "coverage_notes": "The answer contains the required semantic content with material scope and modality preserved."
+        }
+      ],
+      "answer_relevance_score": 2,
+      "answer_relevance_notes": "Directly addresses the question and is substantially complete for the requested scope.",
+      "reviewer_notes": "",
+      "response_canonical_sha256": "2287ef2f187a0ece489375dbf52a00c981414b7034ed2863a71993261a3bce9d"
+    },
+    {
+      "question_id": "ACIT-108",
+      "category": "multi_clause",
+      "difficulty": "hard",
+      "question": "If a reporting institution decides there are no reasonable grounds to lodge an STR, what must it document, and what should it do if a new suspicion later arises?",
+      "expected_status": "answered",
+      "actual_status": "answered",
+      "answer": "When a reporting institution decides there are no reasonable grounds to lodge a STR, it must establish and record the grounds for that decision together with all supporting documentary evidence, and ensure the decision is maintained as a record If a new suspicion later arises, the reporting institution must lodge a fresh STR, even if a STR has been lodged previously",
+      "cited_answer": "When a reporting institution decides there are no reasonable grounds to lodge a STR, it must establish and record the grounds for that decision together with all supporting documentary evidence, and ensure the decision is maintained as a record [1] If a new suspicion later arises, the reporting institution must lodge a fresh STR, even if a STR has been lodged previously [2]",
+      "claims": [
+        {
+          "claim_id": "C1",
+          "text": "When a reporting institution decides there are no reasonable grounds to lodge a STR, it must establish and record the grounds for that decision together with all supporting documentary evidence, and ensure the decision is maintained as a record",
+          "evidence_ids": [
+            "E1"
+          ],
+          "citation_ids": [
+            "CIT-E1"
+          ],
+          "support_label": "partially_supported",
+          "support_notes": "Core recordkeeping requirement is supported, but the answer attributes recording/maintenance to the reporting institution rather than preserving the source's specific compliance-officer responsibility."
+        },
+        {
+          "claim_id": "C2",
+          "text": "If a new suspicion later arises, the reporting institution must lodge a fresh STR, even if a STR has been lodged previously",
+          "evidence_ids": [
+            "E2"
+          ],
+          "citation_ids": [
+            "CIT-E2"
+          ],
+          "support_label": "partially_supported",
+          "support_notes": "The source says a previous STR should not preclude lodging a fresh STR when a new suspicion arises; the answer strengthens this to a categorical must-lodge obligation."
+        }
+      ],
+      "citation_relations": [
+        {
+          "claim_id": "C1",
+          "citation_id": "CIT-E1",
+          "evidence_id": "E1",
+          "citation_display": "Clause 11.1 · Clause 11.2 · Clause 11.3 · Clause 11.4 · Clause 11.6 · Clause 11.6A · Clause 11.7 · Clause 11.8 · Clause 11.9 · PDF pp. 55–56",
+          "entailment_label": "partial",
+          "entailment_notes": "Citation supports the required actions but shows the compliance officer, not the institution generally, must ensure the decision and evidence are recorded and maintained."
+        },
+        {
+          "claim_id": "C2",
+          "citation_id": "CIT-E2",
+          "evidence_id": "E2",
+          "citation_display": "Clause 11.10 · Clause 11.11 · Clause 11.12 · Clause 11.13 · Clause 11.14 · Clause 11.15 · PDF p. 56",
+          "entailment_label": "partial",
+          "entailment_notes": "Citation supports that a previous STR does not preclude a fresh STR, but not the answer's strengthened categorical must-lodge modality."
+        }
+      ],
+      "gold_claims": [
+        {
+          "claim_id": "GC1",
+          "requirement": "State that the grounds for the decision not to lodge an STR must be established.",
+          "coverage_label": "covered",
+          "coverage_notes": "The answer contains the required semantic content with material scope and modality preserved."
+        },
+        {
+          "claim_id": "GC2",
+          "requirement": "State that the compliance officer must ensure the decision and all supporting documentary evidence are recorded and maintained.",
+          "coverage_label": "partially_covered",
+          "coverage_notes": "The answer includes recording and maintenance of the decision/evidence but omits that the compliance officer must ensure this."
+        },
+        {
+          "claim_id": "GC3",
+          "requirement": "State that a previous STR does not prevent a fresh STR from being lodged when a new suspicion arises.",
+          "coverage_label": "partially_covered",
+          "coverage_notes": "The answer preserves the fresh-STR-after-new-suspicion idea but strengthens the source from non-preclusion to a categorical must-lodge obligation."
+        }
+      ],
+      "answer_relevance_score": 2,
+      "answer_relevance_notes": "Directly addresses the question and is substantially complete for the requested scope.",
+      "reviewer_notes": "",
+      "response_canonical_sha256": "b337dffeddbade89704e002c491c85633f743b9b5a98330387999c2ebd356ee1"
+    },
+    {
+      "question_id": "ACIT-109",
+      "category": "exception_condition",
+      "difficulty": "medium",
+      "question": "What may a reporting institution do when it suspects ML/TF/PF and reasonably believes that carrying out CDD would tip off the customer?",
+      "expected_status": "answered",
+      "actual_status": "answered",
+      "answer": "When a reporting institution suspects ML/TF/PF and reasonably believes that performing the CDD process would tip off the customer, it is permitted not to pursue the CDD process and is required to lodge a suspicious transaction report (STR).",
+      "cited_answer": "When a reporting institution suspects ML/TF/PF and reasonably believes that performing the CDD process would tip off the customer, it is permitted not to pursue the CDD process and is required to lodge a suspicious transaction report (STR). [1]",
+      "claims": [
+        {
+          "claim_id": "C1",
+          "text": "When a reporting institution suspects ML/TF/PF and reasonably believes that performing the CDD process would tip off the customer, it is permitted not to pursue the CDD process and is required to lodge a suspicious transaction report (STR).",
+          "evidence_ids": [
+            "E1"
+          ],
+          "citation_ids": [
+            "CIT-E1"
+          ],
+          "support_label": "supported",
+          "support_notes": "The cited evidence fully supports the material content of this generated claim."
+        }
+      ],
+      "citation_relations": [
+        {
+          "claim_id": "C1",
+          "citation_id": "CIT-E1",
+          "evidence_id": "E1",
+          "citation_display": "Clause 11.10 · Clause 11.11 · Clause 11.12 · Clause 11.13 · Clause 11.14 · Clause 11.15 · PDF p. 56",
+          "entailment_label": "entails",
+          "entailment_notes": "This individual citation fully supports the material claim."
+        }
+      ],
+      "gold_claims": [
+        {
+          "claim_id": "GC1",
+          "requirement": "State that the reporting institution is permitted not to pursue the CDD process in this situation.",
+          "coverage_label": "covered",
+          "coverage_notes": "The answer contains the required semantic content with material scope and modality preserved."
+        },
+        {
+          "claim_id": "GC2",
+          "requirement": "State that it is required to lodge an STR.",
+          "coverage_label": "covered",
+          "coverage_notes": "The answer contains the required semantic content with material scope and modality preserved."
+        }
+      ],
+      "answer_relevance_score": 2,
+      "answer_relevance_notes": "Directly addresses the question and is substantially complete for the requested scope.",
+      "reviewer_notes": "",
+      "response_canonical_sha256": "e962193c079a7de25cc79ef2a945168d75d5bf71a9643ffede190400930934c4"
+    },
+    {
+      "question_id": "ACIT-110",
+      "category": "multi_clause",
+      "difficulty": "hard",
+      "question": "What safeguards in paragraphs 11.13 to 11.16 support the compliance officer’s independence and central role in suspicious-transaction reporting?",
+      "expected_status": "answered",
+      "actual_status": "answered",
+      "answer": "Paragraph 11.13 requires the compliance officer to maintain a complete file of all internal reports on suspicious transactions and STRs lodged with FIED together with the relevant supporting documentary evidence, ensuring a documented record under the officer’s control. Paragraph 11.14 obliges the board of directors to ensure the compliance officer has the necessary authority, resources and support to discharge his obligations independently and effectively in complying with AML/CFT/CPF policies and procedures, safeguarding his independence. Paragraph 11.15 grants the compliance officer sole discretion and independence to report suspicious transactions, reinforcing his autonomous reporting role. Paragraph 11.16 designates the compliance officer as the central reference point within the organisation for all AML/CFT/CPF matters, establishing his central role in suspicious‑transaction reporting.",
+      "cited_answer": "Paragraph 11.13 requires the compliance officer to maintain a complete file of all internal reports on suspicious transactions and STRs lodged with FIED together with the relevant supporting documentary evidence, ensuring a documented record under the officer’s control. [1] Paragraph 11.14 obliges the board of directors to ensure the compliance officer has the necessary authority, resources and support to discharge his obligations independently and effectively in complying with AML/CFT/CPF policies and procedures, safeguarding his independence. [1] Paragraph 11.15 grants the compliance officer sole discretion and independence to report suspicious transactions, reinforcing his autonomous reporting role. [1] Paragraph 11.16 designates the compliance officer as the central reference point within the organisation for all AML/CFT/CPF matters, establishing his central role in suspicious‑transaction reporting. [2]",
+      "claims": [
+        {
+          "claim_id": "C1",
+          "text": "Paragraph 11.13 requires the compliance officer to maintain a complete file of all internal reports on suspicious transactions and STRs lodged with FIED together with the relevant supporting documentary evidence, ensuring a documented record under the officer’s control.",
+          "evidence_ids": [
+            "E1"
+          ],
+          "citation_ids": [
+            "CIT-E1"
+          ],
+          "support_label": "supported",
+          "support_notes": "The cited evidence fully supports the material content of this generated claim."
+        },
+        {
+          "claim_id": "C2",
+          "text": "Paragraph 11.14 obliges the board of directors to ensure the compliance officer has the necessary authority, resources and support to discharge his obligations independently and effectively in complying with AML/CFT/CPF policies and procedures, safeguarding his independence.",
+          "evidence_ids": [
+            "E1"
+          ],
+          "citation_ids": [
+            "CIT-E1"
+          ],
+          "support_label": "supported",
+          "support_notes": "The cited evidence fully supports the material content of this generated claim."
+        },
+        {
+          "claim_id": "C3",
+          "text": "Paragraph 11.15 grants the compliance officer sole discretion and independence to report suspicious transactions, reinforcing his autonomous reporting role.",
+          "evidence_ids": [
+            "E1"
+          ],
+          "citation_ids": [
+            "CIT-E1"
+          ],
+          "support_label": "supported",
+          "support_notes": "The cited evidence fully supports the material content of this generated claim."
+        },
+        {
+          "claim_id": "C4",
+          "text": "Paragraph 11.16 designates the compliance officer as the central reference point within the organisation for all AML/CFT/CPF matters, establishing his central role in suspicious‑transaction reporting.",
+          "evidence_ids": [
+            "E3"
+          ],
+          "citation_ids": [
+            "CIT-E3"
+          ],
+          "support_label": "supported",
+          "support_notes": "The cited evidence fully supports the material content of this generated claim."
+        }
+      ],
+      "citation_relations": [
+        {
+          "claim_id": "C1",
+          "citation_id": "CIT-E1",
+          "evidence_id": "E1",
+          "citation_display": "Clause 11.10 · Clause 11.11 · Clause 11.12 · Clause 11.13 · Clause 11.14 · Clause 11.15 · PDF p. 56",
+          "entailment_label": "entails",
+          "entailment_notes": "This individual citation fully supports the material claim."
+        },
+        {
+          "claim_id": "C2",
+          "citation_id": "CIT-E1",
+          "evidence_id": "E1",
+          "citation_display": "Clause 11.10 · Clause 11.11 · Clause 11.12 · Clause 11.13 · Clause 11.14 · Clause 11.15 · PDF p. 56",
+          "entailment_label": "entails",
+          "entailment_notes": "This individual citation fully supports the material claim."
+        },
+        {
+          "claim_id": "C3",
+          "citation_id": "CIT-E1",
+          "evidence_id": "E1",
+          "citation_display": "Clause 11.10 · Clause 11.11 · Clause 11.12 · Clause 11.13 · Clause 11.14 · Clause 11.15 · PDF p. 56",
+          "entailment_label": "entails",
+          "entailment_notes": "This individual citation fully supports the material claim."
+        },
+        {
+          "claim_id": "C4",
+          "citation_id": "CIT-E3",
+          "evidence_id": "E3",
+          "citation_display": "Clause 11.16 · PDF p. 56",
+          "entailment_label": "entails",
+          "entailment_notes": "This individual citation fully supports the material claim."
+        }
+      ],
+      "gold_claims": [
+        {
+          "claim_id": "GC1",
+          "requirement": "State that the compliance officer must maintain a complete file of internal suspicious-transaction reports and STRs lodged with FIED together with supporting documentary evidence.",
+          "coverage_label": "covered",
+          "coverage_notes": "The answer contains the required semantic content with material scope and modality preserved."
+        },
+        {
+          "claim_id": "GC2",
+          "requirement": "State that the board must ensure the compliance officer has the necessary authority, resources and support to act independently and effectively.",
+          "coverage_label": "covered",
+          "coverage_notes": "The answer contains the required semantic content with material scope and modality preserved."
+        },
+        {
+          "claim_id": "GC3",
+          "requirement": "State that the compliance officer has sole discretion and independence to report suspicious transactions.",
+          "coverage_label": "covered",
+          "coverage_notes": "The answer contains the required semantic content with material scope and modality preserved."
+        },
+        {
+          "claim_id": "GC4",
+          "requirement": "State that the compliance officer must act as the organisation’s central reference point for AML/CFT/CPF matters.",
+          "coverage_label": "covered",
+          "coverage_notes": "The answer contains the required semantic content with material scope and modality preserved."
+        }
+      ],
+      "answer_relevance_score": 2,
+      "answer_relevance_notes": "Directly addresses the question and is substantially complete for the requested scope.",
+      "reviewer_notes": "",
+      "response_canonical_sha256": "41ef85c399db1b2e65b30a2ad71f4b790e74afe84e1f51d70d8a5b3db0d5452f"
+    },
+    {
+      "question_id": "ACIT-111",
+      "category": "appendix",
+      "difficulty": "medium",
+      "question": "Under Appendix B, how should a reporting institution treat family members or close associates of a PEP who no longer holds a prominent public function, and which factors may indicate continuing high risk?",
+      "expected_status": "answered",
+      "actual_status": "answered",
+      "answer": "A reporting institution should apply an appropriate risk assessment to family members or close associates of a PEP who no longer holds a prominent public function. In determining whether such a family member or close associate should be considered high risk, the institution may consider the level of informal influence the former PEP could still exercise. The institution may also consider whether the former PEP’s previous and current functions, although not in a public capacity, are linked by dealing with the same substantive matters.",
+      "cited_answer": "A reporting institution should apply an appropriate risk assessment to family members or close associates of a PEP who no longer holds a prominent public function. [1] In determining whether such a family member or close associate should be considered high risk, the institution may consider the level of informal influence the former PEP could still exercise. [2] The institution may also consider whether the former PEP’s previous and current functions, although not in a public capacity, are linked by dealing with the same substantive matters. [2]",
+      "claims": [
+        {
+          "claim_id": "C1",
+          "text": "A reporting institution should apply an appropriate risk assessment to family members or close associates of a PEP who no longer holds a prominent public function.",
+          "evidence_ids": [
+            "E3"
+          ],
+          "citation_ids": [
+            "CIT-E3"
+          ],
+          "support_label": "supported",
+          "support_notes": "The cited evidence fully supports the material content of this generated claim."
+        },
+        {
+          "claim_id": "C2",
+          "text": "In determining whether such a family member or close associate should be considered high risk, the institution may consider the level of informal influence the former PEP could still exercise.",
+          "evidence_ids": [
+            "E1"
+          ],
+          "citation_ids": [
+            "CIT-E1"
+          ],
+          "support_label": "supported",
+          "support_notes": "The cited evidence fully supports the material content of this generated claim."
+        },
+        {
+          "claim_id": "C3",
+          "text": "The institution may also consider whether the former PEP’s previous and current functions, although not in a public capacity, are linked by dealing with the same substantive matters.",
+          "evidence_ids": [
+            "E1"
+          ],
+          "citation_ids": [
+            "CIT-E1"
+          ],
+          "support_label": "supported",
+          "support_notes": "The cited evidence fully supports the material content of this generated claim."
+        }
+      ],
+      "citation_relations": [
+        {
+          "claim_id": "C1",
+          "citation_id": "CIT-E3",
+          "evidence_id": "E3",
+          "citation_display": "APPENDIX B · Clause 1.15 · PDF p. 84",
+          "entailment_label": "entails",
+          "entailment_notes": "This individual citation fully supports the material claim."
+        },
+        {
+          "claim_id": "C2",
+          "citation_id": "CIT-E1",
+          "evidence_id": "E1",
+          "citation_display": "APPENDIX B · Clause 1.16 · Clause 1.16(a) · Clause 1.16(b) · PDF p. 84",
+          "entailment_label": "entails",
+          "entailment_notes": "This individual citation fully supports the material claim."
+        },
+        {
+          "claim_id": "C3",
+          "citation_id": "CIT-E1",
+          "evidence_id": "E1",
+          "citation_display": "APPENDIX B · Clause 1.16 · Clause 1.16(a) · Clause 1.16(b) · PDF p. 84",
+          "entailment_label": "entails",
+          "entailment_notes": "This individual citation fully supports the material claim."
+        }
+      ],
+      "gold_claims": [
+        {
+          "claim_id": "GC1",
+          "requirement": "State that an appropriate risk assessment should be applied to family members or close associates of a PEP who no longer holds a prominent public function.",
+          "coverage_label": "covered",
+          "coverage_notes": "The answer contains the required semantic content with material scope and modality preserved."
+        },
+        {
+          "claim_id": "GC2",
+          "requirement": "Include the level of informal influence the former PEP could still exercise.",
+          "coverage_label": "covered",
+          "coverage_notes": "The answer contains the required semantic content with material scope and modality preserved."
+        },
+        {
+          "claim_id": "GC3",
+          "requirement": "Include whether the former PEP’s previous and current functions remain linked because the person continues to deal with the same substantive matters.",
+          "coverage_label": "covered",
+          "coverage_notes": "The answer contains the required semantic content with material scope and modality preserved."
+        }
+      ],
+      "answer_relevance_score": 2,
+      "answer_relevance_notes": "Directly addresses the question and is substantially complete for the requested scope.",
+      "reviewer_notes": "",
+      "response_canonical_sha256": "72d08ea6fe781c2a42a88d16522064771da368be3c66b598982972ccf62c20d1"
+    },
+    {
+      "question_id": "ACIT-112",
+      "category": "appendix",
+      "difficulty": "hard",
+      "question": "According to Appendix E, how do the three cascading steps identify the beneficial owner of a legal person, and when should the next step be used?",
+      "expected_status": "answered",
+      "actual_status": "insufficient_evidence",
+      "answer": "The retrieved evidence is insufficient to answer this question reliably.",
+      "cited_answer": "The retrieved evidence is insufficient to answer this question reliably.",
+      "claims": [],
+      "citation_relations": [],
+      "gold_claims": [
+        {
+          "claim_id": "GC1",
+          "requirement": "State that the steps are cascading: a subsequent step applies only when no natural person is identified under the preceding step.",
+          "coverage_label": "missing",
+          "coverage_notes": "The system abstained; no cascading-step explanation was generated."
+        },
+        {
+          "claim_id": "GC2",
+          "requirement": "Step 1 identifies natural persons with ultimate controlling ownership interest.",
+          "coverage_label": "missing",
+          "coverage_notes": "The system abstained; Step 1 was not stated."
+        },
+        {
+          "claim_id": "GC3",
+          "requirement": "Step 2 identifies a natural person exercising control through other means when Step 1 does not identify the beneficial owner or ownership control is absent/doubtful.",
+          "coverage_label": "missing",
+          "coverage_notes": "The system abstained; Step 2 was not stated."
+        },
+        {
+          "claim_id": "GC4",
+          "requirement": "Step 3 identifies the relevant natural person holding a senior-management position when the earlier steps identify no natural person.",
+          "coverage_label": "missing",
+          "coverage_notes": "The system abstained; Step 3 was not stated. Appendix E Clause 1.10 was absent from assembled context."
+        }
+      ],
+      "answer_relevance_score": 0,
+      "answer_relevance_notes": "Wrong abstention behavior for an answerable held-out question.",
+      "reviewer_notes": "",
+      "response_canonical_sha256": "1e81276da392ea5065a5d9378e3fb9597d257c0c2936cacbd31b1a1fee4584c5"
+    },
+    {
+      "question_id": "ACIT-113",
+      "category": "appendix",
+      "difficulty": "hard",
+      "question": "In Appendix E Step 2, what are examples of control over a legal person through means other than ownership?",
+      "expected_status": "answered",
+      "actual_status": "answered",
+      "answer": "Control may be exercised through personal connections to persons in positions of power within the entity or persons who possess ownership, such as close or intimate family relationships and historical or contractual associations Control may be exercised through participation in financing of the enterprise, which may allow enjoyment or benefits from the assets of the legal person A natural person demonstrating control may be senior management, directors, an authorised signatory, a controller, or similar positions Control may be reflected by a dominant influence to appoint or remove directors or senior management Control may be exercised by having power of attorney over the entity Control may arise from owning stocks or rights over outstanding debts that are convertible into voting equity Control may be exercised through trusts, agreements, arrangements, understandings, policies or practices, close and intimate family relationships, or if a company defaults on certain payments",
+      "cited_answer": "Control may be exercised through personal connections to persons in positions of power within the entity or persons who possess ownership, such as close or intimate family relationships and historical or contractual associations [1] Control may be exercised through participation in financing of the enterprise, which may allow enjoyment or benefits from the assets of the legal person [1][2] A natural person demonstrating control may be senior management, directors, an authorised signatory, a controller, or similar positions [1] Control may be reflected by a dominant influence to appoint or remove directors or senior management [2] Control may be exercised by having power of attorney over the entity [2] Control may arise from owning stocks or rights over outstanding debts that are convertible into voting equity [2] Control may be exercised through trusts, agreements, arrangements, understandings, policies or practices, close and intimate family relationships, or if a company defaults on certain payments [2]",
+      "claims": [
+        {
+          "claim_id": "C1",
+          "text": "Control may be exercised through personal connections to persons in positions of power within the entity or persons who possess ownership, such as close or intimate family relationships and historical or contractual associations",
+          "evidence_ids": [
+            "E1"
+          ],
+          "citation_ids": [
+            "CIT-E1"
+          ],
+          "support_label": "supported",
+          "support_notes": "The cited evidence fully supports the material content of this generated claim."
+        },
+        {
+          "claim_id": "C2",
+          "text": "Control may be exercised through participation in financing of the enterprise, which may allow enjoyment or benefits from the assets of the legal person",
+          "evidence_ids": [
+            "E1",
+            "E3"
+          ],
+          "citation_ids": [
+            "CIT-E1",
+            "CIT-E3"
+          ],
+          "support_label": "supported",
+          "support_notes": "The cited evidence fully supports the material content of this generated claim."
+        },
+        {
+          "claim_id": "C3",
+          "text": "A natural person demonstrating control may be senior management, directors, an authorised signatory, a controller, or similar positions",
+          "evidence_ids": [
+            "E1"
+          ],
+          "citation_ids": [
+            "CIT-E1"
+          ],
+          "support_label": "supported",
+          "support_notes": "The cited evidence fully supports the material content of this generated claim."
+        },
+        {
+          "claim_id": "C4",
+          "text": "Control may be reflected by a dominant influence to appoint or remove directors or senior management",
+          "evidence_ids": [
+            "E3"
+          ],
+          "citation_ids": [
+            "CIT-E3"
+          ],
+          "support_label": "supported",
+          "support_notes": "The cited evidence fully supports the material content of this generated claim."
+        },
+        {
+          "claim_id": "C5",
+          "text": "Control may be exercised by having power of attorney over the entity",
+          "evidence_ids": [
+            "E3"
+          ],
+          "citation_ids": [
+            "CIT-E3"
+          ],
+          "support_label": "supported",
+          "support_notes": "The cited evidence fully supports the material content of this generated claim."
+        },
+        {
+          "claim_id": "C6",
+          "text": "Control may arise from owning stocks or rights over outstanding debts that are convertible into voting equity",
+          "evidence_ids": [
+            "E3"
+          ],
+          "citation_ids": [
+            "CIT-E3"
+          ],
+          "support_label": "supported",
+          "support_notes": "The cited evidence fully supports the material content of this generated claim."
+        },
+        {
+          "claim_id": "C7",
+          "text": "Control may be exercised through trusts, agreements, arrangements, understandings, policies or practices, close and intimate family relationships, or if a company defaults on certain payments",
+          "evidence_ids": [
+            "E3"
+          ],
+          "citation_ids": [
+            "CIT-E3"
+          ],
+          "support_label": "supported",
+          "support_notes": "The cited evidence fully supports the material content of this generated claim."
+        }
+      ],
+      "citation_relations": [
+        {
+          "claim_id": "C1",
+          "citation_id": "CIT-E1",
+          "evidence_id": "E1",
+          "citation_display": "APPENDIX E · Clause 1.9 · Clause 1.9(a) · Clause 1.9(b) · Clause 1.9(c) · PDF pp. 94–95",
+          "entailment_label": "entails",
+          "entailment_notes": "This individual citation fully supports the material claim."
+        },
+        {
+          "claim_id": "C2",
+          "citation_id": "CIT-E1",
+          "evidence_id": "E1",
+          "citation_display": "APPENDIX E · Clause 1.9 · Clause 1.9(a) · Clause 1.9(b) · Clause 1.9(c) · PDF pp. 94–95",
+          "entailment_label": "entails",
+          "entailment_notes": "This individual citation fully supports the material claim."
+        },
+        {
+          "claim_id": "C2",
+          "citation_id": "CIT-E3",
+          "evidence_id": "E3",
+          "citation_display": "APPENDIX E · Identification · PDF p. 95",
+          "entailment_label": "partial",
+          "entailment_notes": "This citation supports participation in financing as an example, but not by itself the added detail that financing may allow enjoyment or benefits from the legal person's assets; E1 supplies that detail."
+        },
+        {
+          "claim_id": "C3",
+          "citation_id": "CIT-E1",
+          "evidence_id": "E1",
+          "citation_display": "APPENDIX E · Clause 1.9 · Clause 1.9(a) · Clause 1.9(b) · Clause 1.9(c) · PDF pp. 94–95",
+          "entailment_label": "entails",
+          "entailment_notes": "This individual citation fully supports the material claim."
+        },
+        {
+          "claim_id": "C4",
+          "citation_id": "CIT-E3",
+          "evidence_id": "E3",
+          "citation_display": "APPENDIX E · Identification · PDF p. 95",
+          "entailment_label": "entails",
+          "entailment_notes": "This individual citation fully supports the material claim."
+        },
+        {
+          "claim_id": "C5",
+          "citation_id": "CIT-E3",
+          "evidence_id": "E3",
+          "citation_display": "APPENDIX E · Identification · PDF p. 95",
+          "entailment_label": "entails",
+          "entailment_notes": "This individual citation fully supports the material claim."
+        },
+        {
+          "claim_id": "C6",
+          "citation_id": "CIT-E3",
+          "evidence_id": "E3",
+          "citation_display": "APPENDIX E · Identification · PDF p. 95",
+          "entailment_label": "entails",
+          "entailment_notes": "This individual citation fully supports the material claim."
+        },
+        {
+          "claim_id": "C7",
+          "citation_id": "CIT-E3",
+          "evidence_id": "E3",
+          "citation_display": "APPENDIX E · Identification · PDF p. 95",
+          "entailment_label": "entails",
+          "entailment_notes": "This individual citation fully supports the material claim."
+        }
+      ],
+      "gold_claims": [
+        {
+          "claim_id": "GC1",
+          "requirement": "Explain that effective control can exist without ownership where a natural person has power and authority to take actions and make decisions affecting the entity.",
+          "coverage_label": "partially_covered",
+          "coverage_notes": "The answer gives concrete non-ownership control examples but does not explicitly state the general Step 2 principle that effective control can arise from power and authority to take actions and decisions without ownership."
+        },
+        {
+          "claim_id": "GC2",
+          "requirement": "Include dominant influence to appoint or remove directors or senior management.",
+          "coverage_label": "covered",
+          "coverage_notes": "The answer contains the required semantic content with material scope and modality preserved."
+        },
+        {
+          "claim_id": "GC3",
+          "requirement": "Include power of attorney over the entity.",
+          "coverage_label": "covered",
+          "coverage_notes": "The answer contains the required semantic content with material scope and modality preserved."
+        },
+        {
+          "claim_id": "GC4",
+          "requirement": "Include convertible stocks or rights over outstanding debts, participation in financing, or control through trusts, agreements, arrangements, policies, practices, close family relationships or certain payment defaults as examples of other means of control.",
+          "coverage_label": "covered",
+          "coverage_notes": "The answer contains the required semantic content with material scope and modality preserved."
+        }
+      ],
+      "answer_relevance_score": 2,
+      "answer_relevance_notes": "Directly addresses the question and is substantially complete for the requested scope.",
+      "reviewer_notes": "",
+      "response_canonical_sha256": "3d46da1fcb87713330c41bcc53336b14e0de2a737f730362413311a1bb1399e5"
+    },
+    {
+      "question_id": "ACIT-114",
+      "category": "appendix",
+      "difficulty": "hard",
+      "question": "What counter-proliferation-financing measures does Appendix G say Regulation 3 requires for designated countries and persons?",
+      "expected_status": "answered",
+      "actual_status": "answered",
+      "answer": "Regulation 3 requires the freezing of the funds and other financial assets or economic resources of designated countries or persons that are located in Malaysia. Regulation 3 requires the prohibition of investment in Malaysia by designated countries or persons involving any restricted activities. Regulation 3 requires the prevention of the provision of financial services, including insurance or re‑insurance, or the transfer of any financial or other assets or resources through, to, from Malaysia, or by Malaysian nationals or entities, where there is information giving reasonable grounds to believe such services or assets could contribute to any restricted activity in any designated country.",
+      "cited_answer": "Regulation 3 requires the freezing of the funds and other financial assets or economic resources of designated countries or persons that are located in Malaysia. [1] Regulation 3 requires the prohibition of investment in Malaysia by designated countries or persons involving any restricted activities. [1] Regulation 3 requires the prevention of the provision of financial services, including insurance or re‑insurance, or the transfer of any financial or other assets or resources through, to, from Malaysia, or by Malaysian nationals or entities, where there is information giving reasonable grounds to believe such services or assets could contribute to any restricted activity in any designated country. [1]",
+      "claims": [
+        {
+          "claim_id": "C1",
+          "text": "Regulation 3 requires the freezing of the funds and other financial assets or economic resources of designated countries or persons that are located in Malaysia.",
+          "evidence_ids": [
+            "E1"
+          ],
+          "citation_ids": [
+            "CIT-E1"
+          ],
+          "support_label": "supported",
+          "support_notes": "The cited evidence fully supports the material content of this generated claim."
+        },
+        {
+          "claim_id": "C2",
+          "text": "Regulation 3 requires the prohibition of investment in Malaysia by designated countries or persons involving any restricted activities.",
+          "evidence_ids": [
+            "E1"
+          ],
+          "citation_ids": [
+            "CIT-E1"
+          ],
+          "support_label": "supported",
+          "support_notes": "The cited evidence fully supports the material content of this generated claim."
+        },
+        {
+          "claim_id": "C3",
+          "text": "Regulation 3 requires the prevention of the provision of financial services, including insurance or re‑insurance, or the transfer of any financial or other assets or resources through, to, from Malaysia, or by Malaysian nationals or entities, where there is information giving reasonable grounds to believe such services or assets could contribute to any restricted activity in any designated country.",
+          "evidence_ids": [
+            "E1"
+          ],
+          "citation_ids": [
+            "CIT-E1"
+          ],
+          "support_label": "supported",
+          "support_notes": "The cited evidence fully supports the material content of this generated claim."
+        }
+      ],
+      "citation_relations": [
+        {
+          "claim_id": "C1",
+          "citation_id": "CIT-E1",
+          "evidence_id": "E1",
+          "citation_display": "APPENDIX G · PDF p. 105",
+          "entailment_label": "entails",
+          "entailment_notes": "This individual citation fully supports the material claim."
+        },
+        {
+          "claim_id": "C2",
+          "citation_id": "CIT-E1",
+          "evidence_id": "E1",
+          "citation_display": "APPENDIX G · PDF p. 105",
+          "entailment_label": "entails",
+          "entailment_notes": "This individual citation fully supports the material claim."
+        },
+        {
+          "claim_id": "C3",
+          "citation_id": "CIT-E1",
+          "evidence_id": "E1",
+          "citation_display": "APPENDIX G · PDF p. 105",
+          "entailment_label": "entails",
+          "entailment_notes": "This individual citation fully supports the material claim."
+        }
+      ],
+      "gold_claims": [
+        {
+          "claim_id": "GC1",
+          "requirement": "Include freezing funds and other financial assets or economic resources of designated countries or persons located in Malaysia.",
+          "coverage_label": "covered",
+          "coverage_notes": "The answer contains the required semantic content with material scope and modality preserved."
+        },
+        {
+          "claim_id": "GC2",
+          "requirement": "Include prohibiting investment in Malaysia by designated countries or persons involving restricted activities.",
+          "coverage_label": "covered",
+          "coverage_notes": "The answer contains the required semantic content with material scope and modality preserved."
+        },
+        {
+          "claim_id": "GC3",
+          "requirement": "Include preventing specified financial services or transfers where there are reasonable grounds to believe they could contribute to a restricted activity in a designated country.",
+          "coverage_label": "covered",
+          "coverage_notes": "The answer contains the required semantic content with material scope and modality preserved."
+        },
+        {
+          "claim_id": "GC4",
+          "requirement": "Include prohibiting other activities required by relevant UNSC decisions.",
+          "coverage_label": "missing",
+          "coverage_notes": "The answer omits the fourth Regulation 3 measure: prohibition of other activities required by relevant UNSC decisions. The retrieved Appendix G chunk ended after item (c)."
+        }
+      ],
+      "answer_relevance_score": 1,
+      "answer_relevance_notes": "Directly relevant but materially incomplete for the frozen held-out gold scope.",
+      "reviewer_notes": "",
+      "response_canonical_sha256": "f8575a63141f6ada3b4bffcee27c965b955664a80e66e5784346fb81e246752b"
+    },
+    {
+      "question_id": "ACIT-115",
+      "category": "appendix",
+      "difficulty": "hard",
+      "question": "According to Appendix H, how should a capital market intermediary keep UNSCR sanctions information current, and when does a UNSCR delisting take effect?",
+      "expected_status": "answered",
+      "actual_status": "answered",
+      "answer": "A capital market intermediary should update its UNSCR sanctions database regularly, without delay, to keep the information current A UNSCR delisting takes effect automatically when the designated country or person is removed by the relevant UNSC Sanctions Committee",
+      "cited_answer": "A capital market intermediary should update its UNSCR sanctions database regularly, without delay, to keep the information current [1] A UNSCR delisting takes effect automatically when the designated country or person is removed by the relevant UNSC Sanctions Committee [1]",
+      "claims": [
+        {
+          "claim_id": "C1",
+          "text": "A capital market intermediary should update its UNSCR sanctions database regularly, without delay, to keep the information current",
+          "evidence_ids": [
+            "E1"
+          ],
+          "citation_ids": [
+            "CIT-E1"
+          ],
+          "support_label": "supported",
+          "support_notes": "The cited evidence fully supports the material content of this generated claim."
+        },
+        {
+          "claim_id": "C2",
+          "text": "A UNSCR delisting takes effect automatically when the designated country or person is removed by the relevant UNSC Sanctions Committee",
+          "evidence_ids": [
+            "E1"
+          ],
+          "citation_ids": [
+            "CIT-E1"
+          ],
+          "support_label": "supported",
+          "support_notes": "The cited evidence fully supports the material content of this generated claim."
+        }
+      ],
+      "citation_relations": [
+        {
+          "claim_id": "C1",
+          "citation_id": "CIT-E1",
+          "evidence_id": "E1",
+          "citation_display": "APPENDIX H · Clause 1 · Clause 2 · Clause 3 · Clause 4 · Clause 5 · PDF p. 106",
+          "entailment_label": "entails",
+          "entailment_notes": "This individual citation fully supports the material claim."
+        },
+        {
+          "claim_id": "C2",
+          "citation_id": "CIT-E1",
+          "evidence_id": "E1",
+          "citation_display": "APPENDIX H · Clause 1 · Clause 2 · Clause 3 · Clause 4 · Clause 5 · PDF p. 106",
+          "entailment_label": "entails",
+          "entailment_notes": "This individual citation fully supports the material claim."
+        }
+      ],
+      "gold_claims": [
+        {
+          "claim_id": "GC1",
+          "requirement": "State that the UNSCR lists should be updated regularly without delay because the relevant Strategic Trade order automatically applies the updated UNSCR lists by reference to the UN website.",
+          "coverage_label": "partially_covered",
+          "coverage_notes": "The answer says to update regularly without delay but omits why: the Strategic Trade order automatically applies the updated UNSCR lists by reference to the UN website."
+        },
+        {
+          "claim_id": "GC2",
+          "requirement": "State that an intermediary may consider electronic subscription services to maintain updated UNSCRs.",
+          "coverage_label": "missing",
+          "coverage_notes": "The answer omits the option to subscribe to electronic services to maintain updated UNSCRs, despite this being present in retrieved E1."
+        },
+        {
+          "claim_id": "GC3",
+          "requirement": "State that delisting automatically takes effect when the designated country or person is removed by the relevant UNSC Sanctions Committee.",
+          "coverage_label": "covered",
+          "coverage_notes": "The answer contains the required semantic content with material scope and modality preserved."
+        }
+      ],
+      "answer_relevance_score": 1,
+      "answer_relevance_notes": "Directly relevant but materially incomplete for the frozen held-out gold scope.",
+      "reviewer_notes": "",
+      "response_canonical_sha256": "def631f47804c5f82b2e058430dab573300077abc147761159abbbfc1fe6351b"
+    },
+    {
+      "question_id": "ACIT-116",
+      "category": "out_of_scope",
+      "difficulty": "easy",
+      "question": "What is the current Overnight Policy Rate set by Bank Negara Malaysia?",
+      "expected_status": "insufficient_evidence",
+      "actual_status": "insufficient_evidence",
+      "answer": "The retrieved evidence is insufficient to answer this question reliably.",
+      "cited_answer": "The retrieved evidence is insufficient to answer this question reliably.",
+      "claims": [],
+      "citation_relations": [],
+      "gold_claims": [],
+      "answer_relevance_score": 2,
+      "answer_relevance_notes": "Directly addresses the question and is substantially complete for the requested scope.",
+      "reviewer_notes": "",
+      "response_canonical_sha256": "a9fb91abf85dca0f66c8b62c4eded496cb2358168e6e8ae9e0e764e7c0d63e56"
+    },
+    {
+      "question_id": "ACIT-117",
+      "category": "out_of_scope",
+      "difficulty": "easy",
+      "question": "What is the current retail price of one gram of 999 gold in Malaysia?",
+      "expected_status": "insufficient_evidence",
+      "actual_status": "insufficient_evidence",
+      "answer": "The retrieved evidence is insufficient to answer this question reliably.",
+      "cited_answer": "The retrieved evidence is insufficient to answer this question reliably.",
+      "claims": [],
+      "citation_relations": [],
+      "gold_claims": [],
+      "answer_relevance_score": 2,
+      "answer_relevance_notes": "Directly addresses the question and is substantially complete for the requested scope.",
+      "reviewer_notes": "",
+      "response_canonical_sha256": "7059475989b21277bf3b7e937eb003586d0dcf3443669720cfb6ea8f770a2d39"
+    },
+    {
+      "question_id": "ACIT-118",
+      "category": "out_of_scope",
+      "difficulty": "easy",
+      "question": "What is the air quality index in Kuala Lumpur right now?",
+      "expected_status": "insufficient_evidence",
+      "actual_status": "insufficient_evidence",
+      "answer": "The retrieved evidence is insufficient to answer this question reliably.",
+      "cited_answer": "The retrieved evidence is insufficient to answer this question reliably.",
+      "claims": [],
+      "citation_relations": [],
+      "gold_claims": [],
+      "answer_relevance_score": 2,
+      "answer_relevance_notes": "Directly addresses the question and is substantially complete for the requested scope.",
+      "reviewer_notes": "",
+      "response_canonical_sha256": "b8638ab84d765f99871b3783546ab86008d0851467e65786c3267ec67cbb86f7"
+    }
+  ]
+}

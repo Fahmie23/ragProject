@@ -25,6 +25,9 @@ export const DEFAULT_CHUNKING_CONFIG: ChunkingConfig = {
   attach_parent_context_on_split: true,
   pack_short_sibling_clauses: true,
   attach_contextual_notes: true,
+  attach_group_headers_as_context: true,
+  suppress_intro_only_figure_chunks: true,
+  suppress_non_explanatory_figure_shells: true,
   exclude_navigation_sections: true,
   row_aware_table_splitting: true,
   cleaning: {
@@ -55,6 +58,8 @@ function reasonLabel(reason: string) {
     footnote_disabled: "Footnote excluded by policy",
     document_metadata_disabled: "Document metadata excluded by policy",
     figure_without_text: "Figure without retrievable text",
+    figure_intro_context_only: "Figure intro kept as context only",
+    figure_non_explanatory_context_only: "Non-explanatory figure shell kept as context only",
     navigation_only: "Navigation-only content",
   };
   return labels[reason] ?? reason.replace(/_/g, " ");
@@ -517,7 +522,9 @@ export function ChunkingPage({
                   <Metric label="Orphan children" value={artifact.quality.orphan_child_count} detail="Hard structural risk" />
                   <Metric label="Dangling intros" value={artifact.quality.dangling_intro_count} detail="Hard structural risk" />
                   <Metric label="Navigation noise" value={artifact.quality.navigation_chunk_count} detail="Should be zero in Semantic v2" />
-                  <Metric label="Parent context" value={artifact.quality.context_attached_chunk_count} />
+                  <Metric label="Standalone group headers" value={artifact.quality.standalone_group_header_chunk_count} detail="Should normally be zero" />
+                  <Metric label="Figure shells" value={artifact.quality.non_explanatory_figure_chunk_count + artifact.quality.intro_only_figure_chunk_count} detail="Hard text-retrieval risk" />
+                  <Metric label="Parent/context attached" value={artifact.quality.context_attached_chunk_count} />
                 </div>
                 <div className={`stage5-quality-status ${artifact.quality.status}`}>
                   <strong>{artifact.quality.status === "pass" ? "No blocking deterministic chunk-quality risks detected" : "Some chunks still require review"}</strong>
@@ -536,6 +543,8 @@ export function ChunkingPage({
                   <div><strong>Continuation merges</strong><span>{artifact.quality.continuation_merge_chunk_count} chunk(s) use explicit cross-page/continuation relations.</span></div>
                   <div><strong>Short sibling packs</strong><span>{artifact.quality.sibling_pack_chunk_count} chunk(s) combine adjacent short standalone clauses in one section.</span></div>
                   <div><strong>Contextual notes</strong><span>{artifact.quality.note_attachment_chunk_count} chunk(s) attach confidently matched notes/footnotes.</span></div>
+                  <div><strong>Table captions</strong><span>{artifact.quality.caption_attachment_chunk_count} chunk(s) preserve caption ownership.</span></div>
+                  <div><strong>Group-header context</strong><span>{artifact.quality.group_header_context_chunk_count} chunk(s) carry local heading context without spending a Top-K slot on the heading alone.</span></div>
                   <div><strong>Row-aware table splits</strong><span>{artifact.quality.table_split_chunk_count} chunk(s) repeat table headers as context rather than cutting arbitrary rows.</span></div>
                 </div>
               </section>
