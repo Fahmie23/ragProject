@@ -33,11 +33,23 @@ def test_stage14_evaluation_summary_is_frozen_and_explains_metric_provenance():
     assert payload["human_confirmed"] is True
     assert payload["automated_judge_used"] is False
     assert payload["external_api_calls_for_reproduction"] == 0
+    assert payload["source_filename"] == "sc_aml_cft.pdf"
+    assert payload["pdf_page_count"] == 109
+    assert payload["evaluation_type"] == "frozen_offline_benchmark"
+    assert payload["heldout_tuning_authorized"] is False
+    assert payload["production_pipeline_modified_for_heldout"] is False
 
     metrics = {item["key"]: item for item in payload["metrics"]}
     assert metrics["answer_status_accuracy"]["value"] == 17 / 18
     assert metrics["answer_status_accuracy"]["numerator"] == 17
     assert metrics["answer_status_accuracy"]["denominator"] == 18
+    assert metrics["abstention_precision"]["value"] == 0.75
+    assert metrics["abstention_precision"]["numerator"] == 3
+    assert metrics["abstention_precision"]["denominator"] == 4
+    assert metrics["abstention_recall"]["value"] == 1.0
+    assert metrics["abstention_recall"]["numerator"] == 3
+    assert metrics["abstention_recall"]["denominator"] == 3
+    assert metrics["abstention_f1"]["value"] == 0.8571428571428571
     assert metrics["claim_support_rate"]["numerator"] == 46
     assert metrics["claim_support_rate"]["denominator"] == 48
     assert metrics["citation_entailment_rate"]["numerator"] == 46
@@ -53,6 +65,7 @@ def test_stage14_question_list_exposes_failures_without_rejudging():
     by_id = {row["question_id"]: row for row in rows}
     assert "false_abstention" in by_id["ACIT-112"]["failure_flags"]
     assert by_id["ACIT-101"]["answer_completeness"] == 1.0
+    assert by_id["ACIT-105"]["deterministic_citation_validity"] == 1.0
 
 
 def test_stage14_question_detail_binds_benchmark_response_and_human_review():

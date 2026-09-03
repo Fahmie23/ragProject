@@ -55,5 +55,7 @@ def test_stage14_2_does_not_surface_old_mock_evaluation_metrics() -> None:
     text = SHELL.read_text(encoding="utf-8")
     assert 'const DATASET_ROWS' not in text
     assert 'Mock benchmark · 50 questions' not in text
-    assert 'Evaluation Explorer arrives in Stage 14.5' in text
-    assert '/api/evaluation/answer-citation/summary' in text
+    assert "['Faithfulness',94]" not in text
+    assert "['Answer relevance',91]" not in text
+    assert "['Citation accuracy',96]" not in text
+    assert "['Citation completeness',93]" not in text

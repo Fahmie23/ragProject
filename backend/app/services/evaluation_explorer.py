@@ -47,6 +47,22 @@ def _format_percent(value: float | None) -> str | None:
     return None if value is None else f"{value * 100:.2f}%"
 
 
+def _benchmark_source_filename(dataset: dict[str, Any]) -> str | None:
+    """Resolve a human-readable source filename from frozen response snapshots only."""
+    for question in dataset.get("questions") or []:
+        question_id = str((question or {}).get("question_id") or "").strip()
+        if not question_id:
+            continue
+        response_path = RESPONSE_DIR / f"{question_id}.json"
+        if not response_path.exists():
+            continue
+        response = _load_json(response_path)
+        for citation in response.get("citations") or []:
+            if isinstance(citation, dict) and citation.get("source_filename"):
+                return str(citation["source_filename"])
+    return None
+
+
 def _question_results_map(payload: dict[str, Any]) -> dict[str, dict[str, Any]]:
     rows = payload.get("results") or []
     return {
@@ -108,6 +124,44 @@ def build_answer_citation_summary() -> dict[str, Any]:
             "scope": "deterministic",
             "source_artifact": _artifact_id(DETERMINISTIC_AGGREGATE_PATH),
             "notes": "Measures answered vs insufficient_evidence status only; it is not semantic answer correctness.",
+        },
+        {
+            "key": "abstention_precision",
+            "display_name": "Abstention Precision",
+            "value": deterministic.get("abstention_precision"),
+            "display_value": _format_percent(deterministic.get("abstention_precision")),
+            "numerator": float(deterministic.get("abstention_true_positive", 0)),
+            "denominator": float(deterministic.get("abstention_true_positive", 0))
+            + float(deterministic.get("abstention_false_positive", 0)),
+            "formula": "correct abstentions / all system abstentions",
+            "scope": "deterministic",
+            "source_artifact": _artifact_id(DETERMINISTIC_AGGREGATE_PATH),
+            "notes": "Among questions the system abstained on, measures how often abstention was expected.",
+        },
+        {
+            "key": "abstention_recall",
+            "display_name": "Abstention Recall",
+            "value": deterministic.get("abstention_recall"),
+            "display_value": _format_percent(deterministic.get("abstention_recall")),
+            "numerator": float(deterministic.get("abstention_true_positive", 0)),
+            "denominator": float(deterministic.get("abstention_true_positive", 0))
+            + float(deterministic.get("abstention_false_negative", 0)),
+            "formula": "correct abstentions / benchmark questions that should abstain",
+            "scope": "deterministic",
+            "source_artifact": _artifact_id(DETERMINISTIC_AGGREGATE_PATH),
+            "notes": "Measures whether out-of-scope benchmark questions are actually refused instead of answered.",
+        },
+        {
+            "key": "abstention_f1",
+            "display_name": "Abstention F1",
+            "value": deterministic.get("abstention_f1"),
+            "display_value": _format_percent(deterministic.get("abstention_f1")),
+            "numerator": None,
+            "denominator": None,
+            "formula": "harmonic mean of abstention precision and abstention recall",
+            "scope": "deterministic",
+            "source_artifact": _artifact_id(DETERMINISTIC_AGGREGATE_PATH),
+            "notes": "Balances false abstentions against failures to abstain on questions outside the document evidence.",
         },
         {
             "key": "claim_citation_coverage",
@@ -197,6 +251,7 @@ def build_answer_citation_summary() -> dict[str, Any]:
     ]
 
     counts = dataset.get("counts") or {}
+    document = dataset.get("document") or {}
     return {
         "evaluation_id": "stage11_answer_citation_heldout_v1_final",
         "dataset_id": dataset.get("dataset_id"),
@@ -205,7 +260,13 @@ def build_answer_citation_summary() -> dict[str, Any]:
         "question_count": int(counts.get("questions", 0)),
         "answerable_question_count": int(counts.get("answered", 0)),
         "out_of_scope_question_count": int(counts.get("insufficient_evidence", 0)),
-        "document_id": (dataset.get("document") or {}).get("document_id"),
+        "document_id": document.get("document_id"),
+        "source_filename": _benchmark_source_filename(dataset),
+        "pdf_page_count": int(document.get("pdf_page_count", 0) or 0),
+        "source_sha256": document.get("source_sha256"),
+        "evaluation_type": "frozen_offline_benchmark",
+        "heldout_tuning_authorized": bool(manifest.get("heldout_tuning_authorized", False)),
+        "production_pipeline_modified_for_heldout": bool(manifest.get("production_pipeline_modified_for_heldout", False)),
         "retrieval_profile": (dataset.get("policy") or {}).get("retrieval_profile"),
         "citation_version": (dataset.get("policy") or {}).get("citation_version"),
         "rubric_version": calibration.get("rubric_version"),
@@ -270,6 +331,7 @@ def list_answer_citation_questions() -> list[dict[str, Any]]:
                 "expected_status": expected_status,
                 "actual_status": actual_status,
                 "answer_status_correct": metrics.get("answer_status_accuracy") == 1.0,
+                "deterministic_citation_validity": metrics.get("deterministic_citation_validity"),
                 "claim_support_rate": semantic.get("claim_support_rate"),
                 "citation_entailment_rate": semantic.get("citation_entailment_rate"),
                 "answer_completeness": semantic.get("answer_completeness"),

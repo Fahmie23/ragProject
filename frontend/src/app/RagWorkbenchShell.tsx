@@ -12,7 +12,7 @@ function AppHeader({ active, onChange }: { active: AppView; onChange: (view: App
     { id: "overview", label: "Overview", icon: "⌂" },
     { id: "documents", label: "Documents", icon: "▤" },
     { id: "playground", label: "RAG Playground", icon: "✦" },
-    { id: "evaluation", label: "Evaluation", icon: "◎" },
+    { id: "evaluation", label: "Benchmark", icon: "◎" },
   ];
 
   return (
@@ -101,10 +101,10 @@ function Overview({ onChange }: { onChange: (view: AppView) => void }) {
           <button className="rag-text-action" type="button" onClick={() => onChange("playground")}>Preview Playground →</button>
         </article>
         <article className="rag-panel">
-          <div className="rag-card-kicker">Evaluation</div>
-          <h3>Show evidence of improvement</h3>
+          <div className="rag-card-kicker">Benchmark report</div>
+          <h3>Show evidence of measured behavior</h3>
           <p>Inspect frozen retrieval and answer/citation benchmarks with explicit formulas, provenance, and held-out scope instead of unsupported live quality scores.</p>
-          <button className="rag-text-action" type="button" onClick={() => onChange("evaluation")}>Preview Evaluation →</button>
+          <button className="rag-text-action" type="button" onClick={() => onChange("evaluation")}>Open Benchmark →</button>
         </article>
       </section>
     </main>
@@ -751,32 +751,449 @@ function RagPlayground() {
   );
 }
 
+type EvaluationFilter = "all" | "complete" | "partial" | "issues" | "out_of_scope";
+
+type EvaluationMetric = {
+  key: string;
+  display_name: string;
+  value: number | null;
+  display_value: string | null;
+  numerator: number | null;
+  denominator: number | null;
+  formula: string;
+  scope: string;
+  source_artifact: string;
+  notes: string;
+};
+
+type EvaluationSummary = {
+  evaluation_id: string;
+  dataset_id: string;
+  split: string;
+  benchmark_status: string;
+  question_count: number;
+  answerable_question_count: number;
+  out_of_scope_question_count: number;
+  document_id: string;
+  source_filename: string | null;
+  pdf_page_count: number;
+  source_sha256: string | null;
+  evaluation_type: string;
+  heldout_tuning_authorized: boolean;
+  production_pipeline_modified_for_heldout: boolean;
+  retrieval_profile: string;
+  citation_version: string;
+  rubric_version: string;
+  human_confirmed: boolean;
+  automated_judge_used: boolean;
+  external_api_calls_for_reproduction: number;
+  scope_statement: string;
+  metrics: EvaluationMetric[];
+  artifacts: Record<string, string>;
+  manifest: { baseline_id?: string | null; valid?: boolean | null };
+};
+
+type EvaluationQuestionRow = {
+  question_id: string;
+  category: string;
+  difficulty: string;
+  question: string;
+  expected_status: string;
+  actual_status: string;
+  answer_status_correct: boolean;
+  deterministic_citation_validity: number | null;
+  claim_support_rate: number | null;
+  citation_entailment_rate: number | null;
+  answer_completeness: number | null;
+  answer_relevance_score: number | null;
+  required_source_coverage: number | null;
+  failure_flags: string[];
+};
+
+type EvaluationGoldClaim = { claim_id: string; requirement: string };
+type EvaluationReviewedGoldClaim = EvaluationGoldClaim & { coverage_label: string; coverage_notes: string };
+type EvaluationReviewedClaim = { claim_id: string; text: string; support_label: string; support_notes: string; evidence_ids: string[]; citation_ids: string[] };
+type EvaluationCitationRelation = { claim_id: string; citation_id: string; evidence_id: string; citation_display: string; entailment_label: string; entailment_notes: string };
+
+type EvaluationQuestionDetail = {
+  question_id: string;
+  benchmark: {
+    category: string;
+    difficulty: string;
+    question: string;
+    expected_status: string;
+    gold?: { required_claims?: EvaluationGoldClaim[] };
+  };
+  deterministic_result: {
+    metrics?: {
+      actual_status?: string;
+      answer_status_accuracy?: number;
+      claim_citation_coverage?: number;
+      deterministic_citation_validity?: number;
+      required_source_coverage?: number;
+    };
+    semantic_metrics?: {
+      claim_support_rate?: number;
+      citation_entailment_rate?: number;
+      answer_completeness?: number;
+      answer_relevance_score?: number;
+    };
+  };
+  semantic_review: {
+    rubric_version: string;
+    human_confirmed: boolean;
+    automated_judge_used: boolean;
+    claims: EvaluationReviewedClaim[];
+    citation_relations: EvaluationCitationRelation[];
+    gold_claims: EvaluationReviewedGoldClaim[];
+    answer_relevance_score: number | null;
+    answer_relevance_notes: string;
+    reviewer_notes: string;
+  };
+  frozen_response: { status: string; answer: string; cited_answer: string };
+  artifacts: Record<string, string>;
+  read_only: boolean;
+  external_api_calls: number;
+};
+
+async function fetchEvaluationJson<T>(path: string, signal?: AbortSignal): Promise<T> {
+  const response = await fetch(path, { headers: { Accept: "application/json" }, signal });
+  if (!response.ok) {
+    let message = `Evaluation API returned HTTP ${response.status}.`;
+    try {
+      const payload = await response.json() as { detail?: string | { message?: string } };
+      if (typeof payload.detail === "string") message = payload.detail;
+      else if (payload.detail?.message) message = payload.detail.message;
+    } catch {
+      // Keep the stable HTTP fallback when the response body is not JSON.
+    }
+    throw new Error(message);
+  }
+  return response.json() as Promise<T>;
+}
+
+function formatEvaluationRate(value: number | null | undefined): string {
+  return value == null ? "—" : `${(value * 100).toFixed(0)}%`;
+}
+
+function formatEvaluationLabel(value: string | null | undefined): string {
+  return value ? value.replace(/_/g, " ") : "—";
+}
+
 function Evaluation() {
+  const [summary, setSummary] = useState<EvaluationSummary | null>(null);
+  const [questions, setQuestions] = useState<EvaluationQuestionRow[]>([]);
+  const [filter, setFilter] = useState<EvaluationFilter>("all");
+  const [search, setSearch] = useState("");
+  const [selectedMetricKey, setSelectedMetricKey] = useState<string | null>(null);
+  const [selectedQuestionId, setSelectedQuestionId] = useState<string | null>(null);
+  const [detail, setDetail] = useState<EvaluationQuestionDetail | null>(null);
+  const [loading, setLoading] = useState(true);
+  const [detailLoading, setDetailLoading] = useState(false);
+  const [error, setError] = useState<string | null>(null);
+  const [detailError, setDetailError] = useState<string | null>(null);
+
+  useEffect(() => {
+    const controller = new AbortController();
+    setLoading(true);
+    setError(null);
+    Promise.all([
+      fetchEvaluationJson<EvaluationSummary>("/api/evaluation/answer-citation/summary", controller.signal),
+      fetchEvaluationJson<EvaluationQuestionRow[]>("/api/evaluation/answer-citation/questions", controller.signal),
+    ])
+      .then(([summaryPayload, questionPayload]) => {
+        setSummary(summaryPayload);
+        setQuestions(questionPayload);
+        setSelectedMetricKey(summaryPayload.metrics[0]?.key ?? null);
+      })
+      .catch((reason: unknown) => {
+        if (controller.signal.aborted) return;
+        setError(reason instanceof Error ? reason.message : "Could not read the frozen evaluation artifacts.");
+      })
+      .finally(() => {
+        if (!controller.signal.aborted) setLoading(false);
+      });
+    return () => controller.abort();
+  }, []);
+
+  useEffect(() => {
+    if (!selectedQuestionId) return;
+    function closeOnEscape(event: KeyboardEvent) {
+      if (event.key === "Escape") setSelectedQuestionId(null);
+    }
+    window.addEventListener("keydown", closeOnEscape);
+    return () => window.removeEventListener("keydown", closeOnEscape);
+  }, [selectedQuestionId]);
+
+  async function openEvaluationQuestion(questionId: string) {
+    setSelectedQuestionId(questionId);
+    setDetail(null);
+    setDetailError(null);
+    setDetailLoading(true);
+    try {
+      const payload = await fetchEvaluationJson<EvaluationQuestionDetail>(`/api/evaluation/answer-citation/questions/${encodeURIComponent(questionId)}`);
+      setDetail(payload);
+    } catch (reason) {
+      setDetailError(reason instanceof Error ? reason.message : "Could not read this frozen question review.");
+    } finally {
+      setDetailLoading(false);
+    }
+  }
+
+  function caseState(row: EvaluationQuestionRow): "complete" | "partial" | "issue" | "out_of_scope" {
+    if (row.expected_status === "insufficient_evidence") return row.answer_status_correct ? "out_of_scope" : "issue";
+    if (!row.answer_status_correct || row.failure_flags.length > 0) return "issue";
+    if (row.deterministic_citation_validity != null && row.deterministic_citation_validity < 1) return "issue";
+    const semanticRates = [row.claim_support_rate, row.citation_entailment_rate, row.answer_completeness, row.required_source_coverage];
+    if (semanticRates.some((value) => value != null && value < 1)) return "partial";
+    return "complete";
+  }
+
+  function caseStateLabel(state: ReturnType<typeof caseState>): string {
+    if (state === "complete") return "PASSED";
+    if (state === "partial") return "PARTIAL";
+    if (state === "issue") return "ISSUE";
+    return "OUT OF SCOPE";
+  }
+
+  function caseStateCopy(state: ReturnType<typeof caseState>): string {
+    if (state === "complete") return "The benchmark requirements for this case were covered.";
+    if (state === "partial") return "The response was useful but missed or only partially supported some required detail.";
+    if (state === "issue") return "This case contains a benchmark failure that needs inspection.";
+    return "The correct behaviour for this case was to abstain because the document does not contain the requested answer.";
+  }
+
+  const filteredQuestions = useMemo(() => {
+    const cleanSearch = search.trim().toLowerCase();
+    return questions.filter((row) => {
+      const state = caseState(row);
+      if (filter === "issues" && state !== "issue") return false;
+      if (filter !== "all" && filter !== "issues" && state !== filter) return false;
+      if (!cleanSearch) return true;
+      return `${row.question_id} ${row.category} ${row.difficulty} ${row.question}`.toLowerCase().includes(cleanSearch);
+    });
+  }, [questions, filter, search]);
+
+  const selectedMetric = useMemo(
+    () => summary?.metrics.find((metric) => metric.key === selectedMetricKey) ?? null,
+    [summary, selectedMetricKey],
+  );
+
+  const metricsByKey = useMemo(
+    () => new Map((summary?.metrics ?? []).map((metric) => [metric.key, metric])),
+    [summary],
+  );
+
+  const headlineMetricConfig = [
+    { key: "answer_status_accuracy", label: "Answer decisions", description: "Correctly answered or abstained." },
+    { key: "claim_support_rate", label: "Grounding", description: "Generated claims fully supported by evidence." },
+    { key: "answer_completeness", label: "Completeness", description: "Required answer information that was covered." },
+    { key: "deterministic_citation_validity", label: "Citation provenance", description: "Deterministic source mappings that resolved correctly." },
+  ];
+
+  if (loading) {
+    return <main className="rag-page rag-evaluation-page"><section className="rag-panel rag-stage14-eval-state"><strong>Loading frozen benchmark report…</strong><span>Reading Stage 11 artifacts through the read-only evaluation API.</span></section></main>;
+  }
+
+  if (error || !summary) {
+    return <main className="rag-page rag-evaluation-page"><section className="rag-panel rag-stage14-eval-state error"><strong>Benchmark artifacts unavailable</strong><span>{error ?? "The frozen summary could not be loaded."}</span><small>No scorer or generation provider was invoked.</small></section></main>;
+  }
+
+  const selectedQuestionRow = selectedQuestionId ? questions.find((row) => row.question_id === selectedQuestionId) ?? null : null;
+  const selectedCaseState = selectedQuestionRow ? caseState(selectedQuestionRow) : null;
+  const claimSupportMetric = metricsByKey.get("claim_support_rate");
+  const citationValidityMetric = metricsByKey.get("deterministic_citation_validity");
+
   return (
-    <main className="rag-page rag-evaluation-page">
-      <div className="rag-page-heading">
+    <main className="rag-page rag-evaluation-page rag-stage14-eval-simple">
+      <div className="rag-page-heading rag-stage14-eval-heading">
         <div>
-          <span className="rag-eyebrow">Evaluation</span>
-          <h1>Frozen benchmark results, not live playground scores.</h1>
-          <p>The Stage 11 evaluation APIs are read-only and reproducible. The detailed Evaluation Explorer UI is intentionally deferred to Stage 14.5 so the frontend never presents prototype or invented metrics.</p>
+          <span className="rag-eyebrow">Benchmark Report</span>
+          <h1>{summary.source_filename ?? "Frozen document benchmark"}</h1>
+          <p>{summary.question_count} held-out questions · {summary.answerable_question_count} answerable · {summary.out_of_scope_question_count} out of scope</p>
         </div>
+        <div className="rag-stage14-eval-heading-badges"><span>FROZEN</span></div>
       </div>
-      <section className="rag-panel rag-evaluation-placeholder">
-        <div className="rag-card-kicker">Stage 14.1 contract ready</div>
-        <h2>Evaluation Explorer arrives in Stage 14.5</h2>
-        <p>Until then, evaluation values remain available through the backend read APIs with benchmark scope, formulas, numerators/denominators, source artifacts, and question-level provenance.</p>
-        <div className="rag-feature-list">
-          <span>Frozen held-out benchmark</span>
-          <span>Read only</span>
-          <span>Human semantic labels</span>
-          <span>0 API calls for reproduction</span>
-        </div>
-        <code>/api/evaluation/answer-citation/summary</code>
+
+      <section className="rag-panel rag-stage14-eval-simple-scope">
+        <strong>These results apply only to this document.</strong>
+        <span>This is a frozen benchmark report, not a quality score for arbitrary PDFs uploaded to the system.</span>
       </section>
+
+      <section className="rag-stage14-eval-overview" aria-label="Benchmark headline results">
+        <div className="rag-panel-head"><div><span className="rag-card-kicker">Overall results</span><h2>Four numbers to understand first</h2></div></div>
+        <div className="rag-stage14-eval-headline-grid">
+          {headlineMetricConfig.map((item) => {
+            const metric = metricsByKey.get(item.key);
+            if (!metric) return null;
+            return <article className="rag-stage14-eval-headline-card" key={item.key}>
+              <span>{item.label}</span>
+              <strong>{metric.display_value ?? "—"}</strong>
+              <p>{item.description}</p>
+            </article>;
+          })}
+        </div>
+      </section>
+
+      <section className="rag-panel rag-stage14-eval-takeaway">
+        <div><span className="rag-card-kicker">What this tells us</span><h2>The main observed gap is completeness.</h2></div>
+        <div className="rag-stage14-eval-takeaway-list">
+          <p><strong>✓ Grounding is strong.</strong><span>{claimSupportMetric?.numerator ?? "Most"} of {claimSupportMetric?.denominator ?? "the"} generated claims were fully supported by their evidence.</span></p>
+          <p><strong>✓ Citation provenance is reliable.</strong><span>Deterministic citation validity was {citationValidityMetric?.display_value ?? "high"} on this benchmark.</span></p>
+          <p className="partial"><strong>△ Some answers omitted required details.</strong><span>A grounded answer can still be incomplete, so inspect Partial cases before changing retrieval or generation.</span></p>
+        </div>
+      </section>
+
+      <section className="rag-panel rag-stage14-eval-questions">
+        <div className="rag-panel-head">
+          <div><span className="rag-card-kicker">Benchmark questions</span><h2>Inspect only the cases you need</h2></div>
+          <span className="rag-count-pill">{filteredQuestions.length} shown / {questions.length}</span>
+        </div>
+        <div className="rag-stage14-eval-toolbar">
+          <div className="rag-tab-switch" role="tablist" aria-label="Benchmark case filter">
+            {(["all", "complete", "partial", "issues", "out_of_scope"] as EvaluationFilter[]).map((value) => <button key={value} type="button" role="tab" aria-selected={filter === value} className={filter === value ? "active" : ""} onClick={() => setFilter(value)}>{value === "complete" ? "Passed" : value === "out_of_scope" ? "Out of scope" : value === "issues" ? "Issues" : value[0].toUpperCase() + value.slice(1)}</button>)}
+          </div>
+          <input value={search} onChange={(event) => setSearch(event.target.value)} placeholder="Search question or ACIT ID…" aria-label="Search benchmark questions" />
+        </div>
+        <div className="rag-stage14-eval-question-list rag-stage14-eval-question-list-simple">
+          {filteredQuestions.map((row) => {
+            const state = caseState(row);
+            return <button key={row.question_id} type="button" className="rag-stage14-eval-question-row rag-stage14-eval-question-row-simple" data-case-state={state} onClick={() => void openEvaluationQuestion(row.question_id)}>
+              <div className="rag-stage14-eval-question-copy">
+                <div><strong>{row.question_id}</strong><em>{caseStateLabel(state)}</em></div>
+                <p>{row.question}</p>
+                <small>{caseStateCopy(state)}</small>
+              </div>
+              <span className="rag-stage14-eval-inspect-label">View details →</span>
+            </button>;
+          })}
+          {filteredQuestions.length === 0 && <div className="rag-stage14-eval-empty">No frozen benchmark case matches this filter.</div>}
+        </div>
+      </section>
+
+      <details className="rag-panel rag-stage14-eval-advanced">
+        <summary><span>Advanced metrics</span><small>For deeper engineering inspection</small></summary>
+        <div className="rag-stage14-eval-advanced-body">
+          <p className="rag-stage14-eval-advanced-intro">These metrics remain available for evaluation work, but they are intentionally hidden from the default benchmark summary.</p>
+          <div className="rag-stage14-eval-metric-grid">
+            {summary.metrics.map((metric) => <button
+              key={metric.key}
+              type="button"
+              className={`rag-stage14-eval-metric-card ${selectedMetricKey === metric.key ? "active" : ""}`}
+              onClick={() => setSelectedMetricKey(metric.key)}
+              aria-pressed={selectedMetricKey === metric.key}
+            >
+              <span>{metric.display_name}</span>
+              <strong>{metric.display_value ?? "—"}</strong>
+            </button>)}
+          </div>
+          {selectedMetric && <div className="rag-stage14-eval-metric-detail rag-stage14-eval-metric-detail-nested" aria-live="polite">
+            <div><span className="rag-card-kicker">Metric definition</span><h2>{selectedMetric.display_name}</h2><strong>{selectedMetric.display_value ?? "—"}</strong></div>
+            <dl>
+              <div><dt>Formula</dt><dd>{selectedMetric.formula}</dd></div>
+              <div><dt>Scope</dt><dd>{selectedMetric.scope}</dd></div>
+              <div><dt>Numerator / denominator</dt><dd>{selectedMetric.numerator != null && selectedMetric.denominator != null ? `${selectedMetric.numerator} / ${selectedMetric.denominator}` : "Backend aggregate — see formula"}</dd></div>
+              <div><dt>Source artifact</dt><dd><code>{selectedMetric.source_artifact}</code></dd></div>
+            </dl>
+            <p>{selectedMetric.notes}</p>
+          </div>}
+        </div>
+      </details>
+
+      <details className="rag-panel rag-stage14-eval-about">
+        <summary><span>About this benchmark</span><small>Scope and methodology</small></summary>
+        <div className="rag-stage14-eval-about-body">
+          <div className="rag-stage14-eval-scope-grid">
+            <div><span>Source document</span><strong>{summary.source_filename ?? "—"}</strong></div>
+            <div><span>Dataset</span><strong>{summary.dataset_id}</strong></div>
+            <div><span>Evaluation type</span><strong>{formatEvaluationLabel(summary.evaluation_type)}</strong></div>
+            <div><span>Human semantic review</span><strong>{summary.human_confirmed ? "Yes" : "No"}</strong></div>
+            <div><span>Automated semantic judge</span><strong>{summary.automated_judge_used ? "Yes" : "No"}</strong></div>
+            <div><span>Held-out tuning</span><strong>{summary.heldout_tuning_authorized ? "Authorized" : "Not authorized"}</strong></div>
+            <div><span>External calls in reproduction</span><strong>{summary.external_api_calls_for_reproduction}</strong></div>
+          </div>
+          <div className="rag-stage14-eval-scope-warning"><strong>Cross-document robustness is not established.</strong><span>Additional benchmark families are required before making claims about arbitrary PDFs or domains.</span></div>
+          <details className="rag-stage14-eval-artifacts"><summary>Frozen artifact references</summary><div>{Object.entries(summary.artifacts).map(([name, path]) => <p key={name}><strong>{formatEvaluationLabel(name)}</strong><code>{path}</code></p>)}</div></details>
+        </div>
+      </details>
+
+      {selectedQuestionId && <aside className="rag-stage14-eval-drawer" aria-label={`Benchmark detail ${selectedQuestionId}`}>
+        <div className="rag-stage14-eval-drawer-head">
+          <div><span className="rag-card-kicker">Benchmark case</span><h2>{selectedQuestionId}</h2></div>
+          <button type="button" onClick={() => setSelectedQuestionId(null)} aria-label="Close benchmark detail">×</button>
+        </div>
+        {detailLoading && <div className="rag-stage14-eval-drawer-state">Loading frozen question detail…</div>}
+        {detailError && <div className="rag-stage14-eval-drawer-state error">{detailError}</div>}
+        {detail && <>
+          <section className="rag-stage14-eval-drawer-section rag-stage14-eval-case-summary">
+            <div className="rag-stage14-eval-detail-badges"><span>HELD-OUT</span>{selectedCaseState && <span data-case-state={selectedCaseState}>{caseStateLabel(selectedCaseState)}</span>}</div>
+            <h3>{detail.benchmark.question}</h3>
+            {selectedCaseState && <p className="rag-stage14-eval-case-explanation">{caseStateCopy(selectedCaseState)}</p>}
+            <small>Expected <strong>{formatEvaluationLabel(detail.benchmark.expected_status)}</strong> · Actual <strong>{formatEvaluationLabel(detail.deterministic_result.metrics?.actual_status)}</strong></small>
+          </section>
+
+          <section className="rag-stage14-eval-drawer-section">
+            <div className="rag-stage14-eval-section-head"><span>What was expected</span><strong>{detail.semantic_review.gold_claims.length} requirements</strong></div>
+            {detail.semantic_review.gold_claims.length > 0 ? <div className="rag-stage14-eval-gold-list">
+              {detail.semantic_review.gold_claims.map((gold) => <article key={gold.claim_id} data-coverage={gold.coverage_label}>
+                <div><strong>{gold.claim_id}</strong><span>{formatEvaluationLabel(gold.coverage_label)}</span></div>
+                <p>{gold.requirement}</p>
+                <small>{gold.coverage_notes}</small>
+              </article>)}
+            </div> : <p className="rag-stage14-eval-no-gold">This case checks whether the system correctly abstains when the source document does not contain the answer.</p>}
+          </section>
+
+          <section className="rag-stage14-eval-drawer-section">
+            <div className="rag-stage14-eval-section-head"><span>What happened</span><strong>Simple summary</strong></div>
+            <div className="rag-stage14-eval-detail-facts rag-stage14-eval-detail-facts-simple" aria-label="Frozen per-question evaluation facts">
+              <div><span>Grounding</span><strong>{formatEvaluationRate(detail.deterministic_result.semantic_metrics?.claim_support_rate)}</strong></div>
+              <div><span>Citation provenance</span><strong>{formatEvaluationRate(detail.deterministic_result.metrics?.deterministic_citation_validity)}</strong></div>
+              <div><span>Completeness</span><strong>{formatEvaluationRate(detail.deterministic_result.semantic_metrics?.answer_completeness)}</strong></div>
+            </div>
+          </section>
+
+          <details className="rag-stage14-eval-technical-disclosure">
+            <summary>Show technical evaluation</summary>
+            <div className="rag-stage14-eval-technical-body">
+              {selectedQuestionRow && selectedQuestionRow.failure_flags.length > 0 && <section className="rag-stage14-eval-technical-section"><div className="rag-stage14-eval-section-head"><span>Failure flags</span><strong>{selectedQuestionRow.failure_flags.length}</strong></div><div className="rag-stage14-eval-flags">{selectedQuestionRow.failure_flags.map((flag) => <span key={flag}>{formatEvaluationLabel(flag)}</span>)}</div></section>}
+
+              <section className="rag-stage14-eval-technical-section">
+                <div className="rag-stage14-eval-section-head"><span>Generated claim review</span><strong>{detail.semantic_review.claims.length}</strong></div>
+                <div className="rag-stage14-eval-review-list">
+                  {detail.semantic_review.claims.map((claim) => <article key={claim.claim_id}>
+                    <div><strong>{claim.claim_id}</strong><span>{formatEvaluationLabel(claim.support_label)}</span></div>
+                    <p>{claim.text}</p><small>{claim.support_notes}</small>
+                  </article>)}
+                </div>
+              </section>
+
+              <section className="rag-stage14-eval-technical-section">
+                <div className="rag-stage14-eval-section-head"><span>Citation entailment review</span><strong>{detail.semantic_review.citation_relations.length}</strong></div>
+                <div className="rag-stage14-eval-review-list">
+                  {detail.semantic_review.citation_relations.map((relation) => <article key={`${relation.claim_id}-${relation.citation_id}`}>
+                    <div><strong>{relation.claim_id} → {relation.citation_id}</strong><span>{formatEvaluationLabel(relation.entailment_label)}</span></div>
+                    <p>{relation.citation_display}</p><small>{relation.entailment_notes}</small>
+                  </article>)}
+                </div>
+              </section>
+
+              <section className="rag-stage14-eval-technical-section rag-stage14-eval-review-note">
+                <div className="rag-stage14-eval-section-head"><span>Relevance & reviewer notes</span><strong>{detail.semantic_review.answer_relevance_score ?? "—"} / 2</strong></div>
+                <p>{detail.semantic_review.answer_relevance_notes || "No relevance note recorded."}</p>
+                {detail.semantic_review.reviewer_notes && <small>{detail.semantic_review.reviewer_notes}</small>}
+              </section>
+
+              <section className="rag-stage14-eval-technical-section">
+                <div className="rag-stage14-eval-section-head"><span>Frozen response</span><strong>Read only</strong></div>
+                <p className="rag-stage14-eval-frozen-answer">{detail.frozen_response.cited_answer || detail.frozen_response.answer}</p>
+              </section>
+            </div>
+          </details>
+        </>}
+      </aside>}
     </main>
   );
 }
-
 export default function RagWorkbenchShell() {
   const [active, setActive] = useState<AppView>("overview");
 
