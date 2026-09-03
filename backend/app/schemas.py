@@ -930,6 +930,67 @@ class RerankedRetrievalHit(BaseModel):
     source_element_ids: list[str] = Field(default_factory=list)
 
 
+class RetrievalTraceDenseCandidate(BaseModel):
+    rank: int
+    chunk_id: str
+    chunk_index: int
+    semantic_type: str
+    score: float
+    distance: float
+    pages: list[int] = Field(default_factory=list)
+    section_path: list[str] = Field(default_factory=list)
+
+
+class RetrievalTraceLexicalCandidate(BaseModel):
+    rank: int
+    chunk_id: str
+    chunk_index: int
+    semantic_type: str
+    score: float
+    matched_term_count: int = 0
+    term_coverage: float = 0.0
+    pages: list[int] = Field(default_factory=list)
+    section_path: list[str] = Field(default_factory=list)
+
+
+class RetrievalTraceFusedCandidate(BaseModel):
+    rank: int
+    chunk_id: str
+    chunk_index: int
+    semantic_type: str
+    fusion_score: float
+    dense_rank: int | None = None
+    dense_score: float | None = None
+    dense_distance: float | None = None
+    dense_rrf_score: float = 0.0
+    lexical_rank: int | None = None
+    lexical_score: float | None = None
+    lexical_matched_term_count: int = 0
+    lexical_term_coverage: float = 0.0
+    lexical_rrf_score: float = 0.0
+    pages: list[int] = Field(default_factory=list)
+    section_path: list[str] = Field(default_factory=list)
+
+
+class RetrievalTraceRerankedCandidate(RetrievalTraceFusedCandidate):
+    reranker_rank: int
+    reranker_score: float
+    selected_as_context_seed: bool = False
+
+
+class RetrievalExecutionTrace(BaseModel):
+    trace_version: str = "retrieval_trace_v1"
+    same_execution: bool = True
+    dense_candidates: list[RetrievalTraceDenseCandidate] = Field(default_factory=list)
+    lexical_candidates: list[RetrievalTraceLexicalCandidate] = Field(default_factory=list)
+    fused_candidates: list[RetrievalTraceFusedCandidate] = Field(default_factory=list)
+    reranked_candidates: list[RetrievalTraceRerankedCandidate] = Field(default_factory=list)
+    lexical_terms: list[str] = Field(default_factory=list)
+    lexical_tsquery: str = ""
+    context_seed_chunk_ids: list[str] = Field(default_factory=list)
+    context_attached_chunk_ids: list[str] = Field(default_factory=list)
+
+
 class RerankedRetrievalResponse(BaseModel):
     document_id: str
     query: str
@@ -956,6 +1017,7 @@ class RerankedRetrievalResponse(BaseModel):
     lexical_query_mode: str = "or_content_terms_v1"
     lexical_terms: list[str] = Field(default_factory=list)
     lexical_tsquery: str
+    retrieval_trace: RetrievalExecutionTrace | None = None
     hits: list[RerankedRetrievalHit] = Field(default_factory=list)
 
 class StructuralContextChunk(BaseModel):
@@ -1100,3 +1162,4 @@ class GroundedAnswerResponse(BaseModel):
     context_strategy: str
     context_chunk_count: int
     expanded_chunk_count: int
+    retrieval_trace: RetrievalExecutionTrace | None = None

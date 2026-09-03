@@ -98,6 +98,7 @@ def grounded_answer(request: GroundedAnswerRequest) -> GroundedAnswerResponse:
             context_strategy=retrieval.context_strategy,
             context_chunk_count=retrieval.context_chunk_count,
             expanded_chunk_count=retrieval.expanded_chunk_count,
+            retrieval_trace=retrieval.retrieval_trace,
         )
 
     system_prompt, user_prompt = build_grounded_prompts(request.question, evidence_rows)
@@ -167,4 +168,5 @@ def grounded_answer(request: GroundedAnswerRequest) -> GroundedAnswerResponse:
         context_strategy=retrieval.context_strategy,
         context_chunk_count=retrieval.context_chunk_count,
         expanded_chunk_count=retrieval.expanded_chunk_count,
+        retrieval_trace=retrieval.retrieval_trace,
     )

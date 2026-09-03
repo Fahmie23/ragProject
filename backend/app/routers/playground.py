@@ -11,7 +11,7 @@ def playground_contract() -> dict:
     """Stage 14.1 source-of-truth contract for the future RAG Playground UI."""
 
     return {
-        "contract_version": "stage14_playground_contract_v1",
+        "contract_version": "stage14_playground_contract_v1_1",
         "live_query": {
             "endpoint": "/api/generation/answer",
             "method": "POST",
@@ -39,6 +39,12 @@ def playground_contract() -> dict:
                 "frontend_calculation_allowed": False,
             },
             {
+                "area": "retrieval_trace",
+                "fields": ["dense_candidates", "lexical_candidates", "fused_candidates", "reranked_candidates", "context_seed_chunk_ids", "context_attached_chunk_ids"],
+                "source": "Same execution used by frozen Retrieval-v1; Stage 14.3 copies already-computed ranking facts without a second retrieval call",
+                "frontend_calculation_allowed": False,
+            },
+            {
                 "area": "generation_trace",
                 "fields": ["generation_provider", "generation_model", "prompt_version", "usage"],
                 "source": "Stage 9 generation runtime metadata",
@@ -60,9 +66,12 @@ def playground_contract() -> dict:
             "may_modify_frozen_benchmark": False,
             "scope": "answer_citation_eval_heldout_v1 only",
         },
-        "deferred_inspection": {
-            "full_dense_lexical_rrf_reranker_trace": "Stage 14.3",
-            "reason": "The current production generation response does not expose the full retrieval trace; Stage 14.1 will not fabricate it or execute retrieval twice.",
+        "retrieval_inspection": {
+            "stage": "Stage 14.3",
+            "trace_version": "retrieval_trace_v1",
+            "same_execution": True,
+            "second_retrieval_call": False,
+            "score_interpretation": "Dense, lexical, RRF, and reranker scores are ranking/debugging signals, not answer-correctness probabilities.",
         },
         "frontend_rule": "React displays backend-owned facts and metrics; React does not calculate RAG rankings or evaluation scores.",
     }

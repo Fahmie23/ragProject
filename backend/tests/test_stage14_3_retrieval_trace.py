@@ -1,0 +1,176 @@
+from __future__ import annotations
+
+from fastapi.testclient import TestClient
+
+from app.main import app
+from app.schemas import (
+    ContextExpandedRetrievalResponse,
+    RetrievalExecutionTrace,
+    RetrievalTraceDenseCandidate,
+    RetrievalTraceFusedCandidate,
+    RetrievalTraceLexicalCandidate,
+    RetrievalTraceRerankedCandidate,
+)
+from app.services.retrieval import reciprocal_rank_fusion, rerank_candidate_union
+
+
+def _dense(chunk_id: str, index: int, score: float) -> dict[str, object]:
+    return {
+        "chunk_id": chunk_id,
+        "chunk_index": index,
+        "semantic_type": "clause",
+        "score": score,
+        "distance": 1.0 - score,
+        "text": f"Section: Test\n\ntext {chunk_id}",
+        "content_text": f"content {chunk_id}",
+        "token_count": 10,
+        "pages": [index],
+        "section_path": ["Section"],
+        "source_element_ids": [f"e-{chunk_id}"],
+    }
+
+
+def _lexical(chunk_id: str, index: int, score: float) -> dict[str, object]:
+    row = _dense(chunk_id, index, 0.0)
+    row.pop("distance")
+    row["score"] = score
+    row["matched_term_count"] = 2
+    row["term_coverage"] = 0.5
+    return row
+
+
+def test_stage14_3_trace_prefix_exactly_matches_frozen_reranker_output():
+    from app.routers.retrieval import _build_retrieval_execution_trace
+
+    dense = [_dense("dense-first", 1, 0.9), _dense("answer", 2, 0.8)]
+    lexical = [_lexical("lexical-first", 3, 0.9), _lexical("dense-first", 1, 0.8)]
+    union = reciprocal_rank_fusion(dense, lexical, top_k=3, rrf_k=60)
+    scores = [9.0 if row["chunk_id"] == "answer" else -2.0 for row in union]
+    production, _ = rerank_candidate_union(dense, lexical, scores, top_k=2, rrf_k=60)
+
+    trace = _build_retrieval_execution_trace(
+        dense_rows=dense,
+        lexical_rows=lexical,
+        fused_rows=union,
+        reranker_scores=scores,
+        top_k=2,
+        lexical_terms=["information", "required"],
+        lexical_tsquery="information | required",
+    )
+
+    assert trace.same_execution is True
+    assert [row.chunk_id for row in trace.reranked_candidates[:2]] == [row["chunk_id"] for row in production]
+    assert [row.reranker_score for row in trace.reranked_candidates[:2]] == [row["reranker_score"] for row in production]
+    assert [row.selected_as_context_seed for row in trace.reranked_candidates] == [True, True, False]
+
+
+def test_stage14_3_trace_preserves_dense_lexical_and_rrf_facts():
+    from app.routers.retrieval import _build_retrieval_execution_trace
+
+    dense = [_dense("shared", 1, 0.9), _dense("dense-only", 2, 0.8)]
+    lexical = [_lexical("shared", 1, 0.7), _lexical("lexical-only", 3, 0.6)]
+    union = reciprocal_rank_fusion(dense, lexical, top_k=3, rrf_k=60)
+    trace = _build_retrieval_execution_trace(
+        dense_rows=dense,
+        lexical_rows=lexical,
+        fused_rows=union,
+        reranker_scores=[0.3, 0.2, 0.1],
+        top_k=2,
+        lexical_terms=["shared"],
+        lexical_tsquery="shared",
+    )
+
+    assert len(trace.dense_candidates) == 2
+    assert trace.dense_candidates[0].rank == 1
+    assert trace.dense_candidates[0].score == 0.9
+    assert len(trace.lexical_candidates) == 2
+    shared = next(row for row in trace.fused_candidates if row.chunk_id == "shared")
+    assert shared.dense_rank == 1
+    assert shared.lexical_rank == 1
+    assert shared.dense_rrf_score > 0
+    assert shared.lexical_rrf_score > 0
+    assert trace.lexical_terms == ["shared"]
+    assert trace.lexical_tsquery == "shared"
+
+
+def test_stage14_3_generation_returns_trace_from_single_retrieval_execution(monkeypatch):
+    from app.routers import generation
+
+    trace = RetrievalExecutionTrace(
+        dense_candidates=[RetrievalTraceDenseCandidate(rank=1, chunk_id="c1", chunk_index=1, semantic_type="clause", score=0.9, distance=0.1)],
+        lexical_candidates=[RetrievalTraceLexicalCandidate(rank=1, chunk_id="c1", chunk_index=1, semantic_type="clause", score=0.7)],
+        fused_candidates=[RetrievalTraceFusedCandidate(rank=1, chunk_id="c1", chunk_index=1, semantic_type="clause", fusion_score=0.03, dense_rank=1, lexical_rank=1)],
+        reranked_candidates=[RetrievalTraceRerankedCandidate(rank=1, chunk_id="c1", chunk_index=1, semantic_type="clause", fusion_score=0.03, dense_rank=1, lexical_rank=1, reranker_rank=1, reranker_score=0.99, selected_as_context_seed=True)],
+        lexical_terms=["question"],
+        lexical_tsquery="question",
+        context_seed_chunk_ids=["c1"],
+    )
+    response = ContextExpandedRetrievalResponse(
+        document_id="doc",
+        query="question",
+        embedding_model="BAAI/bge-m3",
+        embedding_requested_device="auto",
+        embedding_resolved_device="cuda",
+        reranker_model="BAAI/bge-reranker-v2-m3",
+        reranker_requested_device="auto",
+        reranker_resolved_device="cuda",
+        reranker_batch_size=2,
+        reranker_max_length=1024,
+        top_k=5,
+        candidate_k=20,
+        candidate_union_count=1,
+        embedded_chunk_count=1,
+        total_chunk_count=1,
+        lexical_tsquery="question",
+        context_chunk_count=0,
+        expanded_chunk_count=0,
+        context_chunks=[],
+        retrieval_trace=trace,
+    )
+    calls = {"count": 0}
+
+    def fake_retrieval(request):
+        calls["count"] += 1
+        return response
+
+    monkeypatch.setattr(generation, "hybrid_reranked_context_retrieval", fake_retrieval)
+    http = TestClient(app).post("/api/generation/answer", json={"document_id": "doc", "question": "question"})
+
+    assert http.status_code == 200
+    payload = http.json()
+    assert calls["count"] == 1
+    assert payload["status"] == "insufficient_evidence"
+    assert payload["retrieval_trace"]["same_execution"] is True
+    assert payload["retrieval_trace"]["reranked_candidates"][0]["chunk_id"] == "c1"
+
+
+def test_stage14_3_playground_contract_declares_no_second_retrieval():
+    payload = TestClient(app).get("/api/playground/contract").json()
+    assert payload["retrieval_inspection"]["trace_version"] == "retrieval_trace_v1"
+    assert payload["retrieval_inspection"]["same_execution"] is True
+    assert payload["retrieval_inspection"]["second_retrieval_call"] is False
+    assert "not answer-correctness probabilities" in payload["retrieval_inspection"]["score_interpretation"]
+
+
+def test_stage14_3_frontend_uses_answer_owned_trace_without_retrieval_replay():
+    from pathlib import Path
+
+    root = Path(__file__).resolve().parents[2]
+    shell = (root / "frontend/src/app/RagWorkbenchShell.tsx").read_text(encoding="utf-8")
+    assert 'const productionTrace = generatedAnswer?.retrieval_trace ?? null;' in shell
+    assert '>Retrieval</button>' in shell
+    assert "Same execution trace" in shell
+    assert "No second retrieval call is made for this inspector." in shell
+    assert "selected_as_context_seed" in shell
+    assert "They are not calibrated probabilities" in shell
+
+
+def test_stage14_3_frontend_types_keep_trace_backend_owned():
+    from pathlib import Path
+
+    root = Path(__file__).resolve().parents[2]
+    types = (root / "frontend/src/types.ts").read_text(encoding="utf-8")
+    assert "export interface RetrievalExecutionTrace" in types
+    assert "same_execution: boolean" in types
+    assert "reranked_candidates: RetrievalTraceRerankedCandidate[]" in types
+    assert "retrieval_trace?: RetrievalExecutionTrace | null" in types

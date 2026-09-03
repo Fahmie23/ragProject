@@ -787,6 +787,67 @@ export interface RerankedRetrievalHit {
   source_element_ids: string[];
 }
 
+export interface RetrievalTraceDenseCandidate {
+  rank: number;
+  chunk_id: string;
+  chunk_index: number;
+  semantic_type: string;
+  score: number;
+  distance: number;
+  pages: number[];
+  section_path: string[];
+}
+
+export interface RetrievalTraceLexicalCandidate {
+  rank: number;
+  chunk_id: string;
+  chunk_index: number;
+  semantic_type: string;
+  score: number;
+  matched_term_count: number;
+  term_coverage: number;
+  pages: number[];
+  section_path: string[];
+}
+
+export interface RetrievalTraceFusedCandidate {
+  rank: number;
+  chunk_id: string;
+  chunk_index: number;
+  semantic_type: string;
+  fusion_score: number;
+  dense_rank?: number | null;
+  dense_score?: number | null;
+  dense_distance?: number | null;
+  dense_rrf_score: number;
+  lexical_rank?: number | null;
+  lexical_score?: number | null;
+  lexical_matched_term_count: number;
+  lexical_term_coverage: number;
+  lexical_rrf_score: number;
+  pages: number[];
+  section_path: string[];
+}
+
+export interface RetrievalTraceRerankedCandidate extends RetrievalTraceFusedCandidate {
+  reranker_rank: number;
+  reranker_score: number;
+  selected_as_context_seed: boolean;
+}
+
+export interface RetrievalExecutionTrace {
+  trace_version: string;
+  same_execution: boolean;
+  dense_candidates: RetrievalTraceDenseCandidate[];
+  lexical_candidates: RetrievalTraceLexicalCandidate[];
+  fused_candidates: RetrievalTraceFusedCandidate[];
+  reranked_candidates: RetrievalTraceRerankedCandidate[];
+  lexical_terms: string[];
+  lexical_tsquery: string;
+  context_seed_chunk_ids: string[];
+  context_attached_chunk_ids: string[];
+}
+
 export interface RerankedRetrievalResponse {
   document_id: string;
   query: string;
@@ -813,6 +874,7 @@ export interface RerankedRetrievalResponse {
   lexical_query_mode: string;
   lexical_terms: string[];
   lexical_tsquery: string;
+  retrieval_trace?: RetrievalExecutionTrace | null;
   hits: RerankedRetrievalHit[];
 }
 
@@ -945,4 +1007,5 @@ export interface GroundedAnswerResponse {
   context_strategy: string;
   context_chunk_count: number;
   expanded_chunk_count: number;
+  retrieval_trace?: RetrievalExecutionTrace | null;
 }

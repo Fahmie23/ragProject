@@ -10,10 +10,11 @@ STYLES = REPO_ROOT / "frontend" / "src" / "styles.css"
 
 def test_stage14_2b_keeps_answer_primary_and_moves_detail_into_inspector() -> None:
     text = SHELL.read_text(encoding="utf-8")
-    assert 'type AnswerInspectorTab = "claims" | "context" | "technical";' in text
+    assert 'type AnswerInspectorTab = "claims" | "retrieval" | "context" | "technical";' in text
     assert 'className="rag-answer-facts"' in text
     assert 'rag-answer-inspector' in text
     assert '>Claims</button>' in text
+    assert '>Retrieval</button>' in text
     assert '>Context</button>' in text
     assert '>Technical</button>' in text
 

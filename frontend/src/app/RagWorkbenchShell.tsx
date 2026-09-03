@@ -149,7 +149,7 @@ function CitedAnswerText({ answer, citations, documentId }: { answer: string; ci
 }
 
 type PlaygroundMode = "answer" | "retrieval";
-type AnswerInspectorTab = "claims" | "context" | "technical";
+type AnswerInspectorTab = "claims" | "retrieval" | "context" | "technical";
 
 function RagPlayground() {
   const [documents, setDocuments] = useState<DocumentRecord[]>([]);
@@ -280,6 +280,9 @@ function RagPlayground() {
     () => new Map((generatedAnswer?.evidence ?? []).map((evidence) => [evidence.evidence_id, evidence])),
     [generatedAnswer],
   );
+  const productionTrace = generatedAnswer?.retrieval_trace ?? null;
+  const rerankedTraceRows = productionTrace?.reranked_candidates ?? [];
+  const selectedTraceRows = rerankedTraceRows.filter((candidate) => candidate.selected_as_context_seed);
 
   const hasDocuments = documents.length > 0;
   const busy = running || generating;
@@ -461,6 +464,7 @@ function RagPlayground() {
           </div>
           <div className="rag-tab-switch rag-answer-inspector-tabs" role="tablist" aria-label="Answer inspector">
             <button type="button" role="tab" aria-selected={answerInspectorTab === "claims"} className={answerInspectorTab === "claims" ? "active" : ""} onClick={() => setAnswerInspectorTab("claims")}>Claims</button>
+            <button type="button" role="tab" aria-selected={answerInspectorTab === "retrieval"} className={answerInspectorTab === "retrieval" ? "active" : ""} onClick={() => setAnswerInspectorTab("retrieval")}>Retrieval</button>
             <button type="button" role="tab" aria-selected={answerInspectorTab === "context"} className={answerInspectorTab === "context" ? "active" : ""} onClick={() => setAnswerInspectorTab("context")}>Context</button>
             <button type="button" role="tab" aria-selected={answerInspectorTab === "technical"} className={answerInspectorTab === "technical" ? "active" : ""} onClick={() => setAnswerInspectorTab("technical")}>Technical</button>
           </div>
@@ -483,6 +487,42 @@ function RagPlayground() {
             </article>)}
             {generatedAnswer.claims.length === 0 && <p className="rag-empty-note">No claims were emitted for this response.</p>}
           </div>
+        </div>}
+
+        {answerInspectorTab === "retrieval" && <div className="rag-inspector-body rag-production-retrieval-inspector">
+          {productionTrace ? <>
+            <div className="rag-retrieval-stage-grid" aria-label="Production retrieval stages">
+              <div><span>Dense</span><strong>{productionTrace.dense_candidates.length}</strong><small>cosine-ranked candidates</small></div>
+              <div><span>Lexical</span><strong>{productionTrace.lexical_candidates.length}</strong><small>PostgreSQL FTS candidates</small></div>
+              <div><span>RRF union</span><strong>{productionTrace.fused_candidates.length}</strong><small>weighted reciprocal-rank fusion</small></div>
+              <div><span>Reranked</span><strong>{selectedTraceRows.length}</strong><small>selected Top-{generatedAnswer.retrieval_top_k} seeds</small></div>
+              <div><span>Context</span><strong>{generatedAnswer.context_chunk_count}</strong><small>{generatedAnswer.expanded_chunk_count} structural additions</small></div>
+            </div>
+            <div className="rag-retrieval-trace-note">
+              <strong>Same execution trace</strong>
+              <span>These values were captured from the exact retrieval execution that produced this answer. No second retrieval call is made for this inspector.</span>
+            </div>
+            <div className="rag-lexical-plan rag-production-lexical-plan">
+              <span><strong>Lexical formulation</strong><small>{productionTrace.lexical_terms.length} retained content terms</small></span>
+              <code>{productionTrace.lexical_tsquery || "—"}</code>
+            </div>
+            <div className="rag-production-retrieval-table" role="table" aria-label="Production reranker trace">
+              <div className="rag-production-retrieval-head" role="row">
+                <span>Rerank</span><span>Chunk</span><span>Evidence</span><span>Dense</span><span>Lexical</span><span>RRF</span><span>Reranker</span><span>Seed</span>
+              </div>
+              {rerankedTraceRows.map((candidate) => <div className={`rag-production-retrieval-row ${candidate.selected_as_context_seed ? "selected" : ""}`} role="row" key={candidate.chunk_id}>
+                <strong>#{candidate.reranker_rank}</strong>
+                <code>c{String(candidate.chunk_index).padStart(4, "0")}</code>
+                <span><strong>{sectionLabel(candidate.section_path)}</strong><small>Page {pageLabel(candidate.pages)} · {candidate.semantic_type}</small></span>
+                <span>{candidate.dense_rank ? `#${candidate.dense_rank}` : "—"}<small>{candidate.dense_score?.toFixed(4) ?? ""}</small></span>
+                <span>{candidate.lexical_rank ? `#${candidate.lexical_rank}` : "—"}<small>{candidate.lexical_score?.toFixed(4) ?? ""}</small></span>
+                <span>#{candidate.rank}<small>{candidate.fusion_score.toFixed(6)}</small></span>
+                <strong>{candidate.reranker_score.toFixed(4)}<small>ranking score</small></strong>
+                <span className={candidate.selected_as_context_seed ? "rag-used-badge" : "rag-available-badge"}>{candidate.selected_as_context_seed ? "SELECTED" : "DROPPED"}</span>
+              </div>)}
+            </div>
+            <p className="rag-inspector-footnote">Dense cosine, PostgreSQL lexical rank, RRF fusion, and reranker scores are ranking/debugging signals. They are not calibrated probabilities that the answer is correct.</p>
+          </> : <div className="rag-playground-empty"><strong>Retrieval trace unavailable</strong><span>This response predates Stage 14.3 or was produced without a retrieval trace.</span></div>}
         </div>}
 
         {answerInspectorTab === "context" && <div className="rag-inspector-body">

@@ -18,6 +18,11 @@ from app.schemas import (
     RerankedRetrievalHit,
     RerankedRetrievalRequest,
     RerankedRetrievalResponse,
+    RetrievalExecutionTrace,
+    RetrievalTraceDenseCandidate,
+    RetrievalTraceFusedCandidate,
+    RetrievalTraceLexicalCandidate,
+    RetrievalTraceRerankedCandidate,
 )
 from app.services.storage import read_metadata
 
@@ -204,6 +209,87 @@ def _build_reranker(model_name: str, device: str | None, batch_size: int | None)
         ) from exc
 
 
+def _build_retrieval_execution_trace(
+    *,
+    dense_rows: list[dict],
+    lexical_rows: list[dict],
+    fused_rows: list[dict],
+    reranker_scores: list[float],
+    top_k: int,
+    lexical_terms: list[str],
+    lexical_tsquery: str,
+) -> RetrievalExecutionTrace:
+    """Copy already-computed retrieval facts into a read-only Stage 14 trace.
+
+    This helper performs no database search, embedding call, or reranker inference.
+    The reranker ordering duplicates the frozen Stage-8 sort only for diagnostics;
+    contract tests assert its selected prefix matches the production response.
+    """
+
+    reranked = []
+    for candidate, score in zip(fused_rows, reranker_scores, strict=True):
+        item = dict(candidate)
+        item["hybrid_candidate_rank"] = int(item["rank"])
+        item["reranker_score"] = float(score)
+        reranked.append(item)
+    reranked.sort(
+        key=lambda item: (
+            -float(item["reranker_score"]),
+            int(item["hybrid_candidate_rank"]),
+            int(item["chunk_index"]),
+        )
+    )
+
+    dense_candidates = [
+        RetrievalTraceDenseCandidate(
+            rank=index,
+            chunk_id=str(row["chunk_id"]),
+            chunk_index=int(row["chunk_index"]),
+            semantic_type=str(row["semantic_type"]),
+            score=float(row["score"]),
+            distance=float(row["distance"]),
+            pages=list(row.get("pages", [])),
+            section_path=list(row.get("section_path", [])),
+        )
+        for index, row in enumerate(dense_rows, start=1)
+    ]
+    lexical_candidates = [
+        RetrievalTraceLexicalCandidate(
+            rank=index,
+            chunk_id=str(row["chunk_id"]),
+            chunk_index=int(row["chunk_index"]),
+            semantic_type=str(row["semantic_type"]),
+            score=float(row["score"]),
+            matched_term_count=int(row.get("matched_term_count", 0)),
+            term_coverage=float(row.get("term_coverage", 0.0)),
+            pages=list(row.get("pages", [])),
+            section_path=list(row.get("section_path", [])),
+        )
+        for index, row in enumerate(lexical_rows, start=1)
+    ]
+    fused_candidates = [RetrievalTraceFusedCandidate(**{
+        key: value for key, value in row.items()
+        if key in RetrievalTraceFusedCandidate.model_fields
+    }) for row in fused_rows]
+    reranked_candidates = [
+        RetrievalTraceRerankedCandidate(
+            **{key: value for key, value in row.items() if key in RetrievalTraceFusedCandidate.model_fields},
+            reranker_rank=index,
+            reranker_score=float(row["reranker_score"]),
+            selected_as_context_seed=index <= top_k,
+        )
+        for index, row in enumerate(reranked, start=1)
+    ]
+    return RetrievalExecutionTrace(
+        dense_candidates=dense_candidates,
+        lexical_candidates=lexical_candidates,
+        fused_candidates=fused_candidates,
+        reranked_candidates=reranked_candidates,
+        lexical_terms=list(lexical_terms),
+        lexical_tsquery=lexical_tsquery,
+    )
+
+
 @router.post("/hybrid-rerank", response_model=RerankedRetrievalResponse)
 def hybrid_reranked_retrieval(request: RerankedRetrievalRequest) -> RerankedRetrievalResponse:
     """Stage 8: rerank the deduplicated Dense Top-N + Lexical Top-N union."""
@@ -289,6 +375,15 @@ def hybrid_reranked_retrieval(request: RerankedRetrievalRequest) -> RerankedRetr
         dense_weight=request.dense_weight,
         lexical_weight=request.lexical_weight,
     )
+    retrieval_trace = _build_retrieval_execution_trace(
+        dense_rows=dense_rows,
+        lexical_rows=lexical_rows,
+        fused_rows=candidate_rows,
+        reranker_scores=reranker_scores,
+        top_k=request.top_k,
+        lexical_terms=list(lexical_plan.terms),
+        lexical_tsquery=lexical_plan.tsquery_text,
+    )
     hits = [RerankedRetrievalHit(**row) for row in reranked_rows]
 
     return RerankedRetrievalResponse(
@@ -313,6 +408,7 @@ def hybrid_reranked_retrieval(request: RerankedRetrievalRequest) -> RerankedRetr
         lexical_query_mode=lexical_plan.mode,
         lexical_terms=list(lexical_plan.terms),
         lexical_tsquery=lexical_plan.tsquery_text,
+        retrieval_trace=retrieval_trace,
         hits=hits,
     )
 
@@ -357,10 +453,21 @@ def hybrid_reranked_context_retrieval(request: ContextExpandedRetrievalRequest) 
 
     context_chunks = assemble_structural_context(ranked_rows, chunk_lookup, config=config)
     seed_ids = {str(hit.chunk_id) for hit in ranked_response.hits}
-    expanded_count = len({str(item["chunk_id"]) for item in context_chunks} - seed_ids)
+    context_ids = {str(item["chunk_id"]) for item in context_chunks}
+    expanded_ids = context_ids - seed_ids
+    expanded_count = len(expanded_ids)
+    response_payload = ranked_response.model_dump()
+    if ranked_response.retrieval_trace is not None:
+        response_payload["retrieval_trace"] = ranked_response.retrieval_trace.model_copy(update={
+            "context_seed_chunk_ids": [str(hit.chunk_id) for hit in ranked_response.hits],
+            "context_attached_chunk_ids": [
+                str(item["chunk_id"]) for item in context_chunks
+                if str(item["chunk_id"]) in expanded_ids
+            ],
+        })
 
     return ContextExpandedRetrievalResponse(
-        **ranked_response.model_dump(),
+        **response_payload,
         context_max_forward_neighbors_per_seed=config.max_forward_neighbors_per_seed,
         context_max_backward_neighbors_per_seed=config.max_backward_neighbors_per_seed,
         context_max_page_gap=config.max_page_gap,

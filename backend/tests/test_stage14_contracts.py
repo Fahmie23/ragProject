@@ -12,12 +12,14 @@ from app.services.evaluation_explorer import (
 
 def test_stage14_playground_contract_keeps_backend_as_source_of_truth():
     payload = TestClient(app).get("/api/playground/contract").json()
-    assert payload["contract_version"] == "stage14_playground_contract_v1"
+    assert payload["contract_version"] == "stage14_playground_contract_v1_1"
     assert payload["live_query"]["endpoint"] == "/api/generation/answer"
     assert payload["evaluation"]["read_only"] is True
     assert payload["evaluation"]["may_call_external_generation_provider"] is False
     assert all(item["frontend_calculation_allowed"] is False for item in payload["field_origins"])
-    assert payload["deferred_inspection"]["full_dense_lexical_rrf_reranker_trace"] == "Stage 14.3"
+    assert payload["retrieval_inspection"]["stage"] == "Stage 14.3"
+    assert payload["retrieval_inspection"]["same_execution"] is True
+    assert payload["retrieval_inspection"]["second_retrieval_call"] is False
 
 
 def test_stage14_evaluation_summary_is_frozen_and_explains_metric_provenance():

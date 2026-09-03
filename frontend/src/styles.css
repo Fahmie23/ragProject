@@ -4602,3 +4602,33 @@ body { background: var(--studio-bg); color: var(--studio-text); }
   .rag-context-row summary > span:last-child { grid-column: 2; justify-self: start; }
   .rag-context-row-body { padding-left: 12px; }
 }
+
+/* Stage 14.3 — production retrieval trace from the same answer execution. */
+.rag-production-retrieval-inspector { display: grid; gap: 14px; }
+.rag-retrieval-stage-grid { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 8px; }
+.rag-retrieval-stage-grid > div { min-width: 0; padding: 11px 12px; border: 1px solid #e4e8ec; border-radius: 10px; background: #fafbfc; }
+.rag-retrieval-stage-grid span, .rag-retrieval-stage-grid strong, .rag-retrieval-stage-grid small { display: block; }
+.rag-retrieval-stage-grid span { color: #7d8691; font-size: 8px; font-weight: 850; letter-spacing: .055em; text-transform: uppercase; }
+.rag-retrieval-stage-grid strong { margin-top: 4px; color: #252c34; font-size: 18px; }
+.rag-retrieval-stage-grid small { margin-top: 2px; color: #8c949e; font-size: 8px; line-height: 1.35; }
+.rag-retrieval-trace-note { display: flex; align-items: center; justify-content: space-between; gap: 14px; padding: 10px 12px; border: 1px solid #cfe6d8; border-radius: 9px; background: #f7fcf9; }
+.rag-retrieval-trace-note strong { flex: 0 0 auto; color: #17653a; font-size: 9px; }
+.rag-retrieval-trace-note span { color: #66706f; font-size: 9px; line-height: 1.45; }
+.rag-production-lexical-plan { border: 1px solid #e6eaed; border-radius: 9px; overflow: hidden; }
+.rag-production-retrieval-table { overflow-x: auto; border: 1px solid #e4e8ec; border-radius: 10px; background: #fff; }
+.rag-production-retrieval-head, .rag-production-retrieval-row { display: grid; grid-template-columns: 58px 86px minmax(190px, 1.4fr) 72px 72px 72px 88px 78px; gap: 9px; align-items: center; min-width: 900px; padding: 9px 11px; }
+.rag-production-retrieval-head { background: #f6f8f9; color: #767f89; font-size: 8px; font-weight: 850; letter-spacing: .05em; text-transform: uppercase; }
+.rag-production-retrieval-row { border-top: 1px solid #eef0f2; color: #404850; font-size: 9px; }
+.rag-production-retrieval-row.selected { background: #fbfefc; }
+.rag-production-retrieval-row code { color: #59616b; font-size: 9px; }
+.rag-production-retrieval-row > span, .rag-production-retrieval-row > strong { min-width: 0; }
+.rag-production-retrieval-row > span:nth-child(3) strong, .rag-production-retrieval-row small { display: block; }
+.rag-production-retrieval-row > span:nth-child(3) strong { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.rag-production-retrieval-row small { margin-top: 2px; color: #949ba5; font-size: 8px; font-weight: 500; }
+.rag-production-retrieval-row .rag-used-badge, .rag-production-retrieval-row .rag-available-badge { justify-self: start; }
+.rag-inspector-footnote { margin: 0; color: #7d8690; font-size: 9px; line-height: 1.5; }
+
+@media (max-width: 900px) {
+  .rag-retrieval-stage-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .rag-retrieval-trace-note { align-items: flex-start; flex-direction: column; gap: 4px; }
+}

@@ -1,0 +1,533 @@
+diff --git a/backend/app/routers/generation.py b/backend/app/routers/generation.py
+index 865c91e..0cb0fac 100644
+--- a/backend/app/routers/generation.py
++++ b/backend/app/routers/generation.py
+@@ -98,6 +98,7 @@ def grounded_answer(request: GroundedAnswerRequest) -> GroundedAnswerResponse:
+             context_strategy=retrieval.context_strategy,
+             context_chunk_count=retrieval.context_chunk_count,
+             expanded_chunk_count=retrieval.expanded_chunk_count,
++            retrieval_trace=retrieval.retrieval_trace,
+         )
+ 
+     system_prompt, user_prompt = build_grounded_prompts(request.question, evidence_rows)
+@@ -167,4 +168,5 @@ def grounded_answer(request: GroundedAnswerRequest) -> GroundedAnswerResponse:
+         context_strategy=retrieval.context_strategy,
+         context_chunk_count=retrieval.context_chunk_count,
+         expanded_chunk_count=retrieval.expanded_chunk_count,
++        retrieval_trace=retrieval.retrieval_trace,
+     )
+diff --git a/backend/app/routers/playground.py b/backend/app/routers/playground.py
+index 0245adc..e6cc9db 100644
+--- a/backend/app/routers/playground.py
++++ b/backend/app/routers/playground.py
+@@ -11,7 +11,7 @@ def playground_contract() -> dict:
+     """Stage 14.1 source-of-truth contract for the future RAG Playground UI."""
+ 
+     return {
+-        "contract_version": "stage14_playground_contract_v1",
++        "contract_version": "stage14_playground_contract_v1_1",
+         "live_query": {
+             "endpoint": "/api/generation/answer",
+             "method": "POST",
+@@ -38,6 +38,12 @@ def playground_contract() -> dict:
+                 "source": "Stage 10 deterministic citation provenance",
+                 "frontend_calculation_allowed": False,
+             },
++            {
++                "area": "retrieval_trace",
++                "fields": ["dense_candidates", "lexical_candidates", "fused_candidates", "reranked_candidates", "context_seed_chunk_ids", "context_attached_chunk_ids"],
++                "source": "Same execution used by frozen Retrieval-v1; Stage 14.3 copies already-computed ranking facts without a second retrieval call",
++                "frontend_calculation_allowed": False,
++            },
+             {
+                 "area": "generation_trace",
+                 "fields": ["generation_provider", "generation_model", "prompt_version", "usage"],
+@@ -60,9 +66,12 @@ def playground_contract() -> dict:
+             "may_modify_frozen_benchmark": False,
+             "scope": "answer_citation_eval_heldout_v1 only",
+         },
+-        "deferred_inspection": {
+-            "full_dense_lexical_rrf_reranker_trace": "Stage 14.3",
+-            "reason": "The current production generation response does not expose the full retrieval trace; Stage 14.1 will not fabricate it or execute retrieval twice.",
++        "retrieval_inspection": {
++            "stage": "Stage 14.3",
++            "trace_version": "retrieval_trace_v1",
++            "same_execution": True,
++            "second_retrieval_call": False,
++            "score_interpretation": "Dense, lexical, RRF, and reranker scores are ranking/debugging signals, not answer-correctness probabilities.",
+         },
+         "frontend_rule": "React displays backend-owned facts and metrics; React does not calculate RAG rankings or evaluation scores.",
+     }
+diff --git a/backend/app/routers/retrieval.py b/backend/app/routers/retrieval.py
+index 79dd114..7a4dccf 100644
+--- a/backend/app/routers/retrieval.py
++++ b/backend/app/routers/retrieval.py
+@@ -18,6 +18,11 @@ from app.schemas import (
+     RerankedRetrievalHit,
+     RerankedRetrievalRequest,
+     RerankedRetrievalResponse,
++    RetrievalExecutionTrace,
++    RetrievalTraceDenseCandidate,
++    RetrievalTraceFusedCandidate,
++    RetrievalTraceLexicalCandidate,
++    RetrievalTraceRerankedCandidate,
+ )
+ from app.services.storage import read_metadata
+ 
+@@ -204,6 +209,87 @@ def _build_reranker(model_name: str, device: str | None, batch_size: int | None)
+         ) from exc
+ 
+ 
++def _build_retrieval_execution_trace(
++    *,
++    dense_rows: list[dict],
++    lexical_rows: list[dict],
++    fused_rows: list[dict],
++    reranker_scores: list[float],
++    top_k: int,
++    lexical_terms: list[str],
++    lexical_tsquery: str,
++) -> RetrievalExecutionTrace:
++    """Copy already-computed retrieval facts into a read-only Stage 14 trace.
++
++    This helper performs no database search, embedding call, or reranker inference.
++    The reranker ordering duplicates the frozen Stage-8 sort only for diagnostics;
++    contract tests assert its selected prefix matches the production response.
++    """
++
++    reranked = []
++    for candidate, score in zip(fused_rows, reranker_scores, strict=True):
++        item = dict(candidate)
++        item["hybrid_candidate_rank"] = int(item["rank"])
++        item["reranker_score"] = float(score)
++        reranked.append(item)
++    reranked.sort(
++        key=lambda item: (
++            -float(item["reranker_score"]),
++            int(item["hybrid_candidate_rank"]),
++            int(item["chunk_index"]),
++        )
++    )
++
++    dense_candidates = [
++        RetrievalTraceDenseCandidate(
++            rank=index,
++            chunk_id=str(row["chunk_id"]),
++            chunk_index=int(row["chunk_index"]),
++            semantic_type=str(row["semantic_type"]),
++            score=float(row["score"]),
++            distance=float(row["distance"]),
++            pages=list(row.get("pages", [])),
++            section_path=list(row.get("section_path", [])),
++        )
++        for index, row in enumerate(dense_rows, start=1)
++    ]
++    lexical_candidates = [
++        RetrievalTraceLexicalCandidate(
++            rank=index,
++            chunk_id=str(row["chunk_id"]),
++            chunk_index=int(row["chunk_index"]),
++            semantic_type=str(row["semantic_type"]),
++            score=float(row["score"]),
++            matched_term_count=int(row.get("matched_term_count", 0)),
++            term_coverage=float(row.get("term_coverage", 0.0)),
++            pages=list(row.get("pages", [])),
++            section_path=list(row.get("section_path", [])),
++        )
++        for index, row in enumerate(lexical_rows, start=1)
++    ]
++    fused_candidates = [RetrievalTraceFusedCandidate(**{
++        key: value for key, value in row.items()
++        if key in RetrievalTraceFusedCandidate.model_fields
++    }) for row in fused_rows]
++    reranked_candidates = [
++        RetrievalTraceRerankedCandidate(
++            **{key: value for key, value in row.items() if key in RetrievalTraceFusedCandidate.model_fields},
++            reranker_rank=index,
++            reranker_score=float(row["reranker_score"]),
++            selected_as_context_seed=index <= top_k,
++        )
++        for index, row in enumerate(reranked, start=1)
++    ]
++    return RetrievalExecutionTrace(
++        dense_candidates=dense_candidates,
++        lexical_candidates=lexical_candidates,
++        fused_candidates=fused_candidates,
++        reranked_candidates=reranked_candidates,
++        lexical_terms=list(lexical_terms),
++        lexical_tsquery=lexical_tsquery,
++    )
++
++
+ @router.post("/hybrid-rerank", response_model=RerankedRetrievalResponse)
+ def hybrid_reranked_retrieval(request: RerankedRetrievalRequest) -> RerankedRetrievalResponse:
+     """Stage 8: rerank the deduplicated Dense Top-N + Lexical Top-N union."""
+@@ -289,6 +375,15 @@ def hybrid_reranked_retrieval(request: RerankedRetrievalRequest) -> RerankedRetr
+         dense_weight=request.dense_weight,
+         lexical_weight=request.lexical_weight,
+     )
++    retrieval_trace = _build_retrieval_execution_trace(
++        dense_rows=dense_rows,
++        lexical_rows=lexical_rows,
++        fused_rows=candidate_rows,
++        reranker_scores=reranker_scores,
++        top_k=request.top_k,
++        lexical_terms=list(lexical_plan.terms),
++        lexical_tsquery=lexical_plan.tsquery_text,
++    )
+     hits = [RerankedRetrievalHit(**row) for row in reranked_rows]
+ 
+     return RerankedRetrievalResponse(
+@@ -313,6 +408,7 @@ def hybrid_reranked_retrieval(request: RerankedRetrievalRequest) -> RerankedRetr
+         lexical_query_mode=lexical_plan.mode,
+         lexical_terms=list(lexical_plan.terms),
+         lexical_tsquery=lexical_plan.tsquery_text,
++        retrieval_trace=retrieval_trace,
+         hits=hits,
+     )
+ 
+@@ -357,10 +453,21 @@ def hybrid_reranked_context_retrieval(request: ContextExpandedRetrievalRequest)
+ 
+     context_chunks = assemble_structural_context(ranked_rows, chunk_lookup, config=config)
+     seed_ids = {str(hit.chunk_id) for hit in ranked_response.hits}
+-    expanded_count = len({str(item["chunk_id"]) for item in context_chunks} - seed_ids)
++    context_ids = {str(item["chunk_id"]) for item in context_chunks}
++    expanded_ids = context_ids - seed_ids
++    expanded_count = len(expanded_ids)
++    response_payload = ranked_response.model_dump()
++    if ranked_response.retrieval_trace is not None:
++        response_payload["retrieval_trace"] = ranked_response.retrieval_trace.model_copy(update={
++            "context_seed_chunk_ids": [str(hit.chunk_id) for hit in ranked_response.hits],
++            "context_attached_chunk_ids": [
++                str(item["chunk_id"]) for item in context_chunks
++                if str(item["chunk_id"]) in expanded_ids
++            ],
++        })
+ 
+     return ContextExpandedRetrievalResponse(
+-        **ranked_response.model_dump(),
++        **response_payload,
+         context_max_forward_neighbors_per_seed=config.max_forward_neighbors_per_seed,
+         context_max_backward_neighbors_per_seed=config.max_backward_neighbors_per_seed,
+         context_max_page_gap=config.max_page_gap,
+diff --git a/backend/app/schemas.py b/backend/app/schemas.py
+index 091fa0d..ae0289c 100644
+--- a/backend/app/schemas.py
++++ b/backend/app/schemas.py
+@@ -930,6 +930,67 @@ class RerankedRetrievalHit(BaseModel):
+     source_element_ids: list[str] = Field(default_factory=list)
+ 
+ 
++class RetrievalTraceDenseCandidate(BaseModel):
++    rank: int
++    chunk_id: str
++    chunk_index: int
++    semantic_type: str
++    score: float
++    distance: float
++    pages: list[int] = Field(default_factory=list)
++    section_path: list[str] = Field(default_factory=list)
++
++
++class RetrievalTraceLexicalCandidate(BaseModel):
++    rank: int
++    chunk_id: str
++    chunk_index: int
++    semantic_type: str
++    score: float
++    matched_term_count: int = 0
++    term_coverage: float = 0.0
++    pages: list[int] = Field(default_factory=list)
++    section_path: list[str] = Field(default_factory=list)
++
++
++class RetrievalTraceFusedCandidate(BaseModel):
++    rank: int
++    chunk_id: str
++    chunk_index: int
++    semantic_type: str
++    fusion_score: float
++    dense_rank: int | None = None
++    dense_score: float | None = None
++    dense_distance: float | None = None
++    dense_rrf_score: float = 0.0
++    lexical_rank: int | None = None
++    lexical_score: float | None = None
++    lexical_matched_term_count: int = 0
++    lexical_term_coverage: float = 0.0
++    lexical_rrf_score: float = 0.0
++    pages: list[int] = Field(default_factory=list)
++    section_path: list[str] = Field(default_factory=list)
++
++
++class RetrievalTraceRerankedCandidate(RetrievalTraceFusedCandidate):
++    reranker_rank: int
++    reranker_score: float
++    selected_as_context_seed: bool = False
++
++
++class RetrievalExecutionTrace(BaseModel):
++    trace_version: str = "retrieval_trace_v1"
++    same_execution: bool = True
++    dense_candidates: list[RetrievalTraceDenseCandidate] = Field(default_factory=list)
++    lexical_candidates: list[RetrievalTraceLexicalCandidate] = Field(default_factory=list)
++    fused_candidates: list[RetrievalTraceFusedCandidate] = Field(default_factory=list)
++    reranked_candidates: list[RetrievalTraceRerankedCandidate] = Field(default_factory=list)
++    lexical_terms: list[str] = Field(default_factory=list)
++    lexical_tsquery: str = ""
++    context_seed_chunk_ids: list[str] = Field(default_factory=list)
++    context_attached_chunk_ids: list[str] = Field(default_factory=list)
++
++
+ class RerankedRetrievalResponse(BaseModel):
+     document_id: str
+     query: str
+@@ -956,6 +1017,7 @@ class RerankedRetrievalResponse(BaseModel):
+     lexical_query_mode: str = "or_content_terms_v1"
+     lexical_terms: list[str] = Field(default_factory=list)
+     lexical_tsquery: str
++    retrieval_trace: RetrievalExecutionTrace | None = None
+     hits: list[RerankedRetrievalHit] = Field(default_factory=list)
+ 
+ class StructuralContextChunk(BaseModel):
+@@ -1100,3 +1162,4 @@ class GroundedAnswerResponse(BaseModel):
+     context_strategy: str
+     context_chunk_count: int
+     expanded_chunk_count: int
++    retrieval_trace: RetrievalExecutionTrace | None = None
+diff --git a/backend/tests/test_stage14_2b_playground_ui_polish.py b/backend/tests/test_stage14_2b_playground_ui_polish.py
+index 8c5dbfc..f091e04 100644
+--- a/backend/tests/test_stage14_2b_playground_ui_polish.py
++++ b/backend/tests/test_stage14_2b_playground_ui_polish.py
+@@ -10,10 +10,11 @@ STYLES = REPO_ROOT / "frontend" / "src" / "styles.css"
+ 
+ def test_stage14_2b_keeps_answer_primary_and_moves_detail_into_inspector() -> None:
+     text = SHELL.read_text(encoding="utf-8")
+-    assert 'type AnswerInspectorTab = "claims" | "context" | "technical";' in text
++    assert 'type AnswerInspectorTab = "claims" | "retrieval" | "context" | "technical";' in text
+     assert 'className="rag-answer-facts"' in text
+     assert 'rag-answer-inspector' in text
+     assert '>Claims</button>' in text
++    assert '>Retrieval</button>' in text
+     assert '>Context</button>' in text
+     assert '>Technical</button>' in text
+ 
+diff --git a/backend/tests/test_stage14_contracts.py b/backend/tests/test_stage14_contracts.py
+index adacba8..f28ad40 100644
+--- a/backend/tests/test_stage14_contracts.py
++++ b/backend/tests/test_stage14_contracts.py
+@@ -12,12 +12,14 @@ from app.services.evaluation_explorer import (
+ 
+ def test_stage14_playground_contract_keeps_backend_as_source_of_truth():
+     payload = TestClient(app).get("/api/playground/contract").json()
+-    assert payload["contract_version"] == "stage14_playground_contract_v1"
++    assert payload["contract_version"] == "stage14_playground_contract_v1_1"
+     assert payload["live_query"]["endpoint"] == "/api/generation/answer"
+     assert payload["evaluation"]["read_only"] is True
+     assert payload["evaluation"]["may_call_external_generation_provider"] is False
+     assert all(item["frontend_calculation_allowed"] is False for item in payload["field_origins"])
+-    assert payload["deferred_inspection"]["full_dense_lexical_rrf_reranker_trace"] == "Stage 14.3"
++    assert payload["retrieval_inspection"]["stage"] == "Stage 14.3"
++    assert payload["retrieval_inspection"]["same_execution"] is True
++    assert payload["retrieval_inspection"]["second_retrieval_call"] is False
+ 
+ 
+ def test_stage14_evaluation_summary_is_frozen_and_explains_metric_provenance():
+diff --git a/frontend/src/app/RagWorkbenchShell.tsx b/frontend/src/app/RagWorkbenchShell.tsx
+index 8c7a127..0bbfc73 100644
+--- a/frontend/src/app/RagWorkbenchShell.tsx
++++ b/frontend/src/app/RagWorkbenchShell.tsx
+@@ -149,7 +149,7 @@ function CitedAnswerText({ answer, citations, documentId }: { answer: string; ci
+ }
+ 
+ type PlaygroundMode = "answer" | "retrieval";
+-type AnswerInspectorTab = "claims" | "context" | "technical";
++type AnswerInspectorTab = "claims" | "retrieval" | "context" | "technical";
+ 
+ function RagPlayground() {
+   const [documents, setDocuments] = useState<DocumentRecord[]>([]);
+@@ -280,6 +280,9 @@ function RagPlayground() {
+     () => new Map((generatedAnswer?.evidence ?? []).map((evidence) => [evidence.evidence_id, evidence])),
+     [generatedAnswer],
+   );
++  const productionTrace = generatedAnswer?.retrieval_trace ?? null;
++  const rerankedTraceRows = productionTrace?.reranked_candidates ?? [];
++  const selectedTraceRows = rerankedTraceRows.filter((candidate) => candidate.selected_as_context_seed);
+ 
+   const hasDocuments = documents.length > 0;
+   const busy = running || generating;
+@@ -461,6 +464,7 @@ function RagPlayground() {
+           </div>
+           <div className="rag-tab-switch rag-answer-inspector-tabs" role="tablist" aria-label="Answer inspector">
+             <button type="button" role="tab" aria-selected={answerInspectorTab === "claims"} className={answerInspectorTab === "claims" ? "active" : ""} onClick={() => setAnswerInspectorTab("claims")}>Claims</button>
++            <button type="button" role="tab" aria-selected={answerInspectorTab === "retrieval"} className={answerInspectorTab === "retrieval" ? "active" : ""} onClick={() => setAnswerInspectorTab("retrieval")}>Retrieval</button>
+             <button type="button" role="tab" aria-selected={answerInspectorTab === "context"} className={answerInspectorTab === "context" ? "active" : ""} onClick={() => setAnswerInspectorTab("context")}>Context</button>
+             <button type="button" role="tab" aria-selected={answerInspectorTab === "technical"} className={answerInspectorTab === "technical" ? "active" : ""} onClick={() => setAnswerInspectorTab("technical")}>Technical</button>
+           </div>
+@@ -485,6 +489,42 @@ function RagPlayground() {
+           </div>
+         </div>}
+ 
++        {answerInspectorTab === "retrieval" && <div className="rag-inspector-body rag-production-retrieval-inspector">
++          {productionTrace ? <>
++            <div className="rag-retrieval-stage-grid" aria-label="Production retrieval stages">
++              <div><span>Dense</span><strong>{productionTrace.dense_candidates.length}</strong><small>cosine-ranked candidates</small></div>
++              <div><span>Lexical</span><strong>{productionTrace.lexical_candidates.length}</strong><small>PostgreSQL FTS candidates</small></div>
++              <div><span>RRF union</span><strong>{productionTrace.fused_candidates.length}</strong><small>weighted reciprocal-rank fusion</small></div>
++              <div><span>Reranked</span><strong>{selectedTraceRows.length}</strong><small>selected Top-{generatedAnswer.retrieval_top_k} seeds</small></div>
++              <div><span>Context</span><strong>{generatedAnswer.context_chunk_count}</strong><small>{generatedAnswer.expanded_chunk_count} structural additions</small></div>
++            </div>
++            <div className="rag-retrieval-trace-note">
++              <strong>Same execution trace</strong>
++              <span>These values were captured from the exact retrieval execution that produced this answer. No second retrieval call is made for this inspector.</span>
++            </div>
++            <div className="rag-lexical-plan rag-production-lexical-plan">
++              <span><strong>Lexical formulation</strong><small>{productionTrace.lexical_terms.length} retained content terms</small></span>
++              <code>{productionTrace.lexical_tsquery || "—"}</code>
++            </div>
++            <div className="rag-production-retrieval-table" role="table" aria-label="Production reranker trace">
++              <div className="rag-production-retrieval-head" role="row">
++                <span>Rerank</span><span>Chunk</span><span>Evidence</span><span>Dense</span><span>Lexical</span><span>RRF</span><span>Reranker</span><span>Seed</span>
++              </div>
++              {rerankedTraceRows.map((candidate) => <div className={`rag-production-retrieval-row ${candidate.selected_as_context_seed ? "selected" : ""}`} role="row" key={candidate.chunk_id}>
++                <strong>#{candidate.reranker_rank}</strong>
++                <code>c{String(candidate.chunk_index).padStart(4, "0")}</code>
++                <span><strong>{sectionLabel(candidate.section_path)}</strong><small>Page {pageLabel(candidate.pages)} · {candidate.semantic_type}</small></span>
++                <span>{candidate.dense_rank ? `#${candidate.dense_rank}` : "—"}<small>{candidate.dense_score?.toFixed(4) ?? ""}</small></span>
++                <span>{candidate.lexical_rank ? `#${candidate.lexical_rank}` : "—"}<small>{candidate.lexical_score?.toFixed(4) ?? ""}</small></span>
++                <span>#{candidate.rank}<small>{candidate.fusion_score.toFixed(6)}</small></span>
++                <strong>{candidate.reranker_score.toFixed(4)}<small>ranking score</small></strong>
++                <span className={candidate.selected_as_context_seed ? "rag-used-badge" : "rag-available-badge"}>{candidate.selected_as_context_seed ? "SELECTED" : "DROPPED"}</span>
++              </div>)}
++            </div>
++            <p className="rag-inspector-footnote">Dense cosine, PostgreSQL lexical rank, RRF fusion, and reranker scores are ranking/debugging signals. They are not calibrated probabilities that the answer is correct.</p>
++          </> : <div className="rag-playground-empty"><strong>Retrieval trace unavailable</strong><span>This response predates Stage 14.3 or was produced without a retrieval trace.</span></div>}
++        </div>}
++
+         {answerInspectorTab === "context" && <div className="rag-inspector-body">
+           <p className="rag-inspector-intro">{generatedAnswer.evidence.length} context chunks were available to generation; {generatedAnswer.used_evidence_ids.length} were explicitly referenced by generated claims.</p>
+           <div className="rag-context-list">
+diff --git a/frontend/src/styles.css b/frontend/src/styles.css
+index c4ff36a..548b38e 100644
+--- a/frontend/src/styles.css
++++ b/frontend/src/styles.css
+@@ -4602,3 +4602,33 @@ body { background: var(--studio-bg); color: var(--studio-text); }
+   .rag-context-row summary > span:last-child { grid-column: 2; justify-self: start; }
+   .rag-context-row-body { padding-left: 12px; }
+ }
++
++/* Stage 14.3 — production retrieval trace from the same answer execution. */
++.rag-production-retrieval-inspector { display: grid; gap: 14px; }
++.rag-retrieval-stage-grid { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 8px; }
++.rag-retrieval-stage-grid > div { min-width: 0; padding: 11px 12px; border: 1px solid #e4e8ec; border-radius: 10px; background: #fafbfc; }
++.rag-retrieval-stage-grid span, .rag-retrieval-stage-grid strong, .rag-retrieval-stage-grid small { display: block; }
++.rag-retrieval-stage-grid span { color: #7d8691; font-size: 8px; font-weight: 850; letter-spacing: .055em; text-transform: uppercase; }
++.rag-retrieval-stage-grid strong { margin-top: 4px; color: #252c34; font-size: 18px; }
++.rag-retrieval-stage-grid small { margin-top: 2px; color: #8c949e; font-size: 8px; line-height: 1.35; }
++.rag-retrieval-trace-note { display: flex; align-items: center; justify-content: space-between; gap: 14px; padding: 10px 12px; border: 1px solid #cfe6d8; border-radius: 9px; background: #f7fcf9; }
++.rag-retrieval-trace-note strong { flex: 0 0 auto; color: #17653a; font-size: 9px; }
++.rag-retrieval-trace-note span { color: #66706f; font-size: 9px; line-height: 1.45; }
++.rag-production-lexical-plan { border: 1px solid #e6eaed; border-radius: 9px; overflow: hidden; }
++.rag-production-retrieval-table { overflow-x: auto; border: 1px solid #e4e8ec; border-radius: 10px; background: #fff; }
++.rag-production-retrieval-head, .rag-production-retrieval-row { display: grid; grid-template-columns: 58px 86px minmax(190px, 1.4fr) 72px 72px 72px 88px 78px; gap: 9px; align-items: center; min-width: 900px; padding: 9px 11px; }
++.rag-production-retrieval-head { background: #f6f8f9; color: #767f89; font-size: 8px; font-weight: 850; letter-spacing: .05em; text-transform: uppercase; }
++.rag-production-retrieval-row { border-top: 1px solid #eef0f2; color: #404850; font-size: 9px; }
++.rag-production-retrieval-row.selected { background: #fbfefc; }
++.rag-production-retrieval-row code { color: #59616b; font-size: 9px; }
++.rag-production-retrieval-row > span, .rag-production-retrieval-row > strong { min-width: 0; }
++.rag-production-retrieval-row > span:nth-child(3) strong, .rag-production-retrieval-row small { display: block; }
++.rag-production-retrieval-row > span:nth-child(3) strong { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
++.rag-production-retrieval-row small { margin-top: 2px; color: #949ba5; font-size: 8px; font-weight: 500; }
++.rag-production-retrieval-row .rag-used-badge, .rag-production-retrieval-row .rag-available-badge { justify-self: start; }
++.rag-inspector-footnote { margin: 0; color: #7d8690; font-size: 9px; line-height: 1.5; }
++
++@media (max-width: 900px) {
++  .rag-retrieval-stage-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
++  .rag-retrieval-trace-note { align-items: flex-start; flex-direction: column; gap: 4px; }
++}
+diff --git a/frontend/src/types.ts b/frontend/src/types.ts
+index 1a88d4f..44d1e91 100644
+--- a/frontend/src/types.ts
++++ b/frontend/src/types.ts
+@@ -787,6 +787,67 @@ export interface RerankedRetrievalHit {
+   source_element_ids: string[];
+ }
+ 
++export interface RetrievalTraceDenseCandidate {
++  rank: number;
++  chunk_id: string;
++  chunk_index: number;
++  semantic_type: string;
++  score: number;
++  distance: number;
++  pages: number[];
++  section_path: string[];
++}
++
++export interface RetrievalTraceLexicalCandidate {
++  rank: number;
++  chunk_id: string;
++  chunk_index: number;
++  semantic_type: string;
++  score: number;
++  matched_term_count: number;
++  term_coverage: number;
++  pages: number[];
++  section_path: string[];
++}
++
++export interface RetrievalTraceFusedCandidate {
++  rank: number;
++  chunk_id: string;
++  chunk_index: number;
++  semantic_type: string;
++  fusion_score: number;
++  dense_rank?: number | null;
++  dense_score?: number | null;
++  dense_distance?: number | null;
++  dense_rrf_score: number;
++  lexical_rank?: number | null;
++  lexical_score?: number | null;
++  lexical_matched_term_count: number;
++  lexical_term_coverage: number;
++  lexical_rrf_score: number;
++  pages: number[];
++  section_path: string[];
++}
++
++export interface RetrievalTraceRerankedCandidate extends RetrievalTraceFusedCandidate {
++  reranker_rank: number;
++  reranker_score: number;
++  selected_as_context_seed: boolean;
++}
++
++export interface RetrievalExecutionTrace {
++  trace_version: string;
++  same_execution: boolean;
++  dense_candidates: RetrievalTraceDenseCandidate[];
++  lexical_candidates: RetrievalTraceLexicalCandidate[];
++  fused_candidates: RetrievalTraceFusedCandidate[];
++  reranked_candidates: RetrievalTraceRerankedCandidate[];
++  lexical_terms: string[];
++  lexical_tsquery: string;
++  context_seed_chunk_ids: string[];
++  context_attached_chunk_ids: string[];
++}
++
+ export interface RerankedRetrievalResponse {
+   document_id: string;
+   query: string;
+@@ -813,6 +874,7 @@ export interface RerankedRetrievalResponse {
+   lexical_query_mode: string;
+   lexical_terms: string[];
+   lexical_tsquery: string;
++  retrieval_trace?: RetrievalExecutionTrace | null;
+   hits: RerankedRetrievalHit[];
+ }
+ 
+@@ -945,4 +1007,5 @@ export interface GroundedAnswerResponse {
+   context_strategy: string;
+   context_chunk_count: number;
+   expanded_chunk_count: number;
++  retrieval_trace?: RetrievalExecutionTrace | null;
+ }
