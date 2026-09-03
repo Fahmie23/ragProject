@@ -4398,3 +4398,207 @@ body { background: var(--studio-bg); color: var(--studio-text); }
 .rag-citation-open { display: inline-flex; margin-top: 8px; color: #17653a; font-size: 11px; font-weight: 800; text-decoration: none; }
 .rag-citation-open:hover { text-decoration: underline; }
 .rag-citation-trace { color: #17653a; font-weight: 750; }
+
+/* ========================================================================== */
+/* Stage 14.2 — core cited-answer playground                                  */
+/* ========================================================================== */
+.rag-playground-heading { gap: 22px; }
+.rag-playground-mode-switch { flex: 0 0 auto; }
+.rag-playground-mode-switch button { min-width: 118px; }
+.rag-experiment-banner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 12px;
+  padding: 12px 14px;
+  border: 1px solid #dfe3e8;
+  border-radius: 12px;
+  background: #fafbfc;
+}
+.rag-experiment-banner > div:first-child { display: grid; gap: 3px; }
+.rag-experiment-banner strong { font-size: 11px; }
+.rag-experiment-banner span { color: #77808b; font-size: 10px; line-height: 1.45; }
+.rag-retrieval-controls.answer-mode { grid-template-columns: minmax(220px, 1fr); }
+.rag-playground-notice {
+  margin-top: 10px;
+  padding: 10px 12px;
+  border: 1px solid #e3d8bd;
+  border-radius: 8px;
+  background: #fffaf0;
+  color: #7b5b1d;
+  font-size: 10px;
+  line-height: 1.45;
+}
+.rag-playground-loading,
+.rag-playground-empty {
+  min-height: 180px;
+  display: grid;
+  place-content: center;
+  gap: 6px;
+  text-align: center;
+  color: #727b86;
+}
+.rag-playground-loading strong,
+.rag-playground-empty strong { color: #31363c; font-size: 13px; }
+.rag-playground-loading span,
+.rag-playground-empty span { max-width: 520px; font-size: 10px; line-height: 1.55; }
+.rag-cited-answer-copy { white-space: pre-wrap; }
+.rag-answer-citation-link {
+  display: inline-flex;
+  align-items: center;
+  margin: 0 2px;
+  border-radius: 5px;
+  padding: 1px 5px;
+  background: #edf8f2;
+  color: #17653a;
+  font-size: .82em;
+  font-weight: 800;
+  text-decoration: none;
+  vertical-align: baseline;
+}
+.rag-answer-citation-link:hover { background: #dff2e7; text-decoration: underline; }
+.rag-citation-source-card p { white-space: pre-wrap; }
+.rag-evaluation-placeholder { max-width: 820px; }
+.rag-evaluation-placeholder code {
+  display: inline-block;
+  margin-top: 16px;
+  padding: 8px 10px;
+  border-radius: 7px;
+  background: #f3f4f6;
+  color: #4d5661;
+  font-size: 10px;
+}
+
+@media (max-width: 760px) {
+  .rag-experiment-banner { align-items: stretch; flex-direction: column; }
+  .rag-experiment-banner .rag-strategy-control { overflow-x: auto; }
+  .rag-playground-mode-switch { width: 100%; }
+  .rag-playground-mode-switch button { flex: 1; min-width: 0; }
+}
+
+/* ========================================================================== */
+/* Stage 14.2B — progressive-disclosure playground polish                     */
+/* ========================================================================== */
+.rag-playground-page { --rag-accent: #17653a; --rag-soft-accent: #eef8f2; }
+.rag-query-card { box-shadow: 0 1px 2px rgba(20, 28, 38, .03); }
+.rag-playground-grid { grid-template-columns: minmax(0, 1.9fr) minmax(320px, .72fr); gap: 14px; align-items: start; }
+.rag-answer-panel { min-height: 360px; padding: 24px; }
+.rag-sources-panel { padding: 18px; }
+.rag-sources-panel .rag-panel-head { padding-bottom: 12px; border-bottom: 1px solid #edf0f2; }
+.rag-sources-panel .rag-source-card { padding: 15px 0; }
+.rag-citation-source-card { min-width: 0; overflow: hidden; }
+.rag-source-preview {
+  display: -webkit-box;
+  margin: 9px 0 7px;
+  overflow: hidden;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 6;
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+}
+.rag-source-evidence-disclosure { margin: 4px 0 10px; }
+.rag-source-evidence-disclosure summary {
+  width: fit-content;
+  color: #17653a;
+  font-size: 9px;
+  font-weight: 800;
+  cursor: pointer;
+  user-select: none;
+}
+.rag-source-evidence-disclosure[open] summary { margin-bottom: 7px; }
+.rag-source-evidence-full {
+  max-height: 260px;
+  overflow: auto;
+  overscroll-behavior: contain;
+  border: 1px solid #e4e9e6;
+  border-radius: 8px;
+  background: #fafdfb;
+  padding: 9px 10px;
+}
+.rag-source-evidence-full p {
+  display: block;
+  margin: 0;
+  max-height: none;
+  overflow: visible;
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+}
+.rag-source-meta {
+  display: block;
+  margin-top: 8px;
+  color: #7d8791;
+  font-size: 9px;
+  line-height: 1.45;
+  overflow-wrap: anywhere;
+}
+.rag-source-section { display: block; margin-top: 7px; line-height: 1.45; overflow-wrap: anywhere; }
+.rag-citation-open { min-height: 30px; align-items: center; padding: 0 9px; border: 1px solid #cfe0d6; border-radius: 8px; background: #f5fbf7; text-decoration: none; }
+.rag-citation-open:hover { background: #eaf7ef; text-decoration: none; }
+
+.rag-answer-status-row { display: flex; align-items: center; gap: 9px; margin: 15px 0 8px; flex-wrap: wrap; }
+.rag-answer-status-note { color: #7c8590; font-size: 10px; font-weight: 650; }
+.rag-answer-panel .rag-answer-copy { max-width: 860px; margin: 18px 0 22px; font-size: 15px; line-height: 1.85; }
+.rag-answer-facts { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 8px; margin-top: 22px; padding-top: 16px; border-top: 1px solid #eceff2; }
+.rag-answer-facts > div { min-width: 0; padding: 10px 11px; border: 1px solid #e7eaee; border-radius: 10px; background: #fafbfc; }
+.rag-answer-facts strong, .rag-answer-facts span { display: block; }
+.rag-answer-facts strong { color: #252b31; font-size: 16px; line-height: 1; }
+.rag-answer-facts span { margin-top: 5px; color: #858d98; font-size: 9px; font-weight: 700; text-transform: uppercase; letter-spacing: .045em; }
+.rag-answer-tech-disclosure { margin-top: 10px; border: 1px solid #e7eaee; border-radius: 9px; background: #fcfcfd; }
+.rag-answer-tech-disclosure summary { padding: 9px 11px; color: #65707c; font-size: 10px; font-weight: 750; cursor: pointer; }
+.rag-answer-tech-disclosure > div { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px; padding: 0 11px 11px; }
+.rag-answer-tech-disclosure span { min-width: 0; color: #6f7884; font-size: 9px; overflow-wrap: anywhere; }
+.rag-answer-tech-disclosure strong { display: block; margin-bottom: 2px; color: #30363d; font-size: 8px; text-transform: uppercase; letter-spacing: .05em; }
+
+.rag-answer-inspector { padding: 0; }
+.rag-answer-inspector-head { display: flex; align-items: center; justify-content: space-between; gap: 16px; padding: 16px 18px; }
+.rag-answer-inspector-head h2 { margin: 5px 0 0; font-size: 15px; }
+.rag-answer-inspector-tabs { flex: 0 0 auto; }
+.rag-inspector-body { border-top: 1px solid #e9ecef; padding: 16px 18px 18px; }
+.rag-inspector-intro { margin: 0 0 13px; color: #7b8490; font-size: 10px; line-height: 1.55; }
+.rag-claim-list-compact { grid-template-columns: repeat(2, minmax(0, 1fr)); margin: 0; }
+.rag-claim-card-compact { padding: 12px 13px; background: #fcfcfd; }
+.rag-claim-card-compact p { font-size: 11px; line-height: 1.55; }
+
+.rag-context-list { display: grid; gap: 7px; }
+.rag-context-row { border: 1px solid #e4e8ec; border-radius: 10px; background: #fff; overflow: hidden; }
+.rag-context-row.used { border-color: #bcdcca; background: #fbfefc; }
+.rag-context-row summary { display: grid; grid-template-columns: 48px minmax(0, 1fr) auto; align-items: center; gap: 11px; padding: 11px 12px; cursor: pointer; list-style: none; }
+.rag-context-row summary::-webkit-details-marker { display: none; }
+.rag-context-row summary > span:nth-child(2) { min-width: 0; }
+.rag-context-row summary strong, .rag-context-row summary small { display: block; }
+.rag-context-row summary strong { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; font-size: 10px; }
+.rag-context-row summary small { margin-top: 3px; color: #858e99; font-size: 9px; }
+.rag-context-row-id { color: #303840; font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 10px; font-weight: 850; }
+.rag-used-badge, .rag-available-badge { border-radius: 999px; padding: 4px 7px; font-size: 8px; font-weight: 850; letter-spacing: .04em; }
+.rag-used-badge { background: #eaf7ef; color: #17653a; }
+.rag-available-badge { background: #f0f2f4; color: #78818c; }
+.rag-context-row-body { padding: 0 12px 12px 71px; }
+.rag-context-row-body p { margin: 8px 0; color: #5f6873; font-size: 10px; line-height: 1.6; white-space: pre-wrap; }
+.rag-context-row-body > small { color: #8b939d; font-size: 9px; }
+.rag-context-citation { display: inline-flex; padding: 5px 7px; border-radius: 7px; background: #edf8f2; color: #17653a; font-size: 9px; font-weight: 750; }
+
+.rag-technical-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px; margin: 0; }
+.rag-technical-grid > div { min-width: 0; padding: 11px 12px; border: 1px solid #e7eaee; border-radius: 9px; background: #fafbfc; }
+.rag-technical-grid dt { color: #8a929c; font-size: 8px; font-weight: 800; text-transform: uppercase; letter-spacing: .055em; }
+.rag-technical-grid dd { margin: 5px 0 0; color: #30373f; font-size: 10px; line-height: 1.45; overflow-wrap: anywhere; }
+
+@media (min-width: 1180px) {
+  .rag-sources-panel { position: sticky; top: 82px; max-height: calc(100vh - 100px); overflow: auto; }
+}
+@media (max-width: 980px) {
+  .rag-answer-facts { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .rag-claim-list-compact { grid-template-columns: 1fr; }
+  .rag-sources-panel { position: static; max-height: none; overflow: visible; }
+}
+@media (max-width: 620px) {
+  .rag-answer-panel, .rag-sources-panel { padding: 16px; }
+  .rag-answer-facts { grid-template-columns: 1fr 1fr; }
+  .rag-answer-tech-disclosure > div, .rag-technical-grid { grid-template-columns: 1fr; }
+  .rag-answer-inspector-head { align-items: stretch; flex-direction: column; }
+  .rag-answer-inspector-tabs { width: 100%; }
+  .rag-answer-inspector-tabs button { flex: 1; }
+  .rag-context-row summary { grid-template-columns: 40px minmax(0, 1fr); }
+  .rag-context-row summary > span:last-child { grid-column: 2; justify-self: start; }
+  .rag-context-row-body { padding-left: 12px; }
+}
