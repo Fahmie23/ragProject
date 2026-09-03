@@ -63,6 +63,7 @@ services:
       args:
         APP_UID: ${APP_UID:-1000}
         APP_GID: ${APP_GID:-1000}
+    gpus: all
     environment: *backend_environment
     ports:
       - "${BACKEND_PORT:-8000}:8000"
