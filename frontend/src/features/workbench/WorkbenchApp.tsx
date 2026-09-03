@@ -3771,6 +3771,7 @@ export default function App() {
   const [chunking, setChunking] = useState<ChunkingArtifact | null>(null);
   const [embeddingStatus, setEmbeddingStatus] = useState<EmbeddingStatus | null>(null);
   const [loading, setLoading] = useState(true);
+  const [documentLoading, setDocumentLoading] = useState(false);
   const [extracting, setExtracting] = useState(false);
   const [structuring, setStructuring] = useState(false);
   const [savingCorrections, setSavingCorrections] = useState(false);
@@ -3800,7 +3801,9 @@ export default function App() {
   }, []);
 
   useEffect(() => {
+    let cancelled = false;
     if (!selectedId) {
+      setDocumentLoading(false);
       setSelected(null);
       setExtraction(null);
       setStructure(null);
@@ -3809,9 +3812,20 @@ export default function App() {
       setLayout(null);
       setChunking(null);
       setEmbeddingStatus(null);
-      return;
+      return () => { cancelled = true; };
     }
+
+    setDocumentLoading(true);
     setError("");
+    setSelected(null);
+    setExtraction(null);
+    setStructure(null);
+    setResolved(null);
+    setCorrections(null);
+    setLayout(null);
+    setChunking(null);
+    setEmbeddingStatus(null);
+
     Promise.all([
       getDocument(selectedId),
       getExtraction(selectedId),
@@ -3822,6 +3836,7 @@ export default function App() {
       getChunks(selectedId),
     ])
       .then(([doc, raw, structured, resolvedArtifact, correctionArtifact, layoutArtifact, chunkingArtifact]) => {
+        if (cancelled) return;
         setSelected(doc);
         setExtraction(raw);
         setStructure(structured);
@@ -3829,14 +3844,20 @@ export default function App() {
         setCorrections(correctionArtifact);
         setLayout(layoutArtifact);
         setChunking(chunkingArtifact);
-        setEmbeddingStatus(null);
         if (chunkingArtifact) {
           getEmbeddingStatus(selectedId)
-            .then((next) => setEmbeddingStatus(next))
-            .catch(() => setEmbeddingStatus(null));
+            .then((next) => { if (!cancelled) setEmbeddingStatus(next); })
+            .catch(() => { if (!cancelled) setEmbeddingStatus(null); });
         }
       })
-      .catch((e) => setError(e instanceof Error ? e.message : "Failed to load document"));
+      .catch((e) => {
+        if (!cancelled) setError(e instanceof Error ? e.message : "Failed to load document");
+      })
+      .finally(() => {
+        if (!cancelled) setDocumentLoading(false);
+      });
+
+    return () => { cancelled = true; };
   }, [selectedId]);
 
   function updateRecord(updated: DocumentRecord) {
@@ -3992,6 +4013,8 @@ export default function App() {
         {error && <div className="global-error"><span>{error}</span><button onClick={() => setError("")}>×</button></div>}
         {loading ? (
           <div className="empty-state"><div className="spinner" />Loading workspace…</div>
+        ) : documentLoading ? (
+          <div className="empty-state"><div className="spinner" />Loading selected document…</div>
         ) : selected ? (
           <Workspace
             document={selected}

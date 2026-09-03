@@ -66,7 +66,8 @@ export function CompactDocumentBar({
       <div className="v2-compact-brand" aria-label="Document Intelligence">R</div>
       <label className="v2-compact-document-select">
         <span>Document</span>
-        <select value={selectedId ?? ""} onChange={(event) => event.target.value && onSelect(event.target.value)}>
+        <select value={selectedId ?? ""} onChange={(event) => event.target.value && onSelect(event.target.value)} disabled={documents.length === 0}>
+          {documents.length === 0 && <option value="">No documents loaded</option>}
           {documents.map((doc) => <option key={doc.document_id} value={doc.document_id}>{doc.original_filename}</option>)}
         </select>
       </label>
@@ -112,7 +113,7 @@ export function DocumentSidebar({
       </div>
 
       {!collapsed ? <UploadPdfButton onUploaded={onUploaded} /> : (
-        <button className="compact-upload-toggle" onClick={onToggleCollapsed} title="Expand sidebar to upload a PDF" aria-label="Upload PDF">＋</button>
+        <button className="compact-upload-toggle" onClick={onToggleCollapsed} title="Expand sidebar to upload a PDF" aria-label="Expand sidebar to upload a PDF">＋</button>
       )}
 
       {!collapsed && (

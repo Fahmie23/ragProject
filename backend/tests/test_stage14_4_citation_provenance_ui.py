@@ -25,10 +25,10 @@ def test_stage14_4_contract_keeps_live_provenance_backend_owned_and_nonsemantic(
 def test_stage14_4_inline_citation_is_primary_provenance_entrypoint() -> None:
     text = SHELL.read_text(encoding="utf-8")
     assert "activeCitationId" in text
-    assert "onCitationSelect(citation.citation_id)" in text
+    assert "onCitationSelect(citation.citation_id, event.currentTarget)" in text
     assert 'className="rag-answer-citation-link"' in text
     assert 'data-active={activeCitationId === citation.citation_id ? "true" : "false"}' in text
-    assert 'onCitationSelect={setSelectedCitationId}' in text
+    assert 'onCitationSelect={openCitation}' in text
     assert 'className="rag-provenance-drawer"' in text
 
 
@@ -73,7 +73,8 @@ def test_stage14_4_live_ui_explicitly_does_not_claim_semantic_entailment() -> No
 
 def test_stage14_4_provenance_can_close_by_button_or_escape_and_resets_with_outputs() -> None:
     text = SHELL.read_text(encoding="utf-8")
-    assert 'if (event.key === "Escape") setSelectedCitationId(null);' in text
+    assert 'if (event.key === "Escape") closeCitation();' in text
+    assert 'ref={provenanceCloseRef}' in text
     assert 'aria-label="Close citation provenance"' in text
     assert "setSelectedCitationId(null);" in text
     assert "Citation details" in text

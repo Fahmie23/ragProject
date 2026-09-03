@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState, type ReactNode } from "react";
+import { useEffect, useMemo, useRef, useState, type ReactNode } from "react";
 import WorkbenchApp from "../features/workbench/WorkbenchApp";
 import { listDocuments, rawFileUrl, runContextExpandedRetrieval, runDenseRetrieval, runGroundedAnswer, runHybridRetrieval } from "../api";
 import type { ContextExpandedRetrievalResponse, DenseRetrievalResponse, DocumentRecord, GroundedAnswerResponse, HybridRetrievalHit, HybridRetrievalResponse, RerankedRetrievalHit } from "../types";
@@ -23,7 +23,13 @@ function AppHeader({ active, onChange }: { active: AppView; onChange: (view: App
       </button>
       <nav className="rag-global-nav" aria-label="RAG Workbench">
         {items.map((item) => (
-          <button key={item.id} type="button" className={active === item.id ? "active" : ""} onClick={() => onChange(item.id)}>
+          <button
+            key={item.id}
+            type="button"
+            className={active === item.id ? "active" : ""}
+            aria-current={active === item.id ? "page" : undefined}
+            onClick={() => onChange(item.id)}
+          >
             <Icon>{item.icon}</Icon><span>{item.label}</span>
           </button>
         ))}
@@ -141,7 +147,7 @@ function CitedAnswerText({
   answer: string;
   citations: GroundedAnswerResponse["citations"];
   activeCitationId: string | null;
-  onCitationSelect: (citationId: string) => void;
+  onCitationSelect: (citationId: string, trigger: HTMLButtonElement) => void;
 }) {
   const citationByMarker = useMemo(() => new Map(citations.map((citation) => [citation.marker, citation])), [citations]);
   const parts = answer.split(/(\[\d+\])/g);
@@ -156,7 +162,7 @@ function CitedAnswerText({
           type="button"
           className="rag-answer-citation-link"
           data-active={activeCitationId === citation.citation_id ? "true" : "false"}
-          onClick={() => onCitationSelect(citation.citation_id)}
+          onClick={(event) => onCitationSelect(citation.citation_id, event.currentTarget)}
           title={citation.display}
           aria-label={`${citation.marker} ${citation.display}. Inspect deterministic provenance.`}
         >
@@ -186,6 +192,10 @@ function RagPlayground() {
   const [traceOpen, setTraceOpen] = useState(false);
   const [answerInspectorTab, setAnswerInspectorTab] = useState<AnswerInspectorTab>("claims");
   const [selectedCitationId, setSelectedCitationId] = useState<string | null>(null);
+  const [documentsLoading, setDocumentsLoading] = useState(true);
+  const [documentsLoadError, setDocumentsLoadError] = useState<string | null>(null);
+  const citationReturnFocusRef = useRef<HTMLElement | null>(null);
+  const provenanceCloseRef = useRef<HTMLButtonElement | null>(null);
 
   function clearOutputs() {
     setResult(null);
@@ -195,24 +205,56 @@ function RagPlayground() {
     setSelectedCitationId(null);
   }
 
+  async function loadPlaygroundDocuments() {
+    setDocumentsLoading(true);
+    setDocumentsLoadError(null);
+    try {
+      const items = await listDocuments();
+      setDocuments(items);
+      setDocumentId((current) => items.some((item) => item.document_id === current) ? current : items[0]?.document_id || "");
+    } catch (caught: unknown) {
+      setDocumentsLoadError(caught instanceof Error ? caught.message : "Failed to load documents");
+    } finally {
+      setDocumentsLoading(false);
+    }
+  }
+
   useEffect(() => {
     let cancelled = false;
+    setDocumentsLoading(true);
+    setDocumentsLoadError(null);
     listDocuments()
       .then((items) => {
         if (cancelled) return;
         setDocuments(items);
-        setDocumentId((current) => current || items[0]?.document_id || "");
+        setDocumentId((current) => items.some((item) => item.document_id === current) ? current : items[0]?.document_id || "");
       })
       .catch((caught: unknown) => {
-        if (!cancelled) setError(caught instanceof Error ? caught.message : "Failed to load documents");
+        if (!cancelled) setDocumentsLoadError(caught instanceof Error ? caught.message : "Failed to load documents");
+      })
+      .finally(() => {
+        if (!cancelled) setDocumentsLoading(false);
       });
     return () => { cancelled = true; };
   }, []);
 
+  function openCitation(citationId: string, trigger?: HTMLElement) {
+    citationReturnFocusRef.current = trigger ?? (document.activeElement instanceof HTMLElement ? document.activeElement : null);
+    setSelectedCitationId(citationId);
+  }
+
+  function closeCitation({ restoreFocus = true }: { restoreFocus?: boolean } = {}) {
+    setSelectedCitationId(null);
+    if (restoreFocus) {
+      window.requestAnimationFrame(() => citationReturnFocusRef.current?.focus());
+    }
+  }
+
   useEffect(() => {
     if (!selectedCitationId) return;
+    provenanceCloseRef.current?.focus();
     function closeOnEscape(event: KeyboardEvent) {
-      if (event.key === "Escape") setSelectedCitationId(null);
+      if (event.key === "Escape") closeCitation();
     }
     window.addEventListener("keydown", closeOnEscape);
     return () => window.removeEventListener("keydown", closeOnEscape);
@@ -362,7 +404,8 @@ function RagPlayground() {
           <label>
             <span>Document</span>
             <select value={documentId} onChange={(event) => { setDocumentId(event.target.value); clearOutputs(); }} disabled={!hasDocuments || busy}>
-              {!hasDocuments && <option value="">No documents loaded</option>}
+              {documentsLoading && <option value="">Loading documents…</option>}
+              {!documentsLoading && !hasDocuments && <option value="">No documents loaded</option>}
               {documents.map((document) => <option key={document.document_id} value={document.document_id}>{document.original_filename}</option>)}
             </select>
           </label>
@@ -404,7 +447,8 @@ function RagPlayground() {
           <button type="button" disabled={busy} onClick={() => useSuggestedQuestion("What measures are required when establishing a non-face-to-face business relationship?")}>Non-face-to-face</button>
           <button type="button" disabled={busy} onClick={() => useSuggestedQuestion("What information must be reported when there is a positive match with a designated person?")}>Appendix form</button>
         </div>
-        {!hasDocuments && <div className="rag-playground-notice">No documents are available. Upload and process a document from the Documents module before asking questions.</div>}
+        {documentsLoadError && <div className="rag-retrieval-error rag-playground-document-error" role="alert"><span>{documentsLoadError}</span><button type="button" disabled={documentsLoading} onClick={() => void loadPlaygroundDocuments()}>{documentsLoading ? "Retrying…" : "Retry documents"}</button></div>}
+        {!documentsLoading && !documentsLoadError && !hasDocuments && <div className="rag-playground-notice">No documents are available. Upload and process a document from the Documents module before asking questions.</div>}
         {error && <div className="rag-retrieval-error" role="alert">{error}</div>}
       </section>
 
@@ -423,7 +467,7 @@ function RagPlayground() {
               <span className={`rag-answer-status ${generatedAnswer.status}`}>{generatedAnswer.status === "answered" ? "Grounded answer" : "Insufficient evidence"}</span>
               <span className="rag-answer-status-note">{generatedAnswer.status === "answered" ? `${generatedAnswer.citations.length} validated source${generatedAnswer.citations.length === 1 ? "" : "s"}` : "No citations emitted"}</span>
             </div>
-            <CitedAnswerText answer={generatedAnswer.cited_answer || generatedAnswer.answer} citations={generatedAnswer.citations} activeCitationId={selectedCitationId} onCitationSelect={setSelectedCitationId} />
+            <CitedAnswerText answer={generatedAnswer.cited_answer || generatedAnswer.answer} citations={generatedAnswer.citations} activeCitationId={selectedCitationId} onCitationSelect={openCitation} />
             {generatedAnswer.missing_information.length > 0 && <div className="rag-missing-info"><strong>Missing information</strong>{generatedAnswer.missing_information.map((item) => <span key={item}>{item}</span>)}</div>}
             <div className="rag-answer-facts" aria-label="Answer pipeline summary">
               <div><strong>{generatedAnswer.claims.length}</strong><span>claims</span></div>
@@ -520,7 +564,7 @@ function RagPlayground() {
                 {claim.citation_ids.map((citationId) => {
                   const citation = citationById.get(citationId);
                   if (!citation) return null;
-                  return <button type="button" key={citationId} onClick={() => setSelectedCitationId(citationId)}>{citation.marker} {citation.display}</button>;
+                  return <button type="button" key={citationId} onClick={(event) => openCitation(citationId, event.currentTarget)}>{citation.marker} {citation.display}</button>;
                 })}
               </div>
             </article>)}
@@ -603,13 +647,13 @@ function RagPlayground() {
         </div>}
       </section>}
 
-      {mode === "answer" && generatedAnswer && selectedCitation && <aside className="rag-provenance-drawer" aria-label={`${selectedCitation.marker} deterministic citation provenance`}>
+      {mode === "answer" && generatedAnswer && selectedCitation && <aside className="rag-provenance-drawer" role="dialog" aria-modal="false" aria-label={`${selectedCitation.marker} deterministic citation provenance`}>
         <div className="rag-provenance-drawer-head">
           <div>
             <span className="rag-card-kicker">Citation details</span>
             <h2>{selectedCitation.marker} · {selectedCitation.display}</h2>
           </div>
-          <button type="button" className="rag-provenance-close" onClick={() => setSelectedCitationId(null)} aria-label="Close citation provenance">×</button>
+          <button ref={provenanceCloseRef} type="button" className="rag-provenance-close" onClick={() => closeCitation()} aria-label="Close citation provenance">×</button>
         </div>
 
         <div className="rag-provenance-validity">
@@ -892,6 +936,10 @@ function Evaluation() {
   const [detailLoading, setDetailLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [detailError, setDetailError] = useState<string | null>(null);
+  const [loadRevision, setLoadRevision] = useState(0);
+  const detailRequestRef = useRef<AbortController | null>(null);
+  const benchmarkReturnFocusRef = useRef<HTMLElement | null>(null);
+  const benchmarkCloseRef = useRef<HTMLButtonElement | null>(null);
 
   useEffect(() => {
     const controller = new AbortController();
@@ -914,29 +962,51 @@ function Evaluation() {
         if (!controller.signal.aborted) setLoading(false);
       });
     return () => controller.abort();
-  }, []);
+  }, [loadRevision]);
+
+  function closeEvaluationQuestion({ restoreFocus = true }: { restoreFocus?: boolean } = {}) {
+    detailRequestRef.current?.abort();
+    detailRequestRef.current = null;
+    setSelectedQuestionId(null);
+    setDetail(null);
+    setDetailError(null);
+    setDetailLoading(false);
+    if (restoreFocus) {
+      window.requestAnimationFrame(() => benchmarkReturnFocusRef.current?.focus());
+    }
+  }
 
   useEffect(() => {
     if (!selectedQuestionId) return;
+    benchmarkCloseRef.current?.focus();
     function closeOnEscape(event: KeyboardEvent) {
-      if (event.key === "Escape") setSelectedQuestionId(null);
+      if (event.key === "Escape") closeEvaluationQuestion();
     }
     window.addEventListener("keydown", closeOnEscape);
     return () => window.removeEventListener("keydown", closeOnEscape);
   }, [selectedQuestionId]);
 
-  async function openEvaluationQuestion(questionId: string) {
+  useEffect(() => () => detailRequestRef.current?.abort(), []);
+
+  async function openEvaluationQuestion(questionId: string, trigger?: HTMLElement) {
+    detailRequestRef.current?.abort();
+    const controller = new AbortController();
+    detailRequestRef.current = controller;
+    benchmarkReturnFocusRef.current = trigger ?? (document.activeElement instanceof HTMLElement ? document.activeElement : null);
     setSelectedQuestionId(questionId);
     setDetail(null);
     setDetailError(null);
     setDetailLoading(true);
     try {
-      const payload = await fetchEvaluationJson<EvaluationQuestionDetail>(`/api/evaluation/answer-citation/questions/${encodeURIComponent(questionId)}`);
-      setDetail(payload);
+      const payload = await fetchEvaluationJson<EvaluationQuestionDetail>(`/api/evaluation/answer-citation/questions/${encodeURIComponent(questionId)}`, controller.signal);
+      if (!controller.signal.aborted) setDetail(payload);
     } catch (reason) {
-      setDetailError(reason instanceof Error ? reason.message : "Could not read this frozen question review.");
+      if (!controller.signal.aborted) setDetailError(reason instanceof Error ? reason.message : "Could not read this frozen question review.");
     } finally {
-      setDetailLoading(false);
+      if (!controller.signal.aborted) {
+        setDetailLoading(false);
+        if (detailRequestRef.current === controller) detailRequestRef.current = null;
+      }
     }
   }
 
@@ -996,7 +1066,7 @@ function Evaluation() {
   }
 
   if (error || !summary) {
-    return <main className="rag-page rag-evaluation-page"><section className="rag-panel rag-stage14-eval-state error"><strong>Benchmark artifacts unavailable</strong><span>{error ?? "The frozen summary could not be loaded."}</span><small>No scorer or generation provider was invoked.</small></section></main>;
+    return <main className="rag-page rag-evaluation-page"><section className="rag-panel rag-stage14-eval-state error" role="alert"><strong>Benchmark artifacts unavailable</strong><span>{error ?? "The frozen summary could not be loaded."}</span><small>No scorer or generation provider was invoked.</small><button type="button" onClick={() => setLoadRevision((value) => value + 1)}>Retry benchmark</button></section></main>;
   }
 
   const selectedQuestionRow = selectedQuestionId ? questions.find((row) => row.question_id === selectedQuestionId) ?? null : null;
@@ -1058,7 +1128,7 @@ function Evaluation() {
         <div className="rag-stage14-eval-question-list rag-stage14-eval-question-list-simple">
           {filteredQuestions.map((row) => {
             const state = caseState(row);
-            return <button key={row.question_id} type="button" className="rag-stage14-eval-question-row rag-stage14-eval-question-row-simple" data-case-state={state} onClick={() => void openEvaluationQuestion(row.question_id)}>
+            return <button key={row.question_id} type="button" className="rag-stage14-eval-question-row rag-stage14-eval-question-row-simple" data-case-state={state} onClick={(event) => void openEvaluationQuestion(row.question_id, event.currentTarget)}>
               <div className="rag-stage14-eval-question-copy">
                 <div><strong>{row.question_id}</strong><em>{caseStateLabel(state)}</em></div>
                 <p>{row.question}</p>
@@ -1117,10 +1187,10 @@ function Evaluation() {
         </div>
       </details>
 
-      {selectedQuestionId && <aside className="rag-stage14-eval-drawer" aria-label={`Benchmark detail ${selectedQuestionId}`}>
+      {selectedQuestionId && <aside className="rag-stage14-eval-drawer" role="dialog" aria-modal="false" aria-label={`Benchmark detail ${selectedQuestionId}`}>
         <div className="rag-stage14-eval-drawer-head">
           <div><span className="rag-card-kicker">Benchmark case</span><h2>{selectedQuestionId}</h2></div>
-          <button type="button" onClick={() => setSelectedQuestionId(null)} aria-label="Close benchmark detail">×</button>
+          <button ref={benchmarkCloseRef} type="button" onClick={() => closeEvaluationQuestion()} aria-label="Close benchmark detail">×</button>
         </div>
         {detailLoading && <div className="rag-stage14-eval-drawer-state">Loading frozen question detail…</div>}
         {detailError && <div className="rag-stage14-eval-drawer-state error">{detailError}</div>}
