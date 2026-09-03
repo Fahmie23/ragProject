@@ -4632,3 +4632,131 @@ body { background: var(--studio-bg); color: var(--studio-text); }
   .rag-retrieval-stage-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .rag-retrieval-trace-note { align-items: flex-start; flex-direction: column; gap: 4px; }
 }
+
+/* ========================================================================== */
+/* Stage 14.4 — deterministic citation provenance drawer                      */
+/* ========================================================================== */
+.rag-answer-citation-link {
+  border: 0;
+  font: inherit;
+  line-height: inherit;
+  cursor: pointer;
+}
+.rag-answer-citation-link[data-active="true"] { background: #cfe9da; box-shadow: inset 0 0 0 1px #9cccb0; }
+.rag-claim-citations button {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  border: 1px solid #cfd9d3;
+  border-radius: 999px;
+  padding: 5px 8px;
+  background: #f4faf6;
+  color: #17653a;
+  font: inherit;
+  font-size: 11px;
+  font-weight: 700;
+  cursor: pointer;
+}
+.rag-claim-citations button:hover { background: #eaf7ef; }
+.rag-provenance-drawer {
+  position: fixed;
+  z-index: 120;
+  top: 76px;
+  right: 16px;
+  bottom: 16px;
+  width: min(450px, calc(100vw - 32px));
+  box-sizing: border-box;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  border: 1px solid #dfe4e8;
+  border-radius: 16px;
+  background: #fff;
+  box-shadow: 0 20px 60px rgba(23, 31, 40, .18), 0 4px 16px rgba(23, 31, 40, .08);
+  color: #30373f;
+}
+.rag-provenance-drawer, .rag-provenance-drawer * { min-width: 0; }
+.rag-provenance-drawer-head {
+  position: sticky;
+  z-index: 2;
+  top: 0;
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 14px;
+  padding: 17px 18px 14px;
+  border-bottom: 1px solid #eceff1;
+  background: rgba(255, 255, 255, .96);
+  backdrop-filter: blur(8px);
+}
+.rag-provenance-drawer-head h2 { margin: 5px 0 0; font-size: 15px; line-height: 1.4; overflow-wrap: anywhere; }
+.rag-provenance-close {
+  flex: 0 0 auto;
+  display: grid;
+  place-items: center;
+  width: 32px;
+  height: 32px;
+  border: 1px solid #dfe4e8;
+  border-radius: 9px;
+  background: #fff;
+  color: #66707a;
+  font-size: 20px;
+  line-height: 1;
+  cursor: pointer;
+}
+.rag-provenance-close:hover { background: #f5f7f8; color: #30373f; }
+.rag-provenance-validity { padding: 14px 18px 12px; border-bottom: 1px solid #eef1f2; background: #fbfefc; }
+.rag-provenance-valid-badge { display: inline-flex; align-items: center; border-radius: 999px; padding: 5px 8px; background: #eaf7ef; color: #17653a; font-size: 9px; font-weight: 850; letter-spacing: .025em; }
+.rag-provenance-validity p { margin: 8px 0 0; color: #6c757f; font-size: 9px; line-height: 1.55; }
+.rag-provenance-summary-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 7px; padding: 14px 18px; }
+.rag-provenance-summary-grid > div { padding: 10px 11px; border: 1px solid #e7ebee; border-radius: 10px; background: #fafbfc; }
+.rag-provenance-summary-grid span, .rag-provenance-summary-grid strong, .rag-provenance-summary-grid small { display: block; }
+.rag-provenance-summary-grid span { color: #8a929b; font-size: 8px; font-weight: 850; text-transform: uppercase; letter-spacing: .05em; }
+.rag-provenance-summary-grid strong { margin-top: 4px; font-size: 11px; overflow-wrap: anywhere; }
+.rag-provenance-summary-grid small { margin-top: 2px; color: #8a929b; font-size: 8px; line-height: 1.4; overflow-wrap: anywhere; }
+.rag-provenance-section { padding: 0 18px 15px; }
+.rag-provenance-section-head { display: flex; align-items: baseline; justify-content: space-between; gap: 10px; padding: 11px 0 8px; border-top: 1px solid #edf0f2; }
+.rag-provenance-section-head span { color: #3f4851; font-size: 10px; font-weight: 850; }
+.rag-provenance-section-head strong, .rag-provenance-section-head small { color: #88919b; font-size: 8px; font-weight: 750; overflow-wrap: anywhere; }
+.rag-provenance-chain-disclosure { border: 1px solid #e5e9ec; border-radius: 10px; background: #fafbfc; overflow: hidden; }
+.rag-provenance-chain-disclosure > summary { display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 11px 12px; color: #45515c; cursor: pointer; list-style: none; }
+.rag-provenance-chain-disclosure > summary::-webkit-details-marker { display: none; }
+.rag-provenance-chain-disclosure > summary span { font-size: 10px; font-weight: 850; }
+.rag-provenance-chain-disclosure > summary small { color: #88919b; font-size: 8px; font-weight: 750; overflow-wrap: anywhere; }
+.rag-provenance-chain-disclosure > summary::after { content: "+"; flex: 0 0 auto; color: #69747e; font-size: 14px; font-weight: 700; }
+.rag-provenance-chain-disclosure[open] > summary::after { content: "−"; }
+.rag-provenance-chain-content { display: grid; gap: 10px; padding: 4px 12px 12px; border-top: 1px solid #edf0f2; }
+.rag-provenance-chain-content .rag-provenance-chain { padding-top: 11px; }
+.rag-provenance-locator-block .rag-provenance-section-head { padding-top: 10px; }
+.rag-provenance-claim-list { display: grid; gap: 7px; }
+.rag-provenance-claim-list article { padding: 10px 11px; border: 1px solid #e5e9ec; border-radius: 9px; background: #fcfcfd; }
+.rag-provenance-claim-list article strong { color: #17653a; font-size: 9px; }
+.rag-provenance-claim-list article p { margin: 5px 0 0; color: #555f69; font-size: 10px; line-height: 1.55; }
+.rag-provenance-chain { display: grid; gap: 0; margin: 0; padding: 0; list-style: none; }
+.rag-provenance-chain li { position: relative; display: grid; grid-template-columns: 28px minmax(0, 1fr); gap: 9px; padding: 0 0 12px; }
+.rag-provenance-chain li:not(:last-child)::after { content: ""; position: absolute; top: 24px; bottom: 0; left: 12px; width: 1px; background: #dce5df; }
+.rag-provenance-chain li > span { position: relative; z-index: 1; display: grid; place-items: center; width: 24px; height: 24px; border: 1px solid #bcd8c7; border-radius: 50%; background: #f1faf5; color: #17653a; font-size: 8px; font-weight: 850; }
+.rag-provenance-chain li strong, .rag-provenance-chain li small { display: block; }
+.rag-provenance-chain li strong { padding-top: 1px; font-size: 10px; }
+.rag-provenance-chain li small { margin-top: 2px; color: #858e98; font-size: 8px; line-height: 1.45; overflow-wrap: anywhere; }
+.rag-provenance-locator-list { display: grid; gap: 7px; }
+.rag-provenance-locator-list article { padding: 10px 11px; border: 1px solid #e5e9ec; border-radius: 9px; background: #fff; }
+.rag-provenance-locator-list article > div { display: grid; gap: 3px; }
+.rag-provenance-locator-list article > div span { color: #17653a; font-size: 8px; font-weight: 850; text-transform: uppercase; letter-spacing: .05em; }
+.rag-provenance-locator-list article > div strong { font-size: 10px; line-height: 1.45; overflow-wrap: anywhere; }
+.rag-provenance-locator-list article > small { display: block; margin-top: 4px; color: #8a929b; font-size: 8px; }
+.rag-provenance-locator-list details { margin-top: 8px; }
+.rag-provenance-locator-list summary, .rag-provenance-evidence summary { width: fit-content; color: #52606b; font-size: 8px; font-weight: 800; cursor: pointer; }
+.rag-provenance-element-list { display: flex; flex-wrap: wrap; gap: 5px; margin-top: 7px; }
+.rag-provenance-element-list code { max-width: 100%; border-radius: 5px; padding: 3px 5px; background: #f2f4f5; color: #68727c; font-size: 8px; overflow-wrap: anywhere; }
+.rag-provenance-evidence { border: 1px solid #e5e9ec; border-radius: 9px; background: #fafbfc; padding: 10px 11px; }
+.rag-provenance-evidence p { max-height: 240px; margin: 9px 0 0; overflow: auto; overscroll-behavior: contain; color: #59636d; font-size: 9px; line-height: 1.6; white-space: pre-wrap; overflow-wrap: anywhere; }
+.rag-provenance-footer { display: grid; gap: 10px; padding: 14px 18px 18px; border-top: 1px solid #e9edef; background: #fafbfc; }
+.rag-provenance-footer small { color: #7c858f; font-size: 8px; line-height: 1.5; }
+.rag-provenance-footer a { display: inline-flex; justify-content: center; align-items: center; min-height: 36px; border-radius: 9px; background: #17653a; color: #fff; font-size: 10px; font-weight: 850; text-decoration: none; }
+.rag-provenance-footer a:hover { background: #125731; }
+
+@media (max-width: 620px) {
+  .rag-provenance-drawer { top: 62px; right: 8px; bottom: 8px; width: calc(100vw - 16px); border-radius: 13px; }
+  .rag-provenance-drawer-head, .rag-provenance-validity, .rag-provenance-summary-grid, .rag-provenance-section, .rag-provenance-footer { padding-left: 14px; padding-right: 14px; }
+  .rag-provenance-summary-grid { grid-template-columns: 1fr; }
+}

@@ -73,5 +73,13 @@ def playground_contract() -> dict:
             "second_retrieval_call": False,
             "score_interpretation": "Dense, lexical, RRF, and reranker scores are ranking/debugging signals, not answer-correctness probabilities.",
         },
+        "citation_inspection": {
+            "stage": "Stage 14.4",
+            "source": "The existing Stage 10 citations, claims, evidence, locators, source_element_ids, and PDF pages returned by /api/generation/answer.",
+            "additional_backend_call_required": False,
+            "deterministic_validation_available_live": True,
+            "semantic_entailment_available_live": False,
+            "semantic_entailment_scope": "Frozen Stage 11 Evaluation view only.",
+        },
         "frontend_rule": "React displays backend-owned facts and metrics; React does not calculate RAG rankings or evaluation scores.",
     }

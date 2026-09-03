@@ -132,7 +132,17 @@ function sectionLabel(sectionPath: string[]) {
   return sectionPath.length ? sectionPath[sectionPath.length - 1] : "Unscoped chunk";
 }
 
-function CitedAnswerText({ answer, citations, documentId }: { answer: string; citations: GroundedAnswerResponse["citations"]; documentId: string }) {
+function CitedAnswerText({
+  answer,
+  citations,
+  activeCitationId,
+  onCitationSelect,
+}: {
+  answer: string;
+  citations: GroundedAnswerResponse["citations"];
+  activeCitationId: string | null;
+  onCitationSelect: (citationId: string) => void;
+}) {
   const citationByMarker = useMemo(() => new Map(citations.map((citation) => [citation.marker, citation])), [citations]);
   const parts = answer.split(/(\[\d+\])/g);
 
@@ -141,8 +151,17 @@ function CitedAnswerText({ answer, citations, documentId }: { answer: string; ci
       {parts.map((part, index) => {
         const citation = citationByMarker.get(part);
         if (!citation) return <span key={`${index}-${part}`}>{part}</span>;
-        const href = citation.pages[0] ? `${rawFileUrl(documentId)}#page=${citation.pages[0]}` : rawFileUrl(documentId);
-        return <a key={`${citation.citation_id}-${index}`} className="rag-answer-citation-link" href={href} target="_blank" rel="noreferrer" title={citation.display}>{citation.marker}</a>;
+        return <button
+          key={`${citation.citation_id}-${index}`}
+          type="button"
+          className="rag-answer-citation-link"
+          data-active={activeCitationId === citation.citation_id ? "true" : "false"}
+          onClick={() => onCitationSelect(citation.citation_id)}
+          title={citation.display}
+          aria-label={`${citation.marker} ${citation.display}. Inspect deterministic provenance.`}
+        >
+          {citation.marker}
+        </button>;
       })}
     </p>
   );
@@ -166,12 +185,14 @@ function RagPlayground() {
   const [error, setError] = useState<string | null>(null);
   const [traceOpen, setTraceOpen] = useState(false);
   const [answerInspectorTab, setAnswerInspectorTab] = useState<AnswerInspectorTab>("claims");
+  const [selectedCitationId, setSelectedCitationId] = useState<string | null>(null);
 
   function clearOutputs() {
     setResult(null);
     setGeneratedAnswer(null);
     setError(null);
     setAnswerInspectorTab("claims");
+    setSelectedCitationId(null);
   }
 
   useEffect(() => {
@@ -188,6 +209,15 @@ function RagPlayground() {
     return () => { cancelled = true; };
   }, []);
 
+  useEffect(() => {
+    if (!selectedCitationId) return;
+    function closeOnEscape(event: KeyboardEvent) {
+      if (event.key === "Escape") setSelectedCitationId(null);
+    }
+    window.addEventListener("keydown", closeOnEscape);
+    return () => window.removeEventListener("keydown", closeOnEscape);
+  }, [selectedCitationId]);
+
   async function runRetrieval() {
     const clean = question.trim();
     if (!clean || !documentId || running || generating) return;
@@ -195,6 +225,7 @@ function RagPlayground() {
     setError(null);
     setGeneratedAnswer(null);
     setResult(null);
+    setSelectedCitationId(null);
     try {
       const request = {
         document_id: documentId,
@@ -241,6 +272,7 @@ function RagPlayground() {
     setError(null);
     setGeneratedAnswer(null);
     setResult(null);
+    setSelectedCitationId(null);
     try {
       const response = await runGroundedAnswer({ document_id: documentId, question: clean });
       setGeneratedAnswer(response);
@@ -280,6 +312,14 @@ function RagPlayground() {
     () => new Map((generatedAnswer?.evidence ?? []).map((evidence) => [evidence.evidence_id, evidence])),
     [generatedAnswer],
   );
+  const selectedCitation = selectedCitationId ? citationById.get(selectedCitationId) ?? null : null;
+  const selectedCitationEvidence = selectedCitation ? evidenceById.get(selectedCitation.evidence_id) ?? null : null;
+  const selectedCitationClaims = selectedCitation
+    ? (generatedAnswer?.claims ?? []).filter((claim) => claim.citation_ids.includes(selectedCitation.citation_id))
+    : [];
+  const selectedCitationHref = selectedCitation && generatedAnswer
+    ? (selectedCitation.pages[0] ? `${rawFileUrl(generatedAnswer.document_id)}#page=${selectedCitation.pages[0]}` : rawFileUrl(generatedAnswer.document_id))
+    : null;
   const productionTrace = generatedAnswer?.retrieval_trace ?? null;
   const rerankedTraceRows = productionTrace?.reranked_candidates ?? [];
   const selectedTraceRows = rerankedTraceRows.filter((candidate) => candidate.selected_as_context_seed);
@@ -383,7 +423,7 @@ function RagPlayground() {
               <span className={`rag-answer-status ${generatedAnswer.status}`}>{generatedAnswer.status === "answered" ? "Grounded answer" : "Insufficient evidence"}</span>
               <span className="rag-answer-status-note">{generatedAnswer.status === "answered" ? `${generatedAnswer.citations.length} validated source${generatedAnswer.citations.length === 1 ? "" : "s"}` : "No citations emitted"}</span>
             </div>
-            <CitedAnswerText answer={generatedAnswer.cited_answer || generatedAnswer.answer} citations={generatedAnswer.citations} documentId={generatedAnswer.document_id} />
+            <CitedAnswerText answer={generatedAnswer.cited_answer || generatedAnswer.answer} citations={generatedAnswer.citations} activeCitationId={selectedCitationId} onCitationSelect={setSelectedCitationId} />
             {generatedAnswer.missing_information.length > 0 && <div className="rag-missing-info"><strong>Missing information</strong>{generatedAnswer.missing_information.map((item) => <span key={item}>{item}</span>)}</div>}
             <div className="rag-answer-facts" aria-label="Answer pipeline summary">
               <div><strong>{generatedAnswer.claims.length}</strong><span>claims</span></div>
@@ -480,8 +520,7 @@ function RagPlayground() {
                 {claim.citation_ids.map((citationId) => {
                   const citation = citationById.get(citationId);
                   if (!citation) return null;
-                  const href = citation.pages[0] ? `${rawFileUrl(generatedAnswer.document_id)}#page=${citation.pages[0]}` : rawFileUrl(generatedAnswer.document_id);
-                  return <a key={citationId} href={href} target="_blank" rel="noreferrer">{citation.marker} {citation.display}</a>;
+                  return <button type="button" key={citationId} onClick={() => setSelectedCitationId(citationId)}>{citation.marker} {citation.display}</button>;
                 })}
               </div>
             </article>)}
@@ -563,6 +602,80 @@ function RagPlayground() {
           </dl>
         </div>}
       </section>}
+
+      {mode === "answer" && generatedAnswer && selectedCitation && <aside className="rag-provenance-drawer" aria-label={`${selectedCitation.marker} deterministic citation provenance`}>
+        <div className="rag-provenance-drawer-head">
+          <div>
+            <span className="rag-card-kicker">Citation details</span>
+            <h2>{selectedCitation.marker} · {selectedCitation.display}</h2>
+          </div>
+          <button type="button" className="rag-provenance-close" onClick={() => setSelectedCitationId(null)} aria-label="Close citation provenance">×</button>
+        </div>
+
+        <div className="rag-provenance-validity">
+          <span className="rag-provenance-valid-badge">✓ Deterministic citation valid</span>
+          <p>This confirms that the deterministic source chain resolves to the cited PDF evidence. It is not a live semantic-entailment score.</p>
+        </div>
+
+        <div className="rag-provenance-summary-grid">
+          <div><span>Citation</span><strong>{selectedCitation.marker}</strong><small>{selectedCitation.citation_id}</small></div>
+          <div><span>Evidence</span><strong>{selectedCitation.evidence_id}</strong><small>request-local ID</small></div>
+          <div><span>Chunk</span><strong>c{String(selectedCitation.chunk_index).padStart(4, "0")}</strong><small>{selectedCitation.chunk_id}</small></div>
+          <div><span>PDF</span><strong>Page {pageLabel(selectedCitation.pages)}</strong><small>{selectedCitation.source_filename}</small></div>
+        </div>
+
+        <section className="rag-provenance-section">
+          <div className="rag-provenance-section-head"><span>Claims using this citation</span><strong>{selectedCitationClaims.length}</strong></div>
+          <div className="rag-provenance-claim-list">
+            {selectedCitationClaims.map((claim) => <article key={claim.claim_id}>
+              <strong>{claim.claim_id}</strong>
+              <p>{claim.text}</p>
+            </article>)}
+            {selectedCitationClaims.length === 0 && <p className="rag-empty-note">No generated claim references this citation.</p>}
+          </div>
+        </section>
+
+        <section className="rag-provenance-section">
+          <details className="rag-provenance-chain-disclosure">
+            <summary><span>Show provenance chain</span><small>{generatedAnswer.citation_version}</small></summary>
+            <div className="rag-provenance-chain-content">
+              <ol className="rag-provenance-chain">
+                <li><span>1</span><div><strong>Generated claim</strong><small>{selectedCitationClaims.map((claim) => claim.claim_id).join(" · ") || "—"}</small></div></li>
+                <li><span>2</span><div><strong>Request evidence</strong><small>{selectedCitation.evidence_id}{selectedCitationEvidence ? ` · ${selectedCitationEvidence.semantic_type}` : ""}</small></div></li>
+                <li><span>3</span><div><strong>Frozen Stage 5 chunk</strong><small>c{String(selectedCitation.chunk_index).padStart(4, "0")} · {selectedCitation.chunk_id}</small></div></li>
+                <li><span>4</span><div><strong>Canonical locator</strong><small>{selectedCitation.locators.map((locator) => locator.label).join(" · ") || "Page provenance"}</small></div></li>
+                <li><span>5</span><div><strong>Source PDF</strong><small>{selectedCitation.source_filename} · Page {pageLabel(selectedCitation.pages)}</small></div></li>
+              </ol>
+              <div className="rag-provenance-locator-block">
+                <div className="rag-provenance-section-head"><span>Canonical locators</span><strong>{selectedCitation.locators.length}</strong></div>
+                <div className="rag-provenance-locator-list">
+                  {selectedCitation.locators.map((locator, index) => <article key={`${locator.kind}-${locator.label}-${index}`}>
+                    <div><span>{locator.kind}</span><strong>{locator.label}</strong></div>
+                    <small>Page {pageLabel(locator.pages)}</small>
+                    <details>
+                      <summary>{locator.source_element_ids.length} source element{locator.source_element_ids.length === 1 ? "" : "s"}</summary>
+                      <div className="rag-provenance-element-list">{locator.source_element_ids.map((elementId) => <code key={elementId}>{elementId}</code>)}</div>
+                    </details>
+                  </article>)}
+                </div>
+              </div>
+            </div>
+          </details>
+        </section>
+
+        {selectedCitationEvidence && <section className="rag-provenance-section">
+          <div className="rag-provenance-section-head"><span>Evidence text</span><small>{selectedCitationEvidence.semantic_type} · source rank #{selectedCitationEvidence.source_rank}</small></div>
+          <details className="rag-provenance-evidence">
+            <summary>Show exact evidence supplied to generation</summary>
+            <p>{selectedCitationEvidence.content_text}</p>
+          </details>
+        </section>}
+
+        <div className="rag-provenance-footer">
+          <small>Live Playground provenance is deterministic. Human semantic-entailment labels are shown only in the frozen Stage 11 Evaluation view.</small>
+          {selectedCitationHref && <a href={selectedCitationHref} target="_blank" rel="noreferrer">Open PDF at page {selectedCitation.pages[0] ?? "source"} →</a>}
+        </div>
+      </aside>}
 
       {mode === "retrieval" && rerankedResult && <section className="rag-trace-panel rag-context-panel">
         <div className="rag-panel-head">
