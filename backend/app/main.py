@@ -9,6 +9,8 @@ from app.routers.documents import router as documents_router
 from app.routers.system import router as system_router
 from app.routers.retrieval import router as retrieval_router
 from app.routers.generation import router as generation_router
+from app.routers.evaluation import router as evaluation_router
+from app.routers.playground import router as playground_router
 
 
 @asynccontextmanager
@@ -36,6 +38,8 @@ app.include_router(documents_router)
 app.include_router(system_router)
 app.include_router(retrieval_router)
 app.include_router(generation_router)
+app.include_router(evaluation_router)
+app.include_router(playground_router)
 
 
 @app.get("/health")
