@@ -1,31 +1,31 @@
+# Secrets / local environment
+.env
+.env.*
+!.env.example
+!*.env.example
+backend/.env
+
 # Python
-__pycache__/
-*.py[cod]
 .venv/
-venv/
-*.egg-info/
+backend/.venv/
+**/__pycache__/
+*.py[cod]
 .pytest_cache/
 .mypy_cache/
 .ruff_cache/
 
-# Node
-node_modules/
-dist/
-.vite/
+# Node / frontend
+frontend/node_modules/
+frontend/dist/
+frontend/tsconfig.tsbuildinfo
+npm-debug.log*
 
-# Environment
-.env
-.env.local
-*.local
+# Local model/cache state
+.cache/
+**/.cache/
 
-# Runtime data (generated / uploaded documents)
-backend/data/**
-!backend/data/**/
-!backend/data/**/.gitkeep
-
-# OS / editor
+# IDE / OS
+.vscode/
+.idea/
 .DS_Store
 Thumbs.db
-*:Zone.Identifier
-.idea/
-.vscode/

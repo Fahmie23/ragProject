@@ -219,6 +219,33 @@ See `docs/stages/stage4/STAGE4_5_HUMAN_REVIEW.md` for the correction model and `
 Stage 4.5.8.16 simplifies the correction workflow: dedicated structured-semantics, definition-link, and free-form cross-page relationship editors are removed from the active UI. `definition_text` membership is now explicit through a contextual **Belongs to definition** selector and one bulk `assign_definition` operation. Stage 4.5 no longer guesses definition membership or repairs clause hierarchy automatically; legacy operations remain replayable for backward compatibility. See `docs/stages/stage4/STAGE4_5_8_16_SIMPLIFIED_CORRECTION.md`.
 
 
+## Stage 13 reproducible Docker stack
+
+Stage 13 adds a lockfile-driven Docker/Compose workflow for PostgreSQL + pgvector, Alembic migrations, FastAPI, and the existing Vite frontend. It is infrastructure-only: the frozen RAG and Stage 11 evaluation behavior are unchanged. CI/CD is intentionally out of scope for this stage.
+
+After applying the Stage 13 candidate, generate dependency locks on the target WSL/Linux environment:
+
+```bash
+cd backend
+python -m pip install -r requirements-dev.txt
+python scripts/prepare_stage13_dependency_locks.py
+```
+
+Then verify the host and locked-container environments:
+
+```bash
+python scripts/run_stage13_verification.py
+python scripts/run_stage13_verification.py --include-docker-smoke
+```
+
+For normal local startup from the repository root:
+
+```bash
+docker compose up -d --build
+```
+
+See `docs/stages/stage13/STAGE13_DOCKER_REPRODUCIBILITY.md`.
+
 ## Persistence
 
 PostgreSQL + pgvector is the persistence layer for application metadata, semantic chunks, future embeddings, and evaluation data. Deterministic Stage 3–5 JSON artifacts remain on the filesystem as inspectable sources of truth. See [`docs/architecture/database.md`](docs/architecture/database.md).

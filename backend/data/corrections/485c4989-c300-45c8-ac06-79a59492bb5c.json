@@ -1,0 +1,17 @@
+{
+  "schema_version": "1.9",
+  "document_id": "485c4989-c300-45c8-ac06-79a59492bb5c",
+  "source_sha256": "e1d138edd3c55b3fa3dd36b3236876a1a8dd634c4d972cec74157e6bf816bc15",
+  "base_structure_schema_version": "1.8",
+  "base_structured_at": "2026-09-01T15:18:45.190783Z",
+  "operations": [],
+  "relationship_review": {
+    "status": "not_reviewed",
+    "approved_issue_ids": [],
+    "pending_issue_ids": [],
+    "approved_at": null,
+    "note": null,
+    "stage5_eligible": false
+  },
+  "updated_at": "2026-09-01T15:18:49.788410Z"
+}

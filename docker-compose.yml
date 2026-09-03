@@ -1,22 +1,124 @@
+name: rag-document-pipeline
+
 services:
   postgres:
-    image: pgvector/pgvector:pg16
-    container_name: rag-workbench-postgres
+    image: pgvector/pgvector:0.8.6-pg16-bookworm
     environment:
-      POSTGRES_DB: rag_workbench
-      POSTGRES_USER: rag
-      POSTGRES_PASSWORD: rag
+      POSTGRES_DB: ${POSTGRES_DB:-rag_workbench}
+      POSTGRES_USER: ${POSTGRES_USER:-rag}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-rag}
     ports:
-      - "5432:5432"
+      - "${POSTGRES_PORT:-5432}:5432"
     volumes:
       - rag_pgdata:/var/lib/postgresql/data
     healthcheck:
-      test: ["CMD-SHELL", "pg_isready -U rag -d rag_workbench"]
+      test: ["CMD-SHELL", "pg_isready -U $${POSTGRES_USER} -d $${POSTGRES_DB}"]
       interval: 5s
       timeout: 5s
-      retries: 10
+      retries: 20
+      start_period: 10s
+    restart: unless-stopped
+
+  migrate:
+    build:
+      context: ./backend
+      target: runtime
+      args:
+        APP_UID: ${APP_UID:-1000}
+        APP_GID: ${APP_GID:-1000}
+    environment: &backend_environment
+      DATA_DIR: /app/data
+      DATABASE_URL: postgresql+psycopg://${POSTGRES_USER:-rag}:${POSTGRES_PASSWORD:-rag}@postgres:5432/${POSTGRES_DB:-rag_workbench}
+      DATABASE_REQUIRED: "true"
+      EMBEDDING_MODEL: ${EMBEDDING_MODEL:-BAAI/bge-m3}
+      EMBEDDING_DEVICE: ${EMBEDDING_DEVICE:-auto}
+      EMBEDDING_BATCH_SIZE: ${EMBEDDING_BATCH_SIZE:-8}
+      RERANKER_MODEL: ${RERANKER_MODEL:-BAAI/bge-reranker-v2-m3}
+      RERANKER_DEVICE: ${RERANKER_DEVICE:-auto}
+      RERANKER_BATCH_SIZE: ${RERANKER_BATCH_SIZE:-2}
+      RERANKER_MAX_LENGTH: ${RERANKER_MAX_LENGTH:-1024}
+      GENERATION_PROVIDER: ${GENERATION_PROVIDER:-groq}
+      GENERATION_BASE_URL: ${GENERATION_BASE_URL:-https://api.groq.com/openai/v1}
+      GENERATION_MODEL: ${GENERATION_MODEL:-openai/gpt-oss-120b}
+      GROQ_API_KEY: ${GROQ_API_KEY:-}
+      GENERATION_TIMEOUT_SECONDS: ${GENERATION_TIMEOUT_SECONDS:-90}
+      GENERATION_TEMPERATURE: ${GENERATION_TEMPERATURE:-0}
+      GENERATION_MAX_TOKENS: ${GENERATION_MAX_TOKENS:-1200}
+      GENERATION_JSON_MODE: ${GENERATION_JSON_MODE:-true}
+      GENERATION_MAX_CONTEXT_CHARS: ${GENERATION_MAX_CONTEXT_CHARS:-40000}
+      HF_HOME: /home/rag/.cache/huggingface
+    command: ["alembic", "-c", "alembic.ini", "upgrade", "head"]
+    depends_on:
+      postgres:
+        condition: service_healthy
+    volumes:
+      - ./backend/data:/app/data
+      - rag_hf_cache:/home/rag/.cache/huggingface
+    restart: "no"
+
+  backend:
+    build:
+      context: ./backend
+      target: runtime
+      args:
+        APP_UID: ${APP_UID:-1000}
+        APP_GID: ${APP_GID:-1000}
+    environment: *backend_environment
+    ports:
+      - "${BACKEND_PORT:-8000}:8000"
+    depends_on:
+      postgres:
+        condition: service_healthy
+      migrate:
+        condition: service_completed_successfully
+    volumes:
+      - ./backend/data:/app/data
+      - rag_hf_cache:/home/rag/.cache/huggingface
+    healthcheck:
+      test: ["CMD", "python", "-c", "import json,urllib.request; d=json.load(urllib.request.urlopen('http://127.0.0.1:8000/health', timeout=3)); raise SystemExit(0 if d.get('status') == 'ok' else 1)"]
+      interval: 10s
+      timeout: 5s
+      retries: 12
+      start_period: 20s
+    restart: unless-stopped
+
+  backend-test:
+    profiles: ["verify"]
+    build:
+      context: ./backend
+      target: test
+      args:
+        APP_UID: ${APP_UID:-1000}
+        APP_GID: ${APP_GID:-1000}
+    working_dir: /workspace/repo/backend
+    volumes:
+      - .:/workspace/repo:ro
+    environment:
+      DATA_DIR: /tmp/rag-data
+      DATABASE_URL: ""
+      DATABASE_REQUIRED: "false"
+      GROQ_API_KEY: ""
+    command: ["python", "-m", "pytest", "-q"]
+    restart: "no"
+
+  frontend:
+    build:
+      context: ./frontend
+      args:
+        VITE_API_BASE: ${VITE_API_BASE-}
+    ports:
+      - "${FRONTEND_PORT:-5173}:80"
+    depends_on:
+      backend:
+        condition: service_healthy
+    healthcheck:
+      test: ["CMD-SHELL", "wget -q -O /dev/null http://127.0.0.1/ || exit 1"]
+      interval: 10s
+      timeout: 3s
+      retries: 12
       start_period: 5s
     restart: unless-stopped
 
 volumes:
   rag_pgdata:
+  rag_hf_cache:

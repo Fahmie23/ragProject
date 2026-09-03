@@ -1,0 +1,28 @@
+{
+  "document_id": "485c4989-c300-45c8-ac06-79a59492bb5c",
+  "original_filename": "sc_aml_cft.pdf",
+  "stored_filename": "485c4989-c300-45c8-ac06-79a59492bb5c.pdf",
+  "extension": ".pdf",
+  "detected_mime_type": "application/pdf",
+  "size_bytes": 1760965,
+  "sha256": "e1d138edd3c55b3fa3dd36b3236876a1a8dd634c4d972cec74157e6bf816bc15",
+  "validation_status": "valid",
+  "validation_errors": [],
+  "classification": {
+    "document_family": "pdf",
+    "pdf_type": "mixed",
+    "page_count": 109,
+    "text_pages": 108,
+    "image_pages": 8,
+    "has_text_layer": true,
+    "has_images": true,
+    "encrypted": false
+  },
+  "ingested_at": "2026-08-23T07:29:24.324048Z",
+  "extraction_status": "completed",
+  "extraction_error": null,
+  "extracted_at": "2026-09-01T15:18:22.394954Z",
+  "structure_status": "completed",
+  "structure_error": null,
+  "structured_at": "2026-09-01T15:18:45.190783Z"
+}

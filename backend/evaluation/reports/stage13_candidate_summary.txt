@@ -1,0 +1,50 @@
+Stage 13 Docker & Reproducibility — candidate implementation
+
+Scope
+- Docker/reproducibility only
+- CI/CD intentionally excluded
+- Frozen RAG/retrieval/generation/citation behavior unchanged
+
+Implemented
+- Exact container toolchain tags:
+  Python 3.12.14 slim bookworm
+  Node 24.19.0 bookworm slim (matches Stage 12 verified host Node)
+  npm 11.17.0 contract
+  pgvector 0.8.6 on PostgreSQL 16 bookworm
+  nginx 1.31.4 alpine
+- Frontend direct dependencies changed from floating `latest` to exact versions
+- Node/npm contracts added to package.json and .nvmrc
+- Python lock generation via pip-tools
+- npm package-lock generation via exact Node/npm toolchain
+- Backend runtime/test Docker multi-stage image
+- Full backend pytest target inside locked Docker image
+- PostgreSQL healthcheck
+- one-shot Alembic migration service
+- backend waits for healthy DB + completed migration
+- frontend waits for healthy backend
+- persistent PostgreSQL named volume
+- persistent Hugging Face cache volume
+- host bind mount for deterministic Stage 3-5 data artifacts
+- Docker frontend uses same-origin nginx /api proxy to backend
+- clean isolated Docker smoke script with alternate ports and zero Groq calls
+- Stage 13 static/lock validator and orchestration verifier
+- .gitignore and Docker ignore contracts
+
+Offline checks completed in build environment
+- Stage 13 static reproducibility tests: 10/10 PASS
+- Python compile: PASS
+- Stage 11 frozen production baseline: PASS (7/7)
+- Stage 11 held-out benchmark freeze: PASS
+- Stage 11 final evaluation offline reproduction: PASS
+- Patch clean-apply rehearsal: PASS
+
+Pending local freeze gates
+1. Generate backend requirements.lock.txt + requirements-dev.lock.txt
+2. Generate frontend package-lock.json with Node 24.19.0 / npm 11.17.0
+3. `python scripts/run_stage13_verification.py`
+4. Locked backend container regression must PASS
+5. `python scripts/run_stage13_verification.py --include-docker-smoke`
+6. Clean PostgreSQL/pgvector + migration + backend + frontend/proxy smoke must PASS
+7. Re-run Stage 11 freeze guards and Stage 12 full verification (included by verifier)
+
+Stage 13 status: CANDIDATE — NOT FROZEN
