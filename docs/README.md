@@ -9,6 +9,8 @@ docs/
 ├── README.md
 ├── architecture/
 │   └── system and storage architecture
+├── evaluation/
+│   └── retrieval benchmark policy, results, and controlled experiment findings
 ├── frontend/
 │   └── UI/UX, workbench, responsive, and frontend repair notes
 ├── development/
@@ -18,7 +20,15 @@ docs/
 │   ├── stage4/
 │   ├── stage5/
 │   ├── stage6/
-│   └── stage7/
+│   ├── stage7/
+│   ├── stage8/
+│   ├── stage9/
+│   ├── stage10/
+│   ├── stage11/
+│   ├── stage12/
+│   ├── stage13/
+│   ├── stage14/
+│   └── stage15/
 └── audits/
     └── stage4/
         └── benchmark audits and post-stage repair reports
@@ -68,19 +78,41 @@ See `docs/stages/stage6/` for dense embedding generation, pgvector persistence, 
 
 See `docs/stages/stage7/` for PostgreSQL full-text lexical retrieval, the Stage 7.1 OR-oriented lexical query correction, weighted Reciprocal Rank Fusion, hybrid retrieval APIs, the live RAG Playground, and dense-vs-hybrid smoke-test procedure.
 
+### Stages 8–10
+
+- `docs/stages/stage8/` — cross-encoder reranking and bounded structure-aware context assembly.
+- `docs/stages/stage9/` — grounded answer generation and abstention.
+- `docs/stages/stage10/` — deterministic citation/provenance construction.
+
+### Stage 11
+
+See `docs/stages/stage11/` for the frozen answer/citation evaluation methodology,
+independent held-out benchmark, human semantic review, and final metrics.
+
+### Stages 12–13
+
+- `docs/stages/stage12/` — automated/system verification of the frozen RAG pipeline.
+- `docs/stages/stage13/` — Docker/Compose reproducibility and GPU-runtime verification.
+
+### Stage 14
+
+See `docs/stages/stage14/` for the RAG Playground, retrieval/context inspector,
+deterministic citation provenance explorer, benchmark-report implementation, and
+cross-app UI audit.
+
+### Stage 15
+
+See `docs/stages/stage15/` for the controlled experiment charter, experiment
+isolation rules, storage/config contracts, and portfolio-finalization plan.
+
+### Evaluation
+
+- `evaluation/RETRIEVAL_EVALUATION_DATASET_V1.md` — formal 40-question retrieval dataset and split policy.
+- `evaluation/RETRIEVAL_EVALUATION_RUNNER_V1.md` — protected DEV/held-out retrieval runner.
+- `evaluation/RETRIEVAL_V1_FINAL_BENCHMARK.md` — frozen 15-question held-out Retrieval-v1 results and limitations.
+- `evaluation/STAGE15_RETRIEVAL_EXPERIMENT_FINDINGS.md` — DEV-only `candidate_k` ablation and engineering interpretation.
+
 ### Development
 
-See `docs/development/` for WSL, Docker Desktop, PostgreSQL/pgvector, and local development setup procedures.
-
-## Stage 8
-
-- `stages/stage8/STAGE8_CROSS_ENCODER_RERANKING.md` — candidate-union cross-encoder reranking, runtime controls, API trace, and fixed smoke verification.
-
-
-- `evaluation/RETRIEVAL_EVALUATION_DATASET_V1.md` — formal retrieval evaluation dataset and metric policy.
-- `evaluation/RETRIEVAL_EVALUATION_RUNNER_V1.md` — protected dev/held-out Dense vs Hybrid vs Reranker benchmark runner.
-- `stages/stage8/STAGE8_2_STRUCTURE_AWARE_EVIDENCE_EXPANSION.md` — bounded post-reranking structural context assembly and context metrics.
-
-- `stages/stage9/STAGE9_GROUNDED_ANSWER_GENERATION.md` — frozen Retrieval-v1 evidence → grounded claim generation + abstention.
-
-- `evaluation/RETRIEVAL_V1_FINAL_BENCHMARK.md` — frozen 15-question held-out Retrieval-v1 results and known limitations.
+See `docs/development/` for WSL, Docker Desktop, PostgreSQL/pgvector, and local
+development setup procedures.

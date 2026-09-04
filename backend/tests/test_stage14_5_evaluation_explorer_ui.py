@@ -16,7 +16,8 @@ def test_stage14_5_reads_only_backend_owned_evaluation_endpoints() -> None:
     assert "runGroundedAnswer" not in text.split("function Evaluation()", 1)[1]
     assert "Re-run evaluation" not in text
     assert "Benchmark Report" in text
-    assert '{ id: "evaluation", label: "Benchmark", icon: "◎" }' in text
+    assert "function Evaluation()" in text
+    assert '{active === "evaluation" && <Evaluation />}' in text
 
 
 def test_stage14_5_default_report_shows_only_four_headline_metrics() -> None:

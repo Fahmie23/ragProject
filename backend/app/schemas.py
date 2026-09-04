@@ -905,6 +905,83 @@ class RerankedRetrievalRequest(BaseModel):
         return self
 
 
+class RetrievalExperimentLockedComponentsV1(BaseModel):
+    """System-owned component identities for controlled Stage 15 retrieval runs."""
+
+    model_config = {"extra": "forbid"}
+
+    embedding_model: Literal["BAAI/bge-m3"] = "BAAI/bge-m3"
+    lexical_backend: Literal["postgresql_fts"] = "postgresql_fts"
+    lexical_search_config: Literal["english"] = "english"
+    lexical_ranking_method: Literal[
+        "postgresql_fts_term_coverage_then_ts_rank_cd"
+    ] = "postgresql_fts_term_coverage_then_ts_rank_cd"
+    lexical_query_mode: Literal["or_content_terms_v1"] = "or_content_terms_v1"
+    fusion_method: Literal["reciprocal_rank_fusion"] = "reciprocal_rank_fusion"
+    reranker_model: Literal["BAAI/bge-reranker-v2-m3"] = "BAAI/bge-reranker-v2-m3"
+
+
+RetrievalExperimentStrategy = Literal["dense", "hybrid", "hybrid_reranker"]
+
+
+class RetrievalExperimentConfigV1(BaseModel):
+    """Strict, versioned retrieval-quality configuration for Stage 15 experiments.
+
+    Only architecture parameters already implemented by the project are
+    user-controllable. Model, lexical, and fusion identities are locked so an
+    experiment cannot silently become a different retrieval system.
+    """
+
+    model_config = {"extra": "forbid"}
+
+    schema_version: Literal["retrieval_experiment_config_v1"] = "retrieval_experiment_config_v1"
+    strategy: RetrievalExperimentStrategy
+    top_k: int = Field(default=5, ge=1, le=50)
+
+    # Hybrid-only parameters. They are normalized to frozen Retrieval v1
+    # defaults for hybrid strategies and must be omitted for dense-only runs.
+    candidate_k: int | None = Field(default=None, ge=1, le=100)
+    rrf_k: int | None = Field(default=None, ge=1, le=1000)
+    dense_weight: float | None = Field(default=None, ge=0.0, le=10.0)
+    lexical_weight: float | None = Field(default=None, ge=0.0, le=10.0)
+
+    locked_components: RetrievalExperimentLockedComponentsV1 = Field(
+        default_factory=RetrievalExperimentLockedComponentsV1
+    )
+
+    @model_validator(mode="after")
+    def normalize_and_validate_strategy(self):
+        hybrid_values = (
+            self.candidate_k,
+            self.rrf_k,
+            self.dense_weight,
+            self.lexical_weight,
+        )
+
+        if self.strategy == "dense":
+            if any(value is not None for value in hybrid_values):
+                raise ValueError(
+                    "Dense experiments must omit candidate_k, rrf_k, dense_weight, "
+                    "and lexical_weight because those stages are not executed"
+                )
+            return self
+
+        if self.candidate_k is None:
+            self.candidate_k = 20
+        if self.rrf_k is None:
+            self.rrf_k = 60
+        if self.dense_weight is None:
+            self.dense_weight = 1.0
+        if self.lexical_weight is None:
+            self.lexical_weight = 1.0
+
+        if self.candidate_k < self.top_k:
+            raise ValueError("candidate_k must be greater than or equal to top_k")
+        if self.dense_weight == 0 and self.lexical_weight == 0:
+            raise ValueError("At least one hybrid retrieval weight must be greater than zero")
+        return self
+
+
 class RerankedRetrievalHit(BaseModel):
     rank: int
     chunk_id: str

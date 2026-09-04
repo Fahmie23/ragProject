@@ -1,6 +1,18 @@
-# RAG Document Pipeline — Stages 1–8
+# RAG Document Intelligence Workbench
 
-A portfolio-oriented RAG workbench that makes extraction, structure, human review, semantic chunking, persistence, retrieval, and evaluation inspectable end to end.
+A portfolio-oriented RAG workbench for a complex Malaysian regulatory PDF. The project makes document extraction, canonical structure, human review, semantic chunking, hybrid retrieval, reranking, structure-aware context assembly, grounded generation, deterministic citations, evaluation, and controlled retrieval experiments inspectable end to end.
+
+## Benchmark scope
+
+The portfolio benchmark is intentionally document-specific:
+
+- source: Securities Commission Malaysia AML/CFT/CPF Guidelines;
+- PDF pages: 109;
+- frozen Stage 5 corpus: `semantic-v2.1`, 284 chunks;
+- formal retrieval benchmark: 40 questions (`25` DEV + `15` held-out);
+- independent answer/citation held-out benchmark: 18 questions.
+
+The project demonstrates a deeply engineered RAG pipeline for this document and benchmark. It does **not** claim universal robustness across arbitrary PDFs.
 
 
 ## Documentation
@@ -10,6 +22,8 @@ Detailed implementation notes, stage documentation, frontend UX notes, and audit
 ```text
 docs/
 ├── architecture/
+├── development/
+├── evaluation/
 ├── frontend/
 ├── stages/
 │   ├── stage3/
@@ -17,7 +31,9 @@ docs/
 │   ├── stage5/
 │   ├── stage6/
 │   ├── stage7/
-│   └── stage8/
+│   ├── stage8/
+│   ├── ...
+│   └── stage15/
 └── audits/
     └── stage4/
 ```
@@ -61,8 +77,58 @@ Chunk JSON
 8. Cross-Encoder Reranking
    │  Dense Top-20 + Lexical Top-20 union → BGE reranker
    ▼
-Ranked evidence for grounded generation
+8.2 Bounded Structure-Aware Context Assembly
+   │  non-recursive one-hop structural evidence expansion
+   ▼
+9. Grounded Answer Generation
+   │  evidence-bound claims + explicit abstention
+   ▼
+10. Deterministic Citations
+    │  claim → evidence → frozen chunk → canonical structure → PDF locator
+    ▼
+11. Answer & Citation Evaluation
+    │  deterministic metrics + frozen human semantic review
+    ▼
+12–13. System Verification & Reproducibility
+    │  automated regression gates + Docker/pgvector/GPU runtime
+    ▼
+14. Portfolio RAG Playground
+    │  cited answers + retrieval/context/provenance inspectors
+    ▼
+15. Controlled Retrieval Experiments
+    │  isolated DEV-only experiments; production Retrieval v1 remains frozen
+    ▼
+Portfolio-ready RAG workbench
 ```
+
+## Evaluation evidence
+
+The project separates development data from held-out evaluation and does not retune
+the frozen production profile from held-out results.
+
+### Retrieval v1 held-out
+
+| Strategy | Hit@1 | Hit@5 | Recall@5 | MRR@10 |
+|---|---:|---:|---:|---:|
+| Dense | 66.7% | 73.3% | 70.0% | 0.7225 |
+| Hybrid | 60.0% | 93.3% | 90.0% | 0.7189 |
+| Hybrid + Reranker | **86.7%** | **93.3%** | **86.7%** | **0.8800** |
+
+Stage 8.2 bounded context assembly reached `ContextRecall@5 = 90.0%` and
+`ContextCompleteEvidence@5 = 86.7%`.
+
+### Answer & citation held-out
+
+- Answer status accuracy: **94.4%**
+- Claim citation coverage: **100%**
+- Deterministic citation validity: **100%**
+- Required source coverage: **93.3%**
+- Fully supported generated claims: **95.8%**
+- Citation entailment: **93.9%**
+- Answer completeness: **83.7%**
+
+These metrics are specific to the frozen benchmark for this document/domain; they
+are not universal performance claims.
 
 ## Stage 4 design
 
@@ -609,7 +675,7 @@ This runs the 25 development questions against Dense, Hybrid and Hybrid+Reranker
 
 ## Stage 8.2 — Structure-aware context assembly
 
-Stage 8.1 retrieval ranking remains frozen. Stage 8.2 adds deterministic, one-hop structural evidence expansion after reranking and reports separate `ContextRecall@K` / `ContextCompleteEvidence@K` metrics without changing raw retrieval ranks. Held-out evaluation remains locked until the 25-question development context evaluation is accepted.
+Stage 8.1 retrieval ranking remains frozen. Stage 8.2 adds deterministic, one-hop structural evidence expansion after reranking and reports separate `ContextRecall@K` / `ContextCompleteEvidence@K` metrics without changing raw retrieval ranks. The final held-out Retrieval-v1 benchmark was consumed only after the retrieval configuration was frozen; its results remain evaluation evidence rather than tuning input.
 
 
 ## Stage 9 — Grounded answer generation
@@ -654,5 +720,38 @@ Stage 11.2 adds a new DEV-only answer/citation benchmark (`20` questions: `17` a
 - `backend/scripts/prepare_stage11_semantic_calibration.py` — prepares blank human calibration labels from fresh responses.
 - `docs/stages/stage11/STAGE11_ANSWER_CITATION_EVALUATION.md` — methodology, rubric, and execution workflow.
 
-Stage 11.3 held-out benchmark is created and frozen, but **has not been run**. Live capture requires `RUN_FROZEN_ANSWER_CITATION_HELDOUT_V1`.
+Stage 11 is complete and frozen. The independent 18-question Stage 11.3 held-out
+benchmark was frozen before execution, consumed once on the unchanged production
+pipeline, and retained as immutable response/evaluation evidence. Held-out responses
+are not regenerated for tuning.
+
+## Stages 12–15 — verification, product UI, and controlled experiments
+
+Stage 12 verifies the frozen pipeline with automated regression, API, reproduction,
+and frontend checks. Stage 13 packages the system into a reproducible Docker/Compose
+stack with PostgreSQL + pgvector and verified GPU runtime support.
+
+Stage 14 presents the system as a focused RAG product surface: `Overview`,
+`Documents`, and `RAG Playground`. The playground exposes cited answers plus
+same-execution retrieval/context/provenance inspection. The document-specific
+benchmark UI remains preserved internally but is intentionally hidden from the
+primary product workflow.
+
+Stage 15 adds an isolated experiment layer without changing
+`POST /api/generation/answer` or the frozen production Retrieval v1 profile. The
+first completed controlled experiment varied only `candidate_k` on the existing
+25-question DEV split:
+
+| candidate_k | Hit@1 | Hit@5 | Recall@5 | MRR@10 | CompleteEvidence@5 | Avg latency |
+|---:|---:|---:|---:|---:|---:|---:|
+| 10 | 96.0% | 100.0% | 93.3% | 0.9800 | 88.0% | 844.1 ms |
+| 20 | 96.0% | 100.0% | 93.3% | 0.9800 | 88.0% | 1302.3 ms |
+| 40 | 96.0% | 100.0% | 93.3% | 0.9800 | 88.0% | 2131.0 ms |
+
+Increasing the candidate pool did not improve Top-5 DEV retrieval quality, while
+candidate volume and latency increased. `candidate_k=40` improved only deeper
+Top-10 evidence coverage. Production remains frozen at `candidate_k=20`; the DEV
+experiment is engineering evidence, not an automatic production promotion.
+
+See `docs/evaluation/STAGE15_RETRIEVAL_EXPERIMENT_FINDINGS.md`.
 

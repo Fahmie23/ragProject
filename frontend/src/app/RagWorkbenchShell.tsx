@@ -12,7 +12,6 @@ function AppHeader({ active, onChange }: { active: AppView; onChange: (view: App
     { id: "overview", label: "Overview", icon: "⌂" },
     { id: "documents", label: "Documents", icon: "▤" },
     { id: "playground", label: "RAG Playground", icon: "✦" },
-    { id: "evaluation", label: "Benchmark", icon: "◎" },
   ];
 
   return (
@@ -55,22 +54,22 @@ function Overview({ onChange }: { onChange: (view: AppView) => void }) {
         <div>
           <span className="rag-eyebrow">Advanced RAG portfolio project</span>
           <h1>Understand what enters retrieval,<br />not only what the chatbot says.</h1>
-          <p>A document-grounded RAG workbench that exposes extraction, canonical structure, semantic chunks, retrieval traces, citations, and evaluation in one coherent interface.</p>
+          <p>A document-grounded RAG workbench that exposes extraction, canonical structure, semantic chunks, retrieval traces, and deterministic citations in one coherent interface.</p>
           <div className="rag-hero-actions">
             <button className="rag-primary-action" type="button" onClick={() => onChange("playground")}>Open RAG Playground</button>
             <button className="rag-secondary-action" type="button" onClick={() => onChange("documents")}>Inspect document</button>
           </div>
         </div>
         <div className="rag-readiness-card">
-          <div className="rag-card-kicker">Primary benchmark</div>
+          <div className="rag-card-kicker">Reference document</div>
           <h2>SC AML/CFT Guidelines</h2>
-          <p>Complex regulatory PDF used as the controlled ingestion and retrieval benchmark.</p>
+          <p>Complex regulatory PDF used to exercise the ingestion, structure, retrieval, and citation pipeline.</p>
           <div className="rag-stat-strip">
             <div><strong>109</strong><span>pages</span></div>
             <div><strong>1,243</strong><span>elements</span></div>
             <div><strong>39</strong><span>definitions</span></div>
           </div>
-          <div className="rag-readiness-row"><span>Canonical structure</span><strong>Benchmark ready</strong></div>
+          <div className="rag-readiness-row"><span>Canonical structure</span><strong>Pipeline ready</strong></div>
         </div>
       </section>
 
@@ -86,7 +85,7 @@ function Overview({ onChange }: { onChange: (view: AppView) => void }) {
           <PipelineStep label="Context assembly" detail="Bounded structural evidence expansion" state="done" />
           <PipelineStep label="Generation" detail="Grounded claims + abstention" state="done" />
           <PipelineStep label="Citations" detail="Deterministic claim-to-source validation" state="done" />
-          <PipelineStep label="Evaluation" detail="Frozen held-out answer + citation benchmark" state="done" />
+          <PipelineStep label="Retrieval experiments" detail="Controlled comparisons against frozen Retrieval v1" state="next" />
         </div>
       </section>
 
@@ -105,12 +104,6 @@ function Overview({ onChange }: { onChange: (view: AppView) => void }) {
           <h3>Make RAG behavior inspectable</h3>
           <p>The playground is designed to expose retrieved chunks, scores, retrieval strategy, reranking order, and source citations alongside the final answer.</p>
           <button className="rag-text-action" type="button" onClick={() => onChange("playground")}>Preview Playground →</button>
-        </article>
-        <article className="rag-panel">
-          <div className="rag-card-kicker">Benchmark report</div>
-          <h3>Show evidence of measured behavior</h3>
-          <p>Inspect frozen retrieval and answer/citation benchmarks with explicit formulas, provenance, and held-out scope instead of unsupported live quality scores.</p>
-          <button className="rag-text-action" type="button" onClick={() => onChange("evaluation")}>Open Benchmark →</button>
         </article>
       </section>
     </main>

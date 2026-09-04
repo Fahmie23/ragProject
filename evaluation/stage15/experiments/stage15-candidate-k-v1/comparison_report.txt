@@ -1,0 +1,21 @@
+STAGE 15 CONTROLLED RETRIEVAL EXPERIMENT
+========================================
+
+Experiment ID : stage15-candidate-k-v1
+Split         : dev only
+Strategy      : hybrid_reranker
+Variable      : candidate_k only
+Frozen        : BGE-M3, PostgreSQL FTS, OR content terms v1, RRF k=60,
+                dense weight=1.0, lexical weight=1.0, BGE reranker v2-m3
+Production    : Retrieval v1 remains unchanged regardless of this result.
+
+Variant | candidate_k | Hit@1 | Hit@5  | Recall@5 | MRR@10 | Complete@5 | Avg ms | Avg union
+--------+-------------+-------+--------+----------+--------+------------+--------+----------
+k10     | 10          | 96.0% | 100.0% | 93.3%    | 0.9800 | 88.0%      | 844.1  | 14.5
+k20     | 20          | 96.0% | 100.0% | 93.3%    | 0.9800 | 88.0%      | 1302.3 | 28.6
+k40     | 40          | 96.0% | 100.0% | 93.3%    | 0.9800 | 88.0%      | 2131.0 | 56.9
+
+Interpretation rule:
+- Compare retrieval quality and candidate/runtime cost together.
+- Do not select or modify production settings from held-out data.
+- A larger candidate_k is not preferable when quality is effectively unchanged.

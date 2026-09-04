@@ -29,3 +29,21 @@ npm-debug.log*
 .idea/
 .DS_Store
 Thumbs.db
+
+# Generated document-ingestion artifacts.
+# Existing tracked benchmark fixtures remain tracked by Git.
+backend/data/raw/*.pdf
+backend/data/extracted/*.json
+backend/data/layout/*.json
+backend/data/metadata/*.json
+backend/data/structured/*.json
+
+# Stage 15 exploratory / local experiment artifacts.
+evaluation/stage15/canary/
+evaluation/stage15/source_pdfs/
+evaluation/stage15/experiments/stage15-candidate-k-smoke/
+evaluation/stage15/experiments/stage15-candidate-k-persist-smoke/
+evaluation/stage15/experiments/stage15-candidate-k-v1/responses/
+evaluation/stage15/experiments/stage15-candidate-k-v1/all_results.json
+evaluation/stage15/experiments/stage15-candidate-k-v1/preflight.json
+evaluation/stage15/experiments/stage15-candidate-k-v1/manifest.json
