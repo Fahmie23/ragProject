@@ -37,6 +37,9 @@ backend/data/extracted/*.json
 backend/data/layout/*.json
 backend/data/metadata/*.json
 backend/data/structured/*.json
+backend/data/corrections/*.json
+backend/data/resolved/*.json
+backend/data/chunks/*.json
 
 # Stage 15 exploratory / local experiment artifacts.
 evaluation/stage15/canary/
@@ -47,3 +50,15 @@ evaluation/stage15/experiments/stage15-candidate-k-v1/responses/
 evaluation/stage15/experiments/stage15-candidate-k-v1/all_results.json
 evaluation/stage15/experiments/stage15-candidate-k-v1/preflight.json
 evaluation/stage15/experiments/stage15-candidate-k-v1/manifest.json
+
+# Generated smoke / diagnostic run outputs.
+backend/retrieval_results/
+backend/hybrid_retrieval_results/
+backend/hybrid_retrieval_results_stage7_1/
+backend/reranked_retrieval_results_stage8/
+backend/grounded_generation_results_stage9/
+backend/cited_generation_results_stage10/
+
+# Accidental root-only npm/test scratch artifacts.
+/package-lock.json
+/test_chunk_cards.html
