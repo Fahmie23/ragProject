@@ -47,6 +47,7 @@ services:
       GENERATION_JSON_MODE: ${GENERATION_JSON_MODE:-true}
       GENERATION_MAX_CONTEXT_CHARS: ${GENERATION_MAX_CONTEXT_CHARS:-40000}
       HF_HOME: /home/rag/.cache/huggingface
+      HF_TOKEN: ${HF_TOKEN:-}
     command: ["alembic", "-c", "alembic.ini", "upgrade", "head"]
     depends_on:
       postgres:

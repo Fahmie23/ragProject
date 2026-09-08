@@ -1,5 +1,6 @@
 from datetime import datetime, timezone
 import hashlib
+import logging
 from pathlib import Path
 from uuid import uuid4
 
@@ -36,6 +37,7 @@ from app.services.storage import (
     delete_chunking_artifact,
     delete_correction_artifacts,
     delete_structure_artifacts,
+    delete_document_artifacts,
     get_raw_path,
     list_metadata,
     read_chunking_artifact,
@@ -56,9 +58,15 @@ from app.services.storage import (
 )
 from app.services.structure import UnsupportedStructureError, reconstruct_document
 from app.services.validation import validate_file
+from app.services.visuals import (
+    VisualAssetNotFoundError,
+    structure_for_visual_preview,
+    visual_crop,
+)
 
 
 router = APIRouter(prefix="/api/documents", tags=["documents"])
+logger = logging.getLogger(__name__)
 
 
 @router.post("/upload", response_model=UploadResponse)
@@ -122,6 +130,46 @@ def get_document(document_id: str) -> DocumentRecord:
     if not record:
         raise HTTPException(status_code=404, detail="Document not found.")
     return record
+
+
+@router.delete("/{document_id}", status_code=204)
+def delete_document(document_id: str):
+    record = read_metadata(document_id)
+    if not record:
+        raise HTTPException(status_code=404, detail="Document not found.")
+
+    # Database first: if persistence cleanup fails, no filesystem artifacts are
+    # removed. Filesystem metadata is deleted last by delete_document_artifacts,
+    # so a partial filesystem failure is retryable through the same endpoint.
+    if settings.database_url:
+        try:
+            from app.db.repository import delete_document as delete_document_row
+
+            delete_document_row(document_id)
+        except Exception as exc:
+            logger.exception("document.delete.database_failed document_id=%s", document_id)
+            raise HTTPException(
+                status_code=503,
+                detail={
+                    "code": "document_database_delete_failed",
+                    "message": "The document could not be removed from PostgreSQL. No filesystem cleanup was attempted.",
+                },
+            ) from exc
+
+    try:
+        delete_document_artifacts(record)
+    except OSError as exc:
+        logger.exception("document.delete.filesystem_failed document_id=%s", document_id)
+        raise HTTPException(
+            status_code=500,
+            detail={
+                "code": "document_artifact_delete_failed",
+                "message": "Database cleanup completed, but one or more document files could not be removed. Retry the delete operation.",
+            },
+        ) from exc
+
+    logger.info("document.delete.completed document_id=%s filename=%s", document_id, record.original_filename)
+    return Response(status_code=204)
 
 
 @router.get("/{document_id}/file")
@@ -505,7 +553,7 @@ def validate_embedding_compatibility(
 ) -> EmbeddingCompatibilityResponse:
     _, artifact = _validated_stage5_artifact(document_id)
 
-    from app.services.embeddings import EmbeddingDeviceError, EmbeddingEncoder
+    from app.services.embeddings import EmbeddingDeviceError, EmbeddingEncoder, EmbeddingTokenizerLoadError
 
     model_name = request.embedding_model or settings.embedding_model
     try:
@@ -525,7 +573,22 @@ def validate_embedding_compatibility(
         ) from exc
 
     texts = [chunk.text for chunk in artifact.chunks]
-    inspection = encoder.inspect_documents(texts)
+    logger.info(
+        "stage6.compatibility.started document_id=%s model=%s chunk_count=%d",
+        document_id, model_name, len(texts),
+    )
+    try:
+        inspection = encoder.inspect_documents(texts)
+    except EmbeddingTokenizerLoadError as exc:
+        logger.exception("stage6.compatibility.tokenizer_failed document_id=%s model=%s", document_id, model_name)
+        raise HTTPException(
+            status_code=503,
+            detail={
+                "code": "embedding_tokenizer_load_failed",
+                "message": str(exc),
+                "embedding_model": model_name,
+            },
+        ) from exc
     token_counts = [int(value) for value in inspection["token_counts"]]
     max_seq_length = inspection["max_seq_length"]
     raw_violations = list(inspection["violations"])
@@ -544,6 +607,11 @@ def validate_embedding_compatibility(
     longest_index = max(range(len(token_counts)), key=token_counts.__getitem__) if token_counts else None
     longest_chunk = artifact.chunks[longest_index] if longest_index is not None else None
     violation_count = len(raw_violations)
+    logger.info(
+        "stage6.compatibility.completed document_id=%s model=%s chunk_count=%d violation_count=%d max_token_count=%s max_seq_length=%s",
+        document_id, model_name, len(artifact.chunks), violation_count,
+        token_counts[longest_index] if longest_index is not None else None, max_seq_length,
+    )
     return EmbeddingCompatibilityResponse(
         document_id=document_id,
         embedding_model=model_name,
@@ -567,7 +635,7 @@ def generate_embeddings(document_id: str, request: GenerateEmbeddingsRequest) ->
     _ensure_stage5_database_sync(record, artifact)
 
     from app.db.repository import chunks_for_embedding, delete_embeddings, embedding_status, store_embeddings
-    from app.services.embeddings import EmbeddingCompatibilityError, EmbeddingDeviceError, EmbeddingEncoder
+    from app.services.embeddings import (EmbeddingCompatibilityError, EmbeddingDeviceError, EmbeddingEncoder, EmbeddingModelLoadError, EmbeddingTokenizerLoadError)
 
     model_name = request.embedding_model or settings.embedding_model
     try:
@@ -599,6 +667,10 @@ def generate_embeddings(document_id: str, request: GenerateEmbeddingsRequest) ->
         )
 
     texts = [str(chunk["text"]) for chunk in pending]
+    logger.info(
+        "stage6.embedding.started document_id=%s model=%s device=%s chunk_count=%d batch_size=%d",
+        document_id, model_name, encoder.device, len(texts), encoder.batch_size,
+    )
     try:
         vectors = encoder.encode_documents(texts)
     except EmbeddingCompatibilityError as exc:
@@ -625,6 +697,23 @@ def generate_embeddings(document_id: str, request: GenerateEmbeddingsRequest) ->
                 "violations": violations,
             },
         ) from exc
+    except EmbeddingTokenizerLoadError as exc:
+        logger.exception("stage6.embedding.tokenizer_failed document_id=%s model=%s", document_id, model_name)
+        raise HTTPException(
+            status_code=503,
+            detail={"code": "embedding_tokenizer_load_failed", "message": str(exc), "embedding_model": model_name},
+        ) from exc
+    except EmbeddingModelLoadError as exc:
+        logger.exception("stage6.embedding.model_failed document_id=%s model=%s device=%s", document_id, model_name, encoder.device)
+        raise HTTPException(
+            status_code=503,
+            detail={
+                "code": "embedding_model_load_failed",
+                "message": str(exc),
+                "embedding_model": model_name,
+                "resolved_device": encoder.device,
+            },
+        ) from exc
     if len(vectors) != len(pending):
         raise HTTPException(status_code=500, detail="Embedding model returned a different number of vectors than chunks.")
 
@@ -645,6 +734,10 @@ def generate_embeddings(document_id: str, request: GenerateEmbeddingsRequest) ->
         )
     generated = store_embeddings(embedding_model=model_name, chunk_vectors=payload)
     after = embedding_status(document_id, model_name)
+    logger.info(
+        "stage6.embedding.completed document_id=%s model=%s generated_count=%d embedded_count=%s dimension=%s",
+        document_id, model_name, generated, after.get("embedded_chunk_count"), after.get("dimension"),
+    )
     return GenerateEmbeddingsResponse(
         **after,
         generated_count=generated,
@@ -731,3 +824,79 @@ def get_page_preview(
         doc.close()
 
     return Response(content=png, media_type="image/png")
+
+
+@router.get("/{document_id}/visuals/{asset_type}/{visual_id}/preview")
+def get_visual_preview(
+    document_id: str,
+    asset_type: str,
+    visual_id: str,
+    page_number: int | None = Query(default=None, ge=1),
+    scale: float = Query(default=1.8, ge=0.5, le=4.0),
+    padding: float = Query(default=8.0, ge=0.0, le=40.0),
+    view: str = Query(default="crop", pattern="^(crop|page)$"),
+):
+    """Render deterministic PDF evidence for a canonical figure or table.
+
+    ``crop`` is used by Search & Ask source cards. ``page`` renders the whole
+    PDF page with the canonical visual bbox outlined, providing a lightweight
+    "view in page" path without modifying the original PDF.
+    """
+
+    record = read_metadata(document_id)
+    if not record:
+        raise HTTPException(status_code=404, detail="Document not found.")
+    if record.classification.document_family != "pdf":
+        raise HTTPException(status_code=400, detail="Visual preview is currently available for PDFs only.")
+
+    structure = structure_for_visual_preview(document_id)
+    if structure is None:
+        raise HTTPException(status_code=409, detail="Canonical structure is unavailable for visual preview.")
+    try:
+        resolved_page, bbox = visual_crop(
+            structure,
+            asset_type=asset_type,
+            visual_id=visual_id,
+            page_number=page_number,
+        )
+    except VisualAssetNotFoundError as exc:
+        raise HTTPException(status_code=404, detail=str(exc)) from exc
+
+    path = get_raw_path(record)
+    if not path.exists():
+        raise HTTPException(status_code=404, detail="Raw file not found.")
+
+    doc = pymupdf.open(path)
+    try:
+        if resolved_page < 1 or resolved_page > doc.page_count:
+            raise HTTPException(status_code=404, detail="Visual source page not found.")
+        page = doc[resolved_page - 1]
+        page_rect = page.rect
+        visual_rect = pymupdf.Rect(*bbox)
+        if visual_rect.is_empty or visual_rect.is_infinite:
+            raise HTTPException(status_code=409, detail="Visual source has invalid canonical geometry.")
+
+        if view == "page":
+            # Draw on the in-memory page only; the uploaded PDF is never saved or
+            # modified. The rectangle makes provenance immediately inspectable.
+            page.draw_rect(visual_rect, color=(0.11, 0.40, 0.23), width=2.0, overlay=True)
+            pixmap = page.get_pixmap(matrix=pymupdf.Matrix(scale, scale), alpha=False)
+        else:
+            clip = pymupdf.Rect(
+                visual_rect.x0 - padding,
+                visual_rect.y0 - padding,
+                visual_rect.x1 + padding,
+                visual_rect.y1 + padding,
+            ) & page_rect
+            if clip.is_empty:
+                raise HTTPException(status_code=409, detail="Visual crop falls outside the PDF page.")
+            pixmap = page.get_pixmap(matrix=pymupdf.Matrix(scale, scale), clip=clip, alpha=False)
+        png = pixmap.tobytes("png")
+    finally:
+        doc.close()
+
+    return Response(
+        content=png,
+        media_type="image/png",
+        headers={"Cache-Control": "private, max-age=300"},
+    )

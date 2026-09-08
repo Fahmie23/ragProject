@@ -678,6 +678,29 @@ export interface DenseRetrievalRequest {
   semantic_types?: string[];
 }
 
+export type VisualAssetType = "figure" | "table";
+
+export type VisualRelation =
+  | "contains_visual"
+  | "figure_intro"
+  | "figure_caption"
+  | "figure_explanation"
+  | "figure_source"
+  | "nearby_explicit_reference"
+  | "table_content";
+
+export interface VisualReference {
+  visual_id: string;
+  asset_type: VisualAssetType;
+  page_number: number;
+  bbox: [number, number, number, number] | number[];
+  section_id?: string | null;
+  label: string;
+  relation: VisualRelation;
+  confidence: number;
+  relation_element_ids: string[];
+}
+
 export interface DenseRetrievalHit {
   rank: number;
   chunk_id: string;
@@ -691,6 +714,7 @@ export interface DenseRetrievalHit {
   pages: number[];
   section_path: string[];
   source_element_ids: string[];
+  visual_refs?: VisualReference[];
 }
 
 export interface DenseRetrievalResponse {
@@ -733,6 +757,7 @@ export interface HybridRetrievalHit {
   pages: number[];
   section_path: string[];
   source_element_ids: string[];
+  visual_refs?: VisualReference[];
 }
 
 export interface HybridRetrievalResponse {
@@ -785,6 +810,7 @@ export interface RerankedRetrievalHit {
   pages: number[];
   section_path: string[];
   source_element_ids: string[];
+  visual_refs?: VisualReference[];
 }
 
 export interface RetrievalTraceDenseCandidate {
@@ -893,6 +919,7 @@ export interface StructuralContextChunk {
   pages: number[];
   section_path: string[];
   source_element_ids: string[];
+  visual_refs?: VisualReference[];
 }
 
 export interface ContextExpandedRetrievalRequest extends RerankedRetrievalRequest {
@@ -934,6 +961,7 @@ export interface GenerationEvidence {
   section_path: string[];
   source_element_ids: string[];
   content_text: string;
+  visual_refs?: VisualReference[];
 }
 
 export interface CitationLocator {

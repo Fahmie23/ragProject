@@ -743,6 +743,38 @@ class GenerateEmbeddingsResponse(EmbeddingStatusResponse):
     resolved_device: str
 
 
+VisualAssetType = Literal["figure", "table"]
+VisualRelation = Literal[
+    "contains_visual",
+    "figure_intro",
+    "figure_caption",
+    "figure_explanation",
+    "figure_source",
+    "nearby_explicit_reference",
+    "table_content",
+]
+
+
+class VisualReference(BaseModel):
+    """Read-only visual provenance attached to retrieved text evidence.
+
+    Option-A visual support deliberately does not perform image understanding.
+    These references only expose a PDF crop when canonical structure already
+    establishes a deterministic relationship between the retrieved chunk and a
+    figure/table (or a tightly bounded explicit-reference heuristic does so).
+    """
+
+    visual_id: str
+    asset_type: VisualAssetType
+    page_number: int = Field(ge=1)
+    bbox: list[float] = Field(min_length=4, max_length=4)
+    section_id: str | None = None
+    label: str = ""
+    relation: VisualRelation
+    confidence: float = Field(ge=0.0, le=1.0)
+    relation_element_ids: list[str] = Field(default_factory=list)
+
+
 class DenseRetrievalRequest(BaseModel):
     document_id: str
     query: str = Field(min_length=1, max_length=4000)
@@ -765,6 +797,7 @@ class DenseRetrievalHit(BaseModel):
     pages: list[int] = Field(default_factory=list)
     section_path: list[str] = Field(default_factory=list)
     source_element_ids: list[str] = Field(default_factory=list)
+    visual_refs: list[VisualReference] = Field(default_factory=list)
 
 
 class DenseRetrievalResponse(BaseModel):
@@ -801,6 +834,7 @@ class LexicalRetrievalHit(BaseModel):
     pages: list[int] = Field(default_factory=list)
     section_path: list[str] = Field(default_factory=list)
     source_element_ids: list[str] = Field(default_factory=list)
+    visual_refs: list[VisualReference] = Field(default_factory=list)
 
 
 class LexicalRetrievalResponse(BaseModel):
@@ -858,6 +892,7 @@ class HybridRetrievalHit(BaseModel):
     pages: list[int] = Field(default_factory=list)
     section_path: list[str] = Field(default_factory=list)
     source_element_ids: list[str] = Field(default_factory=list)
+    visual_refs: list[VisualReference] = Field(default_factory=list)
 
 
 class HybridRetrievalResponse(BaseModel):
@@ -1005,6 +1040,7 @@ class RerankedRetrievalHit(BaseModel):
     pages: list[int] = Field(default_factory=list)
     section_path: list[str] = Field(default_factory=list)
     source_element_ids: list[str] = Field(default_factory=list)
+    visual_refs: list[VisualReference] = Field(default_factory=list)
 
 
 class RetrievalTraceDenseCandidate(BaseModel):
@@ -1112,6 +1148,7 @@ class StructuralContextChunk(BaseModel):
     pages: list[int] = Field(default_factory=list)
     section_path: list[str] = Field(default_factory=list)
     source_element_ids: list[str] = Field(default_factory=list)
+    visual_refs: list[VisualReference] = Field(default_factory=list)
 
 
 class ContextExpandedRetrievalRequest(RerankedRetrievalRequest):
@@ -1162,6 +1199,7 @@ class GenerationEvidence(BaseModel):
     section_path: list[str] = Field(default_factory=list)
     source_element_ids: list[str] = Field(default_factory=list)
     content_text: str
+    visual_refs: list[VisualReference] = Field(default_factory=list)
 
 
 class CitationLocator(BaseModel):

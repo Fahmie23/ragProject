@@ -66,24 +66,24 @@ export function OverviewPage({
           <div className="v2-status-list">
             <StatusRow label="Upload" state="complete" detail="Original file stored immutably" />
             <StatusRow label="Classification" state={document.validation_status === "valid" ? "complete" : "blocked"} detail={document.classification.pdf_type ? `${document.classification.pdf_type} PDF` : undefined} />
-            <StatusRow label="Extraction" state={extraction ? "complete" : "pending"} detail={extraction ? `${extraction.summary.text_block_count} text blocks` : "Stage 3"} />
-            <StatusRow label="Structure" state={structure ? "complete" : "pending"} detail={structure ? `${structure.summary.element_count} canonical elements` : "Stage 4"} />
+            <StatusRow label="Extraction" state={extraction ? "complete" : "pending"} detail={extraction ? `${extraction.summary.text_block_count} text blocks` : "Ready to extract"} />
+            <StatusRow label="Structure" state={structure ? "complete" : "pending"} detail={structure ? `${structure.summary.element_count} canonical elements` : extraction ? "Ready to build" : "Waiting for extraction"} />
             <StatusRow label="Manual review" state={reviewState} detail={resolved ? `${resolved.correction_count} saved correction${resolved.correction_count === 1 ? "" : "s"}` : structure ? "Review automatic structure" : undefined} />
             <StatusRow
-              label="Chunking"
+              label="Knowledge preparation"
               state={chunkingState}
-              detail={chunking ? `${chunking.summary.chunk_count} retrieval chunks` : stage5Ready ? "Stage 5 · ready to generate" : structure ? "Requires saved Stage 4.5 resolved structure" : "Stage 5"}
+              detail={chunking ? `${chunking.summary.chunk_count} knowledge chunks` : stage5Ready ? "Ready to prepare knowledge" : structure ? "Complete document review first" : "Waiting for structure"}
             />
             <StatusRow
-              label="Embedding & index"
+              label="Search index"
               state={indexState}
               detail={embeddingStatus?.complete
                 ? `${embeddingStatus.embedded_chunk_count} vectors · ${embeddingStatus.dimension ?? "?"}D`
                 : chunking?.quality.status === "pass"
-                  ? "Stage 6 · ready to validate and generate"
+                  ? "Ready to validate and index"
                   : chunking
-                    ? "Requires Stage 5 quality pass"
-                    : "Stage 6"}
+                    ? "Resolve knowledge-quality signals first"
+                    : "Waiting for knowledge chunks"}
             />
           </div>
         </div>
@@ -92,7 +92,7 @@ export function OverviewPage({
       <section className="v2-overview-card">
         <div className="v2-card-title horizontal">
           <div><span className="eyebrow">Extraction & structure</span><h3>Current artifact summary</h3></div>
-          <span className={`v2-readiness ${stage5Ready ? "ready" : "pending"}`}>{stage5Ready ? "Ready for Stage 5" : structure ? "Review available" : "Processing incomplete"}</span>
+          <span className={`v2-readiness ${stage5Ready ? "ready" : "pending"}`}>{stage5Ready ? "Ready for knowledge preparation" : structure ? "Review available" : "Processing incomplete"}</span>
         </div>
         <div className="v2-summary-grid six">
           <SummaryCard label="Text blocks" value={extraction?.summary.text_block_count ?? "—"} />
@@ -103,6 +103,16 @@ export function OverviewPage({
           <SummaryCard label="Corrections" value={corrections?.operations.length ?? 0} />
         </div>
       </section>
+      <details className="v2-technical-pipeline">
+        <summary>Technical pipeline details</summary>
+        <div className="v2-technical-pipeline-grid">
+          <span><strong>Stage 3</strong>Layout-aware extraction</span>
+          <span><strong>Stage 4</strong>Canonical structure reconstruction</span>
+          <span><strong>Stage 4.5</strong>Human review & resolved structure</span>
+          <span><strong>Stage 5</strong>Semantic knowledge chunking</span>
+          <span><strong>Stage 6</strong>Embedding validation & vector index</span>
+        </div>
+      </details>
     </div>
   );
 }

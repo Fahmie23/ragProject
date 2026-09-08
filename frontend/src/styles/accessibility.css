@@ -1,0 +1,11 @@
+/* Keyboard and motion accessibility. */
+.rag-global-shell :where(button,a,input,select,textarea,summary,[tabindex]):focus-visible,
+.rag-documents-host :where(button,a,input,select,textarea,summary,[tabindex]):focus-visible {
+  outline: 3px solid var(--color-accent);
+  outline-offset: 2px;
+}
+.rag-global-shell :where(button,a,input,select,textarea,summary,[tabindex]):focus:not(:focus-visible),
+.rag-documents-host :where(button,a,input,select,textarea,summary,[tabindex]):focus:not(:focus-visible) { outline: none; }
+@media (prefers-reduced-motion: reduce) {
+  *,*::before,*::after { scroll-behavior: auto !important; animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; }
+}

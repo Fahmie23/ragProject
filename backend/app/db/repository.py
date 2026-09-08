@@ -2,7 +2,7 @@ from __future__ import annotations
 
 from sqlalchemy import case, delete, func, select
 
-from app.db.models import ChunkEmbeddingRow, ChunkRow, DocumentRow
+from app.db.models import ChunkEmbeddingRow, ChunkRow, DocumentRow, RetrievalExperimentRunRow
 from app.db.session import session_scope
 from app.schemas import ChunkingArtifact, DocumentRecord
 from app.services.lexical import LexicalQueryPlan, build_lexical_query_plan
@@ -80,6 +80,25 @@ def replace_chunks(record: DocumentRecord, artifact: ChunkingArtifact) -> None:
 def delete_chunks(document_id: str) -> None:
     with session_scope() as session:
         session.execute(delete(ChunkRow).where(ChunkRow.document_id == document_id))
+
+
+def delete_document(document_id: str) -> bool:
+    """Delete DB-owned runtime state for a document in one transaction.
+
+    Experiment runs are explicitly deleted first for compatibility with databases
+    that have not yet applied the Stage 16 cascade migration. Candidate rows then
+    cascade from their run FK; chunks/embeddings and evaluation DB rows cascade
+    from the document FK. Static evaluation files are not database-owned.
+    """
+
+    with session_scope() as session:
+        session.execute(
+            delete(RetrievalExperimentRunRow).where(
+                RetrievalExperimentRunRow.document_id == document_id
+            )
+        )
+        result = session.execute(delete(DocumentRow).where(DocumentRow.document_id == document_id))
+        return bool(result.rowcount)
 
 
 

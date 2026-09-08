@@ -30,11 +30,11 @@ export function DocumentWorkflowNav({
     done: boolean;
   }> = [
     { id: "overview", label: "Overview", enabled: true, done: true },
-    { id: "extraction", label: "Extraction", enabled: extractionReady, done: extractionReady },
+    { id: "extraction", label: "Content", enabled: extractionReady, done: extractionReady },
     { id: "structure", label: "Structure", enabled: structureReady, done: structureReady },
     { id: "review", label: "Review", enabled: reviewReady, done: reviewDone },
-    { id: "chunking", label: "Chunking", enabled: chunkingAvailable, done: chunkingDone },
-    { id: "index", label: "Index", enabled: indexAvailable, done: indexDone },
+    { id: "chunking", label: "Knowledge", enabled: chunkingAvailable, done: chunkingDone },
+    { id: "index", label: "Search Index", enabled: indexAvailable, done: indexDone },
   ];
 
   return (
@@ -49,9 +49,9 @@ export function DocumentWorkflowNav({
             className={`${active ? "active" : ""} ${item.done ? "done" : ""}`}
             onClick={() => onChange(item.id)}
             title={item.id === "chunking" && !item.enabled
-              ? "Complete Stage 4 before opening Stage 5."
+              ? "Complete document structure review before preparing knowledge."
               : item.id === "index" && !item.enabled
-                ? "Generate Stage 5 chunks before opening the vector index."
+                ? "Prepare knowledge chunks before opening the search index."
                 : undefined}
           >
             <span className="v2-workflow-state" aria-hidden="true">{item.done ? "✓" : active ? "●" : "○"}</span>

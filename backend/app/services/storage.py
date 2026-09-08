@@ -173,3 +173,27 @@ def delete_structure_artifacts(document_id: str) -> None:
     (settings.layout_dir / f"{document_id}.json").unlink(missing_ok=True)
     (settings.structured_dir / f"{document_id}.json").unlink(missing_ok=True)
     delete_correction_artifacts(document_id)
+
+
+def delete_document_artifacts(record: DocumentRecord) -> None:
+    """Delete every runtime filesystem artifact owned by one uploaded document.
+
+    Metadata is removed last so a partial filesystem failure remains retryable
+    through the public DELETE endpoint. Curated evaluation assets live outside
+    these data directories and are intentionally never touched here.
+    """
+
+    document_id = record.document_id
+    paths = [
+        get_raw_path(record),
+        settings.extracted_dir / f"{document_id}.json",
+        settings.layout_dir / f"{document_id}.json",
+        settings.structured_dir / f"{document_id}.json",
+        settings.corrections_dir / f"{document_id}.json",
+        settings.resolved_dir / f"{document_id}.json",
+        settings.chunks_dir / f"{document_id}.json",
+    ]
+    for path in paths:
+        path.unlink(missing_ok=True)
+
+    (settings.metadata_dir / f"{document_id}.json").unlink(missing_ok=True)

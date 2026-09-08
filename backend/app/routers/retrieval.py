@@ -25,6 +25,7 @@ from app.schemas import (
     RetrievalTraceRerankedCandidate,
 )
 from app.services.storage import read_metadata
+from app.services.visuals import enrich_rows_with_visual_refs
 
 
 router = APIRouter(prefix="/api/retrieval", tags=["retrieval"])
@@ -89,7 +90,8 @@ def dense_retrieval(request: DenseRetrievalRequest) -> DenseRetrievalResponse:
         top_k=request.top_k,
         semantic_types=request.semantic_types or None,
     )
-    hits = [DenseRetrievalHit(rank=index + 1, **row) for index, row in enumerate(rows)]
+    enriched_rows = enrich_rows_with_visual_refs(request.document_id, rows)
+    hits = [DenseRetrievalHit(rank=index + 1, **row) for index, row in enumerate(enriched_rows)]
     return DenseRetrievalResponse(
         document_id=request.document_id,
         query=request.query.strip(),
@@ -122,7 +124,8 @@ def lexical_retrieval(request: LexicalRetrievalRequest) -> LexicalRetrievalRespo
         semantic_types=request.semantic_types or None,
         query_plan=lexical_plan,
     )
-    hits = [LexicalRetrievalHit(rank=index + 1, **row) for index, row in enumerate(rows)]
+    enriched_rows = enrich_rows_with_visual_refs(request.document_id, rows)
+    hits = [LexicalRetrievalHit(rank=index + 1, **row) for index, row in enumerate(enriched_rows)]
     return LexicalRetrievalResponse(
         document_id=request.document_id,
         query=request.query.strip(),
@@ -171,7 +174,8 @@ def hybrid_retrieval(request: HybridRetrievalRequest) -> HybridRetrievalResponse
         dense_weight=request.dense_weight,
         lexical_weight=request.lexical_weight,
     )
-    hits = [HybridRetrievalHit(**row) for row in fused_rows]
+    enriched_rows = enrich_rows_with_visual_refs(request.document_id, fused_rows)
+    hits = [HybridRetrievalHit(**row) for row in enriched_rows]
 
     return HybridRetrievalResponse(
         document_id=request.document_id,
@@ -384,7 +388,8 @@ def hybrid_reranked_retrieval(request: RerankedRetrievalRequest) -> RerankedRetr
         lexical_terms=list(lexical_plan.terms),
         lexical_tsquery=lexical_plan.tsquery_text,
     )
-    hits = [RerankedRetrievalHit(**row) for row in reranked_rows]
+    enriched_rows = enrich_rows_with_visual_refs(request.document_id, reranked_rows)
+    hits = [RerankedRetrievalHit(**row) for row in enriched_rows]
 
     return RerankedRetrievalResponse(
         document_id=request.document_id,
@@ -452,6 +457,7 @@ def hybrid_reranked_context_retrieval(request: ContextExpandedRetrievalRequest) 
         chunk_lookup.setdefault(int(row["chunk_index"]), row)
 
     context_chunks = assemble_structural_context(ranked_rows, chunk_lookup, config=config)
+    context_chunks = enrich_rows_with_visual_refs(request.document_id, context_chunks)
     seed_ids = {str(hit.chunk_id) for hit in ranked_response.hits}
     context_ids = {str(item["chunk_id"]) for item in context_chunks}
     expanded_ids = context_ids - seed_ids

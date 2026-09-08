@@ -1,7 +1,7 @@
 import { useEffect, useMemo, useRef, useState, type ReactNode } from "react";
 import WorkbenchApp from "../features/workbench/WorkbenchApp";
-import { listDocuments, rawFileUrl, runContextExpandedRetrieval, runDenseRetrieval, runGroundedAnswer, runHybridRetrieval } from "../api";
-import type { ContextExpandedRetrievalResponse, DenseRetrievalResponse, DocumentRecord, GroundedAnswerResponse, HybridRetrievalHit, HybridRetrievalResponse, RerankedRetrievalHit } from "../types";
+import { listDocuments, rawFileUrl, runContextExpandedRetrieval, runDenseRetrieval, runGroundedAnswer, runHybridRetrieval, visualPreviewUrl } from "../api";
+import type { ContextExpandedRetrievalResponse, DenseRetrievalResponse, DocumentRecord, GroundedAnswerResponse, HybridRetrievalHit, HybridRetrievalResponse, RerankedRetrievalHit, VisualReference } from "../types";
 
 type AppView = "overview" | "documents" | "playground" | "evaluation";
 
@@ -11,16 +11,17 @@ function AppHeader({ active, onChange }: { active: AppView; onChange: (view: App
   const items: Array<{ id: AppView; label: string; icon: string }> = [
     { id: "overview", label: "Overview", icon: "⌂" },
     { id: "documents", label: "Documents", icon: "▤" },
-    { id: "playground", label: "RAG Playground", icon: "✦" },
+    { id: "playground", label: "Search & Ask", icon: "✦" },
+    { id: "evaluation", label: "Evaluation", icon: "◎" },
   ];
 
   return (
     <header className="rag-global-header">
-      <button className="rag-global-brand" type="button" onClick={() => onChange("overview")} aria-label="Open RAG Workbench overview">
+      <button className="rag-global-brand" type="button" onClick={() => onChange("overview")} aria-label="Open RAG Document Studio overview">
         <span className="rag-global-mark">R</span>
-        <span><strong>RAG Workbench</strong><small>End-to-end retrieval engineering</small></span>
+        <span><strong>RAG Document Studio</strong><small>Evidence-first document intelligence</small></span>
       </button>
-      <nav className="rag-global-nav" aria-label="RAG Workbench">
+      <nav className="rag-global-nav" aria-label="RAG Document Studio">
         {items.map((item) => (
           <button
             key={item.id}
@@ -56,7 +57,7 @@ function Overview({ onChange }: { onChange: (view: AppView) => void }) {
           <h1>Understand what enters retrieval,<br />not only what the chatbot says.</h1>
           <p>A document-grounded RAG workbench that exposes extraction, canonical structure, semantic chunks, retrieval traces, and deterministic citations in one coherent interface.</p>
           <div className="rag-hero-actions">
-            <button className="rag-primary-action" type="button" onClick={() => onChange("playground")}>Open RAG Playground</button>
+            <button className="rag-primary-action" type="button" onClick={() => onChange("playground")}>Open Search & Ask</button>
             <button className="rag-secondary-action" type="button" onClick={() => onChange("documents")}>Inspect document</button>
           </div>
         </div>
@@ -103,7 +104,7 @@ function Overview({ onChange }: { onChange: (view: AppView) => void }) {
           <div className="rag-card-kicker">Retrieval visibility</div>
           <h3>Make RAG behavior inspectable</h3>
           <p>The playground is designed to expose retrieved chunks, scores, retrieval strategy, reranking order, and source citations alongside the final answer.</p>
-          <button className="rag-text-action" type="button" onClick={() => onChange("playground")}>Preview Playground →</button>
+          <button className="rag-text-action" type="button" onClick={() => onChange("playground")}>Open Search & Ask →</button>
         </article>
       </section>
     </main>
@@ -131,6 +132,152 @@ function sectionLabel(sectionPath: string[]) {
   return sectionPath.length ? sectionPath[sectionPath.length - 1] : "Unscoped chunk";
 }
 
+const INLINE_VISUAL_RELATIONS = new Set<VisualReference["relation"]>([
+  "contains_visual",
+  "figure_intro",
+  "figure_caption",
+  "figure_explanation",
+  "nearby_explicit_reference",
+  "table_content",
+]);
+
+function isInlineVisualEligible(visual: VisualReference) {
+  if (!INLINE_VISUAL_RELATIONS.has(visual.relation)) return false;
+  if (visual.relation === "nearby_explicit_reference") return visual.confidence >= 0.78;
+  return visual.confidence >= 0.9;
+}
+
+function visualRelationshipLabel(visual: VisualReference) {
+  switch (visual.relation) {
+    case "contains_visual":
+      return "The cited evidence directly contains this visual.";
+    case "figure_intro":
+      return "The cited evidence explicitly introduces this visual.";
+    case "figure_caption":
+      return "The cited evidence contains the caption for this visual.";
+    case "figure_explanation":
+      return "The cited evidence directly explains this visual.";
+    case "nearby_explicit_reference":
+      return "The document explicitly links this cited passage to the nearby visual.";
+    case "table_content":
+      return "The cited evidence comes from this structured table.";
+    default:
+      return "This visual is linked to the cited source evidence.";
+  }
+}
+
+type PromotedAnswerVisual = {
+  citation: GroundedAnswerResponse["citations"][number];
+  visual: VisualReference;
+};
+
+function choosePromotedAnswerVisual(answer: GroundedAnswerResponse | null): PromotedAnswerVisual | null {
+  if (!answer || answer.status !== "answered") return null;
+  const evidenceById = new Map(answer.evidence.map((evidence) => [evidence.evidence_id, evidence]));
+  const seen = new Set<string>();
+
+  // Citation order is intentional: prefer the earliest validated source that has
+  // a strong visual relationship instead of promoting a later duplicate solely
+  // because its heuristic confidence is a few points higher.
+  for (const citation of answer.citations) {
+    const evidence = evidenceById.get(citation.evidence_id);
+    for (const visual of evidence?.visual_refs ?? []) {
+      const key = `${visual.asset_type}:${visual.visual_id}:${visual.page_number}`;
+      if (seen.has(key)) continue;
+      seen.add(key);
+      if (isInlineVisualEligible(visual)) return { citation, visual };
+    }
+  }
+  return null;
+}
+
+function PromotedAnswerVisualCard({
+  documentId,
+  promoted,
+  onShowSource,
+}: {
+  documentId: string;
+  promoted: PromotedAnswerVisual;
+  onShowSource: (citationId: string) => void;
+}) {
+  const { citation, visual } = promoted;
+  const cropUrl = visualPreviewUrl(documentId, visual.asset_type, visual.visual_id, visual.page_number, "crop");
+  const pageUrl = visualPreviewUrl(documentId, visual.asset_type, visual.visual_id, visual.page_number, "page");
+  const kindLabel = visual.asset_type === "table" ? "Table" : "Figure / image";
+  const label = visual.label?.trim() || `${kindLabel} on page ${visual.page_number}`;
+
+  return (
+    <aside className="rag-answer-inline-visual" aria-label={`Relevant visual from source ${citation.marker}`}>
+      <div className="rag-answer-inline-visual-head">
+        <div>
+          <span>Relevant visual from source {citation.marker}</span>
+          <strong>{label}</strong>
+        </div>
+        <small>{kindLabel} · Page {visual.page_number}</small>
+      </div>
+      <a
+        className="rag-answer-inline-visual-preview"
+        href={cropUrl}
+        target="_blank"
+        rel="noreferrer"
+        aria-label={`Open a larger preview of ${label}`}
+      >
+        <img src={cropUrl} alt={label} loading="lazy" />
+      </a>
+      <div className="rag-answer-inline-visual-context">
+        <p>{visualRelationshipLabel(visual)}</p>
+        <small>The answer is generated from cited text; this visual is shown as related source evidence.</small>
+      </div>
+      <div className="rag-answer-inline-visual-actions">
+        <button type="button" onClick={() => onShowSource(citation.citation_id)}>Show source {citation.marker}</button>
+        <a href={pageUrl} target="_blank" rel="noreferrer">View highlighted page →</a>
+      </div>
+    </aside>
+  );
+}
+
+function SourceVisualEvidence({
+  documentId,
+  visualRefs,
+}: {
+  documentId: string;
+  visualRefs?: VisualReference[];
+}) {
+  if (!visualRefs?.length) return null;
+  const visibleRefs = visualRefs.slice(0, 2);
+
+  return (
+    <div className="rag-source-visual-list" aria-label="Related visual evidence">
+      {visibleRefs.map((visual) => {
+        const cropUrl = visualPreviewUrl(documentId, visual.asset_type, visual.visual_id, visual.page_number, "crop");
+        const pageUrl = visualPreviewUrl(documentId, visual.asset_type, visual.visual_id, visual.page_number, "page");
+        const kindLabel = visual.asset_type === "table" ? "Table" : "Figure / image";
+        const label = visual.label?.trim() || `${kindLabel} on page ${visual.page_number}`;
+        return (
+          <figure className="rag-source-visual" key={`${visual.asset_type}-${visual.visual_id}-${visual.page_number}`}>
+            <div className="rag-source-visual-head">
+              <span>{kindLabel}</span>
+              <small>Page {visual.page_number}</small>
+            </div>
+            <a
+              className="rag-source-visual-preview"
+              href={pageUrl}
+              target="_blank"
+              rel="noreferrer"
+              aria-label={`View ${label} highlighted on page ${visual.page_number}`}
+            >
+              <img src={cropUrl} alt={label} loading="lazy" />
+            </a>
+            <figcaption>{label}</figcaption>
+            <a className="rag-source-visual-page-link" href={pageUrl} target="_blank" rel="noreferrer">View highlighted page →</a>
+          </figure>
+        );
+      })}
+      {visualRefs.length > visibleRefs.length && <small className="rag-source-visual-more">+{visualRefs.length - visibleRefs.length} more related visual{visualRefs.length - visibleRefs.length === 1 ? "" : "s"}</small>}
+    </div>
+  );
+}
+
 function CitedAnswerText({
   answer,
   citations,
@@ -156,6 +303,10 @@ function CitedAnswerText({
           className="rag-answer-citation-link"
           data-active={activeCitationId === citation.citation_id ? "true" : "false"}
           onClick={(event) => onCitationSelect(citation.citation_id, event.currentTarget)}
+          onMouseEnter={() => document.dispatchEvent(new CustomEvent("rag:citation-preview", { detail: citation.citation_id }))}
+          onMouseLeave={() => document.dispatchEvent(new CustomEvent("rag:citation-preview", { detail: null }))}
+          onFocus={() => document.dispatchEvent(new CustomEvent("rag:citation-preview", { detail: citation.citation_id }))}
+          onBlur={() => document.dispatchEvent(new CustomEvent("rag:citation-preview", { detail: null }))}
           title={citation.display}
           aria-label={`${citation.marker} ${citation.display}. Inspect deterministic provenance.`}
         >
@@ -185,6 +336,7 @@ function RagPlayground() {
   const [traceOpen, setTraceOpen] = useState(false);
   const [answerInspectorTab, setAnswerInspectorTab] = useState<AnswerInspectorTab>("claims");
   const [selectedCitationId, setSelectedCitationId] = useState<string | null>(null);
+  const [previewCitationId, setPreviewCitationId] = useState<string | null>(null);
   const [documentsLoading, setDocumentsLoading] = useState(true);
   const [documentsLoadError, setDocumentsLoadError] = useState<string | null>(null);
   const citationReturnFocusRef = useRef<HTMLElement | null>(null);
@@ -196,6 +348,7 @@ function RagPlayground() {
     setError(null);
     setAnswerInspectorTab("claims");
     setSelectedCitationId(null);
+    setPreviewCitationId(null);
   }
 
   async function loadPlaygroundDocuments() {
@@ -233,7 +386,15 @@ function RagPlayground() {
 
   function openCitation(citationId: string, trigger?: HTMLElement) {
     citationReturnFocusRef.current = trigger ?? (document.activeElement instanceof HTMLElement ? document.activeElement : null);
+    document.getElementById(`rag-source-${citationId}`)?.scrollIntoView({ behavior: "smooth", block: "nearest" });
     setSelectedCitationId(citationId);
+  }
+
+  function focusCitationSource(citationId: string) {
+    const source = document.getElementById(`rag-source-${citationId}`);
+    if (!(source instanceof HTMLElement)) return;
+    source.scrollIntoView({ behavior: "smooth", block: "nearest" });
+    source.focus({ preventScroll: true });
   }
 
   function closeCitation({ restoreFocus = true }: { restoreFocus?: boolean } = {}) {
@@ -242,6 +403,15 @@ function RagPlayground() {
       window.requestAnimationFrame(() => citationReturnFocusRef.current?.focus());
     }
   }
+
+  useEffect(() => {
+    const handlePreview = (event: Event) => {
+      const custom = event as CustomEvent<string | null>;
+      setPreviewCitationId(custom.detail ?? null);
+    };
+    document.addEventListener("rag:citation-preview", handlePreview);
+    return () => document.removeEventListener("rag:citation-preview", handlePreview);
+  }, []);
 
   useEffect(() => {
     if (!selectedCitationId) return;
@@ -347,6 +517,8 @@ function RagPlayground() {
     () => new Map((generatedAnswer?.evidence ?? []).map((evidence) => [evidence.evidence_id, evidence])),
     [generatedAnswer],
   );
+  const promotedAnswerVisual = useMemo(() => choosePromotedAnswerVisual(generatedAnswer), [generatedAnswer]);
+  const highlightedCitationId = previewCitationId ?? selectedCitationId;
   const selectedCitation = selectedCitationId ? citationById.get(selectedCitationId) ?? null : null;
   const selectedCitationEvidence = selectedCitation ? evidenceById.get(selectedCitation.evidence_id) ?? null : null;
   const selectedCitationClaims = selectedCitation
@@ -366,11 +538,11 @@ function RagPlayground() {
     <main className="rag-page rag-playground-page">
       <div className="rag-page-heading rag-playground-heading">
         <div>
-          <span className="rag-eyebrow">RAG Playground</span>
+          <span className="rag-eyebrow">Search & Ask</span>
           <h1>Ask the document. Inspect the evidence.</h1>
           <p>The cited-answer mode always runs the frozen production RAG profile. Retrieval experiments are isolated so their controls cannot silently change generated answers.</p>
         </div>
-        <div className="rag-tab-switch rag-playground-mode-switch" role="group" aria-label="Playground mode">
+        <div className="rag-tab-switch rag-playground-mode-switch" role="group" aria-label="Search and ask mode">
           <button type="button" className={mode === "answer" ? "active" : ""} onClick={() => { setMode("answer"); clearOutputs(); }}>Cited answer</button>
           <button type="button" className={mode === "retrieval" ? "active" : ""} onClick={() => { setMode("retrieval"); clearOutputs(); }}>Retrieval experiment</button>
         </div>
@@ -460,7 +632,8 @@ function RagPlayground() {
               <span className={`rag-answer-status ${generatedAnswer.status}`}>{generatedAnswer.status === "answered" ? "Grounded answer" : "Insufficient evidence"}</span>
               <span className="rag-answer-status-note">{generatedAnswer.status === "answered" ? `${generatedAnswer.citations.length} validated source${generatedAnswer.citations.length === 1 ? "" : "s"}` : "No citations emitted"}</span>
             </div>
-            <CitedAnswerText answer={generatedAnswer.cited_answer || generatedAnswer.answer} citations={generatedAnswer.citations} activeCitationId={selectedCitationId} onCitationSelect={openCitation} />
+            <CitedAnswerText answer={generatedAnswer.cited_answer || generatedAnswer.answer} citations={generatedAnswer.citations} activeCitationId={highlightedCitationId} onCitationSelect={openCitation} />
+            {promotedAnswerVisual && <PromotedAnswerVisualCard documentId={generatedAnswer.document_id} promoted={promotedAnswerVisual} onShowSource={focusCitationSource} />}
             {generatedAnswer.missing_information.length > 0 && <div className="rag-missing-info"><strong>Missing information</strong>{generatedAnswer.missing_information.map((item) => <span key={item}>{item}</span>)}</div>}
             <div className="rag-answer-facts" aria-label="Answer pipeline summary">
               <div><strong>{generatedAnswer.claims.length}</strong><span>claims</span></div>
@@ -499,11 +672,22 @@ function RagPlayground() {
           {mode === "answer" ? generatedAnswer?.citations.map((citation) => {
             const href = citation.pages[0] ? `${rawFileUrl(generatedAnswer.document_id)}#page=${citation.pages[0]}` : rawFileUrl(generatedAnswer.document_id);
             const evidence = evidenceById.get(citation.evidence_id);
-            return <article className="rag-source-card rag-citation-source-card" key={citation.citation_id}>
+            return <article
+                id={`rag-source-${citation.citation_id}`}
+                className="rag-source-card rag-citation-source-card"
+                data-active={highlightedCitationId === citation.citation_id ? "true" : "false"}
+                key={citation.citation_id}
+                tabIndex={-1}
+                onMouseEnter={() => setPreviewCitationId(citation.citation_id)}
+                onMouseLeave={() => setPreviewCitationId(null)}
+                onFocusCapture={() => setPreviewCitationId(citation.citation_id)}
+                onBlurCapture={(event) => { if (!event.currentTarget.contains(event.relatedTarget as Node | null)) setPreviewCitationId(null); }}
+              >
               <div><strong>{citation.marker} · {citation.evidence_id}</strong><span>{citation.validation_status}</span></div>
               <strong className="rag-source-section">{citation.display}</strong>
               {evidence && <>
                 <p className="rag-source-preview">{evidence.content_text}</p>
+                <SourceVisualEvidence documentId={generatedAnswer.document_id} visualRefs={evidence.visual_refs} />
                 <details className="rag-source-evidence-disclosure">
                   <summary>Show full evidence</summary>
                   <div className="rag-source-evidence-full">
@@ -512,7 +696,7 @@ function RagPlayground() {
                 </details>
               </>}
               <small className="rag-source-meta">{citation.source_filename} · {sectionLabel(citation.section_path)} · c{String(citation.chunk_index).padStart(4, "0")}</small>
-              <a className="rag-citation-open" href={href} target="_blank" rel="noreferrer">Open source PDF →</a>
+              <div className="rag-source-actions"><a className="rag-citation-open" href={href} target="_blank" rel="noreferrer">Open source PDF →</a><button type="button" className="rag-source-provenance-action" onClick={(event) => openCitation(citation.citation_id, event.currentTarget)}>Inspect provenance</button></div>
             </article>;
           }) : hits.slice(0, 3).map((hit) => {
             const reranked = rerankedResult ? hit as RerankedRetrievalHit : null;
@@ -522,6 +706,7 @@ function RagPlayground() {
               <div><strong>#{hit.rank} · Page {pageLabel(hit.pages)}</strong><span>{reranked ? `rerank ${score.toFixed(4)}` : score.toFixed(6)}</span></div>
               <strong className="rag-source-section">{sectionLabel(hit.section_path)}</strong>
               <p>{hit.content_text}</p>
+              <SourceVisualEvidence documentId={documentId} visualRefs={hit.visual_refs} />
               {reranked && <small className="rag-hybrid-mini-trace">Reranked from candidate #{reranked.hybrid_candidate_rank} · Dense {reranked.dense_rank ? `#${reranked.dense_rank}` : "—"} · Lexical {reranked.lexical_rank ? `#${reranked.lexical_rank}` : "—"}</small>}
               {hybrid && <small className="rag-hybrid-mini-trace">Dense {hybrid.dense_rank ? `#${hybrid.dense_rank}` : "—"} · Lexical {hybrid.lexical_rank ? `#${hybrid.lexical_rank}` : "—"}{hybrid.lexical_rank ? ` · coverage ${Math.round(hybrid.lexical_term_coverage * 100)}%` : ""}</small>}
             </article>;

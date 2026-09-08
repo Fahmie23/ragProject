@@ -124,11 +124,12 @@ class RetrievalExperimentRunRow(Base):
         nullable=False,
         index=True,
     )
-    # Deliberately no ON DELETE CASCADE: historical runs protect their source
-    # document from accidental deletion.
+    # Retrieval experiment runs are runtime data owned by the uploaded document.
+    # Deleting a document cascades its run/candidate history; experiment definitions
+    # themselves remain reusable.
     document_id: Mapped[str] = mapped_column(
         String(64),
-        ForeignKey("documents.document_id"),
+        ForeignKey("documents.document_id", ondelete="CASCADE"),
         nullable=False,
         index=True,
     )

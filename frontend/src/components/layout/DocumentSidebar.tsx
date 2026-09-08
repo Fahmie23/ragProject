@@ -55,11 +55,13 @@ export function CompactDocumentBar({
   selectedId,
   onSelect,
   onUploaded,
+  onDelete,
 }: {
   documents: DocumentRecord[];
   selectedId: string | null;
   onSelect: (id: string) => void;
   onUploaded: (record: DocumentRecord) => void;
+  onDelete: (document: DocumentRecord) => void;
 }) {
   return (
     <div className="v2-compact-document-bar">
@@ -72,6 +74,7 @@ export function CompactDocumentBar({
         </select>
       </label>
       <UploadPdfButton onUploaded={onUploaded} />
+      {selectedId && <button type="button" className="v2-compact-delete" onClick={() => { const doc = documents.find((item) => item.document_id === selectedId); if (doc) onDelete(doc); }}>Delete</button>}
     </div>
   );
 }
@@ -81,6 +84,7 @@ export function DocumentSidebar({
   selectedId,
   onSelect,
   onUploaded,
+  onDelete,
   collapsed,
   onToggleCollapsed,
 }: {
@@ -88,6 +92,7 @@ export function DocumentSidebar({
   selectedId: string | null;
   onSelect: (id: string) => void;
   onUploaded: (record: DocumentRecord) => void;
+  onDelete: (document: DocumentRecord) => void;
   collapsed: boolean;
   onToggleCollapsed: () => void;
 }) {
@@ -125,22 +130,27 @@ export function DocumentSidebar({
 
       <div className="document-list v2-document-list">
         {documents.map((doc) => (
-          <button
-            key={doc.document_id}
-            type="button"
-            className={`document-item v2-document-item ${collapsed ? "collapsed-item" : ""} ${selectedId === doc.document_id ? "selected" : ""}`}
-            onClick={() => onSelect(doc.document_id)}
-            title={collapsed ? doc.original_filename : undefined}
-          >
-            <span className="file-kind">PDF</span>
-            {!collapsed && (
-              <span className="document-copy">
-                <strong>{doc.original_filename}</strong>
-                <small>{doc.classification.page_count ? `${doc.classification.page_count} pages · ` : ""}{documentStatus(doc)}</small>
-              </span>
-            )}
-            <span className={`tiny-dot ${doc.structure_status === "completed" ? "completed" : doc.extraction_status}`} />
-          </button>
+          <div className="v2-document-row" key={doc.document_id}>
+            <button
+              type="button"
+              className={`document-item v2-document-item ${collapsed ? "collapsed-item" : ""} ${selectedId === doc.document_id ? "selected" : ""}`}
+              onClick={() => onSelect(doc.document_id)}
+              title={collapsed ? doc.original_filename : undefined}
+            >
+              <span className="file-kind">PDF</span>
+              {!collapsed && (
+                <span className="document-copy">
+                  <strong>{doc.original_filename}</strong>
+                  <small>{doc.classification.page_count ? `${doc.classification.page_count} pages · ` : ""}{documentStatus(doc)}</small>
+                </span>
+              )}
+              <span
+                className={`tiny-dot ${doc.structure_status === "completed" ? "completed" : doc.extraction_status}`}
+                aria-label={doc.structure_status === "completed" ? "Structure complete" : doc.extraction_status === "failed" ? "Processing failed" : "Processing pending"}
+              >{doc.structure_status === "completed" ? "✓" : doc.extraction_status === "failed" ? "!" : "○"}</span>
+            </button>
+            {!collapsed && <button type="button" className="v2-document-delete" aria-label={`Delete ${doc.original_filename}`} title={`Delete ${doc.original_filename}`} onClick={() => onDelete(doc)}>×</button>}
+          </div>
         ))}
         {!documents.length && !collapsed && <p className="sidebar-empty">Upload a PDF to begin.</p>}
       </div>

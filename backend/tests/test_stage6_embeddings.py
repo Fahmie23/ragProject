@@ -18,6 +18,7 @@ class FakeModel:
 def test_bge_query_uses_retrieval_instruction_without_modifying_passages(monkeypatch):
     fake = FakeModel()
     monkeypatch.setattr(embeddings, "_load_model", lambda model_name, device: fake)
+    monkeypatch.setattr(embeddings, "_load_tokenizer_spec", lambda model_name: (FakeTokenizer(), 512))
     encoder = embeddings.EmbeddingEncoder("BAAI/bge-small-en-v1.5", device="cpu", batch_size=8)
 
     docs = encoder.encode_documents(["  clause text  "])
@@ -72,6 +73,7 @@ class FakeLimitedModel(FakeModel):
 def test_embedding_documents_reject_exact_tokenizer_overflow_instead_of_truncating(monkeypatch):
     fake = FakeLimitedModel(max_seq_length=6)
     monkeypatch.setattr(embeddings, "_load_model", lambda model_name, device: fake)
+    monkeypatch.setattr(embeddings, "_load_tokenizer_spec", lambda model_name: (fake.tokenizer, fake.max_seq_length))
     encoder = embeddings.EmbeddingEncoder("BAAI/bge-small-en-v1.5", device="cpu")
 
     with pytest.raises(embeddings.EmbeddingCompatibilityError) as exc_info:
@@ -86,6 +88,7 @@ def test_embedding_documents_reject_exact_tokenizer_overflow_instead_of_truncati
 def test_embedding_exact_tokenizer_validation_allows_safe_chunks(monkeypatch):
     fake = FakeLimitedModel(max_seq_length=8)
     monkeypatch.setattr(embeddings, "_load_model", lambda model_name, device: fake)
+    monkeypatch.setattr(embeddings, "_load_tokenizer_spec", lambda model_name: (fake.tokenizer, fake.max_seq_length))
     encoder = embeddings.EmbeddingEncoder("BAAI/bge-small-en-v1.5", device="cpu")
 
     vectors = encoder.encode_documents(["one two", "three four five"])
@@ -213,6 +216,7 @@ def test_encoder_exposes_requested_and_resolved_device(monkeypatch):
 def test_embedding_document_inspection_reports_exact_counts_and_limit(monkeypatch):
     fake = FakeLimitedModel(max_seq_length=8)
     monkeypatch.setattr(embeddings, "_load_model", lambda model_name, device: fake)
+    monkeypatch.setattr(embeddings, "_load_tokenizer_spec", lambda model_name: (fake.tokenizer, fake.max_seq_length))
     encoder = embeddings.EmbeddingEncoder("BAAI/bge-m3", device="cpu")
 
     inspection = encoder.inspect_documents(["one two", "three four five"])
@@ -228,6 +232,7 @@ def test_embedding_document_inspection_reports_exact_counts_and_limit(monkeypatc
 def test_embedding_document_inspection_reports_all_overflow_candidates(monkeypatch):
     fake = FakeLimitedModel(max_seq_length=5)
     monkeypatch.setattr(embeddings, "_load_model", lambda model_name, device: fake)
+    monkeypatch.setattr(embeddings, "_load_tokenizer_spec", lambda model_name: (fake.tokenizer, fake.max_seq_length))
     encoder = embeddings.EmbeddingEncoder("BAAI/bge-m3", device="cpu")
 
     inspection = encoder.inspect_documents(["one two three four", "one", "one two three four five"])
@@ -289,3 +294,14 @@ def test_embedding_compatibility_preflight_maps_longest_chunk_and_violations(mon
     assert response.longest_chunk_id == "c1"
     assert response.longest_chunk_index == 1
     assert response.violations[0].chunk_id == "c1"
+
+
+def test_compatibility_preflight_does_not_load_sentence_transformer_weights(monkeypatch):
+    monkeypatch.setattr(embeddings, "_load_tokenizer_spec", lambda model_name: (FakeTokenizer(), 8))
+    monkeypatch.setattr(embeddings, "_load_model", lambda model_name, device: (_ for _ in ()).throw(AssertionError("full model must not load")))
+    encoder = embeddings.EmbeddingEncoder("BAAI/bge-m3", device="cpu")
+
+    inspection = encoder.inspect_documents(["one two", "three four"])
+
+    assert inspection["token_counts"] == [4, 4]
+    assert inspection["max_seq_length"] == 8

@@ -14,7 +14,7 @@ def test_stage15_primary_navigation_hides_benchmark() -> None:
 
     assert '{ id: "overview", label: "Overview", icon: "⌂" }' in header
     assert '{ id: "documents", label: "Documents", icon: "▤" }' in header
-    assert '{ id: "playground", label: "RAG Playground", icon: "✦" }' in header
+    assert '{ id: "playground", label: "Search & Ask", icon: "✦" }' in header
     assert 'label: "Benchmark"' not in header
 
 

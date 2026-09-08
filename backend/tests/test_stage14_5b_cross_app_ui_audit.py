@@ -2,6 +2,8 @@ from __future__ import annotations
 
 from pathlib import Path
 
+from tests._frontend_contract_utils import read_css_bundle
+
 BACKEND_DIR = Path(__file__).resolve().parents[1]
 REPO_ROOT = BACKEND_DIR.parent
 SHELL = REPO_ROOT / "frontend" / "src" / "app" / "RagWorkbenchShell.tsx"
@@ -13,7 +15,7 @@ STYLES = REPO_ROOT / "frontend" / "src" / "styles.css"
 def test_stage14_5b_global_navigation_exposes_current_page_semantics() -> None:
     text = SHELL.read_text(encoding="utf-8")
     assert 'aria-current={active === item.id ? "page" : undefined}' in text
-    assert 'aria-label="RAG Workbench"' in text
+    assert 'aria-label="RAG Document Studio"' in text
 
 
 def test_stage14_5b_playground_distinguishes_document_loading_failure_from_empty_library() -> None:
@@ -56,7 +58,7 @@ def test_stage14_5b_document_switch_cannot_render_stale_document_payload() -> No
 
 
 def test_stage14_5b_document_shell_sticky_and_upload_accessibility_are_scoped() -> None:
-    css = STYLES.read_text(encoding="utf-8")
+    css = read_css_bundle(STYLES)
     sidebar = SIDEBAR.read_text(encoding="utf-8")
     assert ".rag-documents-host .sidebar.v2-sidebar" in css
     assert "top: 68px;" in css
@@ -70,6 +72,6 @@ def test_stage14_5b_document_shell_sticky_and_upload_accessibility_are_scoped() 
 
 
 def test_stage14_5b_focus_visible_is_consistent_across_shell_and_document_workbench() -> None:
-    css = STYLES.read_text(encoding="utf-8")
-    assert '.rag-global-shell :where(button, a, input, select, summary):focus-visible' in css
-    assert '.rag-documents-host :where(button, a, input, select, summary):focus-visible' in css
+    css = read_css_bundle(STYLES)
+    assert '.rag-global-shell :where(button,a,input,select,textarea,summary,[tabindex]):focus-visible' in css
+    assert '.rag-documents-host :where(button,a,input,select,textarea,summary,[tabindex]):focus-visible' in css

@@ -2,6 +2,8 @@ from __future__ import annotations
 
 from pathlib import Path
 
+from tests._frontend_contract_utils import read_css_bundle
+
 from fastapi.testclient import TestClient
 
 from app.main import app
@@ -32,14 +34,17 @@ def test_stage14_4_inline_citation_is_primary_provenance_entrypoint() -> None:
     assert 'className="rag-provenance-drawer"' in text
 
 
-def test_stage14_4_validated_source_does_not_duplicate_provenance_action() -> None:
+def test_stage14_4_validated_source_exposes_explicit_deep_provenance_action() -> None:
     text = SHELL.read_text(encoding="utf-8")
-    css = STYLES.read_text(encoding="utf-8")
-    assert "Inspect provenance" not in text
+    css = read_css_bundle(STYLES)
     assert 'className="rag-source-evidence-disclosure"' in text
     assert "Show full evidence" in text
     assert "Open source PDF →" in text
-    assert "rag-source-actions" not in text
+    assert "Inspect provenance" in text
+    assert 'className="rag-source-actions"' in text
+    assert 'className="rag-source-provenance-action"' in text
+    assert ".rag-source-actions" in css
+    assert ".rag-source-provenance-action" in css
     assert ".rag-provenance-open" not in css
 
 
@@ -55,7 +60,7 @@ def test_stage14_4_drawer_uses_existing_claim_evidence_locator_and_pdf_facts() -
 
 def test_stage14_4_deep_provenance_is_progressively_disclosed() -> None:
     text = SHELL.read_text(encoding="utf-8")
-    css = STYLES.read_text(encoding="utf-8")
+    css = read_css_bundle(STYLES)
     assert 'className="rag-provenance-chain-disclosure"' in text
     assert "Show provenance chain" in text
     assert "Frozen Stage 5 chunk" in text
@@ -81,7 +86,7 @@ def test_stage14_4_provenance_can_close_by_button_or_escape_and_resets_with_outp
 
 
 def test_stage14_4_drawer_is_bounded_responsive_and_keeps_main_answer_visible() -> None:
-    css = STYLES.read_text(encoding="utf-8")
+    css = read_css_bundle(STYLES)
     assert "Stage 14.4 — deterministic citation provenance drawer" in css
     drawer = css.split(".rag-provenance-drawer {", 1)[1].split("}", 1)[0]
     assert "position: fixed;" in drawer

@@ -24,6 +24,7 @@ The project was developed incrementally through Stages 3–15. Detailed patch-by
 | Frontend | [`frontend/RESPONSIVE_AND_ACCESSIBILITY.md`](frontend/RESPONSIVE_AND_ACCESSIBILITY.md) | UI robustness/accessibility contract |
 | Deployment | [`deployment/DOCKER_REPRODUCIBILITY.md`](deployment/DOCKER_REPRODUCIBILITY.md) | Reproducible Compose stack and verification |
 | Development | [`development/LOCAL_SETUP.md`](development/LOCAL_SETUP.md) | WSL/local setup and daily commands |
+| Portfolio | [`PORTFOLIO_DEMO.md`](PORTFOLIO_DEMO.md) | 5-minute demo flow, interview talking points and acceptance checklist |
 | Scope | [`KNOWN_LIMITATIONS.md`](KNOWN_LIMITATIONS.md) | Explicit boundaries and known failure modes |
 
 ## Documentation policy

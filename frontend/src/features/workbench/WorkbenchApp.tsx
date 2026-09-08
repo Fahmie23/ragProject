@@ -11,6 +11,7 @@ import {
   getResolvedStructure,
   getStructure,
   listDocuments,
+  deleteDocument,
   pagePreviewUrl,
   rawFileUrl,
   resetChunks,
@@ -42,7 +43,6 @@ import type {
   TextBlock,
   EmbeddingStatus,
 } from "../../types";
-import "../../styles.css";
 import { CompactDocumentBar, DocumentSidebar as V2DocumentSidebar } from "../../components/layout/DocumentSidebar";
 import { DocumentWorkflowNav } from "../../components/layout/DocumentWorkflowNav";
 import { DocumentTree } from "../../components/structure/DocumentTree";
@@ -148,23 +148,6 @@ function CollapseToggle({
       <span aria-hidden="true">{collapsed ? "▸" : "▾"}</span>
       <span className="collapse-toggle-label">{collapsed ? "Expand" : "Collapse"}</span>
     </button>
-  );
-}
-
-function StageRail({ document }: { document?: DocumentRecord | null }) {
-  const extractionDone = document?.extraction_status === "completed";
-  const structureDone = document?.structure_status === "completed";
-  const validationDone = document?.validation_status === "valid";
-
-  return (
-    <div className="stage-rail" aria-label="RAG ingestion stages">
-      <div className="stage-pill done"><span>1</span> Intake</div>
-      <div className={`stage-pill ${validationDone ? "done" : "active"}`}><span>2</span> Validate</div>
-      <div className={`stage-pill ${extractionDone ? "done" : validationDone ? "active" : "muted"}`}><span>3</span> Extract</div>
-      <div className={`stage-pill ${structureDone ? "done" : extractionDone ? "active" : "muted"}`}><span>4</span> Structure</div>
-      <div className={`stage-pill ${structureDone ? "active" : "muted"}`}><span>4.5</span> Review</div>
-      <div className="stage-pill muted"><span>5</span> Chunk</div>
-    </div>
   );
 }
 
@@ -2641,7 +2624,7 @@ function CorrectionSandbox({
     setEditScope("layout");
   }, [document.document_id, structure?.structured_at]);
 
-  if (!structure) return <div className="empty-state">Run Stage 4 before using Correction Sandbox.</div>;
+  if (!structure) return <div className="empty-state">Build structure before using Correction Sandbox.</div>;
 
   const automaticPage = structure.pages[pageNumber - 1];
   const resolvedStructure = resolved?.structure ?? structure;
@@ -3677,10 +3660,10 @@ function Workspace({
           {resolved && <span className={`v2-integrity-pill ${resolved.integrity.status}`}>Integrity {resolved.integrity.status}</span>}
           {document.classification.document_family === "pdf" && <a className="secondary-button" href={rawFileUrl(document.document_id)} target="_blank" rel="noreferrer">Open original ↗</a>}
           <button className="secondary-button" disabled={!canExtract || extracting || structuring} onClick={onRunExtraction}>
-            {extracting ? "Extracting…" : extraction ? "Re-run Stage 3" : "Run Stage 3"}
+            {extracting ? "Extracting…" : extraction ? "Re-extract document" : "Extract document"}
           </button>
           <button className="primary-button compact" disabled={!canStructure || extracting || structuring} onClick={onRunStructure}>
-            {structuring ? "Structuring…" : structure ? "Re-run Stage 4" : "Run Stage 4"}
+            {structuring ? "Structuring…" : structure ? "Rebuild structure" : "Build structure"}
           </button>
         </div>
       </header>
@@ -3698,24 +3681,24 @@ function Workspace({
           indexDone={Boolean(embeddingStatus?.complete)}
           onChange={setTab}
         />
-        <div className="v2-advanced-nav" aria-label="Advanced developer views">
-          <span>Advanced</span>
-          <button type="button" className={tab === "layout" ? "active" : ""} disabled={!extraction && !structure} onClick={() => setTab("layout")}>Layout</button>
-          <button type="button" className={tab === "json" ? "active" : ""} disabled={!extraction && !structure} onClick={() => setTab("json")}>JSON</button>
+        <div className="v2-advanced-nav" aria-label="Technical document views">
+          <span>Technical</span>
+          <button type="button" className={tab === "layout" ? "active" : ""} disabled={!extraction && !structure} onClick={() => setTab("layout")}>Layout details</button>
+          <button type="button" className={tab === "json" ? "active" : ""} disabled={!extraction && !structure} onClick={() => setTab("json")}>Raw data</button>
         </div>
       </div>
 
       {!canExtract && document.validation_status === "valid" && (
-        <div className="notice-bar">This build supports PDF extraction only. Other uploaded formats are stored and classified but do not enter the Stage 3/4 path.</div>
+        <div className="notice-bar">This build supports PDF extraction only. Other uploaded formats are stored and classified but do not enter the extraction and structure workflow.</div>
       )}
       {document.extraction_status === "completed" && !structure && (
-        <div className="stage-ready-banner"><strong>Structure is ready to run.</strong><span>Stage 3 extraction is complete. Run Stage 4 to reconstruct canonical document structure.</span></div>
+        <div className="stage-ready-banner"><strong>Structure is ready to run.</strong><span>Stage 3 extraction is complete. Build structure to reconstruct canonical document structure.</span></div>
       )}
 
       <div className="workspace-body v2-workspace-body">
         {tab === "overview" && <OverviewPage document={document} extraction={extraction} structure={structure} resolved={resolved} corrections={corrections} chunking={chunking} embeddingStatus={embeddingStatus} />}
         {tab === "extraction" && extraction && <ExtractionWorkspace document={document} extraction={extraction} pageNumber={pageNumber} setPageNumber={setPageNumber} />}
-        {tab === "extraction" && !extraction && <div className="v2-placeholder-page"><h2>Extraction is not available yet</h2><p>Run Stage 3 to inspect raw blocks, tables, spans, and page coordinates.</p></div>}
+        {tab === "extraction" && !extraction && <div className="v2-placeholder-page"><h2>Extraction is not available yet</h2><p>Extract document to inspect raw blocks, tables, spans, and page coordinates.</p></div>}
         {tab === "layout" && <LayoutWorkspace document={document} extraction={extraction} structure={structure} resolved={resolved} pageNumber={pageNumber} setPageNumber={setPageNumber} />}
         {tab === "structure" && structure && <StructureWorkspace
           document={document}
@@ -3725,7 +3708,7 @@ function Workspace({
           setPageNumber={setPageNumber}
           onOpenCorrectionSandbox={() => setTab("review")}
         />}
-        {tab === "structure" && !structure && <div className="v2-placeholder-page"><h2>Structure is not available yet</h2><p>Run Stage 4 after extraction to inspect the canonical hierarchy and document tree.</p></div>}
+        {tab === "structure" && !structure && <div className="v2-placeholder-page"><h2>Structure is not available yet</h2><p>Build structure after extraction to inspect the canonical hierarchy and document tree.</p></div>}
         {tab === "review" && <CorrectionSandbox
           document={document}
           extraction={extraction}
@@ -3777,6 +3760,8 @@ export default function App() {
   const [savingCorrections, setSavingCorrections] = useState(false);
   const [generatingChunks, setGeneratingChunks] = useState(false);
   const [error, setError] = useState("");
+  const [deleteTarget, setDeleteTarget] = useState<DocumentRecord | null>(null);
+  const [deletingDocument, setDeletingDocument] = useState(false);
   const viewportMode = useViewportMode();
   const [sidebarCollapsed, setSidebarCollapsed] = useState(() => {
     if (typeof window === "undefined") return false;
@@ -3868,6 +3853,26 @@ export default function App() {
   async function handleUploaded(record: DocumentRecord) {
     setDocuments((items) => [record, ...items]);
     setSelectedId(record.document_id);
+  }
+
+  async function handleConfirmDeleteDocument() {
+    if (!deleteTarget || deletingDocument) return;
+    const deletingId = deleteTarget.document_id;
+    setDeletingDocument(true);
+    setError("");
+    try {
+      await deleteDocument(deletingId);
+      const rows = documents.filter((item) => item.document_id !== deletingId);
+      setDocuments(rows);
+      if (selectedId === deletingId || !rows.some((item) => item.document_id === selectedId)) {
+        setSelectedId(rows[0]?.document_id ?? null);
+      }
+      setDeleteTarget(null);
+    } catch (e) {
+      setError(e instanceof Error ? e.message : "Deleting document failed");
+    } finally {
+      setDeletingDocument(false);
+    }
   }
 
   async function handleRunExtraction() {
@@ -4003,13 +4008,14 @@ export default function App() {
         selectedId={selectedId}
         onSelect={setSelectedId}
         onUploaded={handleUploaded}
+        onDelete={setDeleteTarget}
         collapsed={effectiveSidebarCollapsed}
         onToggleCollapsed={() => {
           if (viewportMode === "large") setSidebarCollapsed((value) => !value);
         }}
       />
       <main className="main-area">
-        <CompactDocumentBar documents={documents} selectedId={selectedId} onSelect={setSelectedId} onUploaded={handleUploaded} />
+        <CompactDocumentBar documents={documents} selectedId={selectedId} onSelect={setSelectedId} onUploaded={handleUploaded} onDelete={setDeleteTarget} />
         {error && <div className="global-error"><span>{error}</span><button onClick={() => setError("")}>×</button></div>}
         {loading ? (
           <div className="empty-state"><div className="spinner" />Loading workspace…</div>
@@ -4040,12 +4046,22 @@ export default function App() {
         ) : (
           <div className="welcome-state">
             <div className="welcome-mark">RW</div>
-            <h1>Document Workbench</h1>
-            <p>Upload a PDF, inspect deterministic extraction, review canonical structure, and apply non-destructive corrections before retrieval preparation.</p>
-            <StageRail />
+            <h1>Document Studio</h1>
+            <p>Upload a PDF, review what was extracted, correct the document structure, prepare searchable knowledge, and inspect exactly what enters retrieval.</p>
           </div>
         )}
       </main>
+      {deleteTarget && <div className="v2-delete-backdrop" role="presentation" onMouseDown={() => !deletingDocument && setDeleteTarget(null)}>
+        <section className="v2-delete-dialog" role="dialog" aria-modal="true" aria-labelledby="delete-document-title" onMouseDown={(event) => event.stopPropagation()}>
+          <span className="eyebrow">Permanent action</span>
+          <h2 id="delete-document-title">Delete document?</h2>
+          <p><strong>{deleteTarget.original_filename}</strong></p>
+          <p>This removes the uploaded PDF and all runtime data owned by it:</p>
+          <ul><li>Extraction, layout, structure, corrections, and resolved artifacts</li><li>Semantic chunks and embeddings</li><li>Document-specific retrieval experiment runs and generated database results</li></ul>
+          <p className="v2-delete-note">Curated golden specs and DEV / HELD-OUT evaluation files are kept.</p>
+          <div className="v2-delete-actions"><button type="button" disabled={deletingDocument} onClick={() => setDeleteTarget(null)}>Cancel</button><button type="button" className="primary-button danger" disabled={deletingDocument} onClick={() => void handleConfirmDeleteDocument()}>{deletingDocument ? "Deleting…" : "Delete permanently"}</button></div>
+        </section>
+      </div>}
     </div>
   );
 }

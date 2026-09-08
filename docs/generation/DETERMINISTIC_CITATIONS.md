@@ -32,7 +32,7 @@ A deterministic citation status of `valid` means the provenance chain resolves c
 
 ## Semantic entailment is a different metric
 
-For the frozen Stage 11 benchmark, humans label whether cited evidence actually supports a generated claim. That semantic label must not be inferred for arbitrary live Playground questions.
+For the frozen Stage 11 benchmark, humans label whether cited evidence actually supports a generated claim. That semantic label must not be inferred for arbitrary live Search & Ask questions.
 
 The distinction is:
 
@@ -48,7 +48,7 @@ citation entails   → frozen human semantic review supports the claim
 
 ## Frontend provenance explorer
 
-The RAG Playground can open an inline citation into a read-only provenance drawer showing:
+Search & Ask can open an inline citation into a read-only provenance drawer showing:
 
 1. deterministic validation status;
 2. citation/evidence/chunk/PDF summary;

@@ -11,6 +11,7 @@ from app.db.models import (
 
 BACKEND_DIR = Path(__file__).resolve().parents[1]
 MIGRATION = BACKEND_DIR / "alembic" / "versions" / "0003_stage15_retrieval_experiments.py"
+LIFECYCLE_MIGRATION = BACKEND_DIR / "alembic" / "versions" / "0004_document_lifecycle.py"
 
 
 def _foreign_key_target(table, column_name: str) -> tuple[str, str | None]:
@@ -24,7 +25,7 @@ def test_stage15_1b_experiment_storage_tables_are_distinct_from_evaluation_table
     assert RetrievalExperimentCandidateRow.__tablename__ == "retrieval_experiment_candidates"
 
 
-def test_stage15_1b_run_references_experiment_and_protects_document_history() -> None:
+def test_stage15_1b_run_references_experiment_and_document_lifecycle_cascades_runtime_history() -> None:
     table = RetrievalExperimentRunRow.__table__
 
     target, ondelete = _foreign_key_target(table, "experiment_id")
@@ -33,7 +34,7 @@ def test_stage15_1b_run_references_experiment_and_protects_document_history() ->
 
     target, ondelete = _foreign_key_target(table, "document_id")
     assert target == "documents.document_id"
-    assert ondelete is None
+    assert ondelete == "CASCADE"
 
     assert table.c.document_sha256.nullable is False
     assert table.c.question.nullable is False
@@ -86,3 +87,12 @@ def test_stage15_1b_migration_is_linear_and_reversible() -> None:
     assert 'op.drop_table("retrieval_experiment_candidates")' in text
     assert 'op.drop_table("retrieval_experiment_runs")' in text
     assert 'op.drop_table("retrieval_experiments")' in text
+
+
+def test_document_lifecycle_migration_upgrades_existing_run_fk_without_rewriting_stage15_history() -> None:
+    old_text = MIGRATION.read_text(encoding="utf-8")
+    new_text = LIFECYCLE_MIGRATION.read_text(encoding="utf-8")
+    assert 'sa.ForeignKey("documents.document_id")' in old_text
+    assert 'revision: str = "0004_document_lifecycle"' in new_text
+    assert 'down_revision: Union[str, None] = "0003_stage15_experiments"' in new_text
+    assert 'ondelete="CASCADE"' in new_text

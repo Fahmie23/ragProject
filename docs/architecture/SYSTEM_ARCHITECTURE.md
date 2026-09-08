@@ -46,6 +46,9 @@ PDF
  ├─ 10 Deterministic citations
  │      claims → evidence → chunks → canonical locators → PDF
  │
+ ├─ 10A Visual evidence
+ │      retrieved evidence → canonical figure/table relation → PDF crop
+ │
  ├─ 11 Evaluation
  │      deterministic metrics + frozen human semantic review
  │
@@ -100,6 +103,10 @@ The cross-encoder determines the final seed ordering. Stage 8.2 then attaches bo
 
 Generation emits claim text plus request-local evidence IDs. Page/clause/definition/appendix citation strings are derived by backend code from frozen provenance.
 
+### Visual evidence does not pretend to be multimodal reasoning
+
+Related figures and tables are resolved from canonical document relationships after text evidence is retrieved. The backend renders the original PDF region and exposes it as source evidence. In this Option-A implementation, the visual pixels are not independently embedded or interpreted by the generation model.
+
 ### Evaluation is protected from tuning
 
 The formal retrieval benchmark has DEV and held-out splits. The Stage 11 answer/citation benchmark is separately authored and independently frozen. Stage 15 uses DEV-only controlled experiments and cannot silently alter Retrieval v1.
@@ -128,10 +135,16 @@ The PostgreSQL lexical system is intentionally described as **PostgreSQL FTS**, 
 The visible application navigation is intentionally compact:
 
 ```text
-Overview | Documents | RAG Playground
+Overview | Documents | Search & Ask | Evaluation
 ```
 
-The benchmark/evaluation UI implementation remains available internally as engineering evidence, but it is not a primary product destination.
+`Search & Ask` keeps the frozen production cited-answer path separate from diagnostic retrieval experiments. The `Evaluation` view is explicitly a frozen benchmark explorer; it is not presented as a live quality score for arbitrary uploaded documents.
+
+Within a selected document, the product workflow is:
+
+```text
+Overview | Content | Structure | Review | Knowledge | Search Index
+```
 
 ## Verification boundary
 

@@ -35,7 +35,12 @@ class Settings(BaseSettings):
     generation_json_mode: bool = True
     generation_max_context_chars: int = 40000
 
-    model_config = SettingsConfigDict(env_file=".env", env_file_encoding="utf-8")
+    # The repository-level .env also contains Docker Compose variables such as
+    # POSTGRES_DB/BACKEND_PORT. They are valid project configuration even though
+    # this Settings model does not consume them directly, so ignore unrelated
+    # dotenv keys instead of making local scripts/tests fail when run from the
+    # repository root.
+    model_config = SettingsConfigDict(env_file=".env", env_file_encoding="utf-8", extra="ignore")
 
     @property
     def raw_dir(self) -> Path:

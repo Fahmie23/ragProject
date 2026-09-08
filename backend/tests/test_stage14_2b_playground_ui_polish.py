@@ -2,6 +2,8 @@ from __future__ import annotations
 
 from pathlib import Path
 
+from tests._frontend_contract_utils import read_css_bundle
+
 BACKEND_DIR = Path(__file__).resolve().parents[1]
 REPO_ROOT = BACKEND_DIR.parent
 SHELL = REPO_ROOT / "frontend" / "src" / "app" / "RagWorkbenchShell.tsx"
@@ -55,7 +57,7 @@ def test_stage14_2b_technical_inspector_uses_generation_response_metadata_only()
 
 
 def test_stage14_2b_styles_support_progressive_disclosure_and_responsive_layout() -> None:
-    css = STYLES.read_text(encoding="utf-8")
+    css = read_css_bundle(STYLES)
     assert 'Stage 14.2B — progressive-disclosure playground polish' in css
     assert '.rag-answer-inspector-head' in css
     assert '.rag-context-row summary' in css

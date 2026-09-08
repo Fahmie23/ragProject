@@ -1,0 +1,1858 @@
+/* RAG Document Studio V2/V4 redesign                                         */
+/* ========================================================================== */
+
+
+body { background: var(--color-bg); color: var(--color-text); }
+.app-shell { grid-template-columns: 256px minmax(0, 1fr); background: var(--color-bg); }
+.app-shell.sidebar-collapsed { grid-template-columns: 72px minmax(0, 1fr); }
+
+.v2-sidebar {
+  padding: 24px 16px 18px;
+  background: var(--color-sidebar);
+  border-right-color: var(--color-sidebar-border);
+  overflow: visible;
+  display: flex;
+  flex-direction: column;
+  position: sticky;
+}
+.v2-sidebar.collapsed { padding: 24px 10px 18px; }
+.v2-brand-row { display: flex; align-items: center; gap: 10px; min-height: 44px; }
+.v2-sidebar.collapsed .v2-brand-row { justify-content: center; }
+.v2-brand-mark { width: 34px; height: 34px; flex: 0 0 34px; border-radius: var(--radius-md); border: 1px solid var(--color-sidebar-border); display: grid; place-items: center; font-weight: 850; color: var(--color-surface); }
+.v2-brand-copy { min-width: 0; flex: 1; }
+.v2-brand-copy strong, .v2-brand-copy span { display: block; }
+.v2-brand-copy strong { font-size: var(--text-sm); letter-spacing: -.015em; color: var(--color-bg); }
+.v2-brand-copy span { margin-top: 3px; font-size: var(--text-xs); color: var(--color-text-subtle); }
+.sidebar.v2-sidebar .v2-sidebar-toggle,
+.sidebar.v2-sidebar.collapsed .v2-sidebar-toggle {
+  position: absolute;
+  top: 29px;
+  right: -13px;
+  z-index: 30;
+  width: 26px;
+  height: 26px;
+  margin: 0;
+  border-radius: var(--radius-pill);
+  border: 1px solid var(--color-sidebar-border);
+  background: var(--color-sidebar-surface);
+  color: var(--color-border-strong);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, .24);
+  display: grid;
+  place-items: center;
+  font-size: var(--text-base);
+  line-height: 1;
+  transition: background .15s ease, border-color .15s ease, color .15s ease, transform .15s ease;
+}
+.sidebar.v2-sidebar .v2-sidebar-toggle:hover,
+.sidebar.v2-sidebar.collapsed .v2-sidebar-toggle:hover {
+  background: var(--color-sidebar-border);
+  border-color: var(--color-text-muted);
+  color: var(--color-surface);
+  transform: scale(1.04);
+}
+
+.v2-upload-wrap { margin-top: 24px; }
+.v2-upload-button { height: 40px; border: 1px solid var(--color-sidebar-border); border-radius: var(--radius-md); display: flex; align-items: center; justify-content: center; gap: 7px; color: var(--color-bg); background: var(--color-sidebar-surface); cursor: pointer; font-size: var(--text-xs); transition: background .15s, border-color .15s; }
+.v2-upload-button:hover { background: var(--color-sidebar-border); border-color: var(--color-text-muted); }
+.v2-upload-button input { display: none; }
+.v2-upload-button span { font-size: var(--text-base); line-height: 1; }
+.v2-upload-button.busy { opacity: .6; cursor: progress; }
+.v2-upload-error { display: block; color: var(--color-border-strong); margin: 7px 2px 0; font-size: var(--text-xs); line-height: 1.4; }
+.v2-sidebar-heading { margin: 26px 8px 9px; display: flex; justify-content: space-between; color: var(--color-text-subtle); text-transform: uppercase; letter-spacing: .08em; font-size: var(--text-xs); font-weight: 800; }
+.v2-document-list { flex: 1; min-height: 0; overflow-y: auto; align-content: start; }
+.v2-document-item { padding: 9px 8px; grid-template-columns: 34px minmax(0, 1fr) 10px; gap: 9px; min-height: 58px; }
+.v2-document-item .file-kind { width: 32px; height: 36px; border-radius: var(--radius-sm); background: var(--color-sidebar-border); font-size: var(--text-xs); }
+.v2-document-item.selected { background: var(--color-sidebar-border); border-color: var(--color-sidebar-border); }
+.v2-document-item .document-copy strong { font-size: var(--text-xs); }
+.v2-document-item .document-copy small { font-size: var(--text-xs); color: var(--color-text-subtle); text-transform: none; }
+.v2-sidebar-foot { padding: 14px 8px 0; border-top: 1px solid var(--color-sidebar-border); color: var(--color-text-subtle); font-size: var(--text-xs); line-height: 1.45; }
+
+.v2-workspace { background: var(--color-bg); }
+.v2-workspace-header { min-height: 86px; padding: 19px 32px 14px; border-bottom: 1px solid var(--color-border); align-items: flex-start; }
+.v2-document-heading { display: flex; align-items: center; gap: 12px; min-width: 0; }
+.v2-document-heading > div { min-width: 0; }
+.v2-document-heading h1 { margin: 0; font-size: var(--text-lg); font-weight: 740; letter-spacing: -.025em; max-width: 620px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.v2-document-heading p { margin: 5px 0 0; font-size: var(--text-xs); color: var(--color-text-muted); font-family: ui-monospace, SFMono-Regular, Menlo, monospace; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 720px; }
+.v2-header-actions { flex-wrap: wrap; justify-content: flex-end; }
+.v2-integrity-pill { min-height: 32px; display: inline-flex; align-items: center; border-radius: var(--radius-pill); padding: 0 10px; font-size: var(--text-xs); font-weight: 800; text-transform: capitalize; border: 1px solid var(--color-border); background: var(--color-surface); color: var(--color-text-muted); }
+.v2-integrity-pill.pass { background: var(--color-success-soft); color: var(--color-success); border-color: var(--color-border-strong); }
+.v2-integrity-pill.fail { background: var(--color-danger-soft); color: var(--color-danger); border-color: var(--color-border-strong); }
+
+.v2-workflow-shell { min-height: 56px; background: var(--color-surface); border-bottom: 1px solid var(--color-border); display: flex; align-items: stretch; justify-content: space-between; gap: 18px; padding: 0 32px; }
+.v2-workflow-nav { display: flex; min-width: 0; overflow-x: auto; }
+.v2-workflow-nav button { min-width: 120px; min-height: 56px; border: 0; border-bottom: 3px solid transparent; background: transparent; display: inline-flex; align-items: center; justify-content: center; gap: 8px; color: var(--color-text-muted); cursor: pointer; font-size: var(--text-xs); font-weight: 680; }
+.v2-workflow-nav button:hover:not(:disabled) { color: var(--color-text); background: var(--color-surface-subtle); }
+.v2-workflow-nav button.active { color: var(--color-text); border-bottom-color: var(--color-text); }
+.v2-workflow-nav button:disabled { opacity: .38; cursor: not-allowed; }
+.v2-workflow-state { width: 18px; height: 18px; border-radius: 50%; border: 1px solid var(--color-border-strong); display: grid; place-items: center; font-size: var(--text-xs); font-weight: 900; color: var(--color-text-subtle); }
+.v2-workflow-nav button.done .v2-workflow-state { color: var(--color-success); border-color: var(--color-border-strong); background: var(--color-success-soft); }
+.v2-workflow-nav button.active .v2-workflow-state { color: var(--color-surface); background: var(--color-text); border-color: var(--color-text); }
+.v2-advanced-nav { display: flex; align-items: center; gap: 5px; flex: 0 0 auto; }
+.v2-advanced-nav > span { color: var(--color-text-subtle); font-size: var(--text-xs); text-transform: uppercase; letter-spacing: .08em; margin-right: 2px; font-weight: 800; }
+.v2-advanced-nav button { height: 30px; padding: 0 9px; border-radius: var(--radius-sm); border: 1px solid var(--color-border); background: var(--color-surface); color: var(--color-text-muted); font-size: var(--text-xs); cursor: pointer; }
+.v2-advanced-nav button.active { background: var(--color-sidebar-surface); color: var(--color-surface); border-color: var(--color-sidebar-surface); }
+.v2-advanced-nav button:disabled { opacity: .35; cursor: not-allowed; }
+.v2-workspace-body { padding: 24px 28px 52px; }
+
+.v2-page-heading { margin-bottom: 18px; display: flex; align-items: flex-end; justify-content: space-between; }
+.v2-page-heading h2 { margin: 4px 0 0; font-size: var(--text-lg); letter-spacing: -.03em; }
+.v2-page-heading p { margin: 6px 0 0; color: var(--color-text-muted); font-size: var(--text-xs); }
+.v2-overview-page { max-width: 1220px; margin: 0 auto; }
+.v2-overview-grid { display: grid; grid-template-columns: minmax(0, 1.05fr) minmax(360px, .95fr); gap: 16px; margin-bottom: 16px; }
+.v2-overview-card { border: 1px solid var(--color-border); background: var(--color-surface); border-radius: var(--radius-md); padding: 18px; box-shadow: 0 1px 2px rgba(18,22,33,.025); }
+.v2-card-title { margin-bottom: 15px; }
+.v2-card-title.horizontal { display: flex; justify-content: space-between; align-items: center; gap: 20px; }
+.v2-card-title h3 { margin: 4px 0 0; font-size: var(--text-base); letter-spacing: -.015em; }
+.v2-summary-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 9px; }
+.v2-summary-grid.six { grid-template-columns: repeat(6, minmax(0, 1fr)); }
+.v2-summary-card { border: 1px solid var(--color-success-soft); border-radius: var(--radius-md); padding: 11px; background: var(--color-surface-subtle); min-width: 0; }
+.v2-summary-card span, .v2-summary-card small { display: block; color: var(--color-text-muted); font-size: var(--text-xs); }
+.v2-summary-card strong { display: block; margin-top: 6px; font-size: var(--text-sm); text-transform: capitalize; overflow-wrap: anywhere; }
+.v2-summary-card small { margin-top: 4px; }
+.v2-source-note { margin-top: 12px; border-top: 1px solid var(--color-border); padding-top: 11px; display: grid; grid-template-columns: auto minmax(0, 1fr); gap: 10px; align-items: center; }
+.v2-source-note span { color: var(--color-text-muted); font-size: var(--text-xs); }
+.v2-source-note code { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; font-size: var(--text-xs); color: var(--color-text-subtle); }
+.v2-status-list { display: grid; }
+.v2-status-row { min-height: 45px; display: grid; grid-template-columns: 23px minmax(0, 1fr) auto; gap: 8px; align-items: center; border-top: 1px solid var(--color-surface-muted); }
+.v2-status-row:first-child { border-top: 0; }
+.v2-status-icon { width: 19px; height: 19px; border: 1px solid var(--color-border-strong); border-radius: 50%; display: grid; place-items: center; color: var(--color-text-subtle); font-size: var(--text-xs); font-weight: 900; }
+.v2-status-row.complete .v2-status-icon { background: var(--color-success-soft); border-color: var(--color-border-strong); color: var(--color-success); }
+.v2-status-row.available .v2-status-icon { background: var(--color-sidebar-surface); border-color: var(--color-sidebar-surface); color: var(--color-surface); }
+.v2-status-row.blocked .v2-status-icon { background: var(--color-danger-soft); border-color: var(--color-border-strong); color: var(--color-danger); }
+.v2-status-row strong { display: block; font-size: var(--text-xs); }
+.v2-status-row small { display: block; margin-top: 2px; color: var(--color-text-muted); font-size: var(--text-xs); }
+.v2-status-row em { font-style: normal; color: var(--color-text-muted); font-size: var(--text-xs); text-transform: uppercase; letter-spacing: .04em; font-weight: 800; }
+.v2-readiness { border-radius: var(--radius-pill); padding: 6px 9px; font-size: var(--text-xs); font-weight: 800; border: 1px solid var(--color-border); background: var(--color-surface-subtle); color: var(--color-text-muted); }
+.v2-readiness.ready { background: var(--color-success-soft); border-color: var(--color-border-strong); color: var(--color-success); }
+.v2-placeholder-page { min-height: 520px; border: 1px dashed var(--color-border-strong); background: rgba(255,255,255,.5); border-radius: var(--radius-md); display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 40px; text-align: center; }
+.v2-placeholder-page h2 { margin: 0; font-size: var(--text-lg); }
+.v2-placeholder-page p { max-width: 520px; color: var(--color-text-muted); line-height: 1.6; font-size: var(--text-xs); }
+.v2-placeholder-icon { width: 48px; height: 48px; border: 1px solid var(--color-border); border-radius: var(--radius-md); display: grid; place-items: center; font-weight: 850; background: var(--color-surface); margin-bottom: 12px; }
+
+/* Document tree */
+.document-tree-panel { min-width: 0; height: 100%; border: 1px solid var(--color-border); background: var(--color-surface); border-radius: var(--radius-md); overflow: hidden; display: flex; flex-direction: column; }
+/* Header and page context are fixed-height-by-content regions. They must never
+ * shrink when the tree body becomes scrollable; otherwise wrapped helper text
+ * gets pushed underneath the page navigator. This shared rule protects both
+ * Structure and Review because they use the same DocumentTree component. */
+.document-tree-head { flex: 0 0 auto; min-height: 72px; padding: 14px 14px 12px; border-bottom: 1px solid var(--color-border); display: flex; align-items: flex-start; justify-content: space-between; gap: 8px; }
+.document-tree-head > div:first-child { min-width: 0; flex: 1 1 auto; }
+.document-tree-head h3 { margin: 4px 0 0; font-size: var(--text-sm); }
+.document-tree-head p { margin: 5px 0 0; color: var(--color-text-muted); font-size: var(--text-xs); line-height: 1.4; white-space: normal; overflow: visible; }
+.document-tree-collapse { width: 28px; height: 28px; flex: 0 0 28px; border: 1px solid var(--color-border); border-radius: var(--radius-sm); background: var(--color-surface); color: var(--color-text-muted); cursor: pointer; }
+/* Only the tree body owns vertical scrolling. Reserve the scrollbar gutter even
+ * before scrolling is needed so adding/removing a scrollbar cannot reflow the
+ * tree content or change the panel geometry. */
+.document-tree-scroll { flex: 1 1 0; height: 0; min-height: 0; overflow-y: auto; padding: 9px 7px 16px; scrollbar-gutter: stable; }
+.document-tree-row { display: flex; align-items: stretch; gap: 2px; border-radius: var(--radius-sm); min-height: 34px; margin: 1px 0; }
+.document-tree-row:hover { background: var(--color-bg); }
+.document-tree-row.on-page { box-shadow: inset 2px 0 0 var(--color-border-strong); }
+.document-tree-row.active { background: var(--color-accent-soft); box-shadow: inset 2px 0 0 var(--color-accent); }
+.document-tree-caret { width: 20px; flex: 0 0 20px; border: 0; background: transparent; color: var(--color-text-subtle); cursor: pointer; padding: 0; font-size: var(--text-xs); }
+.document-tree-caret:disabled { cursor: default; }
+.document-tree-select { min-width: 0; flex: 1; border: 0; background: transparent; text-align: left; cursor: pointer; padding: 5px 7px 5px 2px; }
+.document-tree-label { display: block; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; font-size: var(--text-xs); font-weight: 650; color: var(--color-sidebar-border); }
+.document-tree-meta { margin-top: 3px; display: flex; align-items: center; gap: 6px; min-width: 0; }
+.document-tree-meta em { font-style: normal; color: var(--color-text-subtle); font-size: var(--text-xs); text-transform: capitalize; }
+.document-tree-meta b { font-weight: 700; font-size: var(--text-xs); color: var(--color-text-subtle); }
+.document-tree-continuation { padding: 1px 6px 5px 0; }
+.document-tree-page-break { display: flex; align-items: center; gap: 5px; color: var(--color-text-subtle); font-size: var(--text-xs); text-transform: uppercase; letter-spacing: .05em; }
+.document-tree-page-break i { height: 1px; flex: 1; background: repeating-linear-gradient(90deg,var(--color-border-strong) 0 4px,transparent 4px 7px); }
+.document-tree-continuation button { width: 100%; border: 0; background: var(--color-bg); color: var(--color-text-muted); border-radius: var(--radius-sm); padding: 6px 7px; margin-top: 4px; display: flex; gap: 5px; align-items: center; justify-content: flex-start; text-align: left; font-size: var(--text-xs); cursor: pointer; }
+.document-tree-continuation button strong { margin-left: auto; }
+.document-tree-continuation button:hover { background: var(--color-accent-soft); }
+.document-tree-panel.collapsed { width: 46px; min-width: 46px; }
+.document-tree-panel.collapsed .document-tree-head { padding: 8px; border-bottom: 0; justify-content: center; }
+.document-tree-panel.collapsed .document-tree-head > div { display: none; }
+
+/* Structure screen: document tree + page viewer + inspector */
+.v2-structure-workspace-grid { display: grid; grid-template-columns: 268px minmax(0, 1fr); gap: 14px; align-items: start; }
+.v2-structure-inspection { grid-template-columns: minmax(0, 1.45fr) minmax(300px, .78fr); gap: 14px; }
+.v2-structure-inspection.inspector-collapsed { grid-template-columns: 1fr; }
+.v2-structure-workspace-grid > .document-tree-panel { position: sticky; top: 16px; height: calc(100vh - 180px); min-height: 600px; }
+
+/* Review: resolved tree + PDF + correction inspector */
+.correction-sandbox { display: grid; gap: 12px; }
+.correction-sandbox-header { border-radius: var(--radius-md); }
+.review-steps { display: none; }
+.sandbox-status-row { border-radius: var(--radius-md); }
+.review-data-switcher {
+  display: grid;
+  gap: 7px;
+  justify-items: start;
+  min-width: 0;
+}
+.review-data-switcher-label {
+  color: var(--color-text-subtle);
+  text-transform: uppercase;
+  letter-spacing: .08em;
+  font-size: var(--text-xs);
+  font-weight: 800;
+}
+.correction-sandbox-tabs {
+  display: inline-flex;
+  width: fit-content;
+  max-width: 100%;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 0;
+  padding: 3px;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  background: var(--color-surface-muted);
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+.correction-sandbox-tabs::-webkit-scrollbar { display: none; }
+.correction-sandbox-tabs::before { content: none; }
+.correction-sandbox-tabs button {
+  flex: 0 0 auto;
+  min-height: 32px;
+  border: 0;
+  border-radius: var(--radius-sm);
+  background: transparent;
+  padding: 0 14px;
+  color: var(--color-text-muted);
+  font-size: var(--text-xs);
+  font-weight: 750;
+  white-space: nowrap;
+}
+.correction-sandbox-tabs button:hover { background: rgba(255,255,255,.7); color: var(--color-sidebar-surface); }
+.correction-sandbox-tabs button.active {
+  background: var(--color-sidebar-surface);
+  color: var(--color-surface);
+  box-shadow: 0 1px 2px rgba(0,0,0,.12);
+}
+.correction-scope-tabs { max-width: 320px; border-radius: var(--radius-md); }
+.sandbox-correction-toolbar { border-radius: var(--radius-md); }
+.sandbox-diff { border-radius: var(--radius-md); }
+
+/*
+ * Review is a viewport workbench, not a long document page.
+ * The tree, PDF and inspector stay in one row and own their scrolling.
+ */
+.v2-review-workspace-grid {
+  display: grid;
+  grid-template-columns: minmax(210px, 250px) minmax(360px, 1fr) minmax(285px, 330px);
+  gap: 12px;
+  align-items: stretch;
+  height: calc(100vh - 250px);
+  height: calc(100dvh - 250px);
+  min-height: 560px;
+  max-height: 820px;
+  min-width: 0;
+  overflow: hidden;
+}
+.v2-review-workspace-grid.elements-collapsed {
+  grid-template-columns: minmax(210px, 250px) minmax(360px, 1fr) minmax(285px, 330px);
+}
+.v2-review-workspace-grid > * { min-width: 0; min-height: 0; }
+.v2-review-workspace-grid > .document-tree-panel {
+  position: static;
+  top: auto;
+  height: 100%;
+  min-height: 0;
+}
+.v2-review-preview-card {
+  min-width: 0;
+  min-height: 0;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+.v2-review-preview-card .sandbox-card-head { flex: 0 0 auto; }
+.v2-review-preview-card .sandbox-preview-shell {
+  flex: 1 1 auto;
+  min-height: 0;
+  height: 0;
+  overflow: auto;
+  padding: 14px;
+  overscroll-behavior: contain;
+}
+.v2-review-preview-card .page-canvas { width: min(100%, 680px); flex: 0 0 auto; }
+.v2-review-preview-actions span { display: inline-flex; min-height: 25px; padding: 0 8px; align-items: center; border-radius: var(--radius-pill); border: 1px solid var(--color-border); color: var(--color-text-muted); font-size: var(--text-xs); }
+.v2-review-preview-actions span.active { background: var(--color-success-soft); color: var(--color-success); border-color: var(--color-border-strong); }
+.v2-review-inspector-column {
+  min-width: 0;
+  min-height: 0;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  position: static;
+  top: auto;
+  max-height: none;
+  overflow-y: auto;
+  overflow-x: hidden;
+  padding-right: 3px;
+  overscroll-behavior: contain;
+}
+.v2-review-inspector-column .sandbox-selected-editor { margin: 0; border-radius: var(--radius-md); flex: 0 0 auto; }
+.v2-review-elements-card { min-height: 250px; max-height: none; border-radius: var(--radius-md); overflow: hidden; flex: 1 1 320px; display: flex; flex-direction: column; }
+.v2-review-elements-card .sandbox-card-head,
+.v2-review-elements-card .structure-filter-wrap { flex: 0 0 auto; }
+.v2-review-elements-card .sandbox-elements-list { min-height: 0; max-height: none; flex: 1 1 auto; overflow-y: auto; }
+.v2-empty-inspector { border: 1px solid var(--color-border); background: var(--color-surface); border-radius: var(--radius-md); padding: 18px; }
+.v2-empty-inspector h3 { margin: 5px 0 7px; font-size: var(--text-base); }
+.v2-empty-inspector p { margin: 0; color: var(--color-text-muted); font-size: var(--text-xs); line-height: 1.55; }
+.semantic-classification-card {
+  margin-top: 10px;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  background: var(--color-surface-subtle);
+  padding: 9px 10px;
+  display: grid;
+  gap: 7px;
+}
+.semantic-classification-head { display: grid; grid-template-columns: 1fr auto auto; gap: 8px; align-items: center; min-width: 0; }
+.semantic-classification-head > span { color: var(--color-text-muted); font-size: var(--text-xs); font-weight: 750; }
+.semantic-classification-head > strong { font-size: var(--text-xs); text-transform: capitalize; color: var(--color-sidebar-surface); }
+.semantic-classification-head > code { font-size: var(--text-xs); color: var(--color-accent); }
+.semantic-classification-card > small { color: var(--color-text-muted); font-size: var(--text-xs); overflow-wrap: anywhere; }
+.semantic-classification-card ul { margin: 0; padding-left: 17px; color: var(--color-text-muted); font-size: var(--text-xs); line-height: 1.45; }
+.semantic-alternatives { display: flex; gap: 6px; align-items: center; flex-wrap: wrap; }
+.semantic-alternatives > span { color: var(--color-text-muted); font-size: var(--text-xs); font-weight: 750; }
+.semantic-alternatives code { border: 1px solid var(--color-border); border-radius: var(--radius-pill); background: var(--color-surface); padding: 2px 6px; font-size: var(--text-xs); color: var(--color-text-muted); }
+
+.v2-selected-text-preview { margin-top: 12px; }
+.v2-selected-text-preview > span, .v2-selected-continuations > span { display: block; color: var(--color-text-muted); font-size: var(--text-xs); font-weight: 750; margin-bottom: 6px; }
+.v2-selected-text-preview p { margin: 0; padding: 10px; border: 1px solid var(--color-border); background: var(--color-surface-subtle); border-radius: var(--radius-md); font-size: var(--text-xs); line-height: 1.5; color: var(--color-sidebar-border); max-height: 110px; overflow-y: auto; white-space: pre-wrap; }
+.v2-selected-continuations { margin-top: 12px; }
+.v2-selected-continuations button { width: 100%; border: 1px solid var(--color-border-strong); background: var(--color-surface-subtle); color: var(--color-text-muted); border-radius: var(--radius-md); padding: 8px 9px; text-align: left; cursor: pointer; font-size: var(--text-xs); margin-bottom: 5px; }
+.v2-selected-continuations button:hover { background: var(--color-accent-soft); }
+
+/* Bring older compact 8/9px controls closer to an engineering-tool minimum. */
+.v2-workspace .eyebrow { font-size: var(--text-xs); }
+.v2-workspace .structure-card p,
+.v2-workspace .inspector-card p,
+.v2-workspace .empty-copy { font-size: var(--text-xs); }
+.v2-workspace .structure-card code,
+.v2-workspace .structure-card small,
+.v2-workspace .inspector-card code,
+.v2-workspace .inspector-card > small { font-size: var(--text-xs); }
+.v2-workspace button,
+.v2-workspace select,
+.v2-workspace input { min-height: 32px; }
+
+@media (max-width: 1320px) {
+  .v2-review-workspace-grid,
+  .v2-review-workspace-grid.elements-collapsed { grid-template-columns: 210px minmax(340px, 1fr) 290px; gap: 10px; }
+  .v2-summary-grid.six { grid-template-columns: repeat(3, minmax(0,1fr)); }
+}
+
+@media (max-width: 1120px) {
+  .app-shell { grid-template-columns: 220px minmax(0,1fr); }
+  .app-shell.sidebar-collapsed { grid-template-columns: 68px minmax(0,1fr); }
+  .v2-workflow-nav button { min-width: 100px; }
+  .v2-advanced-nav > span { display: none; }
+  .v2-overview-grid { grid-template-columns: 1fr; }
+
+  /* Expanded sidebar: use a compact two-column workbench. */
+  .v2-review-workspace-grid,
+  .v2-review-workspace-grid.elements-collapsed {
+    grid-template-columns: 205px minmax(330px, 1fr);
+    height: auto;
+    max-height: none;
+    overflow: visible;
+    align-items: start;
+  }
+  .v2-review-workspace-grid > .document-tree-panel { height: 620px; }
+  .v2-review-preview-card { height: 620px; }
+  .v2-review-inspector-column {
+    grid-column: 1 / -1;
+    height: auto;
+    max-height: 520px;
+    display: grid;
+    grid-template-columns: minmax(280px,.85fr) minmax(300px,1.15fr);
+    overflow: hidden;
+  }
+  .v2-review-inspector-column > * { min-height: 0; overflow: auto; }
+
+  /* Collapsed sidebar leaves enough room to keep the intended 3-column Review UI. */
+  .app-shell.sidebar-collapsed .v2-review-workspace-grid,
+  .app-shell.sidebar-collapsed .v2-review-workspace-grid.elements-collapsed {
+    grid-template-columns: 190px minmax(300px, 1fr) 270px;
+    gap: 9px;
+    height: calc(100vh - 230px);
+    height: calc(100dvh - 230px);
+    max-height: 820px;
+    overflow: hidden;
+    align-items: stretch;
+  }
+  .app-shell.sidebar-collapsed .v2-review-workspace-grid > .document-tree-panel,
+  .app-shell.sidebar-collapsed .v2-review-preview-card { height: 100%; }
+  .app-shell.sidebar-collapsed .v2-review-inspector-column {
+    grid-column: auto;
+    height: 100%;
+    max-height: none;
+    display: flex;
+    overflow-y: auto;
+  }
+  .app-shell.sidebar-collapsed .v2-review-inspector-column > * { overflow: visible; }
+
+  .v2-structure-workspace-grid { grid-template-columns: 230px minmax(0,1fr); }
+  .v2-structure-inspection { grid-template-columns: 1fr; }
+  .v2-structure-inspection .inspector-panel { position: static; max-height: 520px; }
+}
+
+@media (max-width: 820px) {
+  .app-shell, .app-shell.sidebar-collapsed { grid-template-columns: 1fr; }
+  .v2-sidebar, .v2-sidebar.collapsed { position: static; height: auto; max-height: 330px; padding: 14px; }
+  .sidebar.v2-sidebar .v2-sidebar-toggle,
+  .sidebar.v2-sidebar.collapsed .v2-sidebar-toggle {
+    position: static;
+    width: 30px;
+    height: 30px;
+    margin-left: auto;
+    box-shadow: none;
+    transform: none;
+  }
+  .v2-sidebar.collapsed .v2-brand-copy { display: block; }
+  .v2-sidebar-foot { display: none; }
+  .v2-workspace-header { padding: 16px 18px 12px; }
+  .v2-header-actions { width: 100%; justify-content: flex-start; }
+  .v2-workflow-shell { padding: 0 14px; display: block; }
+  .v2-workflow-nav button { min-width: 90px; }
+  .v2-advanced-nav { padding: 7px 0; justify-content: flex-end; }
+  .v2-workspace-body { padding: 16px 14px 40px; }
+  .v2-summary-grid.six { grid-template-columns: repeat(2, minmax(0,1fr)); }
+  .v2-review-workspace-grid,
+  .v2-review-workspace-grid.elements-collapsed,
+  .app-shell.sidebar-collapsed .v2-review-workspace-grid,
+  .app-shell.sidebar-collapsed .v2-review-workspace-grid.elements-collapsed,
+  .v2-structure-workspace-grid {
+    grid-template-columns: 1fr;
+    height: auto;
+    max-height: none;
+    overflow: visible;
+  }
+  .v2-review-workspace-grid > .document-tree-panel,
+  .v2-structure-workspace-grid > .document-tree-panel { position: static; height: 320px; min-height: 0; }
+  .v2-review-preview-card { height: auto; min-height: 560px; }
+  .v2-review-preview-card .sandbox-preview-shell { height: auto; min-height: 500px; max-height: 70vh; }
+  .v2-review-inspector-column,
+  .app-shell.sidebar-collapsed .v2-review-inspector-column {
+    grid-column: auto;
+    height: auto;
+    max-height: none;
+    display: grid;
+    grid-template-columns: 1fr;
+    overflow: visible;
+  }
+  .v2-review-inspector-column > *,
+  .app-shell.sidebar-collapsed .v2-review-inspector-column > * { overflow: visible; }
+}
+
+@media (max-width: 560px) {
+  .v2-summary-grid, .v2-summary-grid.six { grid-template-columns: 1fr; }
+  .v2-card-title.horizontal { align-items: flex-start; flex-direction: column; }
+  .v2-document-heading p { max-width: 310px; }
+}
+
+/* ========================================================================== */
+/* Responsive workspace architecture v2.3                                    */
+/* ========================================================================== */
+
+/*
+ * Four intentional viewport modes:
+ *   large   >= 1440  : expanded/collapsible document sidebar + 3-column review
+ *   desktop 1180-1439: fixed document rail + compact 3-column review
+ *   compact 768-1179 : PDF-first review with tree/inspector drawers
+ *   mobile  < 768     : PDF-first review with full-screen task panels
+ *
+ * Layout state never owns page, selection, or correction state.
+ */
+
+.v2-compact-document-bar { display: none; }
+.v2-review-mobile-dock,
+.v2-review-drawer-backdrop,
+.v2-review-panel-close { display: none; }
+
+@media (min-width: 1180px) {
+  /*
+   * Keep normal browser/page scrolling on desktop. The review workbench is
+   * bounded, but it must not lock the whole application to the viewport.
+   */
+  .app-shell {
+    min-height: 100vh;
+    min-height: 100dvh;
+    height: auto;
+    overflow: visible;
+  }
+  .main-area {
+    min-height: 100vh;
+    min-height: 100dvh;
+    height: auto;
+    overflow: visible;
+  }
+  .workspace.v2-workspace { min-height: 100vh; min-height: 100dvh; }
+
+  /* Review is a bounded workbench; Tree/PDF/Inspector still scroll internally. */
+  .correction-sandbox {
+    height: calc(100vh - 218px);
+    height: calc(100dvh - 218px);
+    min-height: 520px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    overflow: hidden;
+  }
+  .correction-sandbox > * { flex: 0 0 auto; }
+  .correction-sandbox > .v2-review-workspace-grid {
+    flex: 1 1 auto;
+    min-height: 300px;
+  }
+  .v2-review-workspace-grid,
+  .v2-review-workspace-grid.elements-collapsed,
+  .app-shell.sidebar-collapsed .v2-review-workspace-grid,
+  .app-shell.sidebar-collapsed .v2-review-workspace-grid.elements-collapsed {
+    height: auto;
+    min-height: 0;
+    max-height: none;
+    overflow: hidden;
+    align-items: stretch;
+  }
+  .v2-review-workspace-grid > .document-tree-panel,
+  .app-shell.sidebar-collapsed .v2-review-workspace-grid > .document-tree-panel,
+  .v2-review-preview-card,
+  .app-shell.sidebar-collapsed .v2-review-preview-card {
+    height: 100%;
+    min-height: 0;
+  }
+  .v2-review-inspector-column,
+  .app-shell.sidebar-collapsed .v2-review-inspector-column {
+    grid-column: auto;
+    height: 100%;
+    min-height: 0;
+    max-height: none;
+    display: flex;
+    flex-direction: column;
+    overflow-y: auto;
+    overflow-x: hidden;
+  }
+  .v2-review-inspector-column > *,
+  .app-shell.sidebar-collapsed .v2-review-inspector-column > * {
+    overflow: visible;
+  }
+  .v2-review-elements-card { min-height: 220px; }
+  .v2-review-preview-card .sandbox-preview-shell {
+    min-height: 0;
+    height: 0;
+    overflow: auto;
+  }
+}
+
+/* Large desktop: give the PDF the largest share while keeping rich side panels. */
+@media (min-width: 1440px) {
+  .app-shell { grid-template-columns: 256px minmax(0, 1fr); }
+  .app-shell.sidebar-collapsed { grid-template-columns: 72px minmax(0, 1fr); }
+  .v2-sidebar-toggle { display: grid; }
+  .v2-review-workspace-grid,
+  .v2-review-workspace-grid.elements-collapsed,
+  .app-shell.sidebar-collapsed .v2-review-workspace-grid,
+  .app-shell.sidebar-collapsed .v2-review-workspace-grid.elements-collapsed {
+    grid-template-columns: minmax(250px, 290px) minmax(420px, 1fr) minmax(330px, 380px);
+    gap: 12px;
+  }
+  .v2-review-preview-card .page-canvas { width: min(100%, 760px); }
+}
+
+/* Standard laptop/desktop: document rail + persistent 3-column Review. */
+@media (min-width: 1180px) and (max-width: 1439px) {
+  .app-shell,
+  .app-shell.sidebar-collapsed { grid-template-columns: 72px minmax(0, 1fr); }
+  .v2-sidebar,
+  .v2-sidebar.collapsed { padding: 20px 10px 16px; }
+  .sidebar.v2-sidebar .v2-sidebar-toggle,
+  .sidebar.v2-sidebar.collapsed .v2-sidebar-toggle { display: none; }
+  .v2-workspace-header { padding-left: 22px; padding-right: 22px; }
+  .v2-workflow-shell { padding-left: 22px; padding-right: 22px; }
+  .v2-workspace-body { padding: 18px 20px 34px; }
+  .v2-workflow-nav button { min-width: 96px; }
+  .v2-advanced-nav > span { display: none; }
+  .v2-review-workspace-grid,
+  .v2-review-workspace-grid.elements-collapsed,
+  .app-shell.sidebar-collapsed .v2-review-workspace-grid,
+  .app-shell.sidebar-collapsed .v2-review-workspace-grid.elements-collapsed {
+    grid-template-columns: minmax(190px, 225px) minmax(330px, 1fr) minmax(280px, 315px);
+    gap: 9px;
+  }
+  .document-tree-head { padding-left: 11px; padding-right: 11px; }
+  .document-tree-label { font-size: var(--text-xs); }
+  .v2-review-preview-card .page-canvas { width: min(100%, 660px); }
+  .v2-overview-grid { grid-template-columns: 1fr; }
+}
+
+/* Compact laptop/tablet: hide the document rail and use PDF-first drawers. */
+@media (min-width: 768px) and (max-width: 1179px) {
+  .app-shell,
+  .app-shell.sidebar-collapsed {
+    display: block;
+    min-height: 100vh;
+    min-height: 100dvh;
+  }
+  .v2-sidebar,
+  .v2-sidebar.collapsed { display: none; }
+  .main-area { min-height: 100vh; min-height: 100dvh; }
+  .v2-compact-document-bar {
+    position: sticky;
+    top: 0;
+    z-index: 90;
+    min-height: 58px;
+    padding: 8px 14px;
+    display: grid;
+    grid-template-columns: 36px minmax(180px, 1fr) auto;
+    align-items: center;
+    gap: 10px;
+    border-bottom: 1px solid var(--color-border);
+    background: rgba(255,255,255,.97);
+    backdrop-filter: blur(10px);
+  }
+  .v2-compact-brand {
+    width: 34px;
+    height: 34px;
+    display: grid;
+    place-items: center;
+    border-radius: var(--radius-md);
+    background: var(--color-sidebar-surface);
+    color: var(--color-surface);
+    font-weight: 850;
+  }
+  .v2-compact-document-select { min-width: 0; display: grid; grid-template-columns: auto minmax(0,1fr); align-items: center; gap: 8px; }
+  .v2-compact-document-select > span { color: var(--color-text-muted); font-size: var(--text-xs); font-weight: 800; text-transform: uppercase; letter-spacing: .05em; }
+  .v2-compact-document-select select { min-width: 0; height: 36px; border: 1px solid var(--color-border); border-radius: var(--radius-md); background: var(--color-surface); padding: 0 10px; font-size: var(--text-xs); }
+  .v2-compact-document-bar .v2-upload-wrap { margin: 0; }
+  .v2-compact-document-bar .v2-upload-button { height: 36px; padding: 0 12px; background: var(--color-sidebar-surface); }
+
+  .v2-workspace-header { min-height: 74px; padding: 14px 16px 10px; gap: 12px; }
+  .v2-document-heading h1 { font-size: var(--text-base); max-width: 50vw; }
+  .v2-document-heading p { max-width: 48vw; }
+  .v2-header-actions { max-width: 46vw; gap: 6px; }
+  .v2-header-actions button,
+  .v2-header-actions a { min-height: 30px; font-size: var(--text-xs); }
+  .v2-workflow-shell { padding: 0 10px; gap: 8px; overflow-x: auto; }
+  .v2-workflow-nav { flex: 1 0 auto; }
+  .v2-workflow-nav button { min-width: 92px; }
+  .v2-advanced-nav { flex: 0 0 auto; }
+  .v2-advanced-nav > span { display: none; }
+  .v2-workspace-body { padding: 14px 12px 86px; }
+  .v2-overview-grid { grid-template-columns: 1fr; }
+  .v2-summary-grid.six { grid-template-columns: repeat(3,minmax(0,1fr)); }
+
+  .correction-sandbox { display: grid; height: auto; min-height: 0; overflow: visible; gap: 9px; }
+  .sandbox-status-row { overflow-x: auto; grid-auto-flow: column; grid-auto-columns: minmax(120px, max-content); }
+  .review-data-switcher,
+  .correction-sandbox-tabs,
+  .correction-toolbar .correction-tools,
+  .sandbox-overlay-toggles { overflow-x: auto; flex-wrap: nowrap; }
+  .correction-sandbox-tabs::before { display: none; }
+
+  .v2-review-workspace-grid,
+  .v2-review-workspace-grid.elements-collapsed,
+  .app-shell.sidebar-collapsed .v2-review-workspace-grid,
+  .app-shell.sidebar-collapsed .v2-review-workspace-grid.elements-collapsed {
+    display: block;
+    position: relative;
+    height: auto;
+    min-height: 0;
+    max-height: none;
+    overflow: visible;
+  }
+  .v2-review-preview-card {
+    height: min(68vh, 720px);
+    min-height: 500px;
+  }
+  .v2-review-preview-card .sandbox-preview-shell { height: 0; min-height: 0; max-height: none; }
+  .v2-review-preview-card .page-canvas { width: min(100%, 760px); }
+
+  /* Tree and inspector are task drawers; they never push the PDF down. */
+  .v2-review-workspace-grid > .document-tree-panel,
+  .app-shell.sidebar-collapsed .v2-review-workspace-grid > .document-tree-panel {
+    display: none;
+    position: fixed;
+    z-index: 122;
+    left: 16px;
+    top: 72px;
+    bottom: 16px;
+    width: min(360px, calc(100vw - 32px));
+    height: auto;
+    min-height: 0;
+    max-height: none;
+    box-shadow: 0 18px 50px rgba(18,22,33,.24);
+  }
+  .v2-review-workspace-grid.compact-panel-tree > .document-tree-panel { display: flex; }
+  .v2-review-inspector-column,
+  .app-shell.sidebar-collapsed .v2-review-inspector-column {
+    display: none;
+    position: fixed;
+    z-index: 122;
+    top: 72px;
+    right: 16px;
+    bottom: 16px;
+    width: min(430px, calc(100vw - 32px));
+    height: auto;
+    min-height: 0;
+    max-height: none;
+    padding: 44px 6px 10px 0;
+    overflow-y: auto;
+    background: var(--color-bg);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-md);
+    box-shadow: 0 18px 50px rgba(18,22,33,.24);
+  }
+  .v2-review-workspace-grid.compact-panel-inspector > .v2-review-inspector-column { display: flex; }
+  .v2-review-workspace-grid.compact-panel-inspector.compact-view-correct .v2-review-elements-card { display: none; }
+  .v2-review-workspace-grid.compact-panel-inspector.compact-view-page .sandbox-selected-editor,
+  .v2-review-workspace-grid.compact-panel-inspector.compact-view-page .v2-empty-inspector { display: none; }
+
+  .v2-review-drawer-backdrop {
+    display: block;
+    position: fixed;
+    inset: 0;
+    z-index: 120;
+    border: 0;
+    background: rgba(15,18,24,.38);
+    cursor: default;
+  }
+  .v2-review-panel-close {
+    display: grid;
+    place-items: center;
+    position: fixed;
+    z-index: 130;
+    width: 32px;
+    height: 32px;
+    border-radius: var(--radius-pill);
+    border: 1px solid var(--color-border);
+    background: var(--color-surface);
+    color: var(--color-sidebar-border);
+    font-size: var(--text-lg);
+    box-shadow: 0 4px 16px rgba(18,22,33,.14);
+    cursor: pointer;
+  }
+  .v2-review-panel-close.tree { left: min(332px, calc(100vw - 60px)); top: 82px; }
+  .v2-review-panel-close.inspector { right: 28px; top: 82px; }
+
+  .v2-review-mobile-dock {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(68px, 1fr));
+    position: fixed;
+    z-index: 115;
+    left: 50%;
+    bottom: 14px;
+    transform: translateX(-50%);
+    width: min(430px, calc(100vw - 28px));
+    padding: 6px;
+    gap: 4px;
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-md);
+    background: rgba(255,255,255,.96);
+    backdrop-filter: blur(12px);
+    box-shadow: 0 10px 34px rgba(18,22,33,.18);
+  }
+  .v2-review-mobile-dock button {
+    min-height: 46px;
+    border: 0;
+    border-radius: var(--radius-md);
+    background: transparent;
+    color: var(--color-text-muted);
+    display: grid;
+    place-items: center;
+    gap: 1px;
+    cursor: pointer;
+    font-size: var(--text-sm);
+  }
+  .v2-review-mobile-dock button strong { font-size: var(--text-xs); }
+  .v2-review-mobile-dock button.active { background: var(--color-sidebar-surface); color: var(--color-surface); }
+  .v2-review-mobile-dock button:disabled { opacity: .35; cursor: not-allowed; }
+
+  /* Inspection-only screens can stack at compact widths without losing task context. */
+  .v2-structure-workspace-grid { grid-template-columns: 1fr; gap: 10px; }
+  .v2-structure-workspace-grid > .document-tree-panel { position: static; height: 320px; min-height: 0; }
+  .v2-structure-inspection { grid-template-columns: 1fr; }
+  .v2-structure-inspection .inspector-panel { position: static; max-height: 380px; }
+  .extraction-workspace { grid-template-columns: 1fr; }
+  .extraction-workspace .inspector-panel { position: static; max-height: 380px; }
+}
+
+/* Mobile: full-width task panels and simplified chrome. */
+@media (max-width: 767px) {
+  .app-shell,
+  .app-shell.sidebar-collapsed { display: block; min-height: 100dvh; }
+  .v2-sidebar,
+  .v2-sidebar.collapsed { display: none !important; }
+  .v2-compact-document-bar {
+    position: sticky;
+    top: 0;
+    z-index: 90;
+    min-height: 56px;
+    padding: 7px 9px;
+    display: grid;
+    grid-template-columns: 34px minmax(0,1fr) 42px;
+    gap: 7px;
+    align-items: center;
+    background: rgba(255,255,255,.98);
+    border-bottom: 1px solid var(--color-border);
+  }
+  .v2-compact-brand { width: 32px; height: 32px; display: grid; place-items: center; border-radius: var(--radius-md); background: var(--color-sidebar-surface); color: var(--color-surface); font-weight: 850; }
+  .v2-compact-document-select { min-width: 0; }
+  .v2-compact-document-select > span { display: none; }
+  .v2-compact-document-select select { width: 100%; height: 36px; border: 1px solid var(--color-border); border-radius: var(--radius-md); background: var(--color-surface); padding: 0 8px; font-size: var(--text-xs); }
+  .v2-compact-document-bar .v2-upload-wrap { margin: 0; }
+  .v2-compact-document-bar .v2-upload-button { width: 42px; height: 36px; padding: 0; background: var(--color-sidebar-surface); }
+  .v2-compact-document-bar .v2-upload-button strong { display: none; }
+
+  .v2-workspace-header { padding: 12px 10px 9px; min-height: 0; align-items: flex-start; }
+  .v2-document-heading { gap: 8px; }
+  .v2-document-heading h1 { font-size: var(--text-sm); max-width: 62vw; }
+  .v2-document-heading p { max-width: 62vw; font-size: var(--text-xs); }
+  .v2-header-actions { width: auto; max-width: 34vw; display: flex; flex-wrap: nowrap; overflow-x: auto; justify-content: flex-end; }
+  .v2-header-actions .secondary-button,
+  .v2-header-actions .primary-button { min-width: max-content; min-height: 30px; padding: 0 8px; font-size: var(--text-xs); }
+  .v2-integrity-pill { min-width: max-content; min-height: 30px; font-size: var(--text-xs); }
+
+  .v2-workflow-shell { min-height: 50px; padding: 0 6px; overflow-x: auto; gap: 4px; }
+  .v2-workflow-nav { flex: 0 0 auto; }
+  .v2-workflow-nav button { min-width: 82px; min-height: 50px; font-size: var(--text-xs); gap: 5px; }
+  .v2-workflow-state { width: 16px; height: 16px; }
+  .v2-advanced-nav { flex: 0 0 auto; }
+  .v2-advanced-nav > span { display: none; }
+  .v2-advanced-nav button { height: 30px; padding: 0 7px; font-size: var(--text-xs); }
+  .v2-workspace-body { padding: 10px 8px 82px; }
+  .v2-page-heading { align-items: flex-start; }
+  .v2-page-heading h2 { font-size: var(--text-lg); }
+  .v2-summary-grid,
+  .v2-summary-grid.six { grid-template-columns: 1fr; }
+
+  .correction-sandbox { display: grid; height: auto; min-height: 0; overflow: visible; gap: 8px; }
+  .correction-sandbox-header { padding: 10px; }
+  .correction-sandbox-header h3 { font-size: var(--text-base); }
+  .correction-sandbox-header p { font-size: var(--text-xs); }
+  .sandbox-status-row { overflow-x: auto; grid-auto-flow: column; grid-auto-columns: minmax(112px,max-content); }
+  .sandbox-status-actions { min-width: max-content; }
+  .review-data-switcher,
+  .correction-sandbox-tabs,
+  .correction-toolbar .correction-tools,
+  .sandbox-overlay-toggles { overflow-x: auto; flex-wrap: nowrap; }
+  .correction-sandbox-tabs::before { display: none; }
+  .correction-scope-tabs { max-width: none; }
+  .sandbox-correction-toolbar { overflow-x: auto; }
+  .multi-select-help { display: none; }
+
+  .v2-review-workspace-grid,
+  .v2-review-workspace-grid.elements-collapsed,
+  .app-shell.sidebar-collapsed .v2-review-workspace-grid,
+  .app-shell.sidebar-collapsed .v2-review-workspace-grid.elements-collapsed {
+    display: block;
+    height: auto;
+    min-height: 0;
+    max-height: none;
+    overflow: visible;
+  }
+  .v2-review-preview-card { height: calc(100dvh - 300px); min-height: 430px; }
+  .v2-review-preview-card .sandbox-preview-shell { height: 0; min-height: 0; max-height: none; padding: 8px; }
+  .v2-review-preview-card .page-canvas { width: min(100%, 620px); }
+
+  .v2-review-workspace-grid > .document-tree-panel,
+  .app-shell.sidebar-collapsed .v2-review-workspace-grid > .document-tree-panel,
+  .v2-review-inspector-column,
+  .app-shell.sidebar-collapsed .v2-review-inspector-column {
+    display: none;
+    position: fixed;
+    z-index: 122;
+    inset: 56px 0 0;
+    width: 100%;
+    height: auto;
+    min-height: 0;
+    max-height: none;
+    border-radius: 0;
+    border: 0;
+    background: var(--color-bg);
+    box-shadow: none;
+  }
+  .v2-review-workspace-grid.compact-panel-tree > .document-tree-panel { display: flex; }
+  .v2-review-workspace-grid.compact-panel-inspector > .v2-review-inspector-column {
+    display: flex;
+    flex-direction: column;
+    padding: 48px 10px 84px;
+    overflow-y: auto;
+  }
+  .v2-review-workspace-grid.compact-panel-inspector.compact-view-correct .v2-review-elements-card { display: none; }
+  .v2-review-workspace-grid.compact-panel-inspector.compact-view-page .sandbox-selected-editor,
+  .v2-review-workspace-grid.compact-panel-inspector.compact-view-page .v2-empty-inspector { display: none; }
+  .v2-review-drawer-backdrop { display: none; }
+  .v2-review-panel-close {
+    display: grid;
+    place-items: center;
+    position: fixed;
+    z-index: 132;
+    top: 66px;
+    right: 10px;
+    left: auto !important;
+    width: 34px;
+    height: 34px;
+    border-radius: var(--radius-pill);
+    border: 1px solid var(--color-border);
+    background: var(--color-surface);
+    font-size: var(--text-lg);
+  }
+  .v2-review-mobile-dock {
+    display: grid;
+    grid-template-columns: repeat(4,1fr);
+    position: fixed;
+    z-index: 130;
+    left: 8px;
+    right: 8px;
+    bottom: 8px;
+    padding: 5px;
+    gap: 3px;
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-md);
+    background: rgba(255,255,255,.97);
+    box-shadow: 0 8px 28px rgba(18,22,33,.18);
+  }
+  .v2-review-mobile-dock button { min-height: 48px; border: 0; border-radius: var(--radius-md); background: transparent; color: var(--color-text-muted); display: grid; place-items: center; gap: 1px; }
+  .v2-review-mobile-dock button strong { font-size: var(--text-xs); }
+  .v2-review-mobile-dock button.active { background: var(--color-sidebar-surface); color: var(--color-surface); }
+  .v2-review-mobile-dock button:disabled { opacity: .35; }
+
+  .v2-structure-workspace-grid,
+  .v2-structure-inspection,
+  .extraction-workspace { grid-template-columns: 1fr; }
+  .v2-structure-workspace-grid > .document-tree-panel { position: static; height: 300px; min-height: 0; }
+  .v2-structure-inspection .inspector-panel,
+  .extraction-workspace .inspector-panel { position: static; max-height: 360px; }
+}
+
+
+/* ========================================================================== */
+/* Review workbench polish v2.4 — stable controls, visible scroll regions      */
+/* ========================================================================== */
+
+/* Keep the sidebar collapse control inside the sidebar. Edge-mounted controls
+ * were visually clipped by the app/grid boundary on some browser zoom levels. */
+.sidebar.v2-sidebar .v2-sidebar-toggle,
+.sidebar.v2-sidebar.collapsed .v2-sidebar-toggle {
+  position: static;
+  inset: auto;
+  z-index: auto;
+  width: 30px;
+  height: 30px;
+  margin: 0 0 0 auto;
+  flex: 0 0 30px;
+  border-radius: var(--radius-md);
+  border: 1px solid var(--color-sidebar-border);
+  background: var(--color-sidebar-surface);
+  box-shadow: none;
+  transform: none;
+  font-size: var(--text-lg);
+}
+.sidebar.v2-sidebar .v2-sidebar-toggle:hover,
+.sidebar.v2-sidebar.collapsed .v2-sidebar-toggle:hover {
+  transform: none;
+}
+.v2-sidebar.collapsed .v2-brand-row {
+  flex-direction: column;
+  justify-content: flex-start;
+  gap: 8px;
+}
+.v2-sidebar.collapsed .v2-sidebar-toggle { margin-left: 0; }
+
+/* Make every independently-scrollable Review surface visibly scrollable.
+ * `scrollbar-gutter` prevents content from jumping when the scrollbar appears. */
+.v2-review-workspace-grid .document-tree-scroll,
+.v2-review-preview-card .sandbox-preview-shell,
+.v2-review-inspector-column,
+.v2-review-elements-card .sandbox-elements-list,
+.v2-selected-text-preview p {
+  scrollbar-gutter: stable;
+  scrollbar-width: thin;
+  scrollbar-color: var(--color-text-subtle) var(--color-success-soft);
+}
+.v2-review-workspace-grid .document-tree-scroll::-webkit-scrollbar,
+.v2-review-preview-card .sandbox-preview-shell::-webkit-scrollbar,
+.v2-review-inspector-column::-webkit-scrollbar,
+.v2-review-elements-card .sandbox-elements-list::-webkit-scrollbar,
+.v2-selected-text-preview p::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+.v2-review-workspace-grid .document-tree-scroll::-webkit-scrollbar-track,
+.v2-review-preview-card .sandbox-preview-shell::-webkit-scrollbar-track,
+.v2-review-inspector-column::-webkit-scrollbar-track,
+.v2-review-elements-card .sandbox-elements-list::-webkit-scrollbar-track,
+.v2-selected-text-preview p::-webkit-scrollbar-track {
+  background: var(--color-success-soft);
+  border-radius: var(--radius-pill);
+}
+.v2-review-workspace-grid .document-tree-scroll::-webkit-scrollbar-thumb,
+.v2-review-preview-card .sandbox-preview-shell::-webkit-scrollbar-thumb,
+.v2-review-inspector-column::-webkit-scrollbar-thumb,
+.v2-review-elements-card .sandbox-elements-list::-webkit-scrollbar-thumb,
+.v2-selected-text-preview p::-webkit-scrollbar-thumb {
+  background: var(--color-text-subtle);
+  border: 2px solid var(--color-success-soft);
+  border-radius: var(--radius-pill);
+  min-height: 34px;
+}
+.v2-review-workspace-grid .document-tree-scroll::-webkit-scrollbar-thumb:hover,
+.v2-review-preview-card .sandbox-preview-shell::-webkit-scrollbar-thumb:hover,
+.v2-review-inspector-column::-webkit-scrollbar-thumb:hover,
+.v2-review-elements-card .sandbox-elements-list::-webkit-scrollbar-thumb:hover,
+.v2-selected-text-preview p::-webkit-scrollbar-thumb:hover {
+  background: var(--color-text-subtle);
+}
+
+/* The correction inspector is a narrow task panel. It must never inherit the
+ * original wide 3-column selected-editor layout. */
+.v2-review-inspector-column .selected-element-editor.sandbox-selected-editor {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  gap: 12px;
+  width: 100%;
+  min-width: 0;
+  padding: 14px;
+  overflow: visible;
+}
+.v2-review-inspector-column .selected-element-editor.sandbox-selected-editor.is-collapsed {
+  display: flex;
+  padding: 10px 12px;
+}
+.v2-review-inspector-column .selected-editor-head {
+  width: 100%;
+  align-self: stretch;
+  align-items: flex-start !important;
+}
+.v2-review-inspector-column .selected-editor-head > div { flex: 1 1 auto; }
+.v2-review-inspector-column .collapse-toggle {
+  min-width: 82px;
+  min-height: 32px;
+  justify-content: center;
+  white-space: nowrap;
+}
+.v2-review-inspector-column .type-editor,
+.v2-review-inspector-column .type-editor select,
+.v2-review-inspector-column .v2-selected-text-preview,
+.v2-review-inspector-column .v2-selected-continuations,
+.v2-review-inspector-column .bbox-editor,
+.v2-review-inspector-column .selected-editor-actions,
+.v2-review-inspector-column .selected-required-relation,
+.v2-review-inspector-column .selected-element-editor > small {
+  width: 100%;
+  min-width: 0;
+}
+.v2-review-inspector-column .type-editor select {
+  min-height: 38px;
+  padding: 0 10px;
+  font-size: var(--text-xs);
+}
+.v2-review-inspector-column .v2-selected-text-preview { margin-top: 0; }
+.v2-review-inspector-column .v2-selected-text-preview p { max-height: 150px; font-size: var(--text-xs); }
+
+/* Geometry is a compact 2x2 form. Apply owns a full row, so destructive actions
+ * can never be squeezed into the coordinate grid. */
+.v2-review-inspector-column .bbox-editor {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 8px;
+  align-items: end;
+  padding: 11px;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  background: rgba(255,255,255,.62);
+}
+.v2-review-inspector-column .bbox-editor-title {
+  grid-column: 1 / -1;
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 8px;
+  min-width: 0;
+}
+.v2-review-inspector-column .bbox-editor-title > span {
+  color: var(--color-accent);
+  font-size: var(--text-xs);
+  font-weight: 850;
+  text-transform: uppercase;
+  letter-spacing: .04em;
+}
+.v2-review-inspector-column .bbox-editor-title > small {
+  color: var(--color-text-muted);
+  font-size: var(--text-xs);
+  white-space: nowrap;
+}
+.v2-review-inspector-column .bbox-editor label { min-width: 0; }
+.v2-review-inspector-column .bbox-editor input {
+  min-height: 36px;
+  font-size: var(--text-xs);
+}
+.v2-review-inspector-column .bbox-editor > button {
+  grid-column: 1 / -1;
+  width: 100%;
+  min-height: 36px;
+}
+.v2-review-inspector-column .bbox-editor .bbox-error { grid-column: 1 / -1; }
+.v2-review-inspector-column .selected-editor-actions { display: flex; align-items: stretch; }
+.v2-review-inspector-column .v2-suppress-region-button {
+  width: 100%;
+  min-height: 36px;
+  justify-content: center;
+  font-size: var(--text-xs);
+}
+.v2-review-inspector-column .selected-element-editor > small {
+  display: block;
+  color: var(--color-accent);
+  line-height: 1.5;
+  overflow-wrap: anywhere;
+}
+
+/* Keep the Page Elements card usable inside the same inspector column. */
+.v2-review-elements-card { min-width: 0; }
+.v2-review-elements-card .structure-filter-wrap select { width: 100%; }
+
+/* At the desktop rail breakpoint the sidebar toggle is intentionally hidden;
+ * the rail is automatic. Large desktop keeps the reliable in-sidebar control. */
+@media (min-width: 1180px) and (max-width: 1439px) {
+  .sidebar.v2-sidebar .v2-sidebar-toggle,
+  .sidebar.v2-sidebar.collapsed .v2-sidebar-toggle { display: none; }
+}
+
+/* Drawer/full-screen inspector gets more breathing room without changing the
+ * selected/correction state. */
+@media (max-width: 1179px) {
+  .v2-review-inspector-column .selected-element-editor.sandbox-selected-editor {
+    padding: 16px;
+    gap: 14px;
+  }
+  .v2-review-inspector-column .bbox-editor {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 420px) {
+  .v2-review-inspector-column .bbox-editor-title { align-items: flex-start; flex-direction: column; gap: 2px; }
+  .v2-review-inspector-column .bbox-editor-title > small { white-space: normal; }
+}
+
+/* Required semantic relationship must follow the same narrow-inspector rules. */
+.v2-review-inspector-column .selected-required-relation-head {
+  flex-direction: column;
+  gap: 10px;
+}
+.v2-review-inspector-column .selected-required-relation .correction-tools {
+  width: 100%;
+}
+.v2-review-inspector-column .selected-required-relation .correction-tools button {
+  flex: 1 1 120px;
+}
+.v2-review-inspector-column .selected-required-relation .definition-entry-picker {
+  grid-template-columns: 1fr;
+  gap: 7px;
+}
+.v2-review-inspector-column .selected-required-relation .definition-entry-picker select {
+  width: 100%;
+  min-width: 0;
+}
+
+/* ========================================================================== */
+/* Responsive polish v2.6 — centered rail control + natural page scrolling    */
+/* ========================================================================== */
+
+/* The collapsed rail is a vertical control strip. Every control owns the same
+ * centered slot so the expand/collapse button lines up with Upload and PDF. */
+.v2-sidebar.collapsed .v2-brand-row {
+  width: 100%;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 8px;
+}
+.sidebar.v2-sidebar.collapsed .v2-sidebar-toggle {
+  width: 40px;
+  height: 40px;
+  flex: 0 0 40px;
+  margin: 0 auto;
+  align-self: center;
+  border-radius: var(--radius-md);
+  display: grid;
+  place-items: center;
+  font-size: var(--text-lg);
+}
+
+/* Desktop Review participates in normal document flow. The whole page can now
+ * grow beyond the viewport and therefore owns a normal browser scrollbar.
+ * The workbench itself remains bounded so its three columns can still scroll. */
+@media (min-width: 1180px) {
+  .correction-sandbox {
+    height: auto;
+    min-height: 0;
+    overflow: visible;
+    display: grid;
+    gap: 10px;
+  }
+  .correction-sandbox > * { min-width: 0; }
+  .correction-sandbox > .v2-review-workspace-grid {
+    height: clamp(620px, 72vh, 820px);
+    min-height: 620px;
+    max-height: 820px;
+  }
+
+  /* Internal panels keep their own scrollbars, but when they reach an edge the
+   * wheel/touchpad may continue scrolling the main browser page naturally. */
+  .v2-review-preview-card .sandbox-preview-shell,
+  .v2-review-inspector-column,
+  .v2-review-workspace-grid .document-tree-scroll,
+  .v2-review-elements-card .sandbox-elements-list {
+    overscroll-behavior: auto;
+  }
+}
+
+/* ========================================================================== */
+/* Responsive polish v2.7 — main page stops at the Review workbench           */
+/* ========================================================================== */
+
+/* Desktop scroll ownership:
+ * 1) Browser scrolls through document/review controls.
+ * 2) At maximum browser scroll, the Review workbench begins 12px from the top
+ *    and fills the rest of the viewport.
+ * 3) Tree, PDF and Inspector then own all document-review scrolling.
+ *
+ * Making the workbench almost exactly one viewport tall is what prevents the
+ * browser from scrolling "through" the PDF and leaving the inspector behind. */
+@media (min-width: 1180px) {
+
+  .correction-sandbox {
+    height: auto;
+    min-height: 0;
+    overflow: visible;
+  }
+
+  .correction-sandbox > .v2-review-workspace-grid,
+  .correction-sandbox > .v2-review-workspace-grid.elements-collapsed,
+  .app-shell.sidebar-collapsed .correction-sandbox > .v2-review-workspace-grid,
+  .app-shell.sidebar-collapsed .correction-sandbox > .v2-review-workspace-grid.elements-collapsed {
+    height: calc(100dvh - var(--review-workbench-top));
+    min-height: 560px;
+    max-height: none;
+    overflow: hidden;
+    align-items: stretch;
+  }
+
+  .v2-review-workspace-grid > .document-tree-panel,
+  .app-shell.sidebar-collapsed .v2-review-workspace-grid > .document-tree-panel,
+  .v2-review-preview-card,
+  .app-shell.sidebar-collapsed .v2-review-preview-card,
+  .v2-review-inspector-column,
+  .app-shell.sidebar-collapsed .v2-review-inspector-column {
+    height: 100%;
+    min-height: 0;
+    max-height: none;
+  }
+
+  /* The three workbench surfaces are scroll containers. Keep scroll ownership
+   * inside them once the browser page has reached its Review resting point. */
+  .v2-review-workspace-grid .document-tree-scroll,
+  .v2-review-preview-card .sandbox-preview-shell,
+  .v2-review-inspector-column,
+  .v2-review-elements-card .sandbox-elements-list {
+    overscroll-behavior: contain;
+  }
+
+  /* The PDF page is content inside the viewer and can never size the grid. */
+  .v2-review-preview-card .sandbox-preview-shell {
+    flex: 1 1 0;
+    height: auto;
+    min-height: 0;
+    overflow: auto;
+  }
+}
+
+
+/* ========================================================================== */
+/* Review v2.8 — focused page tree + PDF zoom                                 */
+/* ========================================================================== */
+
+/* Review shows only the current page plus structural ancestors. Context nodes
+ * are intentionally quieter so the reviewer can distinguish page content from
+ * inherited section/clause/definition context at a glance. */
+.document-tree-row.context-only {
+  opacity: .68;
+  background: var(--color-surface-subtle);
+}
+.document-tree-row.context-only .document-tree-label {
+  font-style: italic;
+}
+.document-tree-row.context-only:hover { opacity: .9; }
+.document-tree-empty {
+  margin: 8px;
+  padding: 12px;
+  border: 1px dashed var(--color-border);
+  border-radius: var(--radius-md);
+  color: var(--color-text-muted);
+  font-size: var(--text-xs);
+  line-height: 1.5;
+  background: var(--color-surface-subtle);
+}
+
+/* PDF zoom lives in the viewer header. Manual zoom changes the actual canvas
+ * width (not CSS transform), so overlay hit testing and bbox percentages stay
+ * aligned and the viewer's normal scrollbars handle overflow. */
+.v2-review-preview-actions {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+.v2-review-zoom-controls {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 3px;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  background: var(--color-surface);
+}
+.v2-review-zoom-controls button {
+  min-width: 28px;
+  height: 28px;
+  padding: 0 7px;
+  border: 0;
+  border-radius: var(--radius-sm);
+  background: transparent;
+  color: var(--color-text);
+  font: inherit;
+  font-size: var(--text-xs);
+  font-weight: 700;
+  cursor: pointer;
+}
+.v2-review-zoom-controls button:hover:not(:disabled) { background: var(--color-surface-muted); }
+.v2-review-zoom-controls button.active { background: var(--color-sidebar-surface); color: var(--color-surface); }
+.v2-review-zoom-controls button:disabled { opacity: .35; cursor: default; }
+.v2-review-zoom-controls output {
+  min-width: 42px;
+  text-align: center;
+  color: var(--color-text-muted);
+  font-size: var(--text-xs);
+  font-weight: 800;
+  font-variant-numeric: tabular-nums;
+}
+.v2-review-preview-card .page-canvas.review-zoom-manual {
+  flex: 0 0 auto;
+}
+
+@media (max-width: 1179px) {
+  .v2-review-preview-actions { gap: 5px; }
+  .v2-review-zoom-controls { padding: 2px; }
+  .v2-review-zoom-controls button { min-width: 30px; height: 30px; }
+}
+
+/* ========================================================================== */
+/* Review v2.9 — compact page elements + three-page tree context               */
+/* ========================================================================== */
+
+/* Page Elements is a navigation list, not a second inspector. Keep each row
+ * content-driven, compact, and self-contained so long extracted text can never
+ * overlap the following region. Detailed metadata remains in the inspector. */
+/* Review reuses the same compact canonical element card as Structure so
+ * semantic type, friendly context, and text preview stay visually identical. */
+.v2-review-elements-card .structure-card-compact {
+  flex: 0 0 auto;
+}
+.v2-review-elements-card .sandbox-elements-list {
+  align-content: start;
+  gap: 7px;
+  padding: 9px 10px 12px;
+}
+
+/* Tree scope controls. Review always uses Nearby; Structure can switch between
+ * previous/current/next context and the full canonical hierarchy. */
+.document-tree-head-actions {
+  flex: 0 0 auto;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+.document-tree-scope-toggle {
+  display: inline-flex;
+  align-items: center;
+  padding: 2px;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-sm);
+  background: var(--color-bg);
+}
+.document-tree-scope-toggle button {
+  min-height: 24px;
+  padding: 3px 7px;
+  border: 0;
+  border-radius: var(--radius-sm);
+  background: transparent;
+  color: var(--color-text-subtle);
+  font-size: var(--text-xs);
+  font-weight: 750;
+  cursor: pointer;
+}
+.document-tree-scope-toggle button.active {
+  background: var(--color-surface);
+  color: var(--color-sidebar-border);
+  box-shadow: 0 1px 2px rgba(21, 27, 38, .08);
+}
+.document-tree-window-note {
+  flex: 0 0 auto;
+  min-height: 0;
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  align-items: center;
+  gap: 5px;
+  padding: 6px 9px;
+  border-bottom: 1px solid var(--color-border);
+  background: var(--color-surface-subtle);
+  color: var(--color-text-subtle);
+  font-size: var(--text-xs);
+  text-align: center;
+}
+.document-tree-window-note strong {
+  padding: 3px 7px;
+  border-radius: var(--radius-pill);
+  background: var(--color-accent-soft);
+  color: var(--color-accent);
+  font-weight: 800;
+}
+.document-tree-window-note span:first-child { text-align: right; }
+.document-tree-window-note span:last-child { text-align: left; }
+
+/* The legacy collapsed rule hides direct divs in the header. Keep the action
+ * slot visible so the expand button remains reachable after adding scope UI. */
+.document-tree-panel.collapsed .document-tree-head > .document-tree-head-actions {
+  display: flex;
+}
+
+@media (max-width: 1320px) {
+  .document-tree-scope-toggle button { padding-inline: 5px; }
+}
+
+/* ========================================================================== */
+/* Review v2.11 — page navigation belongs to the PDF viewer                   */
+/* ========================================================================== */
+
+/* Page navigation and zoom control the PDF, so keep both in the PDF toolbar.
+ * The review header stays focused on the review task rather than viewer state. */
+.v2-review-preview-card .sandbox-card-head.preview {
+  display: grid;
+  grid-template-columns: minmax(120px, 1fr) auto;
+  align-items: center;
+  gap: 10px;
+}
+
+.v2-review-preview-actions {
+  min-width: 0;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 7px;
+  flex-wrap: nowrap;
+}
+
+.v2-review-page-nav {
+  flex: 0 0 auto;
+  gap: 5px;
+  padding-right: 7px;
+  border-right: 1px solid var(--color-border);
+}
+
+.v2-review-page-nav button {
+  width: 28px;
+  height: 28px;
+}
+
+.v2-review-page-nav .page-number-control {
+  gap: 5px;
+  white-space: nowrap;
+  font-size: var(--text-xs);
+}
+
+.v2-review-page-nav .page-number-control input {
+  width: 52px;
+  height: 28px;
+  border-radius: var(--radius-sm);
+  font-size: var(--text-xs);
+}
+
+/* Standard laptop: keep the page controls attached to the PDF, but allow the
+ * toolbar to use a second row instead of squeezing the viewer columns. */
+@media (max-width: 1439px) {
+  .v2-review-preview-card .sandbox-card-head.preview {
+    grid-template-columns: 1fr;
+    align-items: start;
+  }
+  .v2-review-preview-actions {
+    width: 100%;
+    justify-content: space-between;
+  }
+}
+
+/* Compact/tablet: the PDF is the primary workspace. Viewer controls remain in
+ * its header while Tree/Inspector can switch to drawers. */
+@media (max-width: 1179px) {
+  .v2-review-preview-actions {
+    gap: 5px;
+    overflow-x: auto;
+    scrollbar-width: thin;
+    padding-bottom: 1px;
+  }
+  .v2-review-page-nav {
+    padding-right: 5px;
+  }
+}
+
+/* Mobile: shorten only the presentation. The editable page input and the same
+ * guarded page-change behavior remain available. */
+@media (max-width: 767px) {
+  .v2-review-preview-card .sandbox-card-head.preview {
+    padding: 9px 10px;
+  }
+  .v2-review-preview-actions {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    overflow: visible;
+    gap: 6px;
+  }
+  .v2-review-page-nav {
+    min-width: 0;
+    justify-content: flex-start;
+    padding-right: 6px;
+  }
+  .v2-review-page-nav .page-number-control > span:first-child {
+    display: none;
+  }
+  .v2-review-page-nav .page-number-control input {
+    width: 48px;
+  }
+  .v2-review-preview-actions > span {
+    display: none;
+  }
+  .v2-review-zoom-controls {
+    justify-self: end;
+  }
+}
+
+@media (max-width: 420px) {
+  .v2-review-page-nav button {
+    width: 26px;
+    height: 26px;
+  }
+  .v2-review-page-nav .page-number-control input {
+    width: 42px;
+    height: 26px;
+  }
+  .v2-review-page-nav .page-number-control {
+    font-size: var(--text-xs);
+    gap: 3px;
+  }
+  .v2-review-zoom-controls button {
+    min-width: 26px;
+    height: 26px;
+    padding-inline: 5px;
+  }
+  .v2-review-zoom-controls output {
+    min-width: 34px;
+  }
+}
+
+/* -------------------------------------------------------------------------
+ * V2.14 — bbox draft feedback
+ * Geometry edits are two-step: Apply bbox change -> correction draft, then
+ * Save corrections -> persistence. Keep that state visible in the inspector.
+ * ------------------------------------------------------------------------- */
+.v2-review-inspector-column .bbox-editor {
+  transition: border-color 140ms ease, background-color 140ms ease, box-shadow 140ms ease;
+}
+
+.v2-review-inspector-column .bbox-editor.bbox-editor-applied {
+  border-color: var(--color-text-subtle);
+  background: var(--color-bg);
+  box-shadow: 0 0 0 2px rgba(34, 197, 94, .08);
+}
+
+.v2-review-inspector-column .bbox-editor > button:not(:disabled) {
+  background: var(--color-accent);
+  color: var(--color-surface);
+  opacity: 1;
+}
+
+.v2-review-inspector-column .bbox-editor > button.bbox-apply-success,
+.v2-review-inspector-column .bbox-editor > button.bbox-apply-success:disabled {
+  background: var(--color-success);
+  color: var(--color-surface);
+  opacity: 1;
+  cursor: default;
+}
+
+.v2-review-inspector-column .bbox-editor > button:disabled:not(.bbox-apply-success) {
+  background: var(--color-surface-muted);
+  color: var(--color-text-subtle);
+  opacity: 1;
+  cursor: not-allowed;
+}
+
+.v2-review-inspector-column .bbox-status {
+  grid-column: 1 / -1;
+  display: block;
+  min-width: 0;
+  margin-top: -1px;
+  font-size: var(--text-xs);
+  line-height: 1.45;
+  overflow-wrap: anywhere;
+}
+
+.v2-review-inspector-column .bbox-status.idle { color: var(--color-text-subtle); }
+.v2-review-inspector-column .bbox-status.dirty { color: var(--color-warning); }
+.v2-review-inspector-column .bbox-status.success { color: var(--color-success); font-weight: 700; }
+.v2-review-inspector-column .bbox-status.error { color: var(--color-danger); font-weight: 650; }
+
+/* ========================================================================== */
+/* Stage 5 · Retrieval preparation & semantic chunking                        */
+/* ========================================================================== */
+.stage5-page { max-width: 1380px; margin: 0 auto; display: grid; gap: 14px; }
+.stage5-heading { display: flex; align-items: flex-end; justify-content: space-between; gap: 20px; }
+.stage5-heading h2 { margin: 4px 0 0; font-size: var(--text-lg); letter-spacing: -.03em; }
+.stage5-heading p { margin: 6px 0 0; color: var(--color-text-muted); font-size: var(--text-xs); line-height: 1.5; }
+.stage5-heading-actions { display: flex; align-items: center; justify-content: flex-end; gap: 8px; flex-wrap: wrap; }
+.stage5-readiness { min-height: 32px; padding: 0 10px; border-radius: var(--radius-pill); display: inline-flex; align-items: center; border: 1px solid var(--color-border); font-size: var(--text-xs); text-transform: uppercase; letter-spacing: .05em; font-weight: 850; }
+.stage5-readiness.ready { color: var(--color-success); background: var(--color-success-soft); border-color: var(--color-border-strong); }
+.stage5-readiness.blocked { color: var(--color-danger); background: var(--color-danger-soft); border-color: var(--color-border-strong); }
+.stage5-gate, .stage5-config-dirty, .stage5-local-error { min-height: 46px; border-radius: var(--radius-md); padding: 10px 12px; display: flex; align-items: flex-start; gap: 9px; font-size: var(--text-xs); line-height: 1.5; }
+.stage5-gate strong, .stage5-config-dirty strong { white-space: nowrap; }
+.stage5-gate.ready { border: 1px solid var(--color-border-strong); background: var(--color-success-soft); color: var(--color-success); }
+.stage5-gate.blocked, .stage5-local-error { border: 1px solid var(--color-border-strong); background: var(--color-danger-soft); color: var(--color-danger); }
+.stage5-config-dirty { border: 1px solid var(--color-border-strong); background: var(--color-warning-soft); color: var(--color-warning); }
+.stage5-subnav { display: inline-flex; width: fit-content; max-width: 100%; gap: 2px; padding: 3px; border: 1px solid var(--color-border); border-radius: var(--radius-md); background: var(--color-surface-muted); overflow-x: auto; }
+.stage5-subnav button { min-height: 30px; border: 0; border-radius: var(--radius-sm); padding: 0 13px; background: transparent; color: var(--color-text-muted); cursor: pointer; font-size: var(--text-xs); font-weight: 750; white-space: nowrap; }
+.stage5-subnav button.active { background: var(--color-sidebar-surface); color: var(--color-surface); box-shadow: 0 1px 2px rgba(18,22,33,.14); }
+.stage5-section-stack { display: grid; gap: 14px; }
+.stage5-card { min-width: 0; border: 1px solid var(--color-border); background: var(--color-surface); border-radius: var(--radius-md); padding: 17px; box-shadow: 0 1px 2px rgba(18,22,33,.025); }
+.stage5-card-head { min-width: 0; margin-bottom: 14px; display: flex; align-items: flex-start; justify-content: space-between; gap: 14px; }
+.stage5-card-head.horizontal { align-items: center; }
+.stage5-card-head h3 { margin: 4px 0 0; font-size: var(--text-base); letter-spacing: -.015em; }
+.stage5-card-head > small { color: var(--color-text-muted); font-size: var(--text-xs); }
+.stage5-metrics-grid { display: grid; grid-template-columns: repeat(6, minmax(0,1fr)); gap: 8px; }
+.stage5-metric { min-width: 0; padding: 10px 11px; border: 1px solid var(--color-success-soft); border-radius: var(--radius-md); background: var(--color-surface-subtle); }
+.stage5-metric > span, .stage5-metric > small { display: block; color: var(--color-text-muted); font-size: var(--text-xs); }
+.stage5-metric > strong { display: block; margin-top: 5px; font-size: var(--text-sm); overflow-wrap: anywhere; }
+.stage5-metric > small { margin-top: 3px; }
+.stage5-config-grid { display: grid; grid-template-columns: minmax(0,1.05fr) minmax(340px,.95fr); gap: 14px; align-items: start; }
+.stage5-form-grid { display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); gap: 9px; }
+.stage5-form-grid label { min-width: 0; display: grid; gap: 5px; color: var(--color-text-muted); font-size: var(--text-xs); font-weight: 750; }
+.stage5-form-grid input, .stage5-form-grid select, .stage5-cleaning-toolbar select, .stage5-browser-filters input, .stage5-browser-filters select, .stage5-inline-number input { width: 100%; min-height: 34px; border: 1px solid var(--color-border-strong); border-radius: var(--radius-md); background: var(--color-surface); padding: 0 9px; color: var(--color-text); font-size: var(--text-xs); outline: none; }
+.stage5-form-grid input:focus, .stage5-browser-filters input:focus, .stage5-cleaning-toolbar select:focus, .stage5-browser-filters select:focus { border-color: var(--color-text-subtle); box-shadow: 0 0 0 2px rgba(36,87,197,.08); }
+.stage5-form-grid select:disabled { background: var(--color-bg); color: var(--color-text-muted); opacity: 1; }
+.stage5-field-error { margin: 8px 0 0; color: var(--color-danger); font-size: var(--text-xs); }
+.stage5-preservation-list { margin-top: 13px; border-top: 1px solid var(--color-success-soft); }
+.stage5-policy-row { min-height: 54px; display: grid; grid-template-columns: minmax(0,1fr) 0 34px; gap: 10px; align-items: center; border-top: 1px solid var(--color-surface-muted); cursor: pointer; }
+.stage5-policy-row:first-child { border-top: 0; }
+.stage5-policy-row > span strong, .stage5-policy-row > span small { display: block; }
+.stage5-policy-row > span strong { font-size: var(--text-xs); }
+.stage5-policy-row > span small { margin-top: 3px; color: var(--color-text-muted); font-size: var(--text-xs); line-height: 1.35; }
+.stage5-policy-row input { position: absolute; opacity: 0; pointer-events: none; }
+.stage5-policy-row i { width: 31px; height: 18px; border-radius: var(--radius-pill); background: var(--color-border-strong); position: relative; transition: .15s ease; }
+.stage5-policy-row i::after { content: ""; position: absolute; top: 2px; left: 2px; width: 14px; height: 14px; border-radius: 50%; background: var(--color-surface); box-shadow: 0 1px 2px rgba(0,0,0,.18); transition: transform .15s ease; }
+.stage5-policy-row input:checked + i { background: var(--color-sidebar-surface); }
+.stage5-policy-row input:checked + i::after { transform: translateX(13px); }
+.stage5-policy-row.disabled { opacity: .55; cursor: default; }
+.stage5-explanation-card ol { padding: 0; margin: 0; list-style: none; display: grid; }
+.stage5-explanation-card li { min-height: 52px; display: grid; grid-template-columns: 125px minmax(0,1fr); gap: 12px; align-items: start; padding: 10px 0; border-top: 1px solid var(--color-success-soft); }
+.stage5-explanation-card li:first-child { border-top: 0; padding-top: 0; }
+.stage5-explanation-card li strong { font-size: var(--text-xs); }
+.stage5-explanation-card li span { color: var(--color-text-muted); font-size: var(--text-xs); line-height: 1.5; }
+.stage5-token-note { margin-top: 11px; padding: 10px; border: 1px solid var(--color-border); background: var(--color-accent-soft); border-radius: var(--radius-md); color: var(--color-accent); }
+.stage5-token-note strong, .stage5-token-note span { display: block; font-size: var(--text-xs); }
+.stage5-token-note span { margin-top: 4px; line-height: 1.45; }
+
+.stage5-cleaning-layout { display: grid; grid-template-columns: minmax(290px,360px) minmax(0,1fr); gap: 14px; align-items: start; }
+.stage5-policy-card { position: sticky; top: 12px; }
+.stage5-muted-copy { margin: -4px 0 8px; color: var(--color-text-muted); font-size: var(--text-xs); line-height: 1.5; }
+.stage5-inline-number { min-height: 46px; display: grid; grid-template-columns: minmax(0,1fr) 86px; gap: 10px; align-items: center; border-top: 1px solid var(--color-surface-muted); color: var(--color-text-muted); font-size: var(--text-xs); }
+.stage5-inline-number input { min-height: 30px; }
+.stage5-audit-count { color: var(--color-text-muted); font-size: var(--text-xs); white-space: nowrap; }
+.stage5-cleaning-toolbar { display: flex; justify-content: space-between; align-items: center; gap: 10px; margin-bottom: 10px; }
+.stage5-segmented { display: inline-flex; gap: 2px; padding: 2px; background: var(--color-surface-muted); border: 1px solid var(--color-border); border-radius: var(--radius-md); }
+.stage5-segmented button { min-height: 28px; border: 0; border-radius: var(--radius-sm); padding: 0 10px; background: transparent; color: var(--color-text-muted); font-size: var(--text-xs); font-weight: 750; cursor: pointer; }
+.stage5-segmented button.active { background: var(--color-surface); color: var(--color-text); box-shadow: 0 1px 2px rgba(18,22,33,.1); }
+.stage5-cleaning-toolbar select { width: min(260px,45%); }
+.stage5-reason-summary { display: flex; gap: 6px; flex-wrap: wrap; margin-bottom: 10px; }
+.stage5-reason-summary span { min-height: 29px; display: inline-flex; align-items: center; gap: 5px; border: 1px solid var(--color-border); background: var(--color-surface-subtle); border-radius: var(--radius-md); padding: 0 8px; color: var(--color-text-muted); font-size: var(--text-xs); }
+.stage5-reason-summary strong { color: var(--color-text); }
+.stage5-cleaning-list { max-height: 650px; overflow-y: auto; display: grid; gap: 7px; padding-right: 3px; scrollbar-gutter: stable; }
+.stage5-cleaning-item { border: 1px solid var(--color-border); border-radius: var(--radius-md); padding: 10px; background: var(--color-surface); }
+.stage5-cleaning-item.exclude { border-left: 3px solid var(--color-text-subtle); }
+.stage5-cleaning-item.context { border-left: 3px solid var(--color-text-subtle); }
+.stage5-cleaning-item-head { display: flex; align-items: center; justify-content: space-between; gap: 8px; }
+.stage5-cleaning-item-head > span:last-child { color: var(--color-text-subtle); font-size: var(--text-xs); }
+.stage5-cleaning-item p { margin: 8px 0 5px; font-size: var(--text-xs); line-height: 1.45; color: var(--color-sidebar-border); }
+.stage5-cleaning-item > small { color: var(--color-text-muted); font-size: var(--text-xs); }
+.stage5-type-badge { display: inline-flex; align-items: center; min-height: 21px; border-radius: var(--radius-pill); padding: 0 7px; background: var(--color-accent-soft); color: var(--color-accent); text-transform: uppercase; letter-spacing: .04em; font-size: var(--text-xs); font-weight: 850; }
+
+.stage5-preview-card { padding: 0; overflow: hidden; }
+.stage5-preview-layout { min-height: 660px; display: grid; grid-template-columns: 350px minmax(0,1fr); }
+.stage5-chunk-browser { min-width: 0; display: flex; flex-direction: column; border-right: 1px solid var(--color-border); background: var(--color-surface-subtle); }
+.stage5-browser-head { padding: 14px 14px 10px; }
+.stage5-browser-head h3 { margin: 4px 0 0; font-size: var(--text-sm); }
+.stage5-browser-filters { padding: 0 12px 10px; display: grid; grid-template-columns: minmax(0,1fr) 132px; gap: 6px; }
+.stage5-chunk-list {
+  min-height: 0;
+  max-height: 610px;
+  overflow-y: auto;
+  padding: 0 8px 9px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  scrollbar-gutter: stable;
+}
+.stage5-chunk-item {
+  width: 100%;
+  min-height: 92px;
+  flex: 0 0 auto;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  background: var(--color-surface);
+  padding: 9px 10px 10px;
+  text-align: left;
+  cursor: pointer;
+  display: grid;
+  grid-template-rows: auto auto minmax(0, 1fr);
+  gap: 6px;
+  overflow: hidden;
+}
+.stage5-chunk-item:hover { border-color: var(--color-border-strong); background: var(--color-surface); }
+.stage5-chunk-item.selected { border-color: var(--color-text-subtle); box-shadow: inset 3px 0 0 var(--color-sidebar-surface); }
+.stage5-chunk-item-top, .stage5-chunk-item-meta { min-width: 0; display: flex; align-items: center; justify-content: space-between; gap: 8px; }
+.stage5-chunk-item-top strong { min-width: 0; font-size: var(--text-xs); line-height: 1.25; }
+.stage5-chunk-item-top em { flex: 0 0 auto; color: var(--color-text-muted); font-size: var(--text-xs); font-style: normal; white-space: nowrap; }
+.stage5-chunk-type-pill {
+  min-width: 0;
+  max-width: 72%;
+  min-height: 19px;
+  display: inline-flex;
+  align-items: center;
+  padding: 0 7px;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-pill);
+  background: var(--color-bg);
+  color: var(--color-text-muted);
+  font-size: var(--text-xs);
+  font-weight: 780;
+  line-height: 1;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.stage5-chunk-item-meta > span:last-child { flex: 0 0 auto; color: var(--color-text-subtle); font-size: var(--text-xs); white-space: nowrap; }
+.stage5-chunk-preview {
+  min-width: 0;
+  min-height: 0;
+  display: -webkit-box;
+  overflow: hidden;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  color: var(--color-sidebar-border);
+  font-size: var(--text-xs);
+  line-height: 1.45;
+  overflow-wrap: anywhere;
+}
+
+.stage5-chunk-inspector { min-width: 0; padding: 18px; overflow: auto; }
+.stage5-inspector-head { display: flex; justify-content: space-between; align-items: flex-start; gap: 16px; padding-bottom: 14px; border-bottom: 1px solid var(--color-success-soft); }
+.stage5-inspector-head h3 { margin: 7px 0 3px; font-size: var(--text-base); }
+.stage5-inspector-head code { display: block; max-width: 540px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; color: var(--color-text-subtle); font-size: var(--text-xs); }
+.stage5-inspector-actions { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; justify-content: flex-end; }
+.stage5-inspector-actions > span { color: var(--color-text-muted); font-size: var(--text-xs); }
+.stage5-inspector-meta { margin-top: 12px; display: grid; grid-template-columns: repeat(4,minmax(0,1fr)); gap: 7px; }
+.stage5-section-path { margin-top: 12px; padding: 10px 11px; border: 1px solid var(--color-border); background: var(--color-surface-subtle); border-radius: var(--radius-md); }
+.stage5-section-path span { display: block; color: var(--color-text-muted); font-size: var(--text-xs); }
+.stage5-section-path strong { display: block; margin-top: 4px; font-size: var(--text-xs); }
+.stage5-split-note { margin-top: 10px; min-height: 30px; padding: 7px 9px; border: 1px solid var(--color-border-strong); background: var(--color-warning-soft); border-radius: var(--radius-md); color: var(--color-warning); font-size: var(--text-xs); }
+.stage5-text-block { margin-top: 13px; }
+.stage5-text-block > span { display: block; margin-bottom: 7px; color: var(--color-text-muted); text-transform: uppercase; letter-spacing: .05em; font-size: var(--text-xs); font-weight: 850; }
+.stage5-text-block pre { min-height: 170px; margin: 0; border: 1px solid var(--color-border); background: var(--color-surface-subtle); border-radius: var(--radius-md); padding: 14px; color: var(--color-sidebar-border); font-family: Inter, ui-sans-serif, system-ui, sans-serif; font-size: var(--text-xs); line-height: 1.65; white-space: pre-wrap; overflow-wrap: anywhere; }
+.stage5-provenance { margin-top: 12px; border: 1px solid var(--color-border); border-radius: var(--radius-md); background: var(--color-surface); }
+.stage5-provenance summary { min-height: 38px; display: flex; align-items: center; padding: 0 11px; cursor: pointer; color: var(--color-text-muted); font-size: var(--text-xs); font-weight: 750; }
+.stage5-provenance > div { display: grid; grid-template-columns: 130px minmax(0,1fr); gap: 12px; padding: 9px 11px; border-top: 1px solid var(--color-success-soft); }
+.stage5-provenance span { color: var(--color-text-muted); font-size: var(--text-xs); }
+.stage5-provenance code { white-space: pre-wrap; overflow-wrap: anywhere; font-size: var(--text-xs); line-height: 1.5; color: var(--color-text-muted); }
+.stage5-empty-panel { min-height: 150px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 5px; text-align: center; color: var(--color-text-muted); padding: 20px; }
+.stage5-empty-panel.large { min-height: 520px; }
+.stage5-empty-panel.compact { min-height: 70px; }
+.stage5-empty-panel strong { color: var(--color-text); font-size: var(--text-xs); }
+.stage5-empty-panel span { max-width: 480px; font-size: var(--text-xs); line-height: 1.5; }
+
+.stage5-json-card { padding: 0; overflow: hidden; }
+.stage5-json-card .stage5-card-head { margin: 0; padding: 13px 15px; border-bottom: 1px solid var(--color-border); }
+.stage5-json-actions { display: flex; gap: 6px; }
+.stage5-json-viewer { margin: 0; min-height: 560px; max-height: 72vh; overflow: auto; padding: 15px; background: var(--color-text); color: var(--color-border); font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: var(--text-xs); line-height: 1.55; tab-size: 2; }
+
+/* Stage 5 — deterministic chunk quality */
+.stage5-quality-status { margin-top: 12px; min-height: 48px; border: 1px solid var(--color-border); border-radius: var(--radius-md); padding: 10px 12px; display: grid; gap: 3px; }
+.stage5-quality-status strong { font-size: var(--text-xs); }
+.stage5-quality-status span { color: var(--color-text-muted); font-size: var(--text-xs); line-height: 1.45; }
+.stage5-quality-status.pass { border-color: var(--color-border-strong); background: var(--color-success-soft); }
+.stage5-quality-status.review { border-color: var(--color-border-strong); background: var(--color-warning-soft); }
+.stage5-quality-grid { display: grid; grid-template-columns: minmax(300px,.75fr) minmax(0,1.25fr); gap: 14px; align-items: start; }
+.stage5-quality-list { display: grid; }
+.stage5-quality-list > div { min-height: 58px; padding: 10px 0; border-top: 1px solid var(--color-success-soft); display: grid; grid-template-columns: 145px minmax(0,1fr); gap: 12px; align-items: start; }
+.stage5-quality-list > div:first-child { border-top: 0; padding-top: 0; }
+.stage5-quality-list strong { font-size: var(--text-xs); }
+.stage5-quality-list span { color: var(--color-text-muted); font-size: var(--text-xs); line-height: 1.5; }
+.stage5-quality-list code { display: block; margin-top: 4px; color: var(--color-text-subtle); font-size: var(--text-xs); overflow-wrap: anywhere; }
+
+@media (max-width: 1320px) {
+  .stage5-metrics-grid { grid-template-columns: repeat(3,minmax(0,1fr)); }
+  .stage5-preview-layout { grid-template-columns: 310px minmax(0,1fr); }
+}
+
+@media (max-width: 1179px) {
+  .stage5-heading { align-items: flex-start; }
+  .stage5-config-grid, .stage5-cleaning-layout, .stage5-quality-grid { grid-template-columns: 1fr; }
+  .stage5-policy-card { position: static; }
+  .stage5-preview-layout { grid-template-columns: 1fr; min-height: 0; }
+  .stage5-chunk-browser { border-right: 0; border-bottom: 1px solid var(--color-border); }
+  .stage5-chunk-list { max-height: 330px; }
+  .stage5-chunk-inspector { min-height: 470px; }
+}
+
+@media (max-width: 767px) {
+  .stage5-page { gap: 9px; }
+  .stage5-heading { display: grid; gap: 10px; }
+  .stage5-heading h2 { font-size: var(--text-lg); }
+  .stage5-heading-actions { justify-content: flex-start; overflow-x: auto; flex-wrap: nowrap; }
+  .stage5-heading-actions > * { flex: 0 0 auto; }
+  .stage5-gate, .stage5-config-dirty { display: grid; gap: 3px; }
+  .stage5-subnav { width: 100%; }
+  .stage5-subnav button { flex: 1 0 auto; padding: 0 10px; }
+  .stage5-card { padding: 12px; border-radius: var(--radius-md); }
+  .stage5-metrics-grid { grid-template-columns: repeat(2,minmax(0,1fr)); }
+  .stage5-config-grid { gap: 9px; }
+  .stage5-form-grid { grid-template-columns: 1fr; }
+  .stage5-explanation-card li { grid-template-columns: 100px minmax(0,1fr); }
+  .stage5-cleaning-layout { gap: 9px; }
+  .stage5-cleaning-toolbar { align-items: stretch; flex-direction: column; }
+  .stage5-cleaning-toolbar select { width: 100%; }
+  .stage5-cleaning-list { max-height: 480px; }
+  .stage5-preview-card { padding: 0; }
+  .stage5-browser-filters { grid-template-columns: 1fr; }
+  .stage5-chunk-list { max-height: 300px; }
+  .stage5-chunk-inspector { padding: 12px; min-height: 0; }
+  .stage5-inspector-head { display: grid; gap: 10px; }
+  .stage5-inspector-actions { justify-content: flex-start; }
+  .stage5-inspector-meta { grid-template-columns: repeat(2,minmax(0,1fr)); }
+  .stage5-provenance > div { grid-template-columns: 1fr; gap: 4px; }
+  .stage5-json-actions { overflow-x: auto; }
+  .stage5-json-viewer { min-height: 420px; max-height: 62vh; }
+  .stage5-quality-list > div { grid-template-columns: 1fr; gap: 4px; min-height: 0; }
+}
+
+@media (max-width: 420px) {
+  .stage5-metrics-grid, .stage5-inspector-meta { grid-template-columns: 1fr; }
+  .stage5-explanation-card li { grid-template-columns: 1fr; gap: 4px; }
+}
+
+/* ========================================================================== */

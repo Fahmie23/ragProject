@@ -41,7 +41,11 @@ Stage 15 `candidate_k` results are DEV-only retrospective evidence. They are not
 
 ## UI/evaluation boundary
 
-The benchmark report is intentionally hidden from primary product navigation because document-specific frozen metrics should not appear to be live quality scores for arbitrary uploads.
+The Evaluation view is visible as an explicitly **frozen benchmark explorer**. Its metrics belong to the benchmark document/splits and must not be interpreted as live quality scores for arbitrary uploads.
+
+## Visual evidence
+
+Visual evidence is currently Option A. Figures and tables related to retrieved text can be shown in validated sources and, when the relationship is strong, promoted inline with a cited answer. Image-only meaning is not independently searchable and the generation model is not claiming to interpret the visual pixels.
 
 ## Deployment
 

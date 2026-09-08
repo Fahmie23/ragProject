@@ -1,68 +1,82 @@
-# RAG Workbench UI
+# RAG Document Studio UI
 
 ## Product information architecture
 
-The final portfolio-facing navigation is intentionally small:
+The portfolio-facing navigation is intentionally compact:
 
 ```text
-Overview | Documents | RAG Playground
+Overview | Documents | Search & Ask | Evaluation
 ```
 
-The product identity is **RAG Workbench**. Document parsing/review is an expert Document Intelligence module rather than the only visible purpose of the application.
+The product identity is **RAG Document Studio**. The document parser/correction workbench is an expert document-intelligence module inside a broader RAG product rather than being the identity of the entire application.
 
 ## Overview
 
-Provides the project/pipeline summary and routes reviewers toward the document module or live RAG Playground without turning the landing page into an evaluation dashboard.
+Provides the project/pipeline summary and routes reviewers toward the document module or live Search & Ask experience without turning the landing page into a benchmark dashboard.
 
 ## Documents
 
-The document workbench exposes the underlying pipeline for inspection:
+A selected document exposes:
 
-- upload/intake status;
+```text
+Overview | Content | Structure | Review | Knowledge | Search Index
+```
+
+The workspace supports:
+
+- upload/intake and lifecycle state;
 - extracted page evidence and overlays;
-- canonical structure/tree;
-- human Review workflow;
-- semantic chunks;
-- embedding/index controls and runtime diagnostics where relevant.
+- canonical document structure;
+- non-destructive human review/corrections;
+- semantic chunks and knowledge representation;
+- embedding/index controls and diagnostics.
 
-The advanced correction UI uses progressive disclosure so relation controls appear only when required by the selected corrected type.
+Advanced correction controls use progressive disclosure so relation fields appear only when required by the selected semantic correction.
 
-## RAG Playground
+## Search & Ask
 
-The default user flow is the frozen production cited-answer path:
+Search & Ask has two intentionally separate modes.
+
+### Cited answer
+
+The default production flow is:
 
 ```text
 document + question
       ↓
 POST /api/generation/answer
       ↓
-cited answer
+retrieval + reranking + bounded context
       ↓
-validated sources
+grounded answer
       ↓
-retrieval/context/provenance inspection
+deterministic citations
+      ↓
+validated source cards + visual evidence
 ```
 
-Production retrieval parameters are not presented as casual answer-generation knobs.
+Strongly related cited figures/tables may be promoted into the left answer panel as **related source evidence**, while the right-hand Validated Sources panel remains the complete evidence record. The UI explicitly states that Option-A visuals are source evidence rather than VLM-interpreted answer inputs.
 
-The UI can still expose diagnostic retrieval behavior without changing the frozen answer path.
+### Retrieval experiment
+
+Diagnostic mode can run dense, hybrid, or hybrid + reranker retrieval without calling the generation provider. It exposes candidate ranking and visual/source evidence but does not mutate the frozen production retrieval profile.
 
 ## Retrieval & context inspector
 
-The inspector renders `retrieval_trace_v1` from the **same generation execution**. It shows dense candidates, lexical candidates, RRF union, reranker ordering, seed IDs and structurally attached context.
+The production answer inspector renders retrieval/context information from the **same generation execution**. It shows dense candidates, lexical candidates, RRF union, reranker ordering, seed IDs and structurally attached context.
 
 Opening the inspector performs no second retrieval. Scores are described as ranking/debugging signals, not probabilities.
 
 ## Citation provenance explorer
 
-Inline citation markers can open a read-only drawer with deterministic validation, evidence/chunk/PDF identity, associated claims, exact evidence text and optional deeper source-element lineage.
+Inline citation markers and source actions can open a read-only provenance drawer with deterministic validation, evidence/chunk/PDF identity, associated claims, exact evidence text and optional deeper source-element lineage.
 
-`Open PDF at page ...` navigates to the backend-owned deterministic citation page.
+`Open source PDF` and visual `View highlighted page` actions navigate back to original-document provenance without modifying the source PDF.
 
-## Benchmark UI scope
+## Evaluation
 
-The Stage 14 benchmark-report implementation remains preserved internally and can render frozen Stage 11 evidence. It is intentionally hidden from the primary product navigation because a single-document benchmark should not look like a live quality score for arbitrary uploaded PDFs.
+Evaluation renders frozen answer/citation benchmark artifacts. It is a portfolio/reproducibility surface and is explicitly separated from live Search & Ask so document-specific metrics are not misread as arbitrary-document quality estimates.
 
 ## State-safety principles
 
-The final frontend guards against stale document/request state, asynchronous request races and duplicated network work. Retrieval, generation, citation and scoring semantics remain backend-owned.
+The frontend guards against stale document/request state, asynchronous request races and duplicated network work. Retrieval, generation, citation, visual-relationship and evaluation semantics remain backend-owned.

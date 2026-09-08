@@ -2,6 +2,8 @@ from __future__ import annotations
 
 from pathlib import Path
 
+from tests._frontend_contract_utils import read_css_bundle
+
 BACKEND_DIR = Path(__file__).resolve().parents[1]
 REPO_ROOT = BACKEND_DIR.parent
 SHELL = REPO_ROOT / "frontend" / "src" / "app" / "RagWorkbenchShell.tsx"
@@ -77,7 +79,7 @@ def test_stage14_5_detail_drawer_prioritizes_expected_vs_happened_then_collapses
 
 
 def test_stage14_5_simplified_layout_is_responsive_and_progressively_disclosed() -> None:
-    css = STYLES.read_text(encoding="utf-8")
+    css = read_css_bundle(STYLES)
     assert ".rag-stage14-eval-headline-grid" in css
     assert ".rag-stage14-eval-takeaway" in css
     assert ".rag-stage14-eval-question-row-simple" in css

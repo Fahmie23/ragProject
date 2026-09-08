@@ -2,6 +2,8 @@ from __future__ import annotations
 
 from pathlib import Path
 
+from tests._frontend_contract_utils import read_css_bundle
+
 BACKEND_DIR = Path(__file__).resolve().parents[1]
 REPO_ROOT = BACKEND_DIR.parent
 SHELL = REPO_ROOT / "frontend" / "src" / "app" / "RagWorkbenchShell.tsx"
@@ -19,7 +21,7 @@ def test_validated_source_uses_bounded_preview_and_explicit_full_evidence_disclo
 
 
 def test_validated_source_preview_clips_instead_of_overflowing() -> None:
-    css = STYLES.read_text(encoding="utf-8")
+    css = read_css_bundle(STYLES)
     assert '.rag-source-preview {' in css
     preview = css.split('.rag-source-preview {', 1)[1].split('}', 1)[0]
     assert 'overflow: hidden;' in preview
@@ -29,7 +31,7 @@ def test_validated_source_preview_clips_instead_of_overflowing() -> None:
 
 
 def test_full_evidence_scrolls_only_after_user_expands_it() -> None:
-    css = STYLES.read_text(encoding="utf-8")
+    css = read_css_bundle(STYLES)
     full = css.split('.rag-source-evidence-full {', 1)[1].split('}', 1)[0]
     assert 'max-height: 260px;' in full
     assert 'overflow: auto;' in full
@@ -37,7 +39,7 @@ def test_full_evidence_scrolls_only_after_user_expands_it() -> None:
 
 
 def test_source_card_and_footer_metadata_cannot_escape_narrow_sidebar() -> None:
-    css = STYLES.read_text(encoding="utf-8")
+    css = read_css_bundle(STYLES)
     card = css.split('.rag-citation-source-card {', 1)[1].split('}', 1)[0]
     meta = css.split('.rag-source-meta {', 1)[1].split('}', 1)[0]
     assert 'overflow: hidden;' in card

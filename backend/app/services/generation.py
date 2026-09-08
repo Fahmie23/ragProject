@@ -128,6 +128,10 @@ def build_evidence_package(context_chunks: list[dict[str, Any]]) -> list[dict[st
             "section_path": [str(x) for x in item.get("section_path", [])],
             "source_element_ids": [str(x) for x in item.get("source_element_ids", [])],
             "content_text": content,
+            # Option-A visual provenance is presentation metadata only. The
+            # grounded-generation prompt below intentionally ignores it until a
+            # future VLM/image-understanding stage exists.
+            "visual_refs": list(item.get("visual_refs", [])),
         })
     return evidence
 

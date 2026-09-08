@@ -78,6 +78,11 @@ export async function getDocument(documentId: string): Promise<DocumentRecord> {
   return response.json();
 }
 
+export async function deleteDocument(documentId: string): Promise<void> {
+  const response = await fetch(`${API_BASE}/api/documents/${documentId}`, { method: "DELETE" });
+  if (!response.ok && response.status !== 204) throw await apiError(response, "Failed to delete document");
+}
+
 export async function runExtraction(documentId: string): Promise<DocumentExtraction> {
   const response = await fetch(`${API_BASE}/api/documents/${documentId}/extract`, { method: "POST" });
   if (!response.ok) throw await apiError(response, "Extraction failed");
@@ -117,6 +122,20 @@ export function pagePreviewUrl(documentId: string, pageNumber: number) {
 
 export function rawFileUrl(documentId: string) {
   return `${API_BASE}/api/documents/${documentId}/file`;
+}
+
+export function visualPreviewUrl(
+  documentId: string,
+  assetType: "figure" | "table",
+  visualId: string,
+  pageNumber: number,
+  view: "crop" | "page" = "crop",
+) {
+  const params = new URLSearchParams({
+    page_number: String(pageNumber),
+    view,
+  });
+  return `${API_BASE}/api/documents/${encodeURIComponent(documentId)}/visuals/${assetType}/${encodeURIComponent(visualId)}/preview?${params.toString()}`;
 }
 
 

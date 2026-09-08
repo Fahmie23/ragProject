@@ -26,7 +26,7 @@ type Props = {
 type BusyAction = "runtime" | "validate" | "generate" | "delete" | "refresh" | null;
 
 function statusLabel(status: EmbeddingStatus | null, chunking: ChunkingArtifact | null) {
-  if (!chunking) return "Waiting for Stage 5";
+  if (!chunking) return "Waiting for knowledge";
   if (!status) return "Not generated";
   if (status.complete) return "Ready";
   if (status.embedded_chunk_count > 0) return "Partial";
@@ -190,7 +190,7 @@ export function IndexPage({ document, chunking, status, onStatusChange }: Props)
     <div className="index-page">
       <div className="index-heading">
         <div>
-          <span className="eyebrow">Stage 6 · Embedding & index</span>
+          <span className="eyebrow">Search readiness</span>
           <h2>Vector index</h2>
           <p>Validate the exact embedding tokenizer, generate vectors in the FastAPI backend, and persist them in PostgreSQL + pgvector.</p>
         </div>
@@ -200,8 +200,8 @@ export function IndexPage({ document, chunking, status, onStatusChange }: Props)
         </div>
       </div>
 
-      {!chunking && <div className="index-gate warning"><strong>Stage 5 is required.</strong><span>Generate and validate semantic chunks before creating embeddings.</span></div>}
-      {chunking && chunking.quality.status !== "pass" && <div className="index-gate warning"><strong>Stage 5 quality is under review.</strong><span>Resolve chunk-quality signals before indexing.</span></div>}
+      {!chunking && <div className="index-gate warning"><strong>Knowledge preparation is required.</strong><span>Prepare and validate knowledge chunks before creating the search index.</span></div>}
+      {chunking && chunking.quality.status !== "pass" && <div className="index-gate warning"><strong>Knowledge quality is under review.</strong><span>Resolve chunk-quality signals before indexing.</span></div>}
 
       {error && <div className="index-error">
         <div><strong>{errorCode ?? "Embedding error"}</strong><span>{error.message}</span></div>
@@ -209,7 +209,7 @@ export function IndexPage({ document, chunking, status, onStatusChange }: Props)
       </div>}
 
       <div className="index-metrics-grid">
-        <article><span>Stage 5 chunks</span><strong>{chunkCount.toLocaleString()}</strong><small>{chunking?.strategy_version ?? "not available"}</small></article>
+        <article><span>Knowledge chunks</span><strong>{chunkCount.toLocaleString()}</strong><small>{chunking?.strategy_version ?? "not available"}</small></article>
         <article><span>Stored embeddings</span><strong>{embeddedCount.toLocaleString()} / {chunkCount.toLocaleString()}</strong><small>{status?.missing_chunk_count ?? chunkCount} missing</small></article>
         <article><span>Embedding dimension</span><strong>{status?.dimension ?? "—"}</strong><small>{model}</small></article>
         <article><span>Database state</span><strong>{complete ? "Ready" : embeddedCount > 0 ? "Partial" : "Empty"}</strong><small>PostgreSQL + pgvector</small></article>
@@ -238,8 +238,8 @@ export function IndexPage({ document, chunking, status, onStatusChange }: Props)
             </div>
             {compatibility.longest_chunk_index != null && <p className="index-help-copy">Longest input: chunk {compatibility.longest_chunk_index + 1} · <code>{compatibility.longest_chunk_id}</code></p>}
             {compatibility.violations.length > 0 && <div className="index-violation-list">{compatibility.violations.map((item) => <div key={item.chunk_id}><strong>Chunk {item.chunk_index + 1}</strong><span>{item.model_token_count} / {item.model_max_seq_length} tokens</span></div>)}</div>}
-          </> : <div className="index-empty-copy"><strong>Not checked yet</strong><span>Run the exact model tokenizer before indexing. No vectors are written during this check.</span></div>}
-          <button type="button" className="secondary-button" disabled={!canRun} onClick={runCompatibilityCheck}>{busy === "validate" ? "Checking tokenizer…" : "Check compatibility"}</button>
+          </> : <div className="index-empty-copy"><strong>Not checked yet</strong><span>Load tokenizer/config metadata and count every Stage 5 input before indexing. No model weights or vectors are loaded during this check.</span></div>}
+          <button type="button" className="secondary-button" disabled={!canRun} onClick={runCompatibilityCheck}>{busy === "validate" ? "Loading tokenizer & checking…" : "Check compatibility"}</button>
         </section>
       </div>
 

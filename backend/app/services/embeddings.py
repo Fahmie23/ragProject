@@ -1,14 +1,23 @@
 from __future__ import annotations
 
 from functools import lru_cache
+import json
+from pathlib import Path
+import logging
 import re
 from typing import Iterable
 
 from app.config import settings
 
 
+logger = logging.getLogger(__name__)
+
 BGE_EN_QUERY_PREFIX = "Represent this sentence for searching relevant passages: "
 _CUDA_DEVICE_RE = re.compile(r"^cuda(?::(?P<index>\d+))?$")
+_HF_SENTENCE_TRANSFORMER_CONFIG = "sentence_bert_config.json"
+# Hugging Face uses very large sentinel values for tokenizers with no practical
+# model_max_length. Those values must not be treated as an actual sequence limit.
+_UNBOUNDED_TOKENIZER_SENTINEL = 1_000_000_000
 
 
 class EmbeddingCompatibilityError(ValueError):
@@ -28,6 +37,23 @@ class EmbeddingDeviceError(RuntimeError):
 
     def __init__(self, requested_device: str, message: str):
         self.requested_device = requested_device
+        super().__init__(message)
+
+
+class EmbeddingTokenizerLoadError(RuntimeError):
+    """Raised when the exact embedding tokenizer/config cannot be loaded."""
+
+    def __init__(self, model_name: str, message: str):
+        self.model_name = model_name
+        super().__init__(message)
+
+
+class EmbeddingModelLoadError(RuntimeError):
+    """Raised when the full sentence-transformers embedding model cannot be loaded."""
+
+    def __init__(self, model_name: str, device: str, message: str):
+        self.model_name = model_name
+        self.device = device
         super().__init__(message)
 
 
@@ -144,15 +170,103 @@ def embedding_runtime_status() -> dict[str, object]:
     }
 
 
+def _coerce_positive_limit(value: object) -> int | None:
+    try:
+        parsed = int(value)  # type: ignore[arg-type]
+    except (TypeError, ValueError, OverflowError):
+        return None
+    if parsed <= 0 or parsed >= _UNBOUNDED_TOKENIZER_SENTINEL:
+        return None
+    return parsed
+
+
+def _sentence_transformer_config_limit(model_name: str) -> int | None:
+    """Read sentence-transformers' explicit max_seq_length without model weights.
+
+    SentenceTransformer repositories may intentionally override the underlying
+    Transformers model/tokenizer limit (for example MiniLM 256 vs. a larger
+    backbone limit). Reading sentence_bert_config.json preserves that behavior
+    while keeping the Stage 6 preflight tokenizer-only.
+    """
+
+    try:
+        from huggingface_hub import hf_hub_download
+    except ImportError:
+        return None
+
+    try:
+        config_path = hf_hub_download(model_name, filename=_HF_SENTENCE_TRANSFORMER_CONFIG)
+        payload = json.loads(Path(config_path).read_text(encoding="utf-8"))
+    except Exception:
+        # Not every Transformers model is packaged as a SentenceTransformer.
+        # The exact tokenizer/config fallback below remains valid for those models.
+        return None
+    return _coerce_positive_limit(payload.get("max_seq_length"))
+
+
+@lru_cache(maxsize=8)
+def _load_tokenizer_spec(model_name: str):
+    """Load only tokenizer/config metadata needed for exact no-truncation checks.
+
+    No sentence-transformers model weights or CUDA context are initialized here.
+    The effective limit follows SentenceTransformer packaging when an explicit
+    sentence_bert_config.json value is present, otherwise it falls back to the
+    minimum practical limit exposed by AutoConfig/AutoTokenizer.
+    """
+
+    try:
+        from transformers import AutoConfig, AutoTokenizer
+    except ImportError as exc:  # pragma: no cover - runtime dependency
+        raise EmbeddingTokenizerLoadError(
+            model_name,
+            "transformers is not installed. Run `pip install -r requirements.txt`.",
+        ) from exc
+
+    try:
+        config = AutoConfig.from_pretrained(model_name)
+        tokenizer = AutoTokenizer.from_pretrained(model_name)
+    except Exception as exc:
+        raise EmbeddingTokenizerLoadError(
+            model_name,
+            f"Failed to load tokenizer/config for {model_name}: {exc}",
+        ) from exc
+
+    explicit_limit = _sentence_transformer_config_limit(model_name)
+    config_limit = _coerce_positive_limit(getattr(config, "max_position_embeddings", None))
+    tokenizer_limit = _coerce_positive_limit(getattr(tokenizer, "model_max_length", None))
+
+    if explicit_limit is not None:
+        max_seq_length = explicit_limit
+    else:
+        candidates = [limit for limit in (config_limit, tokenizer_limit) if limit is not None]
+        max_seq_length = min(candidates) if candidates else None
+
+    if max_seq_length is None:
+        raise EmbeddingTokenizerLoadError(
+            model_name,
+            f"Could not determine a safe max sequence length for {model_name} without loading model weights.",
+        )
+    return tokenizer, max_seq_length
+
+
 @lru_cache(maxsize=4)
 def _load_model(model_name: str, device: str):
     try:
         from sentence_transformers import SentenceTransformer
     except ImportError as exc:  # pragma: no cover - depends on runtime dependency
-        raise RuntimeError(
-            "sentence-transformers is not installed. Run `pip install -r requirements.txt`."
+        raise EmbeddingModelLoadError(
+            model_name,
+            device,
+            "sentence-transformers is not installed. Run `pip install -r requirements.txt`.",
         ) from exc
-    return SentenceTransformer(model_name, device=device)
+    try:
+        return SentenceTransformer(model_name, device=device)
+    except Exception as exc:
+        raise EmbeddingModelLoadError(
+            model_name,
+            device,
+            f"Failed to load embedding model {model_name} on {device}: {exc}",
+        ) from exc
 
 
 def _to_float_vectors(encoded) -> list[list[float]]:
@@ -169,9 +283,10 @@ def _to_float_vectors(encoded) -> list[list[float]]:
 class EmbeddingEncoder:
     """Lazy sentence-transformers wrapper used by Stage 6.
 
-    The same encoder supports CPU and CUDA. `auto` prefers CUDA when PyTorch can
-    actually use it and otherwise resolves to CPU. Explicit CUDA requests fail
-    instead of silently changing device.
+    Tokenizer compatibility is intentionally independent from full model loading.
+    The same encoder then supports CPU and CUDA for actual vector generation.
+    `auto` prefers CUDA when PyTorch can actually use it and otherwise resolves
+    to CPU. Explicit CUDA requests fail instead of silently changing device.
     """
 
     def __init__(
@@ -192,26 +307,17 @@ class EmbeddingEncoder:
         return _load_model(self.model_name, self.device)
 
     def inspect_documents(self, texts: Iterable[str]) -> dict[str, object]:
-        """Inspect Stage 5 text with the exact embedding tokenizer without encoding vectors.
+        """Inspect Stage 5 text with the exact tokenizer without loading weights.
 
-        This powers the frontend preflight check and the hard no-truncation guard used
-        by embedding generation. The embedding model is loaded lazily and remains
-        cached for the subsequent generation request on the same device.
+        This powers both the frontend preflight and the hard no-truncation guard
+        used immediately before embedding generation.
         """
 
         cleaned = [text.strip() for text in texts]
         if any(not text for text in cleaned):
             raise ValueError("Cannot embed an empty chunk.")
-        model = self.model
-        tokenizer = getattr(model, "tokenizer", None)
-        max_seq_length = int(getattr(model, "max_seq_length", 0) or 0)
-        if tokenizer is None or max_seq_length <= 0:
-            return {
-                "token_counts": [],
-                "max_seq_length": None,
-                "violations": [],
-            }
 
+        tokenizer, max_seq_length = _load_tokenizer_spec(self.model_name)
         token_counts: list[int] = []
         violations: list[dict[str, int]] = []
         for index, text in enumerate(cleaned):
