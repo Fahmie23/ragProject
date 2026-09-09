@@ -1,0 +1,5 @@
+# Optional example dependencies only. The production backend does not depend on LangChain.
+langchain-core==1.6.2
+langchain-groq==1.1.3
+httpx==0.28.1
+pydantic>=2.13,<3.0

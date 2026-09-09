@@ -390,12 +390,31 @@ The Evaluation explorer displays frozen benchmark artifacts separately from live
 | Generation | OpenAI-compatible provider API; Docker configuration defaults to Groq |
 | Deployment | Docker Compose |
 | Testing | Pytest + frontend contract/build validation |
+| Optional framework adapter | LangChain Core / LCEL + ChatGroq (`examples/langchain/`) |
 
 ### Framework note
 
 The core RAG path is implemented directly rather than hidden behind LangChain/LlamaIndex abstractions. This was intentional so retrieval, fusion, reranking, context assembly, evaluation, and provenance could be inspected and tested independently.
 
-Framework adapters can be added without replacing the underlying retrieval architecture.
+The repository now includes a small optional LangChain integration under [`examples/langchain/`](examples/langchain/). It wraps the existing production retrieval API as a `BaseRetriever` and composes it with LCEL and `ChatGroq` without replacing the evaluated retrieval architecture.
+
+```text
+Question
+   ↓
+LangChain BaseRetriever adapter
+   ↓
+RAG Document Studio /api/retrieval/hybrid-rerank-context
+   ↓
+BGE-M3 + PostgreSQL FTS + RRF + BGE reranker
+   ↓
+LangChain Documents
+   ↓
+LCEL → ChatGroq → answer
+```
+
+The main application's deterministic citation/provenance path remains authoritative. The example's `[LCn]` labels are conventional prompt-level citations used only for framework demonstration.
+
+See [`examples/langchain/README.md`](examples/langchain/README.md) for setup and usage.
 
 ---
 
@@ -516,6 +535,8 @@ ragProject/
 ├── frontend/         React/TypeScript product UI
 ├── docs/             architecture, pipeline, evaluation, and deployment docs
 ├── evaluation/       compact committed experiment evidence
+├── examples/
+│   └── langchain/       optional BaseRetriever + LCEL integration example
 ├── docker-compose.yml
 └── docker.env.example
 ```
