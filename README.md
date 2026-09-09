@@ -14,19 +14,19 @@ Instead of flattening a PDF into plain text and hiding retrieval behind a framew
 
 ### Cited RAG with inline visual evidence
 
-![Cited RAG answer with inline visual evidence](docs/assets/final/03-cited-rag-inline-visual.PNG)
+![Cited RAG answer with inline visual evidence](docs/assets/final/03-cited-rag-inline-visual.png)
 
 The answer panel can promote one strongly related figure or table from a cited source while the **Validated Sources** panel remains the complete evidence record.
 
 ### Document workspace and human review
 
-![Structure-aware document review](docs/assets/final/02-document-review.PNG)
+![Structure-aware document review](docs/assets/final/02-document-review.png)
 
 The document workspace exposes extracted content, reconstructed structure, corrections, semantic knowledge units, and indexing status before the document is used for retrieval.
 
 ### Product overview
 
-![RAG Document Studio overview](docs/assets/final/01-overview.PNG)
+![RAG Document Studio overview](docs/assets/final/01-overview.png)
 
 ---
 
