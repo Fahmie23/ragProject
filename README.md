@@ -14,19 +14,19 @@ Instead of flattening a PDF into plain text and hiding retrieval behind a framew
 
 ### Cited RAG with inline visual evidence
 
-![Cited RAG answer with inline visual evidence](docs/assets/final/03-cited-rag-inline-visual.png)
+![Cited RAG answer with inline visual evidence](docs/assets/final/03-cited-rag-inline-visual.PNG)
 
 The answer panel can promote one strongly related figure or table from a cited source while the **Validated Sources** panel remains the complete evidence record.
 
 ### Document workspace and human review
 
-![Structure-aware document review](docs/assets/final/02-document-review.png)
+![Structure-aware document review](docs/assets/final/02-document-review.PNG)
 
 The document workspace exposes extracted content, reconstructed structure, corrections, semantic knowledge units, and indexing status before the document is used for retrieval.
 
 ### Product overview
 
-![RAG Document Studio overview](docs/assets/final/01-overview.png)
+![RAG Document Studio overview](docs/assets/final/01-overview.PNG)
 
 ---
 
@@ -99,121 +99,55 @@ The primary benchmark document is a **109-page Securities Commission Malaysia AM
 
 ## Architecture
 
-```mermaid
-graph TD
-    subgraph Client["Client Tier - React"]
-        Overview["Overview"]
-        Documents["Documents / Human Review"]
-        Search["Search & Ask"]
-        Evaluation["Evaluation Explorer"]
-        APIClient["API Client"]
-    end
-
-    subgraph Application["Application Tier - FastAPI"]
-        API["API Routers"]
-        DocServices["Document Services"]
-        RetrievalServices["Retrieval Services"]
-        Generation["Grounded Generation"]
-        Provenance["Citation / Provenance Resolver"]
-        VisualResolver["Visual Relationship Resolver"]
-    end
-
-    subgraph Processing["Document Processing"]
-        PDF["Original PDF"]
-        Extract["Extraction + Layout Evidence"]
-        Structure["Canonical Structure Reconstruction"]
-        Review["Human Corrections"]
-        Canonical["Resolved Canonical Document"]
-        Chunking["Semantic Chunking"]
-        Embeddings["BGE-M3 Embeddings"]
-    end
-
-    subgraph Retrieval["Retrieval Pipeline"]
-        Dense["Dense Retrieval"]
-        Lexical["PostgreSQL FTS"]
-        Fusion["Weighted RRF"]
-        Reranker["BGE Cross-Encoder Reranker"]
-        Context["Bounded Structural Context"]
-    end
-
-    subgraph Data["Data Tier"]
-        Artifacts["Versioned Document Artifacts"]
-        PostgreSQL["PostgreSQL"]
-        PGVector["pgvector"]
-    end
-
-    subgraph External["External Generation"]
-        LLM["LLM Provider API"]
-    end
-
-    Overview --> APIClient
-    Documents --> APIClient
-    Search --> APIClient
-    Evaluation --> APIClient
-    APIClient --> API
-
-    API --> DocServices
-    PDF --> Extract
-    DocServices --> Extract
-    Extract --> Structure
-    Structure --> Review
-    Review --> Canonical
-    Canonical --> Chunking
-    Chunking --> Embeddings
-
-    Canonical --> Artifacts
-    Chunking --> PostgreSQL
-    Embeddings --> PGVector
-
-    API --> RetrievalServices
-    RetrievalServices --> Dense
-    RetrievalServices --> Lexical
-    PGVector --> Dense
-    PostgreSQL --> Lexical
-    Dense --> Fusion
-    Lexical --> Fusion
-    Fusion --> Reranker
-    Reranker --> Context
-
-    Context --> Generation
-    Generation --> LLM
-
-    Context --> Provenance
-    Canonical --> Provenance
-
-    Context --> VisualResolver
-    Canonical --> VisualResolver
-    PDF --> VisualResolver
-
-    Provenance --> Generation
-    Generation --> API
-    VisualResolver --> API
-```
-
-### Query-time RAG path
+The README keeps the system view intentionally simple. The detailed service-level architecture lives in the technical documentation.
 
 ```mermaid
-graph LR
-    Q["User Question"] --> D["Dense Retrieval"]
-    Q --> L["Lexical Retrieval"]
+flowchart LR
+    A["PDF Document"] --> B["Document Processing"]
+    B --> C["Structure-Aware<br/>Canonical Document"]
+    C --> D["Semantic Chunking<br/>& Indexing"]
+    D --> E["Hybrid Retrieval<br/>Dense + Lexical"]
+    E --> F["Reranking"]
+    F --> G["Cited RAG<br/>Generation"]
+    G --> H["Answer + Provenance<br/>+ Visual Evidence"]
 
-    D --> H["Weighted RRF"]
-    L --> H
-
-    H --> R["Cross-Encoder Reranking"]
-    R --> C["Structural Context Expansion"]
-    C --> G["Grounded LLM Generation"]
-    G --> A["Cited Answer"]
-
-    C --> P["Deterministic Provenance"]
-    P --> S["Validated Sources"]
-
-    C --> V["Visual Relationship Resolver"]
-    V --> F["Related Figures / Tables"]
-    F --> S
-
-    S --> A
+    I["Human Review<br/>& Corrections"] --> C
 ```
+
+At a high level, the project does four things:
+
+1. **understands the PDF before retrieval** by reconstructing document structure;
+2. **keeps humans in the loop** when extraction or classification is ambiguous;
+3. **retrieves evidence using both semantic and exact-text signals**; and
+4. **returns answers that remain traceable to the original PDF**, including related figures and tables.
+
+### Query-time retrieval path
+
+```mermaid
+flowchart LR
+    Q["Question"]
+
+    Q --> D["Dense Retrieval<br/>BGE-M3 + pgvector"]
+    Q --> L["Lexical Retrieval<br/>PostgreSQL FTS"]
+
+    D --> R["RRF Fusion"]
+    L --> R
+
+    R --> RR["BGE Reranker"]
+    RR --> C["Bounded Context"]
+    C --> LLM["LLM"]
+    LLM --> A["Cited Answer"]
+
+    RR --> P["Provenance &<br/>Visual Resolver"]
+    P --> A
+```
+
+The first diagram is the **portfolio-level system view**. The second exposes the main RAG retrieval mechanics without showing every router, artifact, database table, or internal service.
+
+For implementation-level detail, see:
+
+- [`System Architecture`](docs/architecture/SYSTEM_ARCHITECTURE.md)
+- [`Retrieval Architecture`](docs/retrieval/RETRIEVAL_ARCHITECTURE.md)
 
 ---
 
