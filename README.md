@@ -1,71 +1,107 @@
 # RAG Document Studio
 
-**A structure-aware, evidence-first RAG system for complex regulatory PDFs.**
+**Structure-aware Retrieval-Augmented Generation for complex regulatory PDFs.**
 
-RAG Document Studio is an end-to-end portfolio project that makes the full path from **PDF → canonical document structure → retrieval → cited answer → source provenance** inspectable. Instead of treating RAG as a single framework call, the project exposes the document-processing decisions, retrieval stages, supporting evidence, citations, figures, tables, and evaluation behind every answer.
+RAG Document Studio is an end-to-end RAG system that makes the full path from **PDF ingestion → document structure → retrieval → grounded answer → citation → original source evidence** inspectable.
 
-> **Portfolio focus:** document intelligence, hybrid retrieval, grounded generation, deterministic provenance, evaluation, and human-in-the-loop correction.
+Instead of flattening a PDF into plain text and hiding retrieval behind a framework call, the project preserves document structure, supports human review, combines dense and lexical retrieval, reranks evidence, derives citations deterministically, and reconnects retrieved text to related figures and tables in the original PDF.
 
-## Why this project exists
-
-Naive PDF RAG often reduces a document to plain text before chunking. That can destroy hierarchy, definitions, tables, figures, page relationships, and the context needed to answer regulatory questions reliably.
-
-This project takes a different approach:
-
-- preserve layout and provenance during extraction;
-- reconstruct a canonical semantic document before chunking;
-- allow non-destructive human correction of ambiguous structure;
-- combine dense and lexical retrieval rather than relying on one retriever;
-- rerank and expand context using bounded structural relationships;
-- generate answers only from retrieved evidence;
-- derive source citations from backend provenance rather than asking the LLM to invent page references;
-- reconnect retrieved text to related figures and tables from the original PDF.
-
-The primary benchmark document is a **109-page Securities Commission Malaysia AML/CFT/CPF guideline**. Results in this repository are document/domain-specific portfolio evidence, not claims of universal arbitrary-PDF performance.
+> **Portfolio v1.0** · Document AI · Hybrid Retrieval · Grounded Generation · Provenance · Visual Evidence · Evaluation
 
 ---
 
 ## Product preview
 
-### Retrieval inspection with same-page visual evidence
+### Cited RAG with inline visual evidence
 
-![Search & Ask retrieval experiment showing related visual evidence](docs/assets/search-ask-retrieval-visual.png)
+![Cited RAG answer with inline visual evidence](docs/assets/final/03-cited-rag-inline-visual.png)
 
-### Production cited answer with cross-page visual provenance
+The answer panel can promote one strongly related figure or table from a cited source while the **Validated Sources** panel remains the complete evidence record.
 
-![Production RAG answer with validated cross-page visual source](docs/assets/search-ask-cited-cross-page.png)
+### Document workspace and human review
 
-The current UI can also promote one strongly related cited figure/table into the answer panel while keeping the right-hand **Validated Sources** panel as the complete evidence record. In this Option-A implementation, the LLM still reasons from retrieved text; visual assets are presented as related source evidence rather than being interpreted by a VLM.
+![Structure-aware document review](docs/assets/final/02-document-review.png)
+
+The document workspace exposes extracted content, reconstructed structure, corrections, semantic knowledge units, and indexing status before the document is used for retrieval.
+
+### Product overview
+
+![RAG Document Studio overview](docs/assets/final/01-overview.png)
 
 ---
 
-## What the system demonstrates
+## Why this project exists
 
-| Area | Implementation |
+Many PDF RAG examples follow a simple path:
+
+```text
+PDF → plain text → fixed-size chunks → embeddings → vector search → LLM
+```
+
+That approach can lose information that matters in regulatory and technical documents:
+
+- heading and clause hierarchy;
+- definitions and their scope;
+- tables and structured rows;
+- figure captions and explanations;
+- cross-page relationships;
+- exact page and bounding-box provenance.
+
+RAG Document Studio instead builds a **canonical document representation before chunking and retrieval**.
+
+```text
+PDF
+ ↓
+Extraction + layout evidence
+ ↓
+Canonical structure reconstruction
+ ↓
+Human review / correction
+ ↓
+Structure-aware semantic chunks
+ ↓
+Dense + lexical retrieval
+ ↓
+Hybrid fusion + reranking
+ ↓
+Bounded structural context
+ ↓
+Grounded generation
+ ↓
+Deterministic citations + visual provenance
+```
+
+The primary benchmark document is a **109-page Securities Commission Malaysia AML/CFT/CPF guideline**. The benchmark results in this repository are therefore document/domain-specific evidence rather than claims of universal arbitrary-PDF performance.
+
+---
+
+## Key capabilities
+
+| Capability | Implementation |
 |---|---|
-| Document ingestion | Deterministic PDF extraction with text, geometry, tables, page provenance, and layout evidence |
-| Canonical structure | Definitions, clauses, headings, figures, tables, hierarchy, and relationships reconstructed before retrieval |
-| Human review | Non-destructive correction workflow for structural/classification errors |
-| Chunking | Structure-aware semantic chunks (`semantic-v2.1`) with source element provenance |
+| PDF ingestion | Deterministic extraction with text, geometry, layout evidence, tables, and page provenance |
+| Canonical structure | Headings, clauses, definitions, figures, tables, hierarchy, and relationships reconstructed before retrieval |
+| Human-in-the-loop review | Non-destructive correction workflow for structural and classification errors |
+| Semantic chunking | Structure-aware `semantic-v2.1` chunks with source-element provenance |
 | Dense retrieval | `BAAI/bge-m3` embeddings stored in PostgreSQL/pgvector |
-| Lexical retrieval | PostgreSQL Full-Text Search with content-term query formulation |
-| Hybrid retrieval | Weighted Reciprocal Rank Fusion over dense + lexical candidate ranks |
+| Lexical retrieval | PostgreSQL Full-Text Search for exact terminology, clauses, acronyms, and regulatory wording |
+| Hybrid retrieval | Weighted Reciprocal Rank Fusion over dense and lexical candidate ranks |
 | Reranking | `BAAI/bge-reranker-v2-m3` cross-encoder |
 | Context assembly | Bounded one-hop structural evidence expansion |
-| Generation | Evidence-bound answer generation with explicit abstention |
-| Citations | Deterministic claim → evidence → chunk → canonical source → PDF provenance |
-| Visual evidence | Figures/tables resolved from canonical relationships and rendered from the original PDF |
-| Evaluation | Protected DEV/held-out retrieval and answer/citation evaluation |
-| Product UI | React document workbench, Search & Ask, provenance inspection, and frozen Evaluation explorer |
-| Deployment | Reproducible Docker Compose stack with PostgreSQL, pgvector, backend, migration, test, and frontend services |
+| Grounded generation | Evidence-bound answer generation with explicit abstention behavior |
+| Citations | Deterministic claim → evidence → chunk → canonical element → PDF provenance |
+| Visual evidence | Related figures/tables resolved from canonical relationships and cropped from the original PDF |
+| Evaluation | DEV and held-out retrieval plus answer/citation evaluation |
+| Product UI | React document workspace, Search & Ask, retrieval inspection, provenance inspection, and Evaluation explorer |
+| Deployment | Docker Compose with PostgreSQL/pgvector, migrations, backend, frontend, and test services |
 
 ---
 
-## High-level architecture
+## Architecture
 
 ```mermaid
 graph TD
-    subgraph ClientTier["Client Tier - React"]
+    subgraph Client["Client Tier - React"]
         Overview["Overview"]
         Documents["Documents / Human Review"]
         Search["Search & Ask"]
@@ -73,25 +109,26 @@ graph TD
         APIClient["API Client"]
     end
 
-    subgraph ApplicationTier["Application Tier - FastAPI"]
+    subgraph Application["Application Tier - FastAPI"]
         API["API Routers"]
         DocServices["Document Services"]
         RetrievalServices["Retrieval Services"]
         Generation["Grounded Generation"]
-        Citations["Citation / Provenance Resolver"]
+        Provenance["Citation / Provenance Resolver"]
         VisualResolver["Visual Relationship Resolver"]
     end
 
-    subgraph ProcessingTier["Document Processing"]
-        Extract["PDF Extraction + Layout Evidence"]
+    subgraph Processing["Document Processing"]
+        PDF["Original PDF"]
+        Extract["Extraction + Layout Evidence"]
         Structure["Canonical Structure Reconstruction"]
         Review["Human Corrections"]
         Canonical["Resolved Canonical Document"]
         Chunking["Semantic Chunking"]
-        Embed["BGE-M3 Embeddings"]
+        Embeddings["BGE-M3 Embeddings"]
     end
 
-    subgraph RetrievalTier["Retrieval Pipeline"]
+    subgraph Retrieval["Retrieval Pipeline"]
         Dense["Dense Retrieval"]
         Lexical["PostgreSQL FTS"]
         Fusion["Weighted RRF"]
@@ -99,14 +136,13 @@ graph TD
         Context["Bounded Structural Context"]
     end
 
-    subgraph DataTier["Data Tier"]
-        PDF["Original PDF"]
-        Artifacts["Versioned JSON Artifacts"]
+    subgraph Data["Data Tier"]
+        Artifacts["Versioned Document Artifacts"]
         PostgreSQL["PostgreSQL"]
         PGVector["pgvector"]
     end
 
-    subgraph ExternalTier["External Generation"]
+    subgraph External["External Generation"]
         LLM["LLM Provider API"]
     end
 
@@ -123,11 +159,11 @@ graph TD
     Structure --> Review
     Review --> Canonical
     Canonical --> Chunking
-    Chunking --> Embed
+    Chunking --> Embeddings
 
     Canonical --> Artifacts
     Chunking --> PostgreSQL
-    Embed --> PGVector
+    Embeddings --> PGVector
 
     API --> RetrievalServices
     RetrievalServices --> Dense
@@ -141,25 +177,29 @@ graph TD
 
     Context --> Generation
     Generation --> LLM
-    Context --> Citations
-    Canonical --> Citations
+
+    Context --> Provenance
+    Canonical --> Provenance
+
     Context --> VisualResolver
     Canonical --> VisualResolver
     PDF --> VisualResolver
 
-    Citations --> Generation
+    Provenance --> Generation
     Generation --> API
     VisualResolver --> API
 ```
 
-### Query-time RAG flow
+### Query-time RAG path
 
 ```mermaid
 graph LR
     Q["User Question"] --> D["Dense Retrieval"]
     Q --> L["Lexical Retrieval"]
+
     D --> H["Weighted RRF"]
     L --> H
+
     H --> R["Cross-Encoder Reranking"]
     R --> C["Structural Context Expansion"]
     C --> G["Grounded LLM Generation"]
@@ -167,38 +207,19 @@ graph LR
 
     C --> P["Deterministic Provenance"]
     P --> S["Validated Sources"]
-    S --> A
 
     C --> V["Visual Relationship Resolver"]
     V --> F["Related Figures / Tables"]
     F --> S
+
+    S --> A
 ```
-
-### Visual evidence trust boundary
-
-Visual evidence is intentionally a **presentation/provenance layer** in the current version:
-
-```text
-Retrieved text chunk
-      ↓
-source_element_ids
-      ↓
-canonical figure/table relationships
-      ↓
-page + bounding box
-      ↓
-render crop from original PDF
-      ↓
-Validated Source / optional inline evidence
-```
-
-The visual itself is **not independently embedded or interpreted by a VLM**. This keeps the UI truthful about what the generation model actually used.
 
 ---
 
-## Production retrieval profile
+## Retrieval design
 
-The frozen production profile is:
+The frozen production retrieval profile is:
 
 ```text
 embedding       BAAI/bge-m3
@@ -210,13 +231,124 @@ seed top_k      5
 context         structural_one_hop_v1
 ```
 
-PostgreSQL FTS is intentionally **not described as BM25**.
+### Why dense + lexical retrieval?
+
+Dense retrieval captures semantic similarity. Lexical retrieval is valuable for exact regulatory language such as:
+
+- clause numbers;
+- abbreviations;
+- names and defined terms;
+- exact phrases;
+- uncommon domain terminology.
+
+The two rank lists are combined using **Reciprocal Rank Fusion** rather than directly mixing incompatible raw score spaces.
+
+### Why rerank after fusion?
+
+The first retrieval stage is optimized for candidate coverage. A cross-encoder reranker then improves the ordering of the strongest evidence before context assembly and generation.
+
+> PostgreSQL FTS is intentionally described as **Full-Text Search**, not BM25.
 
 ---
 
-## Evaluation results
+## Structure-aware document processing
 
-### Retrieval held-out benchmark
+The retrieval layer does not embed raw extraction output directly.
+
+The processing pipeline first reconstructs a canonical representation containing elements such as:
+
+```text
+Document
+├── Part / Section
+│   ├── Heading
+│   ├── Clause
+│   │   ├── Subclause
+│   │   └── Definition
+│   ├── Table
+│   └── Figure
+└── Relationships
+    ├── hierarchy
+    ├── caption
+    ├── introduction
+    ├── explanation
+    └── cross-page reference
+```
+
+A human reviewer can correct ambiguous classifications and relationships without destroying the original automatic extraction evidence.
+
+This canonical layer is then used for semantic chunking, structural context expansion, citations, and visual provenance.
+
+---
+
+## Visual evidence and provenance
+
+The current visual implementation is intentionally **Option A: provenance-linked visual evidence**.
+
+```text
+Retrieved chunk
+      ↓
+source_element_ids
+      ↓
+canonical figure/table relationship
+      ↓
+page + bounding box
+      ↓
+render crop from original PDF
+      ↓
+Validated Source / inline visual evidence
+```
+
+The visual relationship resolver can use strong signals such as:
+
+- explicit figure/table references;
+- figure introductions;
+- captions;
+- explanatory text;
+- table-content relationships;
+- bounded cross-page references.
+
+It does **not** simply attach the nearest image to a retrieved paragraph.
+
+### Important trust boundary
+
+In v1.0, image pixels are **not sent to a VLM as part of answer generation**. The LLM reasons from retrieved textual evidence; related figures and tables are presented as supporting source evidence.
+
+This distinction prevents the UI from implying multimodal understanding that the generation path did not actually perform.
+
+---
+
+## Deterministic citations
+
+Citation provenance is resolved by the backend rather than asking the LLM to invent page references.
+
+```text
+Generated claim
+      ↓
+used evidence
+      ↓
+retrieved chunk
+      ↓
+source elements
+      ↓
+canonical document
+      ↓
+PDF page / region
+```
+
+This allows the UI to provide:
+
+- validated citation status;
+- source snippets;
+- original PDF links;
+- highlighted page regions;
+- deep provenance inspection;
+- related visual evidence.
+
+---
+
+## Evaluation
+
+### Held-out retrieval benchmark
 
 Formal retrieval benchmark: **40 questions** — 25 DEV + 15 held-out.
 
@@ -228,11 +360,14 @@ Formal retrieval benchmark: **40 questions** — 25 DEV + 15 held-out.
 | MRR@10 | 0.7225 | 0.7189 | **0.8800** |
 | CompleteEvidence@5 | 66.7% | **86.7%** | 80.0% |
 
-Bounded structural context assembly reached **ContextRecall@5 90.0%** and **ContextCompleteEvidence@5 86.7%**.
+Bounded structural context assembly reached:
 
-The result illustrates the roles of the retrieval layers: hybrid retrieval improves candidate/evidence coverage, while reranking substantially improves the ordering of the best evidence.
+- **ContextRecall@5: 90.0%**
+- **ContextCompleteEvidence@5: 86.7%**
 
-### Answer and citation held-out benchmark
+The benchmark shows a useful separation of responsibilities: hybrid retrieval improves evidence coverage, while reranking improves the ordering of the best evidence.
+
+### Held-out answer and citation benchmark
 
 Independent held-out evaluation: **18 questions** — 15 answerable + 3 controls.
 
@@ -247,11 +382,11 @@ Independent held-out evaluation: **18 questions** — 15 answerable + 3 controls
 | Citation entailment | **93.88%** |
 | Answer completeness | **83.65%** |
 
-The main remaining weakness is **completeness**, not unsupported hallucination. A grounded answer can still omit required information.
+The main remaining weakness in the frozen benchmark is **completeness**, rather than unsupported claims.
 
 ### Controlled retrieval experiment
 
-A DEV-only experiment varied `candidate_k` while keeping the production retrieval profile frozen.
+A DEV-only experiment varied `candidate_k` while keeping the rest of the production retrieval profile fixed.
 
 | candidate_k | Hit@1 | Recall@5 | MRR@10 | CompleteEvidence@5 | Avg request ms |
 |---:|---:|---:|---:|---:|---:|
@@ -259,7 +394,50 @@ A DEV-only experiment varied `candidate_k` while keeping the production retrieva
 | 20 | 96.0% | 93.3% | 0.9800 | 88.0% | 1302.3 |
 | 40 | 96.0% | 93.3% | 0.9800 | 88.0% | 2131.0 |
 
-Top-5 quality remained unchanged while candidate volume and runtime increased. This is engineering evidence only; production remains frozen at `candidate_k=20`.
+Increasing the candidate pool did not improve top-5 quality in this DEV experiment, while request time increased. Production therefore remains frozen at `candidate_k=20`.
+
+> These benchmark results belong to the frozen evaluation document and should not be interpreted as live quality estimates for arbitrary uploaded PDFs.
+
+---
+
+## Product workflow
+
+The user-facing navigation is intentionally compact:
+
+```text
+Overview | Documents | Search & Ask | Evaluation
+```
+
+### Documents
+
+```text
+Overview | Content | Structure | Review | Knowledge | Search Index
+```
+
+Use the document workspace to inspect extraction/layout evidence, canonical hierarchy, corrections, semantic chunks, and index status before querying the document.
+
+### Search & Ask
+
+Two modes are intentionally separated:
+
+**Cited answer**
+
+Runs the frozen production RAG profile and returns:
+
+- grounded generated answer;
+- claim-level citations;
+- validated sources;
+- provenance;
+- related figures/tables;
+- retrieval/context inspection from the same execution.
+
+**Retrieval experiment**
+
+Allows retrieval-only inspection without silently changing the production answer profile.
+
+### Evaluation
+
+The Evaluation explorer displays frozen benchmark artifacts separately from live document querying so historical evaluation results are not confused with arbitrary-upload performance.
 
 ---
 
@@ -269,63 +447,41 @@ Top-5 quality remained unchanged while candidate volume and runtime increased. T
 |---|---|
 | Frontend | React 19, TypeScript, Vite, Nginx |
 | Backend | Python 3.12, FastAPI, Pydantic |
-| PDF processing | PyMuPDF, PyMuPDF4LLM / layout evidence |
+| PDF processing | PyMuPDF, PyMuPDF4LLM, PyMuPDF Layout |
 | Embeddings | Sentence Transformers, `BAAI/bge-m3` |
 | Reranking | `BAAI/bge-reranker-v2-m3` |
 | Database | PostgreSQL 16, pgvector |
-| Lexical search | PostgreSQL Full-Text Search |
+| Lexical retrieval | PostgreSQL Full-Text Search |
 | ORM / migrations | SQLAlchemy, Alembic |
-| Generation | OpenAI-compatible provider API; Docker defaults to Groq |
+| Generation | OpenAI-compatible provider API; Docker configuration defaults to Groq |
 | Deployment | Docker Compose |
-| Testing | Pytest + frontend contract/build checks |
+| Testing | Pytest + frontend contract/build validation |
+
+### Framework note
+
+The core RAG path is implemented directly rather than hidden behind LangChain/LlamaIndex abstractions. This was intentional so retrieval, fusion, reranking, context assembly, evaluation, and provenance could be inspected and tested independently.
+
+Framework adapters can be added without replacing the underlying retrieval architecture.
 
 ---
 
-## Product workflow
-
-The portfolio-facing navigation is intentionally compact:
-
-```text
-Overview | Documents | Search & Ask | Evaluation
-```
-
-### Documents
-
-Inspect the document before retrieval:
-
-```text
-Overview | Content | Structure | Review | Knowledge | Search Index
-```
-
-The document workspace exposes extraction/layout evidence, canonical hierarchy, human correction, semantic chunks, and indexing status.
-
-### Search & Ask
-
-Two modes are available:
-
-- **Cited answer** — frozen production RAG path with claims, validated citations, provenance, related visual evidence, and retrieval/context inspection from the same execution.
-- **Retrieval experiment** — inspect dense, hybrid, or reranked evidence without calling the generation provider.
-
-### Evaluation
-
-The Evaluation view shows the **frozen benchmark artifacts**. It is intentionally separate from live Search & Ask so benchmark scores are not presented as live quality estimates for arbitrary uploads.
-
----
-
-## Quick start with Docker
+## Quick start
 
 ### Requirements
 
 - Docker Engine / Docker Desktop with Compose
-- NVIDIA Container Toolkit + compatible NVIDIA GPU for the default GPU-backed embedding/reranking services
-- a configured generation-provider API key for fresh cited answers
+- NVIDIA Container Toolkit and a compatible NVIDIA GPU for the default GPU-backed embedding/reranking path
+- generation-provider API credentials for fresh cited answers
+
+Clone the repository and create the local environment file:
 
 ```bash
-# repository root
+git clone https://github.com/Fahmie23/ragProject.git
+cd ragProject
 cp docker.env.example .env
 ```
 
-Add your local configuration/secrets to `.env`, then:
+Add your local secrets/configuration to `.env`, then build and start the stack:
 
 ```bash
 docker compose up -d --build
@@ -339,19 +495,19 @@ Backend   http://localhost:8000
 Health    http://localhost:8000/health
 ```
 
-For detailed WSL/local setup, see [`docs/development/LOCAL_SETUP.md`](docs/development/LOCAL_SETUP.md).
+For WSL/local development details, see [`docs/development/LOCAL_SETUP.md`](docs/development/LOCAL_SETUP.md).
 
 ---
 
 ## Verification
 
-Run the complete backend test service:
+Run the complete Docker-backed test suite:
 
 ```bash
 docker compose --profile verify run --rm backend-test
 ```
 
-Focused visual-evidence regression:
+Run the focused visual-evidence regression suite:
 
 ```bash
 docker compose --profile verify run --rm backend-test \
@@ -360,13 +516,13 @@ docker compose --profile verify run --rm backend-test \
   tests/test_visual_evidence_ui.py
 ```
 
-Build the production frontend through Docker:
+Build the production frontend:
 
 ```bash
 docker compose build frontend
 ```
 
-Or locally with the repository-pinned Node/npm versions:
+Or use the repository-pinned local Node/npm versions:
 
 ```bash
 cd frontend
@@ -378,49 +534,53 @@ npm run build
 
 ## Suggested demo queries
 
-These queries exercise different parts of the system on the benchmark PDF:
+These questions exercise different capabilities on the frozen benchmark PDF.
+
+### Same-page figure relationship
 
 ```text
 Explain why Mr W and Ms Y are beneficial owners of Company A.
 ```
 
-Tests a **same-page figure relationship**.
+### Cross-page visual relationship
 
 ```text
 Explain the BbRA and RbRA process.
 ```
 
-Tests a **cross-page relationship** from the explanatory text to the following RBA diagram.
+This exercises a relationship where explanatory text and its related RBA diagram span adjacent pages.
+
+### Structured table evidence
 
 ```text
 What are examples of risk factors and formulated parameters used in the business-based risk assessment?
 ```
 
-Tests **structured table evidence**.
+### Text-only negative case
 
 ```text
 How long must transaction records be retained?
 ```
 
-Tests a normal **text-only answer** and helps detect inappropriate visual attachment.
+This helps verify that unrelated visuals are not attached to ordinary text-only evidence.
 
-A concise 5-minute portfolio walkthrough is available in [`docs/PORTFOLIO_DEMO.md`](docs/PORTFOLIO_DEMO.md).
+A concise interview/demo walkthrough is available in [`docs/PORTFOLIO_DEMO.md`](docs/PORTFOLIO_DEMO.md).
 
 ---
 
-## Repository layout
+## Repository structure
 
 ```text
 ragProject/
 ├── backend/
 │   ├── app/          FastAPI application and pipeline services
 │   ├── alembic/      database migrations
-│   ├── data/         document/runtime artifacts
-│   ├── evaluation/   backend evaluation fixtures/config
-│   ├── scripts/      verification/reproduction tools
+│   ├── data/         local document/runtime artifacts
+│   ├── evaluation/   evaluation fixtures/configuration
+│   ├── scripts/      verification and reproduction tools
 │   └── tests/        regression and contract tests
 ├── frontend/         React/TypeScript product UI
-├── docs/             architecture, retrieval, generation, evaluation, deployment docs
+├── docs/             architecture, pipeline, evaluation, and deployment docs
 ├── evaluation/       compact committed experiment evidence
 ├── docker-compose.yml
 └── docker.env.example
@@ -450,45 +610,73 @@ Key references:
 
 ---
 
-## Engineering decisions worth discussing in an interview
+## Engineering decisions
 
-- **Why canonical reconstruction happens before chunking** rather than embedding extraction output directly.
-- **Why dense and lexical scores are fused by rank** instead of numerically mixing incompatible score spaces.
-- **Why reranking and structural context expansion are separate steps**.
-- **Why citations are backend-derived** rather than generated as free-form page references by the LLM.
-- **Why visual evidence is currently provenance-only** rather than pretending the model has multimodal understanding.
-- **Why DEV and held-out evaluation are separated** to avoid tuning against final benchmark results.
-- **Why the human correction layer is non-destructive**, preserving automatic extraction evidence and approved corrections separately.
+### Why reconstruct document structure before chunking?
+
+Regulatory documents contain hierarchy and relationships that are easy to destroy when extraction output is immediately split by character count.
+
+### Why not rely only on vector search?
+
+Semantic retrieval is strong for conceptual similarity, but lexical retrieval is useful for exact clauses, defined terms, acronyms, names, and regulatory wording.
+
+### Why rank fusion instead of mixing raw scores?
+
+Dense similarity and PostgreSQL FTS produce different score spaces. Rank fusion avoids assuming those scores are numerically comparable.
+
+### Why separate retrieval and reranking?
+
+First-stage retrieval prioritizes candidate coverage; reranking prioritizes precision in the final evidence set.
+
+### Why derive citations deterministically?
+
+The generation model should answer from evidence, not invent its own mapping between claims and PDF locations.
+
+### Why keep human correction non-destructive?
+
+Automatic extraction evidence and approved corrections remain separately inspectable, making the document-processing path easier to debug and audit.
+
+### Why isn't this called multimodal RAG yet?
+
+The current system resolves text evidence to source figures and tables, but image pixels are not independently understood or retrieved by a VLM. Calling that multimodal reasoning would overstate the current implementation.
+
+### Why not build the core around LangChain?
+
+The project was designed to demonstrate the mechanics underneath RAG frameworks: chunk provenance, dense retrieval, lexical retrieval, fusion, reranking, context construction, citations, and evaluation. Framework integration is an adapter-level extension rather than a prerequisite for the core architecture.
 
 ---
 
 ## Scope and limitations
 
-- The formal benchmarks are specific to the frozen SC AML/CFT/CPF document/domain.
-- OCR and general scanned-PDF ingestion are not part of the frozen portfolio path.
-- Exact pgvector cosine retrieval is appropriate for the current 284-chunk corpus; the project does not claim internet-scale ANN performance.
-- Bounded structural context can miss distant dependencies.
-- Visual evidence is **Option A**: related figures/tables are shown, but image-only meaning is not independently searchable yet.
-- Fresh generation requires an external provider/API configuration.
-- Multi-tenant serving, CI/CD, and production-scale distributed infrastructure are outside the current portfolio scope.
+- Formal benchmarks are specific to the frozen SC AML/CFT/CPF document/domain.
+- OCR-heavy/scanned-document ingestion is not part of the frozen portfolio path.
+- Exact pgvector cosine retrieval is appropriate for the current small corpus; this project does not claim internet-scale ANN performance.
+- Bounded structural expansion can miss distant document dependencies.
+- Visual evidence is provenance-linked rather than VLM-interpreted.
+- Images are not independently embedded or semantically searchable in v1.0.
+- Fresh answer generation requires external provider credentials.
+- Multi-tenant serving, distributed infrastructure, CI/CD, and large-scale observability are outside the current portfolio scope.
 
 See [`docs/KNOWN_LIMITATIONS.md`](docs/KNOWN_LIMITATIONS.md) for the detailed boundary.
 
+---
+
 ## Future work
 
-The next meaningful extensions are intentionally kept outside the v1 portfolio scope:
+The next meaningful extensions are intentionally kept outside the v1.0 core:
 
+- LangChain adapter/example around the existing custom retriever;
 - VLM-generated descriptions for image-only semantic retrieval;
 - independent multimodal/image embeddings;
-- generalized ingestion for broader PDF families and OCR-heavy documents;
+- broader PDF-family and OCR-heavy ingestion;
 - agent-assisted structural correction suggestions;
 - multi-document collections and cross-document reasoning;
-- production authentication, observability, CI/CD, and scalable vector indexing.
+- authentication, observability, CI/CD, and scalable vector indexing.
 
 ---
 
 ## Project status
 
-**Portfolio v1: feature-complete.**
+**RAG Document Studio v1.0 — feature complete for the portfolio scope.**
 
-The priority now is reproducibility, documentation, demonstration, and clear communication of the engineering trade-offs rather than adding more architecture simply for feature count.
+The project is now focused on reproducibility, evaluation, documentation, and demonstrating the engineering trade-offs behind a reliable RAG system rather than adding features purely for feature count.
